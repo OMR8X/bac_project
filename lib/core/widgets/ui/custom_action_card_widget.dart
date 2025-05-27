@@ -124,3 +124,28 @@ class CustomActionCardWidget extends StatelessWidget {
     );
   }
 }
+// Try it =>
+/* CustomActionCardWidget(
+  title: 'العصبية',
+  subtitle: "الوصف",
+  firstButtonText: 'بدء الإختبار الكامل',
+  secondButtonText: 'استكشاف الدروس',
+  onFirstPressed: () {
+    print("");
+  },
+  onSecondPressed: () {
+    print("");
+  },
+  cardColor: Color(0xffF5F5F5),
+  titleColor: Colors.black,
+  subtitleColor: Colors.grey,
+  titleFontSize: 18,
+  subtitleFontSize: 14,
+  firstButtonColor: Color(0xff3D3D3D),
+  firstButtonTextColor: Color(0xffF5F5F5),
+  secondButtonColor: Color(0xffF5F5F5),
+  secondButtonTextColor: Color(0xff3D3D3D),
+  borderRadius: BorderRadius.circular(7),
+  borderColor: Color(0xff3D3D3D),
+  borderWidth: 1,
+), */
