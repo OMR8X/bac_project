@@ -19,6 +19,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
   static const double _borderRadius = 8.0;
   static const Color _backgroundColor = Colors.black;
   static const Color _textColor = Colors.white;
+  static const Color _fillColor = Color(0XFFEFEFF0);
   static const Color _hintTextColor = Colors.grey;
   static const Color _iconColor = Colors.grey;
   static const TextDirection _textDirection = TextDirection.rtl;
@@ -69,14 +70,16 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
       child: Directionality(
         textDirection: _textDirection,
         child: TextField(
+          
           controller: _searchController,
           style: const TextStyle(color: _textColor),
           textAlign: _textAlign,
           decoration: InputDecoration(
+            fillColor: _fillColor,
             contentPadding: _contentPadding,
             hintText: _hintText,
-            hintStyle: const TextStyle(color: _hintTextColor),
-            prefixIcon: const Icon(_searchIcon, color: _iconColor),
+            hintStyle:  TextStyle(color: _hintTextColor , fontSize: 13),
+            suffixIcon:  Icon(_searchIcon, color: _iconColor,size: 24),
             border: _inputBorder,
             enabledBorder: _inputBorder,
             focusedBorder: _inputBorder,
