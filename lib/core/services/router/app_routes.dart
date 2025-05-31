@@ -6,6 +6,8 @@ enum AppRoutes {
   authViewsManager(name: 'auth-views-manager', path: '/auth-views-manager'),
   designing(name: 'designing', path: '/designing'),
   auth(name: 'auth', path: '/auth'),
+  setting(name: 'setting', path: '/setting'),
+  result(name: 'result', path: '/result'),
 
   testing(name: 'testing', path: '/testing');
 
