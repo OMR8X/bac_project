@@ -52,7 +52,7 @@ class AppLightTheme {
       floatingActionButtonTheme: const FloatingActionButtonThemeData(backgroundColor: ColorsResourcesLight.primary, foregroundColor: Colors.white),
 
       ///
-    //  dialogTheme: DialogTheme(backgroundColor: ColorsResourcesLight.surfaceContainerHigh, shape: RoundedRectangleBorder(borderRadius: BorderRadiusResource.dialogBorderRadius)),
+      dialogTheme: DialogThemeData(backgroundColor: ColorsResourcesLight.surfaceContainerHigh, shape: RoundedRectangleBorder(borderRadius: BorderRadiusResource.dialogBorderRadius)),
 
       ///
       dropdownMenuTheme: DropdownMenuThemeData(
