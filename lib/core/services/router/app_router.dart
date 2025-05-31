@@ -1,5 +1,6 @@
 import 'package:bac_project/core/services/router/app_transations.dart';
 import 'package:bac_project/presentation/home/views/home_view.dart';
+import 'package:bac_project/presentation/root/views/auth_start_view.dart';
 import 'package:bac_project/presentation/root/views/auth_views_manager.dart';
 import 'package:bac_project/presentation/testing/views/designing_view.dart';
 
@@ -17,6 +18,7 @@ class AppRouter {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
   static final _rootNavigatorHome = GlobalKey<NavigatorState>();
   static final _rootNavigatorDesigning = GlobalKey<NavigatorState>();
+  static final _rootNavigatorAuth = GlobalKey<NavigatorState>();
 
   /// developing
   ///
@@ -103,7 +105,7 @@ class AppRouter {
             navigatorKey: _rootNavigatorDesigning,
             routes: [
               ///
-              /// Home route
+              /// desiging route
               GoRoute(
                 name: AppRoutes.designing.name,
                 path: AppRoutes.designing.path,
@@ -116,6 +118,28 @@ class AppRouter {
                         return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
                       },
                       child: DesigningView(key: state.pageKey),
+                    ),
+              ),
+            ],
+          ),
+
+          StatefulShellBranch(
+            navigatorKey: _rootNavigatorAuth,
+            routes: [
+              ///
+              /// loader route
+              GoRoute(
+                name: AppRoutes.auth.name,
+                path: AppRoutes.auth.path,
+                pageBuilder:
+                    (context, state) => CustomTransitionPage(
+                      key: state.pageKey,
+                      transitionDuration: AppTransitions.transitionDuration,
+                      reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                        return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
+                      },
+                      child: AuthStartView(key: state.pageKey),
                     ),
               ),
             ],

@@ -53,7 +53,6 @@ class AppLightTheme {
 
       ///
       dialogTheme: DialogThemeData(backgroundColor: ColorsResourcesLight.surfaceContainerHigh, shape: RoundedRectangleBorder(borderRadius: BorderRadiusResource.dialogBorderRadius)),
-
       ///
       dropdownMenuTheme: DropdownMenuThemeData(
         inputDecorationTheme: InputDecorationTheme(
