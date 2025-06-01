@@ -1,5 +1,7 @@
 import 'package:bac_project/core/resources/styles/assets_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
+import 'package:bac_project/core/services/localization/localization_keys.dart';
+import 'package:bac_project/core/services/localization/localization_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -62,7 +64,7 @@ class _NavigationBar extends StatelessWidget {
                     //
                     const SizedBox(height: SpacesResources.s6),
                     //
-                    Text('الرئيسية'),
+                    Text(LocalizationManager().get(LocalizationKeys.bottomNavigationBar.home)),
                   ],
                 ),
               ),
@@ -88,7 +90,7 @@ class _NavigationBar extends StatelessWidget {
                     //
                     const SizedBox(height: SpacesResources.s6),
                     //
-                    Text('نتائجي'),
+                    Text(LocalizationManager().get(LocalizationKeys.bottomNavigationBar.results)),
                   ],
                 ),
               ),
@@ -114,7 +116,7 @@ class _NavigationBar extends StatelessWidget {
                     //
                     const SizedBox(height: SpacesResources.s6),
                     //
-                    Text('الأعدادات'),
+                    Text(LocalizationManager().get(LocalizationKeys.bottomNavigationBar.settings)),
                   ],
                 ),
               ),

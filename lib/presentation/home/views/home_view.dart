@@ -1,3 +1,5 @@
+import 'package:bac_project/core/services/localization/localization_keys.dart';
+import 'package:bac_project/core/services/localization/localization_manager.dart';
 import 'package:bac_project/core/widgets/ui/custom_action_card_widget.dart';
 import 'package:bac_project/core/widgets/ui/search_bar_widget.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +10,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Home View")),
+      appBar: AppBar(title: Text(LocalizationManager().get(LocalizationKeys.home.title))),
       body: Column(
         children: [
           Padding(
@@ -22,7 +24,14 @@ class HomeView extends StatelessWidget {
               },
             ),
           ),
-          CustomActionCardWidget(title: "العصبية", subtitle: "وحدة العصبية", firstButtonText: "بدء الاختبار الكامل", secondButtonText: "استكشاف الدروس", onFirstPressed: () {}, onSecondPressed: () {}),
+          CustomActionCardWidget(
+            title: LocalizationManager().get(LocalizationKeys.home.card.title),
+            subtitle: LocalizationManager().get(LocalizationKeys.home.card.subtitle),
+            firstButtonText: LocalizationManager().get(LocalizationKeys.home.card.firstButtonText),
+            secondButtonText: LocalizationManager().get(LocalizationKeys.home.card.secondButtonText),
+            onFirstPressed: () {},
+            onSecondPressed: () {},
+          ),
         ],
       ),
     );

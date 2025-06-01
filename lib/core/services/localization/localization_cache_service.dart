@@ -16,7 +16,6 @@ class LocalizationCacheService {
 
   Future<Map<String, dynamic>> getCachedJson() async {
     final jsonStr = await cacheManager().read(_cacheKey);
-    print(jsonStr);
     if (jsonStr == null) {
       return <String, dynamic>{};
     }

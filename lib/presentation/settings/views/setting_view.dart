@@ -1,3 +1,5 @@
+import 'package:bac_project/core/services/localization/localization_keys.dart';
+import 'package:bac_project/core/services/localization/localization_manager.dart';
 import 'package:flutter/material.dart';
 
 class SettingView extends StatelessWidget {
@@ -5,6 +7,6 @@ class SettingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text('Setting View')), body: Column(children: []));
+    return Scaffold(appBar: AppBar(title: Text(LocalizationManager().get(LocalizationKeys.settings.title))), body: Column(children: []));
   }
 }

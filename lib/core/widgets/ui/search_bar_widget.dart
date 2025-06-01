@@ -1,12 +1,10 @@
+import 'package:bac_project/core/services/localization/localization_keys.dart';
+import 'package:bac_project/core/services/localization/localization_manager.dart';
 import 'package:flutter/material.dart';
 
 class SearchBarWidget extends StatefulWidget {
-  const SearchBarWidget({
-    super.key,
-    this.onChanged,
-    this.onFieldSubmitted,
-  });
-  
+  const SearchBarWidget({super.key, this.onChanged, this.onFieldSubmitted});
+
   final void Function(String)? onChanged;
   final void Function(String)? onFieldSubmitted;
 
@@ -23,33 +21,29 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
   static const Color _iconColor = Colors.grey;
   static const TextDirection _textDirection = TextDirection.rtl;
   static const TextAlign _textAlign = TextAlign.right;
-  static const String _hintText = "بحث...";
   static const EdgeInsetsGeometry _contentPadding = EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0);
   static const IconData _searchIcon = Icons.search;
-  
+
   // State variables
   bool isFieldEmpty = true;
   late final TextEditingController _searchController;
-  
+
   // Border styles
-  late final OutlineInputBorder _inputBorder = OutlineInputBorder(
-    borderRadius: BorderRadius.circular(_borderRadius),
-    borderSide: BorderSide.none,
-  );
-  
+  late final OutlineInputBorder _inputBorder = OutlineInputBorder(borderRadius: BorderRadius.circular(_borderRadius), borderSide: BorderSide.none);
+
   @override
   void initState() {
     super.initState();
     _searchController = TextEditingController();
     _searchController.addListener(_updateFieldEmptyState);
   }
-  
+
   @override
   void dispose() {
     _searchController.dispose();
     super.dispose();
   }
-  
+
   void _updateFieldEmptyState() {
     final isEmpty = _searchController.text.isEmpty;
     if (isFieldEmpty != isEmpty) {
@@ -62,10 +56,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: _backgroundColor,
-        borderRadius: BorderRadius.circular(_borderRadius),
-      ),
+      decoration: BoxDecoration(color: _backgroundColor, borderRadius: BorderRadius.circular(_borderRadius)),
       child: Directionality(
         textDirection: _textDirection,
         child: TextField(
@@ -74,7 +65,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
           textAlign: _textAlign,
           decoration: InputDecoration(
             contentPadding: _contentPadding,
-            hintText: _hintText,
+            hintText: LocalizationManager().get(LocalizationKeys.search.hint),
             hintStyle: const TextStyle(color: _hintTextColor),
             prefixIcon: const Icon(_searchIcon, color: _iconColor),
             border: _inputBorder,
