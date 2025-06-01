@@ -6,6 +6,7 @@ import 'package:bac_project/core/services/localization/localization_manager.dart
 Future<void> localizationInjection() async {
   //
   sl.registerSingleton<LocalizationCacheService>(LocalizationCacheService(cacheManager: sl<CacheManager>()));
+  sl.registerSingleton<LocalizationManager>(LocalizationManager());
   //
   await sl<LocalizationManager>().init();
   await sl<LocalizationCacheService>().loadAndCacheJson('ar');
