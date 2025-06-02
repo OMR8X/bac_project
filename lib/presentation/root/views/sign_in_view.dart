@@ -50,7 +50,7 @@ class _SignInViewState extends State<SignInView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocalizationManager().get(LocalizationKeys.auth.signIn)),
+        title: Text(sl<LocalizationManager>().get(LocalizationKeys.auth.signIn)),
         leading: IconButton(
           onPressed: () {
             context.read<AuthBloc>().add(const AuthStartAuthEvent());
@@ -66,7 +66,7 @@ class _SignInViewState extends State<SignInView> {
               children: [
                 const SizedBox(height: SpacesResources.s10),
                 TextFormFieldWidget(
-                  hintText: LocalizationManager().get(LocalizationKeys.auth.email),
+                  hintText: sl<LocalizationManager>().get(LocalizationKeys.auth.email),
                   maxLength: 64,
                   position: 1,
                   keyboardType: TextInputType.emailAddress,
@@ -76,7 +76,7 @@ class _SignInViewState extends State<SignInView> {
                   },
                 ),
                 TextFormFieldWidget(
-                  hintText: LocalizationManager().get(LocalizationKeys.auth.password),
+                  hintText: sl<LocalizationManager>().get(LocalizationKeys.auth.password),
                   maxLength: 64,
                   obscureText: true,
                   maxLines: 1,
@@ -88,7 +88,7 @@ class _SignInViewState extends State<SignInView> {
                   },
                 ),
                 ElevatedButtonWidget(
-                  title: LocalizationManager().get(LocalizationKeys.auth.signIn),
+                  title: sl<LocalizationManager>().get(LocalizationKeys.auth.signIn),
                   loading: widget.state.loading,
                   position: 3,
                   onPressed: () {

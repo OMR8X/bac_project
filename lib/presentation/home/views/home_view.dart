@@ -1,3 +1,4 @@
+import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/services/localization/localization_keys.dart';
 import 'package:bac_project/core/services/localization/localization_manager.dart';
 import 'package:bac_project/core/widgets/ui/custom_action_card_widget.dart';
@@ -25,10 +26,10 @@ class HomeView extends StatelessWidget {
             ),
           ),
           CustomActionCardWidget(
-            title: LocalizationManager().get(LocalizationKeys.home.card.title),
-            subtitle: LocalizationManager().get(LocalizationKeys.home.card.subtitle),
-            firstButtonText: LocalizationManager().get(LocalizationKeys.home.card.firstButtonText),
-            secondButtonText: LocalizationManager().get(LocalizationKeys.home.card.secondButtonText),
+            title: sl<LocalizationManager>().get(LocalizationKeys.home.card.title),
+            subtitle: sl<LocalizationManager>().get(LocalizationKeys.home.card.subtitle),
+            firstButtonText: sl<LocalizationManager>().get(LocalizationKeys.home.card.firstButtonText),
+            secondButtonText: sl<LocalizationManager>().get(LocalizationKeys.home.card.secondButtonText),
             onFirstPressed: () {},
             onSecondPressed: () {},
           ),

@@ -1,3 +1,4 @@
+import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/resources/styles/assets_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/services/localization/localization_keys.dart';
@@ -64,7 +65,7 @@ class _NavigationBar extends StatelessWidget {
                     //
                     const SizedBox(height: SpacesResources.s6),
                     //
-                    Text(LocalizationManager().get(LocalizationKeys.bottomNavigationBar.home)),
+                    Text(sl<LocalizationManager>().get(LocalizationKeys.bottomNavigationBar.home)),
                   ],
                 ),
               ),
@@ -90,7 +91,7 @@ class _NavigationBar extends StatelessWidget {
                     //
                     const SizedBox(height: SpacesResources.s6),
                     //
-                    Text(LocalizationManager().get(LocalizationKeys.bottomNavigationBar.results)),
+                    Text(sl<LocalizationManager>().get(LocalizationKeys.bottomNavigationBar.results)),
                   ],
                 ),
               ),
@@ -116,7 +117,7 @@ class _NavigationBar extends StatelessWidget {
                     //
                     const SizedBox(height: SpacesResources.s6),
                     //
-                    Text(LocalizationManager().get(LocalizationKeys.bottomNavigationBar.settings)),
+                    Text(sl<LocalizationManager>().get(LocalizationKeys.bottomNavigationBar.settings)),
                   ],
                 ),
               ),

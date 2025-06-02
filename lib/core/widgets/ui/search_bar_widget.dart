@@ -1,3 +1,4 @@
+import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/services/localization/localization_keys.dart';
 import 'package:bac_project/core/services/localization/localization_manager.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +66,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
           textAlign: _textAlign,
           decoration: InputDecoration(
             contentPadding: _contentPadding,
-            hintText: LocalizationManager().get(LocalizationKeys.search.hint),
+            hintText: sl<LocalizationManager>().get(LocalizationKeys.search.hint),
             hintStyle: const TextStyle(color: _hintTextColor),
             prefixIcon: const Icon(_searchIcon, color: _iconColor),
             border: _inputBorder,

@@ -26,7 +26,7 @@ class _AuthStartViewState extends State<AuthStartView> {
             StaggeredItemWrapperWidget(
               position: 0,
               child: ElevatedButtonWidget(
-                title: LocalizationManager().get(LocalizationKeys.auth.signIn),
+                title: sl<LocalizationManager>().get(LocalizationKeys.auth.signIn),
                 onPressed: () {
                   sl<AuthBloc>().add(const AuthStartSignInEvent());
                 },
@@ -35,7 +35,7 @@ class _AuthStartViewState extends State<AuthStartView> {
             StaggeredItemWrapperWidget(
               position: 0,
               child: ElevatedButtonWidget(
-                title: LocalizationManager().get(LocalizationKeys.auth.signUp),
+                title: sl<LocalizationManager>().get(LocalizationKeys.auth.signUp),
                 onPressed: () {
                   sl<AuthBloc>().add(const AuthStartSignUpEvent());
                 },

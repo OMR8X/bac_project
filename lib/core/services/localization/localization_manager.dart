@@ -2,10 +2,6 @@ import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/services/localization/localization_cache_service.dart';
 
 class LocalizationManager {
-  static final LocalizationManager _instance = LocalizationManager._internal();
-  factory LocalizationManager() => _instance;
-  LocalizationManager._internal();
-
   late Map<String, dynamic> _content;
 
   Future<void> init() async {
