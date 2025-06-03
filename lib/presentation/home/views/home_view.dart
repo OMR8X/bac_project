@@ -1,3 +1,6 @@
+import 'package:bac_project/core/injector/app_injection.dart';
+import 'package:bac_project/core/services/localization/localization_keys.dart';
+import 'package:bac_project/core/services/localization/localization_manager.dart';
 import 'package:bac_project/core/widgets/ui/custom_action_card_widget.dart';
 import 'package:bac_project/core/widgets/ui/search_bar_widget.dart';
 import 'package:bac_project/presentation/home/widgets/home_card_bilder_widget.dart';
@@ -9,7 +12,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Home View")),
+      appBar: AppBar(title: Text(LocalizationManager().get(LocalizationKeys.home.title))),
       body: Column(
         children: [
           Padding(
@@ -29,7 +32,6 @@ class HomeView extends StatelessWidget {
               child: HomeCardsBuilderWidget(),
             ),
           ),
-
         ],
       ),
     );
