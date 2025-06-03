@@ -12,7 +12,7 @@ void main() async {
 
   ///
   await ServiceLocator.init();
-
+  await Future.delayed(const Duration(seconds: 3));
   // ///
   // await sl<AppBackgroundService>().initializeBackgroundServiceForUploads();
 
