@@ -1,5 +1,6 @@
 import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/resources/styles/assets_resources.dart';
+import 'package:bac_project/core/resources/styles/padding_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/services/localization/localization_keys.dart';
 import 'package:bac_project/core/services/localization/localization_manager.dart';
@@ -22,10 +23,7 @@ class _PagesHolderViewState extends State<PagesHolderView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SizedBox(width: double.infinity, height: double.infinity, child: widget.navigationShell),
-      bottomNavigationBar: _NavigationBar(widget.navigationShell.currentIndex, _changePage),
-    );
+    return Scaffold(body: SizedBox(width: double.infinity, height: double.infinity, child: widget.navigationShell), bottomNavigationBar: _NavigationBar(widget.navigationShell.currentIndex, _changePage));
   }
 }
 
@@ -41,6 +39,7 @@ class _NavigationBar extends StatelessWidget {
     //
     return Container(
       width: MediaQuery.sizeOf(context).width,
+      margin: PaddingResources.screenSidesPadding,
       padding: EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom + SpacesResources.s4, top: SpacesResources.s10),
       color: Theme.of(context).colorScheme.surface,
       child: Row(

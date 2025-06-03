@@ -1,9 +1,9 @@
+import 'package:bac_project/core/resources/styles/padding_resources.dart';
 import 'package:bac_project/core/services/local/local_card_api.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
 import 'package:bac_project/core/widgets/animations/staggered_list_wrapper_widget.dart';
 import 'package:bac_project/core/widgets/ui/custom_action_card_widget.dart';
-import 'package:bac_project/presentation/home/models/custom_action_card_model.dart'
-    show CustomCardData;
+import 'package:bac_project/presentation/home/models/custom_action_card_model.dart' show CustomCardData;
 import 'package:flutter/material.dart';
 // api المحلي
 
@@ -15,9 +15,7 @@ class HomeCardsBuilderWidget extends StatelessWidget {
     return StaggeredListWrapperWidget(
       position: 60,
       child: FutureBuilder<List<CustomCardData>>(
-        future: LocalActionCardApi.fetchCardsFromJson(
-          'assets/json/action_card_data.json',
-        ),
+        future: LocalActionCardApi.fetchCardsFromJson('assets/json/action_card_data.json'),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -30,6 +28,7 @@ class HomeCardsBuilderWidget extends StatelessWidget {
           final cards = snapshot.data!;
 
           return ListView.builder(
+            padding: PaddingResources.listViewPadding,
             itemCount: cards.length,
             itemBuilder: (context, index) {
               final card = cards[index];
