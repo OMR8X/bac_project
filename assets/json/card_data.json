@@ -1,0 +1,42 @@
+[
+  {
+    "title": "العصبية",
+    "subtitle": "اختبر نفسك في العصبية",
+    "firstButtonText": "بدء الاختبار",
+    "secondButtonText": "استكشاف الدروس",
+    "onFirstAction": "startTest",
+    "onSecondAction": "openLessons"
+  },
+  {
+    "title": "العصبية",
+    "subtitle": "اختبر نفسك في العصبية",
+    "firstButtonText": "بدء الاختبار",
+    "secondButtonText": "استكشاف الدروس",
+    "onFirstAction": "startTest",
+    "onSecondAction": "openLessons"
+  },
+   {
+    "title": "العصبية",
+    "subtitle": "اختبر نفسك في العصبية",
+    "firstButtonText": "بدء الاختبار",
+    "secondButtonText": "استكشاف الدروس",
+    "onFirstAction": "startTest",
+    "onSecondAction": "openLessons"
+  },
+    {
+    "title": "العصبية",
+    "subtitle": "اختبر نفسك في العصبية",
+    "firstButtonText": "بدء الاختبار",
+    "secondButtonText": "استكشاف الدروس",
+    "onFirstAction": "startTest",
+    "onSecondAction": "openLessons"
+  },
+    {
+    "title": "العصبية",
+    "subtitle": "اختبر نفسك في العصبية",
+    "firstButtonText": "بدء الاختبار",
+    "secondButtonText": "استكشاف الدروس",
+    "onFirstAction": "startTest",
+    "onSecondAction": "openLessons"
+  }
+]
