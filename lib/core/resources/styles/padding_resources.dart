@@ -7,6 +7,15 @@ class PaddingResources {
   static const sizeUnit = SizesResources.sizeUnit;
 
   ///
+  static const EdgeInsets screenSidesPadding = EdgeInsets.symmetric(horizontal: SpacesResources.s4, vertical: 0);
+
+  ///
+  static const EdgeInsets listViewPadding = EdgeInsets.symmetric(horizontal: 0, vertical: SpacesResources.s4);
+
+  ///
+  static const EdgeInsets cardInnerPadding = EdgeInsets.symmetric(horizontal: SpacesResources.s8, vertical: SpacesResources.s10);
+
+  ///
   static const EdgeInsets padding_0_1 = EdgeInsets.symmetric(horizontal: 0, vertical: SpacesResources.s1);
 
   ///
