@@ -1,6 +1,8 @@
 import 'package:bac_project/core/helpers/input_validator.dart';
 import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
+import 'package:bac_project/core/services/localization/localization_keys.dart';
+import 'package:bac_project/core/services/localization/localization_manager.dart';
 import 'package:bac_project/core/widgets/ui/fields/elevated_button_widget.dart';
 import 'package:bac_project/core/widgets/ui/fields/text_form_field_widget.dart';
 import 'package:bac_project/presentation/root/blocs/auth/auth_bloc.dart';
@@ -48,7 +50,7 @@ class _SignInViewState extends State<SignInView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("تسجيل الدخول"),
+        title: Text(sl<LocalizationManager>().get(LocalizationKeys.auth.signIn)),
         leading: IconButton(
           onPressed: () {
             context.read<AuthBloc>().add(const AuthStartAuthEvent());
@@ -64,7 +66,7 @@ class _SignInViewState extends State<SignInView> {
               children: [
                 const SizedBox(height: SpacesResources.s10),
                 TextFormFieldWidget(
-                  hintText: "البريد الإلكتروني",
+                  hintText: sl<LocalizationManager>().get(LocalizationKeys.auth.email),
                   maxLength: 64,
                   position: 1,
                   keyboardType: TextInputType.emailAddress,
@@ -74,7 +76,7 @@ class _SignInViewState extends State<SignInView> {
                   },
                 ),
                 TextFormFieldWidget(
-                  hintText: "الرمز السري",
+                  hintText: sl<LocalizationManager>().get(LocalizationKeys.auth.password),
                   maxLength: 64,
                   obscureText: true,
                   maxLines: 1,
@@ -86,7 +88,7 @@ class _SignInViewState extends State<SignInView> {
                   },
                 ),
                 ElevatedButtonWidget(
-                  title: "تسجيل الدخول",
+                  title: sl<LocalizationManager>().get(LocalizationKeys.auth.signIn),
                   loading: widget.state.loading,
                   position: 3,
                   onPressed: () {
