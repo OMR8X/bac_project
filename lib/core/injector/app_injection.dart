@@ -1,4 +1,5 @@
 import 'package:bac_project/core/injector/cache_injection.dart';
+import 'package:bac_project/core/injector/localization_injection.dart';
 import 'package:get_it/get_it.dart';
 import 'controllers_injection.dart';
 import 'debugging_injection.dart';
@@ -19,6 +20,7 @@ class ServiceLocator {
   static Future<void> injectServices() async {
     await packageInfoInjection();
     await cacheInjection();
+    await localizationInjection();
     await pathsInjection();
     await debuggingInjection();
   }

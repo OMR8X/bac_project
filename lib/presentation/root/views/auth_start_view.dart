@@ -1,6 +1,8 @@
 import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/surface_container_colors.dart';
+import 'package:bac_project/core/services/localization/localization_keys.dart';
+import 'package:bac_project/core/services/localization/localization_manager.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
 import 'package:bac_project/core/widgets/ui/fields/elevated_button_widget.dart';
 import 'package:bac_project/presentation/root/blocs/auth/auth_bloc.dart';
@@ -24,7 +26,7 @@ class _AuthStartViewState extends State<AuthStartView> {
             StaggeredItemWrapperWidget(
               position: 0,
               child: ElevatedButtonWidget(
-                title: "تسجيل الدخول",
+                title: sl<LocalizationManager>().get(LocalizationKeys.auth.signIn),
                 onPressed: () {
                   sl<AuthBloc>().add(const AuthStartSignInEvent());
                 },
@@ -33,7 +35,7 @@ class _AuthStartViewState extends State<AuthStartView> {
             StaggeredItemWrapperWidget(
               position: 0,
               child: ElevatedButtonWidget(
-                title: "انشاء حساب",
+                title: sl<LocalizationManager>().get(LocalizationKeys.auth.signUp),
                 onPressed: () {
                   sl<AuthBloc>().add(const AuthStartSignUpEvent());
                 },

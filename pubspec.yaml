@@ -78,7 +78,9 @@ flutter:
     - assets/fonts/NotoSansArabic/
     - assets/fonts/Vazirmatn/
     - assets/images/ui/
+    - assets/langs/
     - assets/json/card_data.json
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
