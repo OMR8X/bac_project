@@ -1,21 +1,25 @@
 import 'package:bac_project/core/services/local/local_card_api.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
 import 'package:bac_project/core/widgets/animations/staggered_list_wrapper_widget.dart';
-import 'package:bac_project/core/widgets/ui/custom_action_card_widget.dart';
-import 'package:bac_project/presentation/home/models/custom_card_model.dart'
+import 'package:bac_project/core/widgets/ui/custom_navigator_card_widget.dart';
+import 'package:bac_project/presentation/home/models/custom_action_card_model.dart'
     show CustomCardData;
+import 'package:bac_project/presentation/home/models/custom_navigation_card_model.dart';
+import 'package:bac_project/presentation/home/views/lessons_view.dart';
 import 'package:flutter/material.dart';
 // api المحلي
 
-class HomeCardsBuilderWidget extends StatelessWidget {
-  const HomeCardsBuilderWidget({super.key});
+class LessonsCardsBuilderWidget extends StatelessWidget {
+  const LessonsCardsBuilderWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return StaggeredListWrapperWidget(
       position: 60,
-      child: FutureBuilder<List<CustomCardData>>(
-        future: LocalCardApi.fetchCardsFromJson(),
+      child: FutureBuilder<List<CustomNavigationCardData>>(
+        future: LocalNavigationCardApi.fetchCardsFromJson(
+          'assets/json/navigation_card_data.json',
+        ),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -34,13 +38,12 @@ class HomeCardsBuilderWidget extends StatelessWidget {
 
               return StaggeredItemWrapperWidget(
                 position: 70,
-                child: CustomActionCardWidget(
+                child: CustomNavigatorCardWidget(
                   title: card.title,
                   subtitle: card.subtitle,
-                  firstButtonText: card.firstButtonText,
-                  secondButtonText: card.secondButtonText,
-                  onFirstPressed: () => print('${card.title} - اختبار'),
-                  onSecondPressed: () => print('${card.title} - دروس'),
+                  onTap: () {
+                    print('تم النقر على: ${card.title}');
+                  },
                 ),
               );
             },
