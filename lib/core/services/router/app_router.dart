@@ -1,5 +1,6 @@
 import 'package:bac_project/core/services/router/app_transations.dart';
 import 'package:bac_project/presentation/home/views/home_view.dart';
+import 'package:bac_project/presentation/home/views/lessons_view.dart';
 import 'package:bac_project/presentation/result/views/result_view.dart';
 import 'package:bac_project/presentation/root/views/auth_views_manager.dart';
 import 'package:bac_project/presentation/settings/views/setting_view.dart';
@@ -104,6 +105,32 @@ class AppRouter {
                 );
               },
               child: AppLoaderView(key: state.pageKey),
+            ),
+      ),
+      // lessons route
+      GoRoute(
+        name: AppRoutes.lessons.name,
+        path: AppRoutes.lessons.path,
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              transitionDuration: AppTransitions.transitionDuration,
+              reverseTransitionDuration:
+                  AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (
+                context,
+                animation,
+                secondaryAnimation,
+                child,
+              ) {
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
+              },
+              child: LessonsView(key: state.pageKey),
             ),
       ),
 

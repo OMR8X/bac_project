@@ -1,0 +1,18 @@
+PADDING:
+you should always try to use the exists padding variables 
+from padding resources or create new padding variables if needed.
+ie : screen side padding.
+
+
+LANGUAGE:
+you should always try to use the exists texts system 
+
+by adding key & values to files : 
+///[assets/langs/ar.json]
+///[lib/core/services/localization/localization_keys.dart]
+
+and using them like : 
+LocalizationManager().get(LocalizationKeys.home.title)
+
+
+
