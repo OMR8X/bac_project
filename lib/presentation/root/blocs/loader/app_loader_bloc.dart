@@ -1,4 +1,3 @@
-import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/resources/errors/failures.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -10,7 +9,10 @@ class AppLoaderBloc extends Bloc<AppLoaderLoadData, AppLoaderState> {
     on<AppLoaderLoadData>(onAppLoaderLoadData);
   }
 
-  onAppLoaderLoadData(AppLoaderLoadData event, Emitter<AppLoaderState> emit) async {
+  onAppLoaderLoadData(
+    AppLoaderLoadData event,
+    Emitter<AppLoaderState> emit,
+  ) async {
     emit(AppLoaderState.succeed());
   }
 }
