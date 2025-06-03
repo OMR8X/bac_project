@@ -2,8 +2,7 @@ import 'package:bac_project/core/services/local/local_card_api.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
 import 'package:bac_project/core/widgets/animations/staggered_list_wrapper_widget.dart';
 import 'package:bac_project/core/widgets/ui/custom_navigator_card_widget.dart';
-import 'package:bac_project/presentation/home/models/custom_action_card_model.dart'
-    show CustomCardData;
+import 'package:bac_project/presentation/home/models/custom_action_card_model.dart' show CustomCardData;
 import 'package:bac_project/presentation/home/models/custom_navigation_card_model.dart';
 import 'package:bac_project/presentation/home/views/lessons_view.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +16,7 @@ class LessonsCardsBuilderWidget extends StatelessWidget {
     return StaggeredListWrapperWidget(
       position: 60,
       child: FutureBuilder<List<CustomNavigationCardData>>(
-        future: LocalNavigationCardApi.fetchCardsFromJson(
-          'assets/json/navigation_card_data.json',
-        ),
+        future: LocalNavigationCardApi.fetchCardsFromJson('assets/json/navigation_card_data.json'),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
