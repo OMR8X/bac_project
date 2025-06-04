@@ -53,6 +53,7 @@ class AppLightTheme {
 
       ///
       dialogTheme: DialogThemeData(backgroundColor: ColorsResourcesLight.surfaceContainerHigh, shape: RoundedRectangleBorder(borderRadius: BorderRadiusResource.dialogBorderRadius)),
+
       ///
       dropdownMenuTheme: DropdownMenuThemeData(
         inputDecorationTheme: InputDecorationTheme(
@@ -63,6 +64,7 @@ class AppLightTheme {
       ),
 
       ///
+      cardTheme: CardThemeData(elevation: 0.0, shape: RoundedRectangleBorder(borderRadius: BorderRadiusResource.bordersRadiusMedium, side: BorderSide(color: ColorsResourcesLight.outline))),
 
       ///
       menuTheme: MenuThemeData(

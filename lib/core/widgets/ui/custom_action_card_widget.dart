@@ -1,4 +1,7 @@
+import 'package:bac_project/core/resources/styles/padding_resources.dart';
 import 'package:flutter/material.dart';
+
+import '../../resources/styles/spaces_resources.dart';
 
 class CustomActionCardWidget extends StatelessWidget {
   final String title;
@@ -50,69 +53,32 @@ class CustomActionCardWidget extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: Card(
         color: cardColor,
-        margin: const EdgeInsets.all(16),
+        margin: const EdgeInsets.symmetric(vertical: SpacesResources.s2),
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: PaddingResources.cardInnerPadding,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: titleFontSize,
-                  fontWeight: FontWeight.bold,
-                  color: titleColor,
-                ),
-              ),
+              Text(title, style: TextStyle(fontSize: titleFontSize, fontWeight: FontWeight.bold, color: titleColor)),
               const SizedBox(height: 4),
-              Text(
-                subtitle,
-                style: TextStyle(
-                  fontSize: subtitleFontSize,
-                  color: subtitleColor,
-                ),
-              ),
+              Text(subtitle, style: TextStyle(fontSize: subtitleFontSize, color: subtitleColor)),
               const SizedBox(height: 12),
               Row(
                 children: [
                   Expanded(
                     child: ElevatedButton(
                       onPressed: onFirstPressed,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: firstButtonColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: borderRadius,
-                          side: BorderSide(
-                            color: borderColor,
-                            width: borderWidth,
-                          ),
-                        ),
-                      ),
-                      child: Text(
-                        firstButtonText,
-                        style: TextStyle(color: firstButtonTextColor),
-                      ),
+                      style: ElevatedButton.styleFrom(backgroundColor: firstButtonColor, shape: RoundedRectangleBorder(borderRadius: borderRadius, side: BorderSide(color: borderColor, width: borderWidth))),
+                      child: Text(firstButtonText, style: TextStyle(color: firstButtonTextColor)),
                     ),
                   ),
                   const SizedBox(width: 16),
                   Expanded(
                     child: ElevatedButton(
                       onPressed: onSecondPressed,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: secondButtonColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: borderRadius,
-                          side: BorderSide(
-                            color: borderColor,
-                            width: borderWidth,
-                          ),
-                        ),
-                      ),
-                      child: Text(
-                        secondButtonText,
-                        style: TextStyle(color: secondButtonTextColor),
-                      ),
+                      style: ElevatedButton.styleFrom(backgroundColor: secondButtonColor, shape: RoundedRectangleBorder(borderRadius: borderRadius, side: BorderSide(color: borderColor, width: borderWidth))),
+                      child: Text(secondButtonText, style: TextStyle(color: secondButtonTextColor)),
                     ),
                   ),
                 ],

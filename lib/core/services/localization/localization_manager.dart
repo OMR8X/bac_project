@@ -2,8 +2,8 @@ import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/services/localization/localization_cache_service.dart';
 
 class LocalizationManager {
-  late Map<String, dynamic> _content;
-
+ static late Map<String, dynamic> _content;
+ 
   Future<void> init() async {
     final cacheService = sl<LocalizationCacheService>();
     _content = await cacheService.getCachedJson();

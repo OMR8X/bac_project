@@ -64,8 +64,10 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
           controller: _searchController,
           style: const TextStyle(color: _textColor),
           textAlign: _textAlign,
+
           decoration: InputDecoration(
             contentPadding: _contentPadding,
+
             hintText: sl<LocalizationManager>().get(LocalizationKeys.search.hint),
             hintStyle: const TextStyle(color: _hintTextColor),
             prefixIcon: const Icon(_searchIcon, color: _iconColor),
