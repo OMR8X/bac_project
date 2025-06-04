@@ -26,12 +26,7 @@ class HomeView extends StatelessWidget {
               },
             ),
           ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(right: 8.0, left: 8),
-              child: HomeCardsBuilderWidget(),
-            ),
-          ),
+          Expanded(child: Padding(padding: const EdgeInsets.only(right: 8.0, left: 8), child: HomeCardsBuilderWidget())),
         ],
       ),
     );
