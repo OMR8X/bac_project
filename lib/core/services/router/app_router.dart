@@ -1,8 +1,9 @@
 import 'package:bac_project/core/services/router/app_transations.dart';
 import 'package:bac_project/presentation/home/views/home_view.dart';
-import 'package:bac_project/presentation/root/views/auth_start_view.dart';
+import 'package:bac_project/presentation/home/views/lessons_view.dart';
+import 'package:bac_project/presentation/result/views/result_view.dart';
 import 'package:bac_project/presentation/root/views/auth_views_manager.dart';
-import 'package:bac_project/presentation/testing/views/designing_view.dart';
+import 'package:bac_project/presentation/settings/views/setting_view.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
@@ -17,8 +18,8 @@ class AppRouter {
   /// keys for the root navigator
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
   static final _rootNavigatorHome = GlobalKey<NavigatorState>();
-  static final _rootNavigatorDesigning = GlobalKey<NavigatorState>();
-  static final _rootNavigatorAuth = GlobalKey<NavigatorState>();
+  static final _rootNavigatorResult = GlobalKey<NavigatorState>();
+  static final _rootNavigatorSetting = GlobalKey<NavigatorState>();
 
   /// developing
   ///
@@ -35,9 +36,20 @@ class AppRouter {
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
               transitionDuration: AppTransitions.transitionDuration,
-              reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
-              transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
+              reverseTransitionDuration:
+                  AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (
+                context,
+                animation,
+                secondaryAnimation,
+                child,
+              ) {
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
               },
               child: const DebugsView(),
             ),
@@ -51,9 +63,20 @@ class AppRouter {
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
               transitionDuration: AppTransitions.transitionDuration,
-              reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
-              transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
+              reverseTransitionDuration:
+                  AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (
+                context,
+                animation,
+                secondaryAnimation,
+                child,
+              ) {
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
               },
               child: const AuthViewsManager(),
             ),
@@ -66,11 +89,48 @@ class AppRouter {
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
               transitionDuration: AppTransitions.transitionDuration,
-              reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
-              transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
+              reverseTransitionDuration:
+                  AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (
+                context,
+                animation,
+                secondaryAnimation,
+                child,
+              ) {
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
               },
               child: AppLoaderView(key: state.pageKey),
+            ),
+      ),
+      // lessons route
+      GoRoute(
+        name: AppRoutes.lessons.name,
+        path: AppRoutes.lessons.path,
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              transitionDuration: AppTransitions.transitionDuration,
+              reverseTransitionDuration:
+                  AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (
+                context,
+                animation,
+                secondaryAnimation,
+                child,
+              ) {
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
+              },
+              child: LessonsView(key: state.pageKey),
             ),
       ),
 
@@ -92,9 +152,20 @@ class AppRouter {
                     (context, state) => CustomTransitionPage(
                       key: state.pageKey,
                       transitionDuration: AppTransitions.transitionDuration,
-                      reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
-                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                        return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
+                      reverseTransitionDuration:
+                          AppTransitions.reverseTransitionDuration,
+                      transitionsBuilder: (
+                        context,
+                        animation,
+                        secondaryAnimation,
+                        child,
+                      ) {
+                        return AppTransitions.commonTransition(
+                          context,
+                          animation,
+                          secondaryAnimation,
+                          child,
+                        );
                       },
                       child: HomeView(key: state.pageKey),
                     ),
@@ -102,44 +173,66 @@ class AppRouter {
             ],
           ),
           StatefulShellBranch(
-            navigatorKey: _rootNavigatorDesigning,
+            navigatorKey: _rootNavigatorResult,
             routes: [
               ///
-              /// desiging route
+              /// Result route
               GoRoute(
-                name: AppRoutes.designing.name,
-                path: AppRoutes.designing.path,
+                name: AppRoutes.result.name,
+                path: AppRoutes.result.path,
                 pageBuilder:
                     (context, state) => CustomTransitionPage(
                       key: state.pageKey,
                       transitionDuration: AppTransitions.transitionDuration,
-                      reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
-                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                        return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
+                      reverseTransitionDuration:
+                          AppTransitions.reverseTransitionDuration,
+                      transitionsBuilder: (
+                        context,
+                        animation,
+                        secondaryAnimation,
+                        child,
+                      ) {
+                        return AppTransitions.commonTransition(
+                          context,
+                          animation,
+                          secondaryAnimation,
+                          child,
+                        );
                       },
-                      child: DesigningView(key: state.pageKey),
+                      child: ResultView(key: state.pageKey),
                     ),
               ),
             ],
           ),
 
           StatefulShellBranch(
-            navigatorKey: _rootNavigatorAuth,
+            navigatorKey: _rootNavigatorSetting,
             routes: [
               ///
-              /// loader route
+              /// Setting route
               GoRoute(
-                name: AppRoutes.auth.name,
-                path: AppRoutes.auth.path,
+                name: AppRoutes.setting.name,
+                path: AppRoutes.setting.path,
                 pageBuilder:
                     (context, state) => CustomTransitionPage(
                       key: state.pageKey,
                       transitionDuration: AppTransitions.transitionDuration,
-                      reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
-                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                        return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
+                      reverseTransitionDuration:
+                          AppTransitions.reverseTransitionDuration,
+                      transitionsBuilder: (
+                        context,
+                        animation,
+                        secondaryAnimation,
+                        child,
+                      ) {
+                        return AppTransitions.commonTransition(
+                          context,
+                          animation,
+                          secondaryAnimation,
+                          child,
+                        );
                       },
-                      child: AuthStartView(key: state.pageKey),
+                      child: SettingView(key: state.pageKey),
                     ),
               ),
             ],

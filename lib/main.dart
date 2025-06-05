@@ -12,7 +12,6 @@ void main() async {
 
   ///
   await ServiceLocator.init();
-
   // ///
   // await sl<AppBackgroundService>().initializeBackgroundServiceForUploads();
 
