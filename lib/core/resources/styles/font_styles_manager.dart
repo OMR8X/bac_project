@@ -1,74 +1,30 @@
-import 'package:bac_project/core/resources/styles/colors_resources.dart';
 import 'package:flutter/material.dart';
 
+/// Manages font families and provides unified text styles.
 class AppFontStyles {
   static const String fontFamily = 'NotoSansArabic';
-  static TextStyle makeFontStyle({double? fontSize, double? height, double? lettersSpacing, double? wordsSpacing, Color fontColor = const Color(0xffC0C0C0), FontWeight fontWeight = FontWeightResources.medium}) {
-    return TextStyle(fontWeight: fontWeight, fontSize: fontSize, color: fontColor, wordSpacing: wordsSpacing, letterSpacing: lettersSpacing, height: height);
+
+  static TextStyle makeFontStyle({
+    required double fontSize,
+    required FontWeight fontWeight,
+    required Color color,
+    double? height,
+    double? letterSpacing,
+    double? wordSpacing,
+  }) {
+    return TextStyle(
+      fontFamily: fontFamily,
+      fontSize: fontSize,
+      fontWeight: fontWeight,
+      color: color,
+      height: height,
+      letterSpacing: letterSpacing,
+      wordSpacing: wordSpacing,
+    );
   }
 }
 
-class FontStylesResources {
-  ///
-  static TextStyle tileLargeTitleStyle(BuildContext context) {
-    //
-    Color color = Theme.of(context).brightness == Brightness.dark ? ColorsResourcesDark.titleText : ColorsResourcesLight.titleText;
-    //
-    return TextStyle(color: Theme.of(context).colorScheme.onSurface, fontFamily: AppFontStyles.fontFamily, fontWeight: FontWeightResources.medium, fontSize: 13);
-  }
-
-  ///
-  static TextStyle tileTitleStyle(BuildContext context) {
-    //
-    Color color = Theme.of(context).brightness == Brightness.dark ? ColorsResourcesDark.titleText : ColorsResourcesLight.titleText;
-    //
-    return TextStyle(color: Theme.of(context).colorScheme.onSurface, fontFamily: AppFontStyles.fontFamily, fontWeight: FontWeightResources.medium, fontSize: 11);
-  }
-
-  ///
-  static TextStyle tileSubTitleStyle(BuildContext context) {
-    Color color = Theme.of(context).brightness == Brightness.dark ? ColorsResourcesDark.subTitleText : ColorsResourcesLight.subTitleText;
-    return TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontFamily: AppFontStyles.fontFamily, fontWeight: FontWeightResources.medium, fontSize: 10);
-  }
-
-  ///
-  static TextStyle miniSubTitleStyle(BuildContext context) {
-    Color color = Theme.of(context).brightness == Brightness.dark ? ColorsResourcesDark.subTitleText : ColorsResourcesLight.subTitleText;
-    return TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontFamily: AppFontStyles.fontFamily, fontWeight: FontWeightResources.medium, fontSize: 8);
-  }
-
-  ///
-  static TextStyle notificationTitleStyle(BuildContext context) {
-    Color color = Theme.of(context).brightness == Brightness.dark ? ColorsResourcesDark.subTitleText : ColorsResourcesLight.subTitleText;
-    return TextStyle(color: Theme.of(context).colorScheme.onSurface, fontFamily: AppFontStyles.fontFamily, fontWeight: FontWeightResources.black, fontSize: 13);
-  }
-
-  ///
-
-  static TextStyle notificationSubTitleStyle(BuildContext context) {
-    Color color = Theme.of(context).brightness == Brightness.dark ? ColorsResourcesDark.subTitleText : ColorsResourcesLight.subTitleText;
-    return TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontFamily: AppFontStyles.fontFamily, fontWeight: FontWeightResources.medium, fontSize: 11, height: 1.5);
-  }
-
-  ///
-  static const TextStyle buttonStyle = TextStyle(fontFamily: AppFontStyles.fontFamily, fontWeight: FontWeightResources.bold, fontSize: 12);
-
-  ///
-  static const TextStyle menuButtonStyle = TextStyle(fontFamily: AppFontStyles.fontFamily, fontWeight: FontWeightResources.medium, fontSize: 12);
-
-  ///
-  static const TextStyle boxedButtonStyle = TextStyle(fontFamily: AppFontStyles.fontFamily, fontWeight: FontWeightResources.black, fontSize: 12);
-
-  ///
-  static const TextStyle underButtonStyle = TextStyle(fontFamily: AppFontStyles.fontFamily, fontWeight: FontWeightResources.regular, fontSize: 10);
-
-  ///
-  static const TextStyle textFieldStyle = TextStyle(fontFamily: AppFontStyles.fontFamily, fontWeight: FontWeightResources.bold, fontSize: 12);
-
-  ///
-  static const TextStyle appBarButtonStyle = TextStyle(fontFamily: AppFontStyles.fontFamily, fontWeight: FontWeightResources.bold, fontSize: 19);
-}
-
+/// Defines consistent font weight values.
 class FontWeightResources {
   static const FontWeight extraLight = FontWeight.w200;
   static const FontWeight light = FontWeight.w300;
@@ -79,18 +35,129 @@ class FontWeightResources {
   static const FontWeight black = FontWeight.w800;
 }
 
+/// Defines consistent font size values.
 class FontSizeResources {
   static const double s8 = 8.0;
   static const double s9 = 9.0;
   static const double s10 = 10.0;
   static const double s11 = 11.0;
   static const double s12 = 12.0;
+  static const double s13 = 13.0;
   static const double s14 = 14.0;
   static const double s16 = 16.0;
   static const double s18 = 18.0;
+  static const double s19 = 19.0;
   static const double s20 = 20.0;
   static const double s22 = 22.0;
   static const double s24 = 24.0;
   static const double s28 = 28.0;
   static const double s32 = 32.0;
+}
+
+/// Provides themed and reusable text styles.
+class AppTextStyles {
+  // Headings
+  static const TextStyle largeTitle = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontSize: FontSizeResources.s24,
+    fontWeight: FontWeightResources.bold,
+  );
+
+  static const TextStyle headline1 = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontSize: FontSizeResources.s20,
+    fontWeight: FontWeightResources.bold,
+  );
+
+  static const TextStyle title = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontSize: FontSizeResources.s14,
+    fontWeight: FontWeightResources.medium,
+  );
+
+  static const TextStyle subTitle = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontSize: FontSizeResources.s12,
+    fontWeight: FontWeightResources.regular,
+  );
+
+  // Captions & Labels
+  static const TextStyle caption = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontSize: FontSizeResources.s10,
+    fontWeight: FontWeightResources.light,
+  );
+
+  static const TextStyle miniCaption = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontSize: FontSizeResources.s8,
+    fontWeight: FontWeightResources.medium,
+  );
+
+  static const TextStyle linkText = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontSize: FontSizeResources.s12,
+    fontWeight: FontWeightResources.medium,
+    color: Colors.cyan,
+  );
+
+  static const TextStyle errorText = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontSize: FontSizeResources.s12,
+    fontWeight: FontWeightResources.regular,
+    color: Colors.red,
+  );
+
+  // Notification Styles
+  static const TextStyle notificationTitle = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontSize: FontSizeResources.s14,
+    fontWeight: FontWeightResources.black,
+  );
+
+  static const TextStyle notificationBody = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontSize: FontSizeResources.s12,
+    fontWeight: FontWeightResources.medium,
+    height: 1.5,
+  );
+
+  // Buttons
+  static const TextStyle button = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontWeight: FontWeightResources.bold,
+    fontSize: FontSizeResources.s12,
+  );
+
+  static const TextStyle menuButton = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontWeight: FontWeightResources.medium,
+    fontSize: FontSizeResources.s12,
+  );
+
+  static const TextStyle boxedButton = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontWeight: FontWeightResources.black,
+    fontSize: FontSizeResources.s12,
+  );
+
+  static const TextStyle underButton = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontWeight: FontWeightResources.regular,
+    fontSize: FontSizeResources.s10,
+  );
+
+  // TextFields
+  static const TextStyle textField = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontWeight: FontWeightResources.bold,
+    fontSize: FontSizeResources.s12,
+  );
+
+  // AppBar
+  static const TextStyle appBarAction = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontWeight: FontWeightResources.bold,
+    fontSize: FontSizeResources.s19,
+  );
 }

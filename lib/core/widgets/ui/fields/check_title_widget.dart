@@ -5,7 +5,12 @@ import 'package:flutter/services.dart';
 import '../../../resources/styles/sizes_resources.dart';
 
 class CheckTitleWidget extends StatelessWidget {
-  const CheckTitleWidget({super.key, required this.text, required this.onChange, this.value = false});
+  const CheckTitleWidget({
+    super.key,
+    required this.text,
+    required this.onChange,
+    this.value = false,
+  });
   final String text;
   final bool value;
   final void Function(bool) onChange;
@@ -26,7 +31,7 @@ class CheckTitleWidget extends StatelessWidget {
               },
             ),
             // keep me logged in text arabic
-            Text(text, style: FontStylesResources.tileTitleStyle(context)),
+            Text(text, style: AppTextStyles.title),
           ],
         ),
       ),

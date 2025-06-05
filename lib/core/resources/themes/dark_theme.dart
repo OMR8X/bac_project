@@ -32,30 +32,58 @@ class AppDarkTheme {
       ),
 
       extensions: <ThemeExtension<dynamic>>[
-        SurfaceContainerColors(surfaceContainer: ColorsResourcesDark.surfaceContainer, surfaceContainerHigh: ColorsResourcesDark.surfaceContainerHigh),
-        SuccessColors(success: ColorsResourcesDark.success, onSuccess: ColorsResourcesDark.onSuccess),
+        SurfaceContainerColors(
+          surfaceContainer: ColorsResourcesDark.surfaceContainer,
+          surfaceContainerHigh: ColorsResourcesDark.surfaceContainerHigh,
+        ),
+        SuccessColors(
+          success: ColorsResourcesDark.success,
+          onSuccess: ColorsResourcesDark.onSuccess,
+        ),
       ],
-      floatingActionButtonTheme: const FloatingActionButtonThemeData(backgroundColor: ColorsResourcesDark.surfaceContainerHigh, foregroundColor: ColorsResourcesDark.primary),
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: ColorsResourcesDark.surfaceContainerHigh,
+        foregroundColor: ColorsResourcesDark.primary,
+      ),
       dropdownMenuTheme: DropdownMenuThemeData(
         inputDecorationTheme: InputDecorationTheme(
-          border: OutlineInputBorder(borderRadius: BorderRadiusResource.fieldBorderRadius, borderSide: const BorderSide(color: Colors.transparent)),
-          enabledBorder: OutlineInputBorder(borderRadius: BorderRadiusResource.fieldBorderRadius, borderSide: const BorderSide(color: Colors.transparent)),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadiusResource.fieldBorderRadius,
+            borderSide: const BorderSide(color: Colors.transparent),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadiusResource.fieldBorderRadius,
+            borderSide: const BorderSide(color: Colors.transparent),
+          ),
           contentPadding: PaddingResources.padding_3_1,
         ),
       ),
 
       ///
-      appBarTheme: AppBarTheme(surfaceTintColor: Colors.transparent, titleTextStyle: FontStylesResources.appBarButtonStyle),
+      appBarTheme: AppBarTheme(
+        surfaceTintColor: Colors.transparent,
+        titleTextStyle: AppTextStyles.appBarAction,
+      ),
 
       ///
       menuTheme: MenuThemeData(
         style: MenuStyle(
-          backgroundColor: const WidgetStatePropertyAll(ColorsResourcesDark.surfaceContainerHigh),
+          backgroundColor: const WidgetStatePropertyAll(
+            ColorsResourcesDark.surfaceContainerHigh,
+          ),
           alignment: Alignment.topCenter,
-          shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadiusResource.fieldBorderRadius)),
+          shape: WidgetStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadiusResource.fieldBorderRadius,
+            ),
+          ),
         ),
       ),
-      menuButtonTheme: MenuButtonThemeData(style: ButtonStyle(textStyle: WidgetStatePropertyAll(FontStylesResources.menuButtonStyle))),
+      menuButtonTheme: MenuButtonThemeData(
+        style: ButtonStyle(
+          textStyle: WidgetStatePropertyAll(AppTextStyles.menuButton),
+        ),
+      ),
 
       ///
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -64,21 +92,34 @@ class AppDarkTheme {
           backgroundColor: ColorsResourcesDark.primary,
           foregroundColor: Colors.white,
           //
-          shape: RoundedRectangleBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadiusResource.buttonBorderRadius,
+          ),
           //
-          textStyle: FontStylesResources.buttonStyle,
+          textStyle: AppTextStyles.button,
         ),
       ),
 
       ///
-      iconButtonTheme: IconButtonThemeData(style: IconButton.styleFrom(iconSize: 15, minimumSize: const Size(20, 20))),
+      iconButtonTheme: IconButtonThemeData(
+        style: IconButton.styleFrom(
+          iconSize: 15,
+          minimumSize: const Size(20, 20),
+        ),
+      ),
 
       ///
       inputDecorationTheme: InputDecorationTheme(
-        border: OutlineInputBorder(borderRadius: BorderRadiusResource.fieldBorderRadius, borderSide: const BorderSide(color: Colors.transparent)),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadiusResource.fieldBorderRadius,
+          borderSide: const BorderSide(color: Colors.transparent),
+        ),
         fillColor: ColorsResourcesDark.surfaceContainerHigh,
         filled: true,
-        enabledBorder: OutlineInputBorder(borderRadius: BorderRadiusResource.fieldBorderRadius, borderSide: const BorderSide(color: Colors.transparent)),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadiusResource.fieldBorderRadius,
+          borderSide: const BorderSide(color: Colors.transparent),
+        ),
         contentPadding: PaddingResources.padding_3_1,
       ),
     );
