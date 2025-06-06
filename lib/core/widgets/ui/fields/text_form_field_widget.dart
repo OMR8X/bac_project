@@ -59,13 +59,11 @@ class TextFormFieldWidget extends StatelessWidget {
           keyboardType: keyboardType,
           maxLength: maxLength,
           onChanged: onChanged,
-          style: FontStylesResources.textFieldStyle,
+          style: AppTextStyles.textField,
           onFieldSubmitted: onFieldSubmitted,
           decoration: InputDecoration(
             hintText: " $hintText",
-            hintStyle: const TextStyle(
-              fontWeight: FontWeightResources.regular,
-            ),
+            hintStyle: const TextStyle(fontWeight: FontWeightResources.regular),
           ),
         ),
       ),

@@ -71,13 +71,17 @@ class _DropDownWidgetState<T> extends State<DropDownWidget<T>> {
                 child: Container(
                   width: SizesResources.mainWidth(context),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).extension<SurfaceContainerColors>()!.surfaceContainer,
+                    color:
+                        Theme.of(
+                          context,
+                        ).extension<SurfaceContainerColors>()!.surfaceContainer,
                     borderRadius: BorderRadiusResource.fieldBorderRadius,
                   ),
                   child: DropdownMenu(
-                    textStyle: FontStylesResources.buttonStyle,
+                    textStyle: AppTextStyles.title,
                     hintText: widget.hintText,
-                    label: widget.hintText != null ? Text(widget.hintText!) : null,
+                    label:
+                        widget.hintText != null ? Text(widget.hintText!) : null,
                     width: SizesResources.mainWidth(context),
                     initialSelection: widget.initialSelection,
                     onSelected: (item) {
@@ -87,12 +91,13 @@ class _DropDownWidgetState<T> extends State<DropDownWidget<T>> {
                         widget.onSelected!(item);
                       }
                     },
-                    dropdownMenuEntries: widget.entries.map((e) {
-                      return DropdownMenuEntry<T?>(
-                        value: e,
-                        label: widget.toLabel(e),
-                      );
-                    }).toList(),
+                    dropdownMenuEntries:
+                        widget.entries.map((e) {
+                          return DropdownMenuEntry<T?>(
+                            value: e,
+                            label: widget.toLabel(e),
+                          );
+                        }).toList(),
                   ),
                 ),
               ),
