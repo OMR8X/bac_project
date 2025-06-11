@@ -3,11 +3,13 @@ enum AppRoutes {
   root(name: 'root', path: '/root'),
   loader(name: 'loader', path: '/loader'),
   home(name: 'home', path: '/home'),
+  lessons(name: 'lessons', path: '/lessons'),
   authViewsManager(name: 'auth-views-manager', path: '/auth-views-manager'),
   designing(name: 'designing', path: '/designing'),
   auth(name: 'auth', path: '/auth'),
   setting(name: 'setting', path: '/setting'),
   result(name: 'result', path: '/result'),
+  setTestProperties(name: 'set-test-properties', path: '/set-test-properties'),
 
   testing(name: 'testing', path: '/testing');
 

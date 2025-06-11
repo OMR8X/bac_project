@@ -14,25 +14,21 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: NestedScrollView(
-        headerSliverBuilder:
-            (context, innerBoxIsScrolled) => [
-              SliverAppBar(
-                floating: true,
-                snap: true,
-                title: Text(LocalizationManager().get(LocalizationKeys.home.title)),
-                forceElevated: innerBoxIsScrolled,
-              ),
-            ],
-        body: Padding(
-          padding: PaddingResources.screenSidesPadding,
-          child: Column(
-            children: [
-              SearchBarWidget(onChanged: (value) {}, onFieldSubmitted: (value) {}),
-              const SizedBox(height: 10),
-              Expanded(child: HomeCardsBuilderWidget()),
-            ],
-          ),
+      appBar: AppBar(title: Text(sl<LocalizationManager>().get(LocalizationKeys.home.title))),
+      body: Padding(
+        padding: PaddingResources.screenSidesPadding,
+        child: Column(
+          children: [
+            SearchBarWidget(
+              onChanged: (value) {
+                // Handle search text changes
+              },
+              onFieldSubmitted: (value) {
+                // Handle search submission
+              },
+            ),
+            Expanded(child: HomeCardsBuilderWidget()),
+          ],
         ),
       ),
     );

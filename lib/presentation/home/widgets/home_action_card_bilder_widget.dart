@@ -1,10 +1,12 @@
 import 'package:bac_project/core/resources/styles/padding_resources.dart';
 import 'package:bac_project/core/services/local/local_card_api.dart';
+import 'package:bac_project/core/services/router/app_routes.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
 import 'package:bac_project/core/widgets/animations/staggered_list_wrapper_widget.dart';
 import 'package:bac_project/core/widgets/ui/custom_action_card_widget.dart';
 import 'package:bac_project/presentation/home/models/custom_action_card_model.dart' show CustomCardData;
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 // api المحلي
 
 class HomeCardsBuilderWidget extends StatelessWidget {
@@ -40,8 +42,8 @@ class HomeCardsBuilderWidget extends StatelessWidget {
                   subtitle: card.subtitle,
                   firstButtonText: card.firstButtonText,
                   secondButtonText: card.secondButtonText,
-                  onFirstPressed: () => print('${card.title} - اختبار'),
-                  onSecondPressed: () => print('${card.title} - دروس'),
+                  onFirstPressed: () => context.push(AppRoutes.lessons.path),
+                  onSecondPressed: () => context.push(AppRoutes.lessons.path),
                 ),
               );
             },
