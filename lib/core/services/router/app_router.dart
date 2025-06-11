@@ -4,6 +4,7 @@ import 'package:bac_project/presentation/home/views/lessons_view.dart';
 import 'package:bac_project/presentation/result/views/result_view.dart';
 import 'package:bac_project/presentation/root/views/auth_views_manager.dart';
 import 'package:bac_project/presentation/settings/views/setting_view.dart';
+import 'package:bac_project/presentation/tests/widget/set_test_properties.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
@@ -131,6 +132,32 @@ class AppRouter {
                 );
               },
               child: LessonsView(key: state.pageKey),
+            ),
+      ),
+      // set test properties route
+      GoRoute(
+        name: AppRoutes.setTestProperties.name,
+        path: AppRoutes.setTestProperties.path,
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              transitionDuration: AppTransitions.transitionDuration,
+              reverseTransitionDuration:
+                  AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (
+                context,
+                animation,
+                secondaryAnimation,
+                child,
+              ) {
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
+              },
+              child: SetTestProperties(key: state.pageKey),
             ),
       ),
 

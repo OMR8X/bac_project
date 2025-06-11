@@ -23,7 +23,10 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
   static const Color _iconColor = Colors.grey;
   static const TextDirection _textDirection = TextDirection.rtl;
   static const TextAlign _textAlign = TextAlign.right;
-  static const EdgeInsetsGeometry _contentPadding = EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0);
+  static const EdgeInsetsGeometry _contentPadding = EdgeInsets.symmetric(
+    vertical: 12.0,
+    horizontal: 16.0,
+  );
   static const IconData _searchIcon = Icons.search;
 
   // State variables
@@ -31,7 +34,10 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
   late final TextEditingController _searchController;
 
   // Border styles
-  late final OutlineInputBorder _inputBorder = OutlineInputBorder(borderRadius: BorderRadius.circular(_borderRadius), borderSide: BorderSide.none);
+  late final OutlineInputBorder _inputBorder = OutlineInputBorder(
+    borderRadius: BorderRadius.circular(_borderRadius),
+    borderSide: BorderSide.none,
+  );
 
   @override
   void initState() {
@@ -58,7 +64,10 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: _backgroundColor, borderRadius: BorderRadius.circular(_borderRadius)),
+      decoration: BoxDecoration(
+        color: _backgroundColor,
+        borderRadius: BorderRadius.circular(_borderRadius),
+      ),
       child: Directionality(
         textDirection: _textDirection,
         child: TextField(
@@ -69,8 +78,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
           decoration: InputDecoration(
             fillColor: _fillColor,
             contentPadding: _contentPadding,
-
-            // hintText: _hintText,
+            hintText: sl<LocalizationManager>().get(LocalizationKeys.search.hint),
             hintStyle: TextStyle(color: _hintTextColor, fontSize: 13),
             suffixIcon: Icon(_searchIcon, color: _iconColor, size: 24),
 
