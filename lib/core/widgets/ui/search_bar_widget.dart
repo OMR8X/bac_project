@@ -62,7 +62,6 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
       child: Directionality(
         textDirection: _textDirection,
         child: TextField(
-          
           controller: _searchController,
           style: const TextStyle(color: _textColor),
           textAlign: _textAlign,
@@ -71,9 +70,9 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
             fillColor: _fillColor,
             contentPadding: _contentPadding,
 
-            hintText: _hintText,
-            hintStyle:  TextStyle(color: _hintTextColor , fontSize: 13),
-            suffixIcon:  Icon(_searchIcon, color: _iconColor,size: 24),
+            hintText: sl<LocalizationManager>().get(LocalizationKeys.search.hint),
+            hintStyle: TextStyle(color: _hintTextColor, fontSize: 13),
+            suffixIcon: Icon(_searchIcon, color: _iconColor, size: 24),
 
             border: _inputBorder,
             enabledBorder: _inputBorder,

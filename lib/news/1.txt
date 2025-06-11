@@ -12,7 +12,7 @@ by adding key & values to files :
 ///[lib/core/services/localization/localization_keys.dart]
 
 and using them like : 
-LocalizationManager().get(LocalizationKeys.home.title)
+sl<LocalizationManager>().get(LocalizationKeys.home.title)
 
 
 

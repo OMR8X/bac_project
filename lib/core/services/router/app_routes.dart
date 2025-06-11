@@ -9,6 +9,7 @@ enum AppRoutes {
   auth(name: 'auth', path: '/auth'),
   setting(name: 'setting', path: '/setting'),
   result(name: 'result', path: '/result'),
+  setTestProperties(name: 'set-test-properties', path: '/set-test-properties'),
 
   testing(name: 'testing', path: '/testing');
 
