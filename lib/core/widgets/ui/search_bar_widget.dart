@@ -78,7 +78,6 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
           decoration: InputDecoration(
             fillColor: _fillColor,
             contentPadding: _contentPadding,
-
             hintText: sl<LocalizationManager>().get(
               LocalizationKeys.search.hint,
             ),
