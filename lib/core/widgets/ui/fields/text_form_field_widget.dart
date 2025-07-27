@@ -44,7 +44,9 @@ class TextFormFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: PaddingResources.padding_0_4,
+      // TODO: add padding
+      padding: EdgeInsets.zero,
+      // margin: PaddingResources.padding_0_4,
       width: SizesResources.mainWidth(context),
       child: StaggeredItemWrapperWidget(
         position: position,

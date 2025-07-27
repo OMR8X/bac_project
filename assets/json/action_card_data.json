@@ -1,42 +1,42 @@
 [
   {
-    "title": "العصبية",
-    "subtitle": "اختبر نفسك في العصبية",
-    "firstButtonText": "بدء الاختبار",
-    "secondButtonText": "استكشاف الدروس",
-    "onFirstAction": "startTest",
-    "onSecondAction": "openLessons"
+    "title": "الوراثة والمورثات",
+    "subtitle": "اختبر فهمك لقوانين مندل والصفات الوراثية",
+    "firstButtonText": "ابدأ الاختبار",
+    "secondButtonText": "راجع الدروس",
+    "onFirstAction": "startGeneticsTest",
+    "onSecondAction": "openGeneticsLessons"
   },
   {
-    "title": "العصبية",
-    "subtitle": "اختبر نفسك في العصبية",
-    "firstButtonText": "بدء الاختبار",
-    "secondButtonText": "استكشاف الدروس",
-    "onFirstAction": "startTest",
-    "onSecondAction": "openLessons"
+    "title": "الفيزيولوجيا العصبية",
+    "subtitle": "هل تفهم آلية السيالة العصبية؟",
+    "firstButtonText": "اختبر معلوماتك",
+    "secondButtonText": "اطلع على الشرح",
+    "onFirstAction": "startNeurophysiologyTest",
+    "onSecondAction": "openNeurophysiologyLessons"
   },
-   {
-    "title": "العصبية",
-    "subtitle": "اختبر نفسك في العصبية",
-    "firstButtonText": "بدء الاختبار",
-    "secondButtonText": "استكشاف الدروس",
-    "onFirstAction": "startTest",
-    "onSecondAction": "openLessons"
+  {
+    "title": "التحولات الكيميائية",
+    "subtitle": "تعرف على التفاعلات الكيميائية الحيوية",
+    "firstButtonText": "ابدأ التمرين",
+    "secondButtonText": "راجع المفاهيم",
+    "onFirstAction": "startChemicalTransformationsTest",
+    "onSecondAction": "openChemistryLessons"
   },
-    {
-    "title": "العصبية",
-    "subtitle": "اختبر نفسك في العصبية",
-    "firstButtonText": "بدء الاختبار",
-    "secondButtonText": "استكشاف الدروس",
-    "onFirstAction": "startTest",
-    "onSecondAction": "openLessons"
+  {
+    "title": "الطاقة في الخلية",
+    "subtitle": "هل تميز بين التنفس الخلوي والتخمر؟",
+    "firstButtonText": "ابدأ الآن",
+    "secondButtonText": "استعرض الدرس",
+    "onFirstAction": "startCellEnergyTest",
+    "onSecondAction": "openCellEnergyLessons"
   },
-    {
-    "title": "العصبية",
-    "subtitle": "اختبر نفسك في العصبية",
-    "firstButtonText": "بدء الاختبار",
-    "secondButtonText": "استكشاف الدروس",
-    "onFirstAction": "startTest",
-    "onSecondAction": "openLessons"
+  {
+    "title": "البيئة والتوازن الحيوي",
+    "subtitle": "اختبر معلوماتك حول السلاسل الغذائية والعلاقات البيئية",
+    "firstButtonText": "ابدأ التحدي",
+    "secondButtonText": "افتح الدروس",
+    "onFirstAction": "startEcologyTest",
+    "onSecondAction": "openEcologyLessons"
   }
 ]

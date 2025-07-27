@@ -67,7 +67,9 @@ class _DropDownWidgetState<T> extends State<DropDownWidget<T>> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: PaddingResources.padding_0_4,
+                // TODO: add padding
+                padding: EdgeInsets.zero,
+                // padding: PaddingResources.padding_0_4,
                 child: Container(
                   width: SizesResources.mainWidth(context),
                   decoration: BoxDecoration(

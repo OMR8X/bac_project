@@ -21,3 +21,15 @@ class ExploreManagerViewArguments {
   });
 }
 
+class LessonsViewArguments {
+  final String unitId;
+
+  const LessonsViewArguments({required this.unitId});
+}
+
+class TestModeSettingsArguments {
+  final List<String>? unitIds ;
+  final List<String>? lessonIds;
+
+  const TestModeSettingsArguments({this.unitIds, this.lessonIds});
+}

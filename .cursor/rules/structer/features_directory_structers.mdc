@@ -1,0 +1,466 @@
+---
+alwaysApply: false
+---
+
+
+# Flutter Features Directory Structure
+
+This rule defines the standard directory structure for features in Flutter projects following Clean Architecture principles.
+
+## Structure Overview
+
+All features should be organized inside `lib/features/` directory. Each feature should be in a main folder with the feature name (e.g., `banks`, `tests`, `posts`, `authentication`, etc.) and contain two main layers:
+
+```
+lib/features/feature_name/
+├── data/
+│   ├── data_sources/
+│   ├── models/
+│   ├── repositories/
+│   ├── responses/
+│   └── mappers/
+└── domain/
+    ├── entities/
+    ├── requests/
+    ├── usecases/
+    └── repositories/
+```
+
+## Domain Layer (`domain/`)
+
+The domain layer contains the business logic and is independent of external frameworks.
+
+### Directories:
+
+- **`entities/`** - Pure business objects that represent core business rules
+  - File naming: `user.dart` 
+  - Class naming: `User` 
+- **`requests/`** - Classes used in use cases to pass arguments and parameters
+- **`usecases/`** - Business logic implementations that orchestrate data flow
+- **`repositories/`** - Abstract repository interfaces (contracts)
+
+## Data Layer (`data/`)
+
+The data layer handles data sources and implements domain contracts.
+
+### Directories:
+
+- **`data_sources/`** - External data source implementations (API, local storage, etc.)
+- **`models/`** - Data transfer objects that represent external data structures
+- **`repositories/`** - Concrete implementations of domain repository interfaces
+- **`responses/`** - Classes used for returning data from use cases and API responses
+- **`mappers/`** - Extensions that convert between entity objects and model objects
+
+## Key Principles
+
+1. **Separation of Concerns**: Domain and data layers have distinct responsibilities
+2. **Dependency Inversion**: Data layer depends on domain, not vice versa
+3. **Data Transformation**: Mappers handle conversion between models (data) and entities (domain)
+4. **Request/Response Pattern**: Use requests for input parameters and responses for output data
+5. **Repository Pattern**: Abstract data access through repository interfaces
+
+## Example Feature Structure
+
+```
+lib/features/authentication/
+├── data/
+│   ├── data_sources/
+│   │   ├── auth_local_data_source.dart
+│   │   └── auth_remote_data_source.dart
+│   ├── models/
+│   │   ├── user_model.dart
+│   │   └── token_model.dart
+│   ├── repositories/
+│   │   └── auth_repository_impl.dart
+│   ├── responses/
+│   │   ├── login_response.dart
+│   │   └── register_response.dart
+│   └── mappers/
+│       ├── user_mapper.dart
+│       └── token_mapper.dart
+└── domain/
+    ├── entities/
+    │   ├── user.dart
+    │   └── token.dart
+    ├── requests/
+    │   ├── login_request.dart
+    │   └── register_request.dart
+    ├── usecases/
+    │   ├── login_use_case.dart
+    │   ├── register_use_case.dart
+    │   └── logout_use_case.dart
+    └── repositories/
+        └── auth_repository.dart
+```
+
+## Naming Conventions
+
+- **Entity files**: Use simple names without "entity" suffix (e.g., `user.dart`, `product.dart`)
+- **Entity classes**: Use PascalCase without "Entity" suffix (e.g., `User`, `Product`)
+- **Model files**: Include "model" suffix (e.g., `user_model.dart`, `product_model.dart`)
+- **Model classes**: Include "Model" suffix (e.g., `UserModel`, `ProductModel`)
+
+## Usage Guidelines
+
+- Always start with domain layer design (entities, use cases, repositories)
+- Implement data layer to fulfill domain contracts
+- Use mappers to convert between models and entities
+- Keep requests and responses simple data containers
+- Follow dependency injection patterns for repository implementations
+
+## Code Examples
+
+**Note**: The following examples are for instructional purposes to demonstrate the structure and basic implementation patterns. They show the feature architecture without deep-level logic implementation, especially for data sources which should be implemented based on your specific API requirements.
+
+### Entity Example (`domain/entities/post.dart`)
+
+```dart
+class Post {
+  final String id;
+  // other fields
+
+  const Post({
+    required this.id,
+      // other fields
+  });
+
+  Post copyWith({
+    String? id,
+      // other fields
+  }) {
+    return Post(
+      id: id ?? this.id,
+      // other fields
+    );
+  }
+}
+```
+
+### Use Case Example (`domain/usecases/get_posts_use_case.dart`)
+
+```dart
+import 'package:dartz/dartz.dart';
+// other imports
+
+class GetPostsUseCase {
+  final PostsRepository repository;
+
+  GetPostsUseCase(this.repository);
+
+  Future<Either<Failure, GetPostsResponse>> call(GetPostsRequest request) async {
+    return await repository.getPosts(request);
+  }
+}
+```
+
+### Repository Interface Example (`domain/repositories/posts_repository.dart`)
+
+```dart
+import 'package:dartz/dartz.dart';
+// other imports
+
+abstract class PostsRepository {
+  Future<Either<Failure, GetPostsResponse>> getPosts(GetPostsRequest request);
+  // other methods
+}
+```
+
+### Repository Implementation Example (`data/repositories/posts_repository_impl.dart`)
+
+```dart
+import 'package:dartz/dartz.dart';
+// other imports
+
+class PostsRepositoryImpl implements PostsRepository {
+  final PostsRemoteDataSource remoteDataSource;
+
+  PostsRepositoryImpl({required this.remoteDataSource});
+
+  @override
+  Future<Either<Failure, GetPostsResponse>> getPosts(GetPostsRequest request) async {
+    try {
+      final result = await remoteDataSource.getPosts(request);
+      return Right(GetPostsResponse(
+        posts: result.posts.map((model) => model.toEntity()).toList(),
+        totalCount: result.totalCount,
+      ));
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
+    } on NetworkException catch (e) {
+      return Left(NetworkFailure(e.message));
+    } catch (e) {
+      return Left(UnknownFailure('An unexpected error occurred'));
+    }
+  }
+}
+```
+
+### Data Source Interface Example (`data/datasources/posts_remote_data_source.dart`)
+
+```dart
+import 'package:dartz/dartz.dart';
+// other imports
+
+abstract class PostsRemoteDataSource {
+  Future<GetPostsResponseModel> getPosts(GetPostsRequest request);
+  // other methods
+}
+```
+
+### Data Source Implementation Example (`data/datasources/posts_remote_data_source_impl.dart`)
+
+```dart
+import 'package:dio/dio.dart';
+// other imports
+
+class PostsRemoteDataSourceImpl implements PostsRemoteDataSource {
+  final Dio dio;
+
+  PostsRemoteDataSourceImpl({required this.dio});
+
+  @override
+  Future<GetPostsResponseModel> getPosts(GetPostsRequest request) async {
+    try {
+      final response = await dio.get('/posts', queryParameters: {
+        'page': request.page,
+        'limit': request.limit,
+        // other parameters
+      });
+      return GetPostsResponseModel.fromJson(response.data);
+    } catch (e) {
+      throw ServerException('Failed to fetch posts');
+    }
+  }
+}
+```
+
+# Flutter Features Directory Structure
+
+This rule defines the standard directory structure for features in Flutter projects following Clean Architecture principles.
+
+## Structure Overview
+
+All features should be organized inside `lib/features/` directory. Each feature should be in a main folder with the feature name (e.g., `banks`, `tests`, `posts`, `authentication`, etc.) and contain two main layers:
+
+```
+lib/features/feature_name/
+├── data/
+│   ├── data_sources/
+│   ├── models/
+│   ├── repositories/
+│   ├── responses/
+│   └── mappers/
+└── domain/
+    ├── entities/
+    ├── requests/
+    ├── usecases/
+    └── repositories/
+```
+
+## Domain Layer (`domain/`)
+
+The domain layer contains the business logic and is independent of external frameworks.
+
+### Directories:
+
+- **`entities/`** - Pure business objects that represent core business rules
+  - File naming: `user.dart` 
+  - Class naming: `User` 
+- **`requests/`** - Classes used in use cases to pass arguments and parameters
+- **`usecases/`** - Business logic implementations that orchestrate data flow
+- **`repositories/`** - Abstract repository interfaces (contracts)
+
+## Data Layer (`data/`)
+
+The data layer handles data sources and implements domain contracts.
+
+### Directories:
+
+- **`data_sources/`** - External data source implementations (API, local storage, etc.)
+- **`models/`** - Data transfer objects that represent external data structures
+- **`repositories/`** - Concrete implementations of domain repository interfaces
+- **`responses/`** - Classes used for returning data from use cases and API responses
+- **`mappers/`** - Extensions that convert between entity objects and model objects
+
+## Key Principles
+
+1. **Separation of Concerns**: Domain and data layers have distinct responsibilities
+2. **Dependency Inversion**: Data layer depends on domain, not vice versa
+3. **Data Transformation**: Mappers handle conversion between models (data) and entities (domain)
+4. **Request/Response Pattern**: Use requests for input parameters and responses for output data
+5. **Repository Pattern**: Abstract data access through repository interfaces
+
+## Example Feature Structure
+
+```
+lib/features/authentication/
+├── data/
+│   ├── data_sources/
+│   │   ├── auth_local_data_source.dart
+│   │   └── auth_remote_data_source.dart
+│   ├── models/
+│   │   ├── user_model.dart
+│   │   └── token_model.dart
+│   ├── repositories/
+│   │   └── auth_repository_impl.dart
+│   ├── responses/
+│   │   ├── login_response.dart
+│   │   └── register_response.dart
+│   └── mappers/
+│       ├── user_mapper.dart
+│       └── token_mapper.dart
+└── domain/
+    ├── entities/
+    │   ├── user.dart
+    │   └── token.dart
+    ├── requests/
+    │   ├── login_request.dart
+    │   └── register_request.dart
+    ├── usecases/
+    │   ├── login_use_case.dart
+    │   ├── register_use_case.dart
+    │   └── logout_use_case.dart
+    └── repositories/
+        └── auth_repository.dart
+```
+
+## Naming Conventions
+
+- **Entity files**: Use simple names without "entity" suffix (e.g., `user.dart`, `product.dart`)
+- **Entity classes**: Use PascalCase without "Entity" suffix (e.g., `User`, `Product`)
+- **Model files**: Include "model" suffix (e.g., `user_model.dart`, `product_model.dart`)
+- **Model classes**: Include "Model" suffix (e.g., `UserModel`, `ProductModel`)
+
+## Usage Guidelines
+
+- Always start with domain layer design (entities, use cases, repositories)
+- Implement data layer to fulfill domain contracts
+- Use mappers to convert between models and entities
+- Keep requests and responses simple data containers
+- Follow dependency injection patterns for repository implementations
+
+## Code Examples
+
+**Note**: The following examples are for instructional purposes to demonstrate the structure and basic implementation patterns. They show the feature architecture without deep-level logic implementation, especially for data sources which should be implemented based on your specific API requirements.
+
+### Entity Example (`domain/entities/post.dart`)
+
+```dart
+class Post {
+  final String id;
+  // other fields
+
+  const Post({
+    required this.id,
+      // other fields
+  });
+
+  Post copyWith({
+    String? id,
+      // other fields
+  }) {
+    return Post(
+      id: id ?? this.id,
+      // other fields
+    );
+  }
+}
+```
+
+### Use Case Example (`domain/usecases/get_posts_use_case.dart`)
+
+```dart
+import 'package:dartz/dartz.dart';
+// other imports
+
+class GetPostsUseCase {
+  final PostsRepository repository;
+
+  GetPostsUseCase(this.repository);
+
+  Future<Either<Failure, GetPostsResponse>> call(GetPostsRequest request) async {
+    return await repository.getPosts(request);
+  }
+}
+```
+
+### Repository Interface Example (`domain/repositories/posts_repository.dart`)
+
+```dart
+import 'package:dartz/dartz.dart';
+// other imports
+
+abstract class PostsRepository {
+  Future<Either<Failure, GetPostsResponse>> getPosts(GetPostsRequest request);
+  // other methods
+}
+```
+
+### Repository Implementation Example (`data/repositories/posts_repository_impl.dart`)
+
+```dart
+import 'package:dartz/dartz.dart';
+// other imports
+
+class PostsRepositoryImpl implements PostsRepository {
+  final PostsRemoteDataSource remoteDataSource;
+
+  PostsRepositoryImpl({required this.remoteDataSource});
+
+  @override
+  Future<Either<Failure, GetPostsResponse>> getPosts(GetPostsRequest request) async {
+    try {
+      final result = await remoteDataSource.getPosts(request);
+      return Right(GetPostsResponse(
+        posts: result.posts.map((model) => model.toEntity()).toList(),
+        totalCount: result.totalCount,
+      ));
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
+    } on NetworkException catch (e) {
+      return Left(NetworkFailure(e.message));
+    } catch (e) {
+      return Left(UnknownFailure('An unexpected error occurred'));
+    }
+  }
+}
+```
+
+### Data Source Interface Example (`data/datasources/posts_remote_data_source.dart`)
+
+```dart
+import 'package:dartz/dartz.dart';
+// other imports
+
+abstract class PostsRemoteDataSource {
+  Future<GetPostsResponseModel> getPosts(GetPostsRequest request);
+  // other methods
+}
+```
+
+### Data Source Implementation Example (`data/datasources/posts_remote_data_source_impl.dart`)
+
+```dart
+import 'package:dio/dio.dart';
+// other imports
+
+class PostsRemoteDataSourceImpl implements PostsRemoteDataSource {
+  final Dio dio;
+
+  PostsRemoteDataSourceImpl({required this.dio});
+
+  @override
+  Future<GetPostsResponseModel> getPosts(GetPostsRequest request) async {
+    try {
+      final response = await dio.get('/posts', queryParameters: {
+        'page': request.page,
+        'limit': request.limit,
+        // other parameters
+      });
+      return GetPostsResponseModel.fromJson(response.data);
+    } catch (e) {
+      throw ServerException('Failed to fetch posts');
+    }
+  }
+}
+```

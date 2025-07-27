@@ -9,14 +9,13 @@ class StaggeredItemWrapperWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimationConfiguration.staggeredList(
       position: position,
-      duration: const Duration(milliseconds: 180),
-      child: ScaleAnimation(
-        scale: 0.99,
-        curve: Curves.easeOutCirc,
-        child: SlideAnimation(
-          verticalOffset: 1.0,
-          curve: Curves.easeOut,
-          child: child,
+      duration: const Duration(milliseconds: 220),
+      child: FadeInAnimation(
+        duration: const Duration(milliseconds: 220),
+        child: ScaleAnimation(
+          scale: 0.9,
+          curve: Curves.easeOutCirc,
+          child: SlideAnimation(verticalOffset: 9, curve: Curves.easeOut, child: child),
         ),
       ),
     );

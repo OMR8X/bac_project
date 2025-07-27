@@ -1,7 +1,8 @@
 import 'package:bac_project/core/injector/cache_injection.dart';
 import 'package:bac_project/core/injector/localization_injection.dart';
+import 'package:bac_project/core/injector/tests_feature_inj.dart';
 import 'package:get_it/get_it.dart';
-import '../services/router/app_router.dart';
+
 import 'controllers_injection.dart';
 import 'debugging_injection.dart';
 import 'package_info_injection.dart';
@@ -29,6 +30,7 @@ class ServiceLocator {
   /// Features
   static Future<void> initFeatures() async {
     // await featureInjectionCallExample();
+    await testsFeatureInjection();
   }
 
   /// controllers

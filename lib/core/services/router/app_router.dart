@@ -1,17 +1,20 @@
 import 'package:bac_project/core/services/router/app_transations.dart';
+import 'package:bac_project/core/services/router/app_arguments.dart';
 import 'package:bac_project/presentation/home/views/home_view.dart';
 import 'package:bac_project/presentation/home/views/lessons_view.dart';
-import 'package:bac_project/presentation/result/views/result_view.dart';
 import 'package:bac_project/presentation/root/views/auth_views_manager.dart';
 import 'package:bac_project/presentation/settings/views/setting_view.dart';
+import 'package:bac_project/presentation/testing/views/designing_view.dart';
 import 'package:bac_project/presentation/tests/widget/set_test_properties.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import '../../../presentation/result/views/results_view.dart';
 import '../../../presentation/root/views/app_loader_view.dart';
 import '../../../presentation/root/views/pages_holder.dart';
 import '../../../presentation/testing/views/debugs_view.dart';
-import 'app_arguments.dart';
+
+import '../../../presentation/tests/views/test_mode_settings_view.dart';
 import 'app_routes.dart';
 
 class AppRouter {
@@ -82,6 +85,32 @@ class AppRouter {
               child: const AuthViewsManager(),
             ),
       ),
+      // designing route
+      GoRoute(
+        name: AppRoutes.designing.name,
+        path: AppRoutes.designing.path,
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              transitionDuration: AppTransitions.transitionDuration,
+              reverseTransitionDuration:
+                  AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (
+                context,
+                animation,
+                secondaryAnimation,
+                child,
+              ) {
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
+              },
+              child: const DesigningView(),
+            ),
+      ),
       // loader route
       GoRoute(
         name: AppRoutes.loader.name,
@@ -131,7 +160,40 @@ class AppRouter {
                   child,
                 );
               },
-              child: LessonsView(key: state.pageKey),
+              child: LessonsView(
+                key: state.pageKey,
+                arguments: state.extra as LessonsViewArguments?,
+              ),
+            ),
+      ),
+      // test mode settings route
+      GoRoute(
+        name: AppRoutes.testModeSettings.name,
+        path: AppRoutes.testModeSettings.path,
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              transitionDuration: AppTransitions.transitionDuration,
+              reverseTransitionDuration:
+                  AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (
+                context,
+                animation,
+                secondaryAnimation,
+                child,
+              ) {
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
+              },
+              child: TestModeSettingsView(
+                key: state.pageKey,
+                arguments: state.extra as TestModeSettingsArguments?,
+                onSave: (options) {},
+              ),
             ),
       ),
       // set test properties route
@@ -226,7 +288,7 @@ class AppRouter {
                           child,
                         );
                       },
-                      child: ResultView(key: state.pageKey),
+                      child: ResultsView(key: state.pageKey),
                     ),
               ),
             ],

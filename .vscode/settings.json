@@ -3,5 +3,8 @@
   "[dart]": {
     "editor.formatOnSave": true
   },
-
+  "dart.flutterRunAdditionalArgs": [
+    "-d",
+    "iPhone 16"
+  ]
 }

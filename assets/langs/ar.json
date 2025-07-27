@@ -1,12 +1,40 @@
 {
     "home": {
         "title": "الرئيسية",
+       "search-bar":{
+        "hint":"بحث..."
+       },
         "card": {
-            "title": "العصبية",
-            "subtitle": "وحدة العصبية",
-            "firstButtonText": "بدء الاختبار الكامل",
-            "secondButtonText": "استكشاف الدروس"
+            "start-test-action": "بدء الاختبار الكامل",
+            "explore-lessons-action": "استكشاف الدروس"
+        },
+        "quote": {
+            "daily-quote": "اقتباس اليوم",
+            "expand-quote": "عرض الاقتباس مكبراً"
         }
+    },
+    "lessons": {
+        "title": "الدروس"
+
+    },
+    "test-properties": {
+        "title":"اعدادات الاختبار",
+        "show-true-answer":{
+            "title":"عرض الإجابة الصحيحة",
+            "subtitle":"إظهار الإجابة الصحيحة بعد كل سؤال."
+            },
+        "enable-sound-effects":{
+            "title":"تفعيل الأصوات",
+            "subtitle":"تشغيل مؤثرات صوتية عند الإجابة."
+            },
+        "mode-switcher":{
+             "title":"الوضع",
+             "explore-mode":"تصفح",
+             "test-mode":"اختبار"
+        },
+        "questions-count":"عدد الأسئلة"    ,
+        "questions-categories":"مواضيع الأسئلة"    
+
     },
     "auth": {
         "sign_in": "تسجيل الدخول",
@@ -27,5 +55,11 @@
     },
     "search":{
         "hint":"بحث..."
+    },
+    "general":{
+        "buttons":{
+            "save":"حفظ"
+        }
     }
 }
+ 

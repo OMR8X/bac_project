@@ -10,11 +10,15 @@ part 'app_theme_state.dart';
 class AppThemeBloc extends Bloc<AppThemeEvent, AppThemeState> {
   final String appThemeKey;
   final CacheManager cacheManager;
-  AppThemeBloc({required this.cacheManager, required this.appThemeKey}) : super(AppThemeState.defaultTheme()) {
+  AppThemeBloc({required this.cacheManager, required this.appThemeKey})
+    : super(AppThemeState.defaultTheme()) {
     on<ChangeAppThemeEvent>(onChangeAppThemeEvent);
     on<InitializeAppThemeEvent>(onInitializeAppThemeEvent);
   }
-  onChangeAppThemeEvent(ChangeAppThemeEvent event, Emitter<AppThemeState> emit) {
+  onChangeAppThemeEvent(
+    ChangeAppThemeEvent event,
+    Emitter<AppThemeState> emit,
+  ) {
     switch (event.theme) {
       case AppThemes.lightTheme:
         emit(AppThemeState(themeData: AppLightTheme.theme()));
@@ -25,7 +29,10 @@ class AppThemeBloc extends Bloc<AppThemeEvent, AppThemeState> {
     }
   }
 
-  onInitializeAppThemeEvent(InitializeAppThemeEvent event, Emitter<AppThemeState> emit) async {
+  onInitializeAppThemeEvent(
+    InitializeAppThemeEvent event,
+    Emitter<AppThemeState> emit,
+  ) async {
     //
     final String? value = (await cacheManager().read(appThemeKey)) as String?;
     //

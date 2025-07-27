@@ -10,8 +10,11 @@ class LocalizationCacheService {
   LocalizationCacheService({required this.cacheManager});
 
   Future<void> loadAndCacheJson(String localeCode) async {
-    final String jsonStr = await rootBundle.loadString('assets/langs/$localeCode.json');
-    cacheManager().write(_cacheKey, jsonStr);
+    final String jsonStr = await rootBundle.loadString(
+      'assets/langs/$localeCode.json',
+    );
+    await cacheManager().write(_cacheKey, jsonStr);
+    return;
   }
 
   Future<Map<String, dynamic>> getCachedJson() async {

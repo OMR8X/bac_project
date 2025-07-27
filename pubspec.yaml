@@ -47,6 +47,10 @@ dependencies:
   fluttertoast: ^8.2.4
   logger: ^2.5.0
   package_info_plus: ^8.3.0
+  flutter_svg: ^2.1.0
+  google_fonts: ^6.2.1
+  dartz: ^0.10.1
+  mockito: ^5.5.0
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +62,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+  build_runner: ^2.4.13
+  bloc_test: ^10.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -77,10 +83,10 @@ flutter:
     - assets/images/materials/
     - assets/fonts/NotoSansArabic/
     - assets/fonts/Vazirmatn/
+    - assets/fonts/IBM/
     - assets/images/ui/
     - assets/json/
     - assets/langs/
-    - assets/json/action_card_data.json
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -134,6 +140,25 @@ flutter:
           weight: 300
         - asset: assets/fonts/Vazirmatn/Vazirmatn-ExtraLight.ttf
           weight: 200
+    - family: IBM
+      fonts:
+        # - asset: assets/fonts/IBM/IBMPlexSansArabic-Black.ttf
+        #   weight: 900
+        # - asset: assets/fonts/IBM/IBMPlexSansArabic-ExtraBold.ttf
+        #   weight: 800
+        - asset: assets/fonts/IBM/IBMPlexSansArabic-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/IBM/IBMPlexSansArabic-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/IBM/IBMPlexSansArabic-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/IBM/IBMPlexSansArabic-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/IBM/IBMPlexSansArabic-Light.ttf
+          weight: 300
+        - asset: assets/fonts/IBM/IBMPlexSansArabic-ExtraLight.ttf
+          weight: 200
+
 
 
 

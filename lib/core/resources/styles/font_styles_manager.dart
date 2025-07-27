@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// Manages font families and provides unified text styles.
 class AppFontStyles {
-  static const String fontFamily = 'NotoSansArabic';
+  static const String fontFamily = 'IBM';
 
   static TextStyle makeFontStyle({
     required double fontSize,
@@ -74,7 +74,37 @@ class AppTextStyles {
     fontSize: FontSizeResources.s14,
     fontWeight: FontWeightResources.medium,
   );
+  static const TextStyle chipLabelStyle = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontSize: FontSizeResources.s12,
+    fontWeight: FontWeightResources.bold,
+  );
+  static const TextStyle cardLargeTitle = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontSize: FontSizeResources.s19,
+    fontWeight: FontWeightResources.bold,
+  );
+  static const TextStyle cardMediumTitle = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontSize: FontSizeResources.s14,
+    fontWeight: FontWeightResources.bold,
+  );
+  static const TextStyle cardMediumSubtitle = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontSize: FontSizeResources.s12,
+    fontWeight: FontWeightResources.regular,
+  );
+  static const TextStyle cardSmallTitle = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontSize: FontSizeResources.s12,
+    fontWeight: FontWeightResources.medium,
+  );
 
+  static const TextStyle cardSmallSubtitle = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontSize: FontSizeResources.s12,
+    fontWeight: FontWeightResources.regular,
+  );
   static const TextStyle subTitle = TextStyle(
     fontFamily: AppFontStyles.fontFamily,
     fontSize: FontSizeResources.s12,
@@ -150,11 +180,17 @@ class AppTextStyles {
   // TextFields
   static const TextStyle textField = TextStyle(
     fontFamily: AppFontStyles.fontFamily,
-    fontWeight: FontWeightResources.bold,
-    fontSize: FontSizeResources.s12,
+    fontWeight: FontWeightResources.regular,
+    fontSize: FontSizeResources.s14,
   );
 
   // AppBar
+  static const TextStyle appBar = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontWeight: FontWeightResources.bold,
+    fontSize: FontSizeResources.s19,
+  );
+  // AppBarAction
   static const TextStyle appBarAction = TextStyle(
     fontFamily: AppFontStyles.fontFamily,
     fontWeight: FontWeightResources.bold,

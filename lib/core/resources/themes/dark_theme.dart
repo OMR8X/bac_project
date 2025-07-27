@@ -55,7 +55,9 @@ class AppDarkTheme {
             borderRadius: BorderRadiusResource.fieldBorderRadius,
             borderSide: const BorderSide(color: Colors.transparent),
           ),
-          contentPadding: PaddingResources.padding_3_1,
+          // TODO: add padding
+          contentPadding: EdgeInsets.zero,
+          // contentPadding: PaddingResources.padding_3_1,
         ),
       ),
 
@@ -68,21 +70,15 @@ class AppDarkTheme {
       ///
       menuTheme: MenuThemeData(
         style: MenuStyle(
-          backgroundColor: const WidgetStatePropertyAll(
-            ColorsResourcesDark.surfaceContainerHigh,
-          ),
+          backgroundColor: const WidgetStatePropertyAll(ColorsResourcesDark.surfaceContainerHigh),
           alignment: Alignment.topCenter,
           shape: WidgetStatePropertyAll(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadiusResource.fieldBorderRadius,
-            ),
+            RoundedRectangleBorder(borderRadius: BorderRadiusResource.fieldBorderRadius),
           ),
         ),
       ),
       menuButtonTheme: MenuButtonThemeData(
-        style: ButtonStyle(
-          textStyle: WidgetStatePropertyAll(AppTextStyles.menuButton),
-        ),
+        style: ButtonStyle(textStyle: WidgetStatePropertyAll(AppTextStyles.menuButton)),
       ),
 
       ///
@@ -92,9 +88,7 @@ class AppDarkTheme {
           backgroundColor: ColorsResourcesDark.primary,
           foregroundColor: Colors.white,
           //
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadiusResource.buttonBorderRadius,
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
           //
           textStyle: AppTextStyles.button,
         ),
@@ -102,10 +96,7 @@ class AppDarkTheme {
 
       ///
       iconButtonTheme: IconButtonThemeData(
-        style: IconButton.styleFrom(
-          iconSize: 15,
-          minimumSize: const Size(20, 20),
-        ),
+        style: IconButton.styleFrom(iconSize: 15, minimumSize: const Size(20, 20)),
       ),
 
       ///
@@ -120,7 +111,9 @@ class AppDarkTheme {
           borderRadius: BorderRadiusResource.fieldBorderRadius,
           borderSide: const BorderSide(color: Colors.transparent),
         ),
-        contentPadding: PaddingResources.padding_3_1,
+        // TODO: add padding
+        contentPadding: EdgeInsets.zero,
+        // contentPadding: PaddingResources.padding_3_1,
       ),
     );
   }

@@ -34,11 +34,14 @@ class UIImagesResources {
   static const String path = '$baseImagesPath/ui';
 
   ///
-  static const String homeIcon = '$path/home-ic.png';
-  static const String uploadingIcon = '$path/uploading-ic.png';
+  static const String homeIconFilled = '$path/home-filled.svg';
+  static const String homeIconOutline = '$path/home-outlined.svg';
+  static const String resultsIconFilled = '$path/results-filled.svg';
+  static const String resultsIconOutline = '$path/results-outlined.svg';
+  static const String settingsIconFilled = '$path/settings-filled.svg';
+  static const String settingsIconOutline = '$path/settings-outlined.svg';
   static const String downloadingIcon = '$path/downloads-ic.png';
   static const String favoritesIcon = '$path/favorites-ic.png';
-  static const String listIcon = '$path/list-ic.png';
   static const String categoriesIcon = '$path/categories-ic.png';
   static const String materialsIcon = '$path/materials-ic.png';
   static const String schoolsIcon = '$path/schools-ic.png';
@@ -57,3 +60,8 @@ class AudiosAssetsResources {
   static const String path = '$baseAudiosPath/ringtones';
   //
 }
+/*
+
+assets/images/ui/settings-filled.svg 
+assets/images/ui/
+*/

@@ -1,0 +1,2452 @@
+[
+    {
+        "id": "1",
+        "text": "ما هو الجهاز المسؤول عن التنسيق العصبي في جسم الإنسان؟",
+        "options": [
+            {
+                "text": "الجهاز العصبي",
+                "isCorrect": true
+            },
+            {
+                "text": "الجهاز الهضمي",
+                "isCorrect": false
+            },
+            {
+                "text": "الجهاز التنفسي",
+                "isCorrect": false
+            },
+            {
+                "text": "الجهاز الدوري",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "1"
+    },
+    {
+        "id": "2",
+        "text": "ما هي الوحدة الأساسية للجهاز العصبي؟",
+        "options": [
+            {
+                "text": "الخلية العصبية",
+                "isCorrect": true
+            },
+            {
+                "text": "الخلية العضلية",
+                "isCorrect": false
+            },
+            {
+                "text": "الخلية الدهنية",
+                "isCorrect": false
+            },
+            {
+                "text": "الخلية العظمية",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "1"
+    },
+    {
+        "id": "3",
+        "text": "ما هو الدور الرئيسي للجهاز العصبي؟",
+        "options": [
+            {
+                "text": "التنسيق والتحكم",
+                "isCorrect": true
+            },
+            {
+                "text": "الهضم والامتصاص",
+                "isCorrect": false
+            },
+            {
+                "text": "التنفس والتبادل الغازي",
+                "isCorrect": false
+            },
+            {
+                "text": "الحركة والانقباض",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "1"
+    },
+    {
+        "id": "4",
+        "text": "ما هو النسيج المكون من الخلايا العصبية؟",
+        "options": [
+            {
+                "text": "النسيج العصبي",
+                "isCorrect": true
+            },
+            {
+                "text": "النسيج العضلي",
+                "isCorrect": false
+            },
+            {
+                "text": "النسيج الضام",
+                "isCorrect": false
+            },
+            {
+                "text": "النسيج الطلائي",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "2"
+    },
+    {
+        "id": "5",
+        "text": "ما هي الخلية المسؤولة عن نقل السيالات العصبية؟",
+        "options": [
+            {
+                "text": "الخلية العصبية",
+                "isCorrect": true
+            },
+            {
+                "text": "الخلية الدبقية",
+                "isCorrect": false
+            },
+            {
+                "text": "الخلية العضلية",
+                "isCorrect": false
+            },
+            {
+                "text": "الخلية الطلائية",
+                "isCorrect": false
+            }
+        ],
+        "category":"2",
+        "unitId": "1",
+        "lessonId": "2"
+    },
+    {
+        "id": "6",
+        "text": "ما هو دور الخلايا الدبقية في النسيج العصبي؟",
+        "options": [
+            {
+                "text": "الدعم والتغذية",
+                "isCorrect": true
+            },
+            {
+                "text": "نقل السيالات العصبية",
+                "isCorrect": false
+            },
+            {
+                "text": "الانقباض والحركة",
+                "isCorrect": false
+            },
+            {
+                "text": "الامتصاص والإفراز",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "2"
+    },
+    {
+        "id": "7",
+        "text": "ما هو الجهاز العصبي المحيطي؟",
+        "options": [
+            {
+                "text": "الأعصاب خارج الدماغ والنخاع الشوكي",
+                "isCorrect": true
+            },
+            {
+                "text": "الدماغ فقط",
+                "isCorrect": false
+            },
+            {
+                "text": "النخاع الشوكي فقط",
+                "isCorrect": false
+            },
+            {
+                "text": "الجهاز العصبي المركزي",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "3"
+    },
+    {
+        "id": "8",
+        "text": "ما هي الأعصاب التي تنقل المعلومات من المستقبلات إلى الجهاز العصبي المركزي؟",
+        "options": [
+            {
+                "text": "الأعصاب الحسية",
+                "isCorrect": true
+            },
+            {
+                "text": "الأعصاب الحركية",
+                "isCorrect": false
+            },
+            {
+                "text": "الأعصاب المختلطة",
+                "isCorrect": false
+            },
+            {
+                "text": "الأعصاب اللاإرادية",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "3"
+    },
+    {
+        "id": "9",
+        "text": "ما هي الأعصاب التي تنقل الأوامر من الجهاز العصبي المركزي إلى العضلات؟",
+        "options": [
+            {
+                "text": "الأعصاب الحركية",
+                "isCorrect": true
+            },
+            {
+                "text": "الأعصاب الحسية",
+                "isCorrect": false
+            },
+            {
+                "text": "الأعصاب المختلطة",
+                "isCorrect": false
+            },
+            {
+                "text": "الأعصاب اللاإرادية",
+                "isCorrect": false
+            }
+        ],
+        "category":"2",
+        "unitId": "1",
+        "lessonId": "3"
+    },
+    {
+        "id": "10",
+        "text": "ما هي الخاصية الأساسية للأعصاب؟",
+        "options": [
+            {
+                "text": "الاستثارة والتوصيل",
+                "isCorrect": true
+            },
+            {
+                "text": "الانقباض والاسترخاء",
+                "isCorrect": false
+            },
+            {
+                "text": "الامتصاص والإفراز",
+                "isCorrect": false
+            },
+            {
+                "text": "الانقسام والتكاثر",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "4"
+    },
+    {
+        "id": "11",
+        "text": "ما هو الجهد الكهربائي الذي يحدث عند استثارة العصب؟",
+        "options": [
+            {
+                "text": "جهد الفعل",
+                "isCorrect": true
+            },
+            {
+                "text": "جهد الراحة",
+                "isCorrect": false
+            },
+            {
+                "text": "جهد العتبة",
+                "isCorrect": false
+            },
+            {
+                "text": "جهد النبضة",
+                "isCorrect": false
+            }
+        ],
+        "category":"2",
+        "unitId": "1",
+        "lessonId": "4"
+    },
+    {
+        "id": "12",
+        "text": "ما هي المدة الزمنية لجهد الفعل في العصب؟",
+        "options": [
+            {
+                "text": "1-2 مللي ثانية",
+                "isCorrect": true
+            },
+            {
+                "text": "5-10 مللي ثانية",
+                "isCorrect": false
+            },
+            {
+                "text": "100-200 مللي ثانية",
+                "isCorrect": false
+            },
+            {
+                "text": "1-2 ثانية",
+                "isCorrect": false
+            }
+        ],
+        "category":"2",
+        "unitId": "1",
+        "lessonId": "4"
+    },
+    {
+        "id": "13",
+        "text": "ما هي الظاهرة الكهربائية الأساسية في الخلايا الحية؟",
+        "options": [
+            {
+                "text": "جهد الراحة",
+                "isCorrect": true
+            },
+            {
+                "text": "جهد الفعل",
+                "isCorrect": false
+            },
+            {
+                "text": "جهد العتبة",
+                "isCorrect": false
+            },
+            {
+                "text": "جهد النبضة",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "5"
+    },
+    {
+        "id": "14",
+        "text": "ما هو سبب وجود جهد الراحة في الخلية العصبية؟",
+        "options": [
+            {
+                "text": "اختلاف تركيز الأيونات داخل وخارج الخلية",
+                "isCorrect": true
+            },
+            {
+                "text": "وجود البروتينات في الخلية",
+                "isCorrect": false
+            },
+            {
+                "text": "وجود الدهون في الغشاء",
+                "isCorrect": false
+            },
+            {
+                "text": "وجود الكربوهيدرات",
+                "isCorrect": false
+            }
+        ],
+        "category":"2",
+        "unitId": "1",
+        "lessonId": "5"
+    },
+    {
+        "id": "15",
+        "text": "ما هي قيمة جهد الراحة في الخلية العصبية؟",
+        "options": [
+            {
+                "text": "-70 مللي فولت",
+                "isCorrect": true
+            },
+            {
+                "text": "+70 مللي فولت",
+                "isCorrect": false
+            },
+            {
+                "text": "0 مللي فولت",
+                "isCorrect": false
+            },
+            {
+                "text": "-35 مللي فولت",
+                "isCorrect": false
+            }
+        ],
+        "category":"2",
+        "unitId": "1",
+        "lessonId": "5"
+    },
+    {
+        "id": "16",
+        "text": "ما هو نوع النقل في الأعصاب؟",
+        "options": [
+            {
+                "text": "نقل كهربائي",
+                "isCorrect": true
+            },
+            {
+                "text": "نقل كيميائي",
+                "isCorrect": false
+            },
+            {
+                "text": "نقل ميكانيكي",
+                "isCorrect": false
+            },
+            {
+                "text": "نقل حراري",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "6"
+    },
+    {
+        "id": "17",
+        "text": "ما هي سرعة النقل في الأعصاب المغمدة بالميلين؟",
+        "options": [
+            {
+                "text": "120 متر/ثانية",
+                "isCorrect": true
+            },
+            {
+                "text": "60 متر/ثانية",
+                "isCorrect": false
+            },
+            {
+                "text": "30 متر/ثانية",
+                "isCorrect": false
+            },
+            {
+                "text": "10 متر/ثانية",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "6"
+    },
+    {
+        "id": "18",
+        "text": "ما هو دور الميلين في النقل العصبي؟",
+        "options": [
+            {
+                "text": "تسريع النقل العصبي",
+                "isCorrect": true
+            },
+            {
+                "text": "إبطاء النقل العصبي",
+                "isCorrect": false
+            },
+            {
+                "text": "إيقاف النقل العصبي",
+                "isCorrect": false
+            },
+            {
+                "text": "تغيير اتجاه النقل",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "6"
+    },
+    {
+        "id": "19",
+        "text": "ما هي الوظيفة الأساسية للجهاز العصبي؟",
+        "options": [
+            {
+                "text": "استقبال المعلومات ومعالجتها",
+                "isCorrect": true
+            },
+            {
+                "text": "إنتاج الطاقة",
+                "isCorrect": false
+            },
+            {
+                "text": "إنتاج الهرمونات",
+                "isCorrect": false
+            },
+            {
+                "text": "إنتاج الدم",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "7"
+    },
+    {
+        "id": "20",
+        "text": "ما هو دور المستقبلات في الجهاز العصبي؟",
+        "options": [
+            {
+                "text": "استقبال المنبهات",
+                "isCorrect": true
+            },
+            {
+                "text": "إنتاج الاستجابة",
+                "isCorrect": false
+            },
+            {
+                "text": "تخزين المعلومات",
+                "isCorrect": false
+            },
+            {
+                "text": "نقل الدم",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "7"
+    },
+    {
+        "id": "21",
+        "text": "ما هو دور المراكز العصبية؟",
+        "options": [
+            {
+                "text": "معالجة المعلومات",
+                "isCorrect": true
+            },
+            {
+                "text": "استقبال المنبهات",
+                "isCorrect": false
+            },
+            {
+                "text": "إنتاج الاستجابة",
+                "isCorrect": false
+            },
+            {
+                "text": "نقل الدم",
+                "isCorrect": false
+            }
+        ],
+        "category":"2",
+        "unitId": "1",
+        "lessonId": "7"
+    },
+    {
+        "id": "22",
+        "text": "ما هي أنواع الاستجابات في الجهاز العصبي؟",
+        "options": [
+            {
+                "text": "حركية وإفرازية",
+                "isCorrect": true
+            },
+            {
+                "text": "حسية وحركية",
+                "isCorrect": false
+            },
+            {
+                "text": "إفرازية وتنفسية",
+                "isCorrect": false
+            },
+            {
+                "text": "هضمية ودموية",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "8"
+    },
+    {
+        "id": "23",
+        "text": "ما هو دور الأعضاء المنفذة؟",
+        "options": [
+            {
+                "text": "تنفيذ الاستجابة",
+                "isCorrect": true
+            },
+            {
+                "text": "استقبال المنبهات",
+                "isCorrect": false
+            },
+            {
+                "text": "معالجة المعلومات",
+                "isCorrect": false
+            },
+            {
+                "text": "تخزين المعلومات",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "8"
+    },
+    {
+        "id": "24",
+        "text": "ما هي الاستجابة الحركية؟",
+        "options": [
+            {
+                "text": "انقباض العضلات",
+                "isCorrect": true
+            },
+            {
+                "text": "إفراز الهرمونات",
+                "isCorrect": false
+            },
+            {
+                "text": "إفراز اللعاب",
+                "isCorrect": false
+            },
+            {
+                "text": "إفراز العرق",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "8"
+    },
+    {
+        "id": "25",
+        "text": "ما هي الاستجابة الإفرازية؟",
+        "options": [
+            {
+                "text": "إفراز الهرمونات والإنزيمات",
+                "isCorrect": true
+            },
+            {
+                "text": "انقباض العضلات",
+                "isCorrect": false
+            },
+            {
+                "text": "حركة الأطراف",
+                "isCorrect": false
+            },
+            {
+                "text": "حركة العينين",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "9"
+    },
+    {
+        "id": "26",
+        "text": "ما هو دور الغدد في الاستجابة الإفرازية؟",
+        "options": [
+            {
+                "text": "إفراز المواد الكيميائية",
+                "isCorrect": true
+            },
+            {
+                "text": "انقباض العضلات",
+                "isCorrect": false
+            },
+            {
+                "text": "حركة الأطراف",
+                "isCorrect": false
+            },
+            {
+                "text": "حركة العينين",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "9"
+    },
+    {
+        "id": "27",
+        "text": "ما هي أنواع الغدد في الجسم؟",
+        "options": [
+            {
+                "text": "قنوية ولاقنوية",
+                "isCorrect": true
+            },
+            {
+                "text": "حسية وحركية",
+                "isCorrect": false
+            },
+            {
+                "text": "إفرازية وامتصاصية",
+                "isCorrect": false
+            },
+            {
+                "text": "هضمية وتنفسية",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "9"
+    },
+    {
+        "id": "28",
+        "text": "ما هو الفعل المنعكس؟",
+        "options": [
+            {
+                "text": "استجابة سريعة لا إرادية",
+                "isCorrect": true
+            },
+            {
+                "text": "استجابة بطيئة إرادية",
+                "isCorrect": false
+            },
+            {
+                "text": "استجابة متوسطة",
+                "isCorrect": false
+            },
+            {
+                "text": "استجابة معقدة",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "10"
+    },
+    {
+        "id": "29",
+        "text": "ما هو المسار العصبي للفعل المنعكس؟",
+        "options": [
+            {
+                "text": "مستقبل - عصب حسي - نخاع شوكي - عصب حركي - عضو منفذ",
+                "isCorrect": true
+            },
+            {
+                "text": "مستقبل - عصب حركي - نخاع شوكي - عصب حسي - عضو منفذ",
+                "isCorrect": false
+            },
+            {
+                "text": "مستقبل - دماغ - عصب حركي - عضو منفذ",
+                "isCorrect": false
+            },
+            {
+                "text": "مستقبل - نخاع شوكي - دماغ - عضو منفذ",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "10"
+    },
+    {
+        "id": "30",
+        "text": "ما هو مثال على الفعل المنعكس؟",
+        "options": [
+            {
+                "text": "سحب اليد عند لمس شيء ساخن",
+                "isCorrect": true
+            },
+            {
+                "text": "المشي العادي",
+                "isCorrect": false
+            },
+            {
+                "text": "الأكل والشرب",
+                "isCorrect": false
+            },
+            {
+                "text": "التفكير",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "10"
+    },
+    {
+        "id": "31",
+        "text": "ما هو مرض التصلب المتعدد؟",
+        "options": [
+            {
+                "text": "تلف غمد الميلين",
+                "isCorrect": true
+            },
+            {
+                "text": "تلف الخلايا العصبية",
+                "isCorrect": false
+            },
+            {
+                "text": "تلف العضلات",
+                "isCorrect": false
+            },
+            {
+                "text": "تلف العظام",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "11"
+    },
+    {
+        "id": "32",
+        "text": "ما هو مرض الشلل الرعاش؟",
+        "options": [
+            {
+                "text": "نقص الدوبامين في الدماغ",
+                "isCorrect": true
+            },
+            {
+                "text": "زيادة الدوبامين في الدماغ",
+                "isCorrect": false
+            },
+            {
+                "text": "نقص السيروتونين",
+                "isCorrect": false
+            },
+            {
+                "text": "زيادة السيروتونين",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "11"
+    },
+    {
+        "id": "33",
+        "text": "ما هو مرض الزهايمر؟",
+        "options": [
+            {
+                "text": "تلف خلايا الدماغ وفقدان الذاكرة",
+                "isCorrect": true
+            },
+            {
+                "text": "تلف العضلات",
+                "isCorrect": false
+            },
+            {
+                "text": "تلف العظام",
+                "isCorrect": false
+            },
+            {
+                "text": "تلف القلب",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "1",
+        "lessonId": "11"
+    },
+    {
+        "id": "34",
+        "text": "ما هو تعريف المستقبلات الحسية؟",
+        "options": [
+            {
+                "text": "أعضاء متخصصة تستقبل المنبهات وتحولها إلى سيالات عصبية",
+                "isCorrect": true
+            },
+            {
+                "text": "أعضاء متخصصة في إنتاج الهرمونات",
+                "isCorrect": false
+            },
+            {
+                "text": "أعضاء متخصصة في الحركة",
+                "isCorrect": false
+            },
+            {
+                "text": "أعضاء متخصصة في الهضم",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "2",
+        "lessonId": "12"
+    },
+    {
+        "id": "35",
+        "text": "ما هو دور المستقبلات الحسية في الجسم؟",
+        "options": [
+            {
+                "text": "استقبال المعلومات من البيئة المحيطة",
+                "isCorrect": true
+            },
+            {
+                "text": "إنتاج الطاقة للجسم",
+                "isCorrect": false
+            },
+            {
+                "text": "نقل الدم في الجسم",
+                "isCorrect": false
+            },
+            {
+                "text": "إنتاج الهرمونات",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "2",
+        "lessonId": "12"
+    },
+    {
+        "id": "36",
+        "text": "ما هي أنواع المستقبلات الحسية؟",
+        "options": [
+            {
+                "text": "ميكانيكية وكيميائية وضوئية",
+                "isCorrect": true
+            },
+            {
+                "text": "حركية وساكنة",
+                "isCorrect": false
+            },
+            {
+                "text": "داخلية وخارجية",
+                "isCorrect": false
+            },
+            {
+                "text": "كبيرة وصغيرة",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "2",
+        "lessonId": "12"
+    },
+    {
+        "id": "37",
+        "text": "ما هي المستقبلات الموجودة في الجلد؟",
+        "options": [
+            {
+                "text": "مستقبلات اللمس والضغط والحرارة",
+                "isCorrect": true
+            },
+            {
+                "text": "مستقبلات الصوت والضوء",
+                "isCorrect": false
+            },
+            {
+                "text": "مستقبلات الرائحة والطعم",
+                "isCorrect": false
+            },
+            {
+                "text": "مستقبلات التوازن",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "2",
+        "lessonId": "13"
+    },
+    {
+        "id": "38",
+        "text": "ما هو دور مستقبلات اللمس في الجلد؟",
+        "options": [
+            {
+                "text": "استقبال اللمس والضغط",
+                "isCorrect": true
+            },
+            {
+                "text": "استقبال الأصوات",
+                "isCorrect": false
+            },
+            {
+                "text": "استقبال الروائح",
+                "isCorrect": false
+            },
+            {
+                "text": "استقبال الألوان",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "2",
+        "lessonId": "13"
+    },
+    {
+        "id": "39",
+        "text": "ما هي مستقبلات الحرارة في الجلد؟",
+        "options": [
+            {
+                "text": "مستقبلات البرودة والحرارة",
+                "isCorrect": true
+            },
+            {
+                "text": "مستقبلات الضغط",
+                "isCorrect": false
+            },
+            {
+                "text": "مستقبلات اللمس",
+                "isCorrect": false
+            },
+            {
+                "text": "مستقبلات الألم",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "2",
+        "lessonId": "13"
+    },
+    {
+        "id": "40",
+        "text": "ما هي المستقبلات الكيميائية في الجسم؟",
+        "options": [
+            {
+                "text": "مستقبلات الشم والتذوق",
+                "isCorrect": true
+            },
+            {
+                "text": "مستقبلات اللمس والضغط",
+                "isCorrect": false
+            },
+            {
+                "text": "مستقبلات الصوت",
+                "isCorrect": false
+            },
+            {
+                "text": "مستقبلات الضوء",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "2",
+        "lessonId": "14"
+    },
+    {
+        "id": "41",
+        "text": "أين توجد مستقبلات الشم؟",
+        "options": [
+            {
+                "text": "في الغشاء المخاطي للأنف",
+                "isCorrect": true
+            },
+            {
+                "text": "في اللسان",
+                "isCorrect": false
+            },
+            {
+                "text": "في الأذن",
+                "isCorrect": false
+            },
+            {
+                "text": "في العين",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "2",
+        "lessonId": "14"
+    },
+    {
+        "id": "42",
+        "text": "أين توجد مستقبلات التذوق؟",
+        "options": [
+            {
+                "text": "في براعم التذوق على اللسان",
+                "isCorrect": true
+            },
+            {
+                "text": "في الأنف",
+                "isCorrect": false
+            },
+            {
+                "text": "في الأذن",
+                "isCorrect": false
+            },
+            {
+                "text": "في العين",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "2",
+        "lessonId": "14"
+    },
+    {
+        "id": "43",
+        "text": "ما هي المستقبلات الصوتية؟",
+        "options": [
+            {
+                "text": "مستقبلات في الأذن الداخلية",
+                "isCorrect": true
+            },
+            {
+                "text": "مستقبلات في الأنف",
+                "isCorrect": false
+            },
+            {
+                "text": "مستقبلات في العين",
+                "isCorrect": false
+            },
+            {
+                "text": "مستقبلات في الجلد",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "2",
+        "lessonId": "15"
+    },
+    {
+        "id": "44",
+        "text": "ما هو دور القوقعة في السمع؟",
+        "options": [
+            {
+                "text": "تحويل الموجات الصوتية إلى سيالات عصبية",
+                "isCorrect": true
+            },
+            {
+                "text": "حماية الأذن من الأصوات العالية",
+                "isCorrect": false
+            },
+            {
+                "text": "إنتاج الأصوات",
+                "isCorrect": false
+            },
+            {
+                "text": "تنظيم التوازن",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "2",
+        "lessonId": "15"
+    },
+    {
+        "id": "45",
+        "text": "ما هي خلايا الشعر في القوقعة؟",
+        "options": [
+            {
+                "text": "مستقبلات السمع الأساسية",
+                "isCorrect": true
+            },
+            {
+                "text": "خلايا داعمة للقوقعة",
+                "isCorrect": false
+            },
+            {
+                "text": "خلايا إفرازية",
+                "isCorrect": false
+            },
+            {
+                "text": "خلايا مناعية",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "2",
+        "lessonId": "15"
+    },
+    {
+        "id": "46",
+        "text": "ما هي مستقبلات التوازن؟",
+        "options": [
+            {
+                "text": "مستقبلات في الأذن الداخلية للتوازن",
+                "isCorrect": true
+            },
+            {
+                "text": "مستقبلات في العين",
+                "isCorrect": false
+            },
+            {
+                "text": "مستقبلات في الأنف",
+                "isCorrect": false
+            },
+            {
+                "text": "مستقبلات في الجلد",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "2",
+        "lessonId": "16"
+    },
+    {
+        "id": "47",
+        "text": "ما هو دور القنوات الهلالية؟",
+        "options": [
+            {
+                "text": "استقبال حركة الرأس في الاتجاهات المختلفة",
+                "isCorrect": true
+            },
+            {
+                "text": "استقبال الأصوات",
+                "isCorrect": false
+            },
+            {
+                "text": "استقبال الروائح",
+                "isCorrect": false
+            },
+            {
+                "text": "استقبال الألوان",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "2",
+        "lessonId": "16"
+    },
+    {
+        "id": "48",
+        "text": "ما هو دور الحويصلات في التوازن؟",
+        "options": [
+            {
+                "text": "استقبال وضعية الرأس والجسم",
+                "isCorrect": true
+            },
+            {
+                "text": "استقبال الأصوات العالية",
+                "isCorrect": false
+            },
+            {
+                "text": "استقبال الروائح القوية",
+                "isCorrect": false
+            },
+            {
+                "text": "استقبال الألوان الزاهية",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "2",
+        "lessonId": "16"
+    },
+    {
+        "id": "49",
+        "text": "ما هي المستقبلات الضوئية؟",
+        "options": [
+            {
+                "text": "مستقبلات في شبكية العين",
+                "isCorrect": true
+            },
+            {
+                "text": "مستقبلات في الأذن",
+                "isCorrect": false
+            },
+            {
+                "text": "مستقبلات في الأنف",
+                "isCorrect": false
+            },
+            {
+                "text": "مستقبلات في الجلد",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "2",
+        "lessonId": "17"
+    },
+    {
+        "id": "50",
+        "text": "ما هي أنواع الخلايا المخروطية؟",
+        "options": [
+            {
+                "text": "خلايا تستقبل الألوان المختلفة",
+                "isCorrect": true
+            },
+            {
+                "text": "خلايا تستقبل الضوء الخافت",
+                "isCorrect": false
+            },
+            {
+                "text": "خلايا تستقبل الحركة",
+                "isCorrect": false
+            },
+            {
+                "text": "خلايا تستقبل الشكل",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "2",
+        "lessonId": "17"
+    },
+    {
+        "id": "51",
+        "text": "ما هو دور الخلايا العصوية؟",
+        "options": [
+            {
+                "text": "استقبال الضوء الخافت والرؤية الليلية",
+                "isCorrect": true
+            },
+            {
+                "text": "استقبال الألوان",
+                "isCorrect": false
+            },
+            {
+                "text": "استقبال الحركة",
+                "isCorrect": false
+            },
+            {
+                "text": "استقبال الشكل",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "2",
+        "lessonId": "17"
+    },
+    {
+        "id": "52",
+        "text": "ما هو دور الصبغة البصرية؟",
+        "options": [
+            {
+                "text": "امتصاص الضوء وتحفيز المستقبلات الضوئية",
+                "isCorrect": true
+            },
+            {
+                "text": "إنتاج الألوان",
+                "isCorrect": false
+            },
+            {
+                "text": "حماية العين من الضوء",
+                "isCorrect": false
+            },
+            {
+                "text": "تنظيم حجم البؤبؤ",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "2",
+        "lessonId": "18"
+    },
+    {
+        "id": "53",
+        "text": "ما هو دور العصب البصري؟",
+        "options": [
+            {
+                "text": "نقل المعلومات البصرية إلى الدماغ",
+                "isCorrect": true
+            },
+            {
+                "text": "إنتاج الضوء",
+                "isCorrect": false
+            },
+            {
+                "text": "حماية العين",
+                "isCorrect": false
+            },
+            {
+                "text": "تنظيم حركة العين",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "2",
+        "lessonId": "18"
+    },
+    {
+        "id": "54",
+        "text": "ما هو دور البقعة الصفراء؟",
+        "options": [
+            {
+                "text": "منطقة الرؤية المركزية الحادة",
+                "isCorrect": true
+            },
+            {
+                "text": "منطقة الرؤية المحيطية",
+                "isCorrect": false
+            },
+            {
+                "text": "منطقة الرؤية الليلية",
+                "isCorrect": false
+            },
+            {
+                "text": "منطقة الرؤية الملونة",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "2",
+        "lessonId": "18"
+    },
+    {
+        "id": "55",
+        "text": "ما هو دور الهرمونات في جسم الإنسان؟",
+        "options": [
+            {
+                "text": "تنظيم العمليات الحيوية",
+                "isCorrect": true
+            },
+            {
+                "text": "تكوين العظام فقط",
+                "isCorrect": false
+            },
+            {
+                "text": "إنتاج الطاقة فقط",
+                "isCorrect": false
+            },
+            {
+                "text": "تنظيم ضربات القلب فقط",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "3",
+        "lessonId": "19"
+    },
+    {
+        "id": "56",
+        "text": "أي من التالي يعتبر مثالاً على هرمون؟",
+        "options": [
+            {
+                "text": "الأنسولين",
+                "isCorrect": true
+            },
+            {
+                "text": "الماء",
+                "isCorrect": false
+            },
+            {
+                "text": "الحديد",
+                "isCorrect": false
+            },
+            {
+                "text": "السكر",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "3",
+        "lessonId": "19"
+    },
+    {
+        "id": "57",
+        "text": "أين يتم إنتاج معظم الهرمونات في الجسم؟",
+        "options": [
+            {
+                "text": "الغدد الصماء",
+                "isCorrect": true
+            },
+            {
+                "text": "العضلات",
+                "isCorrect": false
+            },
+            {
+                "text": "العظام",
+                "isCorrect": false
+            },
+            {
+                "text": "الجلد",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "3",
+        "lessonId": "19"
+    },
+    {
+        "id": "58",
+        "text": "ما هو الدور الرئيسي للغدة النخامية؟",
+        "options": [
+            {
+                "text": "تنظيم إفراز الهرمونات في الجسم",
+                "isCorrect": true
+            },
+            {
+                "text": "إنتاج خلايا الدم الحمراء فقط",
+                "isCorrect": false
+            },
+            {
+                "text": "تخزين الدهون فقط",
+                "isCorrect": false
+            },
+            {
+                "text": "تنظيم درجة حرارة الجسم فقط",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "3",
+        "lessonId": "20"
+    },
+    {
+        "id": "59",
+        "text": "أين تقع الغدة النخامية في جسم الإنسان؟",
+        "options": [
+            {
+                "text": "في قاعدة الدماغ",
+                "isCorrect": true
+            },
+            {
+                "text": "في القلب",
+                "isCorrect": false
+            },
+            {
+                "text": "في الكبد",
+                "isCorrect": false
+            },
+            {
+                "text": "في الرئتين",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "3",
+        "lessonId": "20"
+    },
+    {
+        "id": "60",
+        "text": "ماذا يحدث إذا تعطلت الغدة النخامية؟",
+        "options": [
+            {
+                "text": "يختل توازن الهرمونات في الجسم",
+                "isCorrect": true
+            },
+            {
+                "text": "يزداد نمو الشعر فقط",
+                "isCorrect": false
+            },
+            {
+                "text": "تزداد قوة العضلات فقط",
+                "isCorrect": false
+            },
+            {
+                "text": "ينخفض ضغط الدم فقط",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "3",
+        "lessonId": "20"
+    },
+    {
+        "id": "61",
+        "text": "ما هو الدور الأساسي للغدة الدرقية؟",
+        "options": [
+            {
+                "text": "تنظيم عمليات الأيض",
+                "isCorrect": true
+            },
+            {
+                "text": "إنتاج خلايا الدم البيضاء فقط",
+                "isCorrect": false
+            },
+            {
+                "text": "تخزين الفيتامينات فقط",
+                "isCorrect": false
+            },
+            {
+                "text": "تنظيم ضربات القلب فقط",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "3",
+        "lessonId": "21"
+    },
+    {
+        "id": "62",
+        "text": "أين تقع الغدة الدرقية؟",
+        "options": [
+            {
+                "text": "في الرقبة",
+                "isCorrect": true
+            },
+            {
+                "text": "في البطن",
+                "isCorrect": false
+            },
+            {
+                "text": "في الساق",
+                "isCorrect": false
+            },
+            {
+                "text": "في الذراع",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "3",
+        "lessonId": "21"
+    },
+    {
+        "id": "63",
+        "text": "ما هو الهرمون الرئيسي الذي تفرزه الغدة الدرقية؟",
+        "options": [
+            {
+                "text": "الثيروكسين",
+                "isCorrect": true
+            },
+            {
+                "text": "الأنسولين",
+                "isCorrect": false
+            },
+            {
+                "text": "الكورتيزول",
+                "isCorrect": false
+            },
+            {
+                "text": "الأدرينالين",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "3",
+        "lessonId": "21"
+    },
+    {
+        "id": "64",
+        "text": "ما هي وظيفة الغدد الصماء؟",
+        "options": [
+            {
+                "text": "إفراز الهرمونات مباشرة في الدم",
+                "isCorrect": true
+            },
+            {
+                "text": "إنتاج الإنزيمات فقط",
+                "isCorrect": false
+            },
+            {
+                "text": "تخزين الدهون فقط",
+                "isCorrect": false
+            },
+            {
+                "text": "تنقية الدم فقط",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "3",
+        "lessonId": "22"
+    },
+    {
+        "id": "65",
+        "text": "كيف يتم تنظيم إفراز الهرمونات في الجسم؟",
+        "options": [
+            {
+                "text": "عن طريق آليات التغذية الراجعة",
+                "isCorrect": true
+            },
+            {
+                "text": "عن طريق الجهاز الهضمي فقط",
+                "isCorrect": false
+            },
+            {
+                "text": "عن طريق العضلات فقط",
+                "isCorrect": false
+            },
+            {
+                "text": "عن طريق الجلد فقط",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "3",
+        "lessonId": "22"
+    },
+    {
+        "id": "66",
+        "text": "ما هو مثال على غدة صماء؟",
+        "options": [
+            {
+                "text": "الغدة الكظرية",
+                "isCorrect": true
+            },
+            {
+                "text": "الغدة اللعابية",
+                "isCorrect": false
+            },
+            {
+                "text": "الغدة الدمعية",
+                "isCorrect": false
+            },
+            {
+                "text": "الغدة العرقية",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "3",
+        "lessonId": "22"
+    },
+    {
+        "id": "67",
+        "text": "ما هو الدور الرئيسي للهرمونات النباتية؟",
+        "options": [
+            {
+                "text": "تنظيم نمو النبات وتطوره",
+                "isCorrect": true
+            },
+            {
+                "text": "إنتاج الأكسجين فقط",
+                "isCorrect": false
+            },
+            {
+                "text": "تخزين الماء فقط",
+                "isCorrect": false
+            },
+            {
+                "text": "تكوين الجذور فقط",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "3",
+        "lessonId": "23"
+    },
+    {
+        "id": "68",
+        "text": "أي من التالي يعتبر هرموناً نباتياً؟",
+        "options": [
+            {
+                "text": "الأوكسين",
+                "isCorrect": true
+            },
+            {
+                "text": "الأنسولين",
+                "isCorrect": false
+            },
+            {
+                "text": "الثيروكسين",
+                "isCorrect": false
+            },
+            {
+                "text": "الكورتيزول",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "3",
+        "lessonId": "23"
+    },
+    {
+        "id": "69",
+        "text": "أين يتم إنتاج الهرمونات النباتية؟",
+        "options": [
+            {
+                "text": "في الأنسجة النباتية المختلفة",
+                "isCorrect": true
+            },
+            {
+                "text": "في الجذور فقط",
+                "isCorrect": false
+            },
+            {
+                "text": "في الأوراق فقط",
+                "isCorrect": false
+            },
+            {
+                "text": "في البذور فقط",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "3",
+        "lessonId": "23"
+    },
+    {
+        "id": "70",
+        "text": "ما هو تأثير الأوكسين في النبات؟",
+        "options": [
+            {
+                "text": "تحفيز استطالة الخلايا",
+                "isCorrect": true
+            },
+            {
+                "text": "تثبيط عملية البناء الضوئي فقط",
+                "isCorrect": false
+            },
+            {
+                "text": "زيادة امتصاص الماء فقط",
+                "isCorrect": false
+            },
+            {
+                "text": "تكوين الثمار فقط",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "3",
+        "lessonId": "24"
+    },
+    {
+        "id": "71",
+        "text": "أي من التالي ليس من وظائف الهرمونات النباتية؟",
+        "options": [
+            {
+                "text": "إنتاج الطاقة مباشرة",
+                "isCorrect": true
+            },
+            {
+                "text": "تنظيم الإزهار",
+                "isCorrect": false
+            },
+            {
+                "text": "تحفيز نمو الجذور",
+                "isCorrect": false
+            },
+            {
+                "text": "تساقط الأوراق",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "3",
+        "lessonId": "24"
+    },
+    {
+        "id": "72",
+        "text": "ما هو اسم الهرمون النباتي المسؤول عن تساقط الأوراق؟",
+        "options": [
+            {
+                "text": "الإيثيلين",
+                "isCorrect": true
+            },
+            {
+                "text": "الأوكسين",
+                "isCorrect": false
+            },
+            {
+                "text": "الثيروكسين",
+                "isCorrect": false
+            },
+            {
+                "text": "الكورتيزول",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "3",
+        "lessonId": "24"
+    },
+    {
+        "id": "73",
+        "text": "ما هو موضوع درس تكاثر الفيروسات؟",
+        "options": [
+            {
+                "text": "التكاثر عند الأحياء",
+                "isCorrect": false
+            },
+            {
+                "text": "تكاثر الفيروسات",
+                "isCorrect": true
+            },
+            {
+                "text": "الخلايا الجذعية",
+                "isCorrect": false
+            },
+            {
+                "text": "الدورة الجنسية",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "4",
+        "lessonId": "25"
+    },
+    {
+        "id": "74",
+        "text": "أي درس يتناول التكاثر عند الأحياء؟",
+        "options": [
+            {
+                "text": "التكاثر عند الأحياء",
+                "isCorrect": true
+            },
+            {
+                "text": "تكاثر الفيروسات",
+                "isCorrect": false
+            },
+            {
+                "text": "الولادة والإرضاع",
+                "isCorrect": false
+            },
+            {
+                "text": "الصحة الإنجابية",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "4",
+        "lessonId": "26"
+    },
+    {
+        "id": "75",
+        "text": "ما هو موضوع درس التقانات الحيوية؟",
+        "options": [
+            {
+                "text": "التقانات الحيوية",
+                "isCorrect": true
+            },
+            {
+                "text": "الخلايا الجذعية",
+                "isCorrect": false
+            },
+            {
+                "text": "تكاثر الجراثيم والفطريات",
+                "isCorrect": false
+            },
+            {
+                "text": "جهاز التكاثر الذكري",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "4",
+        "lessonId": "27"
+    },
+    {
+        "id": "76",
+        "text": "أي درس يتناول الخلايا الجذعية؟",
+        "options": [
+            {
+                "text": "الخلايا الجذعية",
+                "isCorrect": true
+            },
+            {
+                "text": "التقانات الحيوية",
+                "isCorrect": false
+            },
+            {
+                "text": "الدورة الجنسية",
+                "isCorrect": false
+            },
+            {
+                "text": "تشكل النطاف واهميتها",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "4",
+        "lessonId": "28"
+    },
+    {
+        "id": "77",
+        "text": "ما هو موضوع درس تكاثر الجراثيم والفطريات؟",
+        "options": [
+            {
+                "text": "تكاثر الجراثيم والفطريات",
+                "isCorrect": true
+            },
+            {
+                "text": "التكاثر الجنسي لدى مغلفات البذور",
+                "isCorrect": false
+            },
+            {
+                "text": "جهاز التكاثر الأنثوي",
+                "isCorrect": false
+            },
+            {
+                "text": "الولادة والإرضاع",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "4",
+        "lessonId": "29"
+    },
+    {
+        "id": "78",
+        "text": "أي درس يتناول التكاثر الجنسي لدى عاريات البذور؟",
+        "options": [
+            {
+                "text": "التكاثر الجنسي لدى عاريات البذور",
+                "isCorrect": true
+            },
+            {
+                "text": "التكاثر الجنسي لدى مغلفات البذور",
+                "isCorrect": false
+            },
+            {
+                "text": "منشأ جهاز التكاثر لدى الانسان",
+                "isCorrect": false
+            },
+            {
+                "text": "الدورة الجنسية",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "4",
+        "lessonId": "30"
+    },
+    {
+        "id": "79",
+        "text": "ما هو موضوع درس التكاثر الجنسي لدى مغلفات البذور؟",
+        "options": [
+            {
+                "text": "التكاثر الجنسي لدى مغلفات البذور",
+                "isCorrect": true
+            },
+            {
+                "text": "التكاثر الجنسي لدى عاريات البذور",
+                "isCorrect": false
+            },
+            {
+                "text": "جهاز التكاثر الذكري",
+                "isCorrect": false
+            },
+            {
+                "text": "تشكل النطاف واهميتها",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "4",
+        "lessonId": "31"
+    },
+    {
+        "id": "80",
+        "text": "أي درس يتناول منشأ جهاز التكاثر لدى الانسان؟",
+        "options": [
+            {
+                "text": "منشأ جهاز التكاثر لدى الانسان",
+                "isCorrect": true
+            },
+            {
+                "text": "جهاز التكاثر الذكري",
+                "isCorrect": false
+            },
+            {
+                "text": "جهاز التكاثر الأنثوي",
+                "isCorrect": false
+            },
+            {
+                "text": "الدورة الجنسية",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "4",
+        "lessonId": "32"
+    },
+    {
+        "id": "81",
+        "text": "ما هو موضوع درس جهاز التكاثر الذكري؟",
+        "options": [
+            {
+                "text": "جهاز التكاثر الذكري",
+                "isCorrect": true
+            },
+            {
+                "text": "جهاز التكاثر الأنثوي",
+                "isCorrect": false
+            },
+            {
+                "text": "تشكل النطاف واهميتها",
+                "isCorrect": false
+            },
+            {
+                "text": "التقانات الحيوية",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "4",
+        "lessonId": "33"
+    },
+    {
+        "id": "82",
+        "text": "أي درس يتناول تشكل النطاف واهميتها؟",
+        "options": [
+            {
+                "text": "تشكل النطاف واهميتها",
+                "isCorrect": true
+            },
+            {
+                "text": "جهاز التكاثر الذكري",
+                "isCorrect": false
+            },
+            {
+                "text": "جهاز التكاثر الأنثوي",
+                "isCorrect": false
+            },
+            {
+                "text": "الدورة الجنسية",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "4",
+        "lessonId": "34"
+    },
+    {
+        "id": "83",
+        "text": "ما هو موضوع درس جهاز التكاثر الأنثوي؟",
+        "options": [
+            {
+                "text": "جهاز التكاثر الأنثوي",
+                "isCorrect": true
+            },
+            {
+                "text": "الدورة الجنسية",
+                "isCorrect": false
+            },
+            {
+                "text": "التنامي الجنيني (الإلقاح)",
+                "isCorrect": false
+            },
+            {
+                "text": "الولادة والإرضاع",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "4",
+        "lessonId": "35"
+    },
+    {
+        "id": "84",
+        "text": "أي درس يتناول الدورة الجنسية؟",
+        "options": [
+            {
+                "text": "الدورة الجنسية",
+                "isCorrect": true
+            },
+            {
+                "text": "جهاز التكاثر الأنثوي",
+                "isCorrect": false
+            },
+            {
+                "text": "التنامي الجنيني (الإلقاح)",
+                "isCorrect": false
+            },
+            {
+                "text": "الولادة والإرضاع",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "4",
+        "lessonId": "36"
+    },
+    {
+        "id": "85",
+        "text": "ما هو موضوع درس التنامي الجنيني (الإلقاح)؟",
+        "options": [
+            {
+                "text": "التنامي الجنيني (الإلقاح)",
+                "isCorrect": true
+            },
+            {
+                "text": "التنامي الجنيني (التعشيش والحمل)",
+                "isCorrect": false
+            },
+            {
+                "text": "الولادة والإرضاع",
+                "isCorrect": false
+            },
+            {
+                "text": "الصحة الإنجابية",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "4",
+        "lessonId": "37"
+    },
+    {
+        "id": "86",
+        "text": "أي درس يتناول التنامي الجنيني (التعشيش والحمل)؟",
+        "options": [
+            {
+                "text": "التنامي الجنيني (التعشيش والحمل)",
+                "isCorrect": true
+            },
+            {
+                "text": "التنامي الجنيني (الإلقاح)",
+                "isCorrect": false
+            },
+            {
+                "text": "الولادة والإرضاع",
+                "isCorrect": false
+            },
+            {
+                "text": "الصحة الإنجابية",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "4",
+        "lessonId": "38"
+    },
+    {
+        "id": "87",
+        "text": "ما هو موضوع درس الولادة والإرضاع؟",
+        "options": [
+            {
+                "text": "الولادة والإرضاع",
+                "isCorrect": true
+            },
+            {
+                "text": "الصحة الإنجابية",
+                "isCorrect": false
+            },
+            {
+                "text": "الدورة الجنسية",
+                "isCorrect": false
+            },
+            {
+                "text": "الخلايا الجذعية",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "4",
+        "lessonId": "39"
+    },
+    {
+        "id": "88",
+        "text": "أي درس يتناول الصحة الإنجابية؟",
+        "options": [
+            {
+                "text": "الصحة الإنجابية",
+                "isCorrect": true
+            },
+            {
+                "text": "الولادة والإرضاع",
+                "isCorrect": false
+            },
+            {
+                "text": "الدورة الجنسية",
+                "isCorrect": false
+            },
+            {
+                "text": "الخلايا الجذعية",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "4",
+        "lessonId": "40"
+    },
+    {
+        "id": "89",
+        "text": "من هو العالم الذي أجرى تجارب على نبات البازلاء لدراسة الوراثة؟",
+        "options": [
+            {
+                "text": "جريجور مندل",
+                "isCorrect": true
+            },
+            {
+                "text": "تشارلز داروين",
+                "isCorrect": false
+            },
+            {
+                "text": "لويس باستير",
+                "isCorrect": false
+            },
+            {
+                "text": "روبرت هوك",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "5",
+        "lessonId": "42"
+    },
+    {
+        "id": "90",
+        "text": "ما هو الهدف من التهجين الاختباري؟",
+        "options": [
+            {
+                "text": "تحديد النمط الجيني للفرد",
+                "isCorrect": true
+            },
+            {
+                "text": "إنتاج نباتات جديدة",
+                "isCorrect": false
+            },
+            {
+                "text": "تحسين الإنتاجية",
+                "isCorrect": false
+            },
+            {
+                "text": "مكافحة الأمراض",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "5",
+        "lessonId": "43"
+    },
+    {
+        "id": "91",
+        "text": "ما الذي يحدث عندما تؤثر مورثتان على نفس الصفة؟",
+        "options": [
+            {
+                "text": "تعديل النسب المندلية",
+                "isCorrect": true
+            },
+            {
+                "text": "عدم تغيير النسب",
+                "isCorrect": false
+            },
+            {
+                "text": "إلغاء الوراثة",
+                "isCorrect": false
+            },
+            {
+                "text": "تضاعف الصفة",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "5",
+        "lessonId": "44"
+    },
+    {
+        "id": "92",
+        "text": "ما هي المورثات المتتامة؟",
+        "options": [
+            {
+                "text": "مورثات تؤثر على نفس الصفة بشكل متساوٍ",
+                "isCorrect": true
+            },
+            {
+                "text": "مورثات مختلفة تماماً",
+                "isCorrect": false
+            },
+            {
+                "text": "مورثات متنحية فقط",
+                "isCorrect": false
+            },
+            {
+                "text": "مورثات سائدة فقط",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "5",
+        "lessonId": "45"
+    },
+    {
+        "id": "93",
+        "text": "ما هو الحجب الراجح؟",
+        "options": [
+            {
+                "text": "إخفاء مورثة سائدة لمورثة متنحية",
+                "isCorrect": true
+            },
+            {
+                "text": "إخفاء مورثة متنحية لمورثة سائدة",
+                "isCorrect": false
+            },
+            {
+                "text": "تضاعف المورثات",
+                "isCorrect": false
+            },
+            {
+                "text": "فصل المورثات",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "5",
+        "lessonId": "46"
+    },
+    {
+        "id": "94",
+        "text": "ما هو الارتباط والعبور في الوراثة؟",
+        "options": [
+            {
+                "text": "ارتباط مورثات على نفس الكروموسوم وتبادل أجزاء بينها",
+                "isCorrect": true
+            },
+            {
+                "text": "فصل المورثات تماماً",
+                "isCorrect": false
+            },
+            {
+                "text": "تضاعف الكروموسومات",
+                "isCorrect": false
+            },
+            {
+                "text": "تدمير المورثات",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "5",
+        "lessonId": "47"
+    },
+    {
+        "id": "95",
+        "text": "كيف يتم تحديد الجنس لدى الإنسان؟",
+        "options": [
+            {
+                "text": "بوجود كروموسوم Y في الذكر",
+                "isCorrect": true
+            },
+            {
+                "text": "بوجود كروموسوم X في الأنثى",
+                "isCorrect": false
+            },
+            {
+                "text": "بعدد الكروموسومات",
+                "isCorrect": false
+            },
+            {
+                "text": "بحجم الكروموسومات",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "5",
+        "lessonId": "48"
+    },
+    {
+        "id": "96",
+        "text": "ما هي الأمراض الوراثية عند الإنسان؟",
+        "options": [
+            {
+                "text": "أمراض تنتقل عبر المورثات من الآباء للأبناء",
+                "isCorrect": true
+            },
+            {
+                "text": "أمراض معدية فقط",
+                "isCorrect": false
+            },
+            {
+                "text": "أمراض بيئية",
+                "isCorrect": false
+            },
+            {
+                "text": "أمراض نفسية فقط",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "5",
+        "lessonId": "49"
+    },
+    {
+        "id": "97",
+        "text": "ما هي الطفرات في الوراثة؟",
+        "options": [
+            {
+                "text": "تغييرات مفاجئة في المادة الوراثية",
+                "isCorrect": true
+            },
+            {
+                "text": "تطور تدريجي",
+                "isCorrect": false
+            },
+            {
+                "text": "تكاثر طبيعي",
+                "isCorrect": false
+            },
+            {
+                "text": "تضاعف الخلايا",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "5",
+        "lessonId": "50"
+    },
+    {
+        "id": "98",
+        "text": "ما هي الهندسة الوراثية؟",
+        "options": [
+            {
+                "text": "تعديل المادة الوراثية بشكل مقصود",
+                "isCorrect": true
+            },
+            {
+                "text": "دراسة الوراثة الطبيعية",
+                "isCorrect": false
+            },
+            {
+                "text": "تدمير المورثات",
+                "isCorrect": false
+            },
+            {
+                "text": "فصل الكروموسومات",
+                "isCorrect": false
+            }
+        ],
+        "category":"1",
+        "unitId": "5",
+        "lessonId": "51"
+    }
+]

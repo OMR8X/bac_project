@@ -1,11 +1,11 @@
 import 'package:bac_project/core/injector/app_injection.dart';
-import 'package:bac_project/core/services/router/app_router.dart';
+
 import 'package:bac_project/core/services/router/index.dart';
-import 'package:bac_project/presentation/home/views/home_view.dart';
+
 import 'package:bac_project/presentation/root/blocs/auth/auth_bloc.dart';
-import 'package:bac_project/presentation/root/views/auth_start_view.dart';
-import 'package:bac_project/presentation/root/views/sign_in_view.dart';
-import 'package:bac_project/presentation/root/views/sign_up_view.dart';
+
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
