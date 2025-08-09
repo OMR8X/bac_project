@@ -2,6 +2,7 @@ import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/resources/styles/padding_resources.dart';
 import 'package:bac_project/core/services/localization/localization_keys.dart';
 import 'package:bac_project/core/services/localization/localization_manager.dart';
+import 'package:bac_project/presentation/settings/widgets/switch_theme_widget.dart';
 import 'package:flutter/material.dart';
 
 class SettingView extends StatelessWidget {
@@ -11,17 +12,10 @@ class SettingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          sl<LocalizationManager>().get(LocalizationKeys.settings.title),
-        ),
+        title: Text(sl<LocalizationManager>().get(LocalizationKeys.settings.title)),
+        actions: [SwitchThemeWidget()],
       ),
-      body: Padding(
-        padding: PaddingResources.screenSidesPadding,
-        child: Column(children: [
-  
-      ],
-        ),
-      ),
+      body: Padding(padding: PaddingResources.screenSidesPadding, child: Column(children: [])),
     );
   }
 }

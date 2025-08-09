@@ -1,4 +1,7 @@
 {
+    "pick-lessons": {
+        "title": "اختيار الدروس"
+    },
     "home": {
         "title": "الرئيسية",
        "search-bar":{
@@ -29,11 +32,28 @@
             },
         "mode-switcher":{
              "title":"الوضع",
-             "explore-mode":"تصفح",
-             "test-mode":"اختبار"
+             "explore-mode":"وضع التصفح",
+             "test-mode":"وضع الاختبار"
         },
         "questions-count":"عدد الأسئلة"    ,
-        "questions-categories":"مواضيع الأسئلة"    
+        "questions-categories":"مواضيع الأسئلة",
+        "modes":{
+            "explore-mode":{
+                "title":"وضع التصفح",
+                "subtitle":"للتعلم والاستكشاف",
+                "description":"تدرب بدون ضغط الوقت. اطلع على الإجابات فوراً وتعلم من اخطائك."
+            },
+            "test-mode":{
+                "title":"وضع الاختبار",
+                "subtitle":"اختبر نفسك",
+                "description":"امتحان مؤقت مع تقييم ونتائج. مثالي لاختبار فهمك للموضوعات"
+            },
+            "custom-mode":{
+                "title":"وضع مخصص",
+                "subtitle":"تحكم بجميع الإعدادات",
+                "description":"قم بتحديد اعدادات الاختبار وتخصيصها بالكامل"
+            }
+        } 
 
     },
     "auth": {
@@ -54,11 +74,22 @@
         "title":"نتائجي"
     },
     "search":{
-        "hint":"بحث..."
+        "hint":"بحث...",
+        "title":"البحث",
+        "no-results":"لا يوجد نتائج"
     },
     "general":{
         "buttons":{
-            "save":"حفظ"
+            "save":"حفظ",
+            "next":"التالي",
+            "confirm":"تأكيد",
+            "customize":"تخصيص",
+            "pick":"اختيار",
+            "previous":"السابق",
+            "finish":"إنهاء",
+            "result":"النتيجة",
+            "close":"إغلاق"
+            ,"retry":"اعادة الاختبار"
         }
     }
 }

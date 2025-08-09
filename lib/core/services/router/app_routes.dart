@@ -11,8 +11,9 @@ enum AppRoutes {
   result(name: 'result', path: '/result'),
   testModeSettings(name: 'test-mode-settings', path: '/test-mode-settings'),
   setTestProperties(name: 'set-test-properties', path: '/set-test-properties'),
-
-  testing(name: 'testing', path: '/testing');
+  pickLessons(name: 'pick-lessons', path: '/pick-lessons'),
+  quizzing(name: 'quizzing', path: '/quizzing'),
+  search(name: 'search', path: '/search');
 
   const AppRoutes({required this.name, required this.path});
 

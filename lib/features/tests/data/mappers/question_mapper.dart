@@ -9,7 +9,6 @@ extension QuestionModelExtension on QuestionModel {
       id: id,
       text: text,
       options: options,
-      category: category,
       unitId: unitId,
       lessonId: lessonId,
     );
@@ -22,7 +21,6 @@ extension QuestionEntityExtension on Question {
       id: id,
       text: text,
       options: options,
-      category: category,
       unitId: unitId,
       lessonId: lessonId,
     );

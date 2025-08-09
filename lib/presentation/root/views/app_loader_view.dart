@@ -16,6 +16,12 @@ class AppLoaderView extends StatefulWidget {
 }
 
 class _AppLoaderViewState extends State<AppLoaderView> {
+  @override
+  void initState() {
+    super.initState();
+    sl<AppLoaderBloc>().add(const AppLoaderLoadData());
+  }
+
   onDone() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.go(AppRoutes.authViewsManager.path);

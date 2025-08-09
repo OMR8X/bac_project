@@ -15,10 +15,7 @@ class AppThemeBloc extends Bloc<AppThemeEvent, AppThemeState> {
     on<ChangeAppThemeEvent>(onChangeAppThemeEvent);
     on<InitializeAppThemeEvent>(onInitializeAppThemeEvent);
   }
-  onChangeAppThemeEvent(
-    ChangeAppThemeEvent event,
-    Emitter<AppThemeState> emit,
-  ) {
+  onChangeAppThemeEvent(ChangeAppThemeEvent event, Emitter<AppThemeState> emit) {
     switch (event.theme) {
       case AppThemes.lightTheme:
         emit(AppThemeState(themeData: AppLightTheme.theme()));
@@ -29,10 +26,7 @@ class AppThemeBloc extends Bloc<AppThemeEvent, AppThemeState> {
     }
   }
 
-  onInitializeAppThemeEvent(
-    InitializeAppThemeEvent event,
-    Emitter<AppThemeState> emit,
-  ) async {
+  onInitializeAppThemeEvent(InitializeAppThemeEvent event, Emitter<AppThemeState> emit) async {
     //
     final String? value = (await cacheManager().read(appThemeKey)) as String?;
     //

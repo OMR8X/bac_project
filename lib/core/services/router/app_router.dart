@@ -1,11 +1,19 @@
 import 'package:bac_project/core/services/router/app_transations.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
+import 'package:bac_project/presentation/home/blocs/lessons_bloc.dart';
 import 'package:bac_project/presentation/home/views/home_view.dart';
 import 'package:bac_project/presentation/home/views/lessons_view.dart';
 import 'package:bac_project/presentation/root/views/auth_views_manager.dart';
+import 'package:bac_project/presentation/search/bloc/bloc/search_bloc.dart';
 import 'package:bac_project/presentation/settings/views/setting_view.dart';
 import 'package:bac_project/presentation/testing/views/designing_view.dart';
+import 'package:bac_project/presentation/tests/views/pick_lessons_view.dart';
+import 'package:bac_project/presentation/tests/views/quizzing_view.dart';
 import 'package:bac_project/presentation/tests/widget/set_test_properties.dart';
+import 'package:bac_project/presentation/search/views/search_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bac_project/core/injector/app_injection.dart';
+import 'package:bac_project/presentation/tests/blocs/pick_lessons_bloc.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
@@ -15,6 +23,7 @@ import '../../../presentation/root/views/pages_holder.dart';
 import '../../../presentation/testing/views/debugs_view.dart';
 
 import '../../../presentation/tests/views/test_mode_settings_view.dart';
+import '../../../presentation/testing/views/testing_view.dart';
 import 'app_routes.dart';
 
 class AppRouter {
@@ -30,6 +39,7 @@ class AppRouter {
   static final router = GoRouter(
     debugLogDiagnostics: false,
     initialLocation: AppRoutes.loader.path,
+    // initialLocation: AppRoutes.loader.path,
     navigatorKey: _rootNavigatorKey,
     routes: [
       /// debugging route
@@ -40,14 +50,8 @@ class AppRouter {
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
               transitionDuration: AppTransitions.transitionDuration,
-              reverseTransitionDuration:
-                  AppTransitions.reverseTransitionDuration,
-              transitionsBuilder: (
-                context,
-                animation,
-                secondaryAnimation,
-                child,
-              ) {
+              reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
                 return AppTransitions.commonTransition(
                   context,
                   animation,
@@ -67,14 +71,8 @@ class AppRouter {
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
               transitionDuration: AppTransitions.transitionDuration,
-              reverseTransitionDuration:
-                  AppTransitions.reverseTransitionDuration,
-              transitionsBuilder: (
-                context,
-                animation,
-                secondaryAnimation,
-                child,
-              ) {
+              reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
                 return AppTransitions.commonTransition(
                   context,
                   animation,
@@ -93,14 +91,8 @@ class AppRouter {
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
               transitionDuration: AppTransitions.transitionDuration,
-              reverseTransitionDuration:
-                  AppTransitions.reverseTransitionDuration,
-              transitionsBuilder: (
-                context,
-                animation,
-                secondaryAnimation,
-                child,
-              ) {
+              reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
                 return AppTransitions.commonTransition(
                   context,
                   animation,
@@ -119,14 +111,8 @@ class AppRouter {
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
               transitionDuration: AppTransitions.transitionDuration,
-              reverseTransitionDuration:
-                  AppTransitions.reverseTransitionDuration,
-              transitionsBuilder: (
-                context,
-                animation,
-                secondaryAnimation,
-                child,
-              ) {
+              reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
                 return AppTransitions.commonTransition(
                   context,
                   animation,
@@ -145,14 +131,8 @@ class AppRouter {
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
               transitionDuration: AppTransitions.transitionDuration,
-              reverseTransitionDuration:
-                  AppTransitions.reverseTransitionDuration,
-              transitionsBuilder: (
-                context,
-                animation,
-                secondaryAnimation,
-                child,
-              ) {
+              reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
                 return AppTransitions.commonTransition(
                   context,
                   animation,
@@ -160,9 +140,12 @@ class AppRouter {
                   child,
                 );
               },
-              child: LessonsView(
-                key: state.pageKey,
-                arguments: state.extra as LessonsViewArguments?,
+              child: BlocProvider(
+                create: (context) => sl<LessonsBloc>(),
+                child: LessonsView(
+                  key: state.pageKey,
+                  arguments: state.extra as LessonsViewArguments?,
+                ),
               ),
             ),
       ),
@@ -174,14 +157,8 @@ class AppRouter {
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
               transitionDuration: AppTransitions.transitionDuration,
-              reverseTransitionDuration:
-                  AppTransitions.reverseTransitionDuration,
-              transitionsBuilder: (
-                context,
-                animation,
-                secondaryAnimation,
-                child,
-              ) {
+              reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
                 return AppTransitions.commonTransition(
                   context,
                   animation,
@@ -192,8 +169,27 @@ class AppRouter {
               child: TestModeSettingsView(
                 key: state.pageKey,
                 arguments: state.extra as TestModeSettingsArguments?,
-                onSave: (options) {},
               ),
+            ),
+      ),
+      // testing route
+      GoRoute(
+        name: AppRoutes.quizzing.name,
+        path: AppRoutes.quizzing.path,
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              transitionDuration: AppTransitions.transitionDuration,
+              reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
+              },
+              child: QuizzingView(key: state.pageKey, arguments: state.extra as TestingArguments?),
             ),
       ),
       // set test properties route
@@ -204,14 +200,8 @@ class AppRouter {
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
               transitionDuration: AppTransitions.transitionDuration,
-              reverseTransitionDuration:
-                  AppTransitions.reverseTransitionDuration,
-              transitionsBuilder: (
-                context,
-                animation,
-                secondaryAnimation,
-                child,
-              ) {
+              reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
                 return AppTransitions.commonTransition(
                   context,
                   animation,
@@ -220,6 +210,32 @@ class AppRouter {
                 );
               },
               child: SetTestProperties(key: state.pageKey),
+            ),
+      ),
+      // pick lessons route
+      GoRoute(
+        name: AppRoutes.pickLessons.name,
+        path: AppRoutes.pickLessons.path,
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              transitionDuration: AppTransitions.transitionDuration,
+              reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
+              },
+              child: BlocProvider<PickLessonsBloc>(
+                create: (context) => sl<PickLessonsBloc>(),
+                child: PickLessonsView(
+                  key: state.pageKey,
+                  arguments: state.extra as PickLessonsArguments,
+                ),
+              ),
             ),
       ),
 
@@ -241,14 +257,8 @@ class AppRouter {
                     (context, state) => CustomTransitionPage(
                       key: state.pageKey,
                       transitionDuration: AppTransitions.transitionDuration,
-                      reverseTransitionDuration:
-                          AppTransitions.reverseTransitionDuration,
-                      transitionsBuilder: (
-                        context,
-                        animation,
-                        secondaryAnimation,
-                        child,
-                      ) {
+                      reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
                         return AppTransitions.commonTransition(
                           context,
                           animation,
@@ -273,14 +283,8 @@ class AppRouter {
                     (context, state) => CustomTransitionPage(
                       key: state.pageKey,
                       transitionDuration: AppTransitions.transitionDuration,
-                      reverseTransitionDuration:
-                          AppTransitions.reverseTransitionDuration,
-                      transitionsBuilder: (
-                        context,
-                        animation,
-                        secondaryAnimation,
-                        child,
-                      ) {
+                      reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
                         return AppTransitions.commonTransition(
                           context,
                           animation,
@@ -306,14 +310,8 @@ class AppRouter {
                     (context, state) => CustomTransitionPage(
                       key: state.pageKey,
                       transitionDuration: AppTransitions.transitionDuration,
-                      reverseTransitionDuration:
-                          AppTransitions.reverseTransitionDuration,
-                      transitionsBuilder: (
-                        context,
-                        animation,
-                        secondaryAnimation,
-                        child,
-                      ) {
+                      reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
                         return AppTransitions.commonTransition(
                           context,
                           animation,
@@ -327,6 +325,36 @@ class AppRouter {
             ],
           ),
         ],
+      ),
+
+      // Search route
+      GoRoute(
+        name: AppRoutes.search.name,
+        path: AppRoutes.search.path,
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              transitionDuration: AppTransitions.transitionDuration,
+              reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
+              },
+              child: BlocProvider(
+                create:
+                    (context) =>
+                        sl<SearchBloc>()
+                          ..add(SearchLessons(unitId: (state.extra as SearchViewArguments).unitId)),
+                child: SearchView(
+                  key: state.pageKey,
+                  arguments: state.extra as SearchViewArguments,
+                ),
+              ),
+            ),
       ),
     ],
   );

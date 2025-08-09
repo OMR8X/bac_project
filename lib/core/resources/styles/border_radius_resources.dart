@@ -19,7 +19,7 @@ class BorderRadiusResource {
   //
   static final buttonBorderRadius = bordersRadiusSmall;
   //
-  static final fieldBorderRadius = bordersRadiusSmall;
+  static final fieldBorderRadius = bordersRadiusLarge;
   //
   static final tileBorderRadius = bordersRadiusSmall;
   //
@@ -29,5 +29,7 @@ class BorderRadiusResource {
   //
   static final dialogBorderRadius = bordersRadiusLarge;
   //
-  static final cardBorderRadius = bordersRadiusSmall;
+  static final cardBorderRadius = bordersRadiusLarge;
+  //
+  static final optionCardBorderRadius = bordersRadiusTiny;
 }

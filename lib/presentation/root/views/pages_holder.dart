@@ -1,5 +1,9 @@
+import 'dart:ui';
+
 import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/resources/styles/assets_resources.dart';
+import 'package:bac_project/core/resources/styles/blur_resources.dart';
+import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/resources/styles/padding_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/services/localization/localization_keys.dart';
@@ -28,12 +32,17 @@ class _PagesHolderViewState extends State<PagesHolderView> {
       body: SizedBox(
         width: double.infinity,
         height: double.infinity,
-        child: widget.navigationShell,
+        child: Stack(
+          children: [
+            widget.navigationShell,
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: _NavigationBar(widget.navigationShell.currentIndex, _changePage),
+            ),
+          ],
+        ),
       ),
-      bottomNavigationBar: _NavigationBar(
-        widget.navigationShell.currentIndex,
-        _changePage,
-      ),
+      // bottomNavigationBar: _NavigationBar(widget.navigationShell.currentIndex, _changePage),
     );
   }
 }
@@ -45,59 +54,61 @@ class _NavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //
-    return Container(
-      width: MediaQuery.sizeOf(context).width,
-
-      decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(color: Theme.of(context).colorScheme.outline),
-        ),
-        color: Theme.of(context).colorScheme.surface,
-      ),
-      child: Padding(
-        padding: EdgeInsets.only(
-          bottom: MediaQuery.of(context).padding.bottom + SpacesResources.s1,
-          top: SpacesResources.s10,
-          left: PaddingResources.screenSidesPadding.left,
-          right: PaddingResources.screenSidesPadding.right,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Expanded(
-              child: BottomNavTab(
-                selectedIconPath: UIImagesResources.homeIconFilled,
-                unselectedIconPath: UIImagesResources.homeIconOutline,
-                label: sl<LocalizationManager>().get(
-                  LocalizationKeys.bottomNavigationBar.home,
-                ),
-                selected: currentIndex == 0,
-                onTap: () => changePage(0),
-              ),
+    return ClipRect(
+      child: BackdropFilter(
+        filter: BlurResources.bottomNavigationBarBlur(context),
+        child: Container(
+          width: MediaQuery.sizeOf(context).width,
+          decoration: BoxDecoration(
+            border: Border(
+              top: BorderSide(color: Theme.of(context).colorScheme.outlineVariant, width: 1),
             ),
-            Expanded(
-              child: BottomNavTab(
-                selectedIconPath: UIImagesResources.resultsIconFilled,
-                unselectedIconPath: UIImagesResources.resultsIconOutline,
-                label: sl<LocalizationManager>().get(
-                  LocalizationKeys.bottomNavigationBar.results,
-                ),
-                selected: currentIndex == 1,
-                onTap: () => changePage(1),
-              ),
+            color: Theme.of(context).colorScheme.surface.withAlpha(150),
+          ),
+          child: Padding(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).padding.bottom + SpacesResources.s1,
+              top: SpacesResources.s6,
+              left: PaddingResources.screenSidesPadding.left,
+              right: PaddingResources.screenSidesPadding.right,
             ),
-            Expanded(
-              child: BottomNavTab(
-                selectedIconPath: UIImagesResources.settingsIconFilled,
-                unselectedIconPath: UIImagesResources.settingsIconOutline,
-                label: sl<LocalizationManager>().get(
-                  LocalizationKeys.bottomNavigationBar.settings,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Expanded(
+                  child: BottomNavTab(
+                    selectedIconPath: UIImagesResources.homeIconFilled,
+                    unselectedIconPath: UIImagesResources.homeIconOutline,
+                    label: sl<LocalizationManager>().get(LocalizationKeys.bottomNavigationBar.home),
+                    selected: currentIndex == 0,
+                    onTap: () => changePage(0),
+                  ),
                 ),
-                selected: currentIndex == 2,
-                onTap: () => changePage(2),
-              ),
+                Expanded(
+                  child: BottomNavTab(
+                    selectedIconPath: UIImagesResources.resultsIconFilled,
+                    unselectedIconPath: UIImagesResources.resultsIconOutline,
+                    label: sl<LocalizationManager>().get(
+                      LocalizationKeys.bottomNavigationBar.results,
+                    ),
+                    selected: currentIndex == 1,
+                    onTap: () => changePage(1),
+                  ),
+                ),
+                Expanded(
+                  child: BottomNavTab(
+                    selectedIconPath: UIImagesResources.settingsIconFilled,
+                    unselectedIconPath: UIImagesResources.settingsIconOutline,
+                    label: sl<LocalizationManager>().get(
+                      LocalizationKeys.bottomNavigationBar.settings,
+                    ),
+                    selected: currentIndex == 2,
+                    onTap: () => changePage(2),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -145,13 +156,13 @@ class BottomNavTab extends StatelessWidget {
               child: SvgPicture.asset(
                 selected ? selectedIconPath : unselectedIconPath,
                 key: ValueKey(selected),
-                width: 20,
+                width: 18,
                 colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
               ),
             ),
 
-            const SizedBox(height: SpacesResources.s6),
-            Text(label, style: TextStyle(color: color, fontSize: 12)),
+            const SizedBox(height: SpacesResources.s4),
+            Text(label, style: AppTextStyles.bottomNavigationBarLabel.copyWith(color: color)),
           ],
         ),
       ),

@@ -6,8 +6,8 @@ extension LessonModelExtension on LessonModel {
     return Lesson(
       id: id,
       title: title,
-      questionsLength: questionsLength,
       unitId: unitId,
+      questionsCount: questionsCount,
     );
   }
 }
@@ -17,8 +17,8 @@ extension LessonEntityExtension on Lesson {
     return LessonModel(
       id: id,
       title: title,
-      questionsLength: questionsLength,
       unitId: unitId,
+      questionsCount: questionsCount,
     );
   }
 }

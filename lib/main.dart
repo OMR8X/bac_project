@@ -2,6 +2,7 @@ import 'package:bac_project/core/services/localization/localization_cache_servic
 import 'package:bac_project/core/services/localization/localization_manager.dart';
 import 'package:bac_project/presentation/root/views/app_root.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'core/injector/app_injection.dart';
 
 void main() async {
@@ -17,6 +18,7 @@ void main() async {
   //
   await sl<LocalizationManager>().init();
   await sl<LocalizationCacheService>().loadAndCacheJson('ar');
+  
   // ///
   // await sl<AppBackgroundService>().initializeBackgroundServiceForUploads();
 
@@ -54,14 +56,3 @@ class ErrorsCopier {
     errors.add(details);
   }
 }
-/*
-cd asteroid_bomber && flutter clean && cd ..
-cd authify && flutter clean && cd ..
-cd bac && flutter clean && cd ..
-cd bac_project && flutter clean && cd ..
-cd base && flutter clean && cd ..
-cd car_brand && flutter clean && cd ..
-cd omr8x && flutter clean && cd ..
-cd pages && flutter clean && cd ..
-cd planets && flutter clean && cd ..
-*/

@@ -15,7 +15,7 @@ class PaddingResources {
   ///
   static const EdgeInsets listViewPadding = EdgeInsets.only(
     top: SpacesResources.s4,
-    bottom: SpacesResources.s40,
+    bottom: SpacesResources.s80,
   );
 
   ///
@@ -25,12 +25,24 @@ class PaddingResources {
   );
 
   ///
-  static const EdgeInsets searchBarPadding = EdgeInsets.symmetric(vertical: SpacesResources.s3);
+  static const EdgeInsets searchBarPadding = EdgeInsets.symmetric(vertical: SpacesResources.s4);
+
+  ///
+  static const EdgeInsets cardLessonInnerPadding = EdgeInsets.symmetric(
+    horizontal: SpacesResources.s8,
+    vertical: SpacesResources.s8,
+  );
 
   ///
   static const EdgeInsets cardMediumInnerPadding = EdgeInsets.symmetric(
-    horizontal: SpacesResources.s8,
-    vertical: SpacesResources.s6,
+    horizontal: SpacesResources.s6,
+    vertical: SpacesResources.s7,
+  );
+
+  ///
+  static const EdgeInsets questionCardInnerPadding = EdgeInsets.symmetric(
+    horizontal: SpacesResources.s10,
+    vertical: SpacesResources.s7,
   );
 
   ///
@@ -40,7 +52,10 @@ class PaddingResources {
   );
 
   ///
-  static const EdgeInsets cardOuterPadding = EdgeInsets.symmetric(vertical: SpacesResources.s3);
+  static const EdgeInsets cardOuterPadding = EdgeInsets.symmetric(vertical: SpacesResources.s2);
+
+  ///
+  static const EdgeInsets fullTestCardPadding = EdgeInsets.symmetric(vertical: SpacesResources.s4);
 
   ///
   static const EdgeInsets switchCardInnerPadding = EdgeInsets.symmetric(
@@ -57,6 +72,16 @@ class PaddingResources {
   static const EdgeInsets cardLargeTitlePadding = EdgeInsets.symmetric(
     vertical: SpacesResources.s6,
   );
+  static const EdgeInsets bottomButtonPadding = EdgeInsets.symmetric(
+    vertical: SpacesResources.s2,
+    horizontal: SpacesResources.s2,
+  );
+
+  ///
+  static const EdgeInsets optionCardMargin = EdgeInsets.only(bottom: SpacesResources.s2);
+
+  ///
+  static const EdgeInsets questionsCardMargin = EdgeInsets.symmetric(vertical: SpacesResources.s6);
 
   ///
   static EdgeInsets customPadding(int h, int v) =>

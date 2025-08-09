@@ -31,3 +31,4 @@ class SuccessColors extends ThemeExtension<SuccessColors> {
     );
   }
 }
+

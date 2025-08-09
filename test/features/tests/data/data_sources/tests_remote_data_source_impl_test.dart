@@ -3,7 +3,7 @@ import 'package:bac_project/features/tests/data/datasources/tests_remote_data_so
 import 'package:bac_project/features/tests/domain/requests/get_test_options_request.dart';
 import 'package:bac_project/features/tests/data/responses/get_test_options_response.dart';
 import 'package:bac_project/features/tests/data/models/test_options_model.dart';
-import 'package:bac_project/features/tests/domain/entities/test_options.dart';
+import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

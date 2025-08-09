@@ -1,5 +1,4 @@
 import 'package:bac_project/features/tests/domain/usecases/get_lessons_use_case.dart';
-import 'package:bac_project/features/tests/domain/usecases/get_test_options_use_case.dart';
 import 'package:bac_project/features/tests/domain/usecases/get_questions_use_case.dart';
 import 'package:get_it/get_it.dart';
 
@@ -18,7 +17,7 @@ Future<void> testsFeatureInjection() async {
 }
 
 Future<void> datasources() async {
-  sl.registerLazySingleton<TestsRemoteDataSource>(() => TestsRemoteDataSourceImpl());
+  sl.registerLazySingleton<TestsRemoteDataSource>(() => TestsRemoteDataSourceImpl(client: sl(), apiManager: sl()));
 }
 
 Future<void> repositories() async {
@@ -28,6 +27,5 @@ Future<void> repositories() async {
 Future<void> usecases() async {
   sl.registerLazySingleton<GetUnitsUseCase>(() => GetUnitsUseCase(repository: sl()));
   sl.registerLazySingleton<GetLessonsUseCase>(() => GetLessonsUseCase(repository: sl()));
-  sl.registerLazySingleton<GetTestOptionsUseCase>(() => GetTestOptionsUseCase(repository: sl()));
   sl.registerLazySingleton<GetQuestionsUseCase>(() => GetQuestionsUseCase(repository: sl()));
 }

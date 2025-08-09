@@ -5,7 +5,7 @@ class OptionModel extends Option {
 
   factory OptionModel.fromJson(Map<String, dynamic> json) {
     return OptionModel(
-      id: json['id'] as String? ?? DateTime.now().millisecondsSinceEpoch.toString(),
+      id: json['id'] as int? ?? DateTime.now().millisecondsSinceEpoch,
       text: json['text'] as String,
       isCorrect: json['is_correct'] as bool? ?? false,
     );
@@ -19,7 +19,7 @@ class OptionModel extends Option {
     return Option(id: id, text: text, isCorrect: isCorrect);
   }
 
-  OptionModel copyWith({String? id, String? text, bool? isCorrect}) {
+  OptionModel copyWith({int? id, String? text, bool? isCorrect}) {
     return OptionModel(
       id: id ?? this.id,
       text: text ?? this.text,

@@ -6,11 +6,9 @@ import '../../domain/requests/get_test_options_request.dart';
 import '../../domain/requests/get_questions_request.dart';
 import '../responses/get_lessons_response.dart';
 import '../responses/get_units_response.dart';
-import '../responses/get_test_options_response.dart';
 
 abstract class TestsRemoteDataSource {
   Future<GetUnitsResponse> getUnits(GetUnitsRequest request);
   Future<GetLessonsResponse> getLessons(GetLessonsRequest request);
-  Future<GetTestOptionsResponse> getTestOptions(GetTestOptionsRequest request);
   Future<GetQuestionsResponse> getQuestions(GetQuestionsRequest request);
 }

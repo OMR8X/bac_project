@@ -7,38 +7,62 @@ import '../../resources/styles/spaces_resources.dart';
 
 class LessonCardWidget extends StatelessWidget {
   final String title;
-  final String? subtitle;
+  final int? questionsCount;
   final VoidCallback onTap;
   final IconData icon;
+  final bool? isSelected;
 
   const LessonCardWidget({
     super.key,
     required this.title,
-    required this.subtitle,
+    this.questionsCount,
     required this.onTap,
-  required this.icon,
+    required this.icon,
+    this.isSelected,
   });
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: PaddingResources.cardOuterPadding,
+      margin: PaddingResources.cardOuterPadding / 2,
       child: InkWell(
         borderRadius: BorderRadiusResource.cardBorderRadius,
         onTap: onTap,
         child: Padding(
-          padding: PaddingResources.cardLargeInnerPadding,
-          child: Row(
-            children: [
-              _buildIconBox(context),
-              const SizedBox(width: 12),
-              Expanded(child: _buildTextInformation(context)),
-              const SizedBox(width: 12),
-              Icon(
-                Icons.arrow_forward,
-                color: Theme.of(context).colorScheme.surfaceContainerHighest,
-              ),
-            ],
+          padding: PaddingResources.cardLessonInnerPadding,
+          child: IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                _buildIconBox(context),
+                const SizedBox(width: 12),
+                Expanded(child: _buildTextInformation(context)),
+                const SizedBox(width: 12),
+                if (isSelected == null)
+                  Padding(
+                    padding: const EdgeInsets.all(SpacesResources.s4),
+                    child: Icon(
+                      Icons.arrow_forward_ios,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      size: SpacesResources.s6,
+                    ),
+                  )
+                else
+                  Padding(
+                    padding: const EdgeInsets.all(SpacesResources.s4),
+                    child: SizedBox(
+                      width: SpacesResources.s10,
+                      height: SpacesResources.s10,
+                      child: Checkbox(
+                        value: isSelected,
+                        onChanged: (bool? value) {
+                          onTap();
+                        },
+                      ),
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ),
@@ -47,10 +71,10 @@ class LessonCardWidget extends StatelessWidget {
 
   Widget _buildIconBox(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(SpacesResources.s5),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primary.withAlpha(25),
-        borderRadius: BorderRadius.circular(8),
+        color: Theme.of(context).colorScheme.primaryContainer,
+        borderRadius: BorderRadiusResource.tileBoxBorderRadius,
       ),
       child: Icon(icon, color: Theme.of(context).colorScheme.primary, size: 20),
     );
@@ -67,14 +91,26 @@ class LessonCardWidget extends StatelessWidget {
             color: Theme.of(context).colorScheme.onSurface,
           ),
         ),
-        const SizedBox(height: 4),
-        if (subtitle != null)
-          Text(
-            subtitle!,
-            style: AppTextStyles.cardMediumSubtitle.copyWith(
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
+        const SizedBox(height: SpacesResources.s3),
+        if (questionsCount != null)
+          Row(
+            children: [
+              Icon(
+                Icons.quiz_outlined,
+                size: FontSizeResources.s12,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
+              const SizedBox(width: SpacesResources.s2),
+              Text(
+                "$questionsCount سوال",
+                style: AppTextStyles.caption.copyWith(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  fontSize: FontSizeResources.s10,
+                  fontWeight: FontWeightResources.medium,
+                ),
+              ),
+            ],
           ),
-        ),
       ],
     );
   }

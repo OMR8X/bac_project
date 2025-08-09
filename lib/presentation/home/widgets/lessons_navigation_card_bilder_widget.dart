@@ -1,3 +1,4 @@
+import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/services/local/local_json_data_api.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
 import 'package:bac_project/core/widgets/animations/staggered_list_wrapper_widget.dart';
@@ -8,6 +9,7 @@ import 'package:bac_project/presentation/home/models/custom_action_card_model.da
 import 'package:bac_project/presentation/home/models/custom_navigation_card_model.dart';
 import 'package:bac_project/presentation/home/views/lessons_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/resources/styles/padding_resources.dart';
@@ -24,30 +26,36 @@ class LessonsCardsBuilderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (lessons.isEmpty) {
-      return const Center(child: Text('لا توجد بيانات'));
+      return const SliverFillRemaining(
+        hasScrollBody: false,
+        child: Center(child: Text('لا توجد بيانات')),
+      );
     }
-    return StaggeredListWrapperWidget(
-      position: 2,
-      child: ListView.builder(
-        padding: PaddingResources.listViewPadding,
+    return AnimationLimiter(
+      child: SliverList.builder(
         itemCount: lessons.length,
         itemBuilder: (context, index) {
           final lesson = lessons[index];
           return StaggeredItemWrapperWidget(
             position: index,
-            child: LessonCardWidget(
-              icon: Icons.school,
-              title: lesson.title,
-              subtitle: lesson.questionsLength?.toString(),
-              onTap: () {
-                context.push(
-                  AppRoutes.testModeSettings.path,
-                  extra: TestModeSettingsArguments(
-                    unitIds: [lesson.unitId],
-                    lessonIds: [lesson.id],
-                  ),
-                );
-              },
+            key: ValueKey(lesson.id),
+            child: Column(
+              children: [
+                LessonCardWidget(
+                  icon: Icons.school,
+                  title: lesson.title,
+                  questionsCount: lesson.questionsCount,
+                  onTap: () {
+                    context.pushReplacement(
+                      AppRoutes.testModeSettings.path,
+                      extra: TestModeSettingsArguments(
+                        unitIds: [lesson.unitId],
+                        lessonIds: [lesson.id],
+                      ),
+                    );
+                  },
+                ),
+              ],
             ),
           );
         },

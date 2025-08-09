@@ -1,22 +1,21 @@
 class Lesson {
-  final String id;
+  final int id;
   final String title;
-  final int? questionsLength;
-  final String unitId;
-
+  final int unitId;
+  final int questionsCount;
   const Lesson({
     required this.id,
     required this.title,
-    required this.questionsLength,
     required this.unitId,
+    required this.questionsCount,
   });
 
-  Lesson copyWith({String? id, String? title, int? questionsLength, String? unitId}) {
+  Lesson copyWith({int? id, String? title, int? unitId, int? questionsCount}) {
     return Lesson(
       id: id ?? this.id,
       title: title ?? this.title,
-      questionsLength: questionsLength ?? this.questionsLength,
       unitId: unitId ?? this.unitId,
+      questionsCount: questionsCount ?? this.questionsCount,
     );
   }
 
@@ -26,14 +25,14 @@ class Lesson {
     return other is Lesson &&
         other.id == id &&
         other.title == title &&
-        other.questionsLength == questionsLength &&
-        other.unitId == unitId;
+        other.unitId == unitId &&
+        other.questionsCount == questionsCount;
   }
 
   @override
-  int get hashCode => id.hashCode ^ title.hashCode ^ questionsLength.hashCode ^ unitId.hashCode;
+  int get hashCode => id.hashCode ^ title.hashCode ^ unitId.hashCode ^ questionsCount.hashCode;
 
   @override
   String toString() =>
-      'Lesson(id: $id, title: $title, questionsLength: $questionsLength, unitId: $unitId)';
+      'Lesson(id: $id, title: $title, unitId: $unitId, questionsCount: $questionsCount)';
 }

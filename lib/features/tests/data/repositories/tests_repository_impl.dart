@@ -4,17 +4,14 @@ import '../../../../core/resources/errors/exceptions.dart';
 import '../../domain/repositories/tests_repository.dart';
 import '../../domain/requests/get_units_request.dart';
 import '../../domain/requests/get_lessons_request.dart';
-import '../../domain/requests/get_test_options_request.dart';
 import '../../domain/requests/get_questions_request.dart';
 import '../responses/get_units_response.dart';
 import '../responses/get_lessons_response.dart';
-import '../responses/get_test_options_response.dart';
 import '../responses/get_questions_response.dart';
 import '../../domain/entities/question.dart';
 import '../datasources/tests_remote_data_source.dart';
 import '../mappers/unit_mapper.dart';
 import '../mappers/lesson_mapper.dart';
-import '../mappers/test_options_mapper.dart';
 import '../mappers/question_mapper.dart';
 
 class TestsRepositoryImpl implements TestsRepository {
@@ -32,6 +29,7 @@ class TestsRepositoryImpl implements TestsRepository {
     } on AuthException catch (e) {
       return Left(AuthFailure(message: e.message));
     } catch (e) {
+      print(e);
       return Left(AnonFailure(message: 'An unexpected error occurred: $e'));
     }
   }
@@ -46,22 +44,7 @@ class TestsRepositoryImpl implements TestsRepository {
     } on AuthException catch (e) {
       return Left(AuthFailure(message: e.message));
     } catch (e) {
-      return Left(AnonFailure(message: 'An unexpected error occurred: $e'));
-    }
-  }
-
-  @override
-  Future<Either<Failure, GetTestOptionsResponse>> getTestOptions(
-    GetTestOptionsRequest request,
-  ) async {
-    try {
-      final result = await remoteDataSource.getTestOptions(request);
-      return Right(result);
-    } on ServerException catch (e) {
-      return Left(ServerFailure(message: e.message));
-    } on AuthException catch (e) {
-      return Left(AuthFailure(message: e.message));
-    } catch (e) {
+      print(e);
       return Left(AnonFailure(message: 'An unexpected error occurred: $e'));
     }
   }

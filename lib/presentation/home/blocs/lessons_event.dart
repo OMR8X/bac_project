@@ -5,7 +5,7 @@ sealed class LessonsEvent {
 }
 
 class LessonsEventInitialize extends LessonsEvent {
-  final String? unitId;
+  final int? unitId;
 
   const LessonsEventInitialize({this.unitId});
 }

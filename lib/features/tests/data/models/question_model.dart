@@ -9,22 +9,20 @@ class QuestionModel extends Question {
     required super.id,
     required super.text,
     required super.options,
-    required super.category,
     super.unitId,
     super.lessonId,
   });
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) {
     return QuestionModel(
-      id: json['id'] as String,
+      id: json['id'] as int,
       text: json['text'] as String,
       options:
           (json['options'] as List<dynamic>).map((option) {
             return OptionModel.fromJson(option as Map<String, dynamic>).toEntity();
           }).toList(),
-      category: json['category'] as String? ?? '',
-      unitId: json['unitId'] as String?,
-      lessonId: json['lessonId'] as String?,
+      unitId: json['unitId'] as int?,
+      lessonId: json['lessonId'] as int?,
     );
   }
 
@@ -33,7 +31,6 @@ class QuestionModel extends Question {
       'id': id,
       'text': text,
       'options': options.map((option) => option.toModel().toJson()).toList(),
-      'category': category,
       'unit_id': unitId,
       'lesson_id': lessonId,
     };
@@ -44,7 +41,6 @@ class QuestionModel extends Question {
       id: id,
       text: text,
       options: options.map((option) => option.toModel()).toList(),
-      category: category,
       unitId: unitId,
       lessonId: lessonId,
     );
@@ -52,18 +48,16 @@ class QuestionModel extends Question {
 
   @override
   QuestionModel copyWith({
-    String? id,
+      int? id,
     String? text,
     List<Option>? options,
-    String? category,
-    String? unitId,
-    String? lessonId,
+    int? unitId,
+    int? lessonId,
   }) {
     return QuestionModel(
       id: id ?? this.id,
       text: text ?? this.text,
       options: options ?? this.options,
-      category: category ?? this.category,
       unitId: unitId ?? this.unitId,
       lessonId: lessonId ?? this.lessonId,
     );
@@ -76,7 +70,6 @@ class QuestionModel extends Question {
         other.id == id &&
         other.text == text &&
         other.options == options &&
-        other.category == category &&
         other.unitId == unitId &&
         other.lessonId == lessonId;
   }
@@ -86,11 +79,10 @@ class QuestionModel extends Question {
       id.hashCode ^
       text.hashCode ^
       options.hashCode ^
-      category.hashCode ^
       unitId.hashCode ^
       lessonId.hashCode;
 
   @override
   String toString() =>
-      'QuestionModel(id: $id, text: $text, options: $options, category: $category, unitId: $unitId, lessonId: $lessonId)';
+      'QuestionModel(id: $id, text: $text, options: $options, unitId: $unitId, lessonId: $lessonId)';
 }

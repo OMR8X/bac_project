@@ -1,5 +1,5 @@
 class Option {
-  final String id;
+  final int id;
   final String text;
   final bool isCorrect;
 

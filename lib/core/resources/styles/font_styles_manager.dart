@@ -82,7 +82,7 @@ class AppTextStyles {
   static const TextStyle cardLargeTitle = TextStyle(
     fontFamily: AppFontStyles.fontFamily,
     fontSize: FontSizeResources.s19,
-    fontWeight: FontWeightResources.bold,
+    fontWeight: FontWeightResources.medium,
   );
   static const TextStyle cardMediumTitle = TextStyle(
     fontFamily: AppFontStyles.fontFamily,
@@ -106,6 +106,20 @@ class AppTextStyles {
     fontWeight: FontWeightResources.regular,
   );
   static const TextStyle subTitle = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontSize: FontSizeResources.s12,
+    fontWeight: FontWeightResources.regular,
+  );
+  // testing
+
+  static const TextStyle questionsTitle = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontSize: FontSizeResources.s14,
+
+    height: 2,
+    fontWeight: FontWeightResources.regular,
+  );
+  static const TextStyle optionsTitle = TextStyle(
     fontFamily: AppFontStyles.fontFamily,
     fontSize: FontSizeResources.s12,
     fontWeight: FontWeightResources.regular,
@@ -195,5 +209,11 @@ class AppTextStyles {
     fontFamily: AppFontStyles.fontFamily,
     fontWeight: FontWeightResources.bold,
     fontSize: FontSizeResources.s19,
+  );
+  // bottomNavigationBarLabel
+  static const TextStyle bottomNavigationBarLabel = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontWeight: FontWeightResources.medium,
+    fontSize: FontSizeResources.s10,
   );
 }

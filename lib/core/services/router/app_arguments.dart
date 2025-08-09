@@ -1,5 +1,7 @@
-import 'package:equatable/equatable.dart';
+// 'equatable' not required here
 import 'package:flutter/material.dart';
+import 'package:bac_project/features/tests/domain/entities/question.dart';
+import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
 
 class ExploreManagerViewArguments {
   final String title;
@@ -22,14 +24,36 @@ class ExploreManagerViewArguments {
 }
 
 class LessonsViewArguments {
-  final String unitId;
+  final int unitId;
 
   const LessonsViewArguments({required this.unitId});
 }
 
+class PickLessonsArguments {
+  final int unitId;
+
+  const PickLessonsArguments({required this.unitId});
+}
+
 class TestModeSettingsArguments {
-  final List<String>? unitIds ;
-  final List<String>? lessonIds;
+  final List<int>? unitIds;
+  final List<int>? lessonIds;
 
   const TestModeSettingsArguments({this.unitIds, this.lessonIds});
+}
+
+class TestingArguments {
+  final List<Question>? questions;
+  final int? timeLimit;
+  final TestMode? testMode;
+  final List<int>? lessonIds;
+
+  const TestingArguments({this.questions, this.timeLimit, this.testMode, this.lessonIds});
+}
+
+class SearchViewArguments {
+  final int? unitId;
+  final String? heroTag;
+
+  const SearchViewArguments({this.unitId, this.heroTag});
 }

@@ -8,13 +8,12 @@ sealed class TestModeSettingsEvent extends Equatable {
 }
 
 final class TestModeSettingsLoadEvent extends TestModeSettingsEvent {
-  final List<String>? unitIds;
-  final List<String>? lessonIds;
+  final TestOptions testOptions;
 
-  const TestModeSettingsLoadEvent({this.unitIds, this.lessonIds});
+  const TestModeSettingsLoadEvent({required this.testOptions});
 
   @override
-  List<Object?> get props => [unitIds, lessonIds];
+  List<Object?> get props => [testOptions];
 }
 
 final class TestModeSettingsUpdateModeEvent extends TestModeSettingsEvent {
@@ -26,33 +25,9 @@ final class TestModeSettingsUpdateModeEvent extends TestModeSettingsEvent {
   List<Object> get props => [selectedMode];
 }
 
-final class TestModeSettingsUpdateCategoriesEvent extends TestModeSettingsEvent {
-  final List<QuestionCategory> selectedCategories;
-
-  const TestModeSettingsUpdateCategoriesEvent({required this.selectedCategories});
+final class TestModeSettingsSubmitEvent extends TestModeSettingsEvent {
+  const TestModeSettingsSubmitEvent();
 
   @override
-  List<Object> get props => [selectedCategories];
-}
-
-final class TestModeSettingsToggleShowCorrectAnswerEvent extends TestModeSettingsEvent {
-  final bool showCorrectAnswer;
-
-  const TestModeSettingsToggleShowCorrectAnswerEvent({required this.showCorrectAnswer});
-
-  @override
-  List<Object> get props => [showCorrectAnswer];
-}
-
-final class TestModeSettingsToggleSoundEffectsEvent extends TestModeSettingsEvent {
-  final bool soundEffectsEnabled;
-
-  const TestModeSettingsToggleSoundEffectsEvent({required this.soundEffectsEnabled});
-
-  @override
-  List<Object> get props => [soundEffectsEnabled];
-}
-
-final class TestModeSettingsSaveEvent extends TestModeSettingsEvent {
-  const TestModeSettingsSaveEvent();
+  List<Object> get props => [];
 }

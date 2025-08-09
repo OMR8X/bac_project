@@ -8,6 +8,25 @@ class ImagesResources {
   ///
   static const String appIcon = '$path/app-icon.png';
 
+  static const String creativityIcon = '$path/creativity.png';
+  static const String quizIcon = '$path/quiz.png';
+  static const String compassIcon = '$path/compass.png';
+  //
+  static const String chooseIcon = '$path/choose.png';
+  static const String mortarboardIcon = '$path/mortarboard.png';
+  static const String trueIcon = '$path/true.png';
+  static const String customizeIcon = '$path/customize.png';
+
+  /*
+/Users/omr8x/projects/flutter/personal/bac_project/assets/images/choose.png
+/Users/omr8x/projects/flutter/personal/bac_project/assets/images/compass.png
+/Users/omr8x/projects/flutter/personal/bac_project/assets/images/mortarboard.png
+/Users/omr8x/projects/flutter/personal/bac_project/assets/images/quiz.png
+/Users/omr8x/projects/flutter/personal/bac_project/assets/images/true.png
+/Users/omr8x/projects/flutter/personal/bac_project/assets/images/creativity.png
+/Users/omr8x/projects/flutter/personal/bac_project/assets/images/customize.png
+  */
+
   //
 }
 

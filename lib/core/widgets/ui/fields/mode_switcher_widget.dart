@@ -7,11 +7,7 @@ import '../../../services/localization/localization_manager.dart';
 import 'package:flutter/material.dart';
 
 class ModeSwitcherWidget extends StatefulWidget {
-  const ModeSwitcherWidget({
-    super.key,
-    this.initialIsExploreMode = true,
-    this.onModeChanged,
-  });
+  const ModeSwitcherWidget({super.key, this.initialIsExploreMode = true, this.onModeChanged});
 
   final bool initialIsExploreMode;
   final ValueChanged<bool>? onModeChanged;
@@ -37,14 +33,12 @@ class _ModeSwitcherWidgetState extends State<ModeSwitcherWidget>
   }
 
   void _initializeAnimations() {
-    _animationController = AnimationController(
-      duration: _animationDuration,
-      vsync: this,
-    );
+    _animationController = AnimationController(duration: _animationDuration, vsync: this);
 
-    _scaleAnimation = Tween<double>(begin: 1.0, end: 1.1).animate(
-      CurvedAnimation(parent: _animationController, curve: _animationCurve),
-    );
+    _scaleAnimation = Tween<double>(
+      begin: 1.0,
+      end: 1.1,
+    ).animate(CurvedAnimation(parent: _animationController, curve: _animationCurve));
   }
 
   @override
@@ -67,31 +61,18 @@ class _ModeSwitcherWidgetState extends State<ModeSwitcherWidget>
     });
   }
 
-  Widget _buildTitle() {
-    return Padding(
-      padding: PaddingResources.cardMediumTitlePadding,
-      child: Text(
-        sl<LocalizationManager>().get(
-          LocalizationKeys.testProperties.tabSwitcher.title,
-        ),
-        style: AppTextStyles.cardMediumTitle,
-      ),
-    );
-  }
-
   Widget _buildSlidingBackground(BoxConstraints constraints) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.0),
       child: AnimatedAlign(
-        alignment:
-            _isExploreMode ? Alignment.centerLeft : Alignment.centerRight,
+        alignment: _isExploreMode ? Alignment.centerLeft : Alignment.centerRight,
         duration: _animationDuration,
         curve: _animationCurve,
         child: Container(
           width: constraints.maxWidth / 2,
           height: constraints.maxHeight * 0.8,
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surfaceContainer,
+            color: Theme.of(context).colorScheme.primary,
             borderRadius: BorderRadiusResource.bordersRadiusTiny,
             boxShadow: [
               BoxShadow(
@@ -106,7 +87,7 @@ class _ModeSwitcherWidgetState extends State<ModeSwitcherWidget>
     );
   }
 
-  Widget _buildModeText(String text, bool isActive) {
+  Widget _buildModeText(String text, bool isActive, IconData iconData) {
     return AnimatedBuilder(
       animation: _scaleAnimation,
       builder: (context, child) {
@@ -117,9 +98,26 @@ class _ModeSwitcherWidgetState extends State<ModeSwitcherWidget>
             color:
                 isActive
                     ? Theme.of(context).colorScheme.primary
-                    : Theme.of(context).colorScheme.onSurface,
+                    : Theme.of(context).colorScheme.onPrimary,
           ),
-          child: Text(text),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 4.0),
+                child: Icon(
+                  iconData,
+                  size: 18,
+                  color:
+                      isActive
+                          ? Theme.of(context).colorScheme.primary
+                          : Theme.of(context).colorScheme.onPrimary,
+                ),
+              ),
+              SizedBox(width: 10),
+              Text(text, style: AppTextStyles.button),
+            ],
+          ),
         );
       },
     );
@@ -129,17 +127,19 @@ class _ModeSwitcherWidgetState extends State<ModeSwitcherWidget>
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        _buildModeText(
-          sl<LocalizationManager>().get(
-            LocalizationKeys.testProperties.tabSwitcher.exploreMode,
+        Expanded(
+          child: _buildModeText(
+            sl<LocalizationManager>().get(LocalizationKeys.testProperties.tabSwitcher.exploreMode),
+            _isExploreMode,
+            Icons.explore,
           ),
-          _isExploreMode,
         ),
-        _buildModeText(
-          sl<LocalizationManager>().get(
-            LocalizationKeys.testProperties.tabSwitcher.testMode,
+        Expanded(
+          child: _buildModeText(
+            sl<LocalizationManager>().get(LocalizationKeys.testProperties.tabSwitcher.testMode),
+            !_isExploreMode,
+            Icons.science,
           ),
-          !_isExploreMode,
         ),
       ],
     );
@@ -147,10 +147,10 @@ class _ModeSwitcherWidgetState extends State<ModeSwitcherWidget>
 
   Widget _buildSwitcherContainer() {
     return Container(
-      height: 40,
-      margin: PaddingResources.cardMediumTitlePadding,
+      height: 45,
+      margin: PaddingResources.cardLargeTitlePadding,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primaryContainer,
+        color: Theme.of(context).colorScheme.surfaceContainerHigh,
         borderRadius: BorderRadiusResource.buttonBorderRadius,
       ),
       child: Material(
@@ -176,14 +176,6 @@ class _ModeSwitcherWidgetState extends State<ModeSwitcherWidget>
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: PaddingResources.chipCardInnerPadding,
-        child: ListTile(
-          title: _buildTitle(),
-          subtitle: _buildSwitcherContainer(),
-        ),
-      ),
-    );
+    return SizedBox(child: _buildSwitcherContainer());
   }
 }

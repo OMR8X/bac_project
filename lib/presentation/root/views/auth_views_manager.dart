@@ -4,8 +4,6 @@ import 'package:bac_project/core/services/router/index.dart';
 
 import 'package:bac_project/presentation/root/blocs/auth/auth_bloc.dart';
 
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,6 +18,12 @@ class AuthViewsManager extends StatefulWidget {
 }
 
 class _AuthViewsManagerState extends State<AuthViewsManager> {
+  @override
+  void initState() {
+    super.initState();
+    sl<AuthBloc>().add(const AuthInitializeEvent());
+  }
+
   @override
   Widget build(BuildContext context) {
     return PopScope(

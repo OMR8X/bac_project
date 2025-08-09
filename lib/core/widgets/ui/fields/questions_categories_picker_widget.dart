@@ -23,38 +23,36 @@ class QuestionCategoriesPickerWidget<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Padding(
-        padding: PaddingResources.chipCardInnerPadding,
-        child: ListTile(
-          title: Padding(
-            padding: PaddingResources.cardMediumTitlePadding,
-            child: Text(
-              sl<LocalizationManager>().get(
-                LocalizationKeys.testProperties.questionsCount.questionsCategories,
-              ),
-              style: AppTextStyles.cardMediumTitle,
+      margin: PaddingResources.chipCardInnerPadding,
+      child: ListTile(
+        title: Padding(
+          padding: PaddingResources.cardMediumTitlePadding,
+          child: Text(
+            sl<LocalizationManager>().get(
+              LocalizationKeys.testProperties.questionsCount.questionsCategories,
             ),
+            style: AppTextStyles.cardMediumTitle,
           ),
-          subtitle: Wrap(
-            spacing: SpacesResources.s4,
-            children:
-                categories.map((value) {
-                  final isSelected = selected.contains(value);
-                  return ChoiceChip(
-                    label: Text(label(value)),
-                    selected: isSelected,
-                    onSelected: (bool isSelected) {
-                      final List<T> newSelected = List.from(selected);
-                      if (isSelected) {
-                        newSelected.add(value);
-                      } else {
-                        newSelected.remove(value);
-                      }
-                      onChanged?.call(newSelected);
-                    },
-                  );
-                }).toList(),
-          ),
+        ),
+        subtitle: Wrap(
+          spacing: SpacesResources.s4,
+          children:
+              categories.map((value) {
+                final isSelected = selected.contains(value);
+                return ChoiceChip(
+                  label: Text(label(value)),
+                  selected: isSelected,
+                  onSelected: (bool isSelected) {
+                    final List<T> newSelected = List.from(selected);
+                    if (isSelected) {
+                      newSelected.add(value);
+                    } else {
+                      newSelected.remove(value);
+                    }
+                    onChanged?.call(newSelected);
+                  },
+                );
+              }).toList(),
         ),
       ),
     );

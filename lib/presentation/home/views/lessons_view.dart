@@ -1,8 +1,13 @@
+import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/services/localization/localization_keys.dart';
 import 'package:bac_project/core/services/localization/localization_manager.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
+import 'package:bac_project/core/services/router/app_routes.dart';
 import 'package:bac_project/core/widgets/ui/search_bar_widget.dart';
+import 'package:bac_project/features/tests/domain/entities/lesson.dart';
 import 'package:bac_project/presentation/home/widgets/lessons_navigation_card_bilder_widget.dart';
+import 'package:bac_project/presentation/home/widgets/lessons_test_card_widget.dart';
+import 'package:bac_project/presentation/search/bloc/bloc/search_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,25 +17,35 @@ import '../../../core/resources/styles/padding_resources.dart';
 import '../../../core/widgets/ui/loading_widget.dart';
 import '../blocs/lessons_bloc.dart';
 
-class LessonsView extends StatelessWidget {
+class LessonsView extends StatefulWidget {
   final LessonsViewArguments? arguments;
 
   const LessonsView({super.key, this.arguments});
 
   @override
+  State<LessonsView> createState() => _LessonsViewState();
+}
+
+class _LessonsViewState extends State<LessonsView> {
+  @override
+  void initState() {
+    context.read<LessonsBloc>().add(LessonsEventInitialize(unitId: widget.arguments?.unitId));
+    super.initState();
+  }
+
+  void _navigateToSearch() {
+    context.pushNamed(
+      AppRoutes.search.name,
+      extra: SearchViewArguments(unitId: widget.arguments?.unitId, heroTag: 'lessons_search_bar'),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(LocalizationManager().get(LocalizationKeys.lessons.title)),
-        leading: IconButton(
-          onPressed: () {
-            context.pop();
-          },
-          icon: const Icon(Icons.close_outlined),
-        ),
-      ),
+      appBar: AppBar(title: Text(LocalizationManager().get(LocalizationKeys.lessons.title))),
       body: BlocProvider(
-        create: (_) => LessonsBloc()..add(LessonsEventInitialize(unitId: arguments?.unitId)),
+        create: (_) => context.read<LessonsBloc>(),
         child: BlocBuilder<LessonsBloc, LessonsState>(
           builder: (context, state) {
             if (state is LessonsLoading) {
@@ -38,20 +53,32 @@ class LessonsView extends StatelessWidget {
             } else if (state is LessonsLoaded) {
               return Padding(
                 padding: PaddingResources.screenSidesPadding,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: PaddingResources.searchBarPadding,
+                child: CustomScrollView(
+                  slivers: [
+                    // Show test card only when at the top using a SliverLayoutBuilder
+
+                    // inline search bar
+                    SliverFloatingHeader(
+                      snapMode: FloatingHeaderSnapMode.overlay,
+
                       child: SearchBarWidget(
-                        onChanged: (value) {
-                          // Handle search text changes
-                        },
-                        onFieldSubmitted: (value) {
-                          // Handle search submission
+                        enabled: false,
+                        heroTag: 'lessons_search_bar',
+                        onTap: _navigateToSearch,
+                      ),
+                    ),
+                    SliverToBoxAdapter(
+                      child: LessonsTestCardWidget(
+                        lessonCount: state.lessons.length,
+                        onTestAllLessonsPressed: () {
+                          _navigateToTestAllLessons(context, state.lessons);
                         },
                       ),
                     ),
-                    Expanded(child: LessonsCardsBuilderWidget(lessons: state.lessons)),
+                    SliverPadding(
+                      padding: PaddingResources.listViewPadding,
+                      sliver: LessonsCardsBuilderWidget(lessons: state.lessons),
+                    ),
                   ],
                 ),
               );
@@ -62,6 +89,16 @@ class LessonsView extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+
+  void _navigateToTestAllLessons(BuildContext context, List<Lesson> lessons) {
+    // Extract lesson IDs from the lessons list
+    final lessonIds = lessons.map((lesson) => lesson.id).toList();
+
+    context.pushReplacementNamed(
+      AppRoutes.pickLessons.name,
+      extra: PickLessonsArguments(unitId: widget.arguments?.unitId ?? 0),
     );
   }
 }

@@ -21,6 +21,7 @@ final class QuizzingAnswerQuestion extends QuizzingState {
   final bool canGoNext;
   final bool canGoPrevious;
   final String? selectedAnswerId;
+  final Map<int, String> selectedAnswers;
 
   const QuizzingAnswerQuestion({
     required this.currentQuestion,
@@ -30,6 +31,7 @@ final class QuizzingAnswerQuestion extends QuizzingState {
     required this.canGoNext,
     required this.canGoPrevious,
     this.selectedAnswerId,
+    this.selectedAnswers = const {},
   });
 
   QuizzingAnswerQuestion copyWith({
@@ -40,6 +42,7 @@ final class QuizzingAnswerQuestion extends QuizzingState {
     bool? canGoNext,
     bool? canGoPrevious,
     String? selectedAnswerId,
+    Map<int, String>? selectedAnswers,
   }) {
     return QuizzingAnswerQuestion(
       currentQuestion: currentQuestion ?? this.currentQuestion,
@@ -49,6 +52,7 @@ final class QuizzingAnswerQuestion extends QuizzingState {
       canGoNext: canGoNext ?? this.canGoNext,
       canGoPrevious: canGoPrevious ?? this.canGoPrevious,
       selectedAnswerId: selectedAnswerId ?? this.selectedAnswerId,
+      selectedAnswers: selectedAnswers ?? this.selectedAnswers,
     );
   }
 
@@ -61,6 +65,7 @@ final class QuizzingAnswerQuestion extends QuizzingState {
     canGoNext,
     canGoPrevious,
     selectedAnswerId,
+    selectedAnswers,
   ];
 }
 

@@ -18,25 +18,23 @@ class HomeCardsBuilderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (cards.isEmpty) {
-      return const Center(child: Text('لا توجد بيانات'));
+      return const SliverToBoxAdapter(child: Center(child: Text('لا توجد بيانات')));
     }
-    return ListView.builder(
-      padding: PaddingResources.listViewPadding,
-      itemCount: cards.length,
-      itemBuilder: (context, index) {
+    return SliverList(
+      delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
         final card = cards[index];
         final unit = units[index];
-
         return StaggeredItemWrapperWidget(
           position: index,
           child: UnitCardWidget(
             icon: Icons.book,
             title: card.title,
             subtitle: card.subtitle,
+            lessonsCount: unit.lessonsCount,
             onStartTestPressed:
                 () => context.push(
-                  AppRoutes.testModeSettings.path,
-                  extra: TestModeSettingsArguments(unitIds: [unit.id]),
+                  AppRoutes.pickLessons.path,
+                  extra: PickLessonsArguments(unitId: unit.id),
                 ),
             onExploreLessonsPressed:
                 () => context.push(
@@ -45,7 +43,7 @@ class HomeCardsBuilderWidget extends StatelessWidget {
                 ),
           ),
         );
-      },
+      }, childCount: cards.length),
     );
   }
 }

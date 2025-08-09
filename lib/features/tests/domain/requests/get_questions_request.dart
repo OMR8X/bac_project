@@ -1,10 +1,14 @@
 class GetQuestionsRequest {
-  final List<String> lessonsIds;
+  final List<int> lessonsIds;
 
   const GetQuestionsRequest({required this.lessonsIds});
 
-  GetQuestionsRequest copyWith({List<String>? lessonsIds}) {
+  GetQuestionsRequest copyWith({List<int>? lessonsIds}) {
     return GetQuestionsRequest(lessonsIds: lessonsIds ?? this.lessonsIds);
+  }
+
+  Map<String, dynamic> toJsonBody() {
+    return {'p_lessons_ids': lessonsIds};
   }
 
   @override

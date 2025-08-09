@@ -1,10 +1,9 @@
 import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/colors_resources.dart';
 import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/themes/extensions/extra_colors.dart';
 import 'package:bac_project/core/resources/themes/extensions/surface_container_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../styles/font_styles_manager.dart';
 import '../styles/sizes_resources.dart';
 import 'extensions/success_colors.dart';
@@ -29,6 +28,7 @@ class AppLightTheme {
         //
         surface: ColorsResourcesLight.surface,
         onSurface: ColorsResourcesLight.onSurface,
+        surfaceContainer: ColorsResourcesLight.surfaceContainer,
         surfaceContainerHigh: ColorsResourcesLight.surfaceContainerHigh,
         surfaceContainerHighest: ColorsResourcesLight.surfaceContainerHighest,
         onSurfaceVariant: ColorsResourcesLight.onSurfaceVariant,
@@ -48,6 +48,13 @@ class AppLightTheme {
           success: ColorsResourcesLight.success,
           onSuccess: ColorsResourcesLight.onSuccess,
         ),
+        ExtraColors(
+          blue: ColorsResourcesLight.blue,
+          green: ColorsResourcesLight.green,
+          yellow: ColorsResourcesLight.yellow,
+          orange: ColorsResourcesLight.orange,
+          pink: ColorsResourcesLight.pink,
+        ),
       ],
       listTileTheme: ListTileThemeData(
         titleTextStyle: AppTextStyles.cardMediumTitle.copyWith(
@@ -56,6 +63,22 @@ class AppLightTheme {
         subtitleTextStyle: AppTextStyles.cardMediumSubtitle.copyWith(
           color: ColorsResourcesLight.onSurfaceVariant,
         ),
+      ),
+
+      ///
+      checkboxTheme: CheckboxThemeData(
+        checkColor: WidgetStateProperty.resolveWith<Color>((states) {
+          if (states.contains(WidgetState.selected)) {
+            return ColorsResourcesLight.onPrimary;
+          }
+          return ColorsResourcesLight.primaryContainer;
+        }),
+        fillColor: WidgetStateProperty.resolveWith<Color>((states) {
+          if (states.contains(WidgetState.selected)) {
+            return ColorsResourcesLight.primary;
+          }
+          return ColorsResourcesLight.primaryContainer;
+        }),
       ),
 
       ///
@@ -103,8 +126,7 @@ class AppLightTheme {
 
       ///
       appBarTheme: AppBarTheme(
-        titleTextStyle: AppTextStyles.appBar.copyWith(color: ColorsResourcesLight.onSurfaceVariant),
-
+        titleTextStyle: AppTextStyles.appBar.copyWith(color: ColorsResourcesLight.onSurface),
         surfaceTintColor: Colors.transparent,
         foregroundColor: ColorsResourcesLight.onSurface,
         iconTheme: IconThemeData(
@@ -114,6 +136,8 @@ class AppLightTheme {
           size: 25,
         ),
       ),
+
+      ///
 
       ///
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
@@ -146,17 +170,14 @@ class AppLightTheme {
 
       ///
       cardTheme: CardThemeData(
-        elevation: 2,
-        shadowColor: ColorsResourcesLight.shadow.withAlpha(20),
+        elevation: 1,
+        shadowColor: ColorsResourcesLight.shadow.withAlpha(10),
         color: ColorsResourcesLight.surfaceContainer,
-        shape: RoundedRectangleBorder(
+
+        shape: RoundedSuperellipseBorder(
           borderRadius: BorderRadiusResource.cardBorderRadius,
-          side: BorderSide(color: ColorsResourcesLight.outlineVariant, width: 1),
+          side: BorderSide(color: ColorsResourcesLight.outline, width: 0.5),
         ),
-        // shape: RoundedSuperellipseBorder(
-        //   borderRadius: BorderRadiusResource.cardBorderRadius,
-        //   side: BorderSide(color: ColorsResourcesLight.outline),
-        // ),
       ),
 
       ///
@@ -179,7 +200,7 @@ class AppLightTheme {
           foregroundColor: ColorsResourcesLight.primary,
           shape: RoundedRectangleBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
           textStyle: AppTextStyles.button,
-          // side: BorderSide(color: ColorsResourcesLight.outline),
+          minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
         ),
       ),
 
@@ -187,10 +208,11 @@ class AppLightTheme {
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
           elevation: 0,
-          disabledBackgroundColor: ColorsResourcesLight.onSurfaceVariant,
           shadowColor: Colors.transparent,
           backgroundColor: ColorsResourcesLight.primary,
           foregroundColor: ColorsResourcesLight.primaryContainer,
+          disabledBackgroundColor: ColorsResourcesLight.primaryContainer.withAlpha(100),
+          minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
           shape: RoundedRectangleBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
           textStyle: AppTextStyles.button,
         ),
@@ -202,17 +224,25 @@ class AppLightTheme {
           elevation: 0,
           shadowColor: Colors.transparent,
           backgroundColor: ColorsResourcesLight.surfaceContainer,
-          foregroundColor: ColorsResourcesLight.primary,
+          foregroundColor: ColorsResourcesLight.onSurface,
+          minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
           shape: RoundedRectangleBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
           textStyle: AppTextStyles.button,
           side: BorderSide(color: ColorsResourcesLight.outline),
         ),
       ),
 
-      ///
-      iconButtonTheme: IconButtonThemeData(
-        style: IconButton.styleFrom(iconSize: 10, minimumSize: const Size(20, 20)),
-      ),
+      // ///
+      // iconButtonTheme: IconButtonThemeData(
+      //   style: IconButton.styleFrom(
+      //     iconSize: 10,
+      //     // alignment: Alignment.center,
+      //     // shape: RoundedRectangleBorder(
+      //     //   borderRadius: BorderRadiusResource.buttonBorderRadius,
+      //     //   side: BorderSide(color: ColorsResourcesLight.outline),
+      //     // ),
+      //   ),
+      // ),
 
       ///
       inputDecorationTheme: InputDecorationTheme(
@@ -220,21 +250,27 @@ class AppLightTheme {
         hintStyle: AppTextStyles.textField.copyWith(color: ColorsResourcesLight.onSurfaceVariant),
         border: OutlineInputBorder(
           borderRadius: BorderRadiusResource.fieldBorderRadius,
-          borderSide: const BorderSide(color: ColorsResourcesLight.outline),
+          borderSide: const BorderSide(color: ColorsResourcesLight.outlineVariant),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadiusResource.fieldBorderRadius,
-          borderSide: const BorderSide(color: ColorsResourcesLight.outline),
+          borderSide: const BorderSide(color: ColorsResourcesLight.outlineVariant),
         ),
-        // shape: RoundedSuperellipseBorder(
-        //   borderRadius: BorderRadiusResource.cardBorderRadius,
-        //   side: BorderSide(color: ColorsResourcesLight.outline),
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadiusResource.fieldBorderRadius,
+          borderSide: const BorderSide(color: ColorsResourcesLight.outlineVariant),
+        ),
+        // errorBorder: OutlineInputBorder(
+        //   borderRadius: BorderRadiusResource.fieldBorderRadius,
+        //   borderSide: const BorderSide(color: ColorsResourcesLight.outlineVariant),
         // ),
         filled: true,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadiusResource.fieldBorderRadius,
-          borderSide: const BorderSide(color: ColorsResourcesLight.outline),
+          borderSide: const BorderSide(color: ColorsResourcesLight.outlineVariant),
         ),
+        outlineBorder: BorderSide(color: ColorsResourcesLight.outlineVariant),
+
         contentPadding: PaddingResources.fieldContentPadding,
       ),
     );

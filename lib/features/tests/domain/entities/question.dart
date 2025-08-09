@@ -1,18 +1,19 @@
 import 'package:bac_project/features/tests/domain/entities/option.dart';
 
 class Question {
-  final String id;
+  //
+  final int id;
   final String text;
+  //
+  final int? unitId;
+  final int? lessonId;
+  //
   final List<Option> options;
-  final String category;
-  final String? unitId;
-  final String? lessonId;
 
   const Question({
     required this.id,
     required this.text,
     required this.options,
-    required this.category,
     this.unitId,
     this.lessonId,
   });
@@ -21,19 +22,11 @@ class Question {
     return options.where((option) => option.isCorrect).any((option) => option.id == answerId);
   }
 
-  Question copyWith({
-    String? id,
-    String? text,
-    List<Option>? options,
-    String? category,
-    String? unitId,
-    String? lessonId,
-  }) {
+  Question copyWith({int? id, String? text, List<Option>? options, int? unitId, int? lessonId}) {
     return Question(
       id: id ?? this.id,
       text: text ?? this.text,
       options: options ?? this.options,
-      category: category ?? this.category,
       unitId: unitId ?? this.unitId,
       lessonId: lessonId ?? this.lessonId,
     );
@@ -46,21 +39,15 @@ class Question {
         other.id == id &&
         other.text == text &&
         other.options == options &&
-        other.category == category &&
         other.unitId == unitId &&
         other.lessonId == lessonId;
   }
 
   @override
   int get hashCode =>
-      id.hashCode ^
-      text.hashCode ^
-      options.hashCode ^
-      category.hashCode ^
-      unitId.hashCode ^
-      lessonId.hashCode;
+      id.hashCode ^ text.hashCode ^ options.hashCode ^ unitId.hashCode ^ lessonId.hashCode;
 
   @override
   String toString() =>
-      'Question(id: $id, text: $text, options: $options, category: $category, unitId: $unitId, lessonId: $lessonId)';
+      'Question(id: $id, text: $text, options: $options, unitId: $unitId, lessonId: $lessonId)';
 }

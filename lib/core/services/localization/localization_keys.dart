@@ -10,6 +10,12 @@ class LocalizationKeys {
   static final search = _SearchKeys();
   static final testProperties = _TestPropertiesKeys();
   static final buttons = _ButtonsKeys();
+  static final pickLessons = _PickLessonsKeys();
+}
+
+class _PickLessonsKeys {
+  final title = 'pick-lessons.title';
+  final startTest = 'pick-lessons.start-test';
 }
 
 class _AuthKeys {
@@ -36,6 +42,7 @@ class _TestPropertiesKeys {
   final enableSoundEffects = _SoundEffectsKeys();
   final questionsCount = _QuestionsCount();
   final tabSwitcher = _TabSwitcherKeys();
+  final modes = _ModesKeys();
 }
 
 class _AnswerVisibilityKeys {
@@ -57,6 +64,30 @@ class _TabSwitcherKeys {
   final title = "test-properties.mode-switcher.title";
   final exploreMode = "test-properties.mode-switcher.explore-mode";
   final testMode = "test-properties.mode-switcher.test-mode";
+}
+
+class _ModesKeys {
+  final exploreMode = _ExploreModeKeys();
+  final testMode = _TestModeKeys();
+  final customMode = _CustomModeKeys();
+}
+
+class _ExploreModeKeys {
+  final title = "test-properties.modes.explore-mode.title";
+  final subtitle = "test-properties.modes.explore-mode.subtitle";
+  final description = "test-properties.modes.explore-mode.description";
+}
+
+class _TestModeKeys {
+  final title = "test-properties.modes.test-mode.title";
+  final subtitle = "test-properties.modes.test-mode.subtitle";
+  final description = "test-properties.modes.test-mode.description";
+}
+
+class _CustomModeKeys {
+  final title = "test-properties.modes.custom-mode.title";
+  final subtitle = "test-properties.modes.custom-mode.subtitle";
+  final description = "test-properties.modes.custom-mode.description";
 }
 
 class _CardHomeKeys {
@@ -85,9 +116,19 @@ class _BottonNavigationBar {
 
 class _SearchKeys {
   final hint = 'search.hint';
+  final title = 'search.title';
+  final noResults = 'search.no-results';
 }
 
 class _ButtonsKeys {
   final save = "general.buttons.save";
+  final next = "general.buttons.next";
+  final confirm = "general.buttons.confirm";
+  final customize = "general.buttons.customize";
   final retry = "general.buttons.retry";
+  final pick = "general.buttons.pick";
+  final previous = "general.buttons.previous";
+  final finish = "general.buttons.finish";
+  final result = "general.buttons.result";
+  final close = "general.buttons.close";
 }

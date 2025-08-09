@@ -43,6 +43,10 @@ class CloseQuiz extends QuizzingEvent {
   const CloseQuiz();
 }
 
+class RetakeQuiz extends QuizzingEvent {
+  const RetakeQuiz();
+}
+
 class UpdateState extends QuizzingEvent {
   const UpdateState();
 

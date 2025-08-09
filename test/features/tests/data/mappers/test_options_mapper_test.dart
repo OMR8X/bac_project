@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:bac_project/features/tests/data/models/test_options_model.dart';
-import 'package:bac_project/features/tests/domain/entities/test_options.dart';
+import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
 import 'package:bac_project/features/tests/data/mappers/test_options_mapper.dart';
 
 void main() {

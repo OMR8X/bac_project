@@ -5,6 +5,9 @@ class SizesResources {
 
   ///
   static const double sizeUnit = 2;
+  static const double buttonSmallHeight = 38;
+  static const double buttonMediumHeight = 44;
+  static const double buttonLargeHeight = 55;
 
   //
   static double mainWidth(BuildContext context) {
@@ -22,5 +25,6 @@ class SizesResources {
   static double mainThreeQuarterWidth(BuildContext context) {
     return ((MediaQuery.sizeOf(context).width - (sidePadding)) / 4) * 3;
   }
+
   //
 }

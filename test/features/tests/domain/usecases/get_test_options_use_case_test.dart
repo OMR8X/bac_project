@@ -3,7 +3,7 @@ import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
 import 'package:dartz/dartz.dart';
 import 'package:bac_project/core/resources/errors/failures.dart';
-import 'package:bac_project/features/tests/domain/entities/test_options.dart';
+import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
 import 'package:bac_project/features/tests/domain/repositories/tests_repository.dart';
 import 'package:bac_project/features/tests/domain/requests/get_test_options_request.dart';
 import 'package:bac_project/features/tests/data/responses/get_test_options_response.dart';

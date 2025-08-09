@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:bac_project/features/tests/domain/entities/unit.dart' as entities;
 import 'package:bac_project/features/tests/domain/entities/lesson.dart' as entities;
-import 'package:bac_project/features/tests/domain/entities/test_options.dart' as entities;
+import 'package:bac_project/features/tests/domain/entities/test_mode.dart' as entities;
 import 'package:bac_project/features/tests/domain/requests/get_units_request.dart';
 import 'package:bac_project/features/tests/domain/requests/get_lessons_request.dart';
 import 'package:bac_project/features/tests/domain/requests/get_test_options_request.dart';

@@ -15,6 +15,7 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
     on<PreviousQuestion>(_onPreviousQuestion);
     on<CloseQuiz>(_onCloseQuiz);
     on<SubmitQuiz>(_onSubmitQuiz);
+    on<RetakeQuiz>(_onRetakeQuiz);
     on<UpdateState>(_onUpdateState);
   }
 
@@ -23,17 +24,20 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
   late DateTime _startTime;
   late List<Question> _questions;
   late Duration _timeLeft;
-  late Map<String, String> _selectedAnswers;
+  late Duration _initialTimeLimit;
+  late Map<int, String> _selectedAnswers;
 
   void _onInitializeQuiz(InitializeQuiz event, Emitter<QuizzingState> emit) {
     ///
     emit(const QuizzingLoading());
 
     ///
-    _questions = event.questions;
+    // Limit questions to a maximum of 15
+    _questions = event.questions.take(15).toList();
     _selectedAnswers = {};
     _startTime = DateTime.now();
-    _timeLeft = Duration(minutes: event.timeLimit);
+    _initialTimeLimit = Duration(minutes: event.timeLimit);
+    _timeLeft = _initialTimeLimit;
 
     /// Start timer
     _startTimer();
@@ -48,6 +52,7 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
         canGoNext: _questions.length > 1,
         canGoPrevious: false,
         selectedAnswerId: null,
+        selectedAnswers: Map<int, String>.from(_selectedAnswers),
       ),
     );
   }
@@ -63,8 +68,13 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
       /// Store the selected answer
       _selectedAnswers[currentState.currentQuestion.id] = event.answerId;
 
-      /// Update the state
-      emit(currentState.copyWith(selectedAnswerId: event.answerId));
+      /// Update the state: include full selectedAnswers map so UI can read per-question answers
+      emit(
+        currentState.copyWith(
+          selectedAnswerId: event.answerId,
+          selectedAnswers: Map<int, String>.from(_selectedAnswers),
+        ),
+      );
     }
   }
 
@@ -87,6 +97,7 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
             canGoNext: nextIndex < _questions.length - 1,
             canGoPrevious: true,
             selectedAnswerId: selectedAnswerId,
+            selectedAnswers: Map<int, String>.from(_selectedAnswers),
           ),
         );
       }
@@ -117,6 +128,7 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
             canGoNext: true,
             canGoPrevious: previousIndex > 0,
             selectedAnswerId: selectedAnswerId,
+            selectedAnswers: Map<int, String>.from(_selectedAnswers),
           ),
         );
       }
@@ -170,6 +182,30 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
         unansweredQuestions: unansweredQuestions,
         score: score,
         timeTaken: timeTaken,
+      ),
+    );
+  }
+
+  void _onRetakeQuiz(RetakeQuiz event, Emitter<QuizzingState> emit) {
+    // Reset selections and restart the quiz from the first question
+    _selectedAnswers = {};
+    _startTime = DateTime.now();
+    // Reset time left to the originally provided time limit
+    _timeLeft = _initialTimeLimit;
+
+    // Restart timer
+    _startTimer();
+
+    emit(
+      QuizzingAnswerQuestion(
+        currentQuestion: _questions[0],
+        currentQuestionIndex: 0,
+        totalQuestions: _questions.length,
+        timeLeft: _timeLeft,
+        canGoNext: _questions.length > 1,
+        canGoPrevious: false,
+        selectedAnswerId: null,
+        selectedAnswers: Map<int, String>.from(_selectedAnswers),
       ),
     );
   }
