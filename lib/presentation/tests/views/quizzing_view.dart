@@ -13,6 +13,7 @@ import 'package:bac_project/presentation/tests/widget/question_card_widget.dart'
 import 'package:bac_project/presentation/tests/widget/option_card_widget.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
 import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
+import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 
 class QuizzingView extends StatelessWidget {
   const QuizzingView({super.key, this.arguments});
@@ -154,32 +155,264 @@ class _QuizzingResultView extends StatelessWidget {
 
   final QuizzingResult state;
 
+  String _formatDuration(Duration duration) {
+    final minutes = duration.inMinutes.remainder(60).toString().padLeft(2, '0');
+    final seconds = duration.inSeconds.remainder(60).toString().padLeft(2, '0');
+    return '$minutes:$seconds';
+  }
+
+  Color _scoreColor(double percentage) {
+    if (percentage >= 85) return Colors.green;
+    if (percentage >= 70) return Colors.orange;
+    return Colors.red;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          Spacer(),
-          Text('Result', style: Theme.of(context).textTheme.headlineSmall),
-          const SizedBox(height: SpacesResources.s3),
-          Text('${state.correctAnswers}/${state.totalQuestions}'),
-          const SizedBox(height: SpacesResources.s3),
-          Text('${state.score.toStringAsFixed(1)}%'),
-          Spacer(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                child: BottomButtonWidget(
-                  onPressed: () => Navigator.of(context).pop(),
-                  text: sl<LocalizationManager>().get(LocalizationKeys.buttons.close),
+    final theme = Theme.of(context);
+    final scorePercent = (state.score.clamp(0, 100)) / 100.0;
+    final scoreColor = _scoreColor(state.score);
+
+    return SafeArea(
+      child: Padding(
+        padding: PaddingResources.screenSidesPadding,
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const SizedBox(height: SpacesResources.s8),
+                    Center(
+                      child: Text(
+                        sl<LocalizationManager>().get(LocalizationKeys.result.title),
+                        style: AppTextStyles.headline1.copyWith(
+                          color: theme.colorScheme.onSurface,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: SpacesResources.s8),
+
+                    /// Score gauge
+                    _ScoreGauge(
+                      percentage: scorePercent,
+                      displayText: '${state.score.toStringAsFixed(0)}%',
+                      color: scoreColor,
+                    ),
+                    const SizedBox(height: SpacesResources.s8),
+
+                    /// Breakdown row
+                    Row(
+                      children: [
+                        Expanded(
+                          child: _StatChip(
+                            icon: Icons.check_circle_rounded,
+                            label: 'Correct',
+                            value: '${state.correctAnswers}',
+                            color: Colors.green,
+                            theme: theme,
+                          ),
+                        ),
+                        const SizedBox(width: SpacesResources.s3),
+                        Expanded(
+                          child: _StatChip(
+                            icon: Icons.cancel_rounded,
+                            label: 'Wrong',
+                            value: '${state.wrongAnswers}',
+                            color: Colors.red,
+                            theme: theme,
+                          ),
+                        ),
+                        const SizedBox(width: SpacesResources.s3),
+                        Expanded(
+                          child: _StatChip(
+                            icon: Icons.help_outline_rounded,
+                            label: 'Unanswered',
+                            value: '${state.unansweredQuestions}',
+                            color: Colors.orange,
+                            theme: theme,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: SpacesResources.s6),
+
+                    /// Time taken
+                    Container(
+                      padding: PaddingResources.cardMediumInnerPadding,
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.surface,
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: theme.colorScheme.outlineVariant, width: 1),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(Icons.timer_outlined, color: theme.colorScheme.onSurfaceVariant),
+                          const SizedBox(width: SpacesResources.s4),
+                          Text(
+                            _formatDuration(state.timeTaken),
+                            style: AppTextStyles.cardLargeTitle.copyWith(
+                              color: theme.colorScheme.onSurface,
+                            ),
+                          ),
+                          const SizedBox(width: SpacesResources.s3),
+                          Text(
+                            'Time',
+                            style: AppTextStyles.cardSmallSubtitle.copyWith(
+                              color: theme.colorScheme.onSurfaceVariant,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    const SizedBox(height: SpacesResources.s8),
+                  ],
                 ),
               ),
-              const SizedBox(width: SpacesResources.s3),
-              Expanded(
-                child: OutlinedButton(
-                  onPressed: () => context.read<QuizzingBloc>().add(const RetakeQuiz()),
-                  child: Text(sl<LocalizationManager>().get(LocalizationKeys.buttons.retry)),
+            ),
+
+            /// Bottom actions
+            Padding(
+              padding: const EdgeInsets.only(bottom: SpacesResources.s4, top: SpacesResources.s2),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        minimumSize: Size.fromHeight(SizesResources.buttonLargeHeight),
+                      ),
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text(
+                        sl<LocalizationManager>().get(LocalizationKeys.buttons.close),
+                        style: AppTextStyles.button.copyWith(
+                          color: theme.colorScheme.onSurface,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: SpacesResources.s3),
+                  Expanded(
+                    child: FilledButton(
+                      style: FilledButton.styleFrom(
+                        minimumSize: Size.fromHeight(SizesResources.buttonLargeHeight),
+                      ),
+                      onPressed: () => context.read<QuizzingBloc>().add(const RetakeQuiz()),
+                      child: Text(
+                        sl<LocalizationManager>().get(LocalizationKeys.buttons.retry),
+                        style: AppTextStyles.button,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ScoreGauge extends StatelessWidget {
+  const _ScoreGauge({
+    required this.percentage,
+    required this.displayText,
+    required this.color,
+  });
+
+  final double percentage; // 0..1
+  final String displayText;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Center(
+      child: SizedBox(
+        width: 180,
+        height: 180,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            SizedBox(
+              width: 160,
+              height: 160,
+              child: CircularProgressIndicator(
+                value: percentage,
+                strokeWidth: 10,
+                backgroundColor: theme.colorScheme.outlineVariant.withOpacity(0.3),
+                valueColor: AlwaysStoppedAnimation<Color>(color),
+              ),
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  displayText,
+                  style: AppTextStyles.largeTitle.copyWith(
+                    color: theme.colorScheme.onSurface,
+                  ),
+                ),
+                const SizedBox(height: SpacesResources.s2),
+                Text(
+                  'Score',
+                  style: AppTextStyles.cardSmallSubtitle.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _StatChip extends StatelessWidget {
+  const _StatChip({
+    required this.icon,
+    required this.label,
+    required this.value,
+    required this.color,
+    required this.theme,
+  });
+
+  final IconData icon;
+  final String label;
+  final String value;
+  final Color color;
+  final ThemeData theme;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: SpacesResources.s8, vertical: SpacesResources.s8),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.08),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: color.withOpacity(0.4), width: 1),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, size: 18, color: color),
+          const SizedBox(width: SpacesResources.s3),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                value,
+                style: AppTextStyles.cardLargeTitle.copyWith(
+                  color: theme.colorScheme.onSurface,
+                ),
+              ),
+              Text(
+                label,
+                style: AppTextStyles.cardSmallSubtitle.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
                 ),
               ),
             ],
