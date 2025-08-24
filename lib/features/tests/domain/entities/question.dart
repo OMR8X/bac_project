@@ -6,7 +6,7 @@ class Question {
   final String text;
   //
   final int? unitId;
-  final int? lessonId;
+  final int lessonId;
   //
   final List<Option> options;
 
@@ -15,10 +15,10 @@ class Question {
     required this.text,
     required this.options,
     this.unitId,
-    this.lessonId,
+    required this.lessonId,
   });
 
-  bool trueAnswers(String answerId) {
+  bool trueAnswers(int answerId) {
     return options.where((option) => option.isCorrect).any((option) => option.id == answerId);
   }
 
@@ -50,4 +50,8 @@ class Question {
   @override
   String toString() =>
       'Question(id: $id, text: $text, options: $options, unitId: $unitId, lessonId: $lessonId)';
+
+  static Question empty() {
+    return Question(id: 0, text: '', options: [], lessonId: 0);
+  }
 }

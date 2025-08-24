@@ -54,6 +54,7 @@ class AppLightTheme {
           yellow: ColorsResourcesLight.yellow,
           orange: ColorsResourcesLight.orange,
           pink: ColorsResourcesLight.pink,
+          red: ColorsResourcesLight.error,
         ),
       ],
       listTileTheme: ListTileThemeData(
@@ -152,23 +153,6 @@ class AppLightTheme {
       ),
 
       ///
-      dropdownMenuTheme: DropdownMenuThemeData(
-        inputDecorationTheme: InputDecorationTheme(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadiusResource.fieldBorderRadius,
-            borderSide: const BorderSide(color: Colors.transparent),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadiusResource.fieldBorderRadius,
-            borderSide: const BorderSide(color: Colors.transparent),
-          ),
-          // TODO: add padding
-          contentPadding: EdgeInsets.zero,
-          // contentPadding: PaddingResources.padding_3_1,
-        ),
-      ),
-
-      ///
       cardTheme: CardThemeData(
         elevation: 1,
         shadowColor: ColorsResourcesLight.shadow.withAlpha(10),
@@ -176,7 +160,7 @@ class AppLightTheme {
 
         shape: RoundedSuperellipseBorder(
           borderRadius: BorderRadiusResource.cardBorderRadius,
-          side: BorderSide(color: ColorsResourcesLight.outline, width: 0.5),
+          side: BorderSide(color: ColorsResourcesLight.outline),
         ),
       ),
 
@@ -198,7 +182,7 @@ class AppLightTheme {
           shadowColor: Colors.transparent,
           backgroundColor: ColorsResourcesLight.primaryContainer,
           foregroundColor: ColorsResourcesLight.primary,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
+          shape: RoundedSuperellipseBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
           textStyle: AppTextStyles.button,
           minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
         ),
@@ -213,7 +197,7 @@ class AppLightTheme {
           foregroundColor: ColorsResourcesLight.primaryContainer,
           disabledBackgroundColor: ColorsResourcesLight.primaryContainer.withAlpha(100),
           minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
+          shape: RoundedSuperellipseBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
           textStyle: AppTextStyles.button,
         ),
       ),
@@ -226,51 +210,80 @@ class AppLightTheme {
           backgroundColor: ColorsResourcesLight.surfaceContainer,
           foregroundColor: ColorsResourcesLight.onSurface,
           minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
+          shape: RoundedSuperellipseBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
           textStyle: AppTextStyles.button,
           side: BorderSide(color: ColorsResourcesLight.outline),
         ),
       ),
 
-      // ///
+      ///
       // iconButtonTheme: IconButtonThemeData(
       //   style: IconButton.styleFrom(
       //     iconSize: 10,
-      //     // alignment: Alignment.center,
-      //     // shape: RoundedRectangleBorder(
-      //     //   borderRadius: BorderRadiusResource.buttonBorderRadius,
-      //     //   side: BorderSide(color: ColorsResourcesLight.outline),
-      //     // ),
+      //     alignment: Alignment.center,
+      //     shape: RoundedRectangleBorder(
+      //       borderRadius: BorderRadiusResource.buttonBorderRadius,
+      //       side: BorderSide(color: ColorsResourcesLight.outline),
+      //     ),
       //   ),
       // ),
+      dropdownMenuTheme: DropdownMenuThemeData(
+        menuStyle: MenuStyle(
+          minimumSize: WidgetStatePropertyAll(const Size(double.infinity, 200)),
+          fixedSize: WidgetStatePropertyAll(const Size(double.infinity, 200)),
+          maximumSize: WidgetStatePropertyAll(const Size(double.infinity, 200)),
+          side: WidgetStatePropertyAll(BorderSide(color: ColorsResourcesLight.outline)),
+          elevation: WidgetStatePropertyAll(0),
+          shape: WidgetStatePropertyAll(
+            RoundedSuperellipseBorder(borderRadius: BorderRadiusResource.fieldBorderRadius),
+          ),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          fillColor: ColorsResourcesLight.surfaceContainer,
+
+          border: OutlineInputBorder(
+            borderRadius: BorderRadiusResource.fieldBorderRadius,
+            borderSide: const BorderSide(color: ColorsResourcesLight.outline),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadiusResource.fieldBorderRadius,
+            borderSide: const BorderSide(color: ColorsResourcesLight.outline),
+          ),
+          contentPadding: PaddingResources.fieldContentPadding,
+        ),
+      ),
 
       ///
       inputDecorationTheme: InputDecorationTheme(
         fillColor: ColorsResourcesLight.surfaceContainer,
-        hintStyle: AppTextStyles.textField.copyWith(color: ColorsResourcesLight.onSurfaceVariant),
+
+        labelStyle: AppTextStyles.textField.copyWith(color: ColorsResourcesLight.onSurfaceVariant),
+        helperStyle: AppTextStyles.textFieldHelper.copyWith(
+          color: ColorsResourcesLight.onSurfaceVariant,
+        ),
+
         border: OutlineInputBorder(
           borderRadius: BorderRadiusResource.fieldBorderRadius,
-          borderSide: const BorderSide(color: ColorsResourcesLight.outlineVariant),
+          borderSide: const BorderSide(color: ColorsResourcesLight.outline),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadiusResource.fieldBorderRadius,
-          borderSide: const BorderSide(color: ColorsResourcesLight.outlineVariant),
+          borderSide: const BorderSide(color: ColorsResourcesLight.outline),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadiusResource.fieldBorderRadius,
-          borderSide: const BorderSide(color: ColorsResourcesLight.outlineVariant),
+          borderSide: const BorderSide(color: ColorsResourcesLight.outline),
         ),
         // errorBorder: OutlineInputBorder(
         //   borderRadius: BorderRadiusResource.fieldBorderRadius,
-        //   borderSide: const BorderSide(color: ColorsResourcesLight.outlineVariant),
+        //   borderSide: const BorderSide(color: ColorsResourcesLight.outline),
         // ),
         filled: true,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadiusResource.fieldBorderRadius,
-          borderSide: const BorderSide(color: ColorsResourcesLight.outlineVariant),
+          borderSide: const BorderSide(color: ColorsResourcesLight.outline),
         ),
-        outlineBorder: BorderSide(color: ColorsResourcesLight.outlineVariant),
-
+        outlineBorder: BorderSide(color: ColorsResourcesLight.outline),
         contentPadding: PaddingResources.fieldContentPadding,
       ),
     );

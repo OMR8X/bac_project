@@ -10,7 +10,7 @@ class QuestionModel extends Question {
     required super.text,
     required super.options,
     super.unitId,
-    super.lessonId,
+    required super.lessonId,
   });
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) {
@@ -21,8 +21,8 @@ class QuestionModel extends Question {
           (json['options'] as List<dynamic>).map((option) {
             return OptionModel.fromJson(option as Map<String, dynamic>).toEntity();
           }).toList(),
-      unitId: json['unitId'] as int?,
-      lessonId: json['lessonId'] as int?,
+      unitId: json['unit_id'] as int?,
+      lessonId: json['lesson_id'] as int,
     );
   }
 
@@ -48,7 +48,7 @@ class QuestionModel extends Question {
 
   @override
   QuestionModel copyWith({
-      int? id,
+    int? id,
     String? text,
     List<Option>? options,
     int? unitId,
@@ -76,11 +76,7 @@ class QuestionModel extends Question {
 
   @override
   int get hashCode =>
-      id.hashCode ^
-      text.hashCode ^
-      options.hashCode ^
-      unitId.hashCode ^
-      lessonId.hashCode;
+      id.hashCode ^ text.hashCode ^ options.hashCode ^ unitId.hashCode ^ lessonId.hashCode;
 
   @override
   String toString() =>

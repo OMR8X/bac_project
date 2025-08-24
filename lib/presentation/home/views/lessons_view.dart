@@ -1,6 +1,6 @@
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
-import 'package:bac_project/core/services/localization/localization_keys.dart';
-import 'package:bac_project/core/services/localization/localization_manager.dart';
+
+import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
 import 'package:bac_project/core/services/router/app_routes.dart';
 import 'package:bac_project/core/widgets/ui/search_bar_widget.dart';
@@ -43,7 +43,7 @@ class _LessonsViewState extends State<LessonsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(LocalizationManager().get(LocalizationKeys.lessons.title))),
+      appBar: AppBar(title: Text(context.l10n.lessonsTitle)),
       body: BlocProvider(
         create: (_) => context.read<LessonsBloc>(),
         child: BlocBuilder<LessonsBloc, LessonsState>(

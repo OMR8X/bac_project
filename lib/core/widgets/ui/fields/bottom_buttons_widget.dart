@@ -32,7 +32,12 @@ class BottomButtonWidget extends StatelessWidget {
               style: FilledButton.styleFrom(
                 minimumSize: Size.fromHeight(SizesResources.buttonLargeHeight),
               ),
-              onPressed: isEnabled ? onPressed : null,
+              onPressed:
+                  isLoading
+                      ? null
+                      : isEnabled
+                      ? onPressed
+                      : null,
               child: isLoading ? CupertinoActivityIndicator() : Text(text),
             ),
           ),

@@ -197,6 +197,11 @@ class AppTextStyles {
     fontWeight: FontWeightResources.regular,
     fontSize: FontSizeResources.s14,
   );
+  static const TextStyle textFieldHelper = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontWeight: FontWeightResources.regular,
+    fontSize: FontSizeResources.s10,
+  );
 
   // AppBar
   static const TextStyle appBar = TextStyle(

@@ -1,7 +1,8 @@
+import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/resources/styles/shadows_resources.dart';
-import 'package:bac_project/core/services/localization/localization_manager.dart';
+
 import 'package:flutter/material.dart';
 import '../../../core/resources/styles/border_radius_resources.dart';
 import '../../../core/resources/styles/padding_resources.dart';
@@ -12,18 +13,18 @@ class ModeCardWidget extends StatelessWidget {
     super.key,
     required this.onTap,
     this.isSelected = false,
-    required this.titleKey,
-    required this.subtitleKey,
-    required this.descriptionKey,
+    required this.title,
+    required this.subtitle,
+    required this.description,
     required this.imagePath,
     this.imageColor,
   });
 
   final VoidCallback onTap;
   final bool isSelected;
-  final String titleKey;
-  final String subtitleKey;
-  final String descriptionKey;
+  final String title;
+  final String subtitle;
+  final String description;
   final String imagePath;
   final Color? imageColor;
 
@@ -109,7 +110,7 @@ class ModeCardWidget extends StatelessWidget {
 
   Widget _buildTitle(BuildContext context) {
     return Text(
-      sl<LocalizationManager>().get(titleKey),
+      title,
       style: TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.w600,
@@ -124,7 +125,7 @@ class ModeCardWidget extends StatelessWidget {
 
   Widget _buildSubtitle(BuildContext context) {
     return Text(
-      sl<LocalizationManager>().get(subtitleKey),
+      subtitle,
       style: AppTextStyles.cardSmallSubtitle.copyWith(
         color: Theme.of(context).colorScheme.onSurfaceVariant,
         fontWeight: FontWeight.w500,
@@ -187,7 +188,7 @@ class ModeCardWidget extends StatelessWidget {
 
   Widget _buildDescriptionText(BuildContext context) {
     return Text(
-      sl<LocalizationManager>().get(descriptionKey),
+      description,
       style: AppTextStyles.cardSmallSubtitle.copyWith(
         color: Theme.of(context).colorScheme.onSurfaceVariant,
         height: 1.4,

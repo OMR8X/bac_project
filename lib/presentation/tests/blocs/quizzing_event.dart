@@ -8,17 +8,18 @@ sealed class QuizzingEvent extends Equatable {
 }
 
 class InitializeQuiz extends QuizzingEvent {
+  final int? lessonId;
   final List<Question> questions;
   final int timeLimit; // in minutes
 
-  const InitializeQuiz({required this.questions, required this.timeLimit});
+  const InitializeQuiz({required this.questions, required this.timeLimit, required this.lessonId});
 
   @override
   List<Object> get props => [questions, timeLimit];
 }
 
 class OptionQuestion extends QuizzingEvent {
-  final String answerId;
+  final int answerId;
   final int questionIndex;
 
   const OptionQuestion({required this.answerId, required this.questionIndex});

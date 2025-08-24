@@ -1,3 +1,4 @@
+import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/resources/styles/assets_resources.dart';
 // sizes_resources not used in this file
 import 'package:bac_project/core/resources/themes/extensions/color_extensions.dart';
@@ -15,8 +16,7 @@ import '../../../core/widgets/ui/loading_widget.dart';
 import '../../../core/resources/styles/padding_resources.dart';
 import '../../../core/resources/styles/spaces_resources.dart';
 import '../../../core/injector/app_injection.dart';
-import '../../../core/services/localization/localization_keys.dart';
-import '../../../core/services/localization/localization_manager.dart';
+
 import '../../../features/tests/domain/entities/test_mode.dart';
 import '../blocs/test_mode_settings_bloc.dart';
 import '../widget/mode_card_widget.dart';
@@ -41,7 +41,7 @@ class TestModeSettingsView extends StatelessWidget {
               ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text(sl<LocalizationManager>().get(LocalizationKeys.testProperties.title)),
+          title: Text(context.l10n.testPropertiesTitle),
           centerTitle: true,
           leading: IconButton(
             onPressed: () {
@@ -115,7 +115,7 @@ class _ErrorView extends StatelessWidget {
                 TestModeSettingsLoadEvent(testOptions: state.testOptions),
               );
             },
-            child: Text(sl<LocalizationManager>().get(LocalizationKeys.buttons.retry)),
+            child: Text(context.l10n.buttonsRetry),
           ),
         ],
       ),
@@ -147,9 +147,9 @@ class _LoadedView extends StatelessWidget {
                         () => context.read<TestModeSettingsBloc>().add(
                           TestModeSettingsUpdateModeEvent(selectedMode: TestMode.testing),
                         ),
-                    titleKey: LocalizationKeys.testProperties.modes.testMode.title,
-                    subtitleKey: LocalizationKeys.testProperties.modes.testMode.subtitle,
-                    descriptionKey: LocalizationKeys.testProperties.modes.testMode.description,
+                    title: context.l10n.testPropertiesModesTestModeTitle,
+                    subtitle: context.l10n.testPropertiesModesTestModeSubtitle,
+                    description: context.l10n.testPropertiesModesTestModeDescription,
                     imagePath: ImagesResources.chooseIcon,
                     imageColor: Theme.of(
                       context,
@@ -165,9 +165,9 @@ class _LoadedView extends StatelessWidget {
                         () => context.read<TestModeSettingsBloc>().add(
                           TestModeSettingsUpdateModeEvent(selectedMode: TestMode.exploring),
                         ),
-                    titleKey: LocalizationKeys.testProperties.modes.exploreMode.title,
-                    subtitleKey: LocalizationKeys.testProperties.modes.exploreMode.subtitle,
-                    descriptionKey: LocalizationKeys.testProperties.modes.exploreMode.description,
+                    title: context.l10n.testPropertiesModesExploreModeTitle,
+                    subtitle: context.l10n.testPropertiesModesExploreModeSubtitle,
+                    description: context.l10n.testPropertiesModesExploreModeDescription,
                     imagePath: ImagesResources.compassIcon,
                     imageColor: Theme.of(
                       context,
@@ -202,7 +202,7 @@ class _LoadedView extends StatelessWidget {
                   context.read<TestModeSettingsBloc>().add(const TestModeSettingsSubmitEvent());
                   // Navigate to testing view after saving settings
                 },
-                text: sl<LocalizationManager>().get(LocalizationKeys.buttons.next),
+                text: context.l10n.buttonsNext,
               ),
             ),
           ],

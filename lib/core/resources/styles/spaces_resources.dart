@@ -5,6 +5,7 @@ class SpacesResources {
   static const sizeUnit = SizesResources.sizeUnit;
 
   ///
+  static const double s0 = 0;
   static const double s1 = 1 * sizeUnit;
   static const double s2 = 2 * sizeUnit;
   static const double s3 = 3 * sizeUnit;

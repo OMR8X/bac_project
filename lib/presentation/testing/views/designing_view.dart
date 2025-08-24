@@ -26,13 +26,14 @@ class _DesigningViewState extends State<DesigningView> {
   void initState() {
     question = Question(
       id: 1,
+      lessonId: 1,
       text:
           "السؤال الأول هو سؤال طويل يحتوي على عدة أسطر من النص لاختبار كيفية عرض النص الطويل في بطاقة السؤال والتأكد من أن التنسيق يعمل بشكل صحيح عندما يكون النص أطول من المعتاد ويحتاج إلى أكثر من سطر واحد للعرض",
       options: [
-        Option(id: 1, text: "الخيار الذي يحتوي على الإجابة الصحيحة", isCorrect: true),
-        Option(id: 2, text: "الخيار الذي يحتوي على الإجابة الخاطئة", isCorrect: false),
-        Option(id: 3, text: "الخيار الذي يحتوي على الإجابة الخاطئة", isCorrect: false),
-        Option(id: 4, text: "الخيار الذي يحتوي على الإجابة الخاطئة", isCorrect: false),
+        Option(id: 1, questionId: 1, text: "الخيار الذي يحتوي على الإجابة الصحيحة", isCorrect: true),
+        Option(id: 2, questionId: 1, text: "الخيار الذي يحتوي على الإجابة الخاطئة", isCorrect: false),
+        Option(id: 3, questionId: 1, text: "الخيار الذي يحتوي على الإجابة الخاطئة", isCorrect: false),
+        Option(id: 4, questionId: 1, text: "الخيار الذي يحتوي على الإجابة الخاطئة", isCorrect: false),
       ],
     );
     super.initState();
@@ -53,7 +54,7 @@ class _DesigningViewState extends State<DesigningView> {
           children: [
             QuestionCardWidget(question: question),
             OptionCardWidget(
-              option: Option(id: 1, text: "الخيار الذي يحتوي على الإجابة الصحيحة", isCorrect: true),
+              option: Option(id: 1, questionId: 1, text: "الخيار الذي يحتوي على الإجابة الصحيحة", isCorrect: true),
               isSelected: selectedOptionId == 1,
               didAnswer: selectedOptionId != null,
               testMode: TestMode.exploring,
@@ -72,6 +73,7 @@ class _DesigningViewState extends State<DesigningView> {
             OptionCardWidget(
               option: Option(
                 id: 2,
+                questionId: 1,
                 text: "الخيار الذي يحتوي على الإجابة الخاطئة",
                 isCorrect: false,
               ),
@@ -93,6 +95,7 @@ class _DesigningViewState extends State<DesigningView> {
             OptionCardWidget(
               option: Option(
                 id: 3,
+                questionId: 1,
                 text: "الخيار الذي يحتوي على الإجابة الخاطئة",
                 isCorrect: false,
               ),
@@ -114,6 +117,7 @@ class _DesigningViewState extends State<DesigningView> {
             OptionCardWidget(
               option: Option(
                 id: 4,
+                questionId: 1,
                 text: "الخيار الذي يحتوي على الإجابة الخاطئة",
                 isCorrect: false,
               ),

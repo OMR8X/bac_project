@@ -7,7 +7,6 @@ sealed class QuizzingState extends Equatable {
   List<Object?> get props => [];
 }
 
-final class QuizzingInitial extends QuizzingState {}
 
 final class QuizzingLoading extends QuizzingState {
   const QuizzingLoading();
@@ -20,8 +19,8 @@ final class QuizzingAnswerQuestion extends QuizzingState {
   final Duration timeLeft;
   final bool canGoNext;
   final bool canGoPrevious;
-  final String? selectedAnswerId;
-  final Map<int, String> selectedAnswers;
+  final int? selectedAnswerId;
+  final Map<int, int> selectedAnswers;
 
   const QuizzingAnswerQuestion({
     required this.currentQuestion,
@@ -41,8 +40,8 @@ final class QuizzingAnswerQuestion extends QuizzingState {
     Duration? timeLeft,
     bool? canGoNext,
     bool? canGoPrevious,
-    String? selectedAnswerId,
-    Map<int, String>? selectedAnswers,
+    int? selectedAnswerId,
+    Map<int, int>? selectedAnswers,
   }) {
     return QuizzingAnswerQuestion(
       currentQuestion: currentQuestion ?? this.currentQuestion,

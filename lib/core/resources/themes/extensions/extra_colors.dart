@@ -6,6 +6,7 @@ class ExtraColors extends ThemeExtension<ExtraColors> {
   final Color yellow;
   final Color orange;
   final Color pink;
+  final Color red;
 
   ExtraColors({
     required this.blue,
@@ -13,16 +14,19 @@ class ExtraColors extends ThemeExtension<ExtraColors> {
     required this.yellow,
     required this.orange,
     required this.pink,
+    required this.red,
+
   });
 
   @override
-  ExtraColors copyWith({Color? blue, Color? green, Color? yellow, Color? orange, Color? pink}) {
+  ExtraColors copyWith({Color? blue, Color? green, Color? yellow, Color? orange, Color? pink,Color? red}) {
     return ExtraColors(
       blue: blue ?? this.blue,
       green: green ?? this.green,
       yellow: yellow ?? this.yellow,
       orange: orange ?? this.orange,
       pink: pink ?? this.pink,
+      red: red ?? this.red,
     );
   }
 
@@ -37,6 +41,7 @@ class ExtraColors extends ThemeExtension<ExtraColors> {
       yellow: Color.lerp(yellow, other.yellow, t) ?? yellow,
       orange: Color.lerp(orange, other.orange, t) ?? orange,
       pink: Color.lerp(pink, other.pink, t) ?? pink,
+      red: Color.lerp(red, other.red, t) ?? red,
     );
   }
 }

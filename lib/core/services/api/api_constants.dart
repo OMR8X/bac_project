@@ -29,6 +29,9 @@ class SupabaseEndpoints {
   static const getTotalUnitsFunctionEndpoint = "fn_api_units_get_total_units";
   static const getTotalLessonsFunctionEndpoint = "fn_api_lessons_get_total_lessons";
   static const getLessonsQuestionsFunctionEndpoint = "fn_api_lessons_get_questions";
+  static const getAppSettingsFunctionEndpoint = "fn_api_settings_get_app_settings";
+  static const getUserResultsFunctionEndpoint = "fn_api_get_user_results";
+  static const addUserResultFunctionEndpoint = "fn_api_add_user_result";
 
   ///
   static String rpc(String functionName) => '/rest/v1/rpc/$functionName';

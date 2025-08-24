@@ -68,6 +68,7 @@ class UIImagesResources {
   static const String teachersIcon = '$path/teachers-ic.png';
   static const String versionsIcon = '$path/version-ic.png';
   static const String notificationsIcon = '$path/notification-ic.png';
+  static const String bellIcon = '$path/bell.png';
 }
 
 class MaterialsImagesResources {

@@ -71,7 +71,13 @@
         "title":"الإعدادات"
     },
     "result":{
-        "title":"نتائجي"
+        "title":"نتائجي",
+        "score":"الدرجة",
+        "correct":"صحيح",
+        "wrong":"خطأ",
+        "unanswered":"بدون إجابة",
+        "time":"الوقت",
+        "time-taken":"وقت الاختبار"
     },
     "search":{
         "hint":"بحث...",

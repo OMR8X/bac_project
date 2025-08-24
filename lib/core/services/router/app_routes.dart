@@ -13,7 +13,9 @@ enum AppRoutes {
   setTestProperties(name: 'set-test-properties', path: '/set-test-properties'),
   pickLessons(name: 'pick-lessons', path: '/pick-lessons'),
   quizzing(name: 'quizzing', path: '/quizzing'),
-  search(name: 'search', path: '/search');
+  search(name: 'search', path: '/search'),
+  notificationDetails(name: 'notification-details', path: '/notification-details'),
+  updateUserData(name: 'update-user-data', path: '/update-user-data');
 
   const AppRoutes({required this.name, required this.path});
 

@@ -1,0 +1,53 @@
+import 'package:bac_project/core/resources/errors/failures.dart';
+import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
+import 'package:bac_project/core/resources/styles/sizes_resources.dart';
+import 'package:bac_project/core/resources/styles/spaces_resources.dart';
+import 'package:bac_project/core/widgets/ui/fields/elevated_button_widget.dart';
+import 'package:bac_project/core/widgets/ui/fields/text_button_widget.dart';
+import 'package:bac_project/features/settings/domain/entities/version.dart';
+import 'package:flutter/material.dart';
+
+class AppAvailableUpdateView extends StatelessWidget {
+  const AppAvailableUpdateView({
+    super.key,
+    required this.version,
+    required this.onUpdate,
+    required this.onSkip,
+  });
+  final Version version;
+  final VoidCallback onUpdate;
+  final VoidCallback onSkip;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Spacer(),
+            Icon(Icons.update, size: SpacesResources.s50),
+            SizedBox(height: SpacesResources.s4),
+            Text("يتوفر تحديث جديد", style: AppTextStyles.button),
+            SizedBox(height: SpacesResources.s4),
+            Text("الاصدار الحالي ${version.appVersion}", style: AppTextStyles.largeTitle),
+            SizedBox(height: SpacesResources.s2),
+            Text("الاصدار الجديد ${version.currentVersion}", style: AppTextStyles.largeTitle),
+            Spacer(),
+            ElevatedButtonWidget(title: "تحديث", onPressed: onUpdate),
+            if (!version.updateRequired)
+              TextButtonWidget(title: "تخطي", onPressed: onSkip)
+            else
+              Column(
+                children: [
+                  SizedBox(height: SpacesResources.s2),
+                  Text("التحديث مطلوب", style: AppTextStyles.button),
+                ],
+              ),
+            SizedBox(height: SpacesResources.s10),
+          ],
+        ),
+      ),
+    );
+  }
+}

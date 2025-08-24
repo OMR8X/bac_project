@@ -1,12 +1,19 @@
 import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/services/cache/cache_constant.dart';
 import 'package:bac_project/core/services/cache/cache_manager.dart';
+import 'package:bac_project/features/auth/domain/usecases/get_user_data_usecase.dart';
+import 'package:bac_project/features/auth/domain/usecases/sign_in_usecase.dart';
+import 'package:bac_project/features/auth/domain/usecases/sign_out_usecase.dart';
+import 'package:bac_project/features/auth/domain/usecases/sign_up_usecase.dart';
+import 'package:bac_project/features/auth/domain/usecases/update_user_data_usecase.dart';
+import 'package:bac_project/features/settings/domain/usecases/get_app_settings_usecase.dart';
+import 'package:bac_project/presentation/auth/state/bloc/auth_bloc.dart';
 import 'package:bac_project/presentation/home/blocs/home_bloc.dart';
+import 'package:bac_project/presentation/result/bloc/explore_results_bloc.dart';
 import 'package:bac_project/presentation/search/bloc/bloc/search_bloc.dart';
 import 'package:bac_project/presentation/tests/blocs/pick_lessons_bloc.dart';
 import 'package:bac_project/presentation/tests/blocs/test_mode_settings_bloc.dart';
 
-import '../../presentation/root/blocs/auth/auth_bloc.dart';
 import '../../presentation/home/blocs/lessons_bloc.dart';
 
 import '../../presentation/root/blocs/loader/app_loader_bloc.dart';
@@ -20,10 +27,18 @@ controllersInjection() {
   );
 
   ///
-  sl.registerLazySingleton(() => AppLoaderBloc());
+  sl.registerLazySingleton(() => AppLoaderBloc(sl<GetAppSettingsUseCase>()));
 
   ///
-  sl.registerLazySingleton(() => AuthBloc());
+  sl.registerLazySingleton(
+    () => AuthBloc(
+      sl<GetUserDataUseCase>(),
+      sl<SignInUseCase>(),
+      sl<SignUpUseCase>(),
+      sl<SignOutUseCase>(),
+      sl<UpdateUserDataUseCase>(),
+    )..add(AuthInitializeEvent()),
+  );
 
   sl.registerFactory(() => LessonsBloc());
 
@@ -38,4 +53,7 @@ controllersInjection() {
 
   ///
   sl.registerFactory(() => SearchBloc(getLessonsUseCase: sl()));
+
+  // Results
+  sl.registerFactory(() => ExploreResultsBloc(getMyResultsUseCase: sl()));
 }

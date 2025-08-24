@@ -1,9 +1,9 @@
+import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/resources/styles/padding_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
-import 'package:bac_project/core/services/localization/localization_keys.dart';
-import 'package:bac_project/core/services/localization/localization_manager.dart';
+
 import 'package:flutter/material.dart';
 
 class QuestionCountPickerWidget extends StatelessWidget {
@@ -27,9 +27,7 @@ class QuestionCountPickerWidget extends StatelessWidget {
           title: Padding(
             padding: PaddingResources.cardMediumTitlePadding,
             child: Text(
-              sl<LocalizationManager>().get(
-                LocalizationKeys.testProperties.questionsCount.questionsCount,
-              ),
+              "context.l10n.testPropertiesQuestionsCountQuestionsCount",
               style: AppTextStyles.cardMediumTitle,
             ),
           ),

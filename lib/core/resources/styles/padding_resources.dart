@@ -19,9 +19,15 @@ class PaddingResources {
   );
 
   ///
+  static const EdgeInsets textFieldMargin = EdgeInsets.symmetric(
+    vertical: SpacesResources.s2,
+    horizontal: SpacesResources.s0,
+  );
+
+  ///
   static const EdgeInsets fieldContentPadding = EdgeInsets.symmetric(
+    horizontal: SpacesResources.s6,
     vertical: SpacesResources.s6,
-    horizontal: SpacesResources.s7,
   );
 
   ///

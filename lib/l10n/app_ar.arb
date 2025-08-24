@@ -1,0 +1,72 @@
+{
+  "pickLessonsTitle": "اختيار الدروس",
+
+  "homeTitle": "الرئيسية",
+  "homeCardStartTestAction": "بدء الاختبار الكامل",
+  "homeCardExploreLessonsAction": "استكشاف الدروس",
+  "homeQuoteDailyQuote": "اقتباس اليوم",
+  "homeQuoteExpandQuote": "عرض الاقتباس مكبراً",
+
+  "lessonsTitle": "الدروس",
+
+  "testPropertiesTitle": "اعدادات الاختبار",
+  "testPropertiesShowTrueAnswerTitle": "عرض الإجابة الصحيحة",
+  "testPropertiesShowTrueAnswerSubtitle": "إظهار الإجابة الصحيحة بعد كل سؤال.",
+  "testPropertiesEnableSoundEffectsTitle": "تفعيل الأصوات",
+  "testPropertiesEnableSoundEffectsSubtitle": "تشغيل مؤثرات صوتية عند الإجابة.",
+  "testPropertiesModeSwitcherTitle": "الوضع",
+  "testPropertiesModeSwitcherExploreMode": "وضع التصفح",
+  "testPropertiesModeSwitcherTestMode": "وضع الاختبار",
+  "testPropertiesQuestionsCount": "عدد الأسئلة",
+  "testPropertiesQuestionsCategories": "مواضيع الأسئلة",
+  "testPropertiesModesExploreModeTitle": "وضع التصفح",
+  "testPropertiesModesExploreModeSubtitle": "للتعلم والاستكشاف",
+  "testPropertiesModesExploreModeDescription": "تدرب بدون ضغط الوقت. اطلع على الإجابات فوراً وتعلم من اخطائك.",
+  "testPropertiesModesTestModeTitle": "وضع الاختبار",
+  "testPropertiesModesTestModeSubtitle": "اختبر نفسك",
+  "testPropertiesModesTestModeDescription": "امتحان مؤقت مع تقييم ونتائج. مثالي لاختبار فهمك للموضوعات",
+  "testPropertiesModesCustomModeTitle": "وضع مخصص",
+  "testPropertiesModesCustomModeSubtitle": "تحكم بجميع الإعدادات",
+  "testPropertiesModesCustomModeDescription": "قم بتحديد اعدادات الاختبار وتخصيصها بالكامل",
+
+  "authSignIn": "تسجيل الدخول",
+  "authSignUp": "إنشاء حساب",
+  "authEmail": "البريد الإلكتروني",
+  "authPassword": "الرمز السري",
+
+  "navigationHome": "الرئيسية",
+  "navigationResults": "نتائجي",
+  "navigationSettings": "الإعدادات",
+
+  "settingsTitle": "الإعدادات",
+
+  "resultTitle": "نتائجي",
+  "resultScore": "الدرجة",
+  "resultCorrect": "صحيح",
+  "resultWrong": "خطأ",
+  "resultUnanswered": "بدون إجابة",
+  "resultTime": "الوقت",
+  "resultTimeTaken": "وقت الاختبار",
+
+  "searchHint": "بحث...",
+  "searchTitle": "البحث",
+  "searchNoResults": "لا يوجد نتائج",
+
+  "screenUpdateUserData": "تحديث بيانات المتسخدم",
+
+
+  "buttonsSave": "حفظ",
+  "buttonsNext": "التالي",
+  "buttonsConfirm": "تأكيد",
+  "buttonsCustomize": "تخصيص",
+  "buttonsPick": "اختيار",
+  "buttonsPrevious": "السابق",
+  "buttonsFinish": "إنهاء",
+  "buttonsResult": "النتيجة",
+  "buttonsClose": "إغلاق",
+  "buttonsRetry": "اعادة الاختبار",
+  "buttonsSignIn": "تسجيل الدخول",
+  "buttonsSignUp": "انشاء حساب",
+  "buttonsSignOut": "تسجيل الخروج",
+  "buttonsUpdateUserData": "تحديث بياناتك"
+}

@@ -8,7 +8,7 @@ class BlurResources {
   }
 
   static ImageFilter bottomNavigationBarBlur(BuildContext context) {
-    return ImageFilter.blur(sigmaX: 15.0, sigmaY: 15.0);
+    return ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0);
   }
 
   static ImageFilter fullUnTestCardBlur(BuildContext context) {

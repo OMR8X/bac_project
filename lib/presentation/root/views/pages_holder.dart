@@ -1,13 +1,13 @@
 import 'dart:ui';
 
+import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/resources/styles/assets_resources.dart';
 import 'package:bac_project/core/resources/styles/blur_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/resources/styles/padding_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
-import 'package:bac_project/core/services/localization/localization_keys.dart';
-import 'package:bac_project/core/services/localization/localization_manager.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
@@ -79,7 +79,7 @@ class _NavigationBar extends StatelessWidget {
                   child: BottomNavTab(
                     selectedIconPath: UIImagesResources.homeIconFilled,
                     unselectedIconPath: UIImagesResources.homeIconOutline,
-                    label: sl<LocalizationManager>().get(LocalizationKeys.bottomNavigationBar.home),
+                    label: context.l10n.navigationHome,
                     selected: currentIndex == 0,
                     onTap: () => changePage(0),
                   ),
@@ -88,9 +88,7 @@ class _NavigationBar extends StatelessWidget {
                   child: BottomNavTab(
                     selectedIconPath: UIImagesResources.resultsIconFilled,
                     unselectedIconPath: UIImagesResources.resultsIconOutline,
-                    label: sl<LocalizationManager>().get(
-                      LocalizationKeys.bottomNavigationBar.results,
-                    ),
+                    label: context.l10n.navigationResults,
                     selected: currentIndex == 1,
                     onTap: () => changePage(1),
                   ),
@@ -99,9 +97,7 @@ class _NavigationBar extends StatelessWidget {
                   child: BottomNavTab(
                     selectedIconPath: UIImagesResources.settingsIconFilled,
                     unselectedIconPath: UIImagesResources.settingsIconOutline,
-                    label: sl<LocalizationManager>().get(
-                      LocalizationKeys.bottomNavigationBar.settings,
-                    ),
+                    label: context.l10n.navigationSettings,
                     selected: currentIndex == 2,
                     onTap: () => changePage(2),
                   ),

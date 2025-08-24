@@ -2,11 +2,13 @@ import 'dart:async';
 
 import 'package:bac_project/core/resources/errors/failures.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 import 'exceptions.dart';
 
 extension ErrorsMapper on Exception {
   Failure get toFailure {
+    debugPrint(toString());
     switch (runtimeType) {
       case DioException():
         return ServerFailure(message: (this as DioException).message);
@@ -23,7 +25,7 @@ extension ErrorsMapper on Exception {
       case CacheEmptyException():
         return CacheFailure(message: (this as CacheEmptyException).message);
       default:
-        return AnonFailure();
+        return AnonFailure(message: toString());
     }
   }
 }

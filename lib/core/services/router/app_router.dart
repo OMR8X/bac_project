@@ -1,9 +1,9 @@
 import 'package:bac_project/core/services/router/app_transations.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
+import 'package:bac_project/presentation/auth/view/update_user_data_view.dart';
 import 'package:bac_project/presentation/home/blocs/lessons_bloc.dart';
 import 'package:bac_project/presentation/home/views/home_view.dart';
 import 'package:bac_project/presentation/home/views/lessons_view.dart';
-import 'package:bac_project/presentation/root/views/auth_views_manager.dart';
 import 'package:bac_project/presentation/search/bloc/bloc/search_bloc.dart';
 import 'package:bac_project/presentation/settings/views/setting_view.dart';
 import 'package:bac_project/presentation/testing/views/designing_view.dart';
@@ -17,13 +17,13 @@ import 'package:bac_project/presentation/tests/blocs/pick_lessons_bloc.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import '../../../presentation/auth/view/auth_views_manager.dart';
 import '../../../presentation/result/views/results_view.dart';
 import '../../../presentation/root/views/app_loader_view.dart';
 import '../../../presentation/root/views/pages_holder.dart';
 import '../../../presentation/testing/views/debugs_view.dart';
 
 import '../../../presentation/tests/views/test_mode_settings_view.dart';
-import '../../../presentation/testing/views/testing_view.dart';
 import 'app_routes.dart';
 
 class AppRouter {
@@ -39,7 +39,6 @@ class AppRouter {
   static final router = GoRouter(
     debugLogDiagnostics: false,
     initialLocation: AppRoutes.loader.path,
-    // initialLocation: AppRoutes.loader.path,
     navigatorKey: _rootNavigatorKey,
     routes: [
       /// debugging route
@@ -81,6 +80,25 @@ class AppRouter {
                 );
               },
               child: const AuthViewsManager(),
+            ),
+      ),
+      GoRoute(
+        name: AppRoutes.updateUserData.name,
+        path: AppRoutes.updateUserData.path,
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              transitionDuration: AppTransitions.transitionDuration,
+              reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
+              },
+              child: const UpdateUserDataView(),
             ),
       ),
       // designing route

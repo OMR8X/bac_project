@@ -5,6 +5,7 @@ import 'package:bac_project/presentation/root/blocs/theme/app_theme_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:bac_project/l10n/generated/app_localizations.dart';
 
 class AppRoot extends StatelessWidget {
   const AppRoot._internal();
@@ -22,12 +23,13 @@ class AppRoot extends StatelessWidget {
             title: 'مدير الملفات',
             theme: state.themeData,
             localizationsDelegates: const [
+              AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
             debugShowCheckedModeBanner: false,
-            supportedLocales: const [Locale("ar")],
+            supportedLocales: AppLocalizations.supportedLocales,
             routerConfig: AppRouter.router,
           );
         },

@@ -48,6 +48,7 @@ class AppDarkTheme {
           yellow: ColorsResourcesDark.yellow,
           orange: ColorsResourcesDark.orange,
           pink: ColorsResourcesDark.pink,
+          red: ColorsResourcesDark.error,
         ),
       ],
       listTileTheme: ListTileThemeData(
@@ -168,7 +169,7 @@ class AppDarkTheme {
         color: ColorsResourcesDark.surfaceContainer,
         shape: RoundedSuperellipseBorder(
           borderRadius: BorderRadiusResource.cardBorderRadius,
-          side: BorderSide(color: ColorsResourcesDark.outline, width: 0.5),
+          side: BorderSide(color: ColorsResourcesDark.outline),
         ),
       ),
 
@@ -223,9 +224,9 @@ class AppDarkTheme {
       ),
 
       ///
-      iconButtonTheme: IconButtonThemeData(
-        style: IconButton.styleFrom(iconSize: 10, minimumSize: const Size(20, 20)),
-      ),
+      // iconButtonTheme: IconButtonThemeData(
+      //   style: IconButton.styleFrom(iconSize: 10, minimumSize: const Size(20, 20)),
+      // ),
 
       ///
       inputDecorationTheme: InputDecorationTheme(

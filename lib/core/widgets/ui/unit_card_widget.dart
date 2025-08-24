@@ -1,13 +1,12 @@
 import 'dart:math';
 
+import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/resources/styles/padding_resources.dart';
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
-import 'package:bac_project/core/services/localization/localization_keys.dart';
-import 'package:bac_project/core/services/localization/localization_manager.dart';
 import 'package:flutter/material.dart';
 
 class UnitCardWidget extends StatelessWidget {
@@ -154,7 +153,7 @@ class UnitCardWidget extends StatelessWidget {
             iconAlignment: IconAlignment.end,
             icon: Icon(Icons.explore_outlined, size: FontSizeResources.s16),
             label: Text(
-              sl<LocalizationManager>().get(LocalizationKeys.home.card.exploreLessonsAction),
+              context.l10n.homeCardExploreLessonsAction,
             ),
           ),
         ),
@@ -179,7 +178,7 @@ class UnitCardWidget extends StatelessWidget {
               angle: pi,
               child: Icon(Icons.play_arrow_rounded, size: FontSizeResources.s16),
             ),
-            label: Text(sl<LocalizationManager>().get(LocalizationKeys.home.card.startTestAction)),
+            label: Text(context.l10n.homeCardStartTestAction),
           ),
         ),
       ],

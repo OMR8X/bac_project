@@ -1,5 +1,3 @@
-import 'package:bac_project/core/services/localization/localization_cache_service.dart';
-import 'package:bac_project/core/services/localization/localization_manager.dart';
 import 'package:bac_project/presentation/root/views/app_root.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -15,10 +13,11 @@ void main() async {
 
   ///
   await ServiceLocator.init();
-  //
-  await sl<LocalizationManager>().init();
-  await sl<LocalizationCacheService>().loadAndCacheJson('ar');
-  
+  try {
+    await Supabase.instance.client.auth.refreshSession();
+  } catch (_) {}
+  // LocalizationManager migrated; ARB-based localization loaded at build time.
+
   // ///
   // await sl<AppBackgroundService>().initializeBackgroundServiceForUploads();
 

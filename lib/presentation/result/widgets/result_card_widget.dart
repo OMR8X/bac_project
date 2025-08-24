@@ -1,162 +1,154 @@
+import 'package:bac_project/core/resources/themes/extensions/color_extensions.dart';
+import 'package:bac_project/core/resources/themes/extensions/extra_colors.dart';
+import 'package:bac_project/features/tests/domain/entities/result.dart';
 import 'package:flutter/material.dart';
-import 'package:bac_project/presentation/result/models/custom_result_card_model.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spaces_resources.dart';
+import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 
 class ResultCardWidget extends StatelessWidget {
-  final CustomResultCardData result;
+  final Result result;
 
   const ResultCardWidget({super.key, required this.result});
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
-
-    // Parse score to determine color
-    final scoreValue = _parseScore(result.score);
-    final scoreColor = _getScoreColor(scoreValue);
-
+    final int percent = result.score.round();
+    final Color scoreColor = Theme.of(context).colorScheme.onSurfaceVariant;
     return Card(
       margin: PaddingResources.cardOuterPadding,
       child: InkWell(
-        borderRadius: BorderRadius.circular(16),
-        onTap: () {
-          // Handle tap if needed
-        },
+        borderRadius: BorderRadiusResource.cardBorderRadius,
+        onTap: () {},
         child: Padding(
           padding: PaddingResources.cardMediumInnerPadding,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _ResultCardHeader(
-                title: result.title,
-                score: result.score,
-                scoreColor: scoreColor,
-              ),
-              const SizedBox(height: 12),
-              _ResultCardDetails(
-                date: result.date,
-                scoreValue: scoreValue,
-                scoreColor: scoreColor,
-                getPerformanceIcon: _getPerformanceIcon,
-              ),
-            ],
+          child: IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                _buildIconBox(context),
+                const SizedBox(width: SpacesResources.s6),
+                Expanded(child: _buildMainInfo(context, percent, scoreColor)),
+                const SizedBox(width: SpacesResources.s6),
+                IconButton(onPressed: () {}, icon: Icon(Icons.more_vert_rounded)),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  int _parseScore(String score) {
-    final parts = score.split('/');
-    if (parts.isNotEmpty) {
-      return int.tryParse(parts[0]) ?? 0;
-    }
-    return 0;
-  }
+  Widget _buildIconBox(BuildContext context) {
+    final int percent = result.score.round();
+    final Color backgroundColor = _getScoreBackgroundColor(context, percent);
+    final Color textColor = _getScoreTextColor(context, percent);
 
-  Color _getScoreColor(int score) {
-    if (score >= 85) {
-      return Colors.green;
-    } else if (score >= 70) {
-      return Colors.orange;
-    } else {
-      return Colors.red;
-    }
-  }
-
-  IconData _getPerformanceIcon(int score) {
-    if (score >= 85) {
-      return Icons.trending_up_rounded;
-    } else if (score >= 70) {
-      return Icons.trending_flat_rounded;
-    } else {
-      return Icons.trending_down_rounded;
-    }
-  }
-}
-
-class _ResultCardHeader extends StatelessWidget {
-  const _ResultCardHeader({
-    super.key,
-    required this.title,
-    required this.score,
-    required this.scoreColor,
-  });
-
-  final String title;
-  final String score;
-  final Color scoreColor;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Row(
-      children: [
-        Expanded(
-          child: Text(
-            title,
-            style: AppTextStyles.cardMediumTitle.copyWith(
-              color: theme.colorScheme.onSurface,
-            ),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
+    return Container(
+      width: 50,
+      height: 56,
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadiusResource.tileBoxBorderRadius,
+      ),
+      child: Center(
+        child: Text(
+          '${percent.clamp(0, 100)}%'.replaceAll('.0', ''),
+          style: AppTextStyles.cardSmallTitle.copyWith(
+            fontSize: FontSizeResources.s11,
+            color: textColor,
+            fontWeight: FontWeightResources.bold,
           ),
         ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          decoration: BoxDecoration(
-            color: scoreColor.withAlpha(25),
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: scoreColor.withAlpha(75), width: 1),
-          ),
-          child: Text(
-            score,
-            style: AppTextStyles.cardSmallTitle.copyWith(
-              color: scoreColor,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ],
+      ),
     );
   }
-}
 
-class _ResultCardDetails extends StatelessWidget {
-  const _ResultCardDetails({
-    super.key,
-    required this.date,
-    required this.scoreValue,
-    required this.scoreColor,
-    required this.getPerformanceIcon,
-  });
+  Color _getScoreBackgroundColor(BuildContext context, int score) {
+    if (score > 50) {
+      if (score >= 85) {
+        return Theme.of(context).extension<ExtraColors>()!.green.withAlpha(20);
+      } else {
+        return Theme.of(context).extension<ExtraColors>()!.orange.withAlpha(20);
+      }
+    } else {
+      return Theme.of(context).extension<ExtraColors>()!.red.withAlpha(20);
+    }
+  }
 
-  final String date;
-  final int scoreValue;
-  final Color scoreColor;
-  final IconData Function(int) getPerformanceIcon;
+  Color _getScoreTextColor(BuildContext context, int score) {
+    if (score > 50) {
+      if (score >= 85) {
+        return Theme.of(context).extension<ExtraColors>()!.green.darker(0.3);
+      } else {
+        return Theme.of(context).extension<ExtraColors>()!.orange.darker(0.3);
+      }
+    } else {
+      return Theme.of(context).extension<ExtraColors>()!.red.darker(0.3);
+    }
+  }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildMainInfo(BuildContext context, int percent, Color scoreColor) {
     final theme = Theme.of(context);
-    return Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(
-          Icons.calendar_today_rounded,
-          size: 16,
-          color: theme.colorScheme.onSurface.withAlpha(153),
-        ),
-        const SizedBox(width: 6),
         Text(
-          date,
-          style: AppTextStyles.cardSmallSubtitle.copyWith(
-            color: theme.colorScheme.onSurface.withAlpha(178),
+          'عنوان الدرس',
+          style: AppTextStyles.caption.copyWith(
+            color: theme.colorScheme.onSurface.withAlpha(160),
+            fontSize: FontSizeResources.s10,
           ),
         ),
-        const Spacer(),
+        const SizedBox(height: SpacesResources.s2),
+        Text(
+          result.lessonTitle ?? 'اختبار مخصص',
+          style: AppTextStyles.cardMediumTitle.copyWith(color: theme.colorScheme.onSurface),
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        ),
+        const SizedBox(height: SpacesResources.s3),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.calendar_today_rounded,
+              size: FontSizeResources.s10,
+              color: theme.colorScheme.onSurface.withAlpha(100),
+            ),
+            const SizedBox(width: SpacesResources.s2),
+            Text(
+              result.createdAt.toLocal().toIso8601String().split('T').first,
+              style: AppTextStyles.caption.copyWith(
+                color: theme.colorScheme.onSurface.withAlpha(160),
+              ),
+            ),
+            const SizedBox(width: SpacesResources.s4),
+            Icon(
+              Icons.timer_rounded,
+              size: FontSizeResources.s10,
+              color: theme.colorScheme.onSurface.withAlpha(100),
+            ),
+            const SizedBox(width: SpacesResources.s2),
+            Text(
+              _formatDuration(result.durationSeconds),
+              style: AppTextStyles.caption.copyWith(
+                color: theme.colorScheme.onSurface.withAlpha(160),
+              ),
+            ),
+          ],
+        ),
+        // Bottom stat row removed (compact design)
       ],
     );
+  }
+
+  String _formatDuration(int seconds) {
+    final minutes = seconds ~/ 60;
+    final secs = seconds % 60;
+    if (minutes > 0) return '${minutes}m ${secs}s';
+    return '${secs}s';
   }
 }

@@ -1,5 +1,6 @@
 import 'package:bac_project/core/services/router/index.dart';
 import 'package:bac_project/presentation/root/blocs/loader/app_loader_bloc.dart';
+import 'package:bac_project/presentation/root/views/app_available_update_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,14 +38,14 @@ class _AppLoaderViewState extends State<AppLoaderView> {
           builder: (context, state) {
             if (state.state == LoadState.succeed) {
               onDone();
-              // if (state.version.updateAvailable) {
-              //   return AppAvailableUpdateView(version: state.version, onUpdate: () {}, onSkip: onDone);
-              // } else {
-              //   onDone();
-              // }
-            }
-            if (state.state == LoadState.failure) {
+            } else if (state.state == LoadState.failure) {
               return Center(child: Text(state.failure!.message));
+            } else if (state.state == LoadState.update) {
+              return AppAvailableUpdateView(
+                version: state.version,
+                onUpdate: () {},
+                onSkip: onDone,
+              );
             }
             return const Center(child: CupertinoActivityIndicator());
           },

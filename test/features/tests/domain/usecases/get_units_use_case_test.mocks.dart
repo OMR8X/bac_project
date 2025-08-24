@@ -6,24 +6,20 @@
 import 'dart:async' as _i4;
 
 import 'package:bac_project/core/resources/errors/failures.dart' as _i5;
+import 'package:bac_project/features/tests/data/responses/get_lessons_response.dart'
+    as _i8;
+import 'package:bac_project/features/tests/data/responses/get_questions_response.dart'
+    as _i10;
+import 'package:bac_project/features/tests/data/responses/get_units_response.dart'
+    as _i6;
 import 'package:bac_project/features/tests/domain/repositories/tests_repository.dart'
     as _i3;
 import 'package:bac_project/features/tests/domain/requests/get_lessons_request.dart'
     as _i9;
 import 'package:bac_project/features/tests/domain/requests/get_questions_request.dart'
-    as _i13;
-import 'package:bac_project/features/tests/domain/requests/get_test_options_request.dart'
     as _i11;
 import 'package:bac_project/features/tests/domain/requests/get_units_request.dart'
     as _i7;
-import 'package:bac_project/features/tests/data/responses/get_lessons_response.dart'
-    as _i8;
-import 'package:bac_project/features/tests/data/responses/get_questions_response.dart'
-    as _i12;
-import 'package:bac_project/features/tests/data/responses/get_test_options_response.dart'
-    as _i10;
-import 'package:bac_project/features/tests/data/responses/get_units_response.dart'
-    as _i6;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -88,35 +84,19 @@ class MockTestsRepository extends _i1.Mock implements _i3.TestsRepository {
           as _i4.Future<_i2.Either<_i5.Failure, _i8.GetLessonsResponse>>);
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i10.GetTestOptionsResponse>>
-  getTestOptions(_i11.GetTestOptionsRequest? request) =>
-      (super.noSuchMethod(
-            Invocation.method(#getTestOptions, [request]),
-            returnValue: _i4.Future<
-              _i2.Either<_i5.Failure, _i10.GetTestOptionsResponse>
-            >.value(
-              _FakeEither_0<_i5.Failure, _i10.GetTestOptionsResponse>(
-                this,
-                Invocation.method(#getTestOptions, [request]),
-              ),
-            ),
-          )
-          as _i4.Future<_i2.Either<_i5.Failure, _i10.GetTestOptionsResponse>>);
-
-  @override
-  _i4.Future<_i2.Either<_i5.Failure, _i12.GetQuestionsResponse>> getQuestions(
-    _i13.GetQuestionsRequest? request,
+  _i4.Future<_i2.Either<_i5.Failure, _i10.GetQuestionsResponse>> getQuestions(
+    _i11.GetQuestionsRequest? request,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#getQuestions, [request]),
             returnValue: _i4.Future<
-              _i2.Either<_i5.Failure, _i12.GetQuestionsResponse>
+              _i2.Either<_i5.Failure, _i10.GetQuestionsResponse>
             >.value(
-              _FakeEither_0<_i5.Failure, _i12.GetQuestionsResponse>(
+              _FakeEither_0<_i5.Failure, _i10.GetQuestionsResponse>(
                 this,
                 Invocation.method(#getQuestions, [request]),
               ),
             ),
           )
-          as _i4.Future<_i2.Either<_i5.Failure, _i12.GetQuestionsResponse>>);
+          as _i4.Future<_i2.Either<_i5.Failure, _i10.GetQuestionsResponse>>);
 }

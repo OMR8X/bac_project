@@ -56,54 +56,31 @@ class _DropDownWidgetState<T> extends State<DropDownWidget<T>> {
       onPopInvokedWithResult: (didPop, result) {
         _onWillPop();
       },
-      child: GestureDetector(
-        onPanDown: (d) {
-          setState(() => _isDropdownOpen = true);
-          FocusManager.instance.primaryFocus?.unfocus();
-        },
-        child: StaggeredItemWrapperWidget(
-          position: widget.position,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                // TODO: add padding
-                padding: EdgeInsets.zero,
-                // padding: PaddingResources.padding_0_4,
-                child: Container(
-                  width: SizesResources.mainWidth(context),
-                  decoration: BoxDecoration(
-                    color:
-                        Theme.of(
-                          context,
-                        ).extension<SurfaceContainerColors>()!.surfaceContainer,
-                    borderRadius: BorderRadiusResource.fieldBorderRadius,
-                  ),
-                  child: DropdownMenu(
-                    textStyle: AppTextStyles.title,
-                    hintText: widget.hintText,
-                    label:
-                        widget.hintText != null ? Text(widget.hintText!) : null,
-                    width: SizesResources.mainWidth(context),
-                    initialSelection: widget.initialSelection,
-                    onSelected: (item) {
-                      setState(() => _isDropdownOpen = false);
-                      FocusManager.instance.primaryFocus?.unfocus();
-                      if (widget.onSelected != null) {
-                        widget.onSelected!(item);
-                      }
-                    },
-                    dropdownMenuEntries:
-                        widget.entries.map((e) {
-                          return DropdownMenuEntry<T?>(
-                            value: e,
-                            label: widget.toLabel(e),
-                          );
-                        }).toList(),
-                  ),
-                ),
-              ),
-            ],
+      child: StaggeredItemWrapperWidget(
+        position: widget.position,
+        child: GestureDetector(
+          onPanDown: (d) {
+            setState(() => _isDropdownOpen = true);
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
+          child: DropdownMenu(
+            
+            width: double.infinity,
+            textStyle: AppTextStyles.title,
+            hintText: widget.hintText,
+            label: widget.hintText != null ? Text(widget.hintText!) : null,
+            initialSelection: widget.initialSelection,
+            onSelected: (item) {
+              setState(() => _isDropdownOpen = false);
+              FocusManager.instance.primaryFocus?.unfocus();
+              if (widget.onSelected != null) {
+                widget.onSelected!(item);
+              }
+            },
+            dropdownMenuEntries:
+                widget.entries.map((e) {
+                  return DropdownMenuEntry<T?>(value: e, label: widget.toLabel(e));
+                }).toList(),
           ),
         ),
       ),

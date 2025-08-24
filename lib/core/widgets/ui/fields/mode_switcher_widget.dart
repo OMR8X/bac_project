@@ -1,9 +1,8 @@
-import '../../../injector/app_injection.dart';
+import 'package:bac_project/core/extensions/build_context_l10n.dart';
+  
 import '../../../resources/styles/border_radius_resources.dart';
 import '../../../resources/styles/font_styles_manager.dart';
 import '../../../resources/styles/padding_resources.dart';
-import '../../../services/localization/localization_keys.dart';
-import '../../../services/localization/localization_manager.dart';
 import 'package:flutter/material.dart';
 
 class ModeSwitcherWidget extends StatefulWidget {
@@ -129,14 +128,14 @@ class _ModeSwitcherWidgetState extends State<ModeSwitcherWidget>
       children: [
         Expanded(
           child: _buildModeText(
-            sl<LocalizationManager>().get(LocalizationKeys.testProperties.tabSwitcher.exploreMode),
+            "context.l10n.testPropertiesTabSwitcherExploreMode",
             _isExploreMode,
             Icons.explore,
           ),
         ),
         Expanded(
           child: _buildModeText(
-            sl<LocalizationManager>().get(LocalizationKeys.testProperties.tabSwitcher.testMode),
+            "context.l10n.testPropertiesTabSwitcherTestMode",
             !_isExploreMode,
             Icons.science,
           ),

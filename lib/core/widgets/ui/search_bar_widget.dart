@@ -1,8 +1,7 @@
 import 'dart:async';
+import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/resources/styles/padding_resources.dart';
-import 'package:bac_project/core/services/localization/localization_keys.dart';
-import 'package:bac_project/core/services/localization/localization_manager.dart';
 import 'package:flutter/material.dart';
 
 class SearchBarWidget extends StatefulWidget {
@@ -88,7 +87,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                 textInputAction: TextInputAction.done,
                 textAlign: TextAlign.right,
                 decoration: InputDecoration(
-                  hintText: sl<LocalizationManager>().get(LocalizationKeys.search.hint),
+                  hintText: context.l10n.searchHint,
                   suffixIcon:
                       isFieldEmpty
                           ? Icon(Icons.search, size: 24)

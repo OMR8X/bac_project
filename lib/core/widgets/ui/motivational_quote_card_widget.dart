@@ -4,8 +4,6 @@ import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/resources/styles/padding_resources.dart';
 import 'package:bac_project/core/resources/styles/shadows_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
-import 'package:bac_project/core/services/localization/localization_keys.dart';
-import 'package:bac_project/core/services/localization/localization_manager.dart';
 import 'package:flutter/material.dart';
 
 class MotivationalQuoteCardWidget extends StatelessWidget {
@@ -75,7 +73,7 @@ class MotivationalQuoteCardWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          sl<LocalizationManager>().get(LocalizationKeys.home.quote.dailyQuote),
+          "sl<LocalizationManager>().get(LocalizationKeys.home.quote.dailyQuote)",
           style: AppTextStyles.cardMediumTitle.copyWith(
             color: Theme.of(context).colorScheme.primary,
             fontWeight: FontWeightResources.bold,

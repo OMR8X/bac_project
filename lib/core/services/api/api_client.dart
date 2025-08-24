@@ -3,6 +3,7 @@ import 'package:bac_project/core/services/api/supabase/supabase_settings.dart';
 import 'package:bac_project/core/services/debug/debugging_manager.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '../tokens/tokens_manager.dart';
 import 'api_constants.dart';
 import 'dio_factory.dart';
@@ -170,12 +171,12 @@ class DioClient implements ApiClient {
       effectiveHeaders.addAll(headers);
     }
 
-    final token = await TokenManager().getToken();
+    final token = Supabase.instance.client.auth.currentSession?.accessToken;
     if (token != null && token.isNotEmpty) {
       effectiveHeaders[ApiHeaders.headerAuthorizationKey] = 'Bearer $token';
     } else {
-      // Optionally fallback to anon key as bearer if you want anonymous access
-      effectiveHeaders[ApiHeaders.headerAuthorizationKey] = 'Bearer ${SupabaseSettings.anonKey}';
+      // keep only apikey for anon access — don't set Authorization to anon
+      effectiveHeaders.remove(ApiHeaders.headerAuthorizationKey);
     }
 
     options.headers = effectiveHeaders;

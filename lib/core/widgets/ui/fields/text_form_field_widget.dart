@@ -43,13 +43,10 @@ class TextFormFieldWidget extends StatelessWidget {
   //
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // TODO: add padding
-      padding: EdgeInsets.zero,
-      // margin: PaddingResources.padding_0_4,
-      width: SizesResources.mainWidth(context),
-      child: StaggeredItemWrapperWidget(
-        position: position,
+    return StaggeredItemWrapperWidget(
+      position: position,
+      child: Padding(
+        padding: PaddingResources.textFieldMargin,
         child: TextFormField(
           initialValue: initialValue,
           controller: controller,
@@ -61,12 +58,9 @@ class TextFormFieldWidget extends StatelessWidget {
           keyboardType: keyboardType,
           maxLength: maxLength,
           onChanged: onChanged,
-          style: AppTextStyles.textField,
           onFieldSubmitted: onFieldSubmitted,
-          decoration: InputDecoration(
-            hintText: " $hintText",
-            hintStyle: const TextStyle(fontWeight: FontWeightResources.regular),
-          ),
+          style: AppTextStyles.textField,
+          decoration: InputDecoration(labelText: " $hintText"),
         ),
       ),
     );

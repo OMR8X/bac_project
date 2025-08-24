@@ -1,14 +1,25 @@
+import 'package:bac_project/presentation/result/bloc/explore_results_bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'dart:async';
 import 'package:bac_project/features/tests/domain/entities/question.dart';
+import 'package:bac_project/features/tests/domain/usecases/add_result_use_case.dart';
+import 'package:bac_project/features/tests/domain/requests/add_result_request.dart';
+import 'package:bac_project/features/tests/data/models/user_answer_model.dart';
+import 'package:bac_project/core/injector/app_injection.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'quizzing_event.dart';
 part 'quizzing_state.dart';
 
 class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
+  /// Use case to submit results
+  final AddResultUseCase _addResultUseCase;
+
   ///
-  QuizzingBloc() : super(QuizzingInitial()) {
+  QuizzingBloc({AddResultUseCase? addResultUseCase})
+    : _addResultUseCase = addResultUseCase ?? sl<AddResultUseCase>(),
+      super(QuizzingLoading()) {
     on<InitializeQuiz>(_onInitializeQuiz);
     on<OptionQuestion>(_onAnswerQuestion);
     on<NextQuestion>(_onNextQuestion);
@@ -22,10 +33,11 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
   ///
   late Timer _timer;
   late DateTime _startTime;
+  late int? _lessonId;
   late List<Question> _questions;
   late Duration _timeLeft;
   late Duration _initialTimeLimit;
-  late Map<int, String> _selectedAnswers;
+  late Map<int, int> _selectedAnswers;
 
   void _onInitializeQuiz(InitializeQuiz event, Emitter<QuizzingState> emit) {
     ///
@@ -34,6 +46,7 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
     ///
     // Limit questions to a maximum of 15
     _questions = event.questions.take(15).toList();
+    _lessonId = event.lessonId;
     _selectedAnswers = {};
     _startTime = DateTime.now();
     _initialTimeLimit = Duration(minutes: event.timeLimit);
@@ -52,7 +65,7 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
         canGoNext: _questions.length > 1,
         canGoPrevious: false,
         selectedAnswerId: null,
-        selectedAnswers: Map<int, String>.from(_selectedAnswers),
+        selectedAnswers: Map<int, int>.from(_selectedAnswers),
       ),
     );
   }
@@ -72,7 +85,7 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
       emit(
         currentState.copyWith(
           selectedAnswerId: event.answerId,
-          selectedAnswers: Map<int, String>.from(_selectedAnswers),
+          selectedAnswers: Map<int, int>.from(_selectedAnswers),
         ),
       );
     }
@@ -97,7 +110,7 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
             canGoNext: nextIndex < _questions.length - 1,
             canGoPrevious: true,
             selectedAnswerId: selectedAnswerId,
-            selectedAnswers: Map<int, String>.from(_selectedAnswers),
+            selectedAnswers: Map<int, int>.from(_selectedAnswers),
           ),
         );
       }
@@ -128,7 +141,7 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
             canGoNext: true,
             canGoPrevious: previousIndex > 0,
             selectedAnswerId: selectedAnswerId,
-            selectedAnswers: Map<int, String>.from(_selectedAnswers),
+            selectedAnswers: Map<int, int>.from(_selectedAnswers),
           ),
         );
       }
@@ -139,7 +152,7 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
     add(const SubmitQuiz());
   }
 
-  void _onSubmitQuiz(SubmitQuiz event, Emitter<QuizzingState> emit) {
+  Future<void> _onSubmitQuiz(SubmitQuiz event, Emitter<QuizzingState> emit) async {
     /// Stop the timer
     _stopTimer();
 
@@ -184,6 +197,36 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
         timeTaken: timeTaken,
       ),
     );
+
+    // Build and send AddResultRequest using the use case. Errors are ignored so UI remains responsive.
+    try {
+      final questionIds = _questions.map((q) => q.id).toList();
+      final answers =
+          _questions
+              .map(
+                (q) => UserAnswerModel(questionId: q.id, selectedOptionId: _selectedAnswers[q.id]),
+              )
+              .toList();
+
+      final request = AddResultRequest(
+        lessonId: _lessonId,
+        questionsIds: questionIds,
+        durationSeconds: timeTaken.inSeconds,
+        answers: answers,
+      );
+
+      final result = await _addResultUseCase.call(request);
+      result.fold(
+        (failure) {
+          // optionally log or handle failure
+        },
+        (response) {
+          sl<ExploreResultsBloc>().add(FetchResults());
+        },
+      );
+    } catch (_) {
+      // ignore
+    }
   }
 
   void _onRetakeQuiz(RetakeQuiz event, Emitter<QuizzingState> emit) {
@@ -205,7 +248,7 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
         canGoNext: _questions.length > 1,
         canGoPrevious: false,
         selectedAnswerId: null,
-        selectedAnswers: Map<int, String>.from(_selectedAnswers),
+        selectedAnswers: Map<int, int>.from(_selectedAnswers),
       ),
     );
   }

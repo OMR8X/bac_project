@@ -1,8 +1,8 @@
+import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/injector/tests_feature_inj.dart';
 import 'package:bac_project/core/resources/styles/padding_resources.dart';
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';
-import 'package:bac_project/core/services/localization/localization_keys.dart';
-import 'package:bac_project/core/services/localization/localization_manager.dart';
+
 import 'package:bac_project/core/services/router/app_routes.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
 import 'package:bac_project/core/widgets/ui/fields/bottom_buttons_widget.dart';
@@ -36,9 +36,7 @@ class _PickLessonsViewState extends State<PickLessonsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(sl<LocalizationManager>().get(LocalizationKeys.pickLessons.title)),
-      ),
+      appBar: AppBar(title: Text(context.l10n.pickLessonsTitle)),
       body: Padding(
         padding: PaddingResources.screenSidesPadding,
         child: BlocBuilder<PickLessonsBloc, PickLessonsState>(
@@ -90,7 +88,7 @@ class _PickLessonsViewState extends State<PickLessonsView> {
                           extra: TestModeSettingsArguments(lessonIds: state.pickedLessonsId),
                         );
                       },
-                      text: sl<LocalizationManager>().get(LocalizationKeys.buttons.pick),
+                      text: context.l10n.buttonsPick,
                     ),
                   ),
                 ],
