@@ -11,7 +11,7 @@ class QuestionCategoryModel extends QuestionCategory {
     return QuestionCategoryModel(
       id: json['id'],
       name: json['name'],
-      questionCount: json['question_count'],
+      questionCount: json['question_count'] ?? 0,
     );
   }
 

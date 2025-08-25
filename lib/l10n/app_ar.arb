@@ -68,5 +68,8 @@
   "buttonsSignIn": "تسجيل الدخول",
   "buttonsSignUp": "انشاء حساب",
   "buttonsSignOut": "تسجيل الخروج",
-  "buttonsUpdateUserData": "تحديث بياناتك"
+  "buttonsUpdateUserData": "تحديث بياناتك",
+  "selectAll": "تحديد الكل",
+  "unselectAll": "الغاء التحديد"
+
 }

@@ -33,3 +33,17 @@ class UnselectLessonEvent extends PickLessonsEvent {
   @override
   List<Object> get props => [lesson];
 }
+
+class SelectAllLessonsEvent extends PickLessonsEvent {
+  const SelectAllLessonsEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
+class UnselectAllLessonsEvent extends PickLessonsEvent {
+  const UnselectAllLessonsEvent();
+
+  @override
+  List<Object> get props => [];
+}

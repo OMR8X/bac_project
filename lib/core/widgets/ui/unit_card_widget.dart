@@ -152,9 +152,7 @@ class UnitCardWidget extends StatelessWidget {
             onPressed: onExploreLessonsPressed,
             iconAlignment: IconAlignment.end,
             icon: Icon(Icons.explore_outlined, size: FontSizeResources.s16),
-            label: Text(
-              context.l10n.homeCardExploreLessonsAction,
-            ),
+            label: Text(context.l10n.homeCardExploreLessonsAction),
           ),
         ),
         const SizedBox(width: SpacesResources.s5),

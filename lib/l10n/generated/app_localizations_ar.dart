@@ -189,4 +189,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get buttonsUpdateUserData => 'تحديث بياناتك';
+
+  @override
+  String get selectAll => 'تحديد الكل';
+
+  @override
+  String get unselectAll => 'الغاء التحديد';
 }

@@ -13,6 +13,10 @@ class PaddingResources {
   );
 
   ///
+  static EdgeInsets screenTopPadding(BuildContext context) =>
+      EdgeInsets.only(top: AppBar().preferredSize.height + MediaQuery.of(context).padding.top);
+
+  ///
   static const EdgeInsets listViewPadding = EdgeInsets.only(
     top: SpacesResources.s4,
     bottom: SpacesResources.s80,
@@ -26,8 +30,8 @@ class PaddingResources {
 
   ///
   static const EdgeInsets fieldContentPadding = EdgeInsets.symmetric(
-    horizontal: SpacesResources.s6,
-    vertical: SpacesResources.s6,
+    horizontal: SpacesResources.s8,
+    vertical: SpacesResources.s8,
   );
 
   ///
@@ -61,7 +65,7 @@ class PaddingResources {
   static const EdgeInsets cardOuterPadding = EdgeInsets.symmetric(vertical: SpacesResources.s2);
 
   ///
-  static const EdgeInsets fullTestCardPadding = EdgeInsets.symmetric(vertical: SpacesResources.s4);
+  static const EdgeInsets fullTestCardPadding = EdgeInsets.symmetric(vertical: 0);
 
   ///
   static const EdgeInsets switchCardInnerPadding = EdgeInsets.symmetric(

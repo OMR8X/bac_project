@@ -1,3 +1,4 @@
+import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/injector/tests_feature_inj.dart';
 import 'package:bac_project/core/resources/styles/padding_resources.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
@@ -32,6 +33,7 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text(context.l10n.homeTitle),
         leading: IconButton(onPressed: () {}, icon: const Icon(Icons.notifications)),
         actions: [SwitchThemeWidget()],
       ),

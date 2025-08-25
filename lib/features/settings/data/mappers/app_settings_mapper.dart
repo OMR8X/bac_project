@@ -7,6 +7,7 @@ extension AppSettingsMapper on AppSettings {
     return AppSettingsModel(
       sections: sections,
       governorates: governorates,
+      categories: categories,
       version: version.toModel,
     );
   }
@@ -14,6 +15,11 @@ extension AppSettingsMapper on AppSettings {
 
 extension AppSettingsModelMapper on AppSettingsModel {
   AppSettings get toEntity {
-    return AppSettings(sections: sections, governorates: governorates, version: version);
+    return AppSettings(
+      sections: sections,
+      governorates: governorates,
+      version: version,
+      categories: categories,
+    );
   }
 }

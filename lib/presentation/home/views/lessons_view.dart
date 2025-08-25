@@ -1,3 +1,4 @@
+import 'package:bac_project/core/resources/styles/blur_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
@@ -51,36 +52,39 @@ class _LessonsViewState extends State<LessonsView> {
             if (state is LessonsLoading) {
               return const LoadingWidget();
             } else if (state is LessonsLoaded) {
-              return Padding(
-                padding: PaddingResources.screenSidesPadding,
-                child: CustomScrollView(
-                  slivers: [
-                    // Show test card only when at the top using a SliverLayoutBuilder
+              return Stack(
+                children: [
+                  Padding(
+                    padding: PaddingResources.screenSidesPadding,
+                    child: CustomScrollView(
+                      slivers: [
+                        // Show test card only when at the top using a SliverLayoutBuilder
+                        // inline search bar
+                        SliverFloatingHeader(
+                          snapMode: FloatingHeaderSnapMode.overlay,
 
-                    // inline search bar
-                    SliverFloatingHeader(
-                      snapMode: FloatingHeaderSnapMode.overlay,
-
-                      child: SearchBarWidget(
-                        enabled: false,
-                        heroTag: 'lessons_search_bar',
-                        onTap: _navigateToSearch,
-                      ),
+                          child: SearchBarWidget(
+                            enabled: false,
+                            heroTag: 'lessons_search_bar',
+                            onTap: _navigateToSearch,
+                          ),
+                        ),
+                        SliverToBoxAdapter(
+                          child: LessonsTestCardWidget(
+                            lessonCount: state.lessons.length,
+                            onTestAllLessonsPressed: () {
+                              _navigateToTestAllLessons(context, state.lessons);
+                            },
+                          ),
+                        ),
+                        SliverPadding(
+                          padding: PaddingResources.listViewPadding,
+                          sliver: LessonsCardsBuilderWidget(lessons: state.lessons),
+                        ),
+                      ],
                     ),
-                    SliverToBoxAdapter(
-                      child: LessonsTestCardWidget(
-                        lessonCount: state.lessons.length,
-                        onTestAllLessonsPressed: () {
-                          _navigateToTestAllLessons(context, state.lessons);
-                        },
-                      ),
-                    ),
-                    SliverPadding(
-                      padding: PaddingResources.listViewPadding,
-                      sliver: LessonsCardsBuilderWidget(lessons: state.lessons),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               );
             } else if (state is LessonsError) {
               return Center(child: Text(state.message));

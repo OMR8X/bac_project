@@ -447,6 +447,18 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'تحديث بياناتك'**
   String get buttonsUpdateUserData;
+
+  /// No description provided for @selectAll.
+  ///
+  /// In ar, this message translates to:
+  /// **'تحديد الكل'**
+  String get selectAll;
+
+  /// No description provided for @unselectAll.
+  ///
+  /// In ar, this message translates to:
+  /// **'الغاء التحديد'**
+  String get unselectAll;
 }
 
 class _AppLocalizationsDelegate

@@ -10,14 +10,13 @@ class BorderRadiusResource {
   ///
   //
   static final bordersRadiusTiny = BorderRadius.circular(2 * sizeUnit);
-  //
   static final bordersRadiusSmall = BorderRadius.circular(4 * sizeUnit);
   static final bordersRadiusMedium = BorderRadius.circular(6 * sizeUnit);
   static final bordersRadiusLarge = BorderRadius.circular(8 * sizeUnit);
   static final bordersRadiusXLarge = BorderRadius.circular(10 * sizeUnit);
   static final bordersRadiusXXLarge = BorderRadius.circular(12 * sizeUnit);
   //
-  static final buttonBorderRadius = bordersRadiusLarge;
+  static final buttonBorderRadius = bordersRadiusSmall;
   //
   static final fieldBorderRadius = bordersRadiusMedium;
   //

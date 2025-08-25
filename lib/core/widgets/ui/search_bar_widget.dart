@@ -74,7 +74,8 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
       transitionOnUserGestures: true,
       tag: widget.heroTag ?? 'search_bar',
       child: Material(
-        color: Colors.transparent,
+        color: Theme.of(context).colorScheme.surface,
+        // color: Colors.transparent,
         child: Padding(
           padding: PaddingResources.searchBarPadding,
           child: Directionality(

@@ -13,7 +13,7 @@ class ColorsResourcesLight {
   static const Color success = Color(0xff00AE6F);
   static const Color onSuccess = Color(0xffDCFFE5);
   //
-  static const Color surface = Color(0xffF9F9F9);
+  static const Color surface = Color(0xffF2F2F2);
   static const Color onSurface = Color(0xff0A0A10);
   static const Color onSurfaceVariant = Color(0xff717171);
   //

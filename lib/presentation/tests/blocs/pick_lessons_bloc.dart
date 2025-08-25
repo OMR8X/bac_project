@@ -15,6 +15,8 @@ class PickLessonsBloc extends Bloc<PickLessonsEvent, PickLessonsState> {
     on<PickLessonsInitializeEvent>(_onInitializePickedLessons);
     on<SelectLessonEvent>(_onSelectLesson);
     on<UnselectLessonEvent>(_onUnselectLesson);
+    on<SelectAllLessonsEvent>(_onSelectAllLessons);
+    on<UnselectAllLessonsEvent>(_onUnselectAllLessons);
   }
 
   Future<void> _onInitializePickedLessons(
@@ -39,5 +41,14 @@ class PickLessonsBloc extends Bloc<PickLessonsEvent, PickLessonsState> {
     final updatedPickedLessonsId = List<int>.from(state.pickedLessonsId)
       ..removeWhere((lessonId) => lessonId == event.lesson.id);
     emit(state.copyWith(pickedLessonsId: updatedPickedLessonsId));
+  }
+
+  void _onSelectAllLessons(SelectAllLessonsEvent event, Emitter<PickLessonsState> emit) {
+    final allIds = state.allLessons.map((lesson) => lesson.id).toList();
+    emit(state.copyWith(pickedLessonsId: allIds));
+  }
+
+  void _onUnselectAllLessons(UnselectAllLessonsEvent event, Emitter<PickLessonsState> emit) {
+    emit(state.copyWith(pickedLessonsId: []));
   }
 }

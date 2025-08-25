@@ -1,7 +1,6 @@
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
-import 'package:bac_project/core/injector/tests_feature_inj.dart';
 import 'package:bac_project/core/resources/styles/padding_resources.dart';
-import 'package:bac_project/core/resources/styles/sizes_resources.dart';
+// ... existing code ...
 
 import 'package:bac_project/core/services/router/app_routes.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
@@ -36,7 +35,32 @@ class _PickLessonsViewState extends State<PickLessonsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.l10n.pickLessonsTitle)),
+      appBar: AppBar(
+        title: Text(context.l10n.pickLessonsTitle),
+        actions: [
+          BlocBuilder<PickLessonsBloc, PickLessonsState>(
+            builder: (context, state) {
+              final allSelected =
+                  state.allLessons.isNotEmpty &&
+                  state.pickedLessonsId.length == state.allLessons.length;
+              final buttonText = allSelected ? context.l10n.unselectAll : context.l10n.selectAll;
+              return TextButton(
+                onPressed:
+                    state.status == PickLessonsStatus.loaded
+                        ? () {
+                          if (allSelected) {
+                            context.read<PickLessonsBloc>().add(const UnselectAllLessonsEvent());
+                          } else {
+                            context.read<PickLessonsBloc>().add(const SelectAllLessonsEvent());
+                          }
+                        }
+                        : null,
+                child: Text(buttonText),
+              );
+            },
+          ),
+        ],
+      ),
       body: Padding(
         padding: PaddingResources.screenSidesPadding,
         child: BlocBuilder<PickLessonsBloc, PickLessonsState>(

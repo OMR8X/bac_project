@@ -117,7 +117,7 @@ class LessonsTestCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedSuperellipseBorder(
-        borderRadius: BorderRadiusResource.bordersRadiusXXLarge,
+        borderRadius: BorderRadiusResource.cardBorderRadius,
         side: BorderSide(color: Theme.of(context).colorScheme.outline),
       ),
       color: Theme.of(context).colorScheme.primary,

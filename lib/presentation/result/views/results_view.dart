@@ -1,3 +1,4 @@
+import 'package:bac_project/presentation/settings/widgets/switch_theme_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -27,7 +28,12 @@ class _ResultsViewState extends State<ResultsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.l10n.resultTitle)),
+      // appBar: AppBar(title: Text(context.l10n.resultTitle)),
+      appBar: AppBar(
+        title: Text(context.l10n.resultTitle),
+        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.notifications)),
+        actions: [SwitchThemeWidget()],
+      ),
       body: BlocConsumer<ExploreResultsBloc, ExploreResultsState>(
         bloc: bloc,
         listener: (context, state) {
