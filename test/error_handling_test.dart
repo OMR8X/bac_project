@@ -11,147 +11,121 @@ import '../lib/features/posts/data/models/post_model.dart';
 void main() {
   group('Error Handling Integration Tests', () {
     group('Repository Error Handling', () {
-      test(
-        'should return ServerFailure when data source throws generic exception',
-        () async {
-          // Arrange
-          final dataSource = _ThrowingDataSource(Exception('Generic error'));
-          final repository = PostRepositoryImpl(dataSource);
-          final useCase = GetPostsUseCase(repository);
+      test('should return ServerFailure when data source throws generic exception', () async {
+        // Arrange
+        final dataSource = _ThrowingDataSource(Exception('Generic error'));
+        final repository = PostRepositoryImpl(dataSource);
+        final useCase = GetPostsUsecase(repository);
 
-          // Act
-          final result = await useCase.call();
+        // Act
+        final result = await useCase.call();
 
-          // Assert
-          expect(result, isA<Left<Failure, List<Post>>>());
-          result.fold((failure) {
-            expect(failure, isA<ServerFailure>());
-            expect(failure.message, contains('Generic error'));
-          }, (posts) => fail('Expected failure but got success'));
-        },
-      );
+        // Assert
+        expect(result, isA<Left<Failure, List<Post>>>());
+        result.fold((failure) {
+          expect(failure, isA<ServerFailure>());
+          expect(failure.message, contains('Generic error'));
+        }, (posts) => fail('Expected failure but got success'));
+      });
 
-      test(
-        'should return ServerFailure when data source throws FormatException',
-        () async {
-          // Arrange
-          final dataSource = _ThrowingDataSource(
-            const FormatException('Invalid format'),
-          );
-          final repository = PostRepositoryImpl(dataSource);
-          final useCase = GetPostsUseCase(repository);
+      test('should return ServerFailure when data source throws FormatException', () async {
+        // Arrange
+        final dataSource = _ThrowingDataSource(const FormatException('Invalid format'));
+        final repository = PostRepositoryImpl(dataSource);
+        final useCase = GetPostsUsecase(repository);
 
-          // Act
-          final result = await useCase.call();
+        // Act
+        final result = await useCase.call();
 
-          // Assert
-          expect(result, isA<Left<Failure, List<Post>>>());
-          result.fold((failure) {
-            expect(failure, isA<ServerFailure>());
-            expect(failure.message, contains('Invalid format'));
-          }, (posts) => fail('Expected failure but got success'));
-        },
-      );
+        // Assert
+        expect(result, isA<Left<Failure, List<Post>>>());
+        result.fold((failure) {
+          expect(failure, isA<ServerFailure>());
+          expect(failure.message, contains('Invalid format'));
+        }, (posts) => fail('Expected failure but got success'));
+      });
 
-      test(
-        'should return ServerFailure when data source throws TypeError',
-        () async {
-          // Arrange
-          final dataSource = _ThrowingDataSource(TypeError());
-          final repository = PostRepositoryImpl(dataSource);
-          final useCase = GetPostsUseCase(repository);
+      test('should return ServerFailure when data source throws TypeError', () async {
+        // Arrange
+        final dataSource = _ThrowingDataSource(TypeError());
+        final repository = PostRepositoryImpl(dataSource);
+        final useCase = GetPostsUsecase(repository);
 
-          // Act
-          final result = await useCase.call();
+        // Act
+        final result = await useCase.call();
 
-          // Assert
-          expect(result, isA<Left<Failure, List<Post>>>());
-          result.fold((failure) {
-            expect(failure, isA<ServerFailure>());
-            expect(failure.message, isNotEmpty);
-          }, (posts) => fail('Expected failure but got success'));
-        },
-      );
+        // Assert
+        expect(result, isA<Left<Failure, List<Post>>>());
+        result.fold((failure) {
+          expect(failure, isA<ServerFailure>());
+          expect(failure.message, isNotEmpty);
+        }, (posts) => fail('Expected failure but got success'));
+      });
 
       test('should handle null or empty data gracefully', () async {
         // Arrange
         final dataSource = _EmptyDataSource();
         final repository = PostRepositoryImpl(dataSource);
-        final useCase = GetPostsUseCase(repository);
+        final useCase = GetPostsUsecase(repository);
 
         // Act
         final result = await useCase.call();
 
         // Assert
         expect(result, isA<Right<Failure, List<Post>>>());
-        result.fold(
-          (failure) =>
-              fail('Expected success but got failure: ${failure.message}'),
-          (posts) {
-            expect(posts, isEmpty);
-          },
-        );
+        result.fold((failure) => fail('Expected success but got failure: ${failure.message}'), (
+          posts,
+        ) {
+          expect(posts, isEmpty);
+        });
       });
 
-      test(
-        'should handle malformed data and still succeed with valid posts',
-        () async {
-          // Arrange
-          final dataSource = _MixedDataSource();
-          final repository = PostRepositoryImpl(dataSource);
-          final useCase = GetPostsUseCase(repository);
+      test('should handle malformed data and still succeed with valid posts', () async {
+        // Arrange
+        final dataSource = _MixedDataSource();
+        final repository = PostRepositoryImpl(dataSource);
+        final useCase = GetPostsUsecase(repository);
 
-          // Act
-          final result = await useCase.call();
+        // Act
+        final result = await useCase.call();
 
-          // Assert
-          expect(result, isA<Right<Failure, List<Post>>>());
-          result.fold(
-            (failure) =>
-                fail('Expected success but got failure: ${failure.message}'),
-            (posts) {
-              expect(posts, isNotEmpty);
-              expect(
-                posts.length,
-                equals(2),
-              ); // Only valid posts should be included
+        // Assert
+        expect(result, isA<Right<Failure, List<Post>>>());
+        result.fold((failure) => fail('Expected success but got failure: ${failure.message}'), (
+          posts,
+        ) {
+          expect(posts, isNotEmpty);
+          expect(posts.length, equals(2)); // Only valid posts should be included
 
-              // Verify the valid posts
-              expect(posts.any((post) => post.id == 1), isTrue);
-              expect(posts.any((post) => post.id == 3), isTrue);
-            },
-          );
-        },
-      );
+          // Verify the valid posts
+          expect(posts.any((post) => post.id == 1), isTrue);
+          expect(posts.any((post) => post.id == 3), isTrue);
+        });
+      });
     });
 
     group('Use Case Error Propagation', () {
-      test(
-        'should propagate repository failures without modification',
-        () async {
-          // Arrange
-          final dataSource = _ThrowingDataSource(
-            Exception('Original error message'),
-          );
-          final repository = PostRepositoryImpl(dataSource);
-          final useCase = GetPostsUseCase(repository);
+      test('should propagate repository failures without modification', () async {
+        // Arrange
+        final dataSource = _ThrowingDataSource(Exception('Original error message'));
+        final repository = PostRepositoryImpl(dataSource);
+        final useCase = GetPostsUsecase(repository);
 
-          // Act
-          final result = await useCase.call();
+        // Act
+        final result = await useCase.call();
 
-          // Assert
-          result.fold((failure) {
-            expect(failure, isA<ServerFailure>());
-            expect(failure.message, contains('Original error message'));
-          }, (posts) => fail('Expected failure but got success'));
-        },
-      );
+        // Assert
+        result.fold((failure) {
+          expect(failure, isA<ServerFailure>());
+          expect(failure.message, contains('Original error message'));
+        }, (posts) => fail('Expected failure but got success'));
+      });
 
       test('should maintain error type through all layers', () async {
         // Arrange
         final dataSource = _ThrowingDataSource(Exception('Test error'));
         final repository = PostRepositoryImpl(dataSource);
-        final useCase = GetPostsUseCase(repository);
+        final useCase = GetPostsUsecase(repository);
 
         // Act
         final result = await useCase.call();
@@ -170,7 +144,7 @@ void main() {
         // Arrange
         final dataSource = _TimeoutDataSource();
         final repository = PostRepositoryImpl(dataSource);
-        final useCase = GetPostsUseCase(repository);
+        final useCase = GetPostsUsecase(repository);
 
         // Act
         final result = await useCase.call();
@@ -187,7 +161,7 @@ void main() {
         // Arrange
         final dataSource = _ConcurrentAccessDataSource();
         final repository = PostRepositoryImpl(dataSource);
-        final useCase = GetPostsUseCase(repository);
+        final useCase = GetPostsUsecase(repository);
 
         // Act - Make multiple concurrent calls
         final futures = List.generate(5, (_) => useCase.call());
@@ -236,12 +210,7 @@ class _MixedDataSource implements PostDataSource {
     // Return a mix of valid and potentially problematic data
     return const [
       PostModel(id: 1, title: 'Valid Post 1', body: 'Valid content', userId: 1),
-      PostModel(
-        id: 3,
-        title: 'Valid Post 2',
-        body: 'More valid content',
-        userId: 2,
-      ),
+      PostModel(id: 3, title: 'Valid Post 2', body: 'More valid content', userId: 2),
     ];
   }
 }

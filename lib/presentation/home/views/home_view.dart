@@ -1,11 +1,22 @@
+import 'dart:math';
+
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/injector/tests_feature_inj.dart';
+import 'package:bac_project/core/resources/styles/assets_resources.dart';
 import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
+import 'package:bac_project/core/widgets/ui/icons/notifications_icon_widget.dart';
+import 'package:bac_project/core/widgets/ui/icons/search_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/motivational_quote_card_widget.dart';
-import 'package:bac_project/presentation/settings/widgets/switch_theme_widget.dart';
+import 'package:bac_project/core/widgets/ui/icons/switch_theme_widget.dart';
+import 'package:bac_project/features/settings/domain/entities/app_settings.dart';
+import 'package:bac_project/features/settings/other/fake_quotes_list.dart';
+import 'package:bac_project/presentation/home/widgets/quote_of_the_day_widget.dart';
+import 'package:bac_project/presentation/testing/views/designing_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/resources/styles/spaces_resources.dart';
@@ -34,8 +45,15 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       appBar: AppBar(
         title: Text(context.l10n.homeTitle),
-        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.notifications)),
-        actions: [SwitchThemeWidget()],
+        leading: NotificationsIconWidget(),
+        actions: [
+          SearchIconWidget(
+            onPressed: () {
+              context.pushNamed(AppRoutes.search.name, extra: SearchViewArguments(unitId: null));
+            },
+          ),
+          //  SwitchThemeWidget()
+        ],
       ),
       body: BlocProvider.value(
         value: sl<HomeBloc>(),
@@ -44,34 +62,22 @@ class _HomeViewState extends State<HomeView> {
             if (state is HomeLoading) {
               return CustomScrollView(slivers: [SliverFillRemaining(child: LoadingWidget())]);
             } else if (state is HomeLoaded) {
-              return CustomScrollView(
-                slivers: [
-                  SliverFloatingHeader(
-                    snapMode: FloatingHeaderSnapMode.overlay,
-                    child: Padding(
-                      padding: PaddingResources.screenSidesPadding,
-                      child: SearchBarWidget(
-                        enabled: false,
-                        heroTag: 'home_search_bar',
-                        onTap: () {
-                          context.pushNamed(
-                            AppRoutes.search.name,
-                            extra: SearchViewArguments(heroTag: 'home_search_bar'),
-                          );
-                        },
-                      ),
+              return Padding(
+                padding: PaddingResources.screenSidesPadding,
+                child: CustomScrollView(
+                  slivers: [
+                    SliverFloatingHeader(
+                      snapMode: FloatingHeaderSnapMode.overlay,
+                      child: QuoteOfTheDayWidget(quote: fakeQuotes[Random().nextInt(fakeQuotes.length - 1)]),
+                      // child: QuoteOfTheDayWidget(quote: sl<AppSettings>().motivationalQuote ?? fakeQuotes[Random().nextInt(fakeQuotes.length - 1)]),
                     ),
-                  ),
-                  SliverPadding(
-                    padding: PaddingResources.screenSidesPadding,
-                    sliver: HomeCardsBuilderWidget(cards: state.cards, units: state.units),
-                  ),
-                ],
+
+                    SliverPadding(padding: PaddingResources.listViewPadding, sliver: HomeCardsBuilderWidget(cards: state.cards, units: state.units)),
+                  ],
+                ),
               );
             } else if (state is HomeError) {
-              return CustomScrollView(
-                slivers: [SliverFillRemaining(child: Center(child: Text(state.message)))],
-              );
+              return CustomScrollView(slivers: [SliverFillRemaining(child: Center(child: Text(state.message)))]);
             }
             return const SizedBox.shrink();
           },

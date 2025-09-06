@@ -25,19 +25,19 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final GetUserDataUseCase _getUserDataUseCase;
-  final SignInUseCase _signInUseCase;
-  final SignUpUseCase _signUpUseCase;
-  final SignOutUseCase _signOutUseCase;
+  final GetUserDataUsecase _getUserDataUsecase;
+  final SignInUsecase _signInUsecase;
+  final SignUpUsecase _signUpUsecase;
+  final SignOutUsecase _signOutUsecase;
   // final DeleteDeviceTokenUsecase _deleteDeviceTokenUsecase;
-  final UpdateUserDataUseCase _updateUserDataUseCase;
+  final UpdateUserDataUsecase _updateUserDataUsecase;
 
   AuthBloc(
-    this._getUserDataUseCase,
-    this._signInUseCase,
-    this._signUpUseCase,
-    this._signOutUseCase,
-    this._updateUserDataUseCase,
+    this._getUserDataUsecase,
+    this._signInUsecase,
+    this._signUpUsecase,
+    this._signOutUsecase,
+    this._updateUserDataUsecase,
     // this._deleteDeviceTokenUsecase,
   ) : super(const AuthLoadingState()) {
     //
@@ -66,18 +66,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     //
     emit(const AuthLoadingState());
     //
-    final response = await _getUserDataUseCase(request: GetUserDataRequest());
+    final response = await _getUserDataUsecase(request: GetUserDataRequest());
     //
     response.fold(
       (failure) {
         emit(AuthStartState(failure: failure));
       },
       (r) async {
-        //
         _injectUserData(r.user);
-        //
-        // Optional: kick off other modules when added to app
-        //
         emit(const AuthDoneState());
       },
     );
@@ -98,7 +94,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     //
     emit(const AuthSigningInState(loading: true));
     //
-    final response = await _signInUseCase(request: signUpRequest);
+    final response = await _signInUsecase(request: signUpRequest);
     //
     response.fold(
       (l) {
@@ -134,7 +130,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     //
     emit(const AuthSigningUpState(loading: true));
     //
-    final response = await _signUpUseCase(request: signUpRequest);
+    final response = await _signUpUsecase(request: signUpRequest);
     //
     response.fold(
       (l) {
@@ -169,7 +165,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       password: password,
     );
     //
-    final response = await _updateUserDataUseCase(request: updateUserDataRequest);
+    final response = await _updateUserDataUsecase(request: updateUserDataRequest);
     //
     response.fold(
       (l) {
@@ -195,7 +191,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     //
     emit(const AuthLoadingState());
     //
-    final response = await _signOutUseCase(request: SignOutRequest());
+    final response = await _signOutUsecase(request: SignOutRequest());
     //
     response.fold(
       (l) {

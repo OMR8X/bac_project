@@ -1,0 +1,23 @@
+{
+  "mcpServers": {
+    "dart": {
+      "command": "dart",
+      "args": [
+        "mcp-server",
+        "--force-roots-fallback"
+      ]
+    },
+    "supabase": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@supabase/mcp-server-supabase@latest",
+        "--read-only",
+        "--project-ref=yyckcezjjzfxktiannbm"
+      ],
+      "env": {
+        "SUPABASE_ACCESS_TOKEN": "sbp_4c9aa0bd304dc77c20b4971116b9a209b9bf131f"
+      }
+    }
+  }
+}

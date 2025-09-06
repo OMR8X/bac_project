@@ -7,10 +7,10 @@ import 'package:dartz/dartz.dart';
 
 import '../requests/update_user_data_request.dart';
 
-class UpdateUserDataUseCase {
+class UpdateUserDataUsecase {
   final AuthRepository repository;
 
-  UpdateUserDataUseCase({required this.repository});
+  UpdateUserDataUsecase({required this.repository});
 
   Future<Either<Failure, UpdateUserDataResponse>> call({
     required UpdateUserDataRequest request,

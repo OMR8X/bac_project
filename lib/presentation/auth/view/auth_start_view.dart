@@ -6,7 +6,7 @@ import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
 import 'package:bac_project/core/widgets/ui/fields/mode_switcher_widget.dart';
 import 'package:bac_project/presentation/auth/state/bloc/auth_bloc.dart';
-import 'package:bac_project/presentation/settings/widgets/switch_theme_widget.dart';
+import 'package:bac_project/core/widgets/ui/icons/switch_theme_widget.dart';
 import 'package:flutter/material.dart';
 
 class AuthStartView extends StatefulWidget {

@@ -6,6 +6,6 @@ class AddResultResponse {
   const AddResultResponse({required this.result});
 
   factory AddResultResponse.fromJson(Map<String, dynamic> json) {
-    return AddResultResponse(result: ResultModel.fromJson(json));
+    return AddResultResponse(result: ResultModel.fromJson(json['data']));
   }
 }

@@ -7,15 +7,8 @@ sealed class ExploreNotificationsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class LoadExploreNotificationsEvent extends ExploreNotificationsEvent {
-  const LoadExploreNotificationsEvent();
-
-  @override
-  List<Object> get props => [];
-}
-
-final class ClearExploreNotificationsEvent extends ExploreNotificationsEvent {
-  const ClearExploreNotificationsEvent();
+final class LoadNotificationsEvent extends ExploreNotificationsEvent {
+  const LoadNotificationsEvent();
 
   @override
   List<Object> get props => [];

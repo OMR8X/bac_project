@@ -4,10 +4,10 @@ import '../../data/responses/get_app_settings_response.dart';
 import '../repositories/settings_repository.dart';
 import '../requests/get_app_settings_request.dart';
 
-class GetAppSettingsUseCase {
+class GetAppSettingsUsecase {
   final SettingsRepository repository;
 
-  GetAppSettingsUseCase({required this.repository});
+  GetAppSettingsUsecase({required this.repository});
 
   Future<Either<Failure, GetAppSettingsResponse>> call({
     required GetAppSettingsRequest request,

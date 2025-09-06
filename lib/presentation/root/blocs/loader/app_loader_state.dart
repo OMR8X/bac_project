@@ -1,6 +1,6 @@
 part of 'app_loader_bloc.dart';
 
-enum LoadState { failure, loading, update, succeed }
+enum LoadState { failure, loading, update, succeed, unauthorized }
 
 final class AppLoaderState extends Equatable {
   //
@@ -26,15 +26,13 @@ final class AppLoaderState extends Equatable {
     return AppLoaderState(state: LoadState.succeed, failure: null, version: Version.empty());
   }
   //
+  factory AppLoaderState.unauthorized() {
+    return AppLoaderState(state: LoadState.unauthorized, failure: null, version: Version.empty());
+  }
+  //
   factory AppLoaderState.update({required Version version}) {
-    return AppLoaderState(
-      state: LoadState.update,
-      failure: null,
-      version: version ,
-    );
+    return AppLoaderState(state: LoadState.update, failure: null, version: version);
   }
   @override
   List<Object?> get props => [state, failure, version];
-
-  
 }

@@ -31,8 +31,13 @@ class SupabaseEndpoints {
   static const getLessonsQuestionsFunctionEndpoint = "fn_api_lessons_get_questions";
   static const getAppSettingsFunctionEndpoint = "fn_api_settings_get_app_settings";
   static const getUserResultsFunctionEndpoint = "fn_api_get_user_results";
-  static const addUserResultFunctionEndpoint = "fn_api_add_user_result";
+  static const getUserResultByIdFunctionEndpoint = "fn_api_results_get_user_result_by_id";
+  static const getResultLeaderboardFunctionEndpoint = "fn_api_results_get_result_leaderboard";
+  static const getTestOptionsFunctionEndpoint = "fn_api_questions_get_test_options";
+  static const getQuestionsByIdsFunctionEndpoint = "fn_api_questions_get_questions_by_ids";
+  static const addUserResultEdgeFunctionEndpoint = "add-user-result";
 
   ///
   static String rpc(String functionName) => '/rest/v1/rpc/$functionName';
+  static String edge(String functionName) => '/functions/v1/$functionName';
 }

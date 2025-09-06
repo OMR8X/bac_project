@@ -10,25 +10,20 @@ part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  final GetUnitsUseCase _getUnitsUseCase;
+  final GetUnitsUsecase _getUnitsUsecase;
 
-  HomeBloc({GetUnitsUseCase? getUnitsUseCase})
-    : _getUnitsUseCase = getUnitsUseCase ?? sl<GetUnitsUseCase>(),
+  HomeBloc({GetUnitsUsecase? getUnitsUsecase})
+    : _getUnitsUsecase = getUnitsUsecase ?? sl<GetUnitsUsecase>(),
       super(HomeInitial()) {
     on<HomeEventInitialize>(_onInitialize);
     on<HomeEventRefresh>(_onRefresh);
   }
 
-  Future<void> _onInitialize(
-    HomeEventInitialize event,
-    Emitter<HomeState> emit,
-  ) async {
+  Future<void> _onInitialize(HomeEventInitialize event, Emitter<HomeState> emit) async {
     emit(HomeLoading());
     try {
       // Use the use case to get units
-      final result = await _getUnitsUseCase.call(
-        const GetUnitsRequest(),
-      );
+      final result = await _getUnitsUsecase.call(const GetUnitsRequest());
 
       result.fold((failure) => emit(HomeError(failure.message)), (response) {
         // Convert units to action cards
@@ -54,9 +49,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(HomeLoading());
     try {
       // Use the use case to get units
-      final result = await _getUnitsUseCase.call(
-        const GetUnitsRequest(),
-      );
+      final result = await _getUnitsUsecase.call(const GetUnitsRequest());
 
       result.fold((failure) => emit(HomeError(failure.message)), (response) {
         // Convert units to action cards

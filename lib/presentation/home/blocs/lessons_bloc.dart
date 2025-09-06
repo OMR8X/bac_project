@@ -11,10 +11,10 @@ part 'lessons_event.dart';
 part 'lessons_state.dart';
 
 class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
-  final GetLessonsUseCase _getLessonsUseCase;
+  final GetLessonsUsecase _getLessonsUsecase;
 
-  LessonsBloc({GetLessonsUseCase? getLessonsUseCase})
-    : _getLessonsUseCase = getLessonsUseCase ?? sl<GetLessonsUseCase>(),
+  LessonsBloc({GetLessonsUsecase? getLessonsUsecase})
+    : _getLessonsUsecase = getLessonsUsecase ?? sl<GetLessonsUsecase>(),
       super(LessonsInitial()) {
     on<LessonsEventInitialize>(_onLessonsEventInitialize);
   }
@@ -26,13 +26,12 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
     emit(LessonsLoading());
     try {
       /// Use the use case to get lessons
-      final result = await _getLessonsUseCase.call(GetLessonsRequest(unitId: event.unitId));
+      final result = await _getLessonsUsecase.call(GetLessonsRequest(unitId: event.unitId));
 
       ///
       result.fold((failure) => emit(LessonsError(message: failure.message)), (response) {
         emit(LessonsLoaded(lessons: response.lessons));
       });
-      
     } catch (e) {
       emit(LessonsError(message: e.toString()));
     }

@@ -14,7 +14,7 @@ class NotificationsTopic extends Equatable {
   factory NotificationsTopic.empty() => NotificationsTopic(
         id: "-1",
         name: "",
-        isSubscribable:true,
+        isSubscribable: true,
       );
 
   @override

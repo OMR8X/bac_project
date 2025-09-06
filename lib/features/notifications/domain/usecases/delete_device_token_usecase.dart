@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
-
-import '../../../../core/resources/errors/failures.dart';
-import '../repositories/notifications_repository.dart';
+import 'package:bac_project/core/resources/errors/failures.dart';
+import 'package:bac_project/features/notifications/domain/repositories/notifications_repository.dart';
 
 class DeleteDeviceTokenUsecase {
   final NotificationsRepository repository;

@@ -68,7 +68,18 @@ class UIImagesResources {
   static const String teachersIcon = '$path/teachers-ic.png';
   static const String versionsIcon = '$path/version-ic.png';
   static const String notificationsIcon = '$path/notification-ic.png';
+  static const String questionMarkIcon = '$path/question-mark-ic.png';
+  static const String closeIcon = '$path/close-ic.png';
+  static const String searchIcon = '$path/search-ic.png';
+  static const String angleRightIcon = '$path/angle-right-ic.png';
   static const String bellIcon = '$path/bell.png';
+  static const String bellSVGIcon = '$path/bell-ic.svg';
+  static const String angleRightSVGIcon = '$path/angle-right-ic.svg';
+  static const String cancelSVGIcon = '$path/cancel-ic.svg';
+  static const String searchSVGIcon = '$path/search-ic.svg';
+  static const String brightnessDarkSVGIcon = '$path/brightness-dark-ic.svg';
+  static const String brightnessLightSVGIcon = '$path/brightness-light-ic.svg';
+  //
 }
 
 class MaterialsImagesResources {

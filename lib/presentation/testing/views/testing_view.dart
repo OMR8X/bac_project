@@ -1,4 +1,5 @@
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
+import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
 import 'package:bac_project/features/tests/domain/entities/question.dart';
 import 'package:bac_project/features/tests/domain/entities/option.dart';
 import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
@@ -7,17 +8,16 @@ import 'package:bac_project/core/services/router/app_arguments.dart';
 import 'package:bac_project/core/resources/styles/padding_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/widgets/ui/fields/bottom_buttons_widget.dart';
-import 'package:bac_project/presentation/tests/widget/question_card_widget.dart';
-import 'package:bac_project/presentation/tests/widget/option_card_widget.dart';
+import 'package:bac_project/presentation/tests/widgets/question_card_widget.dart';
+import 'package:bac_project/presentation/tests/widgets/option_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bac_project/core/injector/app_injection.dart';
-import 'package:bac_project/presentation/tests/blocs/quizzing_bloc.dart';
+import 'package:bac_project/presentation/tests/blocs/quizzing/quizzing_bloc.dart';
 
 class TestingView extends StatelessWidget {
   const TestingView({super.key, this.arguments});
 
-  final TestingArguments? arguments;
+  final QuizzingArguments? arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +39,7 @@ class TestingView extends StatelessWidget {
           // Using existing localization keys: reuse testProperties title for now
           title: Text("sl<LocalizationManager>().get(LocalizationKeys.testProperties.title)"),
           centerTitle: true,
-          leading: IconButton(
-            onPressed: () => Navigator.of(context).pop(),
-            icon: const Icon(Icons.close),
-          ),
+          leading: CloseIconWidget(),
         ),
         body: Padding(
           padding: PaddingResources.screenSidesPadding,
@@ -61,13 +58,7 @@ class TestingView extends StatelessWidget {
                         QuestionCardWidget(question: question),
                         const SizedBox(height: SpacesResources.s2),
                         ...question.options.map((option) {
-                          return OptionCardWidget(
-                            option: option,
-                            isSelected: false,
-                            didAnswer: false,
-                            testMode: testMode,
-                            onTap: (_) {},
-                          );
+                          return OptionCardWidget(option: option, isSelected: false, didAnswer: false, testMode: testMode, onTap: (_) {});
                         }),
                       ],
                     );
@@ -95,6 +86,9 @@ class TestingView extends StatelessWidget {
           const Option(id: 3, questionId: 1, text: '5', isCorrect: false),
           const Option(id: 4, questionId: 1, text: '6', isCorrect: false),
         ],
+        isMCQ: true,
+        explain: null,
+        categoryId: null,
       ),
       Question(
         id: 2,
@@ -106,6 +100,9 @@ class TestingView extends StatelessWidget {
           const Option(id: 7, questionId: 2, text: '7', isCorrect: true),
           const Option(id: 8, questionId: 2, text: '8', isCorrect: false),
         ],
+        isMCQ: true,
+        explain: null,
+        categoryId: null,
       ),
     ];
   }

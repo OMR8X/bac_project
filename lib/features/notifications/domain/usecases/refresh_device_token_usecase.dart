@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../../core/resources/errors/failures.dart';
+import 'package:bac_project/core/resources/errors/failures.dart';
 import '../repositories/notifications_repository.dart';
 
 class RefreshDeviceTokenUsecase {
@@ -8,7 +8,7 @@ class RefreshDeviceTokenUsecase {
 
   RefreshDeviceTokenUsecase({required this.repository});
 
-  Future<Either<Failure, String?>> call() async {
+  Future<Either<Failure, String>> call() async {
     return await repository.refreshDeviceToken();
   }
 }

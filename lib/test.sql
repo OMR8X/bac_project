@@ -14,6 +14,7 @@ declare
   total_questions int := coalesce(array_length(p_questions_ids,1), 0);
   correct_answers int := 0;
   wrong_answers int := 0;
+  skipped_answers int := 0;
   computed_score numeric(5,2) := 0;
   inserted_row results%rowtype;
 begin
@@ -34,7 +35,21 @@ begin
     correct_answers := 0;
   end if;
 
-  wrong_answers := greatest(total_questions - correct_answers, 0);
+  -- Calculate answered questions (those with non-null selected_option_id)
+  declare answered_questions int := 0;
+  begin
+    if p_answers is not null then
+      select count(*) into answered_questions
+      from jsonb_to_recordset(p_answers) as a(question_id int, selected_option_id int)
+      where a.selected_option_id is not null
+        and a.question_id = any(p_questions_ids);
+    else
+      answered_questions := 0;
+    end if;
+  end;
+
+  wrong_answers := greatest(answered_questions - correct_answers, 0);
+  skipped_answers := greatest(total_questions - answered_questions, 0);
 
   if total_questions > 0 then
     computed_score := round((correct_answers::numeric / total_questions::numeric) * 100.0, 2);
@@ -49,6 +64,7 @@ begin
     total_questions,
     correct_answers,
     wrong_answers,
+    skipped_answers,
     score,
     duration_seconds,
     answers,
@@ -62,6 +78,7 @@ begin
     total_questions,
     correct_answers,
     wrong_answers,
+    skipped_answers,
     computed_score,
     p_duration_seconds,
     p_answers,

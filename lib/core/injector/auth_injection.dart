@@ -17,14 +17,14 @@ import '../../features/auth/domain/usecases/sign_in_usecase.dart';
 import '../../features/auth/domain/usecases/sign_out_usecase.dart';
 
 authFeatureInjection() {
-  injectUseCases();
+  injectUsecases();
   injectRepositories();
   injectDataSources();
 }
 
-void injectUseCases() {
-  sl.registerFactory<GetUserDataUseCase>(
-    () => GetUserDataUseCase(repository: sl<AuthRepository>()),
+void injectUsecases() {
+  sl.registerFactory<GetUserDataUsecase>(
+    () => GetUserDataUsecase(repository: sl<AuthRepository>()),
   );
   sl.registerFactory<GetUserFavoritesUsecase>(
     () => GetUserFavoritesUsecase(repository: sl<AuthRepository>()),
@@ -35,18 +35,18 @@ void injectUseCases() {
   sl.registerFactory<RemoveFromUserFavoritesUsecase>(
     () => RemoveFromUserFavoritesUsecase(repository: sl<AuthRepository>()),
   );
-  sl.registerFactory<SignUpUseCase>(() => SignUpUseCase(repository: sl<AuthRepository>()));
-  sl.registerFactory<SignInUseCase>(() => SignInUseCase(repository: sl<AuthRepository>()));
-  sl.registerFactory<ChangePasswordUseCase>(
-    () => ChangePasswordUseCase(repository: sl<AuthRepository>()),
+  sl.registerFactory<SignUpUsecase>(() => SignUpUsecase(repository: sl<AuthRepository>()));
+  sl.registerFactory<SignInUsecase>(() => SignInUsecase(repository: sl<AuthRepository>()));
+  sl.registerFactory<ChangePasswordUsecase>(
+    () => ChangePasswordUsecase(repository: sl<AuthRepository>()),
   );
-  sl.registerFactory<ForgetPasswordUseCase>(
-    () => ForgetPasswordUseCase(repository: sl<AuthRepository>()),
+  sl.registerFactory<ForgetPasswordUsecase>(
+    () => ForgetPasswordUsecase(repository: sl<AuthRepository>()),
   );
-  sl.registerFactory<UpdateUserDataUseCase>(
-    () => UpdateUserDataUseCase(repository: sl<AuthRepository>()),
+  sl.registerFactory<UpdateUserDataUsecase>(
+    () => UpdateUserDataUsecase(repository: sl<AuthRepository>()),
   );
-  sl.registerFactory<SignOutUseCase>(() => SignOutUseCase(repository: sl<AuthRepository>()));
+  sl.registerFactory<SignOutUsecase>(() => SignOutUsecase(repository: sl<AuthRepository>()));
 }
 
 void injectRepositories() async {

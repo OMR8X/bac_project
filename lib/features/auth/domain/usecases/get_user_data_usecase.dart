@@ -5,10 +5,10 @@ import '../repositories/auth_repository.dart';
 
 import 'package:dartz/dartz.dart';
 
-class GetUserDataUseCase {
+class GetUserDataUsecase {
   final AuthRepository repository;
 
-  GetUserDataUseCase({required this.repository});
+  GetUserDataUsecase({required this.repository});
 
   Future<Either<Failure, GetUserDataResponse>> call({required GetUserDataRequest request}) async {
     return await repository.getUserData(request: request);

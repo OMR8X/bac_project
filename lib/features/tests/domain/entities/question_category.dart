@@ -1,6 +1,6 @@
 class QuestionCategory {
-  final String id;
+  final int id;
   final String name;
-  final int questionCount;
-  const QuestionCategory({required this.id, required this.name, required this.questionCount});
+  final int questionsCount;
+  const QuestionCategory({required this.id, required this.name, required this.questionsCount});
 }

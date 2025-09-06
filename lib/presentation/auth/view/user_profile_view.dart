@@ -32,7 +32,7 @@ class _UserProfileViewState extends State<UserProfileView> {
     //
     final GetUserDataRequest request = GetUserDataRequest(userId: widget.userId);
     //
-    final response = await sl<GetUserDataUseCase>().call(request: request);
+    final response = await sl<GetUserDataUsecase>().call(request: request);
     //
     response.fold(
       (l) {

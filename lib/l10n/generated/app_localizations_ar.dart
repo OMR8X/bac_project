@@ -9,87 +9,10 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
-  String get pickLessonsTitle => 'اختيار الدروس';
+  String get authEmail => 'البريد الإلكتروني';
 
   @override
-  String get homeTitle => 'الرئيسية';
-
-  @override
-  String get homeCardStartTestAction => 'بدء الاختبار الكامل';
-
-  @override
-  String get homeCardExploreLessonsAction => 'استكشاف الدروس';
-
-  @override
-  String get homeQuoteDailyQuote => 'اقتباس اليوم';
-
-  @override
-  String get homeQuoteExpandQuote => 'عرض الاقتباس مكبراً';
-
-  @override
-  String get lessonsTitle => 'الدروس';
-
-  @override
-  String get testPropertiesTitle => 'اعدادات الاختبار';
-
-  @override
-  String get testPropertiesShowTrueAnswerTitle => 'عرض الإجابة الصحيحة';
-
-  @override
-  String get testPropertiesShowTrueAnswerSubtitle =>
-      'إظهار الإجابة الصحيحة بعد كل سؤال.';
-
-  @override
-  String get testPropertiesEnableSoundEffectsTitle => 'تفعيل الأصوات';
-
-  @override
-  String get testPropertiesEnableSoundEffectsSubtitle =>
-      'تشغيل مؤثرات صوتية عند الإجابة.';
-
-  @override
-  String get testPropertiesModeSwitcherTitle => 'الوضع';
-
-  @override
-  String get testPropertiesModeSwitcherExploreMode => 'وضع التصفح';
-
-  @override
-  String get testPropertiesModeSwitcherTestMode => 'وضع الاختبار';
-
-  @override
-  String get testPropertiesQuestionsCount => 'عدد الأسئلة';
-
-  @override
-  String get testPropertiesQuestionsCategories => 'مواضيع الأسئلة';
-
-  @override
-  String get testPropertiesModesExploreModeTitle => 'وضع التصفح';
-
-  @override
-  String get testPropertiesModesExploreModeSubtitle => 'للتعلم والاستكشاف';
-
-  @override
-  String get testPropertiesModesExploreModeDescription =>
-      'تدرب بدون ضغط الوقت. اطلع على الإجابات فوراً وتعلم من اخطائك.';
-
-  @override
-  String get testPropertiesModesTestModeTitle => 'وضع الاختبار';
-
-  @override
-  String get testPropertiesModesTestModeSubtitle => 'اختبر نفسك';
-
-  @override
-  String get testPropertiesModesTestModeDescription =>
-      'امتحان مؤقت مع تقييم ونتائج. مثالي لاختبار فهمك للموضوعات';
-
-  @override
-  String get testPropertiesModesCustomModeTitle => 'وضع مخصص';
-
-  @override
-  String get testPropertiesModesCustomModeSubtitle => 'تحكم بجميع الإعدادات';
-
-  @override
-  String get testPropertiesModesCustomModeDescription =>
-      'قم بتحديد اعدادات الاختبار وتخصيصها بالكامل';
+  String get authPassword => 'الرمز السري';
 
   @override
   String get authSignIn => 'تسجيل الدخول';
@@ -98,10 +21,88 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authSignUp => 'إنشاء حساب';
 
   @override
-  String get authEmail => 'البريد الإلكتروني';
+  String get buttonsClose => 'إغلاق';
 
   @override
-  String get authPassword => 'الرمز السري';
+  String get buttonsConfirm => 'تأكيد';
+
+  @override
+  String get buttonsCustomize => 'تخصيص';
+
+  @override
+  String get buttonsFinish => 'إنهاء';
+
+  @override
+  String get buttonsNext => 'التالي';
+
+  @override
+  String get buttonsPick => 'اختيار';
+
+  @override
+  String get buttonsPrevious => 'السابق';
+
+  @override
+  String get buttonsResult => 'النتيجة';
+
+  @override
+  String get buttonsResultDetailsTab => 'تفاصيل النتيجة';
+
+  @override
+  String get buttonsResultLeaderboardTab => 'لوحة الصدارة';
+
+  @override
+  String get buttonsRetry => 'اعادة المحاولة';
+
+  @override
+  String get buttonsRetryTest => 'اعادة الاختبار';
+
+  @override
+  String get buttonsSave => 'حفظ';
+
+  @override
+  String get buttonsSignIn => 'تسجيل الدخول';
+
+  @override
+  String get buttonsSignOut => 'تسجيل الخروج';
+
+  @override
+  String get buttonsSignUp => 'انشاء حساب';
+
+  @override
+  String get buttonsSmartRetryTest => 'اعادة ذكية للأختبار';
+
+  @override
+  String get buttonsStartTest => 'بدء الأختبار';
+
+  @override
+  String get buttonsUpdateUserData => 'تحديث بياناتك';
+
+  @override
+  String get enableSoundEffectsSubtitle => 'تشغيل مؤثرات صوتية عند الإجابة.';
+
+  @override
+  String get enableSoundEffectsTitle => 'تفعيل الأصوات';
+
+  @override
+  String get exploreMode => 'وضع التصفح';
+
+  @override
+  String get homeCardExploreLessonsAction => 'استكشاف الدروس';
+
+  @override
+  String get homeCardStartTestAction => 'بدء الاختبار الكامل';
+
+  @override
+  String get homeQuoteDailyQuote => 'اقتباس اليوم';
+
+  @override
+  String get homeQuoteExpandQuote => 'عرض الاقتباس مكبراً';
+
+  @override
+  String get homeTitle => 'الرئيسية';
+
+  @override
+  String get lessonsTitle => 'الدروس';
 
   @override
   String get navigationHome => 'الرئيسية';
@@ -113,22 +114,25 @@ class AppLocalizationsAr extends AppLocalizations {
   String get navigationSettings => 'الإعدادات';
 
   @override
-  String get settingsTitle => 'الإعدادات';
+  String get pickLessonsTitle => 'اختيار الدروس';
 
   @override
-  String get resultTitle => 'نتائجي';
+  String get pickQuestionsCategoriesTitle => 'مواضيع الأسئلة';
 
   @override
-  String get resultScore => 'الدرجة';
+  String get pickQuestionsCountTitle => 'عدد الأسئلة';
 
   @override
   String get resultCorrect => 'صحيح';
 
   @override
-  String get resultWrong => 'خطأ';
+  String get resultScore => 'الدرجة';
 
   @override
-  String get resultUnanswered => 'بدون إجابة';
+  String get resultsCount => 'عدد الاسئلة';
+
+  @override
+  String get resultsTitle => 'نتائجي';
 
   @override
   String get resultTime => 'الوقت';
@@ -137,61 +141,95 @@ class AppLocalizationsAr extends AppLocalizations {
   String get resultTimeTaken => 'وقت الاختبار';
 
   @override
-  String get searchHint => 'بحث...';
+  String get resultTitle => 'نتيجتي';
 
   @override
-  String get searchTitle => 'البحث';
+  String get resultUnanswered => 'بدون إجابة';
 
   @override
-  String get searchNoResults => 'لا يوجد نتائج';
+  String get resultWrong => 'خطأ';
 
   @override
   String get screenUpdateUserData => 'تحديث بيانات المتسخدم';
 
   @override
-  String get buttonsSave => 'حفظ';
+  String get searchHint => 'بحث...';
 
   @override
-  String get buttonsNext => 'التالي';
+  String get searchNoResults => 'لا يوجد نتائج';
 
   @override
-  String get buttonsConfirm => 'تأكيد';
-
-  @override
-  String get buttonsCustomize => 'تخصيص';
-
-  @override
-  String get buttonsPick => 'اختيار';
-
-  @override
-  String get buttonsPrevious => 'السابق';
-
-  @override
-  String get buttonsFinish => 'إنهاء';
-
-  @override
-  String get buttonsResult => 'النتيجة';
-
-  @override
-  String get buttonsClose => 'إغلاق';
-
-  @override
-  String get buttonsRetry => 'اعادة الاختبار';
-
-  @override
-  String get buttonsSignIn => 'تسجيل الدخول';
-
-  @override
-  String get buttonsSignUp => 'انشاء حساب';
-
-  @override
-  String get buttonsSignOut => 'تسجيل الخروج';
-
-  @override
-  String get buttonsUpdateUserData => 'تحديث بياناتك';
+  String get searchTitle => 'البحث';
 
   @override
   String get selectAll => 'تحديد الكل';
+
+  @override
+  String get settingsTitle => 'الإعدادات';
+
+  @override
+  String get showTrueAnswerSubtitle => 'إظهار الإجابة الصحيحة بعد كل سؤال.';
+
+  @override
+  String get showTrueAnswerTitle => 'عرض الإجابة الصحيحة';
+
+  @override
+  String get testMode => 'وضع الاختبار';
+
+  @override
+  String get testModeDetailsContent =>
+      'في وضع الاختبار، ستخضع لاختبار مؤقت مع عدد محدد من الأسئلة. لن تتمكن من رؤية الإجابات الصحيحة إلا بعد الانتهاء من الاختبار. سيتم تقييم أدائك وإعطاؤك تقريراً مفصلاً عن النتائج.';
+
+  @override
+  String get testModeDetailsTitle => 'معلومات وضع الاختبار';
+
+  @override
+  String get testPropertiesModesCustomModeDescription =>
+      'قم بتحديد اعدادات الاختبار وتخصيصها بالكامل';
+
+  @override
+  String get testPropertiesModesCustomModeSubtitle => 'تحكم بجميع الإعدادات';
+
+  @override
+  String get testPropertiesModesCustomModeTitle => 'وضع مخصص';
+
+  @override
+  String get testPropertiesModesExploreModeDescription =>
+      'تدرب بدون ضغط الوقت. اطلع على الإجابات فوراً وتعلم من اخطائك.';
+
+  @override
+  String get testPropertiesModesExploreModeSubtitle => 'للتعلم والاستكشاف';
+
+  @override
+  String get testPropertiesModesExploreModeTitle => 'وضع التصفح';
+
+  @override
+  String get testPropertiesModesTestModeDescription =>
+      'امتحان مؤقت مع تقييم ونتائج. مثالي لاختبار فهمك للموضوعات';
+
+  @override
+  String get testPropertiesModesTestModeSubtitle => 'اختبر نفسك';
+
+  @override
+  String get testPropertiesModesTestModeTitle => 'وضع الاختبار';
+
+  @override
+  String get testPropertiesModeSwitcherExploreMode => 'وضع التصفح';
+
+  @override
+  String get testPropertiesModeSwitcherTestMode => 'وضع الاختبار';
+
+  @override
+  String get testPropertiesModeSwitcherTitle => 'الوضع';
+
+  @override
+  String get testPropertiesQuestionsCategories => 'مواضيع الأسئلة';
+
+  @override
+  String get testPropertiesQuestionsCount => 'عدد الأسئلة';
+
+  @override
+  String get testPropertiesTitle => 'اعدادات الاختبار';
 
   @override
   String get unselectAll => 'الغاء التحديد';

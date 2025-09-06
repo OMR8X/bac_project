@@ -12,24 +12,24 @@ import 'package:bac_project/features/tests/data/repositories/tests_repository_im
 import 'package:bac_project/features/tests/data/datasources/tests_remote_data_source_impl.dart';
 
 void main() {
-  late GetUnitsUseCase getUnitsUseCase;
-  late GetLessonsUseCase getLessonsUseCase;
-  late GetTestOptionsUseCase getTestOptionsUseCase;
+  late GetUnitsUsecase getUnitsUsecase;
+  late GetLessonsUsecase getLessonsUsecase;
+  late GetTestOptionsUsecase getTestOptionsUsecase;
   late TestsRepositoryImpl repository;
   late TestsRemoteDataSourceImpl dataSource;
 
   setUp(() {
     dataSource = TestsRemoteDataSourceImpl();
     repository = TestsRepositoryImpl(remoteDataSource: dataSource);
-    getUnitsUseCase = GetUnitsUseCase(repository: repository);
-    getLessonsUseCase = GetLessonsUseCase(repository: repository);
-    getTestOptionsUseCase = GetTestOptionsUseCase(repository: repository);
+    getUnitsUsecase = GetUnitsUsecase(repository: repository);
+    getLessonsUsecase = GetLessonsUsecase(repository: repository);
+    getTestOptionsUsecase = GetTestOptionsUsecase(repository: repository);
   });
 
   group('Tests Feature Integration Tests', () {
     test('should get all units successfully', () async {
       // act
-      final result = await getUnitsUseCase.call(const GetUnitsRequest());
+      final result = await getUnitsUsecase.call(const GetUnitsRequest());
 
       // assert
       expect(result.isRight(), true);
@@ -48,7 +48,7 @@ void main() {
       const request = GetUnitsRequest();
 
       // act
-      final result = await getUnitsUseCase.call(request);
+      final result = await getUnitsUsecase.call(request);
 
       // assert
       expect(result.isRight(), true);
@@ -62,7 +62,7 @@ void main() {
 
     test('should get all lessons successfully', () async {
       // act
-      final result = await getLessonsUseCase.call(const GetLessonsRequest());
+      final result = await getLessonsUsecase.call(const GetLessonsRequest());
 
       // assert
       expect(result.isRight(), true);
@@ -82,7 +82,7 @@ void main() {
       const request = GetLessonsRequest(unitId: '1');
 
       // act
-      final result = await getLessonsUseCase.call(request);
+      final result = await getLessonsUsecase.call(request);
 
       // assert
       expect(result.isRight(), true);
@@ -109,7 +109,7 @@ void main() {
       const request = GetLessonsRequest(unitId: '2');
 
       // act
-      final result = await getLessonsUseCase.call(request);
+      final result = await getLessonsUsecase.call(request);
 
       // assert
       expect(result.isRight(), true);
@@ -131,7 +131,7 @@ void main() {
       const request = GetLessonsRequest(unitId: '3');
 
       // act
-      final result = await getLessonsUseCase.call(request);
+      final result = await getLessonsUsecase.call(request);
 
       // assert
       expect(result.isRight(), true);
@@ -153,7 +153,7 @@ void main() {
       const request = GetLessonsRequest(unitId: '999');
 
       // act
-      final result = await getLessonsUseCase.call(request);
+      final result = await getLessonsUsecase.call(request);
 
       // assert
       expect(result.isRight(), true);
@@ -170,7 +170,7 @@ void main() {
       const request = GetLessonsRequest(unitId: '3');
 
       // act
-      final result = await getLessonsUseCase.call(request);
+      final result = await getLessonsUsecase.call(request);
 
       // assert
       expect(result.isRight(), true);
@@ -191,7 +191,7 @@ void main() {
       const request = GetUnitsRequest();
 
       // act
-      final result = await getUnitsUseCase.call(request);
+      final result = await getUnitsUsecase.call(request);
 
       // assert
       stopwatch.stop();
@@ -203,7 +203,7 @@ void main() {
     group('GetTestOptions Integration Tests', () {
       test('should get default test options successfully', () async {
         // act
-        final result = await getTestOptionsUseCase.call(const GetTestOptionsRequest());
+        final result = await getTestOptionsUsecase.call(const GetTestOptionsRequest());
 
         // assert
         expect(result.isRight(), true);
@@ -228,7 +228,7 @@ void main() {
         const request = GetTestOptionsRequest(unitIds: ['2']);
 
         // act
-        final result = await getTestOptionsUseCase.call(request);
+        final result = await getTestOptionsUsecase.call(request);
 
         // assert
         expect(result.isRight(), true);
@@ -247,7 +247,7 @@ void main() {
         const request = GetTestOptionsRequest(lessonIds: ['7']);
 
         // act
-        final result = await getTestOptionsUseCase.call(request);
+        final result = await getTestOptionsUsecase.call(request);
 
         // assert
         expect(result.isRight(), true);
@@ -263,7 +263,7 @@ void main() {
 
       test('should verify test options mode settings structure', () async {
         // act
-        final result = await getTestOptionsUseCase.call(const GetTestOptionsRequest());
+        final result = await getTestOptionsUsecase.call(const GetTestOptionsRequest());
 
         // assert
         expect(result.isRight(), true);
@@ -304,7 +304,7 @@ void main() {
         final stopwatch = Stopwatch()..start();
 
         // act
-        final result = await getTestOptionsUseCase.call(request);
+        final result = await getTestOptionsUsecase.call(request);
 
         // assert
         stopwatch.stop();
@@ -317,8 +317,8 @@ void main() {
         const request = GetTestOptionsRequest(lessonIds: ['5']);
 
         // act
-        final result1 = await getTestOptionsUseCase.call(request);
-        final result2 = await getTestOptionsUseCase.call(request);
+        final result1 = await getTestOptionsUsecase.call(request);
+        final result2 = await getTestOptionsUsecase.call(request);
 
         // assert
         expect(result1.isRight(), true);
@@ -343,7 +343,7 @@ void main() {
         const request = GetTestOptionsRequest(unitIds: ['3'], lessonIds: ['9']);
 
         // act
-        final result = await getTestOptionsUseCase.call(request);
+        final result = await getTestOptionsUsecase.call(request);
 
         // assert
         expect(result.isRight(), true);

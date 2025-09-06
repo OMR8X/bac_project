@@ -1,5 +1,8 @@
 import 'package:bac_project/features/tests/domain/usecases/get_lessons_use_case.dart';
+import 'package:bac_project/features/tests/domain/usecases/get_questions_by_ids_use_case.dart';
 import 'package:bac_project/features/tests/domain/usecases/get_questions_use_case.dart';
+import 'package:bac_project/features/tests/domain/usecases/get_result_use_case.dart';
+import 'package:bac_project/features/tests/domain/usecases/get_test_options_use_case.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../features/tests/data/datasources/tests_remote_data_source.dart';
@@ -13,6 +16,7 @@ import '../../features/tests/data/repositories/results_repository_impl.dart';
 import '../../features/tests/domain/repositories/results_repository.dart';
 import '../../features/tests/domain/usecases/add_result_use_case.dart';
 import '../../features/tests/domain/usecases/get_my_results_use_case.dart';
+import '../../features/tests/domain/usecases/get_result_leaderboard_use_case.dart';
 
 final sl = GetIt.instance;
 
@@ -37,9 +41,17 @@ Future<void> repositories() async {
 }
 
 Future<void> usecases() async {
-  sl.registerLazySingleton<GetUnitsUseCase>(() => GetUnitsUseCase(repository: sl()));
-  sl.registerLazySingleton<GetLessonsUseCase>(() => GetLessonsUseCase(repository: sl()));
-  sl.registerLazySingleton<GetQuestionsUseCase>(() => GetQuestionsUseCase(repository: sl()));
-  sl.registerLazySingleton<AddResultUseCase>(() => AddResultUseCase(repository: sl()));
-  sl.registerLazySingleton<GetMyResultsUseCase>(() => GetMyResultsUseCase(repository: sl()));
+  sl.registerLazySingleton<GetUnitsUsecase>(() => GetUnitsUsecase(repository: sl()));
+  sl.registerLazySingleton<GetLessonsUsecase>(() => GetLessonsUsecase(repository: sl()));
+  sl.registerLazySingleton<GetQuestionsUsecase>(() => GetQuestionsUsecase(repository: sl()));
+  sl.registerLazySingleton<GetTestOptionsUsecase>(() => GetTestOptionsUsecase(repository: sl()));
+  sl.registerLazySingleton<AddResultUsecase>(() => AddResultUsecase(repository: sl()));
+  sl.registerLazySingleton<GetMyResultsUsecase>(() => GetMyResultsUsecase(repository: sl()));
+  sl.registerLazySingleton<GetQuestionsByIdsUsecase>(
+    () => GetQuestionsByIdsUsecase(repository: sl()),
+  );
+  sl.registerLazySingleton<GetResultUsecase>(() => GetResultUsecase(repository: sl()));
+  sl.registerLazySingleton<GetResultLeaderboardUsecase>(
+    () => GetResultLeaderboardUsecase(repository: sl()),
+  );
 }

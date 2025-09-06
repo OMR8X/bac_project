@@ -79,6 +79,16 @@ class AppTextStyles {
     fontSize: FontSizeResources.s12,
     fontWeight: FontWeightResources.bold,
   );
+  static const TextStyle statLabelStyle = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontSize: FontSizeResources.s9,
+    fontWeight: FontWeightResources.regular,
+  );
+  static const TextStyle statTitleStyle = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontSize: FontSizeResources.s20,
+    fontWeight: FontWeightResources.bold,
+  );
   static const TextStyle cardLargeTitle = TextStyle(
     fontFamily: AppFontStyles.fontFamily,
     fontSize: FontSizeResources.s19,

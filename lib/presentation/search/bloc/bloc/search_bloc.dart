@@ -10,9 +10,9 @@ part 'search_event.dart';
 part 'search_state.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
-  final GetLessonsUseCase getLessonsUseCase;
+  final GetLessonsUsecase getLessonsUsecase;
   CancelToken? _currentToken;
-  SearchBloc({required this.getLessonsUseCase}) : super(const SearchState()) {
+  SearchBloc({required this.getLessonsUsecase}) : super(const SearchState()) {
     on<SearchLessons>(_onSearchLessons, transformer: droppable());
     on<ClearSearch>(_onClearSearch);
   }
@@ -29,7 +29,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       search: event.searchText,
       cancelToken: _currentToken,
     );
-    final result = await getLessonsUseCase(request);
+    final result = await getLessonsUsecase(request);
     result.fold(
       (failure) => emit(state.copyWith(status: SearchStatus.initial, message: failure.message)),
       (response) => emit(state.copyWith(status: SearchStatus.initial, lessons: response.lessons)),

@@ -1,5 +1,5 @@
 import 'package:bac_project/features/tests/domain/entities/option.dart';
-import 'package:bac_project/features/tests/domain/entities/question_category.dart';
+import 'package:collection/collection.dart';
 
 class Question {
   //
@@ -8,12 +8,15 @@ class Question {
   //
   final int? unitId;
   final int lessonId;
+  final String? imageUrl;
   //
   final List<Option> options;
-  // Optional image URL or path
-  final String? image;
-  // Optional question category
-  final QuestionCategory? category;
+
+  final int? categoryId;
+
+  final bool? isMCQ;
+
+  final String? explain;
 
   const Question({
     required this.id,
@@ -21,12 +24,14 @@ class Question {
     required this.options,
     this.unitId,
     required this.lessonId,
-    this.image,
-    this.category,
+    this.imageUrl,
+    this.categoryId,
+    this.isMCQ,
+    this.explain,
   });
 
-  bool trueAnswers(int answerId) {
-    return options.where((option) => option.isCorrect).any((option) => option.id == answerId);
+  bool? trueAnswer(int answerId) {
+    return options.firstWhereOrNull((option) => option.isCorrect ?? false)?.id == answerId;
   }
 
   Question copyWith({
@@ -35,8 +40,10 @@ class Question {
     List<Option>? options,
     int? unitId,
     int? lessonId,
-    String? image,
-    QuestionCategory? category,
+    String? imageUrl,
+    int? categoryId,
+    bool? isMCQ,
+    String? explain,
   }) {
     return Question(
       id: id ?? this.id,
@@ -44,8 +51,10 @@ class Question {
       options: options ?? this.options,
       unitId: unitId ?? this.unitId,
       lessonId: lessonId ?? this.lessonId,
-      image: image ?? this.image,
-      category: category ?? this.category,
+      imageUrl: imageUrl ?? this.imageUrl,
+      categoryId: categoryId ?? this.categoryId,
+      isMCQ: isMCQ ?? this.isMCQ,
+      explain: explain ?? this.explain,
     );
   }
 
@@ -58,8 +67,10 @@ class Question {
         other.options == options &&
         other.unitId == unitId &&
         other.lessonId == lessonId &&
-        other.image == image &&
-        other.category == category;
+        other.imageUrl == imageUrl &&
+        other.categoryId == categoryId &&
+        other.isMCQ == isMCQ &&
+        other.explain == explain;
   }
 
   @override
@@ -69,14 +80,16 @@ class Question {
       options.hashCode ^
       unitId.hashCode ^
       lessonId.hashCode ^
-      (image?.hashCode ?? 0) ^
-      (category?.hashCode ?? 0);
+      (imageUrl?.hashCode ?? 0) ^
+      (categoryId?.hashCode ?? 0) ^
+      (isMCQ?.hashCode ?? 0) ^
+      (explain?.hashCode ?? 0);
 
   @override
   String toString() =>
-      'Question(id: $id, text: $text, options: $options, unitId: $unitId, lessonId: $lessonId, image: $image, category: $category)';
+      'Question(id: $id, text: $text, options: $options, unitId: $unitId, lessonId: $lessonId, imageUrl: $imageUrl, categoryId: $categoryId, isMCQ: $isMCQ, explain: $explain)';
 
   static Question empty() {
-    return Question(id: 0, text: '', options: [], lessonId: 0, image: null, category: null);
+    return Question(id: 0, text: '', options: [], lessonId: 0, imageUrl: null, categoryId: null, isMCQ: null, explain: null);
   }
 }

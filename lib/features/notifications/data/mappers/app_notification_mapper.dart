@@ -1,17 +1,21 @@
 import 'package:bac_project/features/notifications/data/models/app_notification_model.dart';
-
-import '../../domain/entities/app_notification.dart';
+import 'package:bac_project/features/notifications/domain/entities/app_notification.dart';
 
 extension AppNotificationModelMapper on AppNotificationModel {
   AppNotification get toEntity {
     return AppNotification(
       id: id,
       title: title,
-      subtitle: subtitle,
+      body: body,
       html: html,
-      date: date,
       imageUrl: imageUrl,
-      seen: seen,
+      type: type,
+      status: status,
+      isStarred: isStarred,
+      readAt: readAt,
+      fcmMessageId: fcmMessageId,
+      date: date,
+      data: data,
     );
   }
 }
@@ -21,11 +25,16 @@ extension AppNotificationMapper on AppNotification {
     return AppNotificationModel(
       id: id,
       title: title,
-      subtitle: subtitle,
+      body: body,
       html: html,
-      date: date,
       imageUrl: imageUrl,
-      seen: seen,
+      type: type,
+      status: status,
+      isStarred: isStarred,
+      readAt: readAt,
+      fcmMessageId: fcmMessageId,
+      date: date,
+      data: data,
     );
   }
 }

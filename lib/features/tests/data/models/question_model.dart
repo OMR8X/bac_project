@@ -1,11 +1,8 @@
 import 'package:bac_project/features/tests/data/mappers/option_mapper.dart';
 import 'package:bac_project/features/tests/data/models/option_model.dart';
-import 'package:bac_project/features/tests/data/models/question_category_model.dart';
-import 'package:bac_project/features/tests/data/mappers/question_category_mapper.dart';
 
 import '../../domain/entities/question.dart';
 import '../../domain/entities/option.dart';
-import '../../domain/entities/question_category.dart';
 
 class QuestionModel extends Question {
   const QuestionModel({
@@ -14,8 +11,10 @@ class QuestionModel extends Question {
     required super.options,
     super.unitId,
     required super.lessonId,
-    super.image,
-    super.category,
+    super.imageUrl,
+    super.categoryId,
+    super.isMCQ,
+    super.explain,
   });
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) {
@@ -28,11 +27,10 @@ class QuestionModel extends Question {
           }).toList(),
       unitId: json['unit_id'] as int?,
       lessonId: json['lesson_id'] as int,
-      image: json['image'] as String?,
-      category:
-          json['category'] != null
-              ? QuestionCategoryModel.fromJson(json['category'] as Map<String, dynamic>).toEntity()
-              : null,
+      imageUrl: (json['image'] as String?) ?? json['q_url'] as String?,
+      categoryId: json['category_id'] as int?,
+      isMCQ: json['is_mcq'] as bool?,
+      explain: json['explain'] as String?,
     );
   }
 
@@ -43,8 +41,10 @@ class QuestionModel extends Question {
       'options': options.map((option) => option.toModel().toJson()).toList(),
       'unit_id': unitId,
       'lesson_id': lessonId,
-      'image': image,
-      'category': category?.toModel().toJson(),
+      'image': imageUrl,
+      'category_id': categoryId,
+      'is_mcq': isMCQ,
+      'explain': explain,
     };
   }
 
@@ -55,8 +55,10 @@ class QuestionModel extends Question {
     List<Option>? options,
     int? unitId,
     int? lessonId,
-    String? image,
-    QuestionCategory? category,
+    String? imageUrl,
+    int? categoryId,
+    bool? isMCQ,
+    String? explain,
   }) {
     return QuestionModel(
       id: id ?? this.id,
@@ -64,8 +66,10 @@ class QuestionModel extends Question {
       options: options ?? this.options,
       unitId: unitId ?? this.unitId,
       lessonId: lessonId ?? this.lessonId,
-      image: image ?? this.image,
-      category: category ?? this.category,
+      imageUrl: imageUrl ?? this.imageUrl,
+      categoryId: categoryId ?? this.categoryId,
+      isMCQ: isMCQ ?? this.isMCQ,
+      explain: explain ?? this.explain,
     );
   }
 
@@ -81,10 +85,8 @@ class QuestionModel extends Question {
   }
 
   @override
-  int get hashCode =>
-      id.hashCode ^ text.hashCode ^ options.hashCode ^ unitId.hashCode ^ lessonId.hashCode;
+  int get hashCode => id.hashCode ^ text.hashCode ^ options.hashCode ^ unitId.hashCode ^ lessonId.hashCode;
 
   @override
-  String toString() =>
-      'QuestionModel(id: $id, text: $text, options: $options, unitId: $unitId, lessonId: $lessonId)';
+  String toString() => 'QuestionModel(id: $id, text: $text, options: $options, unitId: $unitId, lessonId: $lessonId)';
 }

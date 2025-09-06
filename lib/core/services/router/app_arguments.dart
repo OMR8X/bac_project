@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:bac_project/features/tests/domain/entities/question.dart';
 import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
+import 'package:bac_project/features/tests/domain/entities/result.dart';
+import 'package:bac_project/features/tests/domain/requests/add_result_request.dart';
 
 class ExploreManagerViewArguments {
   final String title;
@@ -42,13 +44,13 @@ class TestModeSettingsArguments {
   const TestModeSettingsArguments({this.unitIds, this.lessonIds});
 }
 
-class TestingArguments {
+class QuizzingArguments {
   final List<Question>? questions;
   final int? timeLimit;
   final TestMode? testMode;
   final List<int>? lessonIds;
 
-  const TestingArguments({this.questions, this.timeLimit, this.testMode, this.lessonIds});
+  const QuizzingArguments({this.questions, this.timeLimit, this.testMode, this.lessonIds});
 }
 
 class SearchViewArguments {
@@ -56,4 +58,17 @@ class SearchViewArguments {
   final String? heroTag;
 
   const SearchViewArguments({this.unitId, this.heroTag});
+}
+
+class ExploreResultViewArguments {
+  final int resultId;
+
+  const ExploreResultViewArguments({required this.resultId});
+}
+
+class FetchCustomQuestionsArguments {
+  final Result? result;
+  final List<int>? questionIds;
+
+  const FetchCustomQuestionsArguments({this.result, this.questionIds});
 }

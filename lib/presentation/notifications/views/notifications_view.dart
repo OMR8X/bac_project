@@ -3,14 +3,12 @@ import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/decoration_resources.dart';
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/services/router/app_routes.dart';
-import 'package:bac_project/core/widgets/dialogs/conform_dialog.dart';
 import 'package:bac_project/presentation/notifications/state/explore_notifications/notifications_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart' as intl;
 import '../../../core/injector/app_injection.dart';
-import '../../../core/resources/styles/font_styles_manager.dart';
 import '../../../core/resources/styles/padding_resources.dart';
 import '../../../core/resources/styles/spaces_resources.dart';
 import '../../../core/resources/themes/extensions/surface_container_colors.dart';
@@ -25,52 +23,76 @@ class NotificationsView extends StatelessWidget {
     return RefreshIndicator(
       onRefresh: () async {
         await Future.delayed(Durations.medium4);
-        sl<ExploreNotificationsBloc>().add(LoadExploreNotificationsEvent());
+        sl<ExploreNotificationsBloc>().add(LoadNotificationsEvent());
       },
       child: BlocProvider.value(
         value: sl<ExploreNotificationsBloc>(),
         child: BlocBuilder<ExploreNotificationsBloc, ExploreNotificationsState>(
           builder: (context, state) {
-            return Scaffold(
-              appBar: AppBar(
-                title: Text("الاشعارات"),
-                actions: [
-                  if (state.notifications.isNotEmpty)
-                    IconButton(
-                      onPressed: () {
-                        showConformDialog(
-                          context: context,
-                          title: "حذف سجل الاشعارات",
-                          body: "هل ترغب في حذف سجل الاشعارات؟",
-                          action: "حذف",
-                          onConform: () {
-                            sl<ExploreNotificationsBloc>().add(
-                              const ClearExploreNotificationsEvent(),
-                            );
-                          },
-                        );
-                      },
-                      icon: Icon(
-                        Icons.cleaning_services,
-                        size: 20,
-                        color: Theme.of(context).colorScheme.onSurface,
-                      ),
-                    ),
+            return Scaffold(appBar: AppBar(title: const Text("الإشعارات"), actions: [
+             
                 ],
-              ),
-              body: ListView.builder(
-                key: const ValueKey("reports_list_builder_widget"),
-                itemCount: state.notifications.length,
-                itemBuilder: (context, index) {
-                  final notification = state.notifications[index];
-                  return NotificationTileWidget(notification: notification, position: index);
-                },
-              ),
-            );
+              ), body: _buildBody(state));
           },
         ),
       ),
     );
+  }
+
+  Widget _buildBody(ExploreNotificationsState state) {
+    switch (state.status) {
+      case NotificationsStatus.initial:
+      case NotificationsStatus.loading:
+        return const Center(child: CircularProgressIndicator());
+      case NotificationsStatus.failure:
+        return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.error_outline, size: 64, color: Colors.grey[400]),
+              const SizedBox(height: 16),
+              Text("حدث خطأ في تحميل الإشعارات", style: TextStyle(fontSize: 16, color: Colors.grey[600])),
+              const SizedBox(height: 8),
+              if (state.errorMessage != null)
+                Text(
+                  state.errorMessage!,
+                  style: TextStyle(fontSize: 12, color: Colors.grey[500]),
+                  textAlign: TextAlign.center,
+                ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () {
+                  sl<ExploreNotificationsBloc>().add(const LoadNotificationsEvent());
+                },
+                child: const Text("إعادة المحاولة"),
+              ),
+            ],
+          ),
+        );
+      case NotificationsStatus.success:
+        if (state.notifications.isEmpty) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.notifications_off_outlined, size: 64, color: Colors.grey[400]),
+                const SizedBox(height: 16),
+                Text("لا توجد إشعارات", style: TextStyle(fontSize: 16, color: Colors.grey[600])),
+                const SizedBox(height: 8),
+                Text("ستظهر الإشعارات هنا عند وصولها", style: TextStyle(fontSize: 12, color: Colors.grey[500])),
+              ],
+            ),
+          );
+        }
+        return ListView.builder(
+          key: const ValueKey("notifications_list_builder_widget"),
+          itemCount: state.notifications.length,
+          itemBuilder: (context, index) {
+            final notification = state.notifications[index];
+            return NotificationTileWidget(notification: notification, position: index);
+          },
+        );
+    }
   }
 }
 
@@ -112,10 +134,7 @@ class NotificationTileWidget extends StatelessWidget {
                             width: 50,
                             margin: const EdgeInsets.only(left: SpacesResources.s5),
                             decoration: BoxDecoration(
-                              color:
-                                  Theme.of(
-                                    context,
-                                  ).extension<SurfaceContainerColors>()!.surfaceContainerHigh,
+                              color: Theme.of(context).extension<SurfaceContainerColors>()!.surfaceContainerHigh,
                               borderRadius: BorderRadiusResource.tileBoxBorderRadius,
                             ),
                             child: Center(
@@ -135,27 +154,35 @@ class NotificationTileWidget extends StatelessWidget {
                           children: [
                             Row(
                               children: [
-                                Flexible(
-                                  child: Text(notification.title, textAlign: TextAlign.start),
+                                Expanded(
+                                  child: Text(
+                                    notification.title,
+                                    textAlign: TextAlign.start,
+                                    style: const TextStyle(fontWeight: FontWeight.w500),
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
-                                Text("  ${timeAgo(notification.date)}"),
+                                Text(
+                                  timeAgo(notification.date),
+                                  style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                                ),
                               ],
                             ),
-                            if (notification.subtitle?.isNotEmpty ?? false) ...[
-                              SizedBox(height: SpacesResources.s3),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: Text("${notification.subtitle!} "),
+                            if (notification.body?.isNotEmpty ?? false) ...[
+                              const SizedBox(height: 4),
+                              Text(
+                                notification.body!,
+                                style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+                                maxLines: 3,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ],
                           ],
                         ),
                       ),
                       if (notification.html?.isNotEmpty ?? false)
-                        Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: Icon(Icons.arrow_forward_ios, size: 10),
-                        ),
+                        Padding(padding: const EdgeInsets.all(20), child: Icon(Icons.arrow_forward_ios, size: 10)),
                     ],
                   ),
                 ),
@@ -172,7 +199,7 @@ class NotificationTileWidget extends StatelessWidget {
     final difference = now.difference(dateTime);
 
     if (difference.inMinutes < 1) {
-      return ' ';
+      return 'الآن';
     } else if (difference.inMinutes < 60) {
       return '${difference.inMinutes}د';
     } else if (difference.inHours < 24) {
@@ -180,7 +207,7 @@ class NotificationTileWidget extends StatelessWidget {
     } else if (difference.inDays < 7) {
       return '${difference.inDays}ي';
     } else {
-      return intl.DateFormat('yyyy-MM-dd').format(dateTime); // Fallback for older dates
+      return intl.DateFormat('dd/MM/yyyy').format(dateTime);
     }
   }
 }

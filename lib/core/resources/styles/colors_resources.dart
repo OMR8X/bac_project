@@ -13,7 +13,7 @@ class ColorsResourcesLight {
   static const Color success = Color(0xff00AE6F);
   static const Color onSuccess = Color(0xffDCFFE5);
   //
-  static const Color surface = Color(0xffF2F2F2);
+  static const Color surface = Color(0xffFFFFFF);
   static const Color onSurface = Color(0xff0A0A10);
   static const Color onSurfaceVariant = Color(0xff717171);
   //
@@ -60,11 +60,12 @@ class ColorsResourcesDark {
   static const Color onSurface = Color(0xffF3F3F3);
   static const Color onSurfaceVariant = Color(0xff9E9E9F);
   //
-  static const Color surfaceContainer = Color(0xff101010);
+  static const Color surfaceContainer = Color(0xff080808);
   static const Color surfaceContainerHigh = Color(0xff1C1C1F);
+  static const Color surfaceContainerHighest = Color(0xff1E1E1E);
   //
-  static const Color outline = Color(0xff1F1F1F);
-  static const Color outlineVariant = Color(0xff1E1E1E);
+  static const Color outline = Color(0xff404040);
+  static const Color outlineVariant = Color(0xff252525);
   //
   static const Color boldShadow = Color(0xffE3EEFF);
   static const Color lightShadow = Color(0xff080808);

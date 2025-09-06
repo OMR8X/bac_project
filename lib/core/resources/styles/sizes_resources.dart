@@ -5,9 +5,13 @@ class SizesResources {
 
   ///
   static const double sizeUnit = 2;
+  //
   static const double buttonSmallHeight = 38;
   static const double buttonMediumHeight = 44;
   static const double buttonLargeHeight = 55;
+  //
+  static const double iconButtonAppBarHeight = 48;
+  static const double iconAppBarHeight = 18;
 
   //
   static double mainWidth(BuildContext context) {

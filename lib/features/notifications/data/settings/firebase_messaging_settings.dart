@@ -1,14 +1,10 @@
-import 'package:package_info_plus/package_info_plus.dart';
-
-import '../../../../core/injector/app_injection.dart';
+import 'package:bac_project/core/constant/topics.dart';
 
 class AppRemoteNotificationsSettings {
   //
-  static final bool showAlert = false;
-  static final bool showBadge = false;
-  static final bool showSound = false;
+  static final bool showAlert = true;
+  static final bool showBadge = true;
+  static final bool showSound = true;
   //
-  static final List<String> defaultTopicList = [
-    "updates-${sl<PackageInfo>().version.replaceAll(".", "-")}",
-  ];
+  static final List<String> defaultTopicList = [defaultTopic];
 }

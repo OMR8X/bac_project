@@ -6,7 +6,7 @@ import 'package:bac_project/features/tests/domain/usecases/get_questions_use_cas
 import 'package:bac_project/features/tests/domain/requests/get_questions_request.dart';
 
 void main() {
-  late GetQuestionsUseCase getQuestionsUseCase;
+  late GetQuestionsUsecase getQuestionsUsecase;
   late TestsRepositoryImpl repository;
   late TestsRemoteDataSourceImpl dataSource;
 
@@ -22,13 +22,13 @@ void main() {
   setUp(() {
     dataSource = TestsRemoteDataSourceImpl();
     repository = TestsRepositoryImpl(remoteDataSource: dataSource);
-    getQuestionsUseCase = GetQuestionsUseCase(repository: repository);
+    getQuestionsUsecase = GetQuestionsUsecase(repository: repository);
   });
 
   group('Get Questions Integration Tests', () {
     test('should get questions for lesson 1 successfully', () async {
       // act
-      final result = await getQuestionsUseCase.call(const GetQuestionsRequest(lessonId: '1'));
+      final result = await getQuestionsUsecase.call(const GetQuestionsRequest(lessonId: '1'));
 
       // assert
       expect(result.isRight(), true);
@@ -47,7 +47,7 @@ void main() {
 
     test('should get questions for lesson 2 successfully', () async {
       // act
-      final result = await getQuestionsUseCase.call(const GetQuestionsRequest(lessonId: '2'));
+      final result = await getQuestionsUsecase.call(const GetQuestionsRequest(lessonId: '2'));
 
       // assert
       expect(result.isRight(), true);
@@ -62,7 +62,7 @@ void main() {
 
     test('should return empty list for non-existent lesson', () async {
       // act
-      final result = await getQuestionsUseCase.call(const GetQuestionsRequest(lessonId: '999'));
+      final result = await getQuestionsUsecase.call(const GetQuestionsRequest(lessonId: '999'));
 
       // assert
       expect(result.isRight(), true);

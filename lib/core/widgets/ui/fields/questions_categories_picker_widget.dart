@@ -28,7 +28,7 @@ class QuestionCategoriesPickerWidget<T> extends StatelessWidget {
         title: Padding(
           padding: PaddingResources.cardMediumTitlePadding,
           child: Text(
-            "context.l10n.testPropertiesQuestionsCountQuestionsCategories",
+            context.l10n.pickQuestionsCategoriesTitle,
             style: AppTextStyles.cardMediumTitle,
           ),
         ),

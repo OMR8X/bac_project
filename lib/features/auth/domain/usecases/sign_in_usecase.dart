@@ -6,10 +6,10 @@ import '../requests/sign_in_request.dart';
 
 import 'package:dartz/dartz.dart';
 
-class SignInUseCase {
+class SignInUsecase {
   final AuthRepository repository;
 
-  SignInUseCase({required this.repository});
+  SignInUsecase({required this.repository});
 
   Future<Either<Failure, SignInResponse>> call({required SignInRequest request}) async {
     return await repository.signIn(request: request);

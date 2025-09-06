@@ -1,0 +1,562 @@
+import 'package:bac_project/features/settings/domain/entities/motivational_quote.dart';
+
+List<MotivationalQuote> fakeQuotes = [
+  MotivationalQuote(
+    quote: "صوب نحو القمر ، فإن سقطت فسوف تصيب النجوم",
+    author: "ديل كارنيجي",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "لا تنتظر الفرصة، بل اصنعها.",
+    author: "أمين القاسم",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "القوة لا تأتي من الفوز، بل من المحارب الذي لا يستسلم.",
+    author: "ناتاليا جونسون",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "كل صباح هو بداية جديدة، اغتنمها.",
+    author: "سارة المهدی",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(quote: "الإصرار يصنع المعجزات.", author: "أنور العباس", date: DateTime.now()),
+  MotivationalQuote(
+    quote: "تعلم من الأمس، عش اليوم، واخطط لغدٍ أفضل.",
+    author: "حياة عمر",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "الشجاعة تعني اتخاذ القرار رغم الخوف.",
+    author: "كمال الشريف",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "النجاح هو مجموع جهود صغيرة تتكرر يومياً.",
+    author: "ليلى ناصر",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "الأحلام لا تتحقق إلا عندما نعمل من أجلها.",
+    author: "محمود عبد",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "ابتسم، فالغد قد يحمل لك مفاجآت جميلة.",
+    author: "نور الهدى",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "لا تسمح للفشل أن يعرفك، تعلم منه ثم تقدم.",
+    author: "طارق سعيد",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "كل خطوة إلى الأمام تستحق الاحتفال.",
+    author: "فاطمة زهراء",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "اجعل أهدافك واضحة وسترى الطريق يتضح.",
+    author: "هشام كريم",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(quote: "العمل الصادق يثمر دائماً.", author: "دنيا مراد", date: DateTime.now()),
+  MotivationalQuote(
+    quote: "العزيمة تصنع الفرق بين الممكن والمستحيل.",
+    author: "علي محمود",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "لا تقارن بدايتك ببداية الآخرين.",
+    author: "رنا سمير",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "تعلم أن تقول لا لتحافظ على ما هو مهم.",
+    author: "يوسف أنور",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "اجعل كل يوم فرصة لتكون أفضل.",
+    author: "مريم حسن",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(quote: "النجاح رحلة، ليس محطة.", author: "سعيد البدر", date: DateTime.now()),
+  MotivationalQuote(quote: "الفرص تُصنع، لا تُنتظر.", author: "رانيا كريم", date: DateTime.now()),
+  MotivationalQuote(
+    quote: "الثقة بالنفس مفتاح كل إنجاز.",
+    author: "أحمد نبيل",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "أعد اكتشاف قدراتك ولا تخف من التجربة.",
+    author: "لمياء شريف",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "الوقت لا ينتظر أحداً، فاستخدمه بحكمة.",
+    author: "رامي ضياء",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "عش بشغف، فالحياة قصيرة لأجل الندم.",
+    author: "نورا الجابري",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "التعلم المستمر هو مفتاح التميز.",
+    author: "كريم فؤاد",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "الإبداع يبدأ عندما تتحدى المألوف.",
+    author: "هالة أيمن",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "لا تدع الخوف يوقفك عن المحاولة.",
+    author: "باسل حمد",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "اجعل لابتسامتك سبباً في يوم أحدهم.",
+    author: "داليا فرج",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "النجاح يتطلب صبراً طويلًا وجهدًا مستمرًا.",
+    author: "مؤمن رشاد",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "أحياناً عليك أن تخسر معركة لتفوز بالحرب.",
+    author: "ليلى عمر",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "طريق الألف ميل يبدأ بخطوة واحدة.",
+    author: "حيدر الكاظمي",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "التواضع طريق إلى القلب.",
+    author: "سلمان عبدالغني",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "امنح نفسك المهلة لتتعلم وتنمو.",
+    author: "رانيا فؤاد",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "لا يوجد فشل، فقط نتائج تعلمية.",
+    author: "إيهاب مراد",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(quote: "اجعل العمل المتقن عادة.", author: "سميرة أيوب", date: DateTime.now()),
+  MotivationalQuote(
+    quote: "التغيير يبدأ من قرارك اليوم.",
+    author: "أنس نادر",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "قدر التحديات فهي تدفعك للأمام.",
+    author: "هبة طارق",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "النجاح الحقيقي هو أن تكون راضياً عن نفسك.",
+    author: "مينا كرم",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "كن أنت التغيير الذي تريد رؤيته.",
+    author: "فؤاد رمضان",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "الأفعال تعبر أكثر من الأقوال.",
+    author: "نادية عادل",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(quote: "لا تستسلم لصعوبات البداية.", author: "زياد ماهر", date: DateTime.now()),
+  MotivationalQuote(
+    quote: "الالتزام هو جسر بين الأهداف والإنجازات.",
+    author: "سلمى جابر",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "كل يوم جديد يحمل فرصاً جديدة.",
+    author: "نبيل خالد",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "ثق بقدراتك، فالعالم بحاجة لما تمتلكه.",
+    author: "مروان سمير",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "ابدأ حيث انت، واستخدم ما لديك.",
+    author: "ديما علي",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "التفاؤل يفتح أبواباً لا يفتحها التشاؤم.",
+    author: "ياسر فتحي",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "لا تدع الأخطاء توقفك، اجعلها معلمًا.",
+    author: "منى شوقي",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "الحكمة أن تعرف متى تتحدث ومتى تصمت.",
+    author: "عبد الرحمن حسن",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "السعي نحو الأفضل لا يتوقف أبدًا.",
+    author: "عائشة فاروق",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "حقق توازناً بين العمل والراحة.",
+    author: "سامي زكي",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "النجاح ليس حظًا بل نتيجة تخطيط وعمل.",
+    author: "نور الدين",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "اجعل كل يوم إنجازًا صغيرًا نحو هدفك.",
+    author: "دينا أمين",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "تقبل التحديات فهي فرص للتعلم.",
+    author: "براء منصور",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "الحلم يصبح هدفًا عندما تضع خطة.",
+    author: "لمى حسين",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "تجاوز حواجزك وسيصبح الطريق مفتوحًا.",
+    author: "خالد صبري",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "العطاء يملأ القلب بالسعادة.",
+    author: "لبنى فكري",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "استثمر وقتك فيما ينمي قدراتك.",
+    author: "عمر فتحي",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "الإيجابية تجذب النتائج الإيجابية.",
+    author: "هشام رشاد",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "لا تنتظر أن تكون مستعدًا تمامًا، ابدأ الآن.",
+    author: "سمر ياسين",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "الثبات على الهدف أهم من السرعة.",
+    author: "فادي منير",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "كن ممتنًا لما لديك لتزيد مما لديك.",
+    author: "نجلاء زكي",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(quote: "التحدي يكشف معدن الإنسان.", author: "رامي خليل", date: DateTime.now()),
+  MotivationalQuote(quote: "اجعل شغفك دافعًا للتقدم.", author: "شيرين عبد", date: DateTime.now()),
+  MotivationalQuote(
+    quote: "ابتكر حلولًا بدل أن تنتظرها.",
+    author: "تامر أيوب",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "المثابرة تفتح كل الأبواب المغلقة.",
+    author: "جميلة بدر",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(quote: "اجعل أهدافك واضحة ومحددة.", author: "ماهر نادر", date: DateTime.now()),
+  MotivationalQuote(quote: "كل فشل يعلمك درسًا قيماً.", author: "هيا يونس", date: DateTime.now()),
+  MotivationalQuote(quote: "عش ببساطة وكن سعيدًا.", author: "وسيم عادل", date: DateTime.now()),
+  MotivationalQuote(
+    quote: "لا تخف من أن تكون مختلفًا.",
+    author: "رائد مصطفى",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "اعط عملك حقه وستجني ثماره.",
+    author: "إيمان صابر",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "استمع أكثر مما تتكلم لتتعلم.",
+    author: "سلوى نور",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "النجاح يحتاج إلى تنظيم وإدارة وقت.",
+    author: "مصطفى علي",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(quote: "اقرأ لتعرف، وتعلم لتتقدم.", author: "ميادة سمير", date: DateTime.now()),
+  MotivationalQuote(
+    quote: "العقل مثل العضلة يحتاج للتدريب.",
+    author: "أيمن حسان",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "اجعل الأمل دليلك في الأوقات الصعبة.",
+    author: "صفاء بدر",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "لا تؤجل عمل اليوم إلى الغد.",
+    author: "بدرية يوسف",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(quote: "اعمل بذكاء وليس بجهدٍ فحسب.", author: "وائل نجم", date: DateTime.now()),
+  MotivationalQuote(
+    quote: "التخطيط الجيد يقلل المفاجآت.",
+    author: "نهى فاروق",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "كلما تعلمت أكثر، ازددت قدرة.",
+    author: "رائد جمال",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "اجعل الأخلاق جزءًا من نجاحك.",
+    author: "هدى كمال",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(quote: "ثق بالله ثم بقدراتك.", author: "يوسف جمال", date: DateTime.now()),
+  MotivationalQuote(
+    quote: "الابتسامة جواز سفر لصداقة الآخرين.",
+    author: "نورا سامي",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "لا تيأس، فالغد قد يحمل الفرج.",
+    author: "ميشيل خير",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "اجعل لوقتك قيمة ولا تضيعها.",
+    author: "سعيد توفيق",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "ابدأ بخطوات صغيرة لتصل لأهداف كبيرة.",
+    author: "حنان مرسي",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "تعلم من الماضي ولكن لا تعش فيه.",
+    author: "بلال قاسم",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(quote: "كن سببًا في ازدهار من حولك.", author: "رغد خالد", date: DateTime.now()),
+  MotivationalQuote(
+    quote: "احط نفسك بمن يدفعونك للأفضل.",
+    author: "مروان حازم",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "السعي لتطوير الذات عادة يومية.",
+    author: "ليان وائل",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "لا تخف من طلب المساعدة عند الحاجة.",
+    author: "طه سعيد",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(quote: "اجعل مبادئك نورًا يقودك.", author: "سارة منير", date: DateTime.now()),
+  MotivationalQuote(
+    quote: "الاستمرارية أهم من السرعة.",
+    author: "محمود جمال",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "ضع خطة، ثم اضبطها حسب الواقع.",
+    author: "دلال هشام",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "اعمل بضمير وستجد نتائج محترمة.",
+    author: "حسن شاكر",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "لا تستهين بقوة العادات الصغيرة.",
+    author: "إيلاف مراد",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "اجعل التعلم متعة وليكن شغفك.",
+    author: "بدر خليل",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "النجاح يتطلب شجاعة وتخطيطًا.",
+    author: "ندى رضوان",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "انظر لما يمكنك فعله اليوم ولا تنتظر المثالية.",
+    author: "طارق يحيى",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "لا تضيع وقتك في مقارنة نفسك بالآخرين.",
+    author: "هالة شريف",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "التحدي الحقيقي هو التغلب على الذات.",
+    author: "يعقوب ناصر",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(quote: "احترم وقتك ووقت الآخرين.", author: "لينا ماهر", date: DateTime.now()),
+  MotivationalQuote(
+    quote: "اجعل العمل الممتع جزءًا من روتينك.",
+    author: "سعيد ناصر",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "لا تفقد الأمل مهما كانت الصعوبات.",
+    author: "ميساء زكي",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "اجعل الضغوط دافعًا لا معيقًا.",
+    author: "فائز مرسي",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "التواضع لا يقلل من مكانتك، بل يزيدها.",
+    author: "رغد أحمد",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "اعط لنفسك فرصة لتجربة أشياء جديدة.",
+    author: "مكرم شوقي",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "القيم هي أساس النجاح الدائم.",
+    author: "هند سامي",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(quote: "ابدأ حيث أنت ومع ما تملك.", author: "سلمان حسين", date: DateTime.now()),
+  MotivationalQuote(
+    quote: "اجعل كل يوم فرصة لتصبح أقوى.",
+    author: "نورهان عيد",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(quote: "الأمل هو الوقود للمستقبل.", author: "وئام خطاب", date: DateTime.now()),
+  MotivationalQuote(
+    quote: "لا تنس أن تستمتع بالرحلة أيضًا.",
+    author: "ياسمين فارس",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "التعلم يمنحك مفاتيح العالم.",
+    author: "علياء كريم",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "احرص على أن تكون دافعًا للآخرين.",
+    author: "سيف الدين",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "اصنع عادة القراءة وستربح كثيرًا.",
+    author: "جمانة نبيل",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "التخطيط يساعدك على تحويل الأحلام لواقع.",
+    author: "إيمان حمدي",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "اجعل الشغف مرشدك ولا تكن عبدًا للخوف.",
+    author: "فادي صبري",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "ابدأ اليوم بخطوة نحو هدفك الأكبر.",
+    author: "رنا كمال",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(quote: "التعاون يضاعف النتائج.", author: "أنور بيتر", date: DateTime.now()),
+  MotivationalQuote(
+    quote: "احترم تعهداتك لأنك بذلك تبني ثقة.",
+    author: "هالة جودة",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "تعلم أن تستمع لقلبك وعقلك معًا.",
+    author: "آدم جميل",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "اجعل الصبر عادة ولن يخيب ظنك.",
+    author: "لميس رشاد",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(quote: "لا تخشى التغيير بل استغله.", author: "معتز نادر", date: DateTime.now()),
+  MotivationalQuote(quote: "اجعل لكل يوم هدفًا واضحًا.", author: "سلوى عماد", date: DateTime.now()),
+  MotivationalQuote(
+    quote: "لا تدع صغيرًا أن يمنعك من البدء.",
+    author: "نبيل عوني",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "أعطِ وقتًا كافيًا لأهدافك لتنمو.",
+    author: "حنان فوزي",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "التعلم كلمة مفتاحية للنجاح المستمر.",
+    author: "كريم منير",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(quote: "اجعل التحديات سلماً لصعودك.", author: "سهى عماد", date: DateTime.now()),
+  MotivationalQuote(
+    quote: "النجاح يحتاج رغبةً قوية وعملًا منظمًا.",
+    author: "رامي فوزي",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "اذهب إلى حيث يهم ويُقدَّر عملك.",
+    author: "منى عمر",
+    date: DateTime.now(),
+  ),
+  MotivationalQuote(
+    quote: "ابتكر طريقك ولا تنتظر أن يُمهد لك.",
+    author: "زياد نجم",
+    date: DateTime.now(),
+  ),
+];

@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/resources/styles/padding_resources.dart';
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';
+import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
 import 'package:bac_project/features/settings/domain/entities/app_settings.dart';
 import 'package:bac_project/features/settings/domain/entities/governorate.dart';
 import 'package:bac_project/features/settings/domain/entities/section.dart';
@@ -122,15 +123,7 @@ class _UpdateUserDataViewState extends State<UpdateUserDataView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("تغيير بيانات الحساب"),
-        leading: IconButton(
-          onPressed: () {
-            context.pop();
-          },
-          icon: const Icon(Icons.close, size: 20),
-        ),
-      ),
+      appBar: AppBar(title: const Text("تغيير بيانات الحساب"), leading: CloseIconWidget()),
       body: SafeArea(
         child: Form(
           key: _formKey,

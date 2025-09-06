@@ -15,7 +15,7 @@ class QuestionCountPickerWidget extends StatelessWidget {
   });
 
   final List<int> options;
-  final int initialCount;
+  final int? initialCount;
   final ValueChanged<int> onChanged;
 
   @override
@@ -26,10 +26,7 @@ class QuestionCountPickerWidget extends StatelessWidget {
         child: ListTile(
           title: Padding(
             padding: PaddingResources.cardMediumTitlePadding,
-            child: Text(
-              "context.l10n.testPropertiesQuestionsCountQuestionsCount",
-              style: AppTextStyles.cardMediumTitle,
-            ),
+            child: Text(context.l10n.pickQuestionsCountTitle, style: AppTextStyles.cardMediumTitle),
           ),
           subtitle: Wrap(
             spacing: SpacesResources.s4,
@@ -37,7 +34,7 @@ class QuestionCountPickerWidget extends StatelessWidget {
                 options.map((value) {
                   final isSelected = initialCount == value;
                   return ChoiceChip(
-                    label: Text(value == 35 ? "30+" : value.toString()),
+                    label: Text(value.toString()),
                     selected: isSelected,
                     onSelected: (_) {
                       onChanged(value);

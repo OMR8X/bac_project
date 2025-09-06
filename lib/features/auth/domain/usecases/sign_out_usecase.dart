@@ -6,10 +6,10 @@ import '../repositories/auth_repository.dart';
 
 import 'package:dartz/dartz.dart';
 
-class SignOutUseCase {
+class SignOutUsecase {
   final AuthRepository repository;
 
-  SignOutUseCase({required this.repository});
+  SignOutUsecase({required this.repository});
 
   Future<Either<Failure, SignOutResponse>> call({required SignOutRequest request}) async {
     return await repository.signOut(request: request);

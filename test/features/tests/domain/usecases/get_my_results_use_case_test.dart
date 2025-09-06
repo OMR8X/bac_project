@@ -15,15 +15,15 @@ import 'get_my_results_use_case_test.mocks.dart';
 
 @GenerateMocks([ResultsRepository])
 void main() {
-  late GetMyResultsUseCase useCase;
+  late GetMyResultsUsecase useCase;
   late MockResultsRepository mockRepository;
 
   setUp(() {
     mockRepository = MockResultsRepository();
-    useCase = GetMyResultsUseCase(repository: mockRepository);
+    useCase = GetMyResultsUsecase(repository: mockRepository);
   });
 
-  group('GetMyResultsUseCase', () {
+  group('GetMyResultsUsecase', () {
     final now = DateTime.now();
     final sampleResult = ResultModel(
       id: 1,
@@ -33,6 +33,7 @@ void main() {
       totalQuestions: 2,
       correctAnswers: 1,
       wrongAnswers: 1,
+      skippedAnswers: 0,
       score: 50.0,
       durationSeconds: 120,
       answers: [const UserAnswerModel(questionId: 10, selectedOptionId: 100)],

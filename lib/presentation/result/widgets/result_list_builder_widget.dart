@@ -1,12 +1,16 @@
 import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/services/router/app_arguments.dart';
+import 'package:bac_project/core/services/router/app_routes.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
+import 'package:bac_project/features/tests/domain/entities/result.dart';
 import 'package:flutter/material.dart';
 import 'package:bac_project/features/tests/data/models/result_model.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:go_router/go_router.dart';
 import 'result_card_widget.dart';
 
 class ResultListBuilderWidget extends StatelessWidget {
-  final List<ResultModel> results;
+  final List<Result> results;
 
   const ResultListBuilderWidget({super.key, required this.results});
 
@@ -27,7 +31,12 @@ class ResultListBuilderWidget extends StatelessWidget {
             final result = results[index];
             return StaggeredItemWrapperWidget(
               position: index,
-              child: ResultCardWidget(result: result),
+              child: ResultCardWidget(
+                result: result,
+                onExplore: () {
+                  context.push(AppRoutes.exploreResult.path, extra: ExploreResultViewArguments(resultId: result.id));
+                },
+              ),
             );
           },
         ),

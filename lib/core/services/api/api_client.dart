@@ -88,11 +88,7 @@ class DioClient implements ApiClient {
     ResponseType? responseType,
     CancelToken? cancelToken,
   }) async {
-    final dio = await _getDio(
-      headers: headers,
-      params: queryParameters,
-      responseType: responseType,
-    );
+    final dio = await _getDio(headers: headers, params: queryParameters, responseType: responseType);
     final response = dio.get(uri);
     return response;
   }
@@ -107,17 +103,8 @@ class DioClient implements ApiClient {
     Function(int, int)? onSendProgress,
     CancelToken? cancelToken,
   }) async {
-    final dio = await _getDio(
-      headers: headers,
-      params: queryParameters,
-      responseType: responseType,
-    );
-    final response = dio.post(
-      uri,
-      data: body,
-      onSendProgress: onSendProgress,
-      cancelToken: cancelToken,
-    );
+    final dio = await _getDio(headers: headers, params: queryParameters, responseType: responseType);
+    final response = dio.post(uri, data: body, onSendProgress: onSendProgress, cancelToken: cancelToken);
     return response;
   }
 
@@ -130,11 +117,7 @@ class DioClient implements ApiClient {
     ResponseType? responseType,
     CancelToken? cancelToken,
   }) async {
-    final dio = await _getDio(
-      headers: headers,
-      params: queryParameters,
-      responseType: responseType,
-    );
+    final dio = await _getDio(headers: headers, params: queryParameters, responseType: responseType);
     final response = dio.put(uri, data: body);
     return response;
   }
@@ -148,22 +131,14 @@ class DioClient implements ApiClient {
     ResponseType? responseType,
     CancelToken? cancelToken,
   }) async {
-    final dio = await _getDio(
-      headers: headers,
-      params: queryParameters,
-      responseType: responseType,
-    );
+    final dio = await _getDio(headers: headers, params: queryParameters, responseType: responseType);
     final response = dio.delete(uri, data: body);
     return response;
   }
 
-  Future<Dio> _getDio({
-    Map<String, dynamic>? headers,
-    Map<String, dynamic>? params,
-    ResponseType? responseType,
-  }) async {
+  Future<Dio> _getDio({Map<String, dynamic>? headers, Map<String, dynamic>? params, ResponseType? responseType}) async {
     final Dio dio = _dioFactory();
-
+    //
     // Start with defaultHeaders that always contain apikey
     final Map<String, dynamic> effectiveHeaders = {...defaultHeaders};
 
@@ -172,6 +147,8 @@ class DioClient implements ApiClient {
     }
 
     final token = Supabase.instance.client.auth.currentSession?.accessToken;
+
+
     if (token != null && token.isNotEmpty) {
       effectiveHeaders[ApiHeaders.headerAuthorizationKey] = 'Bearer $token';
     } else {

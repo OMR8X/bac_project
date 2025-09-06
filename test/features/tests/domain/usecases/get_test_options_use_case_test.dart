@@ -13,15 +13,15 @@ import 'get_test_options_use_case_test.mocks.dart';
 
 @GenerateMocks([TestsRepository])
 void main() {
-  late GetTestOptionsUseCase useCase;
+  late GetTestOptionsUsecase useCase;
   late MockTestsRepository mockRepository;
 
   setUp(() {
     mockRepository = MockTestsRepository();
-    useCase = GetTestOptionsUseCase(repository: mockRepository);
+    useCase = GetTestOptionsUsecase(repository: mockRepository);
   });
 
-  group('GetTestOptionsUseCase', () {
+  group('GetTestOptionsUsecase', () {
     const testModeSettings = {
       TestMode.testing: ModeSettings(
         canSelectCategories: true,

@@ -9,9 +9,11 @@ class ResultModel extends Result {
     super.lessonId,
     super.lessonTitle,
     super.questionsIds,
+    super.resultOrder,
     required super.totalQuestions,
     required super.correctAnswers,
     required super.wrongAnswers,
+    required super.skippedAnswers,
     required super.score,
     required super.durationSeconds,
     required super.answers,
@@ -29,14 +31,20 @@ class ResultModel extends Result {
           json['questions_ids'] != null
               ? List<int>.from(json['questions_ids'] as List<dynamic>)
               : null,
+      resultOrder: json['result_order'] as int?,
       totalQuestions: json['total_questions'] as int,
       correctAnswers: json['correct_answers'] as int,
       wrongAnswers: json['wrong_answers'] as int,
+      skippedAnswers: json['skipped_answers'] as int,
       score: (json['score'] as num).toDouble(),
       durationSeconds: json['duration_seconds'] as int,
       answers:
           (json['answers'] as List<dynamic>)
-              .map((a) => UserAnswerModel.fromJson(a as Map<String, dynamic>))
+              .map(
+                (a) => UserAnswerModel.fromJson(
+                  a as Map<String, dynamic>,
+                ),
+              )
               .toList(),
       createdAt: DateTime.parse(json['created_at'] as String),
       updatedAt: DateTime.parse(json['updated_at'] as String),
@@ -49,13 +57,18 @@ class ResultModel extends Result {
       'user_id': userId,
       'lesson_id': lessonId,
       'lesson_title': lessonTitle,
+      'result_order': resultOrder,
       'questions_ids': questionsIds,
       'total_questions': totalQuestions,
       'correct_answers': correctAnswers,
       'wrong_answers': wrongAnswers,
+      'skipped_answers': skippedAnswers,
       'score': score,
       'duration_seconds': durationSeconds,
-      'answers': answers.map((a) => (a as UserAnswerModel).toJson()).toList(),
+      'answers':
+          answers
+              .map((a) => (a as UserAnswerModel).toJson())
+              .toList(),
       'created_at': createdAt.toIso8601String(),
       'updated_at': updatedAt.toIso8601String(),
     };
@@ -67,10 +80,12 @@ class ResultModel extends Result {
     String? userId,
     int? lessonId,
     String? lessonTitle,
+    int? resultOrder,
     List<int>? questionsIds,
     int? totalQuestions,
     int? correctAnswers,
     int? wrongAnswers,
+    int? skippedAnswers,
     double? score,
     int? durationSeconds,
     List<UserAnswer>? answers,
@@ -86,6 +101,7 @@ class ResultModel extends Result {
       totalQuestions: totalQuestions ?? this.totalQuestions,
       correctAnswers: correctAnswers ?? this.correctAnswers,
       wrongAnswers: wrongAnswers ?? this.wrongAnswers,
+      skippedAnswers: skippedAnswers ?? this.skippedAnswers,
       score: score ?? this.score,
       durationSeconds: durationSeconds ?? this.durationSeconds,
       answers: answers ?? this.answers,

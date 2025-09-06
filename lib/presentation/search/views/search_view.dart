@@ -1,5 +1,6 @@
 import 'package:bac_project/core/injector/tests_feature_inj.dart';
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
+import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/loading_widget.dart';
 import 'package:bac_project/presentation/home/widgets/lessons_navigation_card_bilder_widget.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bac_project/core/resources/styles/padding_resources.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
 import 'package:bac_project/core/widgets/ui/search_bar_widget.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 
 import '../bloc/bloc/search_bloc.dart';
@@ -19,18 +21,12 @@ class SearchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.l10n.searchTitle),
-        leading: IconButton(
-          onPressed: () {
-            context.pop();
-          },
-          icon: const Icon(Icons.close),
-        ),
-      ),
+      appBar: AppBar(title: Text(context.l10n.searchTitle), leading: CloseIconWidget()),
       body: BlocConsumer<SearchBloc, SearchState>(
         listener: (context, state) {
-          // TODO: implement listener
+          if (state.message?.isNotEmpty ?? false) {
+            Fluttertoast.showToast(msg: state.message!);
+          }
         },
         builder: (context, state) {
           return Padding(
@@ -54,7 +50,10 @@ class SearchView extends StatelessWidget {
                   ),
                 ),
                 if (state.status == SearchStatus.initial)
-                  LessonsCardsBuilderWidget(lessons: state.lessons),
+                  SliverPadding(
+                    padding: PaddingResources.listViewPadding,
+                    sliver: LessonsCardsBuilderWidget(lessons: state.lessons),
+                  ),
 
                 if (state.status == SearchStatus.searching) _SearchLoadingView(state: state),
               ],

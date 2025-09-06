@@ -12,12 +12,12 @@ class GetQuestionsResponse {
   }
 
   factory GetQuestionsResponse.fromJson(Map<String, dynamic> json) {
-    return GetQuestionsResponse(
-      questions:
-          (json['questions'] as List)
-              .map((question) => QuestionModel.fromJson(question as Map<String, dynamic>))
-              .toList(),
-    );
+    final questions =
+        (json['questions'] as List).map((question) {
+          return QuestionModel.fromJson(question as Map<String, dynamic>);
+        }).toList();
+
+    return GetQuestionsResponse(questions: questions);
   }
   @override
   bool operator ==(Object other) {

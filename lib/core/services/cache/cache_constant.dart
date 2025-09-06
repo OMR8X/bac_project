@@ -1,4 +1,3 @@
-
 class CacheConstant {
   static const String cacheSubDir = '/app_cache';
   static const String boxName = 'hive_cache';
@@ -10,4 +9,7 @@ class CacheConstant {
   ///
   static const String userDataDataKey = 'user_data_data_key';
   static const String userDataCreatedKey = 'user_data_created_key';
+
+  ///
+  static const String notificationsKey = 'notifications_list_key';
 }

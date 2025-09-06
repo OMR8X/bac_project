@@ -14,15 +14,15 @@ import 'get_questions_use_case_test.mocks.dart';
 
 @GenerateMocks([TestsRepository])
 void main() {
-  late GetQuestionsUseCase useCase;
+  late GetQuestionsUsecase useCase;
   late MockTestsRepository mockRepository;
 
   setUp(() {
     mockRepository = MockTestsRepository();
-    useCase = GetQuestionsUseCase(repository: mockRepository);
+    useCase = GetQuestionsUsecase(repository: mockRepository);
   });
 
-  group('GetQuestionsUseCase', () {
+  group('GetQuestionsUsecase', () {
     const testQuestions = [
       entities.Question(
         id: '1',

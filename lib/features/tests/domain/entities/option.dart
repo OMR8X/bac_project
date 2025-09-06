@@ -2,7 +2,7 @@ class Option {
   final int id;
   final int questionId;
   final String text;
-  final bool isCorrect;
+  final bool? isCorrect;
 
   const Option({
     required this.id,

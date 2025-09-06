@@ -15,8 +15,8 @@
   - Use Either<Failure, List<Post>> return type for error handling
   - _Requirements: 1.2_
 
-- [x] 4. Implement GetPostsUseCase
-  - Create GetPostsUseCase class that depends on PostRepository
+- [x] 4. Implement GetPostsUsecase
+  - Create GetPostsUsecase class that depends on PostRepository
   - Implement call method that delegates to repository.getPosts()
   - _Requirements: 1.3_
 
@@ -43,14 +43,14 @@
   - _Requirements: 2.3_
 
 - [ ] 9. Wire up all components and test integration
-  - Ensure GetPostsUseCase can successfully retrieve posts through the complete data flow
+  - Ensure GetPostsUsecase can successfully retrieve posts through the complete data flow
   - Verify data conversion from PostModel to Post entity works correctly
   - Test error handling scenarios
   - _Requirements: 3.1, 3.2, 3.3_
 
 - [ ] 10. Create unit tests for all components
   - Write tests for Post entity equality and properties
-  - Create tests for GetPostsUseCase with mock repository
+  - Create tests for GetPostsUsecase with mock repository
   - Test PostRepositoryImpl with mock data source
   - Test PostDataSourceImpl fake data generation
   - Test PostMapper conversion methods

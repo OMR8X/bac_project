@@ -6,10 +6,10 @@ import 'package:dartz/dartz.dart';
 
 import '../requests/change_password_request.dart';
 
-class ChangePasswordUseCase {
+class ChangePasswordUsecase {
   final AuthRepository repository;
 
-  ChangePasswordUseCase({required this.repository});
+  ChangePasswordUsecase({required this.repository});
 
   Future<Either<Failure, ChangePasswordResponse>> call({
     required ChangePasswordRequest request,

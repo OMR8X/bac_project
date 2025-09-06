@@ -3,12 +3,12 @@ import 'package:bac_project/features/tests/domain/entities/question_category.dar
 
 extension QuestionCategoryMapper on QuestionCategory {
   QuestionCategoryModel toModel() {
-    return QuestionCategoryModel(id: id, name: name, questionCount: questionCount);
+    return QuestionCategoryModel(id: id, name: name, questionsCount: questionsCount);
   }
 }
 
 extension QuestionCategoryModelMapper on QuestionCategoryModel {
   QuestionCategory toEntity() {
-    return QuestionCategory(id: id, name: name, questionCount: questionCount);
+    return QuestionCategory(id: id, name: name, questionsCount: questionsCount);
   }
 }

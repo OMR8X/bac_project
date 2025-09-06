@@ -49,12 +49,12 @@ abstract class PostRepository {
 
 ### 2. Use Cases
 
-#### GetPostsUseCase
+#### GetPostsUsecase
 - Responsibility: Retrieve list of posts from repository
 - Input: None
 - Output: `Future<Either<Failure, List<Post>>>`
 
-#### GetPostByIdUseCase  
+#### GetPostByIdUsecase  
 - Responsibility: Retrieve specific post by ID
 - Input: Post ID (int)
 - Output: `Future<Either<Failure, Post>>`

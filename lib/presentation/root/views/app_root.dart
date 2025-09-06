@@ -20,7 +20,7 @@ class AppRoot extends StatelessWidget {
       child: BlocBuilder<AppThemeBloc, AppThemeState>(
         builder: (context, state) {
           return MaterialApp.router(
-            title: 'مدير الملفات',
+            title: '',
             theme: state.themeData,
             localizationsDelegates: const [
               AppLocalizations.delegate,

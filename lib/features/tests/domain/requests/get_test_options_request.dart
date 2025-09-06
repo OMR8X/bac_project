@@ -4,6 +4,10 @@ class GetTestOptionsRequest {
 
   const GetTestOptionsRequest({this.unitIds, this.lessonIds});
 
+  Map<String, dynamic> toJsonBody() {
+    return {'p_units_ids': unitIds, 'p_lessons_ids': lessonIds};
+  }
+
   GetTestOptionsRequest copyWith({List<String>? unitIds, List<String>? lessonIds}) {
     return GetTestOptionsRequest(
       unitIds: unitIds ?? this.unitIds,

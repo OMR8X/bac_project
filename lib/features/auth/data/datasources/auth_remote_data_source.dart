@@ -105,8 +105,8 @@ class AuthRemoteDataSourceImplements implements AuthRemoteDataSource {
       password: request.password,
       data: {
         'name': request.name,
-        'section_id': request.sectionId,
-        'governorate_id': request.governorateId,
+        'section_id': request.sectionId.toString(),
+        'governorate_id': request.governorateId.toString(),
         'account_type': 'student',
       },
     );
@@ -186,8 +186,7 @@ class AuthRemoteDataSourceImplements implements AuthRemoteDataSource {
     final attributes = UserAttributes(
       email: request.email,
       password: request.password,
-      data: request.toBody(old: 
-      supabase.auth.currentUser?.userMetadata),
+      data: request.toBody(old: supabase.auth.currentUser?.userMetadata),
     );
     final res = await supabase.auth.updateUser(attributes);
     final user = res.user;

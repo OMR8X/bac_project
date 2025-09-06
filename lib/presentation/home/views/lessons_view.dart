@@ -1,9 +1,14 @@
+import 'package:bac_project/core/resources/styles/assets_resources.dart';
 import 'package:bac_project/core/resources/styles/blur_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
 import 'package:bac_project/core/services/router/app_routes.dart';
+import 'package:bac_project/core/widgets/ui/icons/arrow_back_icon_widget.dart';
+import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
+import 'package:bac_project/core/widgets/ui/icons/appbar_icon_widget.dart';
+import 'package:bac_project/core/widgets/ui/icons/search_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/search_bar_widget.dart';
 import 'package:bac_project/features/tests/domain/entities/lesson.dart';
 import 'package:bac_project/presentation/home/widgets/lessons_navigation_card_bilder_widget.dart';
@@ -44,7 +49,11 @@ class _LessonsViewState extends State<LessonsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.l10n.lessonsTitle)),
+      appBar: AppBar(
+        title: Text(context.l10n.lessonsTitle),
+        leading: ArrowBackIconWidget(),
+        actions: [SearchIconWidget(onPressed: _navigateToSearch)],
+      ),
       body: BlocProvider(
         create: (_) => context.read<LessonsBloc>(),
         child: BlocBuilder<LessonsBloc, LessonsState>(
@@ -62,14 +71,6 @@ class _LessonsViewState extends State<LessonsView> {
                         // inline search bar
                         SliverFloatingHeader(
                           snapMode: FloatingHeaderSnapMode.overlay,
-
-                          child: SearchBarWidget(
-                            enabled: false,
-                            heroTag: 'lessons_search_bar',
-                            onTap: _navigateToSearch,
-                          ),
-                        ),
-                        SliverToBoxAdapter(
                           child: LessonsTestCardWidget(
                             lessonCount: state.lessons.length,
                             onTestAllLessonsPressed: () {
@@ -77,6 +78,9 @@ class _LessonsViewState extends State<LessonsView> {
                             },
                           ),
                         ),
+                        // SliverToBoxAdapter(
+                        //   child: ,
+                        // ),
                         SliverPadding(
                           padding: PaddingResources.listViewPadding,
                           sliver: LessonsCardsBuilderWidget(lessons: state.lessons),

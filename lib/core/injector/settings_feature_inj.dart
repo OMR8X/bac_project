@@ -19,5 +19,5 @@ Future<void> settingsFeatureInjection() async {
   );
 
   // Usecase
-  sl.registerLazySingleton<GetAppSettingsUseCase>(() => GetAppSettingsUseCase(repository: sl()));
+  sl.registerLazySingleton<GetAppSettingsUsecase>(() => GetAppSettingsUsecase(repository: sl()));
 }

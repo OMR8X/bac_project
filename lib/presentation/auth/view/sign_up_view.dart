@@ -1,11 +1,14 @@
 import 'package:bac_project/core/resources/styles/padding_resources.dart';
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';
+import 'package:bac_project/core/services/router/app_routes.dart';
+import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
 import 'package:bac_project/features/settings/domain/entities/app_settings.dart';
 import 'package:bac_project/features/settings/domain/entities/governorate.dart';
 import 'package:bac_project/features/settings/domain/entities/section.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import '../../../core/helpers/input_validator.dart';
 import '../../../core/injector/app_injection.dart';
 import '../../../core/resources/styles/spaces_resources.dart';
@@ -76,11 +79,10 @@ class _SignUpViewState extends State<SignUpView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("انشاء حساب جديد"),
-        leading: IconButton(
+        leading: CloseIconWidget(
           onPressed: () {
             context.read<AuthBloc>().add(const AuthStartAuthEvent());
           },
-          icon: const Icon(Icons.close),
         ),
       ),
       body: SafeArea(

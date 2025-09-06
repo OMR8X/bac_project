@@ -1,10 +1,13 @@
 import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/resources/styles/padding_resources.dart';
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';
+import 'package:bac_project/core/services/router/app_routes.dart';
 import 'package:bac_project/core/widgets/ui/fields/text_form_field_widget.dart';
+import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import '../../../core/helpers/input_validator.dart';
 import '../../../core/resources/styles/spaces_resources.dart';
 import '../../../core/resources/themes/extensions/surface_container_colors.dart';
@@ -53,11 +56,10 @@ class _SignInViewState extends State<SignInView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("تسجيل الدخول"),
-        leading: IconButton(
+        leading: CloseIconWidget(
           onPressed: () {
             context.read<AuthBloc>().add(const AuthStartAuthEvent());
           },
-          icon: const Icon(Icons.close),
         ),
       ),
       body: SafeArea(

@@ -33,6 +33,7 @@ class LessonsCardsBuilderWidget extends StatelessWidget {
     }
     return AnimationLimiter(
       child: SliverList.builder(
+        
         itemCount: lessons.length,
         itemBuilder: (context, index) {
           final lesson = lessons[index];

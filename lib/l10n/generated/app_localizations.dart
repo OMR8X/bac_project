@@ -94,161 +94,17 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[Locale('ar')];
 
-  /// No description provided for @pickLessonsTitle.
+  /// No description provided for @authEmail.
   ///
   /// In ar, this message translates to:
-  /// **'اختيار الدروس'**
-  String get pickLessonsTitle;
+  /// **'البريد الإلكتروني'**
+  String get authEmail;
 
-  /// No description provided for @homeTitle.
+  /// No description provided for @authPassword.
   ///
   /// In ar, this message translates to:
-  /// **'الرئيسية'**
-  String get homeTitle;
-
-  /// No description provided for @homeCardStartTestAction.
-  ///
-  /// In ar, this message translates to:
-  /// **'بدء الاختبار الكامل'**
-  String get homeCardStartTestAction;
-
-  /// No description provided for @homeCardExploreLessonsAction.
-  ///
-  /// In ar, this message translates to:
-  /// **'استكشاف الدروس'**
-  String get homeCardExploreLessonsAction;
-
-  /// No description provided for @homeQuoteDailyQuote.
-  ///
-  /// In ar, this message translates to:
-  /// **'اقتباس اليوم'**
-  String get homeQuoteDailyQuote;
-
-  /// No description provided for @homeQuoteExpandQuote.
-  ///
-  /// In ar, this message translates to:
-  /// **'عرض الاقتباس مكبراً'**
-  String get homeQuoteExpandQuote;
-
-  /// No description provided for @lessonsTitle.
-  ///
-  /// In ar, this message translates to:
-  /// **'الدروس'**
-  String get lessonsTitle;
-
-  /// No description provided for @testPropertiesTitle.
-  ///
-  /// In ar, this message translates to:
-  /// **'اعدادات الاختبار'**
-  String get testPropertiesTitle;
-
-  /// No description provided for @testPropertiesShowTrueAnswerTitle.
-  ///
-  /// In ar, this message translates to:
-  /// **'عرض الإجابة الصحيحة'**
-  String get testPropertiesShowTrueAnswerTitle;
-
-  /// No description provided for @testPropertiesShowTrueAnswerSubtitle.
-  ///
-  /// In ar, this message translates to:
-  /// **'إظهار الإجابة الصحيحة بعد كل سؤال.'**
-  String get testPropertiesShowTrueAnswerSubtitle;
-
-  /// No description provided for @testPropertiesEnableSoundEffectsTitle.
-  ///
-  /// In ar, this message translates to:
-  /// **'تفعيل الأصوات'**
-  String get testPropertiesEnableSoundEffectsTitle;
-
-  /// No description provided for @testPropertiesEnableSoundEffectsSubtitle.
-  ///
-  /// In ar, this message translates to:
-  /// **'تشغيل مؤثرات صوتية عند الإجابة.'**
-  String get testPropertiesEnableSoundEffectsSubtitle;
-
-  /// No description provided for @testPropertiesModeSwitcherTitle.
-  ///
-  /// In ar, this message translates to:
-  /// **'الوضع'**
-  String get testPropertiesModeSwitcherTitle;
-
-  /// No description provided for @testPropertiesModeSwitcherExploreMode.
-  ///
-  /// In ar, this message translates to:
-  /// **'وضع التصفح'**
-  String get testPropertiesModeSwitcherExploreMode;
-
-  /// No description provided for @testPropertiesModeSwitcherTestMode.
-  ///
-  /// In ar, this message translates to:
-  /// **'وضع الاختبار'**
-  String get testPropertiesModeSwitcherTestMode;
-
-  /// No description provided for @testPropertiesQuestionsCount.
-  ///
-  /// In ar, this message translates to:
-  /// **'عدد الأسئلة'**
-  String get testPropertiesQuestionsCount;
-
-  /// No description provided for @testPropertiesQuestionsCategories.
-  ///
-  /// In ar, this message translates to:
-  /// **'مواضيع الأسئلة'**
-  String get testPropertiesQuestionsCategories;
-
-  /// No description provided for @testPropertiesModesExploreModeTitle.
-  ///
-  /// In ar, this message translates to:
-  /// **'وضع التصفح'**
-  String get testPropertiesModesExploreModeTitle;
-
-  /// No description provided for @testPropertiesModesExploreModeSubtitle.
-  ///
-  /// In ar, this message translates to:
-  /// **'للتعلم والاستكشاف'**
-  String get testPropertiesModesExploreModeSubtitle;
-
-  /// No description provided for @testPropertiesModesExploreModeDescription.
-  ///
-  /// In ar, this message translates to:
-  /// **'تدرب بدون ضغط الوقت. اطلع على الإجابات فوراً وتعلم من اخطائك.'**
-  String get testPropertiesModesExploreModeDescription;
-
-  /// No description provided for @testPropertiesModesTestModeTitle.
-  ///
-  /// In ar, this message translates to:
-  /// **'وضع الاختبار'**
-  String get testPropertiesModesTestModeTitle;
-
-  /// No description provided for @testPropertiesModesTestModeSubtitle.
-  ///
-  /// In ar, this message translates to:
-  /// **'اختبر نفسك'**
-  String get testPropertiesModesTestModeSubtitle;
-
-  /// No description provided for @testPropertiesModesTestModeDescription.
-  ///
-  /// In ar, this message translates to:
-  /// **'امتحان مؤقت مع تقييم ونتائج. مثالي لاختبار فهمك للموضوعات'**
-  String get testPropertiesModesTestModeDescription;
-
-  /// No description provided for @testPropertiesModesCustomModeTitle.
-  ///
-  /// In ar, this message translates to:
-  /// **'وضع مخصص'**
-  String get testPropertiesModesCustomModeTitle;
-
-  /// No description provided for @testPropertiesModesCustomModeSubtitle.
-  ///
-  /// In ar, this message translates to:
-  /// **'تحكم بجميع الإعدادات'**
-  String get testPropertiesModesCustomModeSubtitle;
-
-  /// No description provided for @testPropertiesModesCustomModeDescription.
-  ///
-  /// In ar, this message translates to:
-  /// **'قم بتحديد اعدادات الاختبار وتخصيصها بالكامل'**
-  String get testPropertiesModesCustomModeDescription;
+  /// **'الرمز السري'**
+  String get authPassword;
 
   /// No description provided for @authSignIn.
   ///
@@ -262,17 +118,173 @@ abstract class AppLocalizations {
   /// **'إنشاء حساب'**
   String get authSignUp;
 
-  /// No description provided for @authEmail.
+  /// No description provided for @buttonsClose.
   ///
   /// In ar, this message translates to:
-  /// **'البريد الإلكتروني'**
-  String get authEmail;
+  /// **'إغلاق'**
+  String get buttonsClose;
 
-  /// No description provided for @authPassword.
+  /// No description provided for @buttonsConfirm.
   ///
   /// In ar, this message translates to:
-  /// **'الرمز السري'**
-  String get authPassword;
+  /// **'تأكيد'**
+  String get buttonsConfirm;
+
+  /// No description provided for @buttonsCustomize.
+  ///
+  /// In ar, this message translates to:
+  /// **'تخصيص'**
+  String get buttonsCustomize;
+
+  /// No description provided for @buttonsFinish.
+  ///
+  /// In ar, this message translates to:
+  /// **'إنهاء'**
+  String get buttonsFinish;
+
+  /// No description provided for @buttonsNext.
+  ///
+  /// In ar, this message translates to:
+  /// **'التالي'**
+  String get buttonsNext;
+
+  /// No description provided for @buttonsPick.
+  ///
+  /// In ar, this message translates to:
+  /// **'اختيار'**
+  String get buttonsPick;
+
+  /// No description provided for @buttonsPrevious.
+  ///
+  /// In ar, this message translates to:
+  /// **'السابق'**
+  String get buttonsPrevious;
+
+  /// No description provided for @buttonsResult.
+  ///
+  /// In ar, this message translates to:
+  /// **'النتيجة'**
+  String get buttonsResult;
+
+  /// No description provided for @buttonsResultDetailsTab.
+  ///
+  /// In ar, this message translates to:
+  /// **'تفاصيل النتيجة'**
+  String get buttonsResultDetailsTab;
+
+  /// No description provided for @buttonsResultLeaderboardTab.
+  ///
+  /// In ar, this message translates to:
+  /// **'لوحة الصدارة'**
+  String get buttonsResultLeaderboardTab;
+
+  /// No description provided for @buttonsRetry.
+  ///
+  /// In ar, this message translates to:
+  /// **'اعادة المحاولة'**
+  String get buttonsRetry;
+
+  /// No description provided for @buttonsRetryTest.
+  ///
+  /// In ar, this message translates to:
+  /// **'اعادة الاختبار'**
+  String get buttonsRetryTest;
+
+  /// No description provided for @buttonsSave.
+  ///
+  /// In ar, this message translates to:
+  /// **'حفظ'**
+  String get buttonsSave;
+
+  /// No description provided for @buttonsSignIn.
+  ///
+  /// In ar, this message translates to:
+  /// **'تسجيل الدخول'**
+  String get buttonsSignIn;
+
+  /// No description provided for @buttonsSignOut.
+  ///
+  /// In ar, this message translates to:
+  /// **'تسجيل الخروج'**
+  String get buttonsSignOut;
+
+  /// No description provided for @buttonsSignUp.
+  ///
+  /// In ar, this message translates to:
+  /// **'انشاء حساب'**
+  String get buttonsSignUp;
+
+  /// No description provided for @buttonsSmartRetryTest.
+  ///
+  /// In ar, this message translates to:
+  /// **'اعادة ذكية للأختبار'**
+  String get buttonsSmartRetryTest;
+
+  /// No description provided for @buttonsStartTest.
+  ///
+  /// In ar, this message translates to:
+  /// **'بدء الأختبار'**
+  String get buttonsStartTest;
+
+  /// No description provided for @buttonsUpdateUserData.
+  ///
+  /// In ar, this message translates to:
+  /// **'تحديث بياناتك'**
+  String get buttonsUpdateUserData;
+
+  /// No description provided for @enableSoundEffectsSubtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'تشغيل مؤثرات صوتية عند الإجابة.'**
+  String get enableSoundEffectsSubtitle;
+
+  /// No description provided for @enableSoundEffectsTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'تفعيل الأصوات'**
+  String get enableSoundEffectsTitle;
+
+  /// No description provided for @exploreMode.
+  ///
+  /// In ar, this message translates to:
+  /// **'وضع التصفح'**
+  String get exploreMode;
+
+  /// No description provided for @homeCardExploreLessonsAction.
+  ///
+  /// In ar, this message translates to:
+  /// **'استكشاف الدروس'**
+  String get homeCardExploreLessonsAction;
+
+  /// No description provided for @homeCardStartTestAction.
+  ///
+  /// In ar, this message translates to:
+  /// **'بدء الاختبار الكامل'**
+  String get homeCardStartTestAction;
+
+  /// No description provided for @homeQuoteDailyQuote.
+  ///
+  /// In ar, this message translates to:
+  /// **'اقتباس اليوم'**
+  String get homeQuoteDailyQuote;
+
+  /// No description provided for @homeQuoteExpandQuote.
+  ///
+  /// In ar, this message translates to:
+  /// **'عرض الاقتباس مكبراً'**
+  String get homeQuoteExpandQuote;
+
+  /// No description provided for @homeTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'الرئيسية'**
+  String get homeTitle;
+
+  /// No description provided for @lessonsTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'الدروس'**
+  String get lessonsTitle;
 
   /// No description provided for @navigationHome.
   ///
@@ -292,23 +304,23 @@ abstract class AppLocalizations {
   /// **'الإعدادات'**
   String get navigationSettings;
 
-  /// No description provided for @settingsTitle.
+  /// No description provided for @pickLessonsTitle.
   ///
   /// In ar, this message translates to:
-  /// **'الإعدادات'**
-  String get settingsTitle;
+  /// **'اختيار الدروس'**
+  String get pickLessonsTitle;
 
-  /// No description provided for @resultTitle.
+  /// No description provided for @pickQuestionsCategoriesTitle.
   ///
   /// In ar, this message translates to:
-  /// **'نتائجي'**
-  String get resultTitle;
+  /// **'مواضيع الأسئلة'**
+  String get pickQuestionsCategoriesTitle;
 
-  /// No description provided for @resultScore.
+  /// No description provided for @pickQuestionsCountTitle.
   ///
   /// In ar, this message translates to:
-  /// **'الدرجة'**
-  String get resultScore;
+  /// **'عدد الأسئلة'**
+  String get pickQuestionsCountTitle;
 
   /// No description provided for @resultCorrect.
   ///
@@ -316,17 +328,23 @@ abstract class AppLocalizations {
   /// **'صحيح'**
   String get resultCorrect;
 
-  /// No description provided for @resultWrong.
+  /// No description provided for @resultScore.
   ///
   /// In ar, this message translates to:
-  /// **'خطأ'**
-  String get resultWrong;
+  /// **'الدرجة'**
+  String get resultScore;
 
-  /// No description provided for @resultUnanswered.
+  /// No description provided for @resultsCount.
   ///
   /// In ar, this message translates to:
-  /// **'بدون إجابة'**
-  String get resultUnanswered;
+  /// **'عدد الاسئلة'**
+  String get resultsCount;
+
+  /// No description provided for @resultsTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'نتائجي'**
+  String get resultsTitle;
 
   /// No description provided for @resultTime.
   ///
@@ -340,23 +358,23 @@ abstract class AppLocalizations {
   /// **'وقت الاختبار'**
   String get resultTimeTaken;
 
-  /// No description provided for @searchHint.
+  /// No description provided for @resultTitle.
   ///
   /// In ar, this message translates to:
-  /// **'بحث...'**
-  String get searchHint;
+  /// **'نتيجتي'**
+  String get resultTitle;
 
-  /// No description provided for @searchTitle.
+  /// No description provided for @resultUnanswered.
   ///
   /// In ar, this message translates to:
-  /// **'البحث'**
-  String get searchTitle;
+  /// **'بدون إجابة'**
+  String get resultUnanswered;
 
-  /// No description provided for @searchNoResults.
+  /// No description provided for @resultWrong.
   ///
   /// In ar, this message translates to:
-  /// **'لا يوجد نتائج'**
-  String get searchNoResults;
+  /// **'خطأ'**
+  String get resultWrong;
 
   /// No description provided for @screenUpdateUserData.
   ///
@@ -364,95 +382,155 @@ abstract class AppLocalizations {
   /// **'تحديث بيانات المتسخدم'**
   String get screenUpdateUserData;
 
-  /// No description provided for @buttonsSave.
+  /// No description provided for @searchHint.
   ///
   /// In ar, this message translates to:
-  /// **'حفظ'**
-  String get buttonsSave;
+  /// **'بحث...'**
+  String get searchHint;
 
-  /// No description provided for @buttonsNext.
+  /// No description provided for @searchNoResults.
   ///
   /// In ar, this message translates to:
-  /// **'التالي'**
-  String get buttonsNext;
+  /// **'لا يوجد نتائج'**
+  String get searchNoResults;
 
-  /// No description provided for @buttonsConfirm.
+  /// No description provided for @searchTitle.
   ///
   /// In ar, this message translates to:
-  /// **'تأكيد'**
-  String get buttonsConfirm;
-
-  /// No description provided for @buttonsCustomize.
-  ///
-  /// In ar, this message translates to:
-  /// **'تخصيص'**
-  String get buttonsCustomize;
-
-  /// No description provided for @buttonsPick.
-  ///
-  /// In ar, this message translates to:
-  /// **'اختيار'**
-  String get buttonsPick;
-
-  /// No description provided for @buttonsPrevious.
-  ///
-  /// In ar, this message translates to:
-  /// **'السابق'**
-  String get buttonsPrevious;
-
-  /// No description provided for @buttonsFinish.
-  ///
-  /// In ar, this message translates to:
-  /// **'إنهاء'**
-  String get buttonsFinish;
-
-  /// No description provided for @buttonsResult.
-  ///
-  /// In ar, this message translates to:
-  /// **'النتيجة'**
-  String get buttonsResult;
-
-  /// No description provided for @buttonsClose.
-  ///
-  /// In ar, this message translates to:
-  /// **'إغلاق'**
-  String get buttonsClose;
-
-  /// No description provided for @buttonsRetry.
-  ///
-  /// In ar, this message translates to:
-  /// **'اعادة الاختبار'**
-  String get buttonsRetry;
-
-  /// No description provided for @buttonsSignIn.
-  ///
-  /// In ar, this message translates to:
-  /// **'تسجيل الدخول'**
-  String get buttonsSignIn;
-
-  /// No description provided for @buttonsSignUp.
-  ///
-  /// In ar, this message translates to:
-  /// **'انشاء حساب'**
-  String get buttonsSignUp;
-
-  /// No description provided for @buttonsSignOut.
-  ///
-  /// In ar, this message translates to:
-  /// **'تسجيل الخروج'**
-  String get buttonsSignOut;
-
-  /// No description provided for @buttonsUpdateUserData.
-  ///
-  /// In ar, this message translates to:
-  /// **'تحديث بياناتك'**
-  String get buttonsUpdateUserData;
+  /// **'البحث'**
+  String get searchTitle;
 
   /// No description provided for @selectAll.
   ///
   /// In ar, this message translates to:
   /// **'تحديد الكل'**
   String get selectAll;
+
+  /// No description provided for @settingsTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'الإعدادات'**
+  String get settingsTitle;
+
+  /// No description provided for @showTrueAnswerSubtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'إظهار الإجابة الصحيحة بعد كل سؤال.'**
+  String get showTrueAnswerSubtitle;
+
+  /// No description provided for @showTrueAnswerTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'عرض الإجابة الصحيحة'**
+  String get showTrueAnswerTitle;
+
+  /// No description provided for @testMode.
+  ///
+  /// In ar, this message translates to:
+  /// **'وضع الاختبار'**
+  String get testMode;
+
+  /// No description provided for @testModeDetailsContent.
+  ///
+  /// In ar, this message translates to:
+  /// **'في وضع الاختبار، ستخضع لاختبار مؤقت مع عدد محدد من الأسئلة. لن تتمكن من رؤية الإجابات الصحيحة إلا بعد الانتهاء من الاختبار. سيتم تقييم أدائك وإعطاؤك تقريراً مفصلاً عن النتائج.'**
+  String get testModeDetailsContent;
+
+  /// No description provided for @testModeDetailsTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'معلومات وضع الاختبار'**
+  String get testModeDetailsTitle;
+
+  /// No description provided for @testPropertiesModesCustomModeDescription.
+  ///
+  /// In ar, this message translates to:
+  /// **'قم بتحديد اعدادات الاختبار وتخصيصها بالكامل'**
+  String get testPropertiesModesCustomModeDescription;
+
+  /// No description provided for @testPropertiesModesCustomModeSubtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'تحكم بجميع الإعدادات'**
+  String get testPropertiesModesCustomModeSubtitle;
+
+  /// No description provided for @testPropertiesModesCustomModeTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'وضع مخصص'**
+  String get testPropertiesModesCustomModeTitle;
+
+  /// No description provided for @testPropertiesModesExploreModeDescription.
+  ///
+  /// In ar, this message translates to:
+  /// **'تدرب بدون ضغط الوقت. اطلع على الإجابات فوراً وتعلم من اخطائك.'**
+  String get testPropertiesModesExploreModeDescription;
+
+  /// No description provided for @testPropertiesModesExploreModeSubtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'للتعلم والاستكشاف'**
+  String get testPropertiesModesExploreModeSubtitle;
+
+  /// No description provided for @testPropertiesModesExploreModeTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'وضع التصفح'**
+  String get testPropertiesModesExploreModeTitle;
+
+  /// No description provided for @testPropertiesModesTestModeDescription.
+  ///
+  /// In ar, this message translates to:
+  /// **'امتحان مؤقت مع تقييم ونتائج. مثالي لاختبار فهمك للموضوعات'**
+  String get testPropertiesModesTestModeDescription;
+
+  /// No description provided for @testPropertiesModesTestModeSubtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'اختبر نفسك'**
+  String get testPropertiesModesTestModeSubtitle;
+
+  /// No description provided for @testPropertiesModesTestModeTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'وضع الاختبار'**
+  String get testPropertiesModesTestModeTitle;
+
+  /// No description provided for @testPropertiesModeSwitcherExploreMode.
+  ///
+  /// In ar, this message translates to:
+  /// **'وضع التصفح'**
+  String get testPropertiesModeSwitcherExploreMode;
+
+  /// No description provided for @testPropertiesModeSwitcherTestMode.
+  ///
+  /// In ar, this message translates to:
+  /// **'وضع الاختبار'**
+  String get testPropertiesModeSwitcherTestMode;
+
+  /// No description provided for @testPropertiesModeSwitcherTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'الوضع'**
+  String get testPropertiesModeSwitcherTitle;
+
+  /// No description provided for @testPropertiesQuestionsCategories.
+  ///
+  /// In ar, this message translates to:
+  /// **'مواضيع الأسئلة'**
+  String get testPropertiesQuestionsCategories;
+
+  /// No description provided for @testPropertiesQuestionsCount.
+  ///
+  /// In ar, this message translates to:
+  /// **'عدد الأسئلة'**
+  String get testPropertiesQuestionsCount;
+
+  /// No description provided for @testPropertiesTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'اعدادات الاختبار'**
+  String get testPropertiesTitle;
 
   /// No description provided for @unselectAll.
   ///

@@ -67,6 +67,18 @@ class AppLightTheme {
       ),
 
       ///
+      popupMenuTheme: PopupMenuThemeData(
+        elevation: 0.5,
+        labelTextStyle: WidgetStatePropertyAll(
+          AppTextStyles.cardSmallSubtitle.copyWith(color: ColorsResourcesLight.onSurface),
+        ),
+        shape: RoundedSuperellipseBorder(
+          borderRadius: BorderRadiusResource.buttonBorderRadius,
+          side: BorderSide(color: ColorsResourcesLight.outline, width: 0.5),
+        ),
+      ),
+
+      ///
       checkboxTheme: CheckboxThemeData(
         checkColor: WidgetStateProperty.resolveWith<Color>((states) {
           if (states.contains(WidgetState.selected)) {
@@ -126,21 +138,6 @@ class AppLightTheme {
       ),
 
       ///
-      appBarTheme: AppBarTheme(
-        backgroundColor: ColorsResourcesLight.surface,
-        shadowColor: Colors.transparent,
-        titleTextStyle: AppTextStyles.appBar.copyWith(color: ColorsResourcesLight.onSurface),
-        surfaceTintColor: Colors.transparent,
-        foregroundColor: ColorsResourcesLight.onSurface,
-        iconTheme: IconThemeData(
-          fill: 1,
-          color: ColorsResourcesLight.onSurfaceVariant,
-          opticalSize: 1,
-          size: 25,
-        ),
-      ),
-
-      ///
 
       ///
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
@@ -159,10 +156,9 @@ class AppLightTheme {
         elevation: 1,
         shadowColor: ColorsResourcesLight.shadow.withAlpha(0),
         color: ColorsResourcesLight.surfaceContainer,
-
         shape: RoundedSuperellipseBorder(
           borderRadius: BorderRadiusResource.cardBorderRadius,
-          // side: BorderSide(color: ColorsResourcesLight.outline),
+          side: BorderSide(color: ColorsResourcesLight.outline, width: 0.20),
         ),
       ),
 
@@ -177,7 +173,7 @@ class AppLightTheme {
         ),
       ),
 
-      ///
+      /// [BUTTONS]
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           elevation: 0,
@@ -187,6 +183,7 @@ class AppLightTheme {
           shape: RoundedSuperellipseBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
           textStyle: AppTextStyles.button,
           minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
+          side: BorderSide(color: ColorsResourcesLight.outline),
         ),
       ),
 
@@ -199,7 +196,10 @@ class AppLightTheme {
           foregroundColor: ColorsResourcesLight.primaryContainer,
           disabledBackgroundColor: ColorsResourcesLight.primaryContainer.withAlpha(100),
           minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
-          shape: RoundedSuperellipseBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
+          shape: RoundedSuperellipseBorder(
+            borderRadius: BorderRadiusResource.buttonBorderRadius,
+            side: BorderSide(color: ColorsResourcesLight.outline, width: 0.5),
+          ),
           textStyle: AppTextStyles.button,
         ),
       ),
@@ -221,15 +221,32 @@ class AppLightTheme {
       ///
       iconButtonTheme: IconButtonThemeData(
         style: IconButton.styleFrom(
-          iconSize: 20,
           alignment: Alignment.center,
-          padding: const EdgeInsets.all(8),
-          backgroundColor: ColorsResourcesLight.primaryContainer,
-          foregroundColor: ColorsResourcesLight.primary,
-          shape: const CircleBorder(
-            side: BorderSide(color: ColorsResourcesLight.outline, width: 0.2),
+          padding: EdgeInsets.all(12),
+          minimumSize: Size(
+            SizesResources.iconButtonAppBarHeight,
+            SizesResources.iconButtonAppBarHeight,
+          ),
+          backgroundColor: ColorsResourcesLight.surface,
+          foregroundColor: ColorsResourcesLight.onSurface,
+          shape: RoundedSuperellipseBorder(
+            side: BorderSide(color: ColorsResourcesLight.outline, width: 0.5),
+            borderRadius: BorderRadiusResource.buttonBorderRadius,
           ),
         ),
+      ),
+
+      ///
+      appBarTheme: AppBarTheme(
+        backgroundColor: ColorsResourcesLight.surface,
+        shadowColor: Colors.transparent,
+        actionsPadding: PaddingResources.screenSidesPadding,
+        titleTextStyle: AppTextStyles.appBar.copyWith(color: ColorsResourcesLight.onSurface),
+        surfaceTintColor: Colors.transparent,
+        leadingWidth:
+            SizesResources.iconButtonAppBarHeight + PaddingResources.screenSidesPadding.right,
+        foregroundColor: ColorsResourcesLight.onSurfaceVariant,
+        centerTitle: true,
       ),
       dropdownMenuTheme: DropdownMenuThemeData(
         menuStyle: MenuStyle(
@@ -247,7 +264,7 @@ class AppLightTheme {
 
           border: OutlineInputBorder(
             borderRadius: BorderRadiusResource.fieldBorderRadius,
-            borderSide: const BorderSide(color: ColorsResourcesLight.outline),
+            borderSide: const BorderSide(color: ColorsResourcesLight.outline, width: 0.75),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadiusResource.fieldBorderRadius,
@@ -268,24 +285,24 @@ class AppLightTheme {
 
         border: OutlineInputBorder(
           borderRadius: BorderRadiusResource.fieldBorderRadius,
-          borderSide: const BorderSide(color: ColorsResourcesLight.outlineVariant),
+          borderSide: const BorderSide(color: ColorsResourcesLight.outline, width: 0.5),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadiusResource.fieldBorderRadius,
-          borderSide: const BorderSide(color: ColorsResourcesLight.outlineVariant),
+          borderSide: const BorderSide(color: ColorsResourcesLight.outline, width: 0.5),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadiusResource.fieldBorderRadius,
-          borderSide: const BorderSide(color: ColorsResourcesLight.outlineVariant),
+          borderSide: const BorderSide(color: ColorsResourcesLight.outline, width: 0.5),
         ),
         // errorBorder: OutlineInputBorder(
         //   borderRadius: BorderRadiusResource.fieldBorderRadius,
-        //   borderSide: const BorderSide(color: ColorsResourcesLight.outlineVariant),
+        //   borderSide: const BorderSide(color: ColorsResourcesLight.outline,width: 0..20),
         // ),
         filled: true,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadiusResource.fieldBorderRadius,
-          borderSide: const BorderSide(color: ColorsResourcesLight.outlineVariant),
+          borderSide: const BorderSide(color: ColorsResourcesLight.outline, width: 0.5),
         ),
         outlineBorder: BorderSide(color: ColorsResourcesLight.outline),
         contentPadding: PaddingResources.fieldContentPadding,

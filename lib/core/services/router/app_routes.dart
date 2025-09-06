@@ -8,14 +8,16 @@ enum AppRoutes {
   designing(name: 'designing', path: '/designing'),
   auth(name: 'auth', path: '/auth'),
   setting(name: 'setting', path: '/setting'),
-  result(name: 'result', path: '/result'),
+  exploreResults(name: 'explore-results', path: '/explore-results'),
+  exploreResult(name: 'explore-result', path: '/explore-result'),
   testModeSettings(name: 'test-mode-settings', path: '/test-mode-settings'),
   setTestProperties(name: 'set-test-properties', path: '/set-test-properties'),
   pickLessons(name: 'pick-lessons', path: '/pick-lessons'),
   quizzing(name: 'quizzing', path: '/quizzing'),
   search(name: 'search', path: '/search'),
   notificationDetails(name: 'notification-details', path: '/notification-details'),
-  updateUserData(name: 'update-user-data', path: '/update-user-data');
+  updateUserData(name: 'update-user-data', path: '/update-user-data'),
+  fetchCustomQuestions(name: 'fetch-custom-questions', path: '/fetch-custom-questions');
 
   const AppRoutes({required this.name, required this.path});
 

@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:bac_project/core/widgets/ui/lesson_card_widget.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bac_project/presentation/tests/blocs/pick_lessons_bloc.dart';
+import 'package:bac_project/presentation/tests/blocs/pick_lessons/pick_lessons_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:go_router/go_router.dart';
 

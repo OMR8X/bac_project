@@ -7,12 +7,16 @@ import 'package:bac_project/features/auth/domain/usecases/sign_out_usecase.dart'
 import 'package:bac_project/features/auth/domain/usecases/sign_up_usecase.dart';
 import 'package:bac_project/features/auth/domain/usecases/update_user_data_usecase.dart';
 import 'package:bac_project/features/settings/domain/usecases/get_app_settings_usecase.dart';
+import 'package:bac_project/features/notifications/domain/usecases/initialize_firebase_notifications_usecase.dart';
+import 'package:bac_project/features/notifications/domain/usecases/initialize_local_notifications_usecase.dart';
 import 'package:bac_project/presentation/auth/state/bloc/auth_bloc.dart';
 import 'package:bac_project/presentation/home/blocs/home_bloc.dart';
-import 'package:bac_project/presentation/result/bloc/explore_results_bloc.dart';
+import 'package:bac_project/presentation/result/bloc/explore_results/explore_results_bloc.dart';
+import 'package:bac_project/presentation/result/bloc/submit_results/explore_result_bloc.dart';
 import 'package:bac_project/presentation/search/bloc/bloc/search_bloc.dart';
-import 'package:bac_project/presentation/tests/blocs/pick_lessons_bloc.dart';
-import 'package:bac_project/presentation/tests/blocs/test_mode_settings_bloc.dart';
+import 'package:bac_project/presentation/tests/blocs/pick_lessons/pick_lessons_bloc.dart';
+import 'package:bac_project/presentation/tests/blocs/test_mode_settings/test_mode_settings_bloc.dart';
+import 'package:bac_project/presentation/tests/blocs/custom_questions/fetch_custom_questions_bloc.dart';
 
 import '../../presentation/home/blocs/lessons_bloc.dart';
 
@@ -27,33 +31,46 @@ controllersInjection() {
   );
 
   ///
-  sl.registerLazySingleton(() => AppLoaderBloc(sl<GetAppSettingsUseCase>()));
+  sl.registerLazySingleton(
+    () => AppLoaderBloc(
+      sl<GetAppSettingsUsecase>(),
+      sl<GetUserDataUsecase>(),
+      sl<InitializeLocalNotificationsUsecase>(),
+      sl<InitializeFirebaseNotificationsUsecase>(),
+    )..add(const AppLoaderLoadData()),
+  );
 
   ///
   sl.registerLazySingleton(
     () => AuthBloc(
-      sl<GetUserDataUseCase>(),
-      sl<SignInUseCase>(),
-      sl<SignUpUseCase>(),
-      sl<SignOutUseCase>(),
-      sl<UpdateUserDataUseCase>(),
+      sl<GetUserDataUsecase>(),
+      sl<SignInUsecase>(),
+      sl<SignUpUsecase>(),
+      sl<SignOutUsecase>(),
+      sl<UpdateUserDataUsecase>(),
     )..add(AuthInitializeEvent()),
   );
 
   sl.registerFactory(() => LessonsBloc());
 
   ///
-  sl.registerFactory(() => TestModeSettingsBloc(getQuestionsUseCase: sl()));
+  sl.registerFactory(
+    () => TestModeSettingsBloc(getQuestionsUsecase: sl(), getTestOptionsUsecase: sl()),
+  );
 
   ///
   sl.registerLazySingleton(() => HomeBloc());
 
   ///
-  sl.registerFactory(() => PickLessonsBloc(getLessonsUseCase: sl()));
+  sl.registerFactory(() => PickLessonsBloc(getLessonsUsecase: sl()));
 
   ///
-  sl.registerFactory(() => SearchBloc(getLessonsUseCase: sl()));
+  sl.registerFactory(() => SearchBloc(getLessonsUsecase: sl()));
+
+  ///
+  sl.registerFactory(() => FetchCustomQuestionsBloc(getQuestionsByIdsUsecase: sl()));
 
   // Results
-  sl.registerFactory(() => ExploreResultsBloc(getMyResultsUseCase: sl()));
+  sl.registerLazySingleton(() => ExploreResultsBloc(getMyResultsUsecase: sl()));
+  sl.registerFactory(() => ExploreResultBloc(getResultUsecase: sl(), getResultLeaderboardUsecase: sl()));
 }

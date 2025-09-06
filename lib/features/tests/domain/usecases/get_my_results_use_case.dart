@@ -4,10 +4,10 @@ import '../repositories/results_repository.dart';
 import '../requests/get_my_results_request.dart';
 import '../../data/responses/get_results_response.dart';
 
-class GetMyResultsUseCase {
+class GetMyResultsUsecase {
   final ResultsRepository repository;
 
-  GetMyResultsUseCase({required this.repository});
+  GetMyResultsUsecase({required this.repository});
 
   Future<Either<Failure, GetResultsResponse>> call(GetMyResultsRequest request) async {
     return await repository.getMyResults(request);

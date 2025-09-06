@@ -142,10 +142,10 @@ class Post {
 import 'package:dartz/dartz.dart';
 // other imports
 
-class GetPostsUseCase {
+class GetPostsUsecase {
   final PostsRepository repository;
 
-  GetPostsUseCase(this.repository);
+  GetPostsUsecase(this.repository);
 
   Future<Either<Failure, GetPostsResponse>> call(GetPostsRequest request) async {
     return await repository.getPosts(request);
@@ -373,10 +373,10 @@ class Post {
 import 'package:dartz/dartz.dart';
 // other imports
 
-class GetPostsUseCase {
+class GetPostsUsecase {
   final PostsRepository repository;
 
-  GetPostsUseCase(this.repository);
+  GetPostsUsecase(this.repository);
 
   Future<Either<Failure, GetPostsResponse>> call(GetPostsRequest request) async {
     return await repository.getPosts(request);

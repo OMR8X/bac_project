@@ -13,15 +13,15 @@ import 'get_units_use_case_test.mocks.dart';
 
 @GenerateMocks([TestsRepository])
 void main() {
-  late GetUnitsUseCase useCase;
+  late GetUnitsUsecase useCase;
   late MockTestsRepository mockRepository;
 
   setUp(() {
     mockRepository = MockTestsRepository();
-    useCase = GetUnitsUseCase(repository: mockRepository);
+    useCase = GetUnitsUsecase(repository: mockRepository);
   });
 
-  group('GetUnitsUseCase', () {
+  group('GetUnitsUsecase', () {
     const testUnits = [
       entities.Unit(id: '1', title: 'الوحدة الأولى', subtitle: 'مقدمة في الرياضيات'),
       entities.Unit(id: '2', title: 'الوحدة الثانية', subtitle: 'الجبر والهندسة'),

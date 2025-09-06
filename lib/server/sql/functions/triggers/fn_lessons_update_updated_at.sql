@@ -1,0 +1,9 @@
+CREATE OR REPLACE FUNCTION public.fn_lessons_update_updated_at()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+BEGIN
+  NEW.updated_at = now();
+  RETURN NEW;
+END;
+$function$;

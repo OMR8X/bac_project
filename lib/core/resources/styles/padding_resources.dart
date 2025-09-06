@@ -8,8 +8,14 @@ class PaddingResources {
 
   ///
   static const EdgeInsets screenSidesPadding = EdgeInsets.symmetric(
-    horizontal: SpacesResources.s4,
+    horizontal: SpacesResources.s8,
     vertical: 0,
+  );
+
+  ///
+  static const EdgeInsets screenBodyPadding = EdgeInsets.symmetric(
+    horizontal: SpacesResources.s8,
+    vertical: SpacesResources.s8,
   );
 
   ///
@@ -50,6 +56,36 @@ class PaddingResources {
   );
 
   ///
+  static const EdgeInsets cardSmallInnerPadding = EdgeInsets.symmetric(
+    horizontal: SpacesResources.s6,
+    vertical: SpacesResources.s2,
+  );
+
+  ///
+  static const EdgeInsets statChipInnerPadding = EdgeInsets.symmetric(
+    vertical: SpacesResources.s4,
+    horizontal: SpacesResources.s4,
+  );
+
+  ///
+  static const EdgeInsets statChipOuterPadding = EdgeInsets.symmetric(
+    vertical: SpacesResources.s2,
+    horizontal: SpacesResources.s2,
+  );
+
+  ///
+  static const EdgeInsets questionImageInnerPadding = EdgeInsets.symmetric(
+    horizontal: SpacesResources.s6,
+    vertical: SpacesResources.s7,
+  );
+
+  ///
+  static const EdgeInsets questionImageOuterPadding = EdgeInsets.symmetric(
+    horizontal: SpacesResources.s6,
+    vertical: SpacesResources.s7,
+  );
+
+  ///
   static const EdgeInsets questionCardInnerPadding = EdgeInsets.symmetric(
     horizontal: SpacesResources.s10,
     vertical: SpacesResources.s7,
@@ -62,10 +98,21 @@ class PaddingResources {
   );
 
   ///
+  static const EdgeInsets quoteOfTheDayCardInnerPadding = EdgeInsets.symmetric(
+    horizontal: SpacesResources.s6,
+    vertical: SpacesResources.s4,
+  );
+
+  ///
+  static const EdgeInsets quoteOfTheDayCardOuterPadding = EdgeInsets.symmetric(
+    vertical: SpacesResources.s6,
+  );
+
+  ///
   static const EdgeInsets cardOuterPadding = EdgeInsets.symmetric(vertical: SpacesResources.s2);
 
   ///
-  static const EdgeInsets fullTestCardPadding = EdgeInsets.symmetric(vertical: 0);
+  static const EdgeInsets fullTestCardPadding = EdgeInsets.symmetric(vertical: SpacesResources.s3);
 
   ///
   static const EdgeInsets switchCardInnerPadding = EdgeInsets.symmetric(
@@ -78,6 +125,12 @@ class PaddingResources {
   ///
   static const EdgeInsets cardMediumTitlePadding = EdgeInsets.symmetric(
     vertical: SpacesResources.s4,
+  );
+
+  ///
+  static const EdgeInsets cardTopResultsPadding = EdgeInsets.symmetric(
+    vertical: SpacesResources.s2,
+    horizontal: SpacesResources.s4,
   );
   static const EdgeInsets cardLargeTitlePadding = EdgeInsets.symmetric(
     vertical: SpacesResources.s6,
@@ -96,4 +149,10 @@ class PaddingResources {
   ///
   static EdgeInsets customPadding(int h, int v) =>
       EdgeInsets.symmetric(horizontal: SpacesResources.s1 * h, vertical: SpacesResources.s1 * v);
+
+  ///
+  static const EdgeInsets splashScreenPadding = EdgeInsets.symmetric(
+    horizontal: SpacesResources.s8,
+    vertical: SpacesResources.s8,
+  );
 }

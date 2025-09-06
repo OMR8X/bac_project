@@ -13,15 +13,15 @@ import 'get_lessons_use_case_test.mocks.dart';
 
 @GenerateMocks([TestsRepository])
 void main() {
-  late GetLessonsUseCase useCase;
+  late GetLessonsUsecase useCase;
   late MockTestsRepository mockRepository;
 
   setUp(() {
     mockRepository = MockTestsRepository();
-    useCase = GetLessonsUseCase(repository: mockRepository);
+    useCase = GetLessonsUsecase(repository: mockRepository);
   });
 
-  group('GetLessonsUseCase', () {
+  group('GetLessonsUsecase', () {
     const testLessons = [
       entities.Lesson(id: '1', title: 'الأعداد الطبيعية', questionsLength: 15, unitId: '1'),
       entities.Lesson(id: '2', title: 'العمليات الحسابية', questionsLength: 20, unitId: '1'),

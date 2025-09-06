@@ -22,24 +22,21 @@ class BottomButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Padding(
-        padding: PaddingResources.screenSidesPadding,
-        child: ClipRRect(
-          borderRadius: BorderRadiusResource.buttonBorderRadius,
-          child: BackdropFilter(
-            filter: BlurResources.buttonBlur(context),
-            child: FilledButton(
-              style: FilledButton.styleFrom(
-                minimumSize: Size.fromHeight(SizesResources.buttonLargeHeight),
-              ),
-              onPressed:
-                  isLoading
-                      ? null
-                      : isEnabled
-                      ? onPressed
-                      : null,
-              child: isLoading ? CupertinoActivityIndicator() : Text(text),
+      child: ClipRRect(
+        borderRadius: BorderRadiusResource.buttonBorderRadius,
+        child: BackdropFilter(
+          filter: BlurResources.buttonBlur(context),
+          child: FilledButton(
+            style: FilledButton.styleFrom(
+              minimumSize: Size.fromHeight(SizesResources.buttonLargeHeight),
             ),
+            onPressed:
+                isLoading
+                    ? null
+                    : isEnabled
+                    ? onPressed
+                    : null,
+            child: isLoading ? CupertinoActivityIndicator() : Text(text),
           ),
         ),
       ),

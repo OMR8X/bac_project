@@ -36,28 +36,41 @@ void main() {
       totalQuestions: 2,
       correctAnswers: 1,
       wrongAnswers: 1,
+      skippedAnswers: 0,
       score: 50.0,
       durationSeconds: 120,
-      answers: [const UserAnswerModel(questionId: 10, selectedOptionId: 100)],
+      answers: [
+        const UserAnswerModel(questionId: 10, selectedOptionId: 100),
+      ],
       createdAt: now,
       updatedAt: now,
     );
 
-    test('addResult should return Right(AddResultResponse) on success', () async {
-      final request = AddResultRequest(
-        questionsIds: [10, 11],
-        durationSeconds: 120,
-        answers: [const UserAnswerModel(questionId: 10, selectedOptionId: 100)],
-      );
-      final response = AddResultResponse(result: sampleResult);
+    test(
+      'addResult should return Right(AddResultResponse) on success',
+      () async {
+        final request = AddResultRequest(
+          questionsIds: [10, 11],
+          durationSeconds: 120,
+          answers: [
+            const UserAnswerModel(
+              questionId: 10,
+              selectedOptionId: 100,
+            ),
+          ],
+        );
+        final response = AddResultResponse(result: sampleResult);
 
-      when(mockRemote.addResult(request)).thenAnswer((_) async => response);
+        when(
+          mockRemote.addResult(request),
+        ).thenAnswer((_) async => response);
 
-      final result = await repository.addResult(request);
+        final result = await repository.addResult(request);
 
-      expect(result, Right(response));
-      verify(mockRemote.addResult(request));
-    });
+        expect(result, Right(response));
+        verify(mockRemote.addResult(request));
+      },
+    );
 
     test(
       'addResult should return Left(ServerFailure) when remote throws ServerException',
@@ -65,9 +78,16 @@ void main() {
         final request = AddResultRequest(
           questionsIds: [10],
           durationSeconds: 60,
-          answers: [const UserAnswerModel(questionId: 10, selectedOptionId: 100)],
+          answers: [
+            const UserAnswerModel(
+              questionId: 10,
+              selectedOptionId: 100,
+            ),
+          ],
         );
-        when(mockRemote.addResult(request)).thenThrow(const ServerException(message: 'server'));
+        when(
+          mockRemote.addResult(request),
+        ).thenThrow(const ServerException(message: 'server'));
 
         final result = await repository.addResult(request);
 
@@ -77,27 +97,45 @@ void main() {
       },
     );
 
-    test('getMyResults should return Right(GetResultsResponse) on success', () async {
-      final request = GetMyResultsRequest(lessonId: 2, limit: 10, offset: 0);
-      final response = GetResultsResponse(results: [sampleResult]);
+    test(
+      'getMyResults should return Right(GetResultsResponse) on success',
+      () async {
+        final request = GetMyResultsRequest(
+          lessonId: 2,
+          limit: 10,
+          offset: 0,
+        );
+        final response = GetResultsResponse(results: [sampleResult]);
 
-      when(mockRemote.getMyResults(request)).thenAnswer((_) async => response);
+        when(
+          mockRemote.getMyResults(request),
+        ).thenAnswer((_) async => response);
 
-      final result = await repository.getMyResults(request);
+        final result = await repository.getMyResults(request);
 
-      expect(result, Right(response));
-      verify(mockRemote.getMyResults(request));
-    });
+        expect(result, Right(response));
+        verify(mockRemote.getMyResults(request));
+      },
+    );
 
-    test('getMyResults should return Left(AuthFailure) when remote throws AuthException', () async {
-      final request = GetMyResultsRequest(lessonId: null, limit: 5, offset: 0);
-      when(mockRemote.getMyResults(request)).thenThrow(const AuthException(message: 'auth'));
+    test(
+      'getMyResults should return Left(AuthFailure) when remote throws AuthException',
+      () async {
+        final request = GetMyResultsRequest(
+          lessonId: null,
+          limit: 5,
+          offset: 0,
+        );
+        when(
+          mockRemote.getMyResults(request),
+        ).thenThrow(const AuthException(message: 'auth'));
 
-      final result = await repository.getMyResults(request);
+        final result = await repository.getMyResults(request);
 
-      expect(result, isA<Left>());
-      result.fold((l) => expect(l, isA<AuthFailure>()), (_) {});
-      verify(mockRemote.getMyResults(request));
-    });
+        expect(result, isA<Left>());
+        result.fold((l) => expect(l, isA<AuthFailure>()), (_) {});
+        verify(mockRemote.getMyResults(request));
+      },
+    );
   });
 }

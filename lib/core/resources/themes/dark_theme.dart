@@ -1,5 +1,6 @@
 import 'package:bac_project/core/resources/styles/colors_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
+import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/extra_colors.dart';
 import 'package:bac_project/core/resources/themes/extensions/surface_container_colors.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +12,9 @@ class AppDarkTheme {
   ///
   static ThemeData theme() {
     return ThemeData(
-      fontFamily: AppFontStyles.fontFamily,
       brightness: Brightness.dark,
+      fontFamily: AppFontStyles.fontFamily,
+      // textTheme: GoogleFonts.ibmPlexSansArabicTextTheme(),
       colorScheme: const ColorScheme(
         brightness: Brightness.dark,
         primary: ColorsResourcesDark.primary,
@@ -23,14 +25,18 @@ class AppDarkTheme {
         error: ColorsResourcesDark.error,
         errorContainer: ColorsResourcesDark.errorContainer,
         onError: ColorsResourcesDark.onError,
+        //
         surface: ColorsResourcesDark.surface,
         onSurface: ColorsResourcesDark.onSurface,
+        surfaceContainer: ColorsResourcesDark.surfaceContainer,
+        surfaceContainerHigh: ColorsResourcesDark.surfaceContainerHigh,
+        surfaceContainerHighest: ColorsResourcesDark.surfaceContainerHighest,
         onSurfaceVariant: ColorsResourcesDark.onSurfaceVariant,
         //
         outline: ColorsResourcesDark.outline,
         outlineVariant: ColorsResourcesDark.outlineVariant,
         //
-        shadow: ColorsResourcesDark.lightShadow,
+        shadow: Colors.transparent,
       ),
 
       extensions: <ThemeExtension<dynamic>>[
@@ -121,17 +127,17 @@ class AppDarkTheme {
 
       ///
       appBarTheme: AppBarTheme(
+        backgroundColor: ColorsResourcesDark.surface,
+        shadowColor: Colors.transparent,
+        actionsPadding: PaddingResources.screenSidesPadding,
         titleTextStyle: AppTextStyles.appBar.copyWith(color: ColorsResourcesDark.onSurface),
-
         surfaceTintColor: Colors.transparent,
-        foregroundColor: ColorsResourcesDark.onSurface,
-        iconTheme: IconThemeData(
-          fill: 1,
-          color: ColorsResourcesDark.onSurfaceVariant,
-          opticalSize: 1,
-          size: 25,
-        ),
+        leadingWidth: 48 + PaddingResources.screenSidesPadding.right,
+        centerTitle: true,
+        iconTheme: IconThemeData(color: ColorsResourcesDark.onSurfaceVariant),
       ),
+
+      ///
 
       ///
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
@@ -146,30 +152,13 @@ class AppDarkTheme {
       ),
 
       ///
-      dropdownMenuTheme: DropdownMenuThemeData(
-        inputDecorationTheme: InputDecorationTheme(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadiusResource.fieldBorderRadius,
-            borderSide: const BorderSide(color: Colors.transparent),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadiusResource.fieldBorderRadius,
-            borderSide: const BorderSide(color: Colors.transparent),
-          ),
-          // TODO: add padding
-          contentPadding: EdgeInsets.zero,
-          // contentPadding: PaddingResources.padding_3_1,
-        ),
-      ),
-
-      ///
       cardTheme: CardThemeData(
-        elevation: 2,
-        shadowColor: ColorsResourcesDark.lightShadow.withAlpha(20),
+        elevation: 1,
+        shadowColor: Colors.transparent,
         color: ColorsResourcesDark.surfaceContainer,
         shape: RoundedSuperellipseBorder(
           borderRadius: BorderRadiusResource.cardBorderRadius,
-          side: BorderSide(color: ColorsResourcesDark.outline),
+          side: BorderSide(color: ColorsResourcesDark.outline, width: 0.20),
         ),
       ),
 
@@ -184,16 +173,16 @@ class AppDarkTheme {
         ),
       ),
 
-      ///
+      /// [BUTTONS]
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           elevation: 0,
           shadowColor: Colors.transparent,
-          backgroundColor: ColorsResourcesDark.primary.withAlpha(100),
-          foregroundColor: ColorsResourcesDark.onSurface,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
+          backgroundColor: ColorsResourcesDark.primaryContainer,
+          foregroundColor: ColorsResourcesDark.primary,
+          shape: RoundedSuperellipseBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
           textStyle: AppTextStyles.button,
-          // side: BorderSide(color: ColorsResourcesDark.outline),
+          minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
         ),
       ),
 
@@ -203,9 +192,10 @@ class AppDarkTheme {
           elevation: 0,
           shadowColor: Colors.transparent,
           backgroundColor: ColorsResourcesDark.primary,
-          disabledBackgroundColor: ColorsResourcesDark.primaryContainer.withAlpha(100),
           foregroundColor: ColorsResourcesDark.primaryContainer,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
+          disabledBackgroundColor: ColorsResourcesDark.primaryContainer.withAlpha(100),
+          minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
+          shape: RoundedSuperellipseBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
           textStyle: AppTextStyles.button,
         ),
       ),
@@ -216,43 +206,84 @@ class AppDarkTheme {
           elevation: 0,
           shadowColor: Colors.transparent,
           backgroundColor: ColorsResourcesDark.surfaceContainer,
-          foregroundColor: ColorsResourcesDark.primary,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
+          foregroundColor: ColorsResourcesDark.onSurface,
+          minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
+          shape: RoundedSuperellipseBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
           textStyle: AppTextStyles.button,
           side: BorderSide(color: ColorsResourcesDark.outline),
         ),
       ),
 
       ///
-      // iconButtonTheme: IconButtonThemeData(
-      //   style: IconButton.styleFrom(iconSize: 10, minimumSize: const Size(20, 20)),
-      // ),
+      iconButtonTheme: IconButtonThemeData(
+        style: IconButton.styleFrom(
+          alignment: Alignment.center,
+          padding: EdgeInsets.zero,
+          backgroundColor: ColorsResourcesDark.surface,
+          foregroundColor: ColorsResourcesDark.onSurface,
+          shape: RoundedRectangleBorder(
+            side: BorderSide(color: ColorsResourcesDark.outline, width: 0.25),
+            borderRadius: BorderRadiusResource.buttonBorderRadius,
+          ),
+        ),
+      ),
+      dropdownMenuTheme: DropdownMenuThemeData(
+        menuStyle: MenuStyle(
+          minimumSize: WidgetStatePropertyAll(const Size(double.infinity, 200)),
+          fixedSize: WidgetStatePropertyAll(const Size(double.infinity, 200)),
+          maximumSize: WidgetStatePropertyAll(const Size(double.infinity, 200)),
+          side: WidgetStatePropertyAll(BorderSide(color: ColorsResourcesDark.outline)),
+          elevation: WidgetStatePropertyAll(0),
+          shape: WidgetStatePropertyAll(
+            RoundedSuperellipseBorder(borderRadius: BorderRadiusResource.fieldBorderRadius),
+          ),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          fillColor: ColorsResourcesDark.surfaceContainer,
+
+          border: OutlineInputBorder(
+            borderRadius: BorderRadiusResource.fieldBorderRadius,
+            borderSide: const BorderSide(color: ColorsResourcesDark.outline, width: 0.75),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadiusResource.fieldBorderRadius,
+            borderSide: const BorderSide(color: ColorsResourcesDark.outline),
+          ),
+          contentPadding: PaddingResources.fieldContentPadding,
+        ),
+      ),
 
       ///
       inputDecorationTheme: InputDecorationTheme(
         fillColor: ColorsResourcesDark.surfaceContainer,
-        hintStyle: AppTextStyles.textField.copyWith(color: ColorsResourcesDark.onSurfaceVariant),
+
+        labelStyle: AppTextStyles.textField.copyWith(color: ColorsResourcesDark.onSurfaceVariant),
+        helperStyle: AppTextStyles.textFieldHelper.copyWith(
+          color: ColorsResourcesDark.onSurfaceVariant,
+        ),
+
         border: OutlineInputBorder(
           borderRadius: BorderRadiusResource.fieldBorderRadius,
-          borderSide: const BorderSide(color: ColorsResourcesDark.outlineVariant, width: 0.5),
+          borderSide: const BorderSide(color: ColorsResourcesDark.outline, width: 0.20),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadiusResource.fieldBorderRadius,
-          borderSide: const BorderSide(color: ColorsResourcesDark.outlineVariant, width: 0.5),
+          borderSide: const BorderSide(color: ColorsResourcesDark.outline, width: 0.20),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadiusResource.fieldBorderRadius,
-          borderSide: const BorderSide(color: ColorsResourcesDark.outlineVariant, width: 0.5),
+          borderSide: const BorderSide(color: ColorsResourcesDark.outline, width: 0.20),
         ),
-        // shape: RoundedSuperellipseBorder(
-        //   borderRadius: BorderRadiusResource.cardBorderRadius,
-        //   side: BorderSide(color: ColorsResourcesDark.outlineVariant,width: 0.5),
+        // errorBorder: OutlineInputBorder(
+        //   borderRadius: BorderRadiusResource.fieldBorderRadius,
+        //   borderSide: const BorderSide(color: ColorsResourcesDark.outline,width: 0..20),
         // ),
         filled: true,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadiusResource.fieldBorderRadius,
-          borderSide: const BorderSide(color: ColorsResourcesDark.outlineVariant, width: 0.5),
+          borderSide: const BorderSide(color: ColorsResourcesDark.outline, width: 0.20),
         ),
+        outlineBorder: BorderSide(color: ColorsResourcesDark.outline),
         contentPadding: PaddingResources.fieldContentPadding,
       ),
     );

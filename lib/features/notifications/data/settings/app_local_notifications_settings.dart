@@ -1,11 +1,11 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class AppLocalNotificationsSettings {
   ///
   static const InitializationSettings settings = InitializationSettings(
     iOS: DarwinInitializationSettings(),
-    android: AndroidInitializationSettings("icon"),
+    // TODO ABOUD 'icon'
+    android: AndroidInitializationSettings("ic_launcher"),
   );
 
   ///
@@ -19,9 +19,7 @@ class AppLocalNotificationsSettings {
   );
 
   /// default
-  static const List<AndroidNotificationChannel> channels = [
-    defaultChannel,
-  ];
+  static const List<AndroidNotificationChannel> channels = [defaultChannel];
 
   ///
   static NotificationDetails defaultNotificationsDetails() {
@@ -34,6 +32,7 @@ class AppLocalNotificationsSettings {
         playSound: false,
         enableVibration: false,
         enableLights: false,
+        groupKey: 'com.app.notifications',
       ),
       iOS: const DarwinNotificationDetails(
         badgeNumber: 1,
@@ -78,10 +77,7 @@ class AppLocalNotificationsSettings {
   }
 
   ///
-  static NotificationDetails progressNotificationsDetails({
-    required int sent,
-    required int total,
-  }) {
+  static NotificationDetails progressNotificationsDetails({required int sent, required int total}) {
     return NotificationDetails(
       android: AndroidNotificationDetails(
         defaultChannel.id,
@@ -96,12 +92,7 @@ class AppLocalNotificationsSettings {
         enableLights: false,
         enableVibration: false,
         silent: true,
-        actions: [
-          const AndroidNotificationAction(
-            'cancel_operation_button',
-            'الغاء العملية',
-          ),
-        ],
+        actions: [const AndroidNotificationAction('cancel_operation_button', 'الغاء العملية')],
       ),
       iOS: const DarwinNotificationDetails(),
     );

@@ -1,0 +1,18 @@
+import 'package:bac_project/core/resources/styles/assets_resources.dart';
+import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/widgets/ui/icons/appbar_icon_widget.dart';
+import 'package:bac_project/presentation/root/blocs/theme/app_theme_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+
+class NotificationsIconWidget extends StatelessWidget {
+  const NotificationsIconWidget({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return AppBarIconWidget(
+      icon: Image.asset(UIImagesResources.notificationsIcon,   color: Theme.of(context).colorScheme.onSurface,),
+      onPressed: () {},
+    );
+  }
+}
