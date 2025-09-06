@@ -12,6 +12,8 @@ class ScoreGauge extends StatelessWidget {
     required this.correctAnswers,
     required this.wrongAnswers,
     required this.skippedAnswers,
+    required this.timeTaken,
+    required this.fullTime,
   });
 
   final double percentage;
@@ -19,9 +21,12 @@ class ScoreGauge extends StatelessWidget {
   final int wrongAnswers;
   final int skippedAnswers;
   final String displayText;
-
+  final Duration timeTaken;
+  final Duration fullTime;
   @override
   Widget build(BuildContext context) {
+    final String timeTakenLabel = _formatDuration(timeTaken);
+    final String fullTimeLabel = _formatDuration(fullTime);
     final theme = Theme.of(context);
     return Column(
       children: [
@@ -37,18 +42,34 @@ class ScoreGauge extends StatelessWidget {
                 foregroundColor: theme.colorScheme.primary,
                 strokeWidth: 24,
               ),
-              child: Align(
-                alignment: Alignment(0, 1.25),
-                child: Text(
-                  "$displayText  ",
-                  style: AppTextStyles.largeTitle.copyWith(fontSize: 48),
-                ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SizedBox(height: SpacesResources.s10),
+                  Text("$displayText  ", style: AppTextStyles.largeTitle.copyWith(fontSize: 48)),
+                  Text(
+                    "$timeTakenLabel/$fullTimeLabel  ",
+                    style: AppTextStyles.subTitle.copyWith(fontSize: FontSizeResources.s12),
+                  ),
+                ],
               ),
             ),
           ),
         ),
       ],
     );
+  }
+
+  String _formatDuration(Duration d) {
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+    final hours = d.inHours;
+    final minutes = d.inMinutes.remainder(60);
+    final seconds = d.inSeconds.remainder(60);
+    if (hours > 0) {
+      return '${twoDigits(hours)}:${twoDigits(minutes)}:${twoDigits(seconds)}';
+    } else {
+      return '$minutes:${twoDigits(seconds)}';
+    }
   }
 }
 

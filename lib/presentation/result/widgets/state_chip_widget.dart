@@ -23,7 +23,7 @@ class StatChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return Container(
       margin: PaddingResources.statChipOuterPadding,
       color: Theme.of(context).colorScheme.surfaceContainer,
       child: InkWell(
@@ -66,7 +66,7 @@ class StatChip extends StatelessWidget {
                       child: Divider(
                         height: 2,
                         thickness: 2,
-                        color: color.lighter(0.75),
+                        color: color.lighter(0.5),
                         radius: BorderRadius.circular(6),
                       ),
                     ),

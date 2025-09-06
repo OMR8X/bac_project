@@ -1,0 +1,1 @@
+enum ResultTestMode { testing, exploring }

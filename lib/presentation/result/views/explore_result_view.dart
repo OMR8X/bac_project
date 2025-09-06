@@ -210,6 +210,8 @@ class _ExploreResultDetailsView extends StatelessWidget {
                 correctAnswers: state.response!.result.correctAnswers,
                 wrongAnswers: state.response!.result.wrongAnswers,
                 skippedAnswers: state.response!.result.skippedAnswers,
+                timeTaken: Duration(seconds: state.response!.result.durationSeconds),
+                fullTime: Duration(seconds: state.response!.result.durationSeconds * 2),
               );
             },
             duration: Duration(milliseconds: 600),
@@ -260,18 +262,16 @@ class _ExploreResultDetailsView extends StatelessWidget {
             ],
           ),
 
-          // /// Time taken
-          TimeTakenCard(
-            timeTaken: Duration(seconds: state.response!.result.durationSeconds),
-            fullTime: Duration(seconds: state.response!.result.durationSeconds * 2),
-          ),
-          CategoryPerformanceWidget(),
-          SizedBox(height: SpacesResources.s4),
+          // // /// Time taken
+          // TimeTakenCard(
+          //   timeTaken: Duration(seconds: state.response!.result.durationSeconds),
+          //   fullTime: Duration(seconds: state.response!.result.durationSeconds * 2),
+          // ),
 
           /// Previous results
           PreviousResultsListCardWidget(results: state.response!.previousResults ?? []),
-          SizedBox(height: SpacesResources.s4),
 
+          // SizedBox(height: SpacesResources.s4),
           FilledButton(
             style: FilledButton.styleFrom(
               minimumSize: Size.fromHeight(SizesResources.buttonLargeHeight),

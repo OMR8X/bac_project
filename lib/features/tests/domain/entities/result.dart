@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'user_answer.dart';
+import 'result_test_mode.dart';
 
 class Result {
   // Identification
@@ -18,6 +19,7 @@ class Result {
   final int skippedAnswers;
   final double score;
   final int durationSeconds;
+  final ResultTestMode? resultTestMode;
   // User Answers
   final List<UserAnswer> answers;
   // Timestamps
@@ -37,6 +39,7 @@ class Result {
     required this.skippedAnswers,
     required this.score,
     required this.durationSeconds,
+    this.resultTestMode,
     required this.answers,
     required this.createdAt,
     required this.updatedAt,
