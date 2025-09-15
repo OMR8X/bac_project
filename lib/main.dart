@@ -9,7 +9,7 @@ import 'core/injector/app_injection.dart';
 
 void main() async {
   ///
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   try {
@@ -21,6 +21,7 @@ void main() async {
     await ServiceLocator.init();
     await Supabase.instance.client.auth.refreshSession();
   } catch (_) {}
+  await Future.delayed(const Duration(seconds: 2));
   // LocalizationManager migrated; ARB-based localization loaded at build time.
 
   // ///
@@ -60,4 +61,4 @@ class ErrorsCopier {
     errors.add(details);
   }
 }
-//psql "postgresql://postgres.DhHRae9Nrs8D4VuI:CNi3rjX2gaBDD2k1@aws-0-ap-south-1.pooler.supabase.com:5432/postgres?sslmode=require"
+

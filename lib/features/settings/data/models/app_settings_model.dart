@@ -43,7 +43,7 @@ class AppSettingsModel extends AppSettings {
           [],
       categories:
           (json['categories'] as List<dynamic>?)
-              ?.map((e) => QuestionCategoryModel.fromJson(e as Map<String, dynamic>).toEntity())
+              ?.map((e) => QuestionCategoryModel.fromJson(e as Map<String, dynamic>).toEntity)
               .toList() ??
           [],
       version: VersionModel.fromJson(json['version'] as Map<String, dynamic>),
@@ -54,7 +54,7 @@ class AppSettingsModel extends AppSettings {
     return {
       'sections': sections.map((s) => s.toModel.toJson()).toList(),
       'governorates': governorates.map((g) => g.toModel.toJson()).toList(),
-      'categories': categories.map((c) => c.toModel().toJson()).toList(),
+      'categories': categories.map((c) => c.toModel.toJson()).toList(),
       'version': version.toModel.toJson(),
       'motivational_quote': motivationalQuote?.toModel().toJson(),
     };

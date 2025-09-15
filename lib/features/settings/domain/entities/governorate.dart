@@ -1,19 +1,19 @@
 import 'package:equatable/equatable.dart';
 
 class Governorate extends Equatable {
-  final String id;
-  final String name;
+  final int id;
+  final String title;
 
-  const Governorate({required this.id, required this.name});
+  const Governorate({required this.id, required this.title});
 
-  Governorate copyWith({String? id, String? name}) {
-    return Governorate(id: id ?? this.id, name: name ?? this.name);
+  Governorate copyWith({int? id, String? title}) {
+    return Governorate(id: id ?? this.id, title: title ?? this.title);
   }
 
-  Governorate empty() {
-    return Governorate(id: '', name: '');
+  factory Governorate.initial() {
+    return const Governorate(id: 0, title: '');
   }
 
   @override
-  List<Object?> get props => [id, name];
+  List<Object?> get props => [id, title];
 }

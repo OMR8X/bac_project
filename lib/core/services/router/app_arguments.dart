@@ -4,6 +4,7 @@ import 'package:bac_project/features/tests/domain/entities/question.dart';
 import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
 import 'package:bac_project/features/tests/domain/entities/result.dart';
 import 'package:bac_project/features/tests/domain/requests/add_result_request.dart';
+import 'package:bac_project/features/settings/domain/entities/motivational_quote.dart';
 
 class ExploreManagerViewArguments {
   final String title;
@@ -67,8 +68,14 @@ class ExploreResultViewArguments {
 }
 
 class FetchCustomQuestionsArguments {
-  final Result? result;
+  final int? resultId;
   final List<int>? questionIds;
 
-  const FetchCustomQuestionsArguments({this.result, this.questionIds});
+  const FetchCustomQuestionsArguments({this.resultId, this.questionIds});
+}
+
+class MotivationalQuoteArguments {
+  final MotivationalQuote quote;
+
+  const MotivationalQuoteArguments({required this.quote});
 }

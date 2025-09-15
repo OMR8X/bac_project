@@ -1,12 +1,13 @@
+import 'package:bac_project/core/resources/styles/assets_resources.dart';
+import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/color_extensions.dart';
 import 'package:bac_project/core/resources/themes/extensions/extra_colors.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
 import 'package:bac_project/core/services/router/app_routes.dart';
-import 'package:bac_project/core/widgets/dialogs/delete_item_dialog.dart';
 import 'package:bac_project/features/tests/domain/entities/result.dart';
 import 'package:flutter/material.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:go_router/go_router.dart';
@@ -36,7 +37,7 @@ class _ResultCardWidgetState extends State<ResultCardWidget> {
         onTap: () {
           context.push(
             AppRoutes.fetchCustomQuestions.path,
-            extra: FetchCustomQuestionsArguments(result: widget.result),
+            extra: FetchCustomQuestionsArguments(resultId: widget.result.id),
           );
         },
       );
@@ -51,12 +52,12 @@ class _ResultCardWidgetState extends State<ResultCardWidget> {
     final Color scoreColor = Theme.of(context).colorScheme.onSurfaceVariant;
 
     return Card(
-      margin: PaddingResources.cardOuterPadding,
+      margin: Margins.cardMargin,
       child: InkWell(
         borderRadius: BorderRadiusResource.cardBorderRadius,
         onTap: widget.onExplore,
         child: Padding(
-          padding: PaddingResources.cardMediumInnerPadding,
+          padding: Paddings.cardMediumPadding,
           child: IntrinsicHeight(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -90,13 +91,19 @@ class _ResultCardWidgetState extends State<ResultCardWidget> {
                     showMenu(
                       context: context,
                       position: position,
-                      menuPadding: EdgeInsets.zero,
+                      menuPadding: Paddings.zero,
                       items: items,
                     );
                   },
 
-                  icon: Icon(Icons.more_vert_rounded),
-                  style: IconButton.styleFrom(side: BorderSide(color: Colors.transparent)),
+                  icon: Image.asset(
+                    UIImagesResources.threeDotsVerticalUIIcon,
+                    height: SizesResources.iconCardHeight,
+                  ),
+                  style: IconButton.styleFrom(
+                    side: BorderSide(color: Colors.transparent),
+                    backgroundColor: Colors.transparent,
+                  ),
                 ),
               ],
             ),
@@ -138,7 +145,7 @@ class _ResultCardWidgetState extends State<ResultCardWidget> {
       child: Center(
         child: Text(
           '${percent.clamp(0, 100)}%'.replaceAll('.0', ''),
-          style: AppTextStyles.cardSmallTitle.copyWith(
+          style: TextStylesResources.cardSmallTitle.copyWith(
             fontSize: FontSizeResources.s11,
             color: textColor,
             fontWeight: FontWeightResources.bold,
@@ -180,7 +187,7 @@ class _ResultCardWidgetState extends State<ResultCardWidget> {
       children: [
         Text(
           'عنوان الدرس',
-          style: AppTextStyles.caption.copyWith(
+          style: TextStylesResources.caption.copyWith(
             color: theme.colorScheme.onSurface.withAlpha(160),
             fontSize: FontSizeResources.s10,
           ),
@@ -188,7 +195,7 @@ class _ResultCardWidgetState extends State<ResultCardWidget> {
         const SizedBox(height: SpacesResources.s2),
         Text(
           widget.result.lessonTitle ?? 'اختبار مخصص',
-          style: AppTextStyles.cardMediumTitle.copyWith(color: theme.colorScheme.onSurface),
+          style: TextStylesResources.cardMediumTitle.copyWith(color: theme.colorScheme.onSurface),
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
         ),
@@ -196,29 +203,16 @@ class _ResultCardWidgetState extends State<ResultCardWidget> {
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(
-              Icons.calendar_today_rounded,
-              size: FontSizeResources.s10,
-              color: theme.colorScheme.onSurface.withAlpha(100),
+            Image.asset(
+              UIImagesResources.calendarBlankUIIcon,
+              height: FontSizeResources.s12,
+              color: theme.colorScheme.onSurfaceVariant,
             ),
             const SizedBox(width: SpacesResources.s2),
             Text(
               widget.result.createdAt.toLocal().toIso8601String().split('T').first,
-              style: AppTextStyles.caption.copyWith(
-                color: theme.colorScheme.onSurface.withAlpha(160),
-              ),
-            ),
-            const SizedBox(width: SpacesResources.s4),
-            Icon(
-              Icons.timer_rounded,
-              size: FontSizeResources.s10,
-              color: theme.colorScheme.onSurface.withAlpha(100),
-            ),
-            const SizedBox(width: SpacesResources.s2),
-            Text(
-              _formatDuration(widget.result.durationSeconds),
-              style: AppTextStyles.caption.copyWith(
-                color: theme.colorScheme.onSurface.withAlpha(160),
+              style: TextStylesResources.caption.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
               ),
             ),
           ],
@@ -226,13 +220,6 @@ class _ResultCardWidgetState extends State<ResultCardWidget> {
         // Bottom stat row removed (compact design)
       ],
     );
-  }
-
-  String _formatDuration(int seconds) {
-    final minutes = seconds ~/ 60;
-    final secs = seconds % 60;
-    if (minutes > 0) return '${minutes}m ${secs}s';
-    return '${secs}s';
   }
 }
 

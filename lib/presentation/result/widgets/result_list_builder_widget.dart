@@ -1,4 +1,4 @@
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
 import 'package:bac_project/core/services/router/app_routes.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
@@ -21,10 +21,10 @@ class ResultListBuilderWidget extends StatelessWidget {
     }
 
     return Padding(
-      padding: PaddingResources.screenSidesPadding,
+      padding: Paddings.screenSidesPadding,
       child: AnimationLimiter(
         child: ListView.builder(
-          padding: PaddingResources.listViewPadding,
+          padding: Paddings.listViewPadding,
           itemCount: results.length,
 
           itemBuilder: (context, index) {
@@ -34,7 +34,10 @@ class ResultListBuilderWidget extends StatelessWidget {
               child: ResultCardWidget(
                 result: result,
                 onExplore: () {
-                  context.push(AppRoutes.exploreResult.path, extra: ExploreResultViewArguments(resultId: result.id));
+                  context.push(
+                    AppRoutes.exploreResult.path,
+                    extra: ExploreResultViewArguments(resultId: result.id),
+                  );
                 },
               ),
             );

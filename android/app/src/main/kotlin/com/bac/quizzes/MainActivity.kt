@@ -1,4 +1,4 @@
-package com.bac.quizzes
+package com.neuro.bac
 
 import io.flutter.embedding.android.FlutterActivity
 

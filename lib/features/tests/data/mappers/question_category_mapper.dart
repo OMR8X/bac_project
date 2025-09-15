@@ -2,13 +2,13 @@ import 'package:bac_project/features/tests/data/models/question_category_model.d
 import 'package:bac_project/features/tests/domain/entities/question_category.dart';
 
 extension QuestionCategoryMapper on QuestionCategory {
-  QuestionCategoryModel toModel() {
-    return QuestionCategoryModel(id: id, name: name, questionsCount: questionsCount);
+  QuestionCategoryModel get toModel {
+    return QuestionCategoryModel(id: id, title: title, questionsCount: questionsCount);
   }
 }
 
 extension QuestionCategoryModelMapper on QuestionCategoryModel {
-  QuestionCategory toEntity() {
-    return QuestionCategory(id: id, name: name, questionsCount: questionsCount);
+  QuestionCategory get toEntity {
+    return QuestionCategory(id: id, title: title, questionsCount: questionsCount);
   }
 }

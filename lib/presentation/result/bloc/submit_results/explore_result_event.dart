@@ -18,9 +18,3 @@ final class ExploreResultLoadResultDetails extends ExploreResultEvent {
   @override
   List<Object?> get props => [];
 }
-
-final class ExploreResultLoadResultLeaderboard extends ExploreResultEvent {
-  const ExploreResultLoadResultLeaderboard();
-  @override
-  List<Object?> get props => [];
-}

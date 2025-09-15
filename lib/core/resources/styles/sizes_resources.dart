@@ -11,7 +11,8 @@ class SizesResources {
   static const double buttonLargeHeight = 55;
   //
   static const double iconButtonAppBarHeight = 48;
-  static const double iconAppBarHeight = 18;
+  static const double iconAppBarHeight = 20;
+  static const double iconCardHeight = 26;
 
   //
   static double mainWidth(BuildContext context) {

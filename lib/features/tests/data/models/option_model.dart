@@ -4,7 +4,7 @@ class OptionModel extends Option {
   const OptionModel({
     required super.id,
     required super.questionId,
-    required super.text,
+    required super.content,
     required super.isCorrect,
   });
 
@@ -14,7 +14,7 @@ class OptionModel extends Option {
       questionId:
           json['question_id'] as int? ??
           DateTime.now().millisecondsSinceEpoch,
-      text: json['text'] as String,
+      content: json['content'] as String,
       isCorrect: json['is_correct'] as bool?,
     );
   }
@@ -23,7 +23,7 @@ class OptionModel extends Option {
     return {
       'id': id,
       'question_id': questionId,
-      'text': text,
+      'content': content,
       'is_correct': isCorrect,
     };
   }
@@ -32,7 +32,7 @@ class OptionModel extends Option {
     return Option(
       id: id,
       questionId: questionId,
-      text: text,
+      content: content,
       isCorrect: isCorrect,
     );
   }
@@ -40,13 +40,13 @@ class OptionModel extends Option {
   OptionModel copyWith({
     int? id,
     int? questionId,
-    String? text,
+    String? content,
     bool? isCorrect,
   }) {
     return OptionModel(
       id: id ?? this.id,
       questionId: questionId ?? this.questionId,
-      text: text ?? this.text,
+      content: content ?? this.content,
       isCorrect: isCorrect ?? this.isCorrect,
     );
   }
@@ -57,7 +57,7 @@ class OptionModel extends Option {
     return other is OptionModel &&
         other.id == id &&
         other.questionId == questionId &&
-        other.text == text &&
+        other.content == content &&
         other.isCorrect == isCorrect;
   }
 
@@ -65,10 +65,10 @@ class OptionModel extends Option {
   int get hashCode =>
       id.hashCode ^
       questionId.hashCode ^
-      text.hashCode ^
+      content.hashCode ^
       isCorrect.hashCode;
 
   @override
   String toString() =>
-      'OptionModel(id: $id, questionId: $questionId, text: $text, isCorrect: $isCorrect)';
+      'OptionModel(id: $id, questionId: $questionId, content: $content, isCorrect: $isCorrect)';
 }

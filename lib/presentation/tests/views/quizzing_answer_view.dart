@@ -1,4 +1,4 @@
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +13,18 @@ import 'package:bac_project/presentation/tests/widgets/option_card_widget.dart';
 import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
 
 class QuizzingAnswerView extends StatelessWidget {
-  const QuizzingAnswerView({super.key, required this.state, required this.testMode});
+  const QuizzingAnswerView({
+    super.key,
+    required this.state,
+    required this.testMode,
+    required this.onClose,
+    required this.onNextOrSubmit,
+  });
 
   final QuizzingAnswerQuestion state;
   final TestMode testMode;
+  final VoidCallback onClose;
+  final VoidCallback onNextOrSubmit;
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +40,12 @@ class QuizzingAnswerView extends StatelessWidget {
               timeLeft: state.timeLeft,
               current: state.currentQuestionIndex + 1,
               total: state.totalQuestions,
-              onClose: () => Navigator.of(context).pop(),
+              onClose: onClose,
             ),
             const SizedBox(height: SpacesResources.s4),
             Expanded(
               child: ListView(
-                padding: PaddingResources.listViewPadding,
+                padding: Paddings.listViewPadding,
                 children: [
                   QuestionCardWidget(question: question),
                   const SizedBox(height: SpacesResources.s2),
@@ -48,7 +56,9 @@ class QuizzingAnswerView extends StatelessWidget {
           ],
         ),
         // Only show navigation when user has selected an answer for current question
-        if (state.selectedAnswers[question.id] != null || testMode == TestMode.exploring || kDebugMode)
+        if (state.selectedAnswers[question.id] != null ||
+            testMode == TestMode.exploring ||
+            kDebugMode)
           SafeArea(
             child: Align(
               alignment: Alignment.bottomCenter,
@@ -58,13 +68,7 @@ class QuizzingAnswerView extends StatelessWidget {
                   canGoPrevious: state.canGoPrevious,
                   canGoNext: state.canGoNext,
                   onPrevious: () => context.read<QuizzingBloc>().add(const PreviousQuestion()),
-                  onNextOrSubmit: () {
-                    if (state.canGoNext) {
-                      context.read<QuizzingBloc>().add(const NextQuestion());
-                    } else {
-                      context.read<QuizzingBloc>().add(const SubmitQuiz());
-                    }
-                  },
+                  onNextOrSubmit: onNextOrSubmit,
                 ),
               ),
             ),
@@ -73,7 +77,12 @@ class QuizzingAnswerView extends StatelessWidget {
     );
   }
 
-  List<Widget> _buildOptions(BuildContext context, dynamic question, QuizzingAnswerQuestion state, TestMode testMode) {
+  List<Widget> _buildOptions(
+    BuildContext context,
+    dynamic question,
+    QuizzingAnswerQuestion state,
+    TestMode testMode,
+  ) {
     return question.options.map<Widget>((option) {
       final selectedForQuestion = state.selectedAnswers[question.id];
       final isSelected = selectedForQuestion == option.id;
@@ -86,7 +95,10 @@ class QuizzingAnswerView extends StatelessWidget {
           isSelected: isSelected,
           didAnswer: didAnswer,
           testMode: testMode,
-          onTap: (opt) => context.read<QuizzingBloc>().add(OptionQuestion(answerId: opt.id, questionIndex: state.currentQuestionIndex)),
+          onTap:
+              (opt) => context.read<QuizzingBloc>().add(
+                OptionQuestion(answerId: opt.id, questionIndex: state.currentQuestionIndex),
+              ),
         ),
       );
     }).toList();

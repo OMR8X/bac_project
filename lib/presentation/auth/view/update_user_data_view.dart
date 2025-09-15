@@ -1,23 +1,19 @@
-import 'dart:math';
-
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
 import 'package:bac_project/features/settings/domain/entities/app_settings.dart';
 import 'package:bac_project/features/settings/domain/entities/governorate.dart';
 import 'package:bac_project/features/settings/domain/entities/section.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../core/helpers/input_validator.dart';
 import '../../../core/injector/app_injection.dart';
 import '../../../core/resources/styles/spaces_resources.dart';
-import '../../../core/resources/themes/extensions/surface_container_colors.dart';
 import '../../../core/widgets/ui/fields/drop_down_widget.dart';
-import '../../../core/widgets/ui/fields/elevated_button_widget.dart';
 import '../../../core/widgets/ui/fields/text_form_field_widget.dart';
 import '../../../features/auth/domain/entites/user_data.dart';
 import '../state/bloc/auth_bloc.dart';
@@ -40,8 +36,8 @@ class _UpdateUserDataViewState extends State<UpdateUserDataView> {
   late final TextEditingController _passwordController;
   late final TextEditingController _confirmPasswordController;
   //
-  late Section _section;
-  late Governorate _governorate;
+  late Section? _section;
+  late Governorate? _governorate;
   //
   @override
   void initState() {
@@ -56,10 +52,10 @@ class _UpdateUserDataViewState extends State<UpdateUserDataView> {
     _confirmPasswordController = TextEditingController();
     //
     //
-    _section = sl<AppSettings>().sections.firstWhere(
+    _section = sl<AppSettings>().sections.firstWhereOrNull(
       (section) => section.id == sl<UserData>().sectionId,
     );
-    _governorate = sl<AppSettings>().governorates.firstWhere(
+    _governorate = sl<AppSettings>().governorates.firstWhereOrNull(
       (governorate) => governorate.id == sl<UserData>().governorateId,
     );
     //
@@ -85,8 +81,8 @@ class _UpdateUserDataViewState extends State<UpdateUserDataView> {
 
     //
     if (!_didFillInfo &&
-        _section.id == sl<UserData>().sectionId &&
-        _governorate.id == sl<UserData>().governorateId) {
+        _section?.id == sl<UserData>().sectionId &&
+        _governorate?.id == sl<UserData>().governorateId) {
       _didFillInfo = false;
     }
 
@@ -113,8 +109,8 @@ class _UpdateUserDataViewState extends State<UpdateUserDataView> {
       AuthUpdateUserDataEvent(
         name: name,
         email: email,
-        governorateId: _governorate.id,
-        sectionId: _section.id,
+        governorateId: _governorate?.id,
+        sectionId: _section?.id,
         password: password,
       ),
     );
@@ -129,7 +125,7 @@ class _UpdateUserDataViewState extends State<UpdateUserDataView> {
           key: _formKey,
           child: SingleChildScrollView(
             child: Padding(
-              padding: PaddingResources.screenSidesPadding,
+              padding: Paddings.screenSidesPadding,
               child: Column(
                 children: [
                   const SizedBox(height: SpacesResources.s10),
@@ -184,12 +180,12 @@ class _UpdateUserDataViewState extends State<UpdateUserDataView> {
                   ),
                   DropDownWidget<Governorate>(
                     hintText: "المحافظة",
-                    initialSelection: sl<AppSettings>().governorates.firstWhere(
+                    initialSelection: sl<AppSettings>().governorates.firstWhereOrNull(
                       (governorate) => governorate.id == sl<UserData>().governorateId,
                     ),
                     entries: (sl<AppSettings>().governorates),
                     toLabel: (value) {
-                      return value?.name ?? "غير محدد";
+                      return value?.title ?? "غير محدد";
                     },
                     onSelected: (entry) {
                       //
@@ -203,7 +199,7 @@ class _UpdateUserDataViewState extends State<UpdateUserDataView> {
                       if (_nameController.text.isEmpty && _emailController.text.isEmpty) {
                         if (_passwordController.text.isEmpty &&
                             _confirmPasswordController.text.isEmpty) {
-                          if (_section.id == sl<UserData>().sectionId) {
+                          if (_section?.id == sl<UserData>().sectionId) {
                             setState(() => _didFillInfo = false);
                           }
                         }
@@ -264,7 +260,10 @@ class _UpdateUserDataViewState extends State<UpdateUserDataView> {
                     ),
                   ),
                   const SizedBox(height: SpacesResources.s4),
-                  const Text("اترك اي حقل لا ترغب بتغييره فارغ", style: AppTextStyles.underButton),
+                  const Text(
+                    "اترك اي حقل لا ترغب بتغييره فارغ",
+                    style: TextStylesResources.underButton,
+                  ),
                   const SizedBox(height: SpacesResources.s20),
                 ],
               ),

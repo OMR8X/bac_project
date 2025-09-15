@@ -1,4 +1,4 @@
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/features/tests/domain/entities/result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -12,7 +12,7 @@ class TopResultsListBuilderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: PaddingResources.cardTopResultsPadding,
+        padding: Paddings.cardTopResultsPadding,
         child: AnimationLimiter(
           child: ListView.builder(
             shrinkWrap: true,
@@ -30,7 +30,7 @@ class TopResultsListBuilderWidget extends StatelessWidget {
 }
 
 class _TopResultCardWidget extends StatelessWidget {
-  const _TopResultCardWidget({super.key, required this.result});
+  const _TopResultCardWidget({required this.result});
   final Result result;
 
   @override

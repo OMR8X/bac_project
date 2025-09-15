@@ -1,5 +1,5 @@
 import 'package:bac_project/core/resources/styles/assets_resources.dart';
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/widgets/ui/icons/appbar_icon_widget.dart';
 import 'package:bac_project/presentation/root/blocs/theme/app_theme_bloc.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ class ArrowBackIconWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBarIconWidget(
       icon: Image.asset(
-        UIImagesResources.angleRightIcon,
+        UIImagesResources.caretRightUIIcon,
         color: Theme.of(context).colorScheme.onSurface,
       ),
       onPressed: onPressed ?? () => context.pop(),

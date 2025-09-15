@@ -8,9 +8,9 @@ class GetResultResponse {
 
   factory GetResultResponse.fromJson(Map<String, dynamic> json) {
     return GetResultResponse(
-      result: ResultModel.fromJson(json['data']['result']),
+      result: ResultModel.fromJson(json['result']),
       previousResults:
-          (json['data']['previous_results'] as List<dynamic>?)
+          (json['previous_results'] as List<dynamic>?)
               ?.map((e) => ResultModel.fromJson(e))
               .toList() ??
           [],

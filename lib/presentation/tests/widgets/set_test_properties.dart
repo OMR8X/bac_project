@@ -1,4 +1,4 @@
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
 import 'package:bac_project/presentation/tests/widgets/options_widget.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +15,7 @@ class SetTestProperties extends StatelessWidget {
           Center(
             child: Padding(
               // TODO: add padding
-              padding: EdgeInsets.zero,
-              // padding: PaddingResources.padding_5_0,
+              padding: Paddings.customPadding(5, 0),
               child: Text('12/01'),
             ),
           ), // Question Num
@@ -38,22 +37,18 @@ class SetTestProperties extends StatelessWidget {
       ),
       body: Container(
         // TODO: add padding
-        padding: EdgeInsets.zero,
-        // padding: PaddingResources.padding_5_2,
+        padding: Paddings.customPadding(5, 2),
         child: Column(
           children: [
             Container(
               // TODO: add padding
-              padding: EdgeInsets.zero,
-              // margin: PaddingResources.padding_0_4,
+              padding: Margins.customMargin(0, 4),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
                     // TODO: add padding
-                    padding: EdgeInsets.zero,
-                    // margin: PaddingResources.padding_0_5,
-                    // padding: PaddingResources.padding_5_5,
+                    padding: Paddings.customPadding(5, 5),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(
@@ -107,8 +102,7 @@ class SetTestProperties extends StatelessWidget {
             ),
             Padding(
               // TODO: add padding
-              padding: EdgeInsets.zero,
-              // padding: PaddingResources.padding_0_1,
+              padding: Paddings.customPadding(0, 1),
             ),
           ],
         ),

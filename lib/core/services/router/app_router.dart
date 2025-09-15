@@ -9,11 +9,13 @@ import 'package:bac_project/presentation/settings/views/setting_view.dart';
 import 'package:bac_project/presentation/testing/views/designing_view.dart';
 import 'package:bac_project/presentation/result/bloc/submit_results/explore_result_bloc.dart';
 import 'package:bac_project/presentation/result/views/explore_result_view.dart';
+import 'package:bac_project/presentation/tests/blocs/test_mode_settings/test_mode_settings_bloc.dart';
 import 'package:bac_project/presentation/tests/views/pick_lessons_view.dart';
 import 'package:bac_project/presentation/tests/views/quizzing_view.dart';
 import 'package:bac_project/presentation/tests/views/fetch_custom_questions_view.dart';
 import 'package:bac_project/presentation/tests/widgets/set_test_properties.dart';
 import 'package:bac_project/presentation/search/views/search_view.dart';
+import 'package:bac_project/presentation/home/views/motivational_quote_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/presentation/tests/blocs/pick_lessons/pick_lessons_bloc.dart';
@@ -54,7 +56,12 @@ class AppRouter {
               transitionDuration: AppTransitions.transitionDuration,
               reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
               transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
               },
               child: const DebugsView(),
             ),
@@ -70,7 +77,12 @@ class AppRouter {
               transitionDuration: AppTransitions.transitionDuration,
               reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
               transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
               },
               child: const AuthViewsManager(),
             ),
@@ -84,7 +96,12 @@ class AppRouter {
               transitionDuration: AppTransitions.transitionDuration,
               reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
               transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
               },
               child: const UpdateUserDataView(),
             ),
@@ -99,7 +116,12 @@ class AppRouter {
               transitionDuration: AppTransitions.transitionDuration,
               reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
               transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
               },
               child: const DesigningView(),
             ),
@@ -114,7 +136,12 @@ class AppRouter {
               transitionDuration: AppTransitions.transitionDuration,
               reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
               transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
               },
               child: AppLoaderView(key: state.pageKey),
             ),
@@ -129,11 +156,19 @@ class AppRouter {
               transitionDuration: AppTransitions.transitionDuration,
               reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
               transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
               },
               child: BlocProvider(
                 create: (context) => sl<LessonsBloc>(),
-                child: LessonsView(key: state.pageKey, arguments: state.extra as LessonsViewArguments?),
+                child: LessonsView(
+                  key: state.pageKey,
+                  arguments: state.extra as LessonsViewArguments?,
+                ),
               ),
             ),
       ),
@@ -147,9 +182,28 @@ class AppRouter {
               transitionDuration: AppTransitions.transitionDuration,
               reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
               transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
               },
-              child: TestModeSettingsView(key: state.pageKey, arguments: state.extra as TestModeSettingsArguments?),
+              child: BlocProvider(
+                create: (context) {
+                  final arguments = state.extra as TestModeSettingsArguments?;
+                  return sl<TestModeSettingsBloc>()..add(
+                    TestModeSettingsLoadEvent(
+                      unitIds: arguments?.unitIds,
+                      lessonIds: arguments?.lessonIds,
+                    ),
+                  );
+                },
+                child: TestModeSettingsView(
+                  key: state.pageKey,
+                  arguments: state.extra as TestModeSettingsArguments?,
+                ),
+              ),
             ),
       ),
       // testing route
@@ -162,7 +216,12 @@ class AppRouter {
               transitionDuration: AppTransitions.transitionDuration,
               reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
               transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
               },
               child: QuizzingView(key: state.pageKey, arguments: state.extra as QuizzingArguments?),
             ),
@@ -177,7 +236,12 @@ class AppRouter {
               transitionDuration: AppTransitions.transitionDuration,
               reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
               transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
               },
               child: SetTestProperties(key: state.pageKey),
             ),
@@ -192,11 +256,19 @@ class AppRouter {
               transitionDuration: AppTransitions.transitionDuration,
               reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
               transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
               },
               child: BlocProvider<PickLessonsBloc>(
                 create: (context) => sl<PickLessonsBloc>(),
-                child: PickLessonsView(key: state.pageKey, arguments: state.extra as PickLessonsArguments),
+                child: PickLessonsView(
+                  key: state.pageKey,
+                  arguments: state.extra as PickLessonsArguments,
+                ),
               ),
             ),
       ),
@@ -221,7 +293,12 @@ class AppRouter {
                       transitionDuration: AppTransitions.transitionDuration,
                       reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
                       transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                        return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
+                        return AppTransitions.commonTransition(
+                          context,
+                          animation,
+                          secondaryAnimation,
+                          child,
+                        );
                       },
                       child: HomeView(key: state.pageKey),
                     ),
@@ -242,7 +319,12 @@ class AppRouter {
                       transitionDuration: AppTransitions.transitionDuration,
                       reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
                       transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                        return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
+                        return AppTransitions.commonTransition(
+                          context,
+                          animation,
+                          secondaryAnimation,
+                          child,
+                        );
                       },
                       child: ExploreResultsView(key: state.pageKey),
                     ),
@@ -264,7 +346,12 @@ class AppRouter {
                       transitionDuration: AppTransitions.transitionDuration,
                       reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
                       transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                        return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
+                        return AppTransitions.commonTransition(
+                          context,
+                          animation,
+                          secondaryAnimation,
+                          child,
+                        );
                       },
                       child: SettingView(key: state.pageKey),
                     ),
@@ -284,11 +371,19 @@ class AppRouter {
               transitionDuration: AppTransitions.transitionDuration,
               reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
               transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
               },
               child: BlocProvider(
-                create: (context) => sl<SearchBloc>()..add(SearchLessons(unitId: (state.extra as SearchViewArguments).unitId)),
-                child: SearchView(key: state.pageKey, arguments: state.extra as SearchViewArguments),
+                create: (context) => sl<SearchBloc>(),
+                child: SearchView(
+                  key: state.pageKey,
+                  arguments: state.extra as SearchViewArguments,
+                ),
               ),
             ),
       ),
@@ -303,11 +398,19 @@ class AppRouter {
               transitionDuration: AppTransitions.transitionDuration,
               reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
               transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
               },
               child: BlocProvider(
                 create: (context) => sl<ExploreResultBloc>(),
-                child: ExploreResultView(key: state.pageKey, arguments: state.extra as ExploreResultViewArguments),
+                child: ExploreResultView(
+                  key: state.pageKey,
+                  arguments: state.extra as ExploreResultViewArguments,
+                ),
               ),
             ),
       ),
@@ -322,9 +425,42 @@ class AppRouter {
               transitionDuration: AppTransitions.transitionDuration,
               reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
               transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                return AppTransitions.commonTransition(context, animation, secondaryAnimation, child);
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
               },
-              child: FetchCustomQuestionsView(key: state.pageKey, arguments: state.extra as FetchCustomQuestionsArguments),
+              child: FetchCustomQuestionsView(
+                key: state.pageKey,
+                arguments: state.extra as FetchCustomQuestionsArguments,
+              ),
+            ),
+      ),
+
+      // Motivational Quote route
+      GoRoute(
+        name: AppRoutes.motivationalQuote.name,
+        path: AppRoutes.motivationalQuote.path,
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              transitionDuration: AppTransitions.transitionDuration * 4,
+              reverseTransitionDuration: AppTransitions.reverseTransitionDuration * 6,
+
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                return AppTransitions.circularExpansionTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
+              },
+              child: MotivationalQuoteView(
+                key: state.pageKey,
+                quote: (state.extra as MotivationalQuoteArguments).quote,
+              ),
             ),
       ),
     ],

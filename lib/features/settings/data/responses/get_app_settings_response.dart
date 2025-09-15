@@ -8,12 +8,9 @@ class GetAppSettingsResponse {
   GetAppSettingsResponse({required this.message, required this.appSettings});
 
   factory GetAppSettingsResponse.fromResponse(Map<String, dynamic> json) {
-    if (json['data'] == null) {
-      throw Exception('No data found');
-    }
     return GetAppSettingsResponse(
       message: json['message'] as String? ?? '',
-      appSettings: AppSettingsModel.fromJson(json['data'] as Map<String, dynamic>),
+      appSettings: AppSettingsModel.fromJson(json),
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/extra_colors.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +45,7 @@ class AnswersDetailsIndicatorWidget extends StatelessWidget {
 
     return Card(
       child: Padding(
-        padding: PaddingResources.cardLargeInnerPadding,
+        padding: Paddings.cardLargePadding,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -74,16 +74,8 @@ class AnswersDetailsIndicatorWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _LegendIcon(
-                  label: '$safeCorrect',
-                  color: colorCorrect,
-                  icon: Icons.check,
-                ),
-                _LegendIcon(
-                  label: '$safeSkipped',
-                  color: colorSkipped,
-                  icon: Icons.remove,
-                ),
+                _LegendIcon(label: '$safeCorrect', color: colorCorrect, icon: Icons.check),
+                _LegendIcon(label: '$safeSkipped', color: colorSkipped, icon: Icons.remove),
                 _LegendIcon(label: '$safeWrong', color: colorWrong, icon: Icons.close),
               ],
             ),

@@ -44,8 +44,8 @@ final class AuthSignInEvent extends AuthEvent {
 final class AuthSignUpEvent extends AuthEvent {
   final String name;
   final String email;
-  final String sectionId;
-  final String governorateId;
+  final int sectionId;
+  final int governorateId;
   final String password;
 
   const AuthSignUpEvent({
@@ -62,8 +62,8 @@ final class AuthSignUpEvent extends AuthEvent {
 final class AuthUpdateUserDataEvent extends AuthEvent {
   final String? name;
   final String? email;
-  final String? sectionId;
-  final String? governorateId;
+  final int? sectionId;
+  final int? governorateId;
   final String? password;
 
   const AuthUpdateUserDataEvent({

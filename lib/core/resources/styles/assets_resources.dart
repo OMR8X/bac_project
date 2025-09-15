@@ -1,6 +1,7 @@
 const String basePath = 'assets';
 const String baseImagesPath = 'assets/images';
 const String baseAudiosPath = 'audios';
+const String baseLottiePath = 'assets/lottie';
 
 class ImagesResources {
   static const String path = baseImagesPath;
@@ -67,32 +68,43 @@ class UIImagesResources {
   static const String sectionsIcon = '$path/sections-ic.png';
   static const String teachersIcon = '$path/teachers-ic.png';
   static const String versionsIcon = '$path/version-ic.png';
-  static const String notificationsIcon = '$path/notification-ic.png';
-  static const String questionMarkIcon = '$path/question-mark-ic.png';
-  static const String closeIcon = '$path/close-ic.png';
-  static const String searchIcon = '$path/search-ic.png';
-  static const String angleRightIcon = '$path/angle-right-ic.png';
-  static const String bellIcon = '$path/bell.png';
-  static const String bellSVGIcon = '$path/bell-ic.svg';
-  static const String angleRightSVGIcon = '$path/angle-right-ic.svg';
-  static const String cancelSVGIcon = '$path/cancel-ic.svg';
-  static const String searchSVGIcon = '$path/search-ic.svg';
-  static const String brightnessDarkSVGIcon = '$path/brightness-dark-ic.svg';
-  static const String brightnessLightSVGIcon = '$path/brightness-light-ic.svg';
+
+  //
+
+  static const String brightnessDarkUIIcon = '$path/icons/brightness_dark.png';
+  static const String brightnessLightUIIcon = '$path/icons/brightness_light.png';
+  static const String caretRightUIIcon = '$path/icons/caret_right.png';
+  static const String bellUIIcon = '$path/icons/bell.png';
+  static const String calendarBlankUIIcon = '$path/icons/calendar_blank.png';
+  static const String clockUIIcon = '$path/icons/clock.png';
+  static const String closeUIIcon = '$path/icons/close.png';
+  static const String menuUIIcon = '$path/icons/menu.png';
+  static const String questionMarkUIIcon = '$path/icons/question_mark.png';
+  static const String retryUIIcon = '$path/icons/retry.png';
+  static const String searchUIIcon = '$path/icons/search.png';
+  static const String threeDotsHorizontalUIIcon = '$path/icons/three_dots_horizontal.png';
+  static const String threeDotsVerticalUIIcon = '$path/icons/three_dots_vertical.png';
+  static const String timerUIIcon = '$path/icons/timer.png';
+  static const String checkRoundedUIIcon = '$path/icons/check_rounded.png';
+  static const String cancelRoundedUIIcon = '$path/icons/cancel_rounded.png';
+  static const String arrowSquareOutUIIcon = '$path/icons/arrow_square_out_icon.png';
+  static const String exportUIIcon = '$path/icons/export_icon.png';
+  static const String eyeUIIcon = '$path/icons/eye_icon.png';
+
   //
 }
 
 class MaterialsImagesResources {
   static const String path = '$basePath/materials';
-  //
 }
 
 class AudiosAssetsResources {
   static const String path = '$baseAudiosPath/ringtones';
   //
 }
-/*
-clear
-assets/images/ui/settings-filled.svg 
-assets/images/ui/
-*/
+
+class LottieAssetsResources {
+  // /Users/omr8x/projects/flutter/personal/bac_project/assets/lottie/scanner.json
+  static const String path = '$basePath/lottie';
+  static const String scanner = '$path/scanner.json';
+}

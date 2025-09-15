@@ -5,7 +5,7 @@ import 'package:bac_project/features/tests/domain/entities/option.dart';
 import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
 
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/widgets/ui/fields/bottom_buttons_widget.dart';
 import 'package:bac_project/presentation/tests/widgets/question_card_widget.dart';
@@ -42,7 +42,7 @@ class TestingView extends StatelessWidget {
           leading: CloseIconWidget(),
         ),
         body: Padding(
-          padding: PaddingResources.screenSidesPadding,
+          padding: Paddings.screenSidesPadding,
           child: Column(
             children: [
               const SizedBox(height: SpacesResources.s4),
@@ -58,7 +58,13 @@ class TestingView extends StatelessWidget {
                         QuestionCardWidget(question: question),
                         const SizedBox(height: SpacesResources.s2),
                         ...question.options.map((option) {
-                          return OptionCardWidget(option: option, isSelected: false, didAnswer: false, testMode: testMode, onTap: (_) {});
+                          return OptionCardWidget(
+                            option: option,
+                            isSelected: false,
+                            didAnswer: false,
+                            testMode: testMode,
+                            onTap: (_) {},
+                          );
                         }),
                       ],
                     );
@@ -79,12 +85,12 @@ class TestingView extends StatelessWidget {
       Question(
         id: 1,
         lessonId: 1,
-        text: 'Sample question 1: What is 2 + 2?',
+        content: 'Sample question 1: What is 2 + 2?',
         options: [
-          const Option(id: 1, questionId: 1, text: '3', isCorrect: false),
-          const Option(id: 2, questionId: 1, text: '4', isCorrect: true),
-          const Option(id: 3, questionId: 1, text: '5', isCorrect: false),
-          const Option(id: 4, questionId: 1, text: '6', isCorrect: false),
+          const Option(id: 1, questionId: 1, content: '3', isCorrect: false),
+          const Option(id: 2, questionId: 1, content: '4', isCorrect: true),
+          const Option(id: 3, questionId: 1, content: '5', isCorrect: false),
+          const Option(id: 4, questionId: 1, content: '6', isCorrect: false),
         ],
         isMCQ: true,
         explain: null,
@@ -93,12 +99,12 @@ class TestingView extends StatelessWidget {
       Question(
         id: 2,
         lessonId: 1,
-        text: 'Sample question 2: Which is a prime number?',
+        content: 'Sample question 2: Which is a prime number?',
         options: [
-          const Option(id: 5, questionId: 2, text: '4', isCorrect: false),
-          const Option(id: 6, questionId: 2, text: '6', isCorrect: false),
-          const Option(id: 7, questionId: 2, text: '7', isCorrect: true),
-          const Option(id: 8, questionId: 2, text: '8', isCorrect: false),
+          const Option(id: 5, questionId: 2, content: '4', isCorrect: false),
+          const Option(id: 6, questionId: 2, content: '6', isCorrect: false),
+          const Option(id: 7, questionId: 2, content: '7', isCorrect: true),
+          const Option(id: 8, questionId: 2, content: '8', isCorrect: false),
         ],
         isMCQ: true,
         explain: null,

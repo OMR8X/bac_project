@@ -78,6 +78,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get buttonsUpdateUserData => 'تحديث بياناتك';
 
   @override
+  String get closeQuizDialogBody =>
+      'هل أنت متأكد من رغبتك في إغلاق الاختبار؟ سيتم حفظ إجاباتك الحالية.';
+
+  @override
+  String get closeQuizDialogTitle => 'إغلاق الاختبار';
+
+  @override
   String get enableSoundEffectsSubtitle => 'تشغيل مؤثرات صوتية عند الإجابة.';
 
   @override
@@ -85,6 +92,20 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get exploreMode => 'وضع التصفح';
+
+  @override
+  String get exploreModeAdditionalFeaturesContent =>
+      '• لا يتم تخزين النتيجة\n• مصمم للتدريب والتعلم دون ضغط\n';
+
+  @override
+  String get exploreModeAdditionalFeaturesTitle => 'خصائص التدريب:';
+
+  @override
+  String get exploreModeDetailsContent =>
+      '• تحكم كامل في إعدادات الاختبار (عدد الأسئلة، المواضيع)\n• حرية اختيار إظهار أو إخفاء الإجابات الصحيحة\n• لا يتم استخدام خوارزميات محددة في إنشاء الاختبار';
+
+  @override
+  String get exploreModeDetailsTitle => 'معلومات وضع التصفح';
 
   @override
   String get homeCardExploreLessonsAction => 'استكشاف الدروس';
@@ -124,6 +145,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get resultCorrect => 'صحيح';
+
+  @override
+  String get resultRetryTestDialogBody =>
+      'هل ترغب في إعادة الاختبار بنفس الأسئلة وخيارات الاختبار؟';
+
+  @override
+  String get resultRetryTestDialogTitle => 'إعادة الاختبار';
 
   @override
   String get resultScore => 'الدرجة';
@@ -177,8 +205,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get testMode => 'وضع الاختبار';
 
   @override
+  String get testModeAdditionalFeaturesContent =>
+      '• إمكانية الوصول إلى لوحة الصدارة لمقارنة ترتيبك\n• استخدام نتائجك لاحقاً في ميزات التحليل الذكي والاختبارات المخصصة';
+
+  @override
+  String get testModeAdditionalFeaturesTitle => 'المميزات الإضافية:';
+
+  @override
   String get testModeDetailsContent =>
-      'في وضع الاختبار، ستخضع لاختبار مؤقت مع عدد محدد من الأسئلة. لن تتمكن من رؤية الإجابات الصحيحة إلا بعد الانتهاء من الاختبار. سيتم تقييم أدائك وإعطاؤك تقريراً مفصلاً عن النتائج.';
+      '• اختبار مصمم تلقائياً بأسئلة منوعة ومختارة بعناية\n• لا يمكن تعديل إعدادات الاختبار (التصانيف، العدد، إلخ)\n• حفظ دائم للنتائج مع إمكانية إعادة نفس الاختبار';
 
   @override
   String get testModeDetailsTitle => 'معلومات وضع الاختبار';

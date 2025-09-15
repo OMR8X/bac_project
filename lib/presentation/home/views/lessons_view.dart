@@ -1,25 +1,17 @@
-import 'package:bac_project/core/resources/styles/assets_resources.dart';
-import 'package:bac_project/core/resources/styles/blur_resources.dart';
-import 'package:bac_project/core/resources/styles/spaces_resources.dart';
-
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
 import 'package:bac_project/core/services/router/app_routes.dart';
 import 'package:bac_project/core/widgets/ui/icons/arrow_back_icon_widget.dart';
-import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
-import 'package:bac_project/core/widgets/ui/icons/appbar_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/icons/search_icon_widget.dart';
-import 'package:bac_project/core/widgets/ui/search_bar_widget.dart';
 import 'package:bac_project/features/tests/domain/entities/lesson.dart';
 import 'package:bac_project/presentation/home/widgets/lessons_navigation_card_bilder_widget.dart';
 import 'package:bac_project/presentation/home/widgets/lessons_test_card_widget.dart';
-import 'package:bac_project/presentation/search/bloc/bloc/search_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:go_router/go_router.dart';
 
-import '../../../core/resources/styles/padding_resources.dart';
+import '../../../core/resources/styles/spacing_resources.dart';
 import '../../../core/widgets/ui/loading_widget.dart';
 import '../blocs/lessons_bloc.dart';
 
@@ -64,7 +56,7 @@ class _LessonsViewState extends State<LessonsView> {
               return Stack(
                 children: [
                   Padding(
-                    padding: PaddingResources.screenSidesPadding,
+                    padding: Paddings.screenSidesPadding,
                     child: CustomScrollView(
                       slivers: [
                         // Show test card only when at the top using a SliverLayoutBuilder
@@ -82,7 +74,7 @@ class _LessonsViewState extends State<LessonsView> {
                         //   child: ,
                         // ),
                         SliverPadding(
-                          padding: PaddingResources.listViewPadding,
+                          padding: Paddings.listViewPadding,
                           sliver: LessonsCardsBuilderWidget(lessons: state.lessons),
                         ),
                       ],
@@ -101,9 +93,6 @@ class _LessonsViewState extends State<LessonsView> {
   }
 
   void _navigateToTestAllLessons(BuildContext context, List<Lesson> lessons) {
-    // Extract lesson IDs from the lessons list
-    final lessonIds = lessons.map((lesson) => lesson.id).toList();
-
     context.pushReplacementNamed(
       AppRoutes.pickLessons.name,
       extra: PickLessonsArguments(unitId: widget.arguments?.unitId ?? 0),

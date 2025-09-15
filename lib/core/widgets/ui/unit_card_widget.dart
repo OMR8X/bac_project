@@ -4,7 +4,7 @@ import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:flutter/material.dart';
@@ -33,12 +33,12 @@ class UnitCardWidget extends StatelessWidget {
       label: '$title, $subtitle',
       explicitChildNodes: true,
       child: Card(
-        margin: PaddingResources.cardOuterPadding,
+        margin: Margins.cardMargin,
         child: InkWell(
           borderRadius: BorderRadiusResource.cardBorderRadius,
           onTap: onExploreLessonsPressed,
           child: Padding(
-            padding: PaddingResources.cardLargeInnerPadding,
+            padding: Paddings.cardLargePadding,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,7 +86,7 @@ class UnitCardWidget extends StatelessWidget {
         // Category/Type text - smaller and subtle
         Text(
           title,
-          style: AppTextStyles.caption.copyWith(
+          style: TextStylesResources.caption.copyWith(
             color: Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.7),
             fontSize: FontSizeResources.s10,
             fontWeight: FontWeightResources.medium,
@@ -98,7 +98,7 @@ class UnitCardWidget extends StatelessWidget {
         // Main title - prominent and readable
         Text(
           subtitle,
-          style: AppTextStyles.cardMediumTitle.copyWith(
+          style: TextStylesResources.cardMediumTitle.copyWith(
             color: Theme.of(context).colorScheme.onSurface,
             fontSize: FontSizeResources.s16,
             fontWeight: FontWeightResources.bold,
@@ -120,7 +120,7 @@ class UnitCardWidget extends StatelessWidget {
               const SizedBox(width: SpacesResources.s1),
               Text(
                 "$lessonsCount دروس",
-                style: AppTextStyles.caption.copyWith(
+                style: TextStylesResources.caption.copyWith(
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                   fontSize: FontSizeResources.s10,
                   fontWeight: FontWeightResources.medium,
@@ -144,7 +144,7 @@ class UnitCardWidget extends StatelessWidget {
                 horizontal: SpacesResources.s6,
                 vertical: SpacesResources.s4,
               ),
-              textStyle: AppTextStyles.button.copyWith(
+              textStyle: TextStylesResources.button.copyWith(
                 fontSize: FontSizeResources.s12,
                 fontWeight: FontWeightResources.medium,
               ),
@@ -165,7 +165,7 @@ class UnitCardWidget extends StatelessWidget {
                 horizontal: SpacesResources.s6,
                 vertical: SpacesResources.s4,
               ),
-              textStyle: AppTextStyles.button.copyWith(
+              textStyle: TextStylesResources.button.copyWith(
                 fontSize: FontSizeResources.s12,
                 fontWeight: FontWeightResources.bold,
               ),

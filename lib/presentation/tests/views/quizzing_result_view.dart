@@ -42,7 +42,7 @@
 //                     Center(
 //                       child: Text(
 //                         context.l10n.resultTitle,
-//                         style: AppTextStyles.headline1.copyWith(color: theme.colorScheme.onSurface),
+//                         style: TextStylesResources.headline1.copyWith(color: theme.colorScheme.onSurface),
 //                       ),
 //                     ),
 //                     const SizedBox(height: SpacesResources.s8),
@@ -113,7 +113,7 @@
 //                       onPressed: () => Navigator.of(context).pop(),
 //                       child: Text(
 //                         context.l10n.buttonsClose,
-//                         style: AppTextStyles.button.copyWith(color: theme.colorScheme.onSurface),
+//                         style: TextStylesResources.button.copyWith(color: theme.colorScheme.onSurface),
 //                       ),
 //                     ),
 //                   ),
@@ -124,7 +124,7 @@
 //                         minimumSize: Size.fromHeight(SizesResources.buttonLargeHeight),
 //                       ),
 //                       onPressed: () => context.read<QuizzingBloc>().add(const RetakeQuiz()),
-//                       child: Text(context.l10n.buttonsRetryTest, style: AppTextStyles.button),
+//                       child: Text(context.l10n.buttonsRetryTest, style: TextStylesResources.button),
 //                     ),
 //                   ),
 //                 ],

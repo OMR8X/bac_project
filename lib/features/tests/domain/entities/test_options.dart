@@ -55,7 +55,7 @@ class TestOptions extends Equatable {
 
     // Calculate maximum available questions from selected categories
     int? calculatedMax = selectedCategories?.fold(0, (total, category) {
-      return (total ?? 0) + category.questionsCount;
+      return (total ?? 0) + (category.questionsCount ?? 0);
     });
 
     // Return empty list if no categories selected or max is 0

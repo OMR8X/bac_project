@@ -13,14 +13,14 @@ class SwitchThemeWidget extends StatelessWidget {
     final bloc = context.read<AppThemeBloc>();
     if (Theme.of(context).brightness == Brightness.dark) {
       return AppBarIconWidget(
-        icon: SvgPicture.asset(UIImagesResources.brightnessDarkSVGIcon),
+        icon: Image.asset(UIImagesResources.brightnessDarkUIIcon),
         onPressed: () {
           bloc.add(const ChangeAppThemeEvent(AppThemes.lightTheme));
         },
       );
     } else {
       return AppBarIconWidget(
-        icon: SvgPicture.asset(UIImagesResources.brightnessLightSVGIcon),
+        icon: Image.asset(UIImagesResources.brightnessLightUIIcon),
         onPressed: () {
           bloc.add(const ChangeAppThemeEvent(AppThemes.darkTheme));
         },

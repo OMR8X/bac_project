@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart' as intl;
 import '../../../core/injector/app_injection.dart';
-import '../../../core/resources/styles/padding_resources.dart';
+import '../../../core/resources/styles/spacing_resources.dart';
 import '../../../core/resources/styles/spaces_resources.dart';
 import '../../../core/resources/themes/extensions/surface_container_colors.dart';
 import '../../../core/widgets/animations/staggered_list_wrapper_widget.dart';
@@ -29,10 +29,13 @@ class NotificationsView extends StatelessWidget {
         value: sl<ExploreNotificationsBloc>(),
         child: BlocBuilder<ExploreNotificationsBloc, ExploreNotificationsState>(
           builder: (context, state) {
-            return Scaffold(appBar: AppBar(title: const Text("الإشعارات"), actions: [
+            return Scaffold(
+              appBar: AppBar(title: const Text("الإشعارات"), actions: [
              
                 ],
-              ), body: _buildBody(state));
+              ),
+              body: _buildBody(state),
+            );
           },
         ),
       ),
@@ -51,7 +54,10 @@ class NotificationsView extends StatelessWidget {
             children: [
               Icon(Icons.error_outline, size: 64, color: Colors.grey[400]),
               const SizedBox(height: 16),
-              Text("حدث خطأ في تحميل الإشعارات", style: TextStyle(fontSize: 16, color: Colors.grey[600])),
+              Text(
+                "حدث خطأ في تحميل الإشعارات",
+                style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+              ),
               const SizedBox(height: 8),
               if (state.errorMessage != null)
                 Text(
@@ -79,7 +85,10 @@ class NotificationsView extends StatelessWidget {
                 const SizedBox(height: 16),
                 Text("لا توجد إشعارات", style: TextStyle(fontSize: 16, color: Colors.grey[600])),
                 const SizedBox(height: 8),
-                Text("ستظهر الإشعارات هنا عند وصولها", style: TextStyle(fontSize: 12, color: Colors.grey[500])),
+                Text(
+                  "ستظهر الإشعارات هنا عند وصولها",
+                  style: TextStyle(fontSize: 12, color: Colors.grey[500]),
+                ),
               ],
             ),
           );
@@ -109,7 +118,7 @@ class NotificationTileWidget extends StatelessWidget {
           key: ValueKey(notification),
           position: position,
           child: Container(
-            margin: PaddingResources.cardOuterPadding,
+            margin: Margins.cardMargin,
             width: SizesResources.mainWidth(context),
             decoration: DecorationResources.inputDialogDecoration(theme: Theme.of(context)),
             child: Material(
@@ -124,7 +133,7 @@ class NotificationTileWidget extends StatelessWidget {
                         }
                         : null,
                 child: Padding(
-                  padding: PaddingResources.customPadding(5, 5),
+                  padding: Paddings.customPadding(5, 5),
                   child: Row(
                     children: [
                       Column(
@@ -134,12 +143,15 @@ class NotificationTileWidget extends StatelessWidget {
                             width: 50,
                             margin: const EdgeInsets.only(left: SpacesResources.s5),
                             decoration: BoxDecoration(
-                              color: Theme.of(context).extension<SurfaceContainerColors>()!.surfaceContainerHigh,
+                              color:
+                                  Theme.of(
+                                    context,
+                                  ).extension<SurfaceContainerColors>()!.surfaceContainerHigh,
                               borderRadius: BorderRadiusResource.tileBoxBorderRadius,
                             ),
                             child: Center(
                               child: Image.asset(
-                                UIImagesResources.notificationsIcon,
+                                UIImagesResources.bellUIIcon,
                                 width: 20,
                                 height: 20,
                                 fit: BoxFit.contain,
@@ -182,7 +194,10 @@ class NotificationTileWidget extends StatelessWidget {
                         ),
                       ),
                       if (notification.html?.isNotEmpty ?? false)
-                        Padding(padding: const EdgeInsets.all(20), child: Icon(Icons.arrow_forward_ios, size: 10)),
+                        Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Icon(Icons.arrow_forward_ios, size: 10),
+                        ),
                     ],
                   ),
                 ),

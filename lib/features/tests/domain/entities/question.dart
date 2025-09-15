@@ -4,7 +4,7 @@ import 'package:collection/collection.dart';
 class Question {
   //
   final int id;
-  final String text;
+  final String content;
   //
   final int? unitId;
   final int lessonId;
@@ -20,7 +20,7 @@ class Question {
 
   const Question({
     required this.id,
-    required this.text,
+    required this.content,
     required this.options,
     this.unitId,
     required this.lessonId,
@@ -36,7 +36,7 @@ class Question {
 
   Question copyWith({
     int? id,
-    String? text,
+    String? content,
     List<Option>? options,
     int? unitId,
     int? lessonId,
@@ -47,7 +47,7 @@ class Question {
   }) {
     return Question(
       id: id ?? this.id,
-      text: text ?? this.text,
+      content: content ?? this.content,
       options: options ?? this.options,
       unitId: unitId ?? this.unitId,
       lessonId: lessonId ?? this.lessonId,
@@ -63,7 +63,7 @@ class Question {
     if (identical(this, other)) return true;
     return other is Question &&
         other.id == id &&
-        other.text == text &&
+        other.content == content &&
         other.options == options &&
         other.unitId == unitId &&
         other.lessonId == lessonId &&
@@ -76,7 +76,7 @@ class Question {
   @override
   int get hashCode =>
       id.hashCode ^
-      text.hashCode ^
+      content.hashCode ^
       options.hashCode ^
       unitId.hashCode ^
       lessonId.hashCode ^
@@ -87,9 +87,9 @@ class Question {
 
   @override
   String toString() =>
-      'Question(id: $id, text: $text, options: $options, unitId: $unitId, lessonId: $lessonId, imageUrl: $imageUrl, categoryId: $categoryId, isMCQ: $isMCQ, explain: $explain)';
+      'Question(id: $id, content: $content, options: $options, unitId: $unitId, lessonId: $lessonId, imageUrl: $imageUrl, categoryId: $categoryId, isMCQ: $isMCQ, explain: $explain)';
 
   static Question empty() {
-    return Question(id: 0, text: '', options: [], lessonId: 0, imageUrl: null, categoryId: null, isMCQ: null, explain: null);
+    return Question(id: 0, content: '', options: [], lessonId: 0, imageUrl: null, categoryId: null, isMCQ: null, explain: null);
   }
 }

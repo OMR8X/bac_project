@@ -1,22 +1,18 @@
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../core/helpers/input_validator.dart';
+import '../../../core/injector/app_injection.dart';
+import '../../../core/resources/styles/spaces_resources.dart';
+import '../../../core/widgets/ui/fields/drop_down_widget.dart';
+import '../../../core/widgets/ui/fields/text_form_field_widget.dart';
+import '../state/bloc/auth_bloc.dart';
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';
-import 'package:bac_project/core/services/router/app_routes.dart';
 import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
 import 'package:bac_project/features/settings/domain/entities/app_settings.dart';
 import 'package:bac_project/features/settings/domain/entities/governorate.dart';
 import 'package:bac_project/features/settings/domain/entities/section.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import '../../../core/helpers/input_validator.dart';
-import '../../../core/injector/app_injection.dart';
-import '../../../core/resources/styles/spaces_resources.dart';
-import '../../../core/resources/themes/extensions/surface_container_colors.dart';
-import '../../../core/widgets/ui/fields/drop_down_widget.dart';
-import '../../../core/widgets/ui/fields/elevated_button_widget.dart';
-import '../../../core/widgets/ui/fields/text_form_field_widget.dart';
-import '../state/bloc/auth_bloc.dart';
 
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key, required this.state});
@@ -90,7 +86,7 @@ class _SignUpViewState extends State<SignUpView> {
           key: _formKey,
           child: SingleChildScrollView(
             child: Padding(
-              padding: PaddingResources.screenSidesPadding,
+              padding: Paddings.screenSidesPadding,
               child: Column(
                 children: [
                   const SizedBox(height: SpacesResources.s10),
@@ -147,7 +143,7 @@ class _SignUpViewState extends State<SignUpView> {
                     ),
                     entries: (sl<AppSettings>().governorates),
                     toLabel: (value) {
-                      return value?.name ?? "غير محدد";
+                      return value?.title ?? "غير محدد";
                     },
                     onSelected: (entry) {
                       _governorate = entry!;

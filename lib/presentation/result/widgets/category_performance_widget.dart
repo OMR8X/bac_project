@@ -1,8 +1,7 @@
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/color_extensions.dart';
-import 'package:bac_project/core/resources/themes/extensions/extra_colors.dart';
 import 'package:flutter/material.dart';
 
 class CategoryPerformanceWidget extends StatelessWidget {
@@ -11,9 +10,9 @@ class CategoryPerformanceWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: PaddingResources.cardOuterPadding,
+      margin: Margins.cardMargin,
       child: Padding(
-        padding: PaddingResources.cardMediumInnerPadding,
+        padding: Paddings.cardMediumPadding,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

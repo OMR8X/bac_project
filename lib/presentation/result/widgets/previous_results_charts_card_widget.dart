@@ -75,7 +75,7 @@ class PreviousResultsChartsCardWidget extends StatelessWidget {
             StackedColumn100Series<Result, String>(
               dataSource: results,
               xValueMapper: (Result data, _) => data.createdAt.day.toString(),
-              yValueMapper: (Result data, _) => data.skippedAnswers,
+              yValueMapper: (Result data, _) => 0,
               name: 'Skipped',
               color: Theme.of(context).colorScheme.primaryContainer,
               width: 0.5,

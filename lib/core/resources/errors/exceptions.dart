@@ -29,3 +29,8 @@ class CacheEmptyException implements Exception {
   final String message;
   const CacheEmptyException({this.message = ""});
 }
+
+class QuestionsNotExistsException implements Exception {
+  final String message;
+  const QuestionsNotExistsException({this.message = ""});
+}

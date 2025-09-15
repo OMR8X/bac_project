@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import '../../../resources/styles/border_radius_resources.dart';
 import '../../../resources/styles/font_styles_manager.dart';
-import '../../../resources/styles/padding_resources.dart';
+import '../../../resources/styles/spacing_resources.dart';
 import '../../../resources/styles/sizes_resources.dart';
 import '../../../resources/themes/extensions/surface_container_colors.dart';
 import '../../animations/staggered_item_wrapper_widget.dart';
@@ -64,9 +64,8 @@ class _DropDownWidgetState<T> extends State<DropDownWidget<T>> {
             FocusManager.instance.primaryFocus?.unfocus();
           },
           child: DropdownMenu(
-            
             width: double.infinity,
-            textStyle: AppTextStyles.title,
+            textStyle: TextStylesResources.title,
             hintText: widget.hintText,
             label: widget.hintText != null ? Text(widget.hintText!) : null,
             initialSelection: widget.initialSelection,

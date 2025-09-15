@@ -1,6 +1,6 @@
 import '../../../resources/styles/border_radius_resources.dart';
 import '../../../resources/styles/font_styles_manager.dart';
-import '../../../resources/styles/padding_resources.dart';
+import '../../../resources/styles/spacing_resources.dart';
 import 'package:flutter/material.dart';
 
 class SwitchOption<T> {
@@ -148,7 +148,7 @@ class _ModeSwitcherWidgetState<T> extends State<ModeSwitcherWidget<T>>
                 AnimatedDefaultTextStyle(
                   duration: _animationDuration,
                   curve: _animationCurve,
-                  style: AppTextStyles.button.copyWith(
+                  style: TextStylesResources.button.copyWith(
                     color: isActive ? activeColor : inactiveColor,
                     fontWeight: isActive ? FontWeight.w600 : FontWeight.w500,
                   ),
@@ -187,7 +187,7 @@ class _ModeSwitcherWidgetState<T> extends State<ModeSwitcherWidget<T>>
   Widget _buildSwitcherContainer() {
     return Container(
       height: 45,
-      margin: PaddingResources.cardLargeTitlePadding,
+      margin: Paddings.cardLargeTitlePadding,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primaryContainer,
         // color: Theme.of(context).colorScheme.surfaceContainer,

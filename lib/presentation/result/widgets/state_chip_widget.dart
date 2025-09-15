@@ -1,77 +1,74 @@
 import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/color_extensions.dart';
+import 'package:bac_project/core/resources/themes/extensions/extra_colors.dart';
 import 'package:flutter/material.dart';
 
 class StatChip extends StatelessWidget {
   const StatChip({
     super.key,
-    required this.icon,
-    required this.label,
-    required this.value,
-    required this.color,
-    this.onExplore,
+    required this.title,
+    required this.subtitle,
+    required this.iconPath,
+    this.onTap,
   });
 
-  final IconData icon;
-  final String label;
-  final String value;
-  final Color color;
-  final VoidCallback? onExplore;
+  final String title;
+  final String subtitle;
+  final String iconPath;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: PaddingResources.statChipOuterPadding,
-      color: Theme.of(context).colorScheme.surfaceContainer,
+    final theme = Theme.of(context);
+    return Card(
+      margin: Margins.statChipMargin,
+
+      shape: RoundedSuperellipseBorder(
+        borderRadius: BorderRadiusResource.bordersRadiusMedium,
+        side: BorderSide(color: theme.colorScheme.outline, width: 0.25),
+      ),
       child: InkWell(
         borderRadius: BorderRadiusResource.cardBorderRadius,
-        onTap: onExplore,
+        onTap: onTap,
         child: Padding(
-          padding: PaddingResources.statChipInnerPadding,
+          padding: Paddings.statChipPadding,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              // Left side - Title and Subtitle
               Expanded(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: SpacesResources.s2),
                     Text(
-                      value,
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTextStyles.statTitleStyle.copyWith(
-                        color: Theme.of(context).colorScheme.onSurface,
+                      title,
+                      style: TextStylesResources.statTitleStyle.copyWith(
+                        color: theme.colorScheme.onSurface,
+                        fontSize: FontSizeResources.s16,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          label,
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
-                          style: AppTextStyles.statLabelStyle.copyWith(
-                            color: Theme.of(context).colorScheme.onSurfaceVariant,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: SpacesResources.s4),
-                    SizedBox(
-                      width: 50,
-                      child: Divider(
-                        height: 2,
-                        thickness: 2,
-                        color: color.lighter(0.5),
-                        radius: BorderRadius.circular(6),
+                    const SizedBox(height: SpacesResources.s1),
+                    Text(
+                      subtitle,
+                      style: TextStylesResources.statLabelStyle.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                        fontSize: FontSizeResources.s9,
                       ),
                     ),
                   ],
                 ),
+              ),
+              // Right side - Icon
+              Image.asset(
+                iconPath,
+                width: 16,
+                height: 16,
+                color: theme.colorScheme.onSurfaceVariant.lighter(0.25),
               ),
             ],
           ),

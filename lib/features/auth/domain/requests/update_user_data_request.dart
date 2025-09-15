@@ -1,8 +1,8 @@
 class UpdateUserDataRequest {
   final String? name;
   final String? email;
-  final String? sectionId;
-  final String? governorateId;
+  final int? sectionId;
+  final int? governorateId;
   final String? password;
 
   UpdateUserDataRequest({this.name, this.email, this.sectionId, this.governorateId, this.password});

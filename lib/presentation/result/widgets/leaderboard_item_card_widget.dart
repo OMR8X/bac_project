@@ -1,5 +1,5 @@
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/extra_colors.dart';
@@ -30,15 +30,15 @@ class LeaderboardItemCardWidget extends StatelessWidget {
 
     return Card(
       color: isCurrentUser ? theme.colorScheme.surfaceContainerHigh : null,
-      margin: EdgeInsets.zero,
+      margin: Margins.zero,
       child: InkWell(
         borderRadius: BorderRadiusResource.cardBorderRadius,
         onTap: onTap,
         child: Padding(
-          padding: PaddingResources.cardMediumInnerPadding,
+          padding: Paddings.cardMediumPadding,
           child: Row(
             children: [
-              SizedBox(width: 36, child: Text('$rank', style: AppTextStyles.cardSmallTitle)),
+              SizedBox(width: 36, child: Text('$rank', style: TextStylesResources.cardSmallTitle)),
               const SizedBox(width: SpacesResources.s4),
               Container(
                 width: 44,
@@ -50,7 +50,7 @@ class LeaderboardItemCardWidget extends StatelessWidget {
                 child: Center(
                   child: Text(
                     '$percent%',
-                    style: AppTextStyles.cardSmallTitle.copyWith(color: textColor),
+                    style: TextStylesResources.cardSmallTitle.copyWith(color: textColor),
                   ),
                 ),
               ),
@@ -61,14 +61,14 @@ class LeaderboardItemCardWidget extends StatelessWidget {
                   children: [
                     Text(
                       result.lessonTitle ?? '',
-                      style: AppTextStyles.cardMediumTitle,
+                      style: TextStylesResources.cardMediumTitle,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: SpacesResources.s1),
                     Text(
                       result.createdAt.toLocal().toIso8601String().split('T').first,
-                      style: AppTextStyles.cardSmallSubtitle,
+                      style: TextStylesResources.cardSmallSubtitle,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -80,7 +80,7 @@ class LeaderboardItemCardWidget extends StatelessWidget {
                 Chip(
                   label: Text(
                     'You',
-                    style: AppTextStyles.statLabelStyle.copyWith(
+                    style: TextStylesResources.statLabelStyle.copyWith(
                       color: theme.colorScheme.onPrimary,
                     ),
                   ),

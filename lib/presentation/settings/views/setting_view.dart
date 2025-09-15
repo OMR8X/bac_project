@@ -1,5 +1,5 @@
 import 'package:bac_project/core/injector/app_injection.dart';
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/services/router/index.dart';
@@ -17,7 +17,7 @@ class SettingView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(context.l10n.settingsTitle), actions: [SwitchThemeWidget()]),
       body: Padding(
-        padding: PaddingResources.screenSidesPadding,
+        padding: Paddings.screenSidesPadding,
         child: Column(
           children: [
             const SizedBox(height: SpacesResources.s10),

@@ -1,7 +1,7 @@
 import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/shadows_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:flutter/material.dart';
@@ -23,13 +23,13 @@ class MotivationalQuoteCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: PaddingResources.cardOuterPadding,
+      margin: Margins.quoteOfTheDayCardMargin,
       elevation: 0,
       child: InkWell(
         borderRadius: BorderRadiusResource.cardBorderRadius,
         onTap: onTap,
         child: Container(
-          padding: PaddingResources.cardLargeInnerPadding,
+          padding: Paddings.quoteOfTheDayCardPadding,
           decoration: BoxDecoration(
             border: Border.all(
               color: Theme.of(context).colorScheme.outline.withOpacity(0.3),
@@ -74,7 +74,7 @@ class MotivationalQuoteCardWidget extends StatelessWidget {
       children: [
         Text(
           "sl<LocalizationManager>().get(LocalizationKeys.home.quote.dailyQuote)",
-          style: AppTextStyles.cardMediumTitle.copyWith(
+          style: TextStylesResources.cardMediumTitle.copyWith(
             color: Theme.of(context).colorScheme.primary,
             fontWeight: FontWeightResources.bold,
           ),
@@ -82,7 +82,7 @@ class MotivationalQuoteCardWidget extends StatelessWidget {
         const SizedBox(height: SpacesResources.s3),
         Text(
           quote,
-          style: AppTextStyles.cardMediumSubtitle.copyWith(
+          style: TextStylesResources.cardMediumSubtitle.copyWith(
             color: Theme.of(context).colorScheme.onSurface,
             height: 1.4,
             fontSize: FontSizeResources.s13,
@@ -93,7 +93,7 @@ class MotivationalQuoteCardWidget extends StatelessWidget {
         const SizedBox(height: SpacesResources.s2),
         Text(
           '- $author',
-          style: AppTextStyles.cardSmallSubtitle.copyWith(
+          style: TextStylesResources.cardSmallSubtitle.copyWith(
             color: Theme.of(context).colorScheme.onSurfaceVariant,
             fontStyle: FontStyle.italic,
             fontSize: FontSizeResources.s11,

@@ -8,12 +8,12 @@ abstract class FetchCustomQuestionsEvent extends Equatable {
 }
 
 class FetchCustomQuestionsByResult extends FetchCustomQuestionsEvent {
-  final Result? result;
+  final int resultId;
 
-  const FetchCustomQuestionsByResult({this.result});
+  const FetchCustomQuestionsByResult({required this.resultId});
 
   @override
-  List<Object?> get props => [result];
+  List<Object?> get props => [resultId];
 }
 
 class FetchCustomQuestionsByIds extends FetchCustomQuestionsEvent {

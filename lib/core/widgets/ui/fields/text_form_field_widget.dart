@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../resources/styles/font_styles_manager.dart';
-import '../../../resources/styles/padding_resources.dart';
+import '../../../resources/styles/spacing_resources.dart';
 import '../../../resources/styles/sizes_resources.dart';
 import '../../animations/staggered_item_wrapper_widget.dart';
 
@@ -45,8 +45,8 @@ class TextFormFieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return StaggeredItemWrapperWidget(
       position: position,
-      child: Padding(
-        padding: PaddingResources.textFieldMargin,
+      child: Container(
+        margin: Margins.textFieldMargin,
         child: TextFormField(
           initialValue: initialValue,
           controller: controller,
@@ -59,7 +59,7 @@ class TextFormFieldWidget extends StatelessWidget {
           maxLength: maxLength,
           onChanged: onChanged,
           onFieldSubmitted: onFieldSubmitted,
-          style: AppTextStyles.textField,
+          style: TextStylesResources.textField,
           decoration: InputDecoration(labelText: " $hintText"),
         ),
       ),

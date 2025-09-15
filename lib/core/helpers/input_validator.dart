@@ -13,7 +13,7 @@ class InputValidator {
     return null;
   }
 
-//
+  //
   static String? urlValidator(String? text) {
     //
     if (text == null || text.trim().isEmpty) return noEmptyFiled;
@@ -57,7 +57,9 @@ class InputValidator {
     if (text.isEmpty) return noEmptyFiled;
     text.trim();
     //
-    final validCharacters = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+    final validCharacters = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+    );
     if (!validCharacters.hasMatch(text)) {
       return 'ادخل بريد إلكتروني صالح';
     }

@@ -9,6 +9,11 @@ class Failure extends Equatable {
   List<Object?> get props => [message];
 }
 
+class QuestionsNotExistsFailure extends Failure {
+  static const String _defaultMessage = "لم يتم العثور على اسئلة";
+
+  const QuestionsNotExistsFailure({String? message}) : super(message ?? _defaultMessage);
+}
 class FileNotExistsFailure extends Failure {
   static const String _defaultMessage = "الملف غير موجود";
 

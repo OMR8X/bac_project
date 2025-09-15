@@ -1,5 +1,4 @@
-
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/presentation/tests/widgets/radio_answer_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -31,8 +30,7 @@ class _OptionsWidgetState extends State<OptionsWidget> {
         //
         Padding(
           // TODO: add padding
-          padding: EdgeInsets.zero,
-          // padding: PaddingResources.padding_0_3,
+          padding: Paddings.customPadding(0, 3),
         ),
         //
         RadioAnswerWidget(
@@ -48,8 +46,7 @@ class _OptionsWidgetState extends State<OptionsWidget> {
         //
         Padding(
           // TODO: add padding
-          padding: EdgeInsets.zero,
-          // padding: PaddingResources.padding_0_3
+          padding: Paddings.customPadding(0, 3),
         ),
         //
         RadioAnswerWidget(
@@ -65,8 +62,7 @@ class _OptionsWidgetState extends State<OptionsWidget> {
         //
         Padding(
           // TODO: add padding
-          padding: EdgeInsets.zero,
-          // padding: PaddingResources.padding_0_3
+          padding: Paddings.customPadding(0, 3),
         ),
         //
         RadioAnswerWidget(

@@ -8,7 +8,7 @@ extension QuestionModelExtension on QuestionModel {
   Question toEntity() {
     return Question(
       id: id,
-      text: text,
+      content: content,
       options: options,
       unitId: unitId,
       lessonId: lessonId,
@@ -24,7 +24,7 @@ extension QuestionEntityExtension on Question {
   QuestionModel toModel() {
     return QuestionModel(
       id: id,
-      text: text,
+      content: content,
       options: options,
       unitId: unitId,
       lessonId: lessonId,

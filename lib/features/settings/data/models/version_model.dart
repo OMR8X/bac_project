@@ -15,7 +15,7 @@ class VersionModel extends Version {
       currentVersion: json['current_version'],
       minimumVersion: json['minimum_version'],
       updateLink: json['update_link'],
-      appVersion: json['app_version'],
+      appVersion: json['app_version'] ?? '1.0.0',
     );
   }
 

@@ -5,7 +5,7 @@ import 'package:bac_project/core/resources/themes/extensions/extra_colors.dart';
 import 'package:bac_project/core/resources/themes/extensions/surface_container_colors.dart';
 import 'package:flutter/material.dart';
 import '../styles/border_radius_resources.dart';
-import '../styles/padding_resources.dart';
+import '../styles/spacing_resources.dart';
 import 'extensions/success_colors.dart';
 
 class AppDarkTheme {
@@ -55,13 +55,14 @@ class AppDarkTheme {
           orange: ColorsResourcesDark.orange,
           pink: ColorsResourcesDark.pink,
           red: ColorsResourcesDark.error,
+          primaryState: ColorsResourcesDark.primaryState,
         ),
       ],
       listTileTheme: ListTileThemeData(
-        titleTextStyle: AppTextStyles.cardMediumTitle.copyWith(
+        titleTextStyle: TextStylesResources.cardMediumTitle.copyWith(
           color: ColorsResourcesDark.onSurface,
         ),
-        subtitleTextStyle: AppTextStyles.cardMediumSubtitle.copyWith(
+        subtitleTextStyle: TextStylesResources.cardMediumSubtitle.copyWith(
           color: ColorsResourcesDark.onSurfaceVariant,
         ),
       ),
@@ -85,9 +86,9 @@ class AppDarkTheme {
       ///
       chipTheme: ChipThemeData(
         // Unselected text
-        labelStyle: AppTextStyles.chipLabelStyle.copyWith(color: ColorsResourcesDark.primary),
+        labelStyle: TextStylesResources.chipLabelStyle.copyWith(color: ColorsResourcesDark.primary),
         // Selected text
-        secondaryLabelStyle: AppTextStyles.chipLabelStyle.copyWith(
+        secondaryLabelStyle: TextStylesResources.chipLabelStyle.copyWith(
           color: ColorsResourcesDark.primaryContainer,
         ),
         checkmarkColor: ColorsResourcesDark.primaryContainer,
@@ -122,17 +123,17 @@ class AppDarkTheme {
         }),
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         // Add more properties if needed
-        // padding: EdgeInsets.zero, // As you already set
+        // padding: Paddings.zero, // As you already set
       ),
 
       ///
       appBarTheme: AppBarTheme(
         backgroundColor: ColorsResourcesDark.surface,
         shadowColor: Colors.transparent,
-        actionsPadding: PaddingResources.screenSidesPadding,
-        titleTextStyle: AppTextStyles.appBar.copyWith(color: ColorsResourcesDark.onSurface),
+        actionsPadding: Paddings.screenSidesPadding,
+        titleTextStyle: TextStylesResources.appBar.copyWith(color: ColorsResourcesDark.onSurface),
         surfaceTintColor: Colors.transparent,
-        leadingWidth: 48 + PaddingResources.screenSidesPadding.right,
+        leadingWidth: 48 + Paddings.screenSidesPadding.right,
         centerTitle: true,
         iconTheme: IconThemeData(color: ColorsResourcesDark.onSurfaceVariant),
       ),
@@ -181,7 +182,7 @@ class AppDarkTheme {
           backgroundColor: ColorsResourcesDark.primaryContainer,
           foregroundColor: ColorsResourcesDark.primary,
           shape: RoundedSuperellipseBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
-          textStyle: AppTextStyles.button,
+          textStyle: TextStylesResources.button,
           minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
         ),
       ),
@@ -196,7 +197,7 @@ class AppDarkTheme {
           disabledBackgroundColor: ColorsResourcesDark.primaryContainer.withAlpha(100),
           minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
           shape: RoundedSuperellipseBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
-          textStyle: AppTextStyles.button,
+          textStyle: TextStylesResources.button,
         ),
       ),
 
@@ -209,7 +210,7 @@ class AppDarkTheme {
           foregroundColor: ColorsResourcesDark.onSurface,
           minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
           shape: RoundedSuperellipseBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
-          textStyle: AppTextStyles.button,
+          textStyle: TextStylesResources.button,
           side: BorderSide(color: ColorsResourcesDark.outline),
         ),
       ),
@@ -218,7 +219,7 @@ class AppDarkTheme {
       iconButtonTheme: IconButtonThemeData(
         style: IconButton.styleFrom(
           alignment: Alignment.center,
-          padding: EdgeInsets.zero,
+          padding: Paddings.zero,
           backgroundColor: ColorsResourcesDark.surface,
           foregroundColor: ColorsResourcesDark.onSurface,
           shape: RoundedRectangleBorder(
@@ -249,7 +250,7 @@ class AppDarkTheme {
             borderRadius: BorderRadiusResource.fieldBorderRadius,
             borderSide: const BorderSide(color: ColorsResourcesDark.outline),
           ),
-          contentPadding: PaddingResources.fieldContentPadding,
+          contentPadding: Paddings.fieldContentPadding,
         ),
       ),
 
@@ -257,8 +258,10 @@ class AppDarkTheme {
       inputDecorationTheme: InputDecorationTheme(
         fillColor: ColorsResourcesDark.surfaceContainer,
 
-        labelStyle: AppTextStyles.textField.copyWith(color: ColorsResourcesDark.onSurfaceVariant),
-        helperStyle: AppTextStyles.textFieldHelper.copyWith(
+        labelStyle: TextStylesResources.textField.copyWith(
+          color: ColorsResourcesDark.onSurfaceVariant,
+        ),
+        helperStyle: TextStylesResources.textFieldHelper.copyWith(
           color: ColorsResourcesDark.onSurfaceVariant,
         ),
 
@@ -284,7 +287,7 @@ class AppDarkTheme {
           borderSide: const BorderSide(color: ColorsResourcesDark.outline, width: 0.20),
         ),
         outlineBorder: BorderSide(color: ColorsResourcesDark.outline),
-        contentPadding: PaddingResources.fieldContentPadding,
+        contentPadding: Paddings.fieldContentPadding,
       ),
     );
   }

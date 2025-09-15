@@ -1,11 +1,7 @@
-import 'package:bac_project/core/extensions/build_context_l10n.dart';
-import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/shadows_resources.dart';
-
 import 'package:flutter/material.dart';
 import '../../../core/resources/styles/border_radius_resources.dart';
-import '../../../core/resources/styles/padding_resources.dart';
+import '../../../core/resources/styles/spacing_resources.dart';
 import '../../../core/resources/styles/spaces_resources.dart';
 
 class ModeCardWidget extends StatelessWidget {
@@ -37,8 +33,8 @@ class ModeCardWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: PaddingResources.cardLargeInnerPadding,
-        margin: PaddingResources.cardOuterPadding,
+        padding: Paddings.cardLargePadding,
+        margin: Margins.cardMargin,
         decoration: _buildCardDecoration(context),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,12 +122,7 @@ class ModeCardWidget extends StatelessWidget {
   Widget _buildSubtitle(BuildContext context) {
     return Text(
       subtitle,
-      style: AppTextStyles.cardSmallSubtitle.copyWith(
-        color: Theme.of(context).colorScheme.onSurfaceVariant,
-        fontWeight: FontWeight.w500,
-        height: 1.3,
-        letterSpacing: 0.1,
-      ),
+      style: TextStylesResources.cardSmallSubtitle,
       maxLines: 2,
       overflow: TextOverflow.ellipsis,
     );
@@ -189,10 +180,7 @@ class ModeCardWidget extends StatelessWidget {
   Widget _buildDescriptionText(BuildContext context) {
     return Text(
       description,
-      style: AppTextStyles.cardSmallSubtitle.copyWith(
-        color: Theme.of(context).colorScheme.onSurfaceVariant,
-        height: 1.4,
-      ),
+      style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, height: 1.4),
     );
   }
 }

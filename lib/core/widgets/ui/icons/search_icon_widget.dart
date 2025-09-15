@@ -10,7 +10,7 @@ class SearchIconWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBarIconWidget(
       icon: Image.asset(
-        UIImagesResources.searchIcon,
+        UIImagesResources.searchUIIcon,
         color: Theme.of(context).colorScheme.onSurface,
       ),
       onPressed: onPressed ?? () {},

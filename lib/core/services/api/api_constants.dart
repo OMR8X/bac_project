@@ -1,10 +1,12 @@
+import 'package:bac_project/core/services/api/supabase/supabase_settings.dart';
+
 class ApiSettings {
   //
   static const receiveTimeout = 60;
   static const sendTimeout = 60 * 60;
   static const connectTimeout = 15;
   //
-  static const baseUrl = 'https://yyckcezjjzfxktiannbm.supabase.co';
+  static const baseUrl = SupabaseSettings.url;
   //
 }
 
@@ -15,7 +17,7 @@ class ApiHeaders {
   static const headerAuthorizationKey = 'Authorization'; // capitalize 'A'
   static const headerContentTypeKey = 'Content-Type';
   static const headerAcceptKey = 'Accept';
-  static const headerApiKey = 'apikey'; // match supabase required header name
+  static const headerApiKey = 'apikey';
 
   ///
   /// [Values]
@@ -35,7 +37,8 @@ class SupabaseEndpoints {
   static const getResultLeaderboardFunctionEndpoint = "fn_api_results_get_result_leaderboard";
   static const getTestOptionsFunctionEndpoint = "fn_api_questions_get_test_options";
   static const getQuestionsByIdsFunctionEndpoint = "fn_api_questions_get_questions_by_ids";
-  static const addUserResultEdgeFunctionEndpoint = "add-user-result";
+  static const getResultQuestionsWithAnswersFunctionEndpoint = "fn_api_results_get_result_questions_with_answers";
+  static const addUserResultEdgeFunctionEndpoint = "add_user_result";
 
   ///
   static String rpc(String functionName) => '/rest/v1/rpc/$functionName';

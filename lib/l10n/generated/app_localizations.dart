@@ -232,6 +232,18 @@ abstract class AppLocalizations {
   /// **'تحديث بياناتك'**
   String get buttonsUpdateUserData;
 
+  /// No description provided for @closeQuizDialogBody.
+  ///
+  /// In ar, this message translates to:
+  /// **'هل أنت متأكد من رغبتك في إغلاق الاختبار؟ سيتم حفظ إجاباتك الحالية.'**
+  String get closeQuizDialogBody;
+
+  /// No description provided for @closeQuizDialogTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'إغلاق الاختبار'**
+  String get closeQuizDialogTitle;
+
   /// No description provided for @enableSoundEffectsSubtitle.
   ///
   /// In ar, this message translates to:
@@ -249,6 +261,30 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'وضع التصفح'**
   String get exploreMode;
+
+  /// No description provided for @exploreModeAdditionalFeaturesContent.
+  ///
+  /// In ar, this message translates to:
+  /// **'• لا يتم تخزين النتيجة\n• مصمم للتدريب والتعلم دون ضغط\n'**
+  String get exploreModeAdditionalFeaturesContent;
+
+  /// No description provided for @exploreModeAdditionalFeaturesTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'خصائص التدريب:'**
+  String get exploreModeAdditionalFeaturesTitle;
+
+  /// No description provided for @exploreModeDetailsContent.
+  ///
+  /// In ar, this message translates to:
+  /// **'• تحكم كامل في إعدادات الاختبار (عدد الأسئلة، المواضيع)\n• حرية اختيار إظهار أو إخفاء الإجابات الصحيحة\n• لا يتم استخدام خوارزميات محددة في إنشاء الاختبار'**
+  String get exploreModeDetailsContent;
+
+  /// No description provided for @exploreModeDetailsTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'معلومات وضع التصفح'**
+  String get exploreModeDetailsTitle;
 
   /// No description provided for @homeCardExploreLessonsAction.
   ///
@@ -327,6 +363,18 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'صحيح'**
   String get resultCorrect;
+
+  /// No description provided for @resultRetryTestDialogBody.
+  ///
+  /// In ar, this message translates to:
+  /// **'هل ترغب في إعادة الاختبار بنفس الأسئلة وخيارات الاختبار؟'**
+  String get resultRetryTestDialogBody;
+
+  /// No description provided for @resultRetryTestDialogTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'إعادة الاختبار'**
+  String get resultRetryTestDialogTitle;
 
   /// No description provided for @resultScore.
   ///
@@ -430,10 +478,22 @@ abstract class AppLocalizations {
   /// **'وضع الاختبار'**
   String get testMode;
 
+  /// No description provided for @testModeAdditionalFeaturesContent.
+  ///
+  /// In ar, this message translates to:
+  /// **'• إمكانية الوصول إلى لوحة الصدارة لمقارنة ترتيبك\n• استخدام نتائجك لاحقاً في ميزات التحليل الذكي والاختبارات المخصصة'**
+  String get testModeAdditionalFeaturesContent;
+
+  /// No description provided for @testModeAdditionalFeaturesTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'المميزات الإضافية:'**
+  String get testModeAdditionalFeaturesTitle;
+
   /// No description provided for @testModeDetailsContent.
   ///
   /// In ar, this message translates to:
-  /// **'في وضع الاختبار، ستخضع لاختبار مؤقت مع عدد محدد من الأسئلة. لن تتمكن من رؤية الإجابات الصحيحة إلا بعد الانتهاء من الاختبار. سيتم تقييم أدائك وإعطاؤك تقريراً مفصلاً عن النتائج.'**
+  /// **'• اختبار مصمم تلقائياً بأسئلة منوعة ومختارة بعناية\n• لا يمكن تعديل إعدادات الاختبار (التصانيف، العدد، إلخ)\n• حفظ دائم للنتائج مع إمكانية إعادة نفس الاختبار'**
   String get testModeDetailsContent;
 
   /// No description provided for @testModeDetailsTitle.

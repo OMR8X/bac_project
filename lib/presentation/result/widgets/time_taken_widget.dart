@@ -2,7 +2,7 @@ import 'package:bac_project/core/resources/themes/extensions/color_extensions.da
 import 'package:bac_project/core/widgets/ui/icons/appbar_icon_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/resources/styles/padding_resources.dart';
+import '../../../core/resources/styles/spacing_resources.dart';
 
 /// A compact, themed card showing time taken vs full time with an icon and progress.
 class TimeTakenCard extends StatelessWidget {
@@ -20,7 +20,7 @@ class TimeTakenCard extends StatelessWidget {
     final String fullTimeLabel = _formatDuration(fullTime);
 
     return Card(
-      margin: PaddingResources.cardOuterPadding,
+      margin: Margins.cardMargin,
       color: theme.colorScheme.surface,
       child: Padding(
         padding: const EdgeInsets.all(14.0),
@@ -38,7 +38,7 @@ class TimeTakenCard extends StatelessWidget {
             //   child: Icon(Icons.timer, color: theme.colorScheme.onSurfaceVariant),
             // ),
             AppBarIconWidget(
-              padding: EdgeInsets.zero,
+              padding: Paddings.zero,
               icon: Icon(Icons.timer, size: 18, color: theme.colorScheme.onSurface.lighter(0.4)),
               onPressed: () {},
             ),

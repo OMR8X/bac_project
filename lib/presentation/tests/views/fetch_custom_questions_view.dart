@@ -20,13 +20,11 @@ class FetchCustomQuestionsView extends StatelessWidget {
       body: BlocProvider(
         create: (context) {
           final bloc = sl<FetchCustomQuestionsBloc>();
-
-          if (arguments?.result != null) {
-            bloc.add(FetchCustomQuestionsByResult(result: arguments!.result));
+          if (arguments?.resultId != null) {
+            bloc.add(FetchCustomQuestionsByResult(resultId: arguments!.resultId!));
           } else if (arguments?.questionIds != null) {
             bloc.add(FetchCustomQuestionsByIds(questionIds: arguments!.questionIds!));
           }
-
           return bloc;
         },
         child: BlocConsumer<FetchCustomQuestionsBloc, FetchCustomQuestionsState>(
@@ -56,10 +54,7 @@ class _FetchCustomQuestionsLoadingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Loading Questions')),
-      body: const LoadingWidget(),
-    );
+    return Scaffold(appBar: AppBar(), body: const LoadingWidget());
   }
 }
 

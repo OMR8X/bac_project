@@ -28,10 +28,7 @@ class ApiResponse {
   });
 
   factory ApiResponse.empty() {
-    return ApiResponse(
-      message: "",
-      data: [],
-    );
+    return ApiResponse(message: "", data: []);
   }
 
   void throwErrorIfExists() {
@@ -48,9 +45,9 @@ class ApiResponse {
     throw const ServerException();
   }
 
-  dynamic getData({dynamic key}) {
-    if (key != null) {
-      return data[key];
+  static Map parseData({dynamic data}) {
+    if (data["data"] != null) {
+      return data["data"];
     }
     return data;
   }
@@ -73,9 +70,10 @@ class ApiResponse {
   }
 
   factory ApiResponse.fromDioResponse(Response response) {
+    final data = parseData(data: response.data);
     return ApiResponse(
-      data: response.data["data"] ?? [],
-      status: (response.data["status"] as bool?) ?? false,
+      data: data,
+      status: (response.data["status"] as String?) == "success",
       statusCode: response.statusCode,
       errors: response.data["errors"],
       message: response.data["message"] ?? "",

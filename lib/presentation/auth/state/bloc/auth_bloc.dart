@@ -115,8 +115,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     //
     final String name = event.name.trim();
     final String email = event.email.trim().toLowerCase();
-    final String sectionId = event.sectionId.trim();
-    final String governorateId = event.governorateId.trim();
+    final int sectionId = event.sectionId;
+    final int governorateId = event.governorateId;
     final String password = event.password.trim();
     //
     final signUpRequest = SignUpRequest(
@@ -153,8 +153,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     //
     final String? name = event.name?.trim();
     final String? email = event.email?.trim();
-    final String? governorateId = event.governorateId;
-    final String? sectionId = event.sectionId;
+    final int? governorateId = event.governorateId;
+    final int? sectionId = event.sectionId;
     final String? password = event.password?.trim();
     //
     final updateUserDataRequest = UpdateUserDataRequest(

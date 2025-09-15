@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/injector/tests_feature_inj.dart';
 import 'package:bac_project/core/resources/styles/assets_resources.dart';
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
 import 'package:bac_project/core/widgets/ui/icons/notifications_icon_widget.dart';
@@ -63,21 +63,28 @@ class _HomeViewState extends State<HomeView> {
               return CustomScrollView(slivers: [SliverFillRemaining(child: LoadingWidget())]);
             } else if (state is HomeLoaded) {
               return Padding(
-                padding: PaddingResources.screenSidesPadding,
+                padding: Paddings.screenSidesPadding,
                 child: CustomScrollView(
                   slivers: [
                     SliverFloatingHeader(
                       snapMode: FloatingHeaderSnapMode.overlay,
-                      child: QuoteOfTheDayWidget(quote: fakeQuotes[Random().nextInt(fakeQuotes.length - 1)]),
+                      child: QuoteOfTheDayWidget(
+                        quote: fakeQuotes[Random().nextInt(fakeQuotes.length - 1)],
+                      ),
                       // child: QuoteOfTheDayWidget(quote: sl<AppSettings>().motivationalQuote ?? fakeQuotes[Random().nextInt(fakeQuotes.length - 1)]),
                     ),
 
-                    SliverPadding(padding: PaddingResources.listViewPadding, sliver: HomeCardsBuilderWidget(cards: state.cards, units: state.units)),
+                    SliverPadding(
+                      padding: Paddings.listViewPadding,
+                      sliver: HomeCardsBuilderWidget(cards: state.cards, units: state.units),
+                    ),
                   ],
                 ),
               );
             } else if (state is HomeError) {
-              return CustomScrollView(slivers: [SliverFillRemaining(child: Center(child: Text(state.message)))]);
+              return CustomScrollView(
+                slivers: [SliverFillRemaining(child: Center(child: Text(state.message)))],
+              );
             }
             return const SizedBox.shrink();
           },

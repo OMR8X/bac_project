@@ -16,13 +16,11 @@ part 'app_loader_state.dart';
 
 class AppLoaderBloc extends Bloc<AppLoaderLoadData, AppLoaderState> {
   final GetAppSettingsUsecase _getAppSettingsUsecase;
-  final GetUserDataUsecase _getUserDataUsecase;
   final InitializeLocalNotificationsUsecase _initializeLocalNotificationsUsecase;
   final InitializeFirebaseNotificationsUsecase _initializeFirebaseNotificationsUsecase;
 
   AppLoaderBloc(
     this._getAppSettingsUsecase,
-    this._getUserDataUsecase,
     this._initializeLocalNotificationsUsecase,
     this._initializeFirebaseNotificationsUsecase,
   ) : super(AppLoaderState.loading()) {
@@ -50,6 +48,7 @@ class AppLoaderBloc extends Bloc<AppLoaderLoadData, AppLoaderState> {
           } else if (response.appSettings.userData == null) {
             emit(AppLoaderState.unauthorized());
           } else {
+            _injectUserData(response.appSettings.userData!);
             emit(AppLoaderState.succeed());
           }
         },

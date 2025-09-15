@@ -1,4 +1,3 @@
-import 'package:bac_project/core/injector/tests_feature_inj.dart';
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/loading_widget.dart';
@@ -6,17 +5,27 @@ import 'package:bac_project/presentation/home/widgets/lessons_navigation_card_bi
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
 import 'package:bac_project/core/widgets/ui/search_bar_widget.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:go_router/go_router.dart';
 
 import '../bloc/bloc/search_bloc.dart';
 
-class SearchView extends StatelessWidget {
+class SearchView extends StatefulWidget {
   const SearchView({super.key, required this.arguments});
   final SearchViewArguments arguments;
+
+  @override
+  State<SearchView> createState() => _SearchViewState();
+}
+
+class _SearchViewState extends State<SearchView> {
+  @override
+  void initState() {
+    context.read<SearchBloc>().add(SearchLessons(unitId: (widget.arguments.unitId)));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,28 +39,28 @@ class SearchView extends StatelessWidget {
         },
         builder: (context, state) {
           return Padding(
-            padding: PaddingResources.screenSidesPadding,
+            padding: Paddings.screenSidesPadding,
             child: CustomScrollView(
               slivers: [
                 SliverFloatingHeader(
                   snapMode: FloatingHeaderSnapMode.overlay,
                   child: SearchBarWidget(
-                    heroTag: arguments.heroTag,
+                    heroTag: widget.arguments.heroTag,
                     onChanged: (searchText) {
                       context.read<SearchBloc>().add(
-                        SearchLessons(unitId: arguments.unitId, searchText: searchText),
+                        SearchLessons(unitId: widget.arguments.unitId, searchText: searchText),
                       );
                     },
                     onFieldSubmitted: (searchText) {
                       context.read<SearchBloc>().add(
-                        SearchLessons(unitId: arguments.unitId, searchText: searchText),
+                        SearchLessons(unitId: widget.arguments.unitId, searchText: searchText),
                       );
                     },
                   ),
                 ),
                 if (state.status == SearchStatus.initial)
                   SliverPadding(
-                    padding: PaddingResources.listViewPadding,
+                    padding: Paddings.listViewPadding,
                     sliver: LessonsCardsBuilderWidget(lessons: state.lessons),
                   ),
 

@@ -4,12 +4,12 @@ import '../../domain/entities/option.dart';
 
 extension OptionModelExtension on OptionModel {
   Option toEntity() {
-    return Option(id: id, questionId: questionId, text: text, isCorrect: isCorrect);
+    return Option(id: id, questionId: questionId, content: content, isCorrect: isCorrect);
   }
 }
 
 extension OptionEntityExtension on Option {
   OptionModel toModel() {
-    return OptionModel(id: id, questionId: questionId, text: text, isCorrect: isCorrect);
+    return OptionModel(id: id, questionId: questionId, content: content, isCorrect: isCorrect);
   }
 }

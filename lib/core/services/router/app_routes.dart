@@ -17,7 +17,8 @@ enum AppRoutes {
   search(name: 'search', path: '/search'),
   notificationDetails(name: 'notification-details', path: '/notification-details'),
   updateUserData(name: 'update-user-data', path: '/update-user-data'),
-  fetchCustomQuestions(name: 'fetch-custom-questions', path: '/fetch-custom-questions');
+  fetchCustomQuestions(name: 'fetch-custom-questions', path: '/fetch-custom-questions'),
+  motivationalQuote(name: 'motivational-quote', path: '/motivational-quote');
 
   const AppRoutes({required this.name, required this.path});
 

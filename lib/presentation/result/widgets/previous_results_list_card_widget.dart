@@ -1,8 +1,14 @@
+import 'package:bac_project/core/resources/styles/assets_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
+import 'package:bac_project/core/services/router/app_arguments.dart';
+import 'package:bac_project/core/services/router/app_routes.dart';
+import 'package:bac_project/core/widgets/animations/staggered_list_wrapper_widget.dart';
 import 'package:bac_project/features/tests/domain/entities/result.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:logger/web.dart';
 
@@ -18,8 +24,9 @@ class PreviousResultsListCardWidget extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Card(
+      margin: Margins.cardMargin,
       child: Padding(
-        padding: PaddingResources.cardLargeInnerPadding,
+        padding: Paddings.cardLargePadding,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -32,87 +39,79 @@ class PreviousResultsListCardWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(height: SpacesResources.s2),
-            ListView.separated(
-              separatorBuilder: (context, index) => const Divider(height: 2, thickness: 1),
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: results.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: "${(results[index].score).toStringAsFixed(0)}%",
-                          style: AppTextStyles.cardMediumTitle.copyWith(
-                            color: Theme.of(context).colorScheme.onSurface,
+            AnimationLimiter(
+              child: ListView.separated(
+                separatorBuilder: (context, index) => Divider(height: 1, thickness: 1),
+                padding: Paddings.zero,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: results.length,
+                itemBuilder: (context, index) {
+                  return StaggeredListWrapperWidget(
+                    position: index,
+                    child: ListTile(
+                      contentPadding: Paddings.zero,
+                      onTap: () {
+                        context.push(
+                          AppRoutes.exploreResult.path,
+                          extra: ExploreResultViewArguments(resultId: results[index].id),
+                        );
+                      },
+                      title: RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: "${(results[index].score).toStringAsFixed(0)}%",
+                              style: TextStylesResources.cardMediumTitle.copyWith(
+                                color: Theme.of(context).colorScheme.onSurface,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      subtitle: Row(
+                        children: [
+                          Image.asset(
+                            UIImagesResources.calendarBlankUIIcon,
+                            height: FontSizeResources.s10,
+                            color: theme.colorScheme.onSurface,
                           ),
-                        ),
-                        // WidgetSpan(child: SizedBox(width: SpacesResources.s2)),
-                        // TextSpan(
-                        //   text: "النتيجة",
-                        //   style: AppTextStyles.statLabelStyle.copyWith(
-                        //     color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        //   ),
-                        // ),
-                      ],
-                    ),
-                  ),
-                  subtitle: Row(
-                    children: [
-                      Icon(
-                        Icons.calendar_today_rounded,
-                        size: FontSizeResources.s10,
-                        color: theme.colorScheme.onSurface.withAlpha(100),
-                      ),
-                      const SizedBox(width: SpacesResources.s2),
-                      Text(
-                        DateFormat('yyyy-MM-dd').format(results[index].createdAt),
-                        style: AppTextStyles.cardSmallSubtitle.copyWith(
-                          fontSize: FontSizeResources.s10,
-                        ),
-                      ),
-                      // const SizedBox(width: SpacesResources.s4),
-                      // Icon(
-                      //   Icons.timer_outlined,
-                      //   size: FontSizeResources.s10,
-                      //   color: theme.colorScheme.onSurface.withAlpha(100),
-                      // ),
-                      // const SizedBox(width: SpacesResources.s2),
-                      // Text(
-                      //   DateFormat('kk:mm').format(results[index].createdAt),
-                      //   style: AppTextStyles.cardSmallSubtitle.copyWith(
-                      //     fontSize: FontSizeResources.s9,
-                      //   ),
-                      // ),
-                    ],
-                  ),
-                  trailing: Padding(
-                    padding: EdgeInsets.only(right: SpacesResources.s4),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Flexible(
-                          child: Text(
-                            durationToText(Duration(seconds: results[index].durationSeconds)),
-                            style: AppTextStyles.cardSmallTitle.copyWith(
-                              color: theme.colorScheme.onSurface,
-                              fontWeight: FontWeightResources.regular,
+                          const SizedBox(width: SpacesResources.s2),
+                          Text(
+                            DateFormat('yyyy-MM-dd').format(results[index].createdAt),
+                            style: TextStylesResources.cardSmallSubtitle.copyWith(
+                              fontSize: FontSizeResources.s10,
                             ),
                           ),
+                        ],
+                      ),
+                      trailing: Padding(
+                        padding: EdgeInsets.only(right: SpacesResources.s4),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Flexible(
+                              child: Text(
+                                durationToText(Duration(seconds: results[index].durationSeconds)),
+                                style: TextStylesResources.cardSmallTitle.copyWith(
+                                  color: theme.colorScheme.onSurfaceVariant,
+                                  fontWeight: FontWeightResources.regular,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: SpacesResources.s2),
+                            Image.asset(
+                              UIImagesResources.timerUIIcon,
+                              height: FontSizeResources.s14,
+                              color: theme.colorScheme.onSurfaceVariant,
+                            ),
+                          ],
                         ),
-                        const SizedBox(width: SpacesResources.s4),
-                        Icon(
-                          Icons.timer_outlined,
-                          size: FontSizeResources.s20,
-                          color: theme.colorScheme.onSurface.withAlpha(100),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           ],
         ),

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/injector/app_injection.dart';
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:flutter/material.dart';
 
 class SearchBarWidget extends StatefulWidget {
@@ -77,7 +77,7 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
         color: Theme.of(context).colorScheme.surface,
         // color: Colors.transparent,
         child: Padding(
-          padding: PaddingResources.searchBarPadding,
+          padding: Paddings.searchBarPadding,
           child: Directionality(
             textDirection: TextDirection.rtl,
             child: GestureDetector(

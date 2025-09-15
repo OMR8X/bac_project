@@ -1,12 +1,12 @@
 import 'dart:io';
 
+import 'package:bac_project/core/services/api/supabase/supabase_settings.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:bac_project/core/constant/navigation_key.dart';
 import 'package:bac_project/core/injector/app_injection.dart';
-import 'package:bac_project/core/resources/supabase_r.dart';
 import 'package:bac_project/features/notifications/domain/requests/register_device_token_request.dart';
 import 'package:bac_project/features/notifications/domain/usecases/display_firebase_notification_usecase.dart';
 import 'package:bac_project/features/notifications/domain/usecases/register_device_token_usecase.dart';
@@ -22,7 +22,7 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
     await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
     debugPrint('Firebase initialized');
 
-    await Supabase.initialize(url: SupabaseResources.url, anonKey: SupabaseResources.key);
+    await Supabase.initialize(url: SupabaseSettings.url, anonKey: SupabaseSettings.anonKey);
 
     debugPrint('Supabase initialized');
 
@@ -44,7 +44,7 @@ void onDidReceiveBackgroundNotificationResponse(NotificationResponse? response) 
     await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
     debugPrint('Firebase initialized');
 
-    await Supabase.initialize(url: SupabaseResources.url, anonKey: SupabaseResources.key);
+    await Supabase.initialize(url: SupabaseSettings.url, anonKey: SupabaseSettings.anonKey);
 
     debugPrint('Supabase initialized');
 

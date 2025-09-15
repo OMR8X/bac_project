@@ -1,5 +1,4 @@
 import 'package:bac_project/core/resources/errors/failures.dart';
-import 'package:bac_project/features/tests/domain/entities/option.dart';
 import 'package:bac_project/features/tests/domain/entities/result.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -158,12 +157,13 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
   }
 
   Future<void> _onSubmitQuiz(SubmitQuiz event, Emitter<QuizzingState> emit) async {
+    emit(const QuizzingUploadingResult());
+
     /// Stop the timer
     _stopTimer();
 
     /// Calculate values
     final durationSeconds = DateTime.now().difference(_startTime).inSeconds;
-    final questionsIds = _questions.map((q) => q.id).toList();
     final answers =
         _questions
             .map((q) => UserAnswerModel(questionId: q.id, selectedOptionId: _selectedAnswers[q.id]))
@@ -173,8 +173,8 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
     final response = await _addResultUsecase.call(
       AddResultRequest(
         lessonId: _lessonId,
-        questionsIds: questionsIds,
         durationSeconds: durationSeconds,
+        questionsIds: _questions.map((q) => q.id).toList(),
         answers: answers,
       ),
     );

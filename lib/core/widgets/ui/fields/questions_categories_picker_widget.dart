@@ -1,7 +1,7 @@
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
-import 'package:bac_project/core/injector/app_injection.dart';
+import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 
 import 'package:flutter/material.dart';
@@ -23,13 +23,13 @@ class QuestionCategoriesPickerWidget<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: PaddingResources.chipCardInnerPadding,
+      margin: Margins.cardMargin,
       child: ListTile(
         title: Padding(
-          padding: PaddingResources.cardMediumTitlePadding,
+          padding: Paddings.cardMediumTitlePadding,
           child: Text(
             context.l10n.pickQuestionsCategoriesTitle,
-            style: AppTextStyles.cardMediumTitle,
+            style: TextStylesResources.cardMediumTitle,
           ),
         ),
         subtitle: Wrap(

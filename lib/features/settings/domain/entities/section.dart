@@ -1,15 +1,15 @@
 import 'package:equatable/equatable.dart';
 
 class Section extends Equatable {
-  final String id;
-  final String name;
+  final int id;
+  final String title;
 
-  const Section({required this.id, required this.name});
+  const Section({required this.id, required this.title});
 
-  Section copyWith({String? id, String? name}) {
-    return Section(id: id ?? this.id, name: name ?? this.name);
+  Section copyWith({int? id, String? title}) {
+    return Section(id: id ?? this.id, title: title ?? this.title);
   }
 
   @override
-  List<Object?> get props => [id, name];
+  List<Object?> get props => [id, title];
 }

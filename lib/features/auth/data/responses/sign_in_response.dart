@@ -12,8 +12,8 @@ class SignInResponse {
   factory SignInResponse.fromResponse(ApiResponse response) {
     return SignInResponse(
       message: response.message,
-      token: response.getData(key: "token"),
-      user: UserDataModel.fromJson(response.getData(key: "user")),
+      token: response.data["token"],
+      user: UserDataModel.fromJson(response.data["user"]),
     );
   }
 }

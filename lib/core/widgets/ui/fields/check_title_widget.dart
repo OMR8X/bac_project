@@ -31,7 +31,7 @@ class CheckTitleWidget extends StatelessWidget {
               },
             ),
             // keep me logged in text arabic
-            Text(text, style: AppTextStyles.title),
+            Text(text, style: TextStylesResources.title),
           ],
         ),
       ),

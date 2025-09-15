@@ -1,9 +1,9 @@
 import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/decoration_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
+import 'package:bac_project/core/widgets/messages/dialogs/list_selection_dialog.dart';
 import 'package:flutter/material.dart';
 import '../../../resources/styles/sizes_resources.dart';
-import '../../dialogs/list_selection_dialog.dart';
 
 class ListSelectionWidget<T> extends StatelessWidget {
   const ListSelectionWidget({super.key, required this.title, required this.context, required this.onSelect, required this.toText, required this.items, required this.selectedItems});

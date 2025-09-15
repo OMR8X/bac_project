@@ -34,7 +34,6 @@ controllersInjection() {
   sl.registerLazySingleton(
     () => AppLoaderBloc(
       sl<GetAppSettingsUsecase>(),
-      sl<GetUserDataUsecase>(),
       sl<InitializeLocalNotificationsUsecase>(),
       sl<InitializeFirebaseNotificationsUsecase>(),
     )..add(const AppLoaderLoadData()),
@@ -68,9 +67,11 @@ controllersInjection() {
   sl.registerFactory(() => SearchBloc(getLessonsUsecase: sl()));
 
   ///
-  sl.registerFactory(() => FetchCustomQuestionsBloc(getQuestionsByIdsUsecase: sl()));
+  sl.registerFactory(
+    () => FetchCustomQuestionsBloc(getQuestionsByIdsUsecase: sl(), getResultUsecase: sl()),
+  );
 
   // Results
   sl.registerLazySingleton(() => ExploreResultsBloc(getMyResultsUsecase: sl()));
-  sl.registerFactory(() => ExploreResultBloc(getResultUsecase: sl(), getResultLeaderboardUsecase: sl()));
+  sl.registerFactory(() => ExploreResultBloc(getResultUsecase: sl()));
 }

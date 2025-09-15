@@ -1,8 +1,8 @@
 class SignUpRequest {
   final String name;
   final String email;
-  final String sectionId;
-  final String governorateId;
+  final int sectionId;
+  final int governorateId;
   final String? firebaseToken;
 
   final String password;

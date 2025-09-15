@@ -1,26 +1,41 @@
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
+import 'package:bac_project/core/injector/app_injection.dart';
+import 'package:bac_project/core/resources/errors/failures.dart';
+import 'package:bac_project/core/resources/styles/assets_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/extra_colors.dart';
-import 'package:bac_project/core/services/router/index.dart';
-import 'package:bac_project/core/widgets/ui/fields/mode_switcher_widget.dart';
+import 'package:bac_project/core/services/router/app_routes.dart';
+import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
+import 'package:bac_project/core/widgets/animations/staggered_list_wrapper_widget.dart';
+import 'package:bac_project/core/widgets/messages/sheets/app_bottom_sheet.dart';
+import 'package:bac_project/core/widgets/ui/icons/appbar_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
+import 'package:bac_project/core/widgets/ui/icons/retry_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/loading_widget.dart';
 import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
+import 'package:bac_project/features/tests/domain/entities/option.dart';
+import 'package:bac_project/features/tests/domain/entities/question.dart';
+import 'package:bac_project/features/tests/domain/entities/result_answer.dart';
+import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
+import 'package:bac_project/features/tests/domain/requests/get_questions_by_ids_request.dart';
+import 'package:bac_project/features/tests/domain/usecases/get_questions_by_ids_use_case.dart';
 import 'package:bac_project/presentation/result/bloc/submit_results/explore_result_bloc.dart';
-import 'package:bac_project/presentation/result/widgets/category_performance_widget.dart';
 import 'package:bac_project/presentation/result/widgets/previous_results_list_card_widget.dart';
 import 'package:bac_project/presentation/result/widgets/score_gauge_widget.dart';
 import 'package:bac_project/presentation/result/widgets/state_chip_widget.dart';
-import 'package:bac_project/presentation/result/widgets/leaderboard_item_card_widget.dart';
-import 'package:bac_project/presentation/result/widgets/time_taken_widget.dart';
+import 'package:bac_project/presentation/tests/widgets/option_card_widget.dart';
+import 'package:bac_project/presentation/tests/widgets/question_card_widget.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:go_router/go_router.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../../../core/widgets/messages/dialogs/conform_dialog.dart';
 
 class ExploreResultView extends StatefulWidget {
   final ExploreResultViewArguments arguments;
@@ -32,18 +47,9 @@ class ExploreResultView extends StatefulWidget {
 }
 
 class _ExploreResultViewState extends State<ExploreResultView> with TickerProviderStateMixin {
-  late final TabController _tabController;
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
-    _tabController.addListener(() {
-      if (_tabController.index == 0) {
-        context.read<ExploreResultBloc>().add(const ExploreResultLoadResultDetails());
-      } else {
-        context.read<ExploreResultBloc>().add(const ExploreResultLoadResultLeaderboard());
-      }
-    });
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<ExploreResultBloc>().add(
         ExploreResultInitialize(resultId: widget.arguments.resultId),
@@ -54,134 +60,48 @@ class _ExploreResultViewState extends State<ExploreResultView> with TickerProvid
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocConsumer<ExploreResultBloc, ExploreResultState>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          if ([
-            ExploreResultStatus.loadingResultDetails,
-            ExploreResultStatus.loadingResultLeaderboard,
-            ExploreResultStatus.resultDetails,
-            ExploreResultStatus.resultLeaderboard,
-          ].contains(state.status)) {
-            return Scaffold(
-              appBar: AppBar(title: Text(context.l10n.resultTitle), leading: CloseIconWidget()),
-              body: Padding(
-                padding: PaddingResources.screenSidesPadding,
-                child: Column(
-                  children: [
-                    ModeSwitcherWidget(
-                      firstOption: SwitchOption(
-                        value: context.l10n.buttonsResultDetailsTab,
-                        label: context.l10n.buttonsResultDetailsTab,
-                        icon: Icons.list,
-                      ),
-                      secondOption: SwitchOption(
-                        value: context.l10n.buttonsResultLeaderboardTab,
-                        label: context.l10n.buttonsResultLeaderboardTab,
-                        icon: Icons.leaderboard,
-                      ),
-                      currentValue:
-                          [
-                                ExploreResultStatus.resultDetails,
-                                ExploreResultStatus.loadingResultDetails,
-                              ].contains(state.status)
-                              ? context.l10n.buttonsResultDetailsTab
-                              : context.l10n.buttonsResultLeaderboardTab,
-                      onChanged: (value) {
-                        if (value == context.l10n.buttonsResultDetailsTab) {
-                          _tabController.index = 0;
-                        } else {
-                          _tabController.index = 1;
-                        }
-                      },
-                    ),
-                    Expanded(child: _getBody(state)),
-                  ],
-                ),
-              ),
-              bottomNavigationBar: SafeArea(
-                child: Padding(
-                  padding: PaddingResources.screenSidesPadding.add(
-                    const EdgeInsets.only(bottom: SpacesResources.s4),
-                  ),
-                  child: Row(
-                    children: [
-                      // Expanded(
-                      //   child: OutlinedButton(
-                      //     style: OutlinedButton.styleFrom(
-                      //       minimumSize: Size.fromHeight(SizesResources.buttonLargeHeight),
-                      //     ),
-                      //     onPressed: () => Navigator.of(context).pop(),
-                      //     child: Text(
-                      //       context.l10n.buttonsClose,
-                      //       style: AppTextStyles.button.copyWith(
-                      //         color: Theme.of(context).colorScheme.onSurface,
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-                      // const SizedBox(width: SpacesResources.s4),
-                      // Expanded(
-                      //   child: FilledButton(
-                      //     style: FilledButton.styleFrom(
-                      //       minimumSize: Size.fromHeight(SizesResources.buttonLargeHeight),
-                      //     ),
-                      //     onPressed: () {
-                      //       // Navigate to fetch custom questions with the result data
-                      //       context.pushReplacement(
-                      //         AppRoutes.fetchCustomQuestions.path,
-                      //         extra: FetchCustomQuestionsArguments(result: state.result!),
-                      //       );
-                      //     },
-                      //     child: Text(context.l10n.buttonsRetryTest, style: AppTextStyles.button),
-                      //   ),
-                      // ),
-                      // Expanded(
-                      //   child: ElevatedButton(
-                      //     style: ElevatedButton.styleFrom(
-                      //       minimumSize: Size.fromHeight(SizesResources.buttonLargeHeight),
-                      //     ),
-                      //     onPressed: () {
-                      //       // Navigate to fetch custom questions with the result data
-                      //       context.pushReplacement(
-                      //         AppRoutes.fetchCustomQuestions.path,
-                      //         extra: FetchCustomQuestionsArguments(result: state.response!.result),
-                      //       );
-                      //     },
-                      //     child: Text(context.l10n.buttonsRetryTest, style: AppTextStyles.button),
-                      //   ),
-                      // ),
-                    ],
-                  ),
-                ),
-              ),
-            );
-          } else if (state.status == ExploreResultStatus.loadingDetailsFailure ||
-              state.status == ExploreResultStatus.loadingLeaderboardFailure) {
-            return _ExploreResultFailureView(
-              state: state,
-              onRetry: () {
-                if (state.status == ExploreResultStatus.loadingDetailsFailure) {
+      appBar: AppBar(
+        title: Text(context.l10n.resultTitle),
+        leading: CloseIconWidget(),
+        actions: [
+          RetryIconWidget(
+            onPressed: () {
+              showConformDialog(
+                context: context,
+                title: context.l10n.resultRetryTestDialogTitle,
+                body: context.l10n.resultRetryTestDialogBody,
+                action: context.l10n.buttonsRetryTest,
+                onConform: () {
+                  context.pushReplacement(
+                    AppRoutes.fetchCustomQuestions.path,
+                    extra: FetchCustomQuestionsArguments(resultId: widget.arguments.resultId),
+                  );
+                },
+              );
+            },
+          ),
+        ],
+      ),
+      body: Padding(
+        padding: Paddings.screenSidesPadding,
+        child: BlocConsumer<ExploreResultBloc, ExploreResultState>(
+          listener: (context, state) {},
+          builder: (context, state) {
+            if (state.status == ExploreResultStatus.loaded) {
+              return _ExploreResultDetailsView(state: state, arguments: widget.arguments);
+            } else if (state.status == ExploreResultStatus.failure) {
+              return _ExploreResultFailureView(
+                state: state,
+                onRetry: () {
                   context.read<ExploreResultBloc>().add(const ExploreResultLoadResultDetails());
-                } else {
-                  context.read<ExploreResultBloc>().add(const ExploreResultLoadResultLeaderboard());
-                }
-              },
-            );
-          }
-          return const SizedBox.shrink();
-        },
+                },
+              );
+            }
+            return const LoadingWidget();
+          },
+        ),
       ),
     );
-  }
-
-  Widget _getBody(ExploreResultState state) {
-    if (state.status == ExploreResultStatus.resultDetails) {
-      return _ExploreResultDetailsView(state: state, arguments: widget.arguments);
-    } else if (state.status == ExploreResultStatus.resultLeaderboard) {
-      return _ExploreResultLeaderboardView(state: state);
-    }
-    return const LoadingWidget();
   }
 }
 
@@ -192,158 +112,79 @@ class _ExploreResultDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final intScore = state.response!.result.score.clamp(0, 100).toInt();
+    final intScore = state.response!.result.score.clamp(0, 100);
 
     return SingleChildScrollView(
-      padding: PaddingResources.listViewPadding,
+      padding: Paddings.listViewPadding,
       child: Column(
         spacing: SpacesResources.s2,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           /// Score gauge
-          TweenAnimationBuilder(
-            tween: IntTween(begin: 0, end: intScore),
-            builder: (context, value, child) {
-              return ScoreGauge(
-                percentage: value / 100,
-                displayText: '${value.toStringAsFixed(0)}%',
-                correctAnswers: state.response!.result.correctAnswers,
-                wrongAnswers: state.response!.result.wrongAnswers,
-                skippedAnswers: state.response!.result.skippedAnswers,
-                timeTaken: Duration(seconds: state.response!.result.durationSeconds),
-                fullTime: Duration(seconds: state.response!.result.durationSeconds * 2),
-              );
-            },
-            duration: Duration(milliseconds: 600),
+          StaggeredItemWrapperWidget(
+            position: 0,
+            child: ScoreGauge(
+              percentage: intScore / 100,
+              displayText: '${intScore.toStringAsFixed(0)}%',
+              correctAnswers: state.response!.result.correctAnswers,
+              wrongAnswers: state.response!.result.wrongAnswers,
+              skippedAnswers: 0,
+              timeTaken: Duration(seconds: state.response!.result.durationSeconds),
+              fullTime: Duration(seconds: state.response!.result.durationSeconds * 2),
+            ),
           ),
+          SizedBox(height: SpacesResources.s10),
 
-          /// Breakdown row
-          const SizedBox(height: SpacesResources.s4),
+          ///
+          StaggeredItemWrapperWidget(
+            position: 1,
+            child: Column(
+              children: [
+                IntrinsicHeight(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: StatChip(
+                          iconPath: UIImagesResources.checkRoundedUIIcon,
+                          title: '${state.response!.result.correctAnswers}',
+                          subtitle: context.l10n.resultCorrect,
+                        ),
+                      ),
 
-          /// Breakdown row
-          Row(
-            children: [
-              Expanded(
-                child: StatChip(
-                  icon: Icons.check_circle_rounded,
-                  label: context.l10n.resultsCount,
-                  value: '${state.response!.result.totalQuestions}',
-                  color: Theme.of(context).colorScheme.primary,
-                  onExplore: () {},
+                      Expanded(
+                        child: StatChip(
+                          iconPath: UIImagesResources.arrowSquareOutUIIcon,
+                          title: '${state.response!.result.totalQuestions}',
+                          subtitle: context.l10n.resultsCount,
+                          onTap: () {
+                            showAppBottomSheet(
+                              context: context,
+                              child: QuestionsSheetBuilder(answers: state.response!.result.answers),
+                            );
+                          },
+                        ),
+                      ),
+
+                      Expanded(
+                        child: StatChip(
+                          iconPath: UIImagesResources.cancelRoundedUIIcon,
+                          title: '${state.response!.result.wrongAnswers}',
+                          subtitle: context.l10n.resultWrong,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Expanded(
-                child: StatChip(
-                  icon: Icons.check_circle_rounded,
-                  label: context.l10n.resultCorrect,
-                  value: '${state.response!.result.correctAnswers}',
-                  color: Theme.of(context).extension<ExtraColors>()!.green,
-                  onExplore: () {},
-                ),
-              ),
-              Expanded(
-                child: StatChip(
-                  icon: Icons.cancel_rounded,
-                  label: context.l10n.resultWrong,
-                  value: '${state.response!.result.wrongAnswers}',
-                  color: Theme.of(context).extension<ExtraColors>()!.red,
-                  onExplore: () {},
-                ),
-              ),
-              Expanded(
-                child: StatChip(
-                  icon: Icons.help_outline_rounded,
-                  label: context.l10n.resultUnanswered,
-                  value: '${state.response!.result.skippedAnswers}',
-                  color: Theme.of(context).extension<ExtraColors>()!.yellow,
-                  onExplore: () {},
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
-
-          // // /// Time taken
-          // TimeTakenCard(
-          //   timeTaken: Duration(seconds: state.response!.result.durationSeconds),
-          //   fullTime: Duration(seconds: state.response!.result.durationSeconds * 2),
-          // ),
 
           /// Previous results
-          PreviousResultsListCardWidget(results: state.response!.previousResults ?? []),
-
-          // SizedBox(height: SpacesResources.s4),
-          FilledButton(
-            style: FilledButton.styleFrom(
-              minimumSize: Size.fromHeight(SizesResources.buttonLargeHeight),
-            ),
-            onPressed: () {
-              // Navigate to fetch custom questions with the result data
-              context.pushReplacement(
-                AppRoutes.fetchCustomQuestions.path,
-                extra: FetchCustomQuestionsArguments(result: state.response!.result),
-              );
-            },
-            child: Text(context.l10n.buttonsRetryTest, style: AppTextStyles.button),
-          ),
-          if (state.response?.result.lessonId != null) SizedBox(height: SpacesResources.s2),
-          OutlinedButton(
-            style: OutlinedButton.styleFrom(
-              minimumSize: Size.fromHeight(SizesResources.buttonLargeHeight),
-            ),
-            onPressed: () {
-              // Navigate to fetch custom questions with the result data
-              context.pushReplacement(
-                AppRoutes.fetchCustomQuestions.path,
-                extra: FetchCustomQuestionsArguments(result: state.response!.result),
-              );
-            },
-            child: Text(context.l10n.buttonsSmartRetryTest, style: AppTextStyles.button),
+          StaggeredItemWrapperWidget(
+            position: 3,
+            child: PreviousResultsListCardWidget(results: state.response!.previousResults ?? []),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _ExploreResultLeaderboardView extends StatelessWidget {
-  const _ExploreResultLeaderboardView({super.key, required this.state});
-  final ExploreResultState state;
-
-  @override
-  Widget build(BuildContext context) {
-    final leaderboard = state.leaderboardList ?? [];
-
-    if (leaderboard.isEmpty) {
-      return Center(child: Text('لا توجد بيانات للوحة المتصدرين'));
-    }
-
-    final String? currentUserId = Supabase.instance.client.auth.currentUser?.id;
-
-    // Sort descending by score
-    final sorted = [...leaderboard]..sort((a, b) => b.score.compareTo(a.score));
-
-    return Padding(
-      padding: PaddingResources.listViewPadding,
-      child: ListView.separated(
-        itemCount: sorted.length,
-        separatorBuilder: (context, index) => const SizedBox(height: SpacesResources.s2),
-        itemBuilder: (context, index) {
-          final result = sorted[index];
-          final rank = index + 1;
-          final isCurrentUser = currentUserId != null && currentUserId == result.userId;
-
-          return LeaderboardItemCardWidget(
-            result: result,
-            rank: rank,
-            isCurrentUser: isCurrentUser,
-            onTap: () {
-              context.push(
-                AppRoutes.exploreResult.path,
-                extra: ExploreResultViewArguments(resultId: result.id),
-              );
-            },
-          );
-        },
       ),
     );
   }
@@ -358,13 +199,96 @@ class _ExploreResultFailureView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(context.l10n.resultTitle), leading: CloseIconWidget()),
-      body: ErrorStateBodyWidget(
-        title: 'فشل في الحصول على النتيجة',
-        failure: state.failure!,
-        onRetry: onRetry,
-        onCancel: () => Navigator.of(context).pop(),
+    return ErrorStateBodyWidget(
+      title: 'فشل في الحصول على النتيجة',
+      failure: state.failure!,
+      onRetry: onRetry,
+      onCancel: () => Navigator.of(context).pop(),
+    );
+  }
+}
+
+class QuestionsSheetBuilder extends StatefulWidget {
+  const QuestionsSheetBuilder({super.key, required this.answers});
+  final List<ResultAnswer> answers;
+
+  @override
+  State<QuestionsSheetBuilder> createState() => _QuestionsSheetBuilderState();
+}
+
+class _QuestionsSheetBuilderState extends State<QuestionsSheetBuilder> {
+  late Failure? _failure;
+  late bool _isLoading;
+  late List<Question> _questions;
+
+  @override
+  void initState() {
+    ///
+    _isLoading = true;
+    _failure = null;
+    _questions = [];
+
+    ///
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _fetchQuestions();
+    });
+    super.initState();
+  }
+
+  Future<void> _fetchQuestions() async {
+    //
+    setState(() => _isLoading = true);
+    //
+    final response = await sl<GetQuestionsByIdsUsecase>().call(
+      GetQuestionsByIdsRequest(questionIds: widget.answers.map((e) => e.questionId).toList()),
+    );
+    //
+    response.fold((l) => _failure = l, (r) {
+      _failure = null;
+      _questions = r.questions;
+    });
+    setState(() => _isLoading = false);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_isLoading) {
+      return const LoadingWidget();
+    }
+    if (_failure != null) {
+      return ErrorStateBodyWidget(
+        title: "خطأ في الحصول على الاسئلة",
+        failure: _failure,
+        onRetry: () {
+          setState(() => _isLoading = true);
+          _fetchQuestions();
+        },
+      );
+    }
+
+    return AnimationLimiter(
+      child: ListView.builder(
+        itemCount: _questions.length,
+        itemBuilder: (context, index) {
+          return StaggeredListWrapperWidget(
+            position: index,
+            child: Column(
+              children: [
+                QuestionCardWidget(question: _questions[index]),
+                ..._questions[index].options.map(
+                  (e) => OptionCardWidget(
+                    option: e,
+                    reviewMode: true,
+                    isSelected: widget.answers.any((x) => x.optionId == e.id),
+                    testMode: TestMode.exploring,
+                    didAnswer: true,
+                    onTap: (option) {},
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

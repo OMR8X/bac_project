@@ -28,11 +28,11 @@ class AppAvailableUpdateView extends StatelessWidget {
             Spacer(),
             Icon(Icons.update, size: SpacesResources.s50),
             SizedBox(height: SpacesResources.s4),
-            Text("يتوفر تحديث جديد", style: AppTextStyles.button),
+            Text("يتوفر تحديث جديد", style: TextStylesResources.button),
             SizedBox(height: SpacesResources.s4),
-            Text("الاصدار الحالي ${version.appVersion}", style: AppTextStyles.largeTitle),
+            Text("الاصدار الحالي ${version.appVersion}", style: TextStylesResources.largeTitle),
             SizedBox(height: SpacesResources.s2),
-            Text("الاصدار الجديد ${version.currentVersion}", style: AppTextStyles.largeTitle),
+            Text("الاصدار الجديد ${version.currentVersion}", style: TextStylesResources.largeTitle),
             Spacer(),
             ElevatedButtonWidget(title: "تحديث", onPressed: onUpdate),
             if (!version.updateRequired)
@@ -41,7 +41,7 @@ class AppAvailableUpdateView extends StatelessWidget {
               Column(
                 children: [
                   SizedBox(height: SpacesResources.s2),
-                  Text("التحديث مطلوب", style: AppTextStyles.button),
+                  Text("التحديث مطلوب", style: TextStylesResources.button),
                 ],
               ),
             SizedBox(height: SpacesResources.s10),

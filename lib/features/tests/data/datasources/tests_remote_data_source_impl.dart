@@ -1,5 +1,6 @@
 import 'package:bac_project/core/services/api/api_constants.dart';
 import 'package:bac_project/core/services/api/api_manager.dart';
+import 'package:bac_project/core/services/api/responses/api_response.dart';
 import 'package:bac_project/features/tests/data/models/lesson_model.dart';
 import 'package:bac_project/features/tests/data/models/unit_model.dart';
 import 'package:bac_project/features/tests/data/responses/get_questions_response.dart';
@@ -25,48 +26,89 @@ class TestsRemoteDataSourceImpl implements TestsRemoteDataSource {
 
   @override
   Future<GetUnitsResponse> getUnits(GetUnitsRequest request) async {
-    /// Simulate network delay
-    await Future.delayed(const Duration(milliseconds: 500));
+    final response = await apiManager().get(
+      SupabaseEndpoints.rpc(SupabaseEndpoints.getTotalUnitsFunctionEndpoint),
+    );
 
-    final query = await apiManager().get(SupabaseEndpoints.rpc(SupabaseEndpoints.getTotalUnitsFunctionEndpoint));
+    ///
+    final ApiResponse apiResponse = ApiResponse.fromDioResponse(response);
+
+    ///
+    apiResponse.throwErrorIfExists();
 
     /// Return units
-    return GetUnitsResponse.fromJson(query.data);
+    return GetUnitsResponse.fromJson(apiResponse.data);
   }
 
   @override
   Future<GetLessonsResponse> getLessons(GetLessonsRequest request) async {
     ///
-    final query = await apiManager().post(SupabaseEndpoints.rpc(SupabaseEndpoints.getTotalLessonsFunctionEndpoint), body: request.toJsonBody());
+    final response = await apiManager().post(
+      SupabaseEndpoints.rpc(SupabaseEndpoints.getTotalLessonsFunctionEndpoint),
+      body: request.toJsonBody(),
+    );
 
     ///
-    return GetLessonsResponse.fromJson(query.data);
+    final ApiResponse apiResponse = ApiResponse.fromDioResponse(response);
+
+    ///
+    apiResponse.throwErrorIfExists();
+
+    /// Return lessons
+    return GetLessonsResponse.fromJson(apiResponse.data);
   }
 
   @override
   Future<GetQuestionsResponse> getQuestions(GetQuestionsRequest request) async {
     ///
-    final query = await apiManager().post(SupabaseEndpoints.rpc(SupabaseEndpoints.getLessonsQuestionsFunctionEndpoint), body: request.toJsonBody());
+    final response = await apiManager().post(
+      SupabaseEndpoints.rpc(SupabaseEndpoints.getLessonsQuestionsFunctionEndpoint),
+      body: request.toJsonBody(),
+    );
+
+    ///
+    final ApiResponse apiResponse = ApiResponse.fromDioResponse(response);
+
+    ///
+    apiResponse.throwErrorIfExists();
 
     /// Return questions
-    return GetQuestionsResponse.fromJson(query.data);
+    return GetQuestionsResponse.fromJson(apiResponse.data);
   }
 
   @override
   Future<GetQuestionsResponse> getQuestionsByIds(GetQuestionsByIdsRequest request) async {
     ///
-    final query = await apiManager().post(SupabaseEndpoints.rpc(SupabaseEndpoints.getQuestionsByIdsFunctionEndpoint), body: request.toJsonBody());
+    final response = await apiManager().post(
+      SupabaseEndpoints.rpc(SupabaseEndpoints.getQuestionsByIdsFunctionEndpoint),
+      body: request.toJsonBody(),
+    );
+
+    ///
+    final ApiResponse apiResponse = ApiResponse.fromDioResponse(response);
+
+    ///
+    apiResponse.throwErrorIfExists();
 
     /// Return questions
-    return GetQuestionsResponse.fromJson(query.data);
+    return GetQuestionsResponse.fromJson(apiResponse.data);
   }
 
   @override
   Future<GetTestOptionsResponse> getTestOptions(GetTestOptionsRequest request) async {
     ///
-    final query = await apiManager().post(SupabaseEndpoints.rpc(SupabaseEndpoints.getTestOptionsFunctionEndpoint), body: request.toJsonBody());
+    final response = await apiManager().post(
+      SupabaseEndpoints.rpc(SupabaseEndpoints.getTestOptionsFunctionEndpoint),
+      body: request.toJsonBody(),
+    );
+
+    ///
+    final ApiResponse apiResponse = ApiResponse.fromDioResponse(response);
+
+    ///
+    apiResponse.throwErrorIfExists();
 
     /// Return test options
-    return GetTestOptionsResponse.fromJson(query.data);
+    return GetTestOptionsResponse.fromJson(apiResponse.data);
   }
 }

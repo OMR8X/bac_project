@@ -13,7 +13,7 @@ class GetUserDataResponse {
   factory GetUserDataResponse.fromResponse(ApiResponse response) {
     return GetUserDataResponse(
       message: response.message,
-      user: UserDataModel.fromJson(response.getData(key: "user")),
+      user: UserDataModel.fromJson(response.data["user"]),
     );
   }
   factory GetUserDataResponse.fromCache(dynamic data) {

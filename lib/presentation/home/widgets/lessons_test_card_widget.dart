@@ -1,6 +1,6 @@
 import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:flutter/material.dart';
@@ -101,7 +101,7 @@ class LessonsTestCardWidget extends StatelessWidget {
 
             label: Text(
               'اختبر الآن',
-              style: AppTextStyles.button.copyWith(
+              style: TextStylesResources.button.copyWith(
                 color: Theme.of(context).colorScheme.primary,
                 fontSize: FontSizeResources.s11,
                 fontWeight: FontWeightResources.bold,
@@ -121,9 +121,9 @@ class LessonsTestCardWidget extends StatelessWidget {
         side: BorderSide(color: Theme.of(context).colorScheme.outline),
       ),
       color: Theme.of(context).colorScheme.primary,
-      margin: PaddingResources.fullTestCardPadding,
+      margin: Paddings.fullTestCardPadding,
       child: Padding(
-        padding: PaddingResources.cardLargeInnerPadding,
+        padding: Paddings.cardLargePadding,
         child: Column(
           children: [
             IntrinsicHeight(

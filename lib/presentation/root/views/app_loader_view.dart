@@ -1,14 +1,11 @@
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/services/router/index.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
 import 'package:bac_project/presentation/root/blocs/loader/app_loader_bloc.dart';
 import 'package:bac_project/presentation/root/views/app_available_update_view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/injector/app_injection.dart';
@@ -56,7 +53,7 @@ class _AppLoaderViewState extends State<AppLoaderView> {
             }
             return SafeArea(
               child: Padding(
-                padding: PaddingResources.splashScreenPadding,
+                padding: Paddings.splashScreenPadding,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -64,7 +61,7 @@ class _AppLoaderViewState extends State<AppLoaderView> {
                     StaggeredItemWrapperWidget(
                       position: 1,
                       child: Image.asset(
-                        'assets/images/logo/brain-outlined.png',
+                        'assets/images/logo/neuro-icon.png',
                         width: 100,
                         height: 100,
                       ),

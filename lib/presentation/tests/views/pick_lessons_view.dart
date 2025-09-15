@@ -1,10 +1,11 @@
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 // ... existing code ...
 
 import 'package:bac_project/core/services/router/app_routes.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
 import 'package:bac_project/core/widgets/ui/fields/bottom_buttons_widget.dart';
+import 'package:bac_project/core/widgets/ui/icons/arrow_back_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:bac_project/core/widgets/ui/lesson_card_widget.dart';
@@ -37,6 +38,7 @@ class _PickLessonsViewState extends State<PickLessonsView> {
     return Scaffold(
       appBar: AppBar(
         title: Text(context.l10n.pickLessonsTitle),
+        leading: ArrowBackIconWidget(),
         actions: [
           BlocBuilder<PickLessonsBloc, PickLessonsState>(
             builder: (context, state) {
@@ -44,25 +46,33 @@ class _PickLessonsViewState extends State<PickLessonsView> {
                   state.allLessons.isNotEmpty &&
                   state.pickedLessonsId.length == state.allLessons.length;
               final buttonText = allSelected ? context.l10n.unselectAll : context.l10n.selectAll;
-              return TextButton(
-                onPressed:
-                    state.status == PickLessonsStatus.loaded
-                        ? () {
-                          if (allSelected) {
-                            context.read<PickLessonsBloc>().add(const UnselectAllLessonsEvent());
-                          } else {
-                            context.read<PickLessonsBloc>().add(const SelectAllLessonsEvent());
-                          }
-                        }
-                        : null,
-                child: Text(buttonText),
+
+              return IntrinsicWidth(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(minWidth: 80, maxWidth: 150),
+                  child: TextButton(
+                    onPressed:
+                        state.status == PickLessonsStatus.loaded
+                            ? () {
+                              if (allSelected) {
+                                context.read<PickLessonsBloc>().add(
+                                  const UnselectAllLessonsEvent(),
+                                );
+                              } else {
+                                context.read<PickLessonsBloc>().add(const SelectAllLessonsEvent());
+                              }
+                            }
+                            : null,
+                    child: Text(buttonText),
+                  ),
+                ),
               );
             },
           ),
         ],
       ),
       body: Padding(
-        padding: PaddingResources.screenSidesPadding,
+        padding: Paddings.screenSidesPadding,
         child: BlocBuilder<PickLessonsBloc, PickLessonsState>(
           builder: (context, state) {
             if (state.status == PickLessonsStatus.loading) {
@@ -75,7 +85,7 @@ class _PickLessonsViewState extends State<PickLessonsView> {
                   AnimationLimiter(
                     child: ListView.builder(
                       itemCount: state.allLessons.length,
-                      padding: PaddingResources.listViewPadding,
+                      padding: Paddings.listViewPadding,
                       itemBuilder: (context, index) {
                         final lesson = state.allLessons[index];
                         final isSelected = state.pickedLessonsId.contains(lesson.id);

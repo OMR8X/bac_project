@@ -7,7 +7,7 @@ import '../../domain/entities/option.dart';
 class QuestionModel extends Question {
   const QuestionModel({
     required super.id,
-    required super.text,
+    required super.content,
     required super.options,
     super.unitId,
     required super.lessonId,
@@ -20,11 +20,12 @@ class QuestionModel extends Question {
   factory QuestionModel.fromJson(Map<String, dynamic> json) {
     return QuestionModel(
       id: json['id'] as int,
-      text: json['text'] as String,
+      content: json['content'] as String,
       options:
-          (json['options'] as List<dynamic>).map((option) {
+          (json['options'] as List<dynamic>?)?.map((option) {
             return OptionModel.fromJson(option as Map<String, dynamic>).toEntity();
-          }).toList(),
+          }).toList() ??
+          [],
       unitId: json['unit_id'] as int?,
       lessonId: json['lesson_id'] as int,
       imageUrl: (json['image'] as String?) ?? json['q_url'] as String?,
@@ -37,8 +38,8 @@ class QuestionModel extends Question {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'text': text,
-      'options': options.map((option) => option.toModel().toJson()).toList(),
+      'content': content,
+      'options': options.map((option) => option.toModel().toJson()).toList() ?? [],
       'unit_id': unitId,
       'lesson_id': lessonId,
       'image': imageUrl,
@@ -51,7 +52,7 @@ class QuestionModel extends Question {
   @override
   QuestionModel copyWith({
     int? id,
-    String? text,
+    String? content,
     List<Option>? options,
     int? unitId,
     int? lessonId,
@@ -62,7 +63,7 @@ class QuestionModel extends Question {
   }) {
     return QuestionModel(
       id: id ?? this.id,
-      text: text ?? this.text,
+      content: content ?? this.content,
       options: options ?? this.options,
       unitId: unitId ?? this.unitId,
       lessonId: lessonId ?? this.lessonId,
@@ -78,15 +79,17 @@ class QuestionModel extends Question {
     if (identical(this, other)) return true;
     return other is QuestionModel &&
         other.id == id &&
-        other.text == text &&
+        other.content == content &&
         other.options == options &&
         other.unitId == unitId &&
         other.lessonId == lessonId;
   }
 
   @override
-  int get hashCode => id.hashCode ^ text.hashCode ^ options.hashCode ^ unitId.hashCode ^ lessonId.hashCode;
+  int get hashCode =>
+      id.hashCode ^ content.hashCode ^ options.hashCode ^ unitId.hashCode ^ lessonId.hashCode;
 
   @override
-  String toString() => 'QuestionModel(id: $id, text: $text, options: $options, unitId: $unitId, lessonId: $lessonId)';
+  String toString() =>
+      'QuestionModel(id: $id, content: $content, options: $options, unitId: $unitId, lessonId: $lessonId)';
 }

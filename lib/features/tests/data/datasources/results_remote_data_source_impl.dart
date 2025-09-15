@@ -1,5 +1,6 @@
 import 'package:bac_project/core/services/api/api_constants.dart';
 import 'package:bac_project/core/services/api/api_manager.dart';
+import 'package:bac_project/core/services/api/responses/api_response.dart';
 import 'package:bac_project/features/tests/data/responses/add_result_response.dart';
 import 'package:bac_project/features/tests/data/responses/get_results_response.dart';
 import 'package:bac_project/features/tests/data/responses/get_result_response.dart';
@@ -18,43 +19,67 @@ class ResultsRemoteDataSourceImpl implements ResultsRemoteDataSource {
 
   @override
   Future<AddResultResponse> addResult(AddResultRequest request) async {
-    final query = await apiManager().post(
+    final response = await apiManager().post(
       SupabaseEndpoints.edge(SupabaseEndpoints.addUserResultEdgeFunctionEndpoint),
       body: request.toJsonBody(),
     );
 
-    return AddResultResponse.fromJson((query.data));
+    ///
+    final ApiResponse apiResponse = ApiResponse.fromDioResponse(response);
+
+    ///
+    apiResponse.throwErrorIfExists();
+
+    return AddResultResponse.fromJson((apiResponse.data));
   }
 
   @override
   Future<GetResultsResponse> getMyResults(GetMyResultsRequest request) async {
-    final query = await apiManager().post(
+    final response = await apiManager().post(
       SupabaseEndpoints.rpc(SupabaseEndpoints.getUserResultsFunctionEndpoint),
       body: request.toJsonBody(),
     );
 
-    return GetResultsResponse.fromJson(query.data as Map<String, dynamic>);
+    ///
+    final ApiResponse apiResponse = ApiResponse.fromDioResponse(response);
+
+    ///
+    apiResponse.throwErrorIfExists();
+
+    return GetResultsResponse.fromJson(apiResponse.data);
   }
 
   @override
   Future<GetResultResponse> getResult(GetResultRequest request) async {
-    final query = await apiManager().post(
+    final response = await apiManager().post(
       SupabaseEndpoints.rpc(SupabaseEndpoints.getUserResultByIdFunctionEndpoint),
       body: request.toJsonBody(),
     );
 
-    return GetResultResponse.fromJson(query.data as Map<String, dynamic>);
+    ///
+    final ApiResponse apiResponse = ApiResponse.fromDioResponse(response);
+
+    ///
+    apiResponse.throwErrorIfExists();
+
+    return GetResultResponse.fromJson(apiResponse.data);
   }
 
   @override
   Future<GetResultLeaderboardResponse> getResultLeaderboard(
     GetResultLeaderboardRequest request,
   ) async {
-    final query = await apiManager().post(
+    final response = await apiManager().post(
       SupabaseEndpoints.rpc(SupabaseEndpoints.getResultLeaderboardFunctionEndpoint),
       body: request.toJsonBody(),
     );
 
-    return GetResultLeaderboardResponse.fromJson(query.data as Map<String, dynamic>);
+    ///
+    final ApiResponse apiResponse = ApiResponse.fromDioResponse(response);
+
+    ///
+    apiResponse.throwErrorIfExists();
+
+    return GetResultLeaderboardResponse.fromJson(apiResponse.data);
   }
 }

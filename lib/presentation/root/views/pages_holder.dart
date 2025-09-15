@@ -1,11 +1,10 @@
 import 'dart:ui';
 
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
-import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/resources/styles/assets_resources.dart';
 import 'package:bac_project/core/resources/styles/blur_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 
 import 'package:flutter/material.dart';
@@ -69,8 +68,8 @@ class _NavigationBar extends StatelessWidget {
             padding: EdgeInsets.only(
               bottom: MediaQuery.of(context).padding.bottom + SpacesResources.s1,
               top: SpacesResources.s6,
-              left: PaddingResources.screenSidesPadding.left,
-              right: PaddingResources.screenSidesPadding.right,
+              left: Paddings.screenSidesPadding.left,
+              right: Paddings.screenSidesPadding.right,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -158,7 +157,7 @@ class BottomNavTab extends StatelessWidget {
             ),
 
             const SizedBox(height: SpacesResources.s4),
-            Text(label, style: AppTextStyles.bottomNavigationBarLabel.copyWith(color: color)),
+            Text(label, style: TextStylesResources.bottomNavigationBarLabel.copyWith(color: color)),
           ],
         ),
       ),

@@ -63,7 +63,7 @@ class DioClient implements ApiClient {
     defaultHeaders = {
       ApiHeaders.headerContentTypeKey: ApiHeaders.headerContentTypeJson,
       ApiHeaders.headerAcceptKey: ApiHeaders.headerContentTypeJson,
-      ApiHeaders.headerApiKey: SupabaseSettings.anonKey, // Add this line
+      ApiHeaders.headerApiKey: SupabaseSettings.anonKey,
     };
 
     //

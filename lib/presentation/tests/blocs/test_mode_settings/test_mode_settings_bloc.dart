@@ -1,4 +1,7 @@
 // router imports not used in bloc
+import 'package:bac_project/core/resources/errors/exceptions.dart';
+import 'package:bac_project/core/resources/errors/exceptions_mapper.dart';
+import 'package:bac_project/core/resources/errors/failures.dart';
 import 'package:bac_project/features/tests/domain/entities/question.dart';
 import 'package:bac_project/features/tests/domain/entities/question_category.dart';
 import 'package:bac_project/features/tests/domain/requests/get_questions_request.dart';
@@ -123,19 +126,27 @@ class TestModeSettingsBloc extends Bloc<TestModeSettingsEvent, TestModeSettingsS
     TestModeSettingsSubmitEvent event,
     Emitter<TestModeSettingsState> emit,
   ) async {
-    emit(state.copyWith(status: TestModeSettingsStatus.fetchingQuestions));
+    try {
+      emit(state.copyWith(status: TestModeSettingsStatus.fetchingQuestions));
 
-    final request = GetQuestionsRequest(options: state.testOptions);
+      final request = GetQuestionsRequest(options: state.testOptions);
 
-    final result = await getQuestionsUsecase.call(request);
+      final result = await getQuestionsUsecase.call(request);
 
-    await result.fold(
-      (failure) async {
-        emit(state.copyWith(status: TestModeSettingsStatus.error, message: failure.message));
-      },
-      (response) async {
-        emit(state.copyWith(status: TestModeSettingsStatus.saved, questions: response.questions));
-      },
-    );
+      await result.fold(
+        (failure) async {
+          emit(state.copyWith(status: TestModeSettingsStatus.error, message: failure.message));
+        },
+        (response) async {
+          if (response.questions.isEmpty) {
+            throw QuestionsNotExistsException();
+          }
+          emit(state.copyWith(status: TestModeSettingsStatus.saved, questions: response.questions));
+        },
+      );
+    } on Exception catch (e) {
+      
+      emit(state.copyWith(status: TestModeSettingsStatus.error, message: e.toFailure.message));
+    }
   }
 }

@@ -132,7 +132,6 @@ class AuthRemoteDataSourceImplements implements AuthRemoteDataSource {
   Future<GetUserDataResponse> getUserData({required GetUserDataRequest request}) async {
     final supabase = Supabase.instance.client;
     final currentUser = supabase.auth.currentUser;
-    await supabase.auth.refreshSession();
 
     if (currentUser == null) {
       throw AuthException('غير مسجل الدخول');

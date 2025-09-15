@@ -1,10 +1,9 @@
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/injector/app_injection.dart';
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
-import 'package:bac_project/core/widgets/ui/fields/mode_switcher_widget.dart';
 import 'package:bac_project/presentation/auth/state/bloc/auth_bloc.dart';
 import 'package:bac_project/core/widgets/ui/icons/switch_theme_widget.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +22,7 @@ class _AuthStartViewState extends State<AuthStartView> {
       appBar: AppBar(actions: [SwitchThemeWidget()]),
       body: SafeArea(
         child: Padding(
-          padding: PaddingResources.screenSidesPadding,
+          padding: Paddings.screenSidesPadding,
           child: Column(
             children: [
               const Spacer(),

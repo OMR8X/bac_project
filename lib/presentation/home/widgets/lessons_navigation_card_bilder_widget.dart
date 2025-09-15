@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/resources/styles/padding_resources.dart';
+import '../../../core/resources/styles/spacing_resources.dart';
 import '../../../core/services/router/app_arguments.dart';
 import '../../../core/services/router/app_routes.dart';
 import '../../../core/widgets/ui/loading_widget.dart';

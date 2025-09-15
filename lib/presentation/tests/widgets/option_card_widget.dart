@@ -1,6 +1,6 @@
 import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/color_extensions.dart';
 import 'package:bac_project/core/resources/themes/extensions/success_colors.dart';
 import 'package:bac_project/features/tests/domain/entities/option.dart';
@@ -16,15 +16,16 @@ class OptionCardWidget extends StatelessWidget {
     required this.testMode,
     required this.didAnswer,
     required this.onTap,
+    this.reviewMode = false,
   });
   final Option option;
-  final bool isSelected, didAnswer;
+  final bool isSelected, didAnswer, reviewMode;
   final TestMode testMode;
   final Function(Option option) onTap;
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: PaddingResources.optionCardMargin,
+      margin: Margins.optionCardMargin,
       color: getCardColor(context),
       shape: RoundedRectangleBorder(
         side: BorderSide(color: Colors.transparent),
@@ -39,17 +40,13 @@ class OptionCardWidget extends StatelessWidget {
           borderRadius: BorderRadiusResource.optionCardBorderRadius,
         ),
         leading: Icon(
-          isSelected
-              ? Icons.radio_button_checked
-              : Icons.radio_button_off,
+          isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
           size: 20,
           color: getRadioIconColor(context),
         ),
         title: Text(
-          option.text,
-          style: AppTextStyles.optionsTitle.copyWith(
-            color: getCardTitleColor(context),
-          ),
+          option.content,
+          style: TextStylesResources.optionsTitle.copyWith(color: getCardTitleColor(context)),
         ),
         onTap: didAnswer ? null : () => onTap(option),
       ),
@@ -58,10 +55,8 @@ class OptionCardWidget extends StatelessWidget {
 
   Color getRadioIconColor(BuildContext context) {
     if (isSelected) {
-      if (testMode == TestMode.exploring &&
-          option.isCorrect != null) {
-        final green =
-            Theme.of(context).extension<SuccessColors>()!.success;
+      if (testMode == TestMode.exploring && option.isCorrect != null) {
+        final green = Theme.of(context).extension<SuccessColors>()!.success;
         final red = Theme.of(context).colorScheme.error;
         return option.isCorrect! ? green : red;
       }
@@ -72,20 +67,16 @@ class OptionCardWidget extends StatelessWidget {
 
   Color getCardColor(BuildContext context) {
     if (isSelected) {
-      if (testMode == TestMode.exploring &&
-          option.isCorrect != null) {
-        final green =
-            Theme.of(context).extension<SuccessColors>()!.onSuccess;
+      if (testMode == TestMode.exploring && option.isCorrect != null) {
+        final green = Theme.of(context).extension<SuccessColors>()!.onSuccess;
         final red = Theme.of(context).colorScheme.errorContainer;
-        return option.isCorrect!
-            ? green.lighter(0.75)
-            : red.lighter(0.75);
+        return option.isCorrect! ? green.lighter(0.75) : red.lighter(0.75);
       }
-    } else if (didAnswer &&
-        option.isCorrect == true &&
-        testMode == TestMode.exploring) {
-      final green =
-          Theme.of(context).extension<SuccessColors>()!.onSuccess;
+    } else if ((!reviewMode) &&
+        (didAnswer) &&
+        (option.isCorrect == true) &&
+        (testMode == TestMode.exploring)) {
+      final green = Theme.of(context).extension<SuccessColors>()!.onSuccess;
       return green.lighter(0.75);
     }
     return Theme.of(context).colorScheme.surfaceContainer;
@@ -93,19 +84,17 @@ class OptionCardWidget extends StatelessWidget {
 
   Color getCardBorderColor(BuildContext context) {
     if (isSelected) {
-      if (testMode == TestMode.exploring &&
-          option.isCorrect != null) {
-        final green =
-            Theme.of(context).extension<SuccessColors>()!.success;
+      if (testMode == TestMode.exploring && option.isCorrect != null) {
+        final green = Theme.of(context).extension<SuccessColors>()!.success;
         final red = Theme.of(context).colorScheme.error;
         return option.isCorrect! ? green : red;
       }
       return Theme.of(context).colorScheme.primary;
-    } else if (didAnswer &&
+    } else if (!reviewMode &&
+        didAnswer &&
         option.isCorrect == true &&
         testMode == TestMode.exploring) {
-      final green =
-          Theme.of(context).extension<SuccessColors>()!.success;
+      final green = Theme.of(context).extension<SuccessColors>()!.success;
       return green;
     }
     return Theme.of(context).colorScheme.outline;
@@ -113,14 +102,10 @@ class OptionCardWidget extends StatelessWidget {
 
   Color getCardTitleColor(BuildContext context) {
     if (isSelected) {
-      if (testMode == TestMode.exploring &&
-          option.isCorrect != null) {
-        final green =
-            Theme.of(context).extension<SuccessColors>()!.success;
+      if (testMode == TestMode.exploring && option.isCorrect != null) {
+        final green = Theme.of(context).extension<SuccessColors>()!.success;
         final red = Theme.of(context).colorScheme.error;
-        return option.isCorrect!
-            ? green.darker(0.5)
-            : red.darker(0.5);
+        return option.isCorrect! ? green.darker(0.5) : red.darker(0.5);
       }
       return Theme.of(context).colorScheme.onSurface;
     }

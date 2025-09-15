@@ -1,6 +1,6 @@
 import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:flutter/material.dart';
 
 import '../../resources/styles/spaces_resources.dart';
@@ -24,12 +24,12 @@ class LessonCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: PaddingResources.cardOuterPadding / 2,
+      margin: Margins.cardMargin / 2,
       child: InkWell(
         borderRadius: BorderRadiusResource.cardBorderRadius,
         onTap: onTap,
         child: Padding(
-          padding: PaddingResources.cardLessonInnerPadding,
+          padding: Paddings.cardLessonPadding,
           child: IntrinsicHeight(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -87,7 +87,7 @@ class LessonCardWidget extends StatelessWidget {
       children: [
         Text(
           title,
-          style: AppTextStyles.cardMediumTitle.copyWith(
+          style: TextStylesResources.cardMediumTitle.copyWith(
             color: Theme.of(context).colorScheme.onSurface,
           ),
         ),
@@ -103,7 +103,7 @@ class LessonCardWidget extends StatelessWidget {
               const SizedBox(width: SpacesResources.s2),
               Text(
                 "$questionsCount سوال",
-                style: AppTextStyles.caption.copyWith(
+                style: TextStylesResources.caption.copyWith(
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                   fontSize: FontSizeResources.s10,
                   fontWeight: FontWeightResources.medium,

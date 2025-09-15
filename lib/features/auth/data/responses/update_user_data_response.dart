@@ -12,8 +12,8 @@ class UpdateUserDataResponse {
   factory UpdateUserDataResponse.fromResponse(ApiResponse response) {
     return UpdateUserDataResponse(
       message: response.message,
-      token: response.getData(key: "token"),
-      user: UserDataModel.fromJson(response.getData(key: "user")),
+      token: response.data["token"],
+      user: UserDataModel.fromJson(response.data["user"]),
     );
   }
 }

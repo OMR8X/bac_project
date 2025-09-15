@@ -1,4 +1,4 @@
-import 'package:bac_project/core/resources/styles/padding_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -12,7 +12,7 @@ class AppBarIconWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: padding ?? EdgeInsets.only(right: PaddingResources.screenSidesPadding.right),
+        padding: padding ?? EdgeInsets.only(right: Paddings.screenSidesPadding.right),
         child: SizedBox(
           width: SizesResources.iconButtonAppBarHeight,
           height: SizesResources.iconButtonAppBarHeight,
@@ -23,9 +23,9 @@ class AppBarIconWidget extends StatelessWidget {
                   SizesResources.iconButtonAppBarHeight,
                   SizesResources.iconButtonAppBarHeight,
                 ),
-                padding: EdgeInsets.zero,
+                padding: Paddings.zero,
               ),
-              padding: EdgeInsets.zero,
+              padding: Paddings.zero,
               onPressed: onPressed,
               icon: SizedBox(
                 width: SizesResources.iconAppBarHeight,

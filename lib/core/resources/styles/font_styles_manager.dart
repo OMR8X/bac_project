@@ -55,7 +55,7 @@ class FontSizeResources {
 }
 
 /// Provides themed and reusable text styles.
-class AppTextStyles {
+class TextStylesResources {
   // Headings
   static const TextStyle largeTitle = TextStyle(
     fontFamily: AppFontStyles.fontFamily,
@@ -82,12 +82,22 @@ class AppTextStyles {
   static const TextStyle statLabelStyle = TextStyle(
     fontFamily: AppFontStyles.fontFamily,
     fontSize: FontSizeResources.s9,
-    fontWeight: FontWeightResources.regular,
+    fontWeight: FontWeightResources.medium,
   );
   static const TextStyle statTitleStyle = TextStyle(
     fontFamily: AppFontStyles.fontFamily,
-    fontSize: FontSizeResources.s20,
-    fontWeight: FontWeightResources.bold,
+    fontSize: FontSizeResources.s22,
+    fontWeight: FontWeightResources.black,
+  );
+  static const TextStyle dialogTitle = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontSize: FontSizeResources.s22,
+    fontWeight: FontWeightResources.black,
+  );
+  static const TextStyle dialogBody = TextStyle(
+    fontFamily: AppFontStyles.fontFamily,
+    fontSize: FontSizeResources.s14,
+    fontWeight: FontWeightResources.medium,
   );
   static const TextStyle cardLargeTitle = TextStyle(
     fontFamily: AppFontStyles.fontFamily,
@@ -139,7 +149,7 @@ class AppTextStyles {
   static const TextStyle caption = TextStyle(
     fontFamily: AppFontStyles.fontFamily,
     fontSize: FontSizeResources.s10,
-    fontWeight: FontWeightResources.light,
+    fontWeight: FontWeightResources.regular,
   );
 
   static const TextStyle miniCaption = TextStyle(

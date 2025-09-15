@@ -1,6 +1,12 @@
+import 'package:bac_project/features/tests/data/mappers/question_mapper.dart';
+import 'package:bac_project/features/tests/data/mappers/result_answer_mapper.dart';
+import 'package:bac_project/features/tests/data/models/question_model.dart';
+import 'package:bac_project/features/tests/data/models/result_answer_model.dart';
+import 'package:bac_project/features/tests/domain/entities/question.dart';
+import 'package:bac_project/features/tests/domain/entities/result_answer.dart';
+import 'package:bac_project/features/tests/domain/entities/result_test_mode.dart';
+
 import '../../domain/entities/result.dart';
-import '../../domain/entities/user_answer.dart';
-import 'user_answer_model.dart';
 
 class ResultModel extends Result {
   const ResultModel({
@@ -8,14 +14,13 @@ class ResultModel extends Result {
     required super.userId,
     super.lessonId,
     super.lessonTitle,
-    super.questionsIds,
     super.resultOrder,
     required super.totalQuestions,
     required super.correctAnswers,
     required super.wrongAnswers,
-    required super.skippedAnswers,
     required super.score,
     required super.durationSeconds,
+    super.resultTestMode,
     required super.answers,
     required super.createdAt,
     required super.updatedAt,
@@ -27,25 +32,21 @@ class ResultModel extends Result {
       userId: json['user_id'] as String,
       lessonId: json['lesson_id'] as int?,
       lessonTitle: json['lesson_title'] as String?,
-      questionsIds:
-          json['questions_ids'] != null
-              ? List<int>.from(json['questions_ids'] as List<dynamic>)
-              : null,
       resultOrder: json['result_order'] as int?,
       totalQuestions: json['total_questions'] as int,
       correctAnswers: json['correct_answers'] as int,
       wrongAnswers: json['wrong_answers'] as int,
-      skippedAnswers: json['skipped_answers'] as int,
       score: (json['score'] as num).toDouble(),
       durationSeconds: json['duration_seconds'] as int,
+      resultTestMode:
+          json['result_test_mode'] == null
+              ? null
+              : ResultTestMode.values.byName(json['result_test_mode'] as String),
       answers:
-          (json['answers'] as List<dynamic>)
-              .map(
-                (a) => UserAnswerModel.fromJson(
-                  a as Map<String, dynamic>,
-                ),
-              )
-              .toList(),
+          (json['answers'] as List<dynamic>?)
+              ?.map((a) => ResultAnswerModel.fromJson(a as Map<String, dynamic>))
+              .toList() ??
+          [],
       createdAt: DateTime.parse(json['created_at'] as String),
       updatedAt: DateTime.parse(json['updated_at'] as String),
     );
@@ -58,17 +59,13 @@ class ResultModel extends Result {
       'lesson_id': lessonId,
       'lesson_title': lessonTitle,
       'result_order': resultOrder,
-      'questions_ids': questionsIds,
       'total_questions': totalQuestions,
       'correct_answers': correctAnswers,
       'wrong_answers': wrongAnswers,
-      'skipped_answers': skippedAnswers,
       'score': score,
       'duration_seconds': durationSeconds,
-      'answers':
-          answers
-              .map((a) => (a as UserAnswerModel).toJson())
-              .toList(),
+      'result_test_mode': resultTestMode?.name,
+      'answers': answers.map((a) => (a.toModel().toJson())).toList(),
       'created_at': createdAt.toIso8601String(),
       'updated_at': updatedAt.toIso8601String(),
     };
@@ -81,14 +78,13 @@ class ResultModel extends Result {
     int? lessonId,
     String? lessonTitle,
     int? resultOrder,
-    List<int>? questionsIds,
     int? totalQuestions,
     int? correctAnswers,
     int? wrongAnswers,
-    int? skippedAnswers,
     double? score,
     int? durationSeconds,
-    List<UserAnswer>? answers,
+    ResultTestMode? resultTestMode,
+    List<ResultAnswer>? answers,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
@@ -97,14 +93,14 @@ class ResultModel extends Result {
       userId: userId ?? this.userId,
       lessonId: lessonId ?? this.lessonId,
       lessonTitle: lessonTitle ?? this.lessonTitle,
-      questionsIds: questionsIds ?? this.questionsIds,
+      resultOrder: resultOrder ?? this.resultOrder,
       totalQuestions: totalQuestions ?? this.totalQuestions,
       correctAnswers: correctAnswers ?? this.correctAnswers,
       wrongAnswers: wrongAnswers ?? this.wrongAnswers,
-      skippedAnswers: skippedAnswers ?? this.skippedAnswers,
       score: score ?? this.score,
       durationSeconds: durationSeconds ?? this.durationSeconds,
       answers: answers ?? this.answers,
+      resultTestMode: resultTestMode ?? this.resultTestMode,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
     );

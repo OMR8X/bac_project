@@ -26,7 +26,7 @@ class _ExploreResultsViewState extends State<ExploreResultsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.l10n.resultsTitle), leading: NotificationsIconWidget(), actions: [SwitchThemeWidget()]),
+      appBar: AppBar(title: Text(context.l10n.resultsTitle)),
       body: BlocConsumer<ExploreResultsBloc, ExploreResultsState>(
         bloc: sl<ExploreResultsBloc>(),
         listener: (context, state) {

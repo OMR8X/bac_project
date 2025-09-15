@@ -1,4 +1,3 @@
-
 class UserData {
   final String uuid;
   final String name;
@@ -15,14 +14,6 @@ class UserData {
   });
 
   factory UserData.empty() {
-    return UserData(
-      uuid: "",
-      name: "",
-      sectionId: "",
-      governorateId: "",
-      email: "",
-    );
+    return UserData(uuid: "", name: "", sectionId: "", governorateId: "", email: "");
   }
-
-
 }
