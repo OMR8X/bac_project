@@ -43,7 +43,7 @@ class ResultsRepositoryImpl implements ResultsRepository {
       final result = await remoteDataSource.getResult(request);
       return Right(result);
     } on Exception catch (e) {
-      return Left(AnonFailure(message: 'An unexpected error occurred: $e'));
+      return Left(UnknownFailure(message: 'An unexpected error occurred: $e'));
     }
   }
 

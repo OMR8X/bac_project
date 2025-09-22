@@ -9,10 +9,9 @@ import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/widgets/ui/fields/bottom_buttons_widget.dart';
 import 'package:bac_project/presentation/tests/widgets/question_card_widget.dart';
-import 'package:bac_project/presentation/tests/widgets/option_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bac_project/presentation/tests/blocs/quizzing/quizzing_bloc.dart';
+import 'package:bac_project/presentation/quizzing/blocs/quizzing_bloc.dart';
 
 class TestingView extends StatelessWidget {
   const TestingView({super.key, this.arguments});
@@ -32,7 +31,8 @@ class TestingView extends StatelessWidget {
                   questions: questions.cast(),
                   timeLimit: arguments?.timeLimit ?? 30,
                   lessonId: arguments?.lessonIds?.length == 1 ? arguments!.lessonIds!.first : null,
-                ),
+                  testMode: testMode,
+                  ),
               ),
       child: Scaffold(
         appBar: AppBar(
@@ -57,15 +57,14 @@ class TestingView extends StatelessWidget {
                       children: [
                         QuestionCardWidget(question: question),
                         const SizedBox(height: SpacesResources.s2),
-                        ...question.options.map((option) {
-                          return OptionCardWidget(
-                            option: option,
-                            isSelected: false,
-                            didAnswer: false,
-                            testMode: testMode,
-                            onTap: (_) {},
-                          );
-                        }),
+                        // ...question.options.map((option) {
+                        //   return OptionMultipleChoicesCardWidget(
+                        //     option: option,
+                        //     questionAnswer: null,
+                        //     testMode: testMode,
+                        //     onTap: (_) {},
+                        //   );
+                        // }),
                       ],
                     );
                   },

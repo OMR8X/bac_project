@@ -1,5 +1,6 @@
 import 'package:bac_project/features/tests/data/mappers/option_mapper.dart';
 import 'package:bac_project/features/tests/data/models/option_model.dart';
+import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
 
 import '../../domain/entities/question.dart';
 import '../../domain/entities/option.dart';
@@ -15,6 +16,7 @@ class QuestionModel extends Question {
     super.categoryId,
     super.isMCQ,
     super.explain,
+    super.questionAnswers,
   });
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) {
@@ -28,7 +30,7 @@ class QuestionModel extends Question {
           [],
       unitId: json['unit_id'] as int?,
       lessonId: json['lesson_id'] as int,
-      imageUrl: (json['image'] as String?) ?? json['q_url'] as String?,
+      imageUrl: (json['image_url'] as String?),
       categoryId: json['category_id'] as int?,
       isMCQ: json['is_mcq'] as bool?,
       explain: json['explain'] as String?,
@@ -60,6 +62,7 @@ class QuestionModel extends Question {
     int? categoryId,
     bool? isMCQ,
     String? explain,
+    List<QuestionAnswer>? questionAnswers,
   }) {
     return QuestionModel(
       id: id ?? this.id,
@@ -71,6 +74,7 @@ class QuestionModel extends Question {
       categoryId: categoryId ?? this.categoryId,
       isMCQ: isMCQ ?? this.isMCQ,
       explain: explain ?? this.explain,
+      questionAnswers: questionAnswers ?? this.questionAnswers,
     );
   }
 
@@ -82,7 +86,11 @@ class QuestionModel extends Question {
         other.content == content &&
         other.options == options &&
         other.unitId == unitId &&
-        other.lessonId == lessonId;
+        other.lessonId == lessonId &&
+        other.imageUrl == imageUrl &&
+        other.categoryId == categoryId &&
+        other.isMCQ == isMCQ &&
+        other.explain == explain;
   }
 
   @override

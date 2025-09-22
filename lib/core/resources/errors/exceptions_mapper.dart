@@ -7,7 +7,7 @@ import 'package:supabase_flutter/supabase_flutter.dart' as sp;
 
 import 'exceptions.dart';
 
-extension ErrorsMapper on Exception {
+extension ExceptionsMapper on Exception {
   Failure get toFailure {
     debugPrint(toString());
     switch (this) {
@@ -32,7 +32,7 @@ extension ErrorsMapper on Exception {
       case CacheEmptyException():
         return CacheFailure(message: (this as CacheEmptyException).message);
       default:
-        return AnonFailure(message: toString());
+        return UnknownFailure(message: toString());
     }
   }
 }

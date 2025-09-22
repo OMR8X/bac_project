@@ -3,12 +3,12 @@ import 'package:bac_project/features/tests/domain/entities/question_category.dar
 
 extension QuestionCategoryMapper on QuestionCategory {
   QuestionCategoryModel get toModel {
-    return QuestionCategoryModel(id: id, title: title, questionsCount: questionsCount);
+    return QuestionCategoryModel(id: id, title: title, questionsCount: questionsCount, isTypeable: isTypeable, isMCQ: isMCQ, isSingleAnswer: isSingleAnswer, isOrderable: isOrderable);
   }
 }
 
 extension QuestionCategoryModelMapper on QuestionCategoryModel {
   QuestionCategory get toEntity {
-    return QuestionCategory(id: id, title: title, questionsCount: questionsCount);
+    return QuestionCategory(id: id, title: title, questionsCount: questionsCount, isTypeable: isTypeable, isMCQ: isMCQ, isSingleAnswer: isSingleAnswer, isOrderable: isOrderable    );
   }
 }

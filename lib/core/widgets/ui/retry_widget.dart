@@ -8,6 +8,14 @@ class FailureWidget extends StatelessWidget {
   final VoidCallback onReTry;
   @override
   Widget build(BuildContext context) {
-    return Center(child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [Text((failure ?? const AnonFailure()).message), ElevatedButtonWidget(title: "اعادة المحاولة", onPressed: onReTry)]));
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text((failure ?? const UnknownFailure()).message),
+          ElevatedButtonWidget(title: "اعادة المحاولة", onPressed: onReTry),
+        ],
+      ),
+    );
   }
 }

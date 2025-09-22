@@ -54,7 +54,7 @@ class AppLoaderBloc extends Bloc<AppLoaderLoadData, AppLoaderState> {
         },
       );
     } on Exception catch (e) {
-      emit(AppLoaderState.failure(failure: AnonFailure(message: e.toString())));
+      emit(AppLoaderState.failure(failure: UnknownFailure(message: e.toString())));
     }
   }
 

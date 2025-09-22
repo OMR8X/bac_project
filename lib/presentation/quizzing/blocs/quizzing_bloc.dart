@@ -1,12 +1,13 @@
 import 'package:bac_project/core/resources/errors/failures.dart';
+import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
 import 'package:bac_project/features/tests/domain/entities/result.dart';
+import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
+import 'package:bac_project/features/tests/domain/requests/add_result_request.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'dart:async';
 import 'package:bac_project/features/tests/domain/entities/question.dart';
 import 'package:bac_project/features/tests/domain/usecases/add_result_use_case.dart';
-import 'package:bac_project/features/tests/domain/requests/add_result_request.dart';
-import 'package:bac_project/features/tests/data/models/user_answer_model.dart';
 import 'package:bac_project/core/injector/app_injection.dart';
 
 part 'quizzing_event.dart';
@@ -21,7 +22,7 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
     : _addResultUsecase = addResultUsecase ?? sl<AddResultUsecase>(),
       super(QuizzingLoading()) {
     on<InitializeQuiz>(_onInitializeQuiz);
-    on<OptionQuestion>(_onAnswerQuestion);
+    on<UpdateQuestionAnswersEvent>(_onUpdateQuestionAnswersEvent);
     on<NextQuestion>(_onNextQuestion);
     on<PreviousQuestion>(_onPreviousQuestion);
     on<CloseQuiz>(_onCloseQuiz);
@@ -31,13 +32,14 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
   }
 
   ///
+  late TestMode testMode;
   late Timer _timer;
   late DateTime _startTime;
   late int? _lessonId;
   late List<Question> _questions;
   late Duration _timeLeft;
   late Duration _initialTimeLimit;
-  late Map<int, int?> _selectedAnswers;
+  late List<QuestionAnswer> _questionsAnswers;
 
   void _onInitializeQuiz(InitializeQuiz event, Emitter<QuizzingState> emit) {
     ///
@@ -47,14 +49,11 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
     // Limit questions to a maximum of 15
     _questions = event.questions;
     _lessonId = event.lessonId;
-    _selectedAnswers = {};
+    testMode = event.testMode;
+    _questionsAnswers = [];
     _startTime = DateTime.now();
     _initialTimeLimit = Duration(minutes: event.timeLimit);
     _timeLeft = _initialTimeLimit;
-    //
-    for (var q in _questions) {
-      _selectedAnswers[q.id] = null;
-    }
 
     /// Start timer
     _startTimer();
@@ -68,13 +67,15 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
         timeLeft: _timeLeft,
         canGoNext: _questions.length > 1,
         canGoPrevious: false,
-        selectedAnswerId: null,
-        selectedAnswers: Map<int, int?>.from(_selectedAnswers),
+        selectedAnswers: _questionsAnswers.where((a) => a.questionId == _questions[0].id).toList(),
       ),
     );
   }
 
-  void _onAnswerQuestion(OptionQuestion event, Emitter<QuizzingState> emit) {
+  void _onUpdateQuestionAnswersEvent(
+    UpdateQuestionAnswersEvent event,
+    Emitter<QuizzingState> emit,
+  ) {
     if (state is QuizzingAnswerQuestion) {
       /// Get the current state
       final currentState = state as QuizzingAnswerQuestion;
@@ -83,13 +84,18 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
       if (currentState.timeLeft.inSeconds <= 0) return;
 
       /// Store the selected answer
-      _selectedAnswers[currentState.currentQuestion.id] = event.answerId;
+      _questionsAnswers.removeWhere((e) {
+        return event.answers.map((e) => e.optionId).contains(e.optionId);
+      });
+      _questionsAnswers.addAll(event.answers);
 
       /// Update the state: include full selectedAnswers map so UI can read per-question answers
       emit(
         currentState.copyWith(
-          selectedAnswerId: event.answerId,
-          selectedAnswers: Map<int, int?>.from(_selectedAnswers),
+          selectedAnswers:
+              _questionsAnswers
+                  .where((a) => a.questionId == currentState.currentQuestion.id)
+                  .toList(),
         ),
       );
     }
@@ -104,7 +110,6 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
       ///
       if (nextIndex < _questions.length) {
         final nextQuestion = _questions[nextIndex];
-        final selectedAnswerId = _selectedAnswers[nextQuestion.id];
 
         /// Update the state
         emit(
@@ -113,8 +118,8 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
             currentQuestion: nextQuestion,
             canGoNext: nextIndex < _questions.length - 1,
             canGoPrevious: true,
-            selectedAnswerId: selectedAnswerId,
-            selectedAnswers: Map<int, int?>.from(_selectedAnswers),
+            selectedAnswers:
+                _questionsAnswers.where((a) => a.questionId == nextQuestion.id).toList(),
           ),
         );
       }
@@ -136,7 +141,6 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
 
       if (previousIndex >= 0) {
         final previousQuestion = _questions[previousIndex];
-        final selectedAnswerId = _selectedAnswers[previousQuestion.id];
 
         emit(
           currentState.copyWith(
@@ -144,8 +148,8 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
             currentQuestion: previousQuestion,
             canGoNext: true,
             canGoPrevious: previousIndex > 0,
-            selectedAnswerId: selectedAnswerId,
-            selectedAnswers: Map<int, int?>.from(_selectedAnswers),
+            selectedAnswers:
+                _questionsAnswers.where((a) => a.questionId == previousQuestion.id).toList(),
           ),
         );
       }
@@ -164,18 +168,15 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
 
     /// Calculate values
     final durationSeconds = DateTime.now().difference(_startTime).inSeconds;
-    final answers =
-        _questions
-            .map((q) => UserAnswerModel(questionId: q.id, selectedOptionId: _selectedAnswers[q.id]))
-            .toList();
 
     /// Upload the result
     final response = await _addResultUsecase.call(
       AddResultRequest(
+        testMode: testMode,
         lessonId: _lessonId,
         durationSeconds: durationSeconds,
         questionsIds: _questions.map((q) => q.id).toList(),
-        answers: answers,
+        questionsAnswers: _questionsAnswers,
       ),
     );
 

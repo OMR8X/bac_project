@@ -188,7 +188,8 @@ class _ResultCardWidgetState extends State<ResultCardWidget> {
         Text(
           'عنوان الدرس',
           style: TextStylesResources.caption.copyWith(
-            color: theme.colorScheme.onSurface.withAlpha(160),
+            color: theme.colorScheme.onSurfaceVariant,
+            fontWeight: FontWeightResources.bold,
             fontSize: FontSizeResources.s10,
           ),
         ),

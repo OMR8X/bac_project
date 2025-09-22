@@ -9,6 +9,13 @@ class Paddings {
     return const EdgeInsets.symmetric(horizontal: SpacesResources.s8, vertical: 0);
   }
 
+  static EdgeInsets get bottomButtonPadding {
+    return EdgeInsets.symmetric(
+      horizontal: screenSidesPadding.horizontal,
+      vertical: SpacesResources.s6,
+    );
+  }
+
   static EdgeInsets get screenBodyPadding {
     return const EdgeInsets.symmetric(horizontal: SpacesResources.s8, vertical: SpacesResources.s8);
   }
@@ -97,10 +104,6 @@ class Paddings {
 
   static EdgeInsets get cardLargeTitlePadding {
     return const EdgeInsets.symmetric(vertical: SpacesResources.s6);
-  }
-
-  static EdgeInsets get bottomButtonPadding {
-    return const EdgeInsets.symmetric(vertical: SpacesResources.s2, horizontal: SpacesResources.s2);
   }
 
   static EdgeInsets get dialog {

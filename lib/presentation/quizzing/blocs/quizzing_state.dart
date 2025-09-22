@@ -18,8 +18,7 @@ final class QuizzingAnswerQuestion extends QuizzingState {
   final Duration timeLeft;
   final bool canGoNext;
   final bool canGoPrevious;
-  final int? selectedAnswerId;
-  final Map<int, int?> selectedAnswers;
+  final List<QuestionAnswer> selectedAnswers;
 
   const QuizzingAnswerQuestion({
     required this.currentQuestion,
@@ -28,8 +27,7 @@ final class QuizzingAnswerQuestion extends QuizzingState {
     required this.timeLeft,
     required this.canGoNext,
     required this.canGoPrevious,
-    this.selectedAnswerId,
-    this.selectedAnswers = const {},
+    this.selectedAnswers = const [],
   });
 
   QuizzingAnswerQuestion copyWith({
@@ -39,8 +37,7 @@ final class QuizzingAnswerQuestion extends QuizzingState {
     Duration? timeLeft,
     bool? canGoNext,
     bool? canGoPrevious,
-    int? selectedAnswerId,
-    Map<int, int?>? selectedAnswers,
+    List<QuestionAnswer>? selectedAnswers,
   }) {
     return QuizzingAnswerQuestion(
       currentQuestion: currentQuestion ?? this.currentQuestion,
@@ -49,7 +46,6 @@ final class QuizzingAnswerQuestion extends QuizzingState {
       timeLeft: timeLeft ?? this.timeLeft,
       canGoNext: canGoNext ?? this.canGoNext,
       canGoPrevious: canGoPrevious ?? this.canGoPrevious,
-      selectedAnswerId: selectedAnswerId ?? this.selectedAnswerId,
       selectedAnswers: selectedAnswers ?? this.selectedAnswers,
     );
   }
@@ -62,7 +58,6 @@ final class QuizzingAnswerQuestion extends QuizzingState {
     timeLeft,
     canGoNext,
     canGoPrevious,
-    selectedAnswerId,
     selectedAnswers,
   ];
 }

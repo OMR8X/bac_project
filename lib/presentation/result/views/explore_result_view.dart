@@ -2,32 +2,34 @@ import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/resources/errors/failures.dart';
 import 'package:bac_project/core/resources/styles/assets_resources.dart';
-import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/extra_colors.dart';
 import 'package:bac_project/core/services/router/app_routes.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
 import 'package:bac_project/core/widgets/animations/staggered_list_wrapper_widget.dart';
 import 'package:bac_project/core/widgets/messages/sheets/app_bottom_sheet.dart';
-import 'package:bac_project/core/widgets/ui/icons/appbar_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/icons/retry_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/loading_widget.dart';
 import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
-import 'package:bac_project/features/tests/domain/entities/option.dart';
+import 'package:bac_project/features/settings/domain/entities/app_settings.dart';
 import 'package:bac_project/features/tests/domain/entities/question.dart';
+import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
 import 'package:bac_project/features/tests/domain/entities/result_answer.dart';
 import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
 import 'package:bac_project/features/tests/domain/requests/get_questions_by_ids_request.dart';
 import 'package:bac_project/features/tests/domain/usecases/get_questions_by_ids_use_case.dart';
+import 'package:bac_project/presentation/quizzing/widgets/multiple_choices_options_builder_widget.dart';
+import 'package:bac_project/presentation/quizzing/widgets/orderable_options_builder_widget.dart';
+import 'package:bac_project/presentation/quizzing/widgets/textual_options_builder_widget.dart';
 import 'package:bac_project/presentation/result/bloc/submit_results/explore_result_bloc.dart';
 import 'package:bac_project/presentation/result/widgets/previous_results_list_card_widget.dart';
 import 'package:bac_project/presentation/result/widgets/score_gauge_widget.dart';
 import 'package:bac_project/presentation/result/widgets/state_chip_widget.dart';
-import 'package:bac_project/presentation/tests/widgets/option_card_widget.dart';
 import 'package:bac_project/presentation/tests/widgets/question_card_widget.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,6 +38,8 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/widgets/messages/dialogs/conform_dialog.dart';
+import '../../../features/tests/domain/entities/question_category.dart';
+import '../../quizzing/blocs/quizzing_bloc.dart';
 
 class ExploreResultView extends StatefulWidget {
   final ExploreResultViewArguments arguments;
@@ -148,6 +152,7 @@ class _ExploreResultDetailsView extends StatelessWidget {
                           iconPath: UIImagesResources.checkRoundedUIIcon,
                           title: '${state.response!.result.correctAnswers}',
                           subtitle: context.l10n.resultCorrect,
+                          iconColor: Theme.of(context).extension<ExtraColors>()!.green,
                         ),
                       ),
 
@@ -159,7 +164,9 @@ class _ExploreResultDetailsView extends StatelessWidget {
                           onTap: () {
                             showAppBottomSheet(
                               context: context,
-                              child: QuestionsSheetBuilder(answers: state.response!.result.answers),
+                              child: QuestionsSheetBuilder(
+                                questionAnswers: state.response!.result.questionAnswers,
+                              ),
                             );
                           },
                         ),
@@ -170,6 +177,7 @@ class _ExploreResultDetailsView extends StatelessWidget {
                           iconPath: UIImagesResources.cancelRoundedUIIcon,
                           title: '${state.response!.result.wrongAnswers}',
                           subtitle: context.l10n.resultWrong,
+                          iconColor: Theme.of(context).extension<ExtraColors>()!.red,
                         ),
                       ),
                     ],
@@ -209,8 +217,8 @@ class _ExploreResultFailureView extends StatelessWidget {
 }
 
 class QuestionsSheetBuilder extends StatefulWidget {
-  const QuestionsSheetBuilder({super.key, required this.answers});
-  final List<ResultAnswer> answers;
+  const QuestionsSheetBuilder({super.key, required this.questionAnswers});
+  final List<QuestionAnswer> questionAnswers;
 
   @override
   State<QuestionsSheetBuilder> createState() => _QuestionsSheetBuilderState();
@@ -240,7 +248,9 @@ class _QuestionsSheetBuilderState extends State<QuestionsSheetBuilder> {
     setState(() => _isLoading = true);
     //
     final response = await sl<GetQuestionsByIdsUsecase>().call(
-      GetQuestionsByIdsRequest(questionIds: widget.answers.map((e) => e.questionId).toList()),
+      GetQuestionsByIdsRequest(
+        questionIds: widget.questionAnswers.map((e) => e.questionId).toList(),
+      ),
     );
     //
     response.fold((l) => _failure = l, (r) {
@@ -266,30 +276,73 @@ class _QuestionsSheetBuilderState extends State<QuestionsSheetBuilder> {
       );
     }
 
-    return AnimationLimiter(
-      child: ListView.builder(
-        itemCount: _questions.length,
-        itemBuilder: (context, index) {
-          return StaggeredListWrapperWidget(
-            position: index,
-            child: Column(
-              children: [
-                QuestionCardWidget(question: _questions[index]),
-                ..._questions[index].options.map(
-                  (e) => OptionCardWidget(
-                    option: e,
-                    reviewMode: true,
-                    isSelected: widget.answers.any((x) => x.optionId == e.id),
-                    testMode: TestMode.exploring,
-                    didAnswer: true,
-                    onTap: (option) {},
+    return Column(
+      children: [
+        Expanded(
+          child: AnimationLimiter(
+            child: ListView.builder(
+              padding: Paddings.listViewPadding,
+              itemCount: _questions.length,
+              itemBuilder: (context, index) {
+                return StaggeredListWrapperWidget(
+                  position: index,
+                  child: Column(
+                    children: [
+                      QuestionCardWidget(question: _questions[index]),
+                      _buildOptions(
+                        context: context,
+                        question: _questions[index],
+                        questionAnswers: widget.questionAnswers,
+                        testMode: TestMode.exploring,
+                      ),
+                    ],
                   ),
-                ),
-              ],
+                );
+              },
             ),
-          );
-        },
-      ),
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: SizedBox(
+            height: SizesResources.buttonLargeHeight,
+            child: FilledButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(context.l10n.buttonsClose),
+            ),
+          ),
+        ),
+      ],
     );
+  }
+
+  Widget _buildOptions({
+    required BuildContext context,
+    required Question question,
+    required List<QuestionAnswer> questionAnswers,
+    required TestMode testMode,
+  }) {
+    ///
+    final QuestionCategory? category = sl<AppSettings>().categories.firstWhereOrNull(
+      (c) => c.id == question.categoryId,
+    );
+
+    ///
+    if (category?.isMCQ ?? false) {
+      return MultipleChoicesQuestionBuilderWidget(
+        question: question,
+        questionsAnswers: questionAnswers,
+      );
+    } else if (category?.isOrderable ?? false) {
+      return OrderableQuestionBuilderWidget(question: question, questionsAnswers: questionAnswers);
+    } else if ((category?.isTypeable) ?? false) {
+      return TextualQuestionsBuilderWidget(question: question, questionsAnswers: questionAnswers);
+    } else if ((category?.isSingleAnswer) ?? false) {
+      return TextualQuestionsBuilderWidget(question: question, questionsAnswers: questionAnswers);
+    } else {
+      return const SizedBox.shrink();
+    }
   }
 }

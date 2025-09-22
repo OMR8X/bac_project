@@ -2,6 +2,7 @@ import 'package:bac_project/core/resources/styles/colors_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/extra_colors.dart';
+import 'package:bac_project/core/resources/themes/extensions/option_card_colors.dart';
 import 'package:bac_project/core/resources/themes/extensions/surface_container_colors.dart';
 import 'package:flutter/material.dart';
 import '../styles/border_radius_resources.dart';
@@ -56,6 +57,17 @@ class AppDarkTheme {
           pink: ColorsResourcesDark.pink,
           red: ColorsResourcesDark.error,
           primaryState: ColorsResourcesDark.primaryState,
+        ),
+        OptionCardColors(
+          borders: ColorsResourcesDark.outlineVariant,
+          bordersCorrect: ColorsResourcesDark.success,
+          bordersIncorrect: ColorsResourcesDark.error,
+          background: ColorsResourcesDark.surfaceContainer,
+          backgroundCorrect: ColorsResourcesDark.onSuccess,
+          backgroundIncorrect: ColorsResourcesDark.onError,
+          text: ColorsResourcesDark.onSurface,
+          textCorrect: ColorsResourcesDark.success,
+          textIncorrect: ColorsResourcesDark.error,
         ),
       ],
       listTileTheme: ListTileThemeData(
@@ -123,7 +135,7 @@ class AppDarkTheme {
         }),
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         // Add more properties if needed
-        // padding: Paddings.zero, // As you already set
+        padding: Paddings.zero,
       ),
 
       ///
@@ -133,9 +145,9 @@ class AppDarkTheme {
         actionsPadding: Paddings.screenSidesPadding,
         titleTextStyle: TextStylesResources.appBar.copyWith(color: ColorsResourcesDark.onSurface),
         surfaceTintColor: Colors.transparent,
-        leadingWidth: 48 + Paddings.screenSidesPadding.right,
+        leadingWidth: SizesResources.iconButtonAppBarHeight + Paddings.screenSidesPadding.right,
+        foregroundColor: ColorsResourcesDark.onSurfaceVariant,
         centerTitle: true,
-        iconTheme: IconThemeData(color: ColorsResourcesDark.onSurfaceVariant),
       ),
 
       ///
@@ -148,18 +160,19 @@ class AppDarkTheme {
 
       ///
       dialogTheme: DialogThemeData(
-        backgroundColor: ColorsResourcesDark.surfaceContainerHigh,
+        backgroundColor: ColorsResourcesDark.surfaceContainer,
+        insetPadding: Paddings.dialogInset,
         shape: RoundedRectangleBorder(borderRadius: BorderRadiusResource.dialogBorderRadius),
       ),
 
       ///
       cardTheme: CardThemeData(
-        elevation: 1,
+        elevation: 0,
         shadowColor: Colors.transparent,
         color: ColorsResourcesDark.surfaceContainer,
         shape: RoundedSuperellipseBorder(
           borderRadius: BorderRadiusResource.cardBorderRadius,
-          side: BorderSide(color: ColorsResourcesDark.outline, width: 0.20),
+          side: BorderSide(color: ColorsResourcesDark.outline, width: 0.25),
         ),
       ),
 
@@ -220,10 +233,14 @@ class AppDarkTheme {
         style: IconButton.styleFrom(
           alignment: Alignment.center,
           padding: Paddings.zero,
+          minimumSize: Size(
+            SizesResources.iconButtonAppBarHeight,
+            SizesResources.iconButtonAppBarHeight,
+          ),
           backgroundColor: ColorsResourcesDark.surface,
           foregroundColor: ColorsResourcesDark.onSurface,
-          shape: RoundedRectangleBorder(
-            side: BorderSide(color: ColorsResourcesDark.outline, width: 0.25),
+          shape: RoundedSuperellipseBorder(
+            side: BorderSide(color: ColorsResourcesDark.outlineVariant, width: 0.75),
             borderRadius: BorderRadiusResource.buttonBorderRadius,
           ),
         ),
@@ -267,15 +284,15 @@ class AppDarkTheme {
 
         border: OutlineInputBorder(
           borderRadius: BorderRadiusResource.fieldBorderRadius,
-          borderSide: const BorderSide(color: ColorsResourcesDark.outline, width: 0.20),
+          borderSide: const BorderSide(color: ColorsResourcesDark.outline, width: 0.5),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadiusResource.fieldBorderRadius,
-          borderSide: const BorderSide(color: ColorsResourcesDark.outline, width: 0.20),
+          borderSide: const BorderSide(color: ColorsResourcesDark.outline, width: 0.5),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadiusResource.fieldBorderRadius,
-          borderSide: const BorderSide(color: ColorsResourcesDark.outline, width: 0.20),
+          borderSide: const BorderSide(color: ColorsResourcesDark.outline, width: 0.5),
         ),
         // errorBorder: OutlineInputBorder(
         //   borderRadius: BorderRadiusResource.fieldBorderRadius,
@@ -284,7 +301,7 @@ class AppDarkTheme {
         filled: true,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadiusResource.fieldBorderRadius,
-          borderSide: const BorderSide(color: ColorsResourcesDark.outline, width: 0.20),
+          borderSide: const BorderSide(color: ColorsResourcesDark.outline, width: 0.5),
         ),
         outlineBorder: BorderSide(color: ColorsResourcesDark.outline),
         contentPadding: Paddings.fieldContentPadding,

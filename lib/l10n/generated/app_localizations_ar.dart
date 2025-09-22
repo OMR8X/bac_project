@@ -30,6 +30,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get buttonsCustomize => 'تخصيص';
 
   @override
+  String get buttonsEditAnswer => 'تعديل الاجابة';
+
+  @override
   String get buttonsFinish => 'إنهاء';
 
   @override
@@ -78,8 +81,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get buttonsUpdateUserData => 'تحديث بياناتك';
 
   @override
-  String get closeQuizDialogBody =>
-      'هل أنت متأكد من رغبتك في إغلاق الاختبار؟ سيتم حفظ إجاباتك الحالية.';
+  String get closeQuizDialogBody => 'هل أنت متأكد من رغبتك في إغلاق الاختبار؟.';
 
   @override
   String get closeQuizDialogTitle => 'إغلاق الاختبار';
@@ -108,6 +110,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get exploreModeDetailsTitle => 'معلومات وضع التصفح';
 
   @override
+  String get hintsTextualOptionHint => 'نص الاجابة';
+
+  @override
   String get homeCardExploreLessonsAction => 'استكشاف الدروس';
 
   @override
@@ -121,6 +126,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get homeTitle => 'الرئيسية';
+
+  @override
+  String get labelsTextualOptionLabel => 'اجابتك';
 
   @override
   String get lessonsTitle => 'الدروس';

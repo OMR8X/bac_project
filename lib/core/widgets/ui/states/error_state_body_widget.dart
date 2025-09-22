@@ -43,7 +43,7 @@ class ErrorStateBodyWidget extends StatelessWidget {
             ),
             SizedBoxes.s6v,
             Text(
-              failure?.message ?? AnonFailure().message,
+              failure?.message ?? UnknownFailure().message,
               style: TextStylesResources.cardMediumSubtitle.copyWith(
                 color: Theme.of(context).colorScheme.onSurfaceVariant,
               ),

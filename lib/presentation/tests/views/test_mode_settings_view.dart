@@ -208,6 +208,7 @@ class _LoadedView extends StatelessWidget {
                       if (state.testOptions.selectedMode != TestMode.exploring) {
                         return const SizedBox.shrink();
                       }
+
                       return StaggeredItemWrapperWidget(
                         key: ValueKey(state.testOptions.selectedMode),
                         position: 1,

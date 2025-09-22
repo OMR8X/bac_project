@@ -11,9 +11,9 @@ part 'explore_results_state.dart';
 
 class ExploreResultsBloc extends Bloc<ExploreResultsEvent, ExploreResultsState> {
   final GetMyResultsUsecase getMyResultsUsecase;
-  late int? lessonId;
-  late int? limit;
-  late int? offset;
+  int? lessonId;
+  int? limit;
+  int? offset;
   ExploreResultsBloc({required this.getMyResultsUsecase}) : super(ExploreResultsLoading()) {
     on<FetchResults>(_onFetchResults);
     on<RefreshResults>(_onRefreshResults);

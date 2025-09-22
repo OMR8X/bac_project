@@ -1,9 +1,7 @@
 import 'dart:math';
 
-import 'package:bac_project/features/tests/domain/entities/question.dart';
-import 'package:bac_project/features/tests/domain/entities/result_answer.dart';
+import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
 
-import 'user_answer.dart';
 import 'result_test_mode.dart';
 
 class Result {
@@ -22,7 +20,7 @@ class Result {
   final int durationSeconds;
   final ResultTestMode? resultTestMode;
   // User Answers
-  final List<ResultAnswer> answers;
+  final List<QuestionAnswer> questionAnswers;
   // Timestamps
   final DateTime createdAt;
   final DateTime updatedAt;
@@ -39,7 +37,7 @@ class Result {
     required this.score,
     required this.durationSeconds,
     this.resultTestMode,
-    required this.answers,
+    required this.questionAnswers,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -56,7 +54,7 @@ class Result {
       score: Random().nextDouble(),
       durationSeconds: Random().nextInt(100),
       resultTestMode: ResultTestMode.testing,
-      answers: [],
+      questionAnswers: [],
       createdAt: DateTime.now().add(Duration(days: -Random().nextInt(100))),
       updatedAt: DateTime.now().add(Duration(days: -Random().nextInt(100))),
     );
@@ -74,7 +72,7 @@ class Result {
     double? score,
     int? durationSeconds,
     ResultTestMode? resultTestMode,
-    List<ResultAnswer>? answers,
+    List<QuestionAnswer>? questionAnswers,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
@@ -90,7 +88,7 @@ class Result {
       score: score ?? this.score,
       durationSeconds: durationSeconds ?? this.durationSeconds,
       resultTestMode: resultTestMode ?? this.resultTestMode, // Add this line
-      answers: answers ?? this.answers,
+      questionAnswers: questionAnswers ?? this.questionAnswers,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
     );
@@ -111,7 +109,7 @@ class Result {
         other.score == score &&
         other.durationSeconds == durationSeconds &&
         other.resultTestMode == resultTestMode && // Add this line
-        other.answers == answers &&
+        other.questionAnswers == questionAnswers &&
         other.createdAt == createdAt &&
         other.updatedAt == updatedAt;
   }
@@ -129,11 +127,11 @@ class Result {
       score.hashCode ^
       durationSeconds.hashCode ^
       (resultTestMode?.hashCode ?? 0) ^ // Add this line
-      answers.hashCode ^
+      questionAnswers.hashCode ^
       createdAt.hashCode ^
       updatedAt.hashCode;
 
   @override
   String toString() =>
-      'Result(id: $id, userId: $userId, lessonId: $lessonId, lessonTitle: $lessonTitle, resultOrder: $resultOrder, totalQuestions: $totalQuestions, correctAnswers: $correctAnswers, wrongAnswers: $wrongAnswers, score: $score, durationSeconds: $durationSeconds, resultTestMode: $resultTestMode, answers: $answers, createdAt: $createdAt, updatedAt: $updatedAt)';
+      'Result(id: $id, userId: $userId, lessonId: $lessonId, lessonTitle: $lessonTitle, resultOrder: $resultOrder, totalQuestions: $totalQuestions, correctAnswers: $correctAnswers, wrongAnswers: $wrongAnswers, score: $score, durationSeconds: $durationSeconds, resultTestMode: $resultTestMode, questionAnswers: $questionAnswers, createdAt: $createdAt, updatedAt: $updatedAt)';
 }

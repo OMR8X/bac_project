@@ -1,9 +1,9 @@
+import 'package:bac_project/features/tests/data/mappers/question_answer_mapper.dart';
 import 'package:bac_project/features/tests/data/mappers/question_mapper.dart';
-import 'package:bac_project/features/tests/data/mappers/result_answer_mapper.dart';
+import 'package:bac_project/features/tests/data/models/question_answer_model.dart';
 import 'package:bac_project/features/tests/data/models/question_model.dart';
-import 'package:bac_project/features/tests/data/models/result_answer_model.dart';
+import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
 import 'package:bac_project/features/tests/domain/entities/question.dart';
-import 'package:bac_project/features/tests/domain/entities/result_answer.dart';
 import 'package:bac_project/features/tests/domain/entities/result_test_mode.dart';
 
 import '../../domain/entities/result.dart';
@@ -21,7 +21,7 @@ class ResultModel extends Result {
     required super.score,
     required super.durationSeconds,
     super.resultTestMode,
-    required super.answers,
+    required super.questionAnswers,
     required super.createdAt,
     required super.updatedAt,
   });
@@ -42,9 +42,9 @@ class ResultModel extends Result {
           json['result_test_mode'] == null
               ? null
               : ResultTestMode.values.byName(json['result_test_mode'] as String),
-      answers:
-          (json['answers'] as List<dynamic>?)
-              ?.map((a) => ResultAnswerModel.fromJson(a as Map<String, dynamic>))
+      questionAnswers:
+          (json['question_answers'] as List<dynamic>?)
+              ?.map((a) => QuestionAnswerModel.fromJson(a as Map<String, dynamic>))
               .toList() ??
           [],
       createdAt: DateTime.parse(json['created_at'] as String),
@@ -65,7 +65,7 @@ class ResultModel extends Result {
       'score': score,
       'duration_seconds': durationSeconds,
       'result_test_mode': resultTestMode?.name,
-      'answers': answers.map((a) => (a.toModel().toJson())).toList(),
+      'question_answers': questionAnswers.map((a) => (a.toModel().toJson())).toList(),
       'created_at': createdAt.toIso8601String(),
       'updated_at': updatedAt.toIso8601String(),
     };
@@ -84,7 +84,7 @@ class ResultModel extends Result {
     double? score,
     int? durationSeconds,
     ResultTestMode? resultTestMode,
-    List<ResultAnswer>? answers,
+    List<QuestionAnswer>? questionAnswers,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
@@ -99,7 +99,7 @@ class ResultModel extends Result {
       wrongAnswers: wrongAnswers ?? this.wrongAnswers,
       score: score ?? this.score,
       durationSeconds: durationSeconds ?? this.durationSeconds,
-      answers: answers ?? this.answers,
+      questionAnswers: questionAnswers ?? this.questionAnswers,
       resultTestMode: resultTestMode ?? this.resultTestMode,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,

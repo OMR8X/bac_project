@@ -14,6 +14,7 @@ class QuestionsNotExistsFailure extends Failure {
 
   const QuestionsNotExistsFailure({String? message}) : super(message ?? _defaultMessage);
 }
+
 class FileNotExistsFailure extends Failure {
   static const String _defaultMessage = "الملف غير موجود";
 
@@ -32,10 +33,10 @@ class CanceledFailure extends Failure {
   const CanceledFailure({String? message}) : super(message ?? _defaultMessage);
 }
 
-class AnonFailure extends Failure {
+class UnknownFailure extends Failure {
   static const String _defaultMessage = "حصل خطأ غير معروف";
 
-  const AnonFailure({String? message}) : super(message ?? _defaultMessage);
+  const UnknownFailure({String? message}) : super(message ?? _defaultMessage);
 }
 
 class CacheFailure extends Failure {

@@ -136,6 +136,12 @@ abstract class AppLocalizations {
   /// **'تخصيص'**
   String get buttonsCustomize;
 
+  /// No description provided for @buttonsEditAnswer.
+  ///
+  /// In ar, this message translates to:
+  /// **'تعديل الاجابة'**
+  String get buttonsEditAnswer;
+
   /// No description provided for @buttonsFinish.
   ///
   /// In ar, this message translates to:
@@ -235,7 +241,7 @@ abstract class AppLocalizations {
   /// No description provided for @closeQuizDialogBody.
   ///
   /// In ar, this message translates to:
-  /// **'هل أنت متأكد من رغبتك في إغلاق الاختبار؟ سيتم حفظ إجاباتك الحالية.'**
+  /// **'هل أنت متأكد من رغبتك في إغلاق الاختبار؟.'**
   String get closeQuizDialogBody;
 
   /// No description provided for @closeQuizDialogTitle.
@@ -286,6 +292,12 @@ abstract class AppLocalizations {
   /// **'معلومات وضع التصفح'**
   String get exploreModeDetailsTitle;
 
+  /// No description provided for @hintsTextualOptionHint.
+  ///
+  /// In ar, this message translates to:
+  /// **'نص الاجابة'**
+  String get hintsTextualOptionHint;
+
   /// No description provided for @homeCardExploreLessonsAction.
   ///
   /// In ar, this message translates to:
@@ -315,6 +327,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'الرئيسية'**
   String get homeTitle;
+
+  /// No description provided for @labelsTextualOptionLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'اجابتك'**
+  String get labelsTextualOptionLabel;
 
   /// No description provided for @lessonsTitle.
   ///

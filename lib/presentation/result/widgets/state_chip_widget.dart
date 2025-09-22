@@ -13,11 +13,13 @@ class StatChip extends StatelessWidget {
     required this.subtitle,
     required this.iconPath,
     this.onTap,
+    this.iconColor,
   });
 
   final String title;
   final String subtitle;
   final String iconPath;
+  final Color? iconColor;
   final VoidCallback? onTap;
 
   @override
@@ -52,14 +54,14 @@ class StatChip extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: SpacesResources.s1),
-                    Text(
-                      subtitle,
-                      style: TextStylesResources.statLabelStyle.copyWith(
-                        color: theme.colorScheme.onSurfaceVariant,
-                        fontSize: FontSizeResources.s9,
-                      ),
-                    ),
+                    // const SizedBox(height: SpacesResources.s1),
+                    // Text(
+                    //   subtitle,
+                    //   style: TextStylesResources.statLabelStyle.copyWith(
+                    //     color: theme.colorScheme.onSurfaceVariant.lighter(0.4),
+                    //     fontSize: FontSizeResources.s9,
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -68,7 +70,7 @@ class StatChip extends StatelessWidget {
                 iconPath,
                 width: 16,
                 height: 16,
-                color: theme.colorScheme.onSurfaceVariant.lighter(0.25),
+                color: iconColor ?? theme.colorScheme.onSurface,
               ),
             ],
           ),

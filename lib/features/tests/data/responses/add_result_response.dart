@@ -1,3 +1,5 @@
+import 'package:bac_project/core/resources/errors/error_mapper.dart';
+
 import '../models/result_model.dart';
 
 class AddResultResponse {
@@ -6,6 +8,12 @@ class AddResultResponse {
   const AddResultResponse({required this.result});
 
   factory AddResultResponse.fromJson(Map<String, dynamic> json) {
-    return AddResultResponse(result: ResultModel.fromJson(json));
+    try {
+      return AddResultResponse(result: ResultModel.fromJson(json['result']));
+    } on Error catch (e) {
+      throw e.toException;
+    } on Exception {
+      rethrow;
+    }
   }
 }

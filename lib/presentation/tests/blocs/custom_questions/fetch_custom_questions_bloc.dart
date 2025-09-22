@@ -45,7 +45,9 @@ class FetchCustomQuestionsBloc extends Bloc<FetchCustomQuestionsEvent, FetchCust
 
           ///
           final result = await getQuestionsByIdsUsecase(
-            GetQuestionsByIdsRequest(questionIds: response.result.answers.map((e) => e.questionId).toList()),
+            GetQuestionsByIdsRequest(
+              questionIds: response.result.questionAnswers.map((e) => e.questionId).toList(),
+            ),
           );
 
           ///

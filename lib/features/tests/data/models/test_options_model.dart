@@ -28,6 +28,10 @@ class TestOptionsModel extends TestOptions {
                   id: category['id'] as int,
                   title: category['title'] as String,
                   questionsCount: category['questions_count'] as int?,
+                  isTypeable: category['is_typeable'] as bool,
+                  isOrderable: category['is_orderable'] as bool,
+                  isMCQ: category['is_mcq'] as bool,
+                  isSingleAnswer: category['is_single_answer'] as bool,
                 ),
               )
               .toList(),
@@ -43,6 +47,10 @@ class TestOptionsModel extends TestOptions {
                   id: category['id'] as int,
                   title: category['title'] as String,
                   questionsCount: category['questions_count'] as int?,
+                  isTypeable: category['is_typeable'] as bool,
+                  isOrderable: category['is_orderable'] as bool,
+                  isMCQ: category['is_mcq'] as bool,
+                  isSingleAnswer: category['is_single_answer'] as bool,
                 ),
               )
               .toList(),
@@ -61,6 +69,10 @@ class TestOptionsModel extends TestOptions {
                   'id': category.id,
                   'title': category.title,
                   'questions_count': category.questionsCount,
+                  'is_typeable': category.isTypeable,
+                  'is_orderable': category.isOrderable,
+                  'is_mcq': category.isMCQ,
+                  'is_single_answer': category.isSingleAnswer,
                 },
               )
               .toList(),

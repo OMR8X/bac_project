@@ -1,4 +1,5 @@
 import 'package:bac_project/features/tests/domain/entities/option.dart';
+import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
 import 'package:collection/collection.dart';
 
 class Question {
@@ -18,6 +19,8 @@ class Question {
 
   final String? explain;
 
+  final List<QuestionAnswer> questionAnswers;
+
   const Question({
     required this.id,
     required this.content,
@@ -28,7 +31,15 @@ class Question {
     this.categoryId,
     this.isMCQ,
     this.explain,
+    this.questionAnswers = const [],
   });
+
+  String getImageUrl() {
+    if (imageUrl != null) {
+      return 'https://hvccufhuqizyposxasck.supabase.co/storage/v1/object/public/$imageUrl';
+    }
+    return '';
+  }
 
   bool? trueAnswer(int answerId) {
     return options.firstWhereOrNull((option) => option.isCorrect ?? false)?.id == answerId;
@@ -44,6 +55,7 @@ class Question {
     int? categoryId,
     bool? isMCQ,
     String? explain,
+    List<QuestionAnswer>? questionAnswers,
   }) {
     return Question(
       id: id ?? this.id,
@@ -55,41 +67,25 @@ class Question {
       categoryId: categoryId ?? this.categoryId,
       isMCQ: isMCQ ?? this.isMCQ,
       explain: explain ?? this.explain,
+      questionAnswers: questionAnswers ?? this.questionAnswers,
     );
   }
 
   @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    return other is Question &&
-        other.id == id &&
-        other.content == content &&
-        other.options == options &&
-        other.unitId == unitId &&
-        other.lessonId == lessonId &&
-        other.imageUrl == imageUrl &&
-        other.categoryId == categoryId &&
-        other.isMCQ == isMCQ &&
-        other.explain == explain;
-  }
-
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      content.hashCode ^
-      options.hashCode ^
-      unitId.hashCode ^
-      lessonId.hashCode ^
-      (imageUrl?.hashCode ?? 0) ^
-      (categoryId?.hashCode ?? 0) ^
-      (isMCQ?.hashCode ?? 0) ^
-      (explain?.hashCode ?? 0);
-
-  @override
   String toString() =>
-      'Question(id: $id, content: $content, options: $options, unitId: $unitId, lessonId: $lessonId, imageUrl: $imageUrl, categoryId: $categoryId, isMCQ: $isMCQ, explain: $explain)';
+      'Question(id: $id, content: $content, options: $options, unitId: $unitId, lessonId: $lessonId, imageUrl: $imageUrl, categoryId: $categoryId, isMCQ: $isMCQ, explain: $explain, questionAnswers: $questionAnswers  )';
 
   static Question empty() {
-    return Question(id: 0, content: '', options: [], lessonId: 0, imageUrl: null, categoryId: null, isMCQ: null, explain: null);
+    return Question(
+      id: 0,
+      content: '',
+      options: [],
+      lessonId: 0,
+      imageUrl: null,
+      categoryId: null,
+      isMCQ: null,
+      explain: null,
+      questionAnswers: [],
+    );
   }
 }

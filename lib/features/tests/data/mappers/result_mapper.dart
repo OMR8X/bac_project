@@ -15,7 +15,7 @@ extension ResultModelExtension on ResultModel {
       score: score,
       durationSeconds: durationSeconds,
       resultTestMode: resultTestMode,
-      answers: answers,
+      questionAnswers: questionAnswers,
       createdAt: createdAt,
       updatedAt: updatedAt,
     );
@@ -36,7 +36,7 @@ extension ResultEntityExtension on Result {
       score: score,
       durationSeconds: durationSeconds,
       resultTestMode: resultTestMode,
-      answers: answers,
+      questionAnswers: questionAnswers,
       createdAt: createdAt,
       updatedAt: updatedAt,
     );

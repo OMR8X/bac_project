@@ -6,6 +6,8 @@ class SizesResources {
   ///
   static const double sizeUnit = 2;
   //
+  static const double fieldMediumHeight = 48;
+  //
   static const double buttonSmallHeight = 38;
   static const double buttonMediumHeight = 44;
   static const double buttonLargeHeight = 55;

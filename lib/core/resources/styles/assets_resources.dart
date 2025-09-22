@@ -91,6 +91,10 @@ class UIImagesResources {
   static const String exportUIIcon = '$path/icons/export_icon.png';
   static const String eyeUIIcon = '$path/icons/eye_icon.png';
 
+  static const String penIcon = '$path/icons/pen_icon.png';
+  static const String checkIcon = '$path/icons/check_icon.png';
+  static const String dragHandlerIcon = '$path/icons/drag_handler_icon.png';
+
   //
 }
 

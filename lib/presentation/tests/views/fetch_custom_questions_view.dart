@@ -68,7 +68,7 @@ class _FetchCustomQuestionsErrorView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ErrorStateBodyWidget(
       title: 'Failed to Load Questions',
-      failure: AnonFailure(message: state.message),
+      failure: UnknownFailure(message: state.message),
       onRetry: () {
         context.read<FetchCustomQuestionsBloc>().add(const FetchCustomQuestionsRetry());
       },

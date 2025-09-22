@@ -21,7 +21,6 @@ class QuestionCardWidget extends StatelessWidget {
       child: ListTile(
         contentPadding: Paddings.questionCardPadding,
         shape: getShape(context),
-
         title: Column(
           spacing: SpacesResources.s4,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -35,15 +34,12 @@ class QuestionCardWidget extends StatelessWidget {
               Card(
                 shape: getShape(context),
                 margin: Margins.questionImageMargin,
-                child: Padding(
-                  padding: Paddings.questionImagePadding,
-                  child: Image.network(
-                    question.imageUrl!,
-                    frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
-                      if (frame != null) return child;
-                      return Center(child: CupertinoActivityIndicator());
-                    },
-                  ),
+                child: Image.network(
+                  question.getImageUrl(),
+                  frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+                    if (frame != null) return child;
+                    return Center(child: CupertinoActivityIndicator());
+                  },
                 ),
               ),
           ],

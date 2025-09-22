@@ -11,7 +11,7 @@ import 'package:bac_project/presentation/result/bloc/submit_results/explore_resu
 import 'package:bac_project/presentation/result/views/explore_result_view.dart';
 import 'package:bac_project/presentation/tests/blocs/test_mode_settings/test_mode_settings_bloc.dart';
 import 'package:bac_project/presentation/tests/views/pick_lessons_view.dart';
-import 'package:bac_project/presentation/tests/views/quizzing_view.dart';
+import 'package:bac_project/presentation/quizzing/views/quizzing_view.dart';
 import 'package:bac_project/presentation/tests/views/fetch_custom_questions_view.dart';
 import 'package:bac_project/presentation/tests/widgets/set_test_properties.dart';
 import 'package:bac_project/presentation/search/views/search_view.dart';
@@ -273,94 +273,6 @@ class AppRouter {
             ),
       ),
 
-      /// add page view route
-      StatefulShellRoute.indexedStack(
-        builder: (context, state, navigationShell) {
-          return PagesHolderView(navigationShell: navigationShell);
-        },
-        branches: [
-          StatefulShellBranch(
-            navigatorKey: _rootNavigatorHome,
-            routes: [
-              ///
-              /// Home route
-              GoRoute(
-                name: AppRoutes.home.name,
-                path: AppRoutes.home.path,
-                pageBuilder:
-                    (context, state) => CustomTransitionPage(
-                      key: state.pageKey,
-                      transitionDuration: AppTransitions.transitionDuration,
-                      reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
-                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                        return AppTransitions.commonTransition(
-                          context,
-                          animation,
-                          secondaryAnimation,
-                          child,
-                        );
-                      },
-                      child: HomeView(key: state.pageKey),
-                    ),
-              ),
-            ],
-          ),
-          StatefulShellBranch(
-            navigatorKey: _rootNavigatorResult,
-            routes: [
-              ///
-              /// Result route
-              GoRoute(
-                name: AppRoutes.exploreResults.name,
-                path: AppRoutes.exploreResults.path,
-                pageBuilder:
-                    (context, state) => CustomTransitionPage(
-                      key: state.pageKey,
-                      transitionDuration: AppTransitions.transitionDuration,
-                      reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
-                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                        return AppTransitions.commonTransition(
-                          context,
-                          animation,
-                          secondaryAnimation,
-                          child,
-                        );
-                      },
-                      child: ExploreResultsView(key: state.pageKey),
-                    ),
-              ),
-            ],
-          ),
-
-          StatefulShellBranch(
-            navigatorKey: _rootNavigatorSetting,
-            routes: [
-              ///
-              /// Setting route
-              GoRoute(
-                name: AppRoutes.setting.name,
-                path: AppRoutes.setting.path,
-                pageBuilder:
-                    (context, state) => CustomTransitionPage(
-                      key: state.pageKey,
-                      transitionDuration: AppTransitions.transitionDuration,
-                      reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
-                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                        return AppTransitions.commonTransition(
-                          context,
-                          animation,
-                          secondaryAnimation,
-                          child,
-                        );
-                      },
-                      child: SettingView(key: state.pageKey),
-                    ),
-              ),
-            ],
-          ),
-        ],
-      ),
-
       // Search route
       GoRoute(
         name: AppRoutes.search.name,
@@ -462,6 +374,94 @@ class AppRouter {
                 quote: (state.extra as MotivationalQuoteArguments).quote,
               ),
             ),
+      ),
+
+      /// add page view route
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) {
+          return PagesHolderView(navigationShell: navigationShell);
+        },
+        branches: [
+          StatefulShellBranch(
+            navigatorKey: _rootNavigatorHome,
+            routes: [
+              ///
+              /// Home route
+              GoRoute(
+                name: AppRoutes.home.name,
+                path: AppRoutes.home.path,
+                pageBuilder:
+                    (context, state) => CustomTransitionPage(
+                      key: state.pageKey,
+                      transitionDuration: AppTransitions.transitionDuration,
+                      reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                        return AppTransitions.commonTransition(
+                          context,
+                          animation,
+                          secondaryAnimation,
+                          child,
+                        );
+                      },
+                      child: HomeView(key: state.pageKey),
+                    ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            navigatorKey: _rootNavigatorResult,
+            routes: [
+              ///
+              /// Result route
+              GoRoute(
+                name: AppRoutes.exploreResults.name,
+                path: AppRoutes.exploreResults.path,
+                pageBuilder:
+                    (context, state) => CustomTransitionPage(
+                      key: state.pageKey,
+                      transitionDuration: AppTransitions.transitionDuration,
+                      reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                        return AppTransitions.commonTransition(
+                          context,
+                          animation,
+                          secondaryAnimation,
+                          child,
+                        );
+                      },
+                      child: ExploreResultsView(key: state.pageKey),
+                    ),
+              ),
+            ],
+          ),
+
+          StatefulShellBranch(
+            navigatorKey: _rootNavigatorSetting,
+            routes: [
+              ///
+              /// Setting route
+              GoRoute(
+                name: AppRoutes.setting.name,
+                path: AppRoutes.setting.path,
+                pageBuilder:
+                    (context, state) => CustomTransitionPage(
+                      key: state.pageKey,
+                      transitionDuration: AppTransitions.transitionDuration,
+                      reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                        return AppTransitions.commonTransition(
+                          context,
+                          animation,
+                          secondaryAnimation,
+                          child,
+                        );
+                      },
+                      child: SettingView(key: state.pageKey),
+                    ),
+              ),
+            ],
+          ),
+        ],
       ),
     ],
   );

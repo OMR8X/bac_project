@@ -2,6 +2,7 @@ import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/colors_resources.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/extra_colors.dart';
+import 'package:bac_project/core/resources/themes/extensions/option_card_colors.dart';
 import 'package:bac_project/core/resources/themes/extensions/surface_container_colors.dart';
 import 'package:flutter/material.dart';
 import '../styles/font_styles_manager.dart';
@@ -58,6 +59,17 @@ class AppLightTheme {
           pink: ColorsResourcesLight.pink,
           red: ColorsResourcesLight.error,
           primaryState: ColorsResourcesLight.primaryState,
+        ),
+        OptionCardColors(
+          borders: ColorsResourcesLight.outlineVariant,
+          bordersCorrect: ColorsResourcesLight.success.withAlpha(100),
+          bordersIncorrect: ColorsResourcesLight.error.withAlpha(100),
+          background: ColorsResourcesLight.surfaceContainer,
+          backgroundCorrect: ColorsResourcesLight.onSuccess.withAlpha(50),
+          backgroundIncorrect: ColorsResourcesLight.onError.withAlpha(50),
+          text: ColorsResourcesLight.onSurface,
+          textCorrect: ColorsResourcesLight.success,
+          textIncorrect: ColorsResourcesLight.error,
         ),
       ],
       listTileTheme: ListTileThemeData(

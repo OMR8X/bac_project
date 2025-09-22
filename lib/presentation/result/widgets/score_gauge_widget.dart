@@ -43,7 +43,7 @@ class ScoreGauge extends StatelessWidget {
                 percentage: percentage,
                 backgroundColor: theme.colorScheme.primaryContainer,
                 foregroundColor: theme.colorScheme.onSurface,
-                strokeWidth: 36,
+                strokeWidth: 24,
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -126,7 +126,7 @@ class ArcGaugePainter extends CustomPainter {
     required this.percentage,
     required this.backgroundColor,
     required this.foregroundColor,
-    this.strokeWidth = 22.0,
+    this.strokeWidth = 24.0,
   });
 
   final double percentage;
@@ -138,7 +138,6 @@ class ArcGaugePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final center = size.bottomCenter(Offset.zero);
     final radius = size.shortestSide;
-
     final backgroundPaint =
         Paint()
           ..color = backgroundColor

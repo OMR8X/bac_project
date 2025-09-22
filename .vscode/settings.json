@@ -1,5 +1,14 @@
 {
-  "dart.lineLength": 100,
-  
-
+   "dart.lineLength": 100,
+   "deno.enable": true,
+   "deno.enablePaths": [
+      "./supabase/functions"
+    ],
+   "deno.lint": true,
+   "deno.unstable": true,
+   "[typescript]": {
+     "editor.defaultFormatter": "denoland.vscode-deno"
+   },
+   "typescript.preferences.importModuleSpecifier": "relative",
+   "typescript.suggest.autoImports": true
 }

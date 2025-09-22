@@ -1,0 +1,45 @@
+{
+  "model": "gemini-2.5-flash",
+  "contents": [
+    {
+      "parts": [
+        {
+          "text": "Compare each student answer to the correct answer.\nReturn a JSON array of results.\nIf they are not matched, include why.\nAccept paraphrased answers as correct if they mean the same thing.\nHere are the pairs: {{pairs}}"
+        }
+      ]
+    }
+  ],
+  "config": {
+    "responseMimeType": "application/json",
+    "systemInstruction": "",
+    "thinkingConfig": {
+      "thinkingBudget": 0
+    },
+    "responseSchema": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "correct_answer": {
+            "type": "string"
+          },
+          "user_answer": {
+            "type": "string"
+          },
+          "is_correct": {
+            "type": "boolean"
+          }
+        },
+        "propertyOrdering": [
+          "id",
+          "correct_answer",
+          "user_answer",
+          "is_correct"
+        ]
+      }
+    }
+  }
+}
