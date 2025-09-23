@@ -7,14 +7,13 @@ showAppBottomSheet({
   required Widget child,
   String? title,
   List<Widget>? actions,
+  bool showDragHandle = true,
 }) {
   showModalBottomSheet(
     context: context,
-
-    showDragHandle: true,
+    showDragHandle: showDragHandle,
     enableDrag: true,
     useSafeArea: true,
-
     // backgroundColor: Colors.transparent,
     isScrollControlled: true,
     constraints: BoxConstraints(

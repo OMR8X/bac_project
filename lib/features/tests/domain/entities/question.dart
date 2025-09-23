@@ -1,3 +1,4 @@
+import 'package:bac_project/features/tests/domain/entities/answer_evaluation.dart';
 import 'package:bac_project/features/tests/domain/entities/option.dart';
 import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
 import 'package:collection/collection.dart';
@@ -20,6 +21,7 @@ class Question {
   final String? explain;
 
   final List<QuestionAnswer> questionAnswers;
+  final List<AnswerEvaluation> answerEvaluations;
 
   const Question({
     required this.id,
@@ -32,6 +34,7 @@ class Question {
     this.isMCQ,
     this.explain,
     this.questionAnswers = const [],
+    this.answerEvaluations = const [],
   });
 
   String getImageUrl() {
@@ -56,6 +59,7 @@ class Question {
     bool? isMCQ,
     String? explain,
     List<QuestionAnswer>? questionAnswers,
+    List<AnswerEvaluation>? answerEvaluations,
   }) {
     return Question(
       id: id ?? this.id,
@@ -68,12 +72,13 @@ class Question {
       isMCQ: isMCQ ?? this.isMCQ,
       explain: explain ?? this.explain,
       questionAnswers: questionAnswers ?? this.questionAnswers,
+      answerEvaluations: answerEvaluations ?? this.answerEvaluations,
     );
   }
 
   @override
   String toString() =>
-      'Question(id: $id, content: $content, options: $options, unitId: $unitId, lessonId: $lessonId, imageUrl: $imageUrl, categoryId: $categoryId, isMCQ: $isMCQ, explain: $explain, questionAnswers: $questionAnswers  )';
+      'Question(id: $id, content: $content, options: $options, unitId: $unitId, lessonId: $lessonId, imageUrl: $imageUrl, categoryId: $categoryId, isMCQ: $isMCQ, explain: $explain, questionAnswers: $questionAnswers, answerEvaluations: $answerEvaluations)';
 
   static Question empty() {
     return Question(
@@ -86,6 +91,7 @@ class Question {
       isMCQ: null,
       explain: null,
       questionAnswers: [],
+      answerEvaluations: [],
     );
   }
 }

@@ -1,4 +1,5 @@
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
+import 'package:bac_project/features/tests/domain/entities/answer_evaluation.dart';
+import 'package:bac_project/presentation/result/widgets/answer_evaluations_notes_widget.dart';
 import 'package:bac_project/presentation/quizzing/widgets/option_orderable_card_widget.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -15,10 +16,12 @@ class OrderableQuestionBuilderWidget extends StatelessWidget {
     required this.question,
     this.testMode,
     this.onSubmitOrder,
+    this.answerEvaluations,
   });
   final TestMode? testMode;
   final Question question;
   final List<QuestionAnswer> questionsAnswers;
+  final List<AnswerEvaluation>? answerEvaluations;
   final Function(List<QuestionAnswer> answers)? onSubmitOrder;
 
   List<Option> _buildOrderedOptions() {
@@ -63,17 +66,24 @@ class OrderableQuestionBuilderWidget extends StatelessWidget {
         final questionAnswer = questionsAnswers.firstWhereOrNull(
           (answer) => answer.optionId == option.id,
         );
-        return Container(
+        final evaluation = answerEvaluations?.firstWhereOrNull(
+          (evaluation) => evaluation.questionAnswerId == questionAnswer?.id,
+        );
+        return Column(
           key: ValueKey(option.id),
-
-          child: OptionOrderableCardWidget(
-            questionAnswer: questionAnswer,
-            option: option.copyWith(sortOrder: index + 1),
-            testMode: testMode,
-            didAnswer: false,
-            isReviewMode: onSubmitOrder == null,
-            index: index,
-          ),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            OptionOrderableCardWidget(
+              questionAnswer: questionAnswer,
+              option: option.copyWith(sortOrder: index + 1),
+              testMode: testMode,
+              didAnswer: false,
+              index: index,
+            ),
+              AnswerEvaluationsNotesWidget(
+                answerEvaluation: evaluation,
+              ),
+          ],
         );
       },
     );

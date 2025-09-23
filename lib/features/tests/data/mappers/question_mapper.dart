@@ -16,6 +16,8 @@ extension QuestionModelExtension on QuestionModel {
       categoryId: (this as dynamic).categoryId as int?,
       isMCQ: (this as dynamic).isMCQ as bool?,
       explain: (this as dynamic).explain as String?,
+      questionAnswers: questionAnswers,
+      answerEvaluations: answerEvaluations,
     );
   }
 }
@@ -32,6 +34,8 @@ extension QuestionEntityExtension on Question {
       categoryId: (this as dynamic).categoryId as int?,
       isMCQ: (this as dynamic).isMCQ as bool?,
       explain: (this as dynamic).explain as String?,
+      questionAnswers: questionAnswers,
+      answerEvaluations: answerEvaluations,
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:bac_project/features/tests/domain/usecases/get_answer_evaluations_use_case.dart';
 import 'package:bac_project/features/tests/domain/usecases/get_lessons_use_case.dart';
 import 'package:bac_project/features/tests/domain/usecases/get_questions_by_ids_use_case.dart';
 import 'package:bac_project/features/tests/domain/usecases/get_questions_use_case.dart';
@@ -47,6 +48,9 @@ Future<void> usecases() async {
   sl.registerLazySingleton<GetTestOptionsUsecase>(() => GetTestOptionsUsecase(repository: sl()));
   sl.registerLazySingleton<AddResultUsecase>(() => AddResultUsecase(repository: sl()));
   sl.registerLazySingleton<GetMyResultsUsecase>(() => GetMyResultsUsecase(repository: sl()));
+  sl.registerLazySingleton<GetAnswerEvaluationsUsecase>(
+    () => GetAnswerEvaluationsUsecase(repository: sl()),
+  );
   sl.registerLazySingleton<GetQuestionsByIdsUsecase>(
     () => GetQuestionsByIdsUsecase(repository: sl()),
   );

@@ -37,7 +37,10 @@ class SupabaseEndpoints {
   static const getResultLeaderboardFunctionEndpoint = "fn_api_results_get_result_leaderboard";
   static const getTestOptionsFunctionEndpoint = "fn_api_questions_get_test_options";
   static const getQuestionsByIdsFunctionEndpoint = "fn_api_questions_get_questions_by_ids";
-  static const getResultQuestionsWithAnswersFunctionEndpoint = "fn_api_results_get_result_questions_with_answers";
+  static const getAnswersEvaluationsByIdsFunctionEndpoint =
+      "fn_api_evaluations_get_answers_evaluations_by_ids";
+  static const getResultQuestionsWithAnswersFunctionEndpoint =
+      "fn_api_results_get_result_questions_with_answers";
   static const addUserResultEdgeFunctionEndpoint = "add_user_result";
 
   ///

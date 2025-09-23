@@ -5,9 +5,11 @@ import '../../domain/requests/get_lessons_request.dart';
 import '../../domain/requests/get_test_options_request.dart';
 import '../../domain/requests/get_questions_request.dart';
 import '../../domain/requests/get_questions_by_ids_request.dart';
+import '../../domain/requests/get_answer_evaluations_request.dart';
 import '../responses/get_lessons_response.dart';
 import '../responses/get_units_response.dart';
 import '../responses/get_test_options_response.dart';
+import '../responses/get_answer_evaluations_response.dart';
 
 abstract class TestsRemoteDataSource {
   Future<GetUnitsResponse> getUnits(GetUnitsRequest request);
@@ -15,4 +17,5 @@ abstract class TestsRemoteDataSource {
   Future<GetQuestionsResponse> getQuestions(GetQuestionsRequest request);
   Future<GetQuestionsResponse> getQuestionsByIds(GetQuestionsByIdsRequest request);
   Future<GetTestOptionsResponse> getTestOptions(GetTestOptionsRequest request);
+  Future<GetAnswerEvaluationsResponse> getAnswerEvaluations(GetAnswerEvaluationsRequest request);
 }

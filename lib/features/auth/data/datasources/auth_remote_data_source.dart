@@ -180,7 +180,6 @@ class AuthRemoteDataSourceImplements implements AuthRemoteDataSource {
 
   @override
   Future<UpdateUserDataResponse> updateUserData({required UpdateUserDataRequest request}) async {
-    print("email: ${request.email}");
     final supabase = Supabase.instance.client;
     final attributes = UserAttributes(
       email: request.email,

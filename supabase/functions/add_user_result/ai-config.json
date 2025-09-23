@@ -5,7 +5,7 @@
       "parts": [
         {
           
-          "text": "Compare each student answer to the correct answer and return a JSON array of results. Use the acceptance rules below exactly. Always return valid JSON matching the responseSchema.Acceptance rules:1) Accept paraphrases and equivalent statements as CORRECT if they preserve the same meaning. Use semantic similarity, not just token overlap.2) If answer is partially correct, mark is_correct=false and explain missing/wrong parts in notes.3) Provide a numeric similarity score (0-100). Use it to compute confidence.4) If confidence < 60, set notes to include 'low_confidence' and why (ambiguity/short answer/mismatch).Pairs to evaluate: {{pairs}}"
+          "text": "Compare each student answer to the correct answer and return a JSON array of results. Use the acceptance rules below exactly. Always return valid JSON matching the responseSchema.Acceptance rules:1) Accept paraphrases and equivalent statements as CORRECT if they preserve the same meaning. Use semantic similarity, not just token overlap.2) If answer is partially correct, mark is_correct=false and explain missing/wrong parts in notes (notes should be in arabic language).3) Provide a numeric similarity score (0-100). Use it to compute confidence.4) If confidence < 60, set notes to include details about 'why the low confidence' and why (ambiguity/short answer/mismatch).Pairs to evaluate: {{pairs}}"
 
         }
       ]

@@ -107,6 +107,7 @@ export function checkOrderAnswers(
     const answer = orderAnswers[i];
     // Set is_correct directly based on whether answer_position equals sort_order
     answer.is_correct = answer.answer_position === answer.sort_order;
+    console.log(`ORDER CHECK Q${answer.question_id}: ${answer.answer_position} === ${answer.sort_order} = ${answer.is_correct}`);
   }
 
   return orderAnswers;

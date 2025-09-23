@@ -1,5 +1,6 @@
 import 'package:bac_project/features/tests/data/mappers/option_mapper.dart';
 import 'package:bac_project/features/tests/data/models/option_model.dart';
+import 'package:bac_project/features/tests/domain/entities/answer_evaluation.dart';
 import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
 
 import '../../domain/entities/question.dart';
@@ -17,6 +18,7 @@ class QuestionModel extends Question {
     super.isMCQ,
     super.explain,
     super.questionAnswers,
+    super.answerEvaluations,
   });
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) {
@@ -63,6 +65,7 @@ class QuestionModel extends Question {
     bool? isMCQ,
     String? explain,
     List<QuestionAnswer>? questionAnswers,
+    List<AnswerEvaluation>? answerEvaluations,
   }) {
     return QuestionModel(
       id: id ?? this.id,
@@ -75,6 +78,7 @@ class QuestionModel extends Question {
       isMCQ: isMCQ ?? this.isMCQ,
       explain: explain ?? this.explain,
       questionAnswers: questionAnswers ?? this.questionAnswers,
+      answerEvaluations: answerEvaluations ?? this.answerEvaluations,
     );
   }
 
@@ -90,14 +94,22 @@ class QuestionModel extends Question {
         other.imageUrl == imageUrl &&
         other.categoryId == categoryId &&
         other.isMCQ == isMCQ &&
-        other.explain == explain;
+        other.explain == explain &&
+        other.questionAnswers == questionAnswers &&
+        other.answerEvaluations == answerEvaluations;
   }
 
   @override
   int get hashCode =>
-      id.hashCode ^ content.hashCode ^ options.hashCode ^ unitId.hashCode ^ lessonId.hashCode;
+      id.hashCode ^
+      content.hashCode ^
+      options.hashCode ^
+      unitId.hashCode ^
+      lessonId.hashCode ^
+      questionAnswers.hashCode ^
+      answerEvaluations.hashCode;
 
   @override
   String toString() =>
-      'QuestionModel(id: $id, content: $content, options: $options, unitId: $unitId, lessonId: $lessonId)';
+      'QuestionModel(id: $id, content: $content, options: $options, unitId: $unitId, lessonId: $lessonId, questionAnswers: $questionAnswers, answerEvaluations: $answerEvaluations)';
 }

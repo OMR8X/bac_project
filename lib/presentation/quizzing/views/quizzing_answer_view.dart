@@ -90,21 +90,54 @@ class QuizzingAnswerView extends StatelessWidget {
         ),
 
         // Only show navigation when user has selected an answer for current question
-        SafeArea(
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child: StaggeredItemWrapperWidget(
-              position: 1,
-              child: QuizzingAnswerNavigation(
-                canGoPrevious: state.canGoPrevious,
-                canGoNext: state.canGoNext,
-                onPrevious: () => context.read<QuizzingBloc>().add(const PreviousQuestion()),
-                onNextOrSubmit: onNextOrSubmit,
-              ),
-            ),
-          ),
+        BlocBuilder<QuizzingBloc, QuizzingState>(
+          buildWhen: (previous, current) {
+            if (previous is QuizzingAnswerQuestion && current is QuizzingAnswerQuestion) {
+              return previous.selectedAnswers.length != current.selectedAnswers.length;
+            }
+            return false;
+          },
+          builder: (context, state) {
+            debugPrint("rebuild action buttons");
+            return _buildActionButtons(context, state as QuizzingAnswerQuestion);
+          },
         ),
       ],
+    );
+  }
+
+  Widget _buildActionButtons(BuildContext context, QuizzingAnswerQuestion state) {
+    bool canSubmit = state.currentQuestion.questionAnswers.isNotEmpty;
+    bool canGoPrevious = state.canGoPrevious;
+    bool canGoNext = state.canGoNext;
+
+    ///
+    final QuestionCategory? category = sl<AppSettings>().categories.firstWhereOrNull(
+      (c) => c.id == state.currentQuestion.categoryId,
+    );
+
+    ///
+    if ((category?.isOrderable ?? false)) {
+      canGoNext = true;
+    } else if ((category?.isMCQ ?? false)) {
+      canGoNext = state.selectedAnswers.isNotEmpty;
+    } else if (((category?.isTypeable) ?? false) || ((category?.isSingleAnswer) ?? false)) {
+      canGoNext = state.selectedAnswers.length == state.currentQuestion.options.length;
+    }
+
+    return SafeArea(
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: StaggeredItemWrapperWidget(
+          position: 1,
+          child: QuizzingAnswerNavigation(
+            canGoPrevious: canGoPrevious,
+            canGoNext: canGoNext,
+            onPrevious: () => context.read<QuizzingBloc>().add(const PreviousQuestion()),
+            onNextOrSubmit: onNextOrSubmit,
+          ),
+        ),
+      ),
     );
   }
 
@@ -127,7 +160,7 @@ class QuizzingAnswerView extends StatelessWidget {
         onSelectOption: (option) {
           ///
           context.read<QuizzingBloc>().add(
-            UpdateQuestionAnswersEvent(
+            UpdateMCQQuestionAnswersEvent(
               answers: [QuestionAnswer(questionId: state.currentQuestion.id, optionId: option.id)],
             ),
           );
@@ -139,7 +172,7 @@ class QuizzingAnswerView extends StatelessWidget {
         question: state.currentQuestion,
         questionsAnswers: state.selectedAnswers,
         onSubmitOrder: (answers) {
-          context.read<QuizzingBloc>().add(UpdateQuestionAnswersEvent(answers: answers));
+          context.read<QuizzingBloc>().add(UpdateOrderableQuestionAnswersEvent(answers: answers));
         },
       );
     } else if ((category?.isTypeable) ?? false) {
@@ -149,7 +182,7 @@ class QuizzingAnswerView extends StatelessWidget {
         questionsAnswers: state.selectedAnswers,
         onSubmitText: (option, value) {
           context.read<QuizzingBloc>().add(
-            UpdateQuestionAnswersEvent(
+            UpdateTextualQuestionAnswersEvent(
               answers: [
                 QuestionAnswer(
                   questionId: state.currentQuestion.id,
@@ -169,7 +202,7 @@ class QuizzingAnswerView extends StatelessWidget {
         onSubmitText: (option, value) {
           ///
           context.read<QuizzingBloc>().add(
-            UpdateQuestionAnswersEvent(
+            UpdateTextualQuestionAnswersEvent(
               answers: [
                 QuestionAnswer(
                   questionId: state.currentQuestion.id,

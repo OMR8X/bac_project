@@ -90,8 +90,8 @@ function createEnrichedAnswer(
 ): EnrichedAnswer {
   return {
     ...answer,
-    option_content: option?.content || null,
-    option_is_correct: option?.is_correct || null,
-    option_sort_order: option?.sort_order || null
+    option_content: option?.content ?? null,
+    option_is_correct: option?.is_correct ?? null,
+    option_sort_order: option?.sort_order ?? null
   };
 }

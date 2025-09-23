@@ -2,8 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:bac_project/features/tests/domain/entities/question.dart';
 import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
-import 'package:bac_project/features/tests/domain/entities/result.dart';
-import 'package:bac_project/features/tests/domain/requests/add_result_request.dart';
 import 'package:bac_project/features/settings/domain/entities/motivational_quote.dart';
 
 class ExploreManagerViewArguments {
@@ -78,4 +76,10 @@ class MotivationalQuoteArguments {
   final MotivationalQuote quote;
 
   const MotivationalQuoteArguments({required this.quote});
+}
+
+class ExploreAnswersEvaluationsViewArguments {
+  final List<Question> questions;
+
+  const ExploreAnswersEvaluationsViewArguments({required this.questions});
 }

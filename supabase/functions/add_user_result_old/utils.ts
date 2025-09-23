@@ -124,18 +124,22 @@ export async function enrichQuestionsAnswersWithOptions(
     throw new Error(`${ERROR_MESSAGES.FETCH_OPTIONS_FAILED}: ${error.message}`);
   }
 
+  console.log('DB OPTIONS:', options.map((o: QuestionOption) => `ID:${o.id} sort:${o.sort_order}(${typeof o.sort_order}) correct:${o.is_correct}(${typeof o.is_correct})`).join(' | '));
+
   // Create lookup map for efficient option retrieval
   const optionById = createOptionsLookupMap(options);
 
   // Enrich each question answer with corresponding option data
   return questionAnswers.map(answer => {
     const option = answer.option_id ? optionById.get(answer.option_id) : null;
-    return {
+    const enriched = {
       ...answer,
-      content: option?.content || null,
-      is_correct: option?.is_correct || null,
-      sort_order: option?.sort_order || null
+      content: option?.content ?? null,
+      is_correct: option?.is_correct ?? null,
+      sort_order: option?.sort_order ?? null
     };
+    console.log(`ENRICH Q${answer.question_id}: answer_pos=${answer.answer_position} -> sort_order=${enriched.sort_order} | is_correct=${enriched.is_correct}`);
+    return enriched;
   });
 }
 

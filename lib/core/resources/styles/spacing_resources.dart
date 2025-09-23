@@ -45,7 +45,7 @@ class Paddings {
   }
 
   static EdgeInsets get cardSmallPadding {
-    return const EdgeInsets.symmetric(horizontal: SpacesResources.s6, vertical: SpacesResources.s2);
+    return const EdgeInsets.symmetric(horizontal: SpacesResources.s6, vertical: SpacesResources.s4);
   }
 
   static EdgeInsets get bottomSheetActionsPadding {

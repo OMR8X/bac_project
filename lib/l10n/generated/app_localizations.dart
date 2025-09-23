@@ -94,6 +94,18 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[Locale('ar')];
 
+  /// No description provided for @aiFeedbackLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'ملاحظات التصحيح'**
+  String get aiFeedbackLabel;
+
+  /// No description provided for @answerEvaluationsTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'تصحيح الإجابات'**
+  String get answerEvaluationsTitle;
+
   /// No description provided for @authEmail.
   ///
   /// In ar, this message translates to:
@@ -129,6 +141,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'تأكيد'**
   String get buttonsConfirm;
+
+  /// No description provided for @correctAnswerLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'الإجابة الصحيحة'**
+  String get correctAnswerLabel;
 
   /// No description provided for @buttonsCustomize.
   ///
@@ -249,6 +267,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'إغلاق الاختبار'**
   String get closeQuizDialogTitle;
+
+  /// No description provided for @correctionDetails.
+  ///
+  /// In ar, this message translates to:
+  /// **'تفاصيل التصحيح'**
+  String get correctionDetails;
 
   /// No description provided for @enableSoundEffectsSubtitle.
   ///

@@ -19,13 +19,8 @@ class ImagesResources {
   static const String customizeIcon = '$path/customize.png';
 
   /*
-/Users/omr8x/projects/flutter/personal/bac_project/assets/images/choose.png
-/Users/omr8x/projects/flutter/personal/bac_project/assets/images/compass.png
-/Users/omr8x/projects/flutter/personal/bac_project/assets/images/mortarboard.png
-/Users/omr8x/projects/flutter/personal/bac_project/assets/images/quiz.png
-/Users/omr8x/projects/flutter/personal/bac_project/assets/images/true.png
-/Users/omr8x/projects/flutter/personal/bac_project/assets/images/creativity.png
-/Users/omr8x/projects/flutter/personal/bac_project/assets/images/customize.png
+/Users/omr8x/projects/flutter/personal/bac_project/assets/images/light_bulb_icon.png
+
   */
 
   //
@@ -94,6 +89,7 @@ class UIImagesResources {
   static const String penIcon = '$path/icons/pen_icon.png';
   static const String checkIcon = '$path/icons/check_icon.png';
   static const String dragHandlerIcon = '$path/icons/drag_handler_icon.png';
+  static const String lightBulbIcon = '$path/icons/light_bulb_icon.png';
 
   //
 }

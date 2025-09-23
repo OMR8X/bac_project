@@ -10,6 +10,10 @@ enum AppRoutes {
   setting(name: 'setting', path: '/setting'),
   exploreResults(name: 'explore-results', path: '/explore-results'),
   exploreResult(name: 'explore-result', path: '/explore-result'),
+  exploreAnswersEvaluations(
+    name: 'explore-answers-evaluations',
+    path: '/explore-answers-evaluations',
+  ),
   testModeSettings(name: 'test-mode-settings', path: '/test-mode-settings'),
   setTestProperties(name: 'set-test-properties', path: '/set-test-properties'),
   pickLessons(name: 'pick-lessons', path: '/pick-lessons'),

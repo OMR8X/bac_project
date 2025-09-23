@@ -24,6 +24,7 @@ class QuizzingAnswerNavigation extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
+        spacing: SpacesResources.s3,
         children: [
           Expanded(
             child: OutlinedButton(
@@ -42,13 +43,12 @@ class QuizzingAnswerNavigation extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: SpacesResources.s3),
           Expanded(
             child: FilledButton(
               style: FilledButton.styleFrom(
                 minimumSize: Size.fromHeight(SizesResources.buttonLargeHeight),
               ),
-              onPressed: onNextOrSubmit,
+              onPressed: canGoNext ? onNextOrSubmit : null,
               child: Text(context.l10n.buttonsNext),
             ),
           ),

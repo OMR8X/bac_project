@@ -9,6 +9,7 @@ import 'package:bac_project/presentation/settings/views/setting_view.dart';
 import 'package:bac_project/presentation/testing/views/designing_view.dart';
 import 'package:bac_project/presentation/result/bloc/submit_results/explore_result_bloc.dart';
 import 'package:bac_project/presentation/result/views/explore_result_view.dart';
+import 'package:bac_project/presentation/result/views/explore_answers_evaluations_view.dart';
 import 'package:bac_project/presentation/tests/blocs/test_mode_settings/test_mode_settings_bloc.dart';
 import 'package:bac_project/presentation/tests/views/pick_lessons_view.dart';
 import 'package:bac_project/presentation/quizzing/views/quizzing_view.dart';
@@ -323,6 +324,30 @@ class AppRouter {
                   key: state.pageKey,
                   arguments: state.extra as ExploreResultViewArguments,
                 ),
+              ),
+            ),
+      ),
+
+      // Explore Answers Evaluations route
+      GoRoute(
+        name: AppRoutes.exploreAnswersEvaluations.name,
+        path: AppRoutes.exploreAnswersEvaluations.path,
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              transitionDuration: AppTransitions.transitionDuration,
+              reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
+              },
+              child: ExploreAnswersEvaluationsView(
+                key: state.pageKey,
+                arguments: state.extra as ExploreAnswersEvaluationsViewArguments,
               ),
             ),
       ),

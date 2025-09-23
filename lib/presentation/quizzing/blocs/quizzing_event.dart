@@ -24,10 +24,26 @@ class InitializeQuiz extends QuizzingEvent {
   List<Object> get props => [questions, timeLimit, testMode];
 }
 
-class UpdateQuestionAnswersEvent extends QuizzingEvent {
+class UpdateTextualQuestionAnswersEvent extends QuizzingEvent {
   final List<QuestionAnswer> answers;
 
-  const UpdateQuestionAnswersEvent({required this.answers});
+  const UpdateTextualQuestionAnswersEvent({required this.answers});
+
+  @override
+  List<Object> get props => [answers];
+}
+class UpdateMCQQuestionAnswersEvent extends QuizzingEvent {
+  final List<QuestionAnswer> answers;
+
+  const UpdateMCQQuestionAnswersEvent({required this.answers});
+
+  @override
+  List<Object> get props => [answers];
+}
+class UpdateOrderableQuestionAnswersEvent extends QuizzingEvent {
+  final List<QuestionAnswer> answers;
+
+  const UpdateOrderableQuestionAnswersEvent({required this.answers});
 
   @override
   List<Object> get props => [answers];

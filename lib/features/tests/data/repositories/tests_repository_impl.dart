@@ -8,10 +8,12 @@ import '../../domain/requests/get_lessons_request.dart';
 import '../../domain/requests/get_questions_request.dart';
 import '../../domain/requests/get_questions_by_ids_request.dart';
 import '../../domain/requests/get_test_options_request.dart';
+import '../../domain/requests/get_answer_evaluations_request.dart';
 import '../responses/get_units_response.dart';
 import '../responses/get_lessons_response.dart';
 import '../responses/get_questions_response.dart';
 import '../responses/get_test_options_response.dart';
+import '../responses/get_answer_evaluations_response.dart';
 import '../../domain/entities/question.dart';
 import '../datasources/tests_remote_data_source.dart';
 import '../mappers/unit_mapper.dart';
@@ -54,7 +56,9 @@ class TestsRepositoryImpl implements TestsRepository {
   }
 
   @override
-  Future<Either<Failure, GetQuestionsResponse>> getQuestionsByIds(GetQuestionsByIdsRequest request) async {
+  Future<Either<Failure, GetQuestionsResponse>> getQuestionsByIds(
+    GetQuestionsByIdsRequest request,
+  ) async {
     try {
       final result = await remoteDataSource.getQuestionsByIds(request);
       return Right(result);
@@ -64,9 +68,23 @@ class TestsRepositoryImpl implements TestsRepository {
   }
 
   @override
-  Future<Either<Failure, GetTestOptionsResponse>> getTestOptions(GetTestOptionsRequest request) async {
+  Future<Either<Failure, GetTestOptionsResponse>> getTestOptions(
+    GetTestOptionsRequest request,
+  ) async {
     try {
       final result = await remoteDataSource.getTestOptions(request);
+      return Right(result);
+    } on Exception catch (e) {
+      return Left(e.toFailure);
+    }
+  }
+
+  @override
+  Future<Either<Failure, GetAnswerEvaluationsResponse>> getAnswerEvaluations(
+    GetAnswerEvaluationsRequest request,
+  ) async {
+    try {
+      final result = await remoteDataSource.getAnswerEvaluations(request);
       return Right(result);
     } on Exception catch (e) {
       return Left(e.toFailure);

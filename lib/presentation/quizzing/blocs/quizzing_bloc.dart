@@ -22,7 +22,9 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
     : _addResultUsecase = addResultUsecase ?? sl<AddResultUsecase>(),
       super(QuizzingLoading()) {
     on<InitializeQuiz>(_onInitializeQuiz);
-    on<UpdateQuestionAnswersEvent>(_onUpdateQuestionAnswersEvent);
+    on<UpdateTextualQuestionAnswersEvent>(_onUpdateTextualQuestionAnswersEvent);
+    on<UpdateMCQQuestionAnswersEvent>(_onUpdateMCQQuestionAnswersEvent);
+    on<UpdateOrderableQuestionAnswersEvent>(_onUpdateOrderableQuestionAnswersEvent);
     on<NextQuestion>(_onNextQuestion);
     on<PreviousQuestion>(_onPreviousQuestion);
     on<CloseQuiz>(_onCloseQuiz);
@@ -72,22 +74,84 @@ class QuizzingBloc extends Bloc<QuizzingEvent, QuizzingState> {
     );
   }
 
-  void _onUpdateQuestionAnswersEvent(
-    UpdateQuestionAnswersEvent event,
+  void _onUpdateTextualQuestionAnswersEvent(
+    UpdateTextualQuestionAnswersEvent event,
     Emitter<QuizzingState> emit,
   ) {
     if (state is QuizzingAnswerQuestion) {
       /// Get the current state
       final currentState = state as QuizzingAnswerQuestion;
+      final answers = event.answers;
 
       ///
       if (currentState.timeLeft.inSeconds <= 0) return;
 
       /// Store the selected answer
       _questionsAnswers.removeWhere((e) {
-        return event.answers.map((e) => e.optionId).contains(e.optionId);
+        return answers.map((e) => e.optionId).contains(e.optionId);
       });
-      _questionsAnswers.addAll(event.answers);
+      _questionsAnswers.addAll(answers.where((e) => e.answerText?.isNotEmpty ?? false));
+
+      /// Update the state: include full selectedAnswers map so UI can read per-question answers
+      emit(
+        currentState.copyWith(
+          selectedAnswers:
+              _questionsAnswers
+                  .where((a) => a.questionId == currentState.currentQuestion.id)
+                  .toList(),
+        ),
+      );
+    }
+  }
+
+  void _onUpdateMCQQuestionAnswersEvent(
+    UpdateMCQQuestionAnswersEvent event,
+    Emitter<QuizzingState> emit,
+  ) {
+    if (state is QuizzingAnswerQuestion) {
+      /// Get the current state
+      final currentState = state as QuizzingAnswerQuestion;
+      final answers = event.answers;
+
+      ///
+      if (currentState.timeLeft.inSeconds <= 0) return;
+
+      /// Store the selected answer
+      _questionsAnswers
+        ..removeWhere((e) {
+          return answers.map((e) => e.optionId).contains(e.optionId);
+        })
+        ..addAll(answers.where((e) => e.optionId != null));
+
+      /// Update the state: include full selectedAnswers map so UI can read per-question answers
+      emit(
+        currentState.copyWith(
+          selectedAnswers:
+              _questionsAnswers
+                  .where((a) => a.questionId == currentState.currentQuestion.id)
+                  .toList(),
+        ),
+      );
+    }
+  }
+
+  void _onUpdateOrderableQuestionAnswersEvent(
+    UpdateOrderableQuestionAnswersEvent event,
+    Emitter<QuizzingState> emit,
+  ) {
+    if (state is QuizzingAnswerQuestion) {
+      /// Get the current state
+      final currentState = state as QuizzingAnswerQuestion;
+      final answers = event.answers;
+
+      ///
+      if (currentState.timeLeft.inSeconds <= 0) return;
+
+      /// Store the selected answer
+      _questionsAnswers.removeWhere((e) {
+        return answers.map((e) => e.optionId).contains(e.optionId);
+      });
+      _questionsAnswers.addAll(answers.where((e) => e.answerPosition != null));
 
       /// Update the state: include full selectedAnswers map so UI can read per-question answers
       emit(

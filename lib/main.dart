@@ -21,7 +21,6 @@ void main() async {
     await ServiceLocator.init();
     await Supabase.instance.client.auth.refreshSession();
   } catch (_) {}
-  await Future.delayed(const Duration(seconds: 2));
   // LocalizationManager migrated; ARB-based localization loaded at build time.
 
   // ///
@@ -61,4 +60,3 @@ class ErrorsCopier {
     errors.add(details);
   }
 }
-

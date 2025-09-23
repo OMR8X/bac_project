@@ -13,8 +13,10 @@ import '../../domain/requests/get_lessons_request.dart';
 import '../../domain/requests/get_questions_request.dart';
 import '../../domain/requests/get_questions_by_ids_request.dart';
 import '../../domain/requests/get_test_options_request.dart';
+import '../../domain/requests/get_answer_evaluations_request.dart';
 import '../responses/get_units_response.dart';
 import '../responses/get_lessons_response.dart';
+import '../responses/get_answer_evaluations_response.dart';
 import 'tests_remote_data_source.dart';
 import '../../../../core/services/local/local_json_data_api.dart';
 
@@ -110,5 +112,25 @@ class TestsRemoteDataSourceImpl implements TestsRemoteDataSource {
 
     /// Return test options
     return GetTestOptionsResponse.fromJson(apiResponse.data);
+  }
+
+  @override
+  Future<GetAnswerEvaluationsResponse> getAnswerEvaluations(
+    GetAnswerEvaluationsRequest request,
+  ) async {
+    ///
+    final response = await apiManager().post(
+      SupabaseEndpoints.rpc(SupabaseEndpoints.getAnswersEvaluationsByIdsFunctionEndpoint),
+      body: request.toJsonBody(),
+    );
+
+    ///
+    final ApiResponse apiResponse = ApiResponse.fromDioResponse(response);
+
+    ///
+    apiResponse.throwErrorIfExists();
+
+    /// Return answer evaluations
+    return GetAnswerEvaluationsResponse.fromJson(apiResponse.data);
   }
 }

@@ -9,6 +9,12 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
+  String get aiFeedbackLabel => 'ملاحظات التصحيح';
+
+  @override
+  String get answerEvaluationsTitle => 'تصحيح الإجابات';
+
+  @override
   String get authEmail => 'البريد الإلكتروني';
 
   @override
@@ -25,6 +31,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get buttonsConfirm => 'تأكيد';
+
+  @override
+  String get correctAnswerLabel => 'الإجابة الصحيحة';
 
   @override
   String get buttonsCustomize => 'تخصيص';
@@ -85,6 +94,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get closeQuizDialogTitle => 'إغلاق الاختبار';
+
+  @override
+  String get correctionDetails => 'تفاصيل التصحيح';
 
   @override
   String get enableSoundEffectsSubtitle => 'تشغيل مؤثرات صوتية عند الإجابة.';

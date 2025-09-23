@@ -1,6 +1,7 @@
 import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/colors_resources.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
+import 'package:bac_project/core/resources/themes/extensions/color_extensions.dart';
 import 'package:bac_project/core/resources/themes/extensions/extra_colors.dart';
 import 'package:bac_project/core/resources/themes/extensions/option_card_colors.dart';
 import 'package:bac_project/core/resources/themes/extensions/surface_container_colors.dart';
@@ -64,12 +65,15 @@ class AppLightTheme {
           borders: ColorsResourcesLight.outlineVariant,
           bordersCorrect: ColorsResourcesLight.success.withAlpha(100),
           bordersIncorrect: ColorsResourcesLight.error.withAlpha(100),
+          bordersNotes: ColorsResourcesLight.warning.withAlpha(100),
           background: ColorsResourcesLight.surfaceContainer,
-          backgroundCorrect: ColorsResourcesLight.onSuccess.withAlpha(50),
-          backgroundIncorrect: ColorsResourcesLight.onError.withAlpha(50),
+          backgroundCorrect: ColorsResourcesLight.successContainer.withAlpha(20),
+          backgroundIncorrect: ColorsResourcesLight.errorContainer.withAlpha(50),
+          backgroundNotes: ColorsResourcesLight.warningContainer.withAlpha(20),
           text: ColorsResourcesLight.onSurface,
-          textCorrect: ColorsResourcesLight.success,
-          textIncorrect: ColorsResourcesLight.error,
+          textCorrect: ColorsResourcesLight.success.darker(0.5),
+          textIncorrect: ColorsResourcesLight.error.darker(0.5),
+          textNotes: ColorsResourcesLight.onWarning.darker(0.5),
         ),
       ],
       listTileTheme: ListTileThemeData(

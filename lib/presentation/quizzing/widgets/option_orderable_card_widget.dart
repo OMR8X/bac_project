@@ -18,12 +18,11 @@ class OptionOrderableCardWidget extends StatelessWidget {
     this.testMode,
     required this.didAnswer,
     required this.index,
-    this.isReviewMode = false,
   });
   final Option option;
   final QuestionAnswer? questionAnswer;
   final TestMode? testMode;
-  final bool didAnswer, isReviewMode;
+  final bool didAnswer;
   final int index;
   @override
   Widget build(BuildContext context) {
@@ -56,10 +55,9 @@ class OptionOrderableCardWidget extends StatelessWidget {
         ),
         trailing: Text(
           option.sortOrder?.toString() ?? "",
-          style: TextStyle(
+          style: TextStylesResources.cardMediumSubtitle.copyWith(
+            color: Theme.of(context).colorScheme.onSurface,
             fontWeight: FontWeightResources.medium,
-            color: getCardTitleColor(context),
-            fontSize: FontSizeResources.s16,
           ),
         ),
         title: Text(

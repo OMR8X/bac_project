@@ -13,7 +13,12 @@ class ColorsResourcesLight {
   static const Color onError = Color(0xffFFEFF3);
   //
   static const Color success = Color(0xff00AE6F);
+  static const Color successContainer = Color(0xffDCFFE5);
   static const Color onSuccess = Color(0xffDCFFE5);
+  //
+  static const Color warning = Color(0xffF1D258);
+  static const Color warningContainer = Color(0xffFDFBE6);
+  static const Color onWarning = Color(0xff965A1C);
   //
   static const Color surface = Color(0xffFFFFFF);
   static Color onSurface = primaryState[900]!;
