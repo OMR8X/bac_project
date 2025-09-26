@@ -9,10 +9,15 @@ returns json
 language sql
 security definer
 as $$
-delete from user_topic_subscriptions
-where user_id = auth.uid()
-  and topic_id = p_topic_id
-returning row_to_json(user_topic_subscriptions);  
+select api.api_response(
+  data := (
+    delete from user_topic_subscriptions
+    where user_id = auth.uid()
+      and topic_id = p_topic_id
+    returning row_to_json(user_topic_subscriptions)
+  ),
+  message := 'Successfully unsubscribed from topic'
+);
 $$;
 
 

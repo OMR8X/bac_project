@@ -10,10 +10,15 @@ returns json
 language sql
 security definer
 as $$
-insert into user_topic_subscriptions (user_id, topic_id)
-values (auth.uid(), p_topic_id)
-on conflict (user_id, topic_id) do nothing
-returning row_to_json(user_topic_subscriptions);
+select api.api_response(
+  data := (
+    insert into user_topic_subscriptions (user_id, topic_id)
+    values (auth.uid(), p_topic_id)
+    on conflict (user_id, topic_id) do nothing
+    returning row_to_json(user_topic_subscriptions)
+  ),
+  message := 'Successfully subscribed to topic'
+);
 $$;
 
 

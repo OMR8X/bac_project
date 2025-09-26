@@ -3,8 +3,11 @@ RETURNS JSON
 SECURITY DEFINER
 LANGUAGE SQL
 AS $$
-  SELECT json_build_object(
-    'units', json_agg(unit_row )
+  SELECT api.api_response(
+    data := json_build_object(
+      'units', json_agg(unit_row)
+    ),
+    message := 'Units retrieved successfully'
   )
   FROM (
     SELECT

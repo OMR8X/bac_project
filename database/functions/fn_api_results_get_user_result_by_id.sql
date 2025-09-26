@@ -1,6 +1,8 @@
 CREATE OR REPLACE FUNCTION API.FN_API_RESULTS_GET_USER_RESULT_BY_ID (P_RESULT_ID INT) RETURNS JSONB SECURITY DEFINER AS $$
-begin
-    return (
+DECLARE
+  result_data jsonb;
+BEGIN
+    result_data := (
         with
 current_result as (
   select
@@ -23,8 +25,8 @@ current_result as (
   left join public.question_answers qa on r.id = qa.result_id
   where r.id = p_result_id
     and r.user_id = auth.uid()
-  group by r.id, r.user_id, r.lesson_id, r.total_questions, r.correct_answers, 
-           r.wrong_answers, r.score, r.duration_seconds, r.is_test_mode, 
+  group by r.id, r.user_id, r.lesson_id, r.total_questions, r.correct_answers,
+           r.wrong_answers, r.score, r.duration_seconds, r.is_test_mode,
            r.created_at, r.updated_at, l.title
 ),
           previous_results as (
@@ -40,17 +42,18 @@ current_result as (
               and r.id <> p_result_id
               and r.lesson_id = (select lesson_id from current_result)
             order by r.created_at desc
-            limit 5  
+            limit 5
           )
         select
           json_build_object(
-            'status', 'success',
-            'data', json_build_object(
-              'result', (select to_jsonb(cr) from current_result cr),
-              'previous_results', (select coalesce(json_agg(pr), '[]'::json) from previous_results pr)
-            ),
-            'message', 'Result fetched successfully'
+            'result', (select to_jsonb(cr) from current_result cr),
+            'previous_results', (select coalesce(json_agg(pr), '[]'::json) from previous_results pr)
           )
+    );
+
+    RETURN api.api_response(
+      data := result_data,
+      message := 'Result fetched successfully'
     );
 end;
 $$ LANGUAGE PLPGSQL;

@@ -11,14 +11,19 @@ returns json
 language sql
 security definer
 as $$
-insert into user_device_tokens (user_id, device_brand, device_model, device_token, updated_at)
-values (auth.uid(), p_device_brand, p_device_model, p_device_token, now())
-on conflict (user_id, device_token)
-do update set
-  device_brand = excluded.device_brand,
-  device_model = excluded.device_model,
-  updated_at  = now()
-returning row_to_json(user_device_tokens);
+select api.api_response(
+  data := (
+    insert into user_device_tokens (user_id, device_brand, device_model, device_token, updated_at)
+    values (auth.uid(), p_device_brand, p_device_model, p_device_token, now())
+    on conflict (user_id, device_token)
+    do update set
+      device_brand = excluded.device_brand,
+      device_model = excluded.device_model,
+      updated_at  = now()
+    returning row_to_json(user_device_tokens)
+  ),
+  message := 'Device token registered successfully'
+);
 $$;
 
 

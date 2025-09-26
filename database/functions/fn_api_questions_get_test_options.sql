@@ -6,8 +6,11 @@ RETURNS JSON
 SECURITY DEFINER
 LANGUAGE SQL
 AS $$
-    SELECT json_build_object(
-        'categories', coalesce(json_agg(category_row ORDER BY category_row.title), '[]'::json) 
+    SELECT api.api_response(
+        data := json_build_object(
+            'categories', coalesce(json_agg(category_row ORDER BY category_row.title), '[]'::json)
+        ),
+        message := 'Test options retrieved successfully'
     )
     FROM (
         SELECT

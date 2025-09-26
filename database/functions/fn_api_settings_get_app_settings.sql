@@ -1,8 +1,8 @@
-create or replace function api.fn_api_settings_get_app_settings () RETURNS JSON 
+create or replace function api.fn_api_settings_get_app_settings () RETURNS JSON
 SECURITY DEFINER
 LANGUAGE SQL as $$
-    SELECT json_build_object(
-        'data', json_build_object(
+    SELECT api.api_response(
+        data := json_build_object(
             'user_data', (
               SELECT json_build_object(
                 'uuid', u.id,
@@ -27,7 +27,7 @@ LANGUAGE SQL as $$
                         'id', id,
                         'title', title
                     )
-                ) FROM sections 
+                ) FROM sections
             ),
             'governorates', (
                 SELECT json_agg(
@@ -35,7 +35,7 @@ LANGUAGE SQL as $$
                         'id', id,
                         'title', title
                     )
-                ) FROM governorates  
+                ) FROM governorates
             ),
             'categories', (
                 SELECT json_agg(
@@ -58,7 +58,8 @@ LANGUAGE SQL as $$
                'update_link', 'https://example.com/update',
                'app_version', '2.0.0'
             )
-        )
+        ),
+        message := 'App settings retrieved successfully'
     );
 $$;
 

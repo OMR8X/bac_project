@@ -7,23 +7,23 @@ returns json
 language sql
 security definer
 as $$
-select json_build_object(
-  'data',
-  coalesce(
+select api.api_response(
+  data := coalesce(
     (
       select json_agg(row_to_json(t))
       from (
-        select 
+        select
           nt.id,
           nt.name,
           nt.description
         from notification_topics nt
-        join user_topic_subscriptions uts 
+        join user_topic_subscriptions uts
           on uts.topic_id = nt.id
         where uts.user_id = auth.uid()
       ) t
     ),
     '[]'::json
-  )
+  ),
+  message := 'User subscribed topics retrieved successfully'
 );
 $$;

@@ -5,11 +5,14 @@ RETURNS JSON
 SECURITY DEFINER
 LANGUAGE sql
 AS $$
-  SELECT json_build_object(
-    'questions', json_agg(q_with_options)
+  SELECT api.api_response(
+    data := json_build_object(
+      'questions', json_agg(q_with_options)
+    ),
+    message := 'Questions retrieved successfully'
   )
   FROM (
-    SELECT 
+    SELECT
       q.*,
       COALESCE(
         json_agg(

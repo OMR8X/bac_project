@@ -6,8 +6,11 @@ RETURNS JSON
 SECURITY DEFINER
 LANGUAGE SQL
 AS $$
-  SELECT json_build_object(
-    'lessons', json_agg(lesson_row)
+  SELECT api.api_response(
+    data := json_build_object(
+      'lessons', json_agg(lesson_row)
+    ),
+    message := 'Lessons retrieved successfully'
   )
   FROM (
     SELECT
@@ -19,7 +22,7 @@ AS $$
       l.created_at
     FROM lessons l
     LEFT JOIN questions q ON q.lesson_id = l.id
-    WHERE 
+    WHERE
       (p_unit_id IS NULL OR l.unit_id = p_unit_id)
       AND (p_search IS NULL OR l.title ILIKE '%' || p_search || '%')
     GROUP BY l.id, l.title, l.unit_id, l.icon_url , l.created_at
