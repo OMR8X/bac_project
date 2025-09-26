@@ -23,16 +23,16 @@ class NotificationsView extends StatelessWidget {
     return RefreshIndicator(
       onRefresh: () async {
         await Future.delayed(Durations.medium4);
-        sl<ExploreNotificationsBloc>().add(LoadNotificationsEvent());
+        sl<NotificationsBloc>().add(LoadNotificationsEvent());
       },
       child: BlocProvider.value(
-        value: sl<ExploreNotificationsBloc>(),
-        child: BlocBuilder<ExploreNotificationsBloc, ExploreNotificationsState>(
+        value: sl<NotificationsBloc>(),
+        child: BlocBuilder<NotificationsBloc, ExploreNotificationsState>(
           builder: (context, state) {
             return Scaffold(
-              appBar: AppBar(title: const Text("الإشعارات"), actions: [
-             
-                ],
+              appBar: AppBar(
+                title: const Text("الإشعارات"),
+                actions: [],
               ),
               body: _buildBody(state),
             );
@@ -68,7 +68,7 @@ class NotificationsView extends StatelessWidget {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
-                  sl<ExploreNotificationsBloc>().add(const LoadNotificationsEvent());
+                  sl<NotificationsBloc>().add(const LoadNotificationsEvent());
                 },
                 child: const Text("إعادة المحاولة"),
               ),
@@ -126,12 +126,7 @@ class NotificationTileWidget extends StatelessWidget {
               borderRadius: BorderRadiusResource.tileBorderRadius,
               child: InkWell(
                 borderRadius: BorderRadiusResource.tileBorderRadius,
-                onTap:
-                    (notification.html?.isNotEmpty ?? false)
-                        ? () {
-                          context.push(AppRoutes.notificationDetails.path, extra: notification);
-                        }
-                        : null,
+
                 child: Padding(
                   padding: Paddings.customPadding(5, 5),
                   child: Row(
@@ -176,15 +171,15 @@ class NotificationTileWidget extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  timeAgo(notification.date),
+                                  timeAgo(notification.createdAt),
                                   style: TextStyle(fontSize: 12, color: Colors.grey[600]),
                                 ),
                               ],
                             ),
-                            if (notification.body?.isNotEmpty ?? false) ...[
+                            if (notification.body.isNotEmpty) ...[
                               const SizedBox(height: 4),
                               Text(
-                                notification.body!,
+                                notification.body,
                                 style: TextStyle(fontSize: 14, color: Colors.grey[700]),
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
@@ -193,11 +188,6 @@ class NotificationTileWidget extends StatelessWidget {
                           ],
                         ),
                       ),
-                      if (notification.html?.isNotEmpty ?? false)
-                        Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: Icon(Icons.arrow_forward_ios, size: 10),
-                        ),
                     ],
                   ),
                 ),

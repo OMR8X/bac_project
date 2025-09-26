@@ -1,4 +1,7 @@
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
+import 'package:bac_project/core/resources/styles/assets_resources.dart';
+import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
+import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/option_card_colors.dart';
 import 'package:bac_project/features/tests/domain/entities/option.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +32,6 @@ class AnswerEvaluationsNotesWidget extends StatelessWidget {
       children: [
         // Correct Answer Section - Primary Focus
         if (hasCorrectAnswer) ...[_buildCorrectAnswerSection(context)],
-
         // AI Notes Section - Secondary but Important
         if (hasNotes) ...[_buildAINotesSection(context)],
       ],
@@ -44,19 +46,23 @@ class AnswerEvaluationsNotesWidget extends StatelessWidget {
       child: Container(
         margin: Margins.cardMargin,
         decoration: BoxDecoration(
-          // color: optionCardColors.backgroundCorrect,
-          border: Border(right: BorderSide(color: optionCardColors.bordersCorrect, width: 3)),
+          color: optionCardColors.backgroundCorrect,
+          // borderRadius: BorderRadiusResource.bordersRadiusTiny,
+          border: Border(
+            right: BorderSide(color: optionCardColors.bordersCorrect, width: 4),
+            // left: BorderSide(color: optionCardColors.bordersCorrect, width: 3),
+          ),
         ),
         child: Padding(
-          padding: Paddings.cardSmallPadding,
+          padding: Paddings.cardMediumPadding,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                context.l10n.correctAnswerLabel,
-                style: TextStylesResources.caption.copyWith(color: optionCardColors.textCorrect),
-              ),
-              SizedBoxes.s2v,
+              // Text(
+              //   context.l10n.correctAnswerLabel,
+              //   style: TextStylesResources.caption.copyWith(color: optionCardColors.textCorrect),
+              // ),
+              // SizedBoxes.s2v,
               Text(
                 '"${option!.content}"',
                 style: TextStylesResources.cardSmallTitle.copyWith(color: optionCardColors.text),
@@ -76,19 +82,23 @@ class AnswerEvaluationsNotesWidget extends StatelessWidget {
       child: Container(
         margin: Margins.cardMargin,
         decoration: BoxDecoration(
-          // color: optionCardColors.backgroundNotes,
-          border: Border(right: BorderSide(color: optionCardColors.bordersNotes, width: 3)),
+          color: optionCardColors.backgroundNotes,
+          // borderRadius: BorderRadiusResource.bordersRadiusTiny,
+          border: Border(
+            right: BorderSide(color: optionCardColors.bordersNotes, width: 4),
+            // left: BorderSide(color: optionCardColors.bordersNotes, width: 3),
+          ),
         ),
         child: Padding(
-          padding: Paddings.cardSmallPadding,
+          padding: Paddings.cardMediumPadding,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                context.l10n.aiFeedbackLabel,
-                style: TextStylesResources.caption.copyWith(color: optionCardColors.textNotes),
-              ),
-              SizedBoxes.s2v,
+              // Text(
+              //   context.l10n.aiFeedbackLabel,
+              //   style: TextStylesResources.caption.copyWith(color: optionCardColors.textNotes),
+              // ),
+              // SizedBoxes.s2v,
               Text(
                 answerEvaluation!.notes!,
                 style: TextStylesResources.cardSmallTitle.copyWith(color: optionCardColors.text),

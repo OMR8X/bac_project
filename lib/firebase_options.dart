@@ -47,19 +47,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyB8PM4NWnHK2I0njD8-UmTMzk0c01vojM0',
-    appId: '1:485493702445:android:1ac133cb24f197e01f9da4',
-    messagingSenderId: '485493702445',
-    projectId: 'bac-quizzes-project',
-    storageBucket: 'bac-quizzes-project.firebasestorage.app',
+    apiKey: 'AIzaSyBJcr5Vdl8wYfUx_DbsPpubVOzfkyO9SiM',
+    appId: '1:811739001959:android:0a4e825b946ff16a0a10c2',
+    messagingSenderId: '811739001959',
+    projectId: 'neuro-bac-project',
+    storageBucket: 'neuro-bac-project.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCqQOc_CbHQnGr3bDvzAqjpwoUnxV_OyyE',
-    appId: '1:485493702445:ios:d59c18daf118152d1f9da4',
-    messagingSenderId: '485493702445',
-    projectId: 'bac-quizzes-project',
-    storageBucket: 'bac-quizzes-project.firebasestorage.app',
+    apiKey: 'AIzaSyD0oub3hqnivIiPLG8o6hsQx5Nqp9Q3Dy0',
+    appId: '1:811739001959:ios:e341212a00a6fa240a10c2',
+    messagingSenderId: '811739001959',
+    projectId: 'neuro-bac-project',
+    storageBucket: 'neuro-bac-project.firebasestorage.app',
     iosBundleId: 'com.neuro.bac',
   );
 

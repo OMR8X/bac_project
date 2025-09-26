@@ -3,4 +3,11 @@ class GetNotificationsRequest {
   final int? offset;
 
   GetNotificationsRequest({this.limit, this.offset});
+
+  Map<String, dynamic> toJsonBody() {
+    return {
+      if (limit != null) 'limit': limit,
+      if (offset != null) 'offset': offset,
+    };
+  }
 }

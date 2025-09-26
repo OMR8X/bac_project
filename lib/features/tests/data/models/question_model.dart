@@ -1,5 +1,7 @@
 import 'package:bac_project/features/tests/data/mappers/option_mapper.dart';
+import 'package:bac_project/features/tests/data/models/answer_evaluation_model.dart';
 import 'package:bac_project/features/tests/data/models/option_model.dart';
+import 'package:bac_project/features/tests/data/models/question_answer_model.dart';
 import 'package:bac_project/features/tests/domain/entities/answer_evaluation.dart';
 import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
 
@@ -15,7 +17,6 @@ class QuestionModel extends Question {
     required super.lessonId,
     super.imageUrl,
     super.categoryId,
-    super.isMCQ,
     super.explain,
     super.questionAnswers,
     super.answerEvaluations,
@@ -34,21 +35,57 @@ class QuestionModel extends Question {
       lessonId: json['lesson_id'] as int,
       imageUrl: (json['image_url'] as String?),
       categoryId: json['category_id'] as int?,
-      isMCQ: json['is_mcq'] as bool?,
       explain: json['explain'] as String?,
+      questionAnswers:
+          (json['question_answers'] as List<dynamic>?)?.map((answer) {
+            return QuestionAnswerModel.fromJson(answer as Map<String, dynamic>).toEntity();
+          }).toList() ??
+          [],
+      answerEvaluations:
+          (json['answer_evaluations'] as List<dynamic>?)?.map((evaluation) {
+            return AnswerEvaluationModel.fromJson(evaluation as Map<String, dynamic>).toEntity();
+          }).toList() ??
+          [],
     );
   }
+
+  // factory QuestionModel.fromResultDetailsJson(Map<String, dynamic> json) {
+  //   return QuestionModel(
+  //     id: json['id'] as int,
+  //     content: json['content'] as String,
+  //     options:
+  //         (json['options'] as List<dynamic>?)?.map((option) {
+  //           return OptionModel.fromJson(option as Map<String, dynamic>).toEntity();
+  //         }).toList() ??
+  //         [],
+  //     unitId: null, // Not provided in result details
+  //     lessonId: json['lesson_id'] as int,
+  //     imageUrl: (json['image_url'] as String?),
+  //     categoryId: json['category_id'] as int,
+  //     isMCQ: null, // Not provided in result details
+  //     explain: null, // Not provided in result details
+  //     questionAnswers:
+  //         (json['answers'] as List<dynamic>?)?.map((answer) {
+  //           return QuestionAnswerModel.fromJson(answer as Map<String, dynamic>).toEntity();
+  //         }).toList() ??
+  //         [],
+  //     answerEvaluations:
+  //         (json['evaluations'] as List<dynamic>?)?.map((evaluation) {
+  //           return AnswerEvaluationModel.fromJson(evaluation as Map<String, dynamic>).toEntity();
+  //         }).toList() ??
+  //         [],
+  //   );
+  // }
 
   Map<String, dynamic> toJson() {
     return {
       'id': id,
       'content': content,
-      'options': options.map((option) => option.toModel().toJson()).toList() ?? [],
+      'options': options.map((option) => option.toModel().toJson()).toList(),
       'unit_id': unitId,
       'lesson_id': lessonId,
       'image': imageUrl,
       'category_id': categoryId,
-      'is_mcq': isMCQ,
       'explain': explain,
     };
   }
@@ -62,7 +99,6 @@ class QuestionModel extends Question {
     int? lessonId,
     String? imageUrl,
     int? categoryId,
-    bool? isMCQ,
     String? explain,
     List<QuestionAnswer>? questionAnswers,
     List<AnswerEvaluation>? answerEvaluations,
@@ -75,7 +111,6 @@ class QuestionModel extends Question {
       lessonId: lessonId ?? this.lessonId,
       imageUrl: imageUrl ?? this.imageUrl,
       categoryId: categoryId ?? this.categoryId,
-      isMCQ: isMCQ ?? this.isMCQ,
       explain: explain ?? this.explain,
       questionAnswers: questionAnswers ?? this.questionAnswers,
       answerEvaluations: answerEvaluations ?? this.answerEvaluations,
@@ -93,7 +128,6 @@ class QuestionModel extends Question {
         other.lessonId == lessonId &&
         other.imageUrl == imageUrl &&
         other.categoryId == categoryId &&
-        other.isMCQ == isMCQ &&
         other.explain == explain &&
         other.questionAnswers == questionAnswers &&
         other.answerEvaluations == answerEvaluations;

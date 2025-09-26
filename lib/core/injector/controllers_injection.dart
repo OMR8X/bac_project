@@ -7,8 +7,7 @@ import 'package:bac_project/features/auth/domain/usecases/sign_out_usecase.dart'
 import 'package:bac_project/features/auth/domain/usecases/sign_up_usecase.dart';
 import 'package:bac_project/features/auth/domain/usecases/update_user_data_usecase.dart';
 import 'package:bac_project/features/settings/domain/usecases/get_app_settings_usecase.dart';
-import 'package:bac_project/features/notifications/domain/usecases/initialize_firebase_notifications_usecase.dart';
-import 'package:bac_project/features/notifications/domain/usecases/initialize_local_notifications_usecase.dart';
+import 'package:bac_project/features/notifications/domain/usecases/initialize_notifications_usecase.dart';
 import 'package:bac_project/presentation/auth/state/bloc/auth_bloc.dart';
 import 'package:bac_project/presentation/home/blocs/home_bloc.dart';
 import 'package:bac_project/presentation/result/bloc/explore_results/explore_results_bloc.dart';
@@ -32,11 +31,9 @@ controllersInjection() {
 
   ///
   sl.registerLazySingleton(
-    () => AppLoaderBloc(
-      sl<GetAppSettingsUsecase>(),
-      sl<InitializeLocalNotificationsUsecase>(),
-      sl<InitializeFirebaseNotificationsUsecase>(),
-    )..add(const AppLoaderLoadData()),
+    () =>
+        AppLoaderBloc(sl<GetAppSettingsUsecase>(), sl<InitializeNotificationsUsecase>())
+          ..add(const AppLoaderLoadData()),
   );
 
   ///

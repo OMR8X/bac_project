@@ -1,4 +1,4 @@
-import 'package:bac_project/features/notifications/data/responses/register_device_token_response.dart';
+
 import 'package:dartz/dartz.dart';
 import 'package:bac_project/core/resources/errors/failures.dart';
 import 'package:bac_project/features/notifications/domain/repositories/notifications_repository.dart';
@@ -9,7 +9,7 @@ class RegisterDeviceTokenUsecase {
 
   RegisterDeviceTokenUsecase({required this.repository});
 
-  Future<Either<Failure, RegisterDeviceTokenResponse>> call(
+  Future<Either<Failure, Unit>> call(
     RegisterDeviceTokenRequest request,
   ) async {
     return await repository.registerDeviceToken(request);

@@ -6,6 +6,7 @@ current_result as (
   select
     r.*,
     l.title as lesson_title,
+	RANK() over () as user_rank,
     json_agg(
       json_build_object(
         'id', qa.id,
@@ -35,6 +36,7 @@ current_result as (
               left join public.lessons l on r.lesson_id = l.id
             where
               r.user_id = auth.uid()
+			and  r.id < P_RESULT_ID
               and r.id <> p_result_id
               and r.lesson_id = (select lesson_id from current_result)
             order by r.created_at desc

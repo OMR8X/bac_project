@@ -1,6 +1,7 @@
 part of 'app_loader_bloc.dart';
 
-enum LoadState { failure, loading, update, succeed, unauthorized }
+// to do : implement check connection state
+enum LoadState { failure, loading, update, succeed, unauthorized, offline }
 
 final class AppLoaderState extends Equatable {
   //

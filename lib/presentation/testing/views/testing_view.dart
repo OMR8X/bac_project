@@ -32,7 +32,7 @@ class TestingView extends StatelessWidget {
                   timeLimit: arguments?.timeLimit ?? 30,
                   lessonId: arguments?.lessonIds?.length == 1 ? arguments!.lessonIds!.first : null,
                   testMode: testMode,
-                  ),
+                ),
               ),
       child: Scaffold(
         appBar: AppBar(
@@ -91,7 +91,6 @@ class TestingView extends StatelessWidget {
           const Option(id: 3, questionId: 1, content: '5', isCorrect: false),
           const Option(id: 4, questionId: 1, content: '6', isCorrect: false),
         ],
-        isMCQ: true,
         explain: null,
         categoryId: null,
       ),
@@ -105,7 +104,6 @@ class TestingView extends StatelessWidget {
           const Option(id: 7, questionId: 2, content: '7', isCorrect: true),
           const Option(id: 8, questionId: 2, content: '8', isCorrect: false),
         ],
-        isMCQ: true,
         explain: null,
         categoryId: null,
       ),

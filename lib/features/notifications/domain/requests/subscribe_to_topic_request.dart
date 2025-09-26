@@ -1,5 +1,12 @@
 class SubscribeToTopicRequest {
-  final String topic;
+  final int topicId;
+  final String topicName;
 
-  SubscribeToTopicRequest({required this.topic});
+  SubscribeToTopicRequest({required this.topicId, required this.topicName});
+
+  Map<String, dynamic> toJsonBody() {
+    return {
+      'p_topic_id': topicId,
+    };
+  }
 }

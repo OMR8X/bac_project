@@ -64,7 +64,7 @@
       enableGPUValidationMode = "1"
       allowLocationSimulation = "YES">
       <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+         runnableLoggerMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "97C146ED1CF9000F007C117D"
@@ -81,7 +81,7 @@
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
       <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+         runnableLoggerMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "97C146ED1CF9000F007C117D"

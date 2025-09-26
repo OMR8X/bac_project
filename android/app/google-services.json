@@ -1,32 +1,13 @@
 {
   "project_info": {
-    "project_number": "485493702445",
-    "project_id": "bac-quizzes-project",
-    "storage_bucket": "bac-quizzes-project.firebasestorage.app"
+    "project_number": "811739001959",
+    "project_id": "neuro-bac-project",
+    "storage_bucket": "neuro-bac-project.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:485493702445:android:5152bf94bc59138c1f9da4",
-        "android_client_info": {
-          "package_name": "com.bac.quizzes"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyB8PM4NWnHK2I0njD8-UmTMzk0c01vojM0"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:485493702445:android:1ac133cb24f197e01f9da4",
+        "mobilesdk_app_id": "1:811739001959:android:0a4e825b946ff16a0a10c2",
         "android_client_info": {
           "package_name": "com.neuro.bac"
         }
@@ -34,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyB8PM4NWnHK2I0njD8-UmTMzk0c01vojM0"
+          "current_key": "AIzaSyBJcr5Vdl8wYfUx_DbsPpubVOzfkyO9SiM"
         }
       ],
       "services": {

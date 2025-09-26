@@ -5,17 +5,20 @@ extension AppNotificationModelMapper on AppNotificationModel {
   AppNotification get toEntity {
     return AppNotification(
       id: id,
+      typeId: typeId,
+      topicId: topicId,
       title: title,
       body: body,
-      html: html,
       imageUrl: imageUrl,
-      type: type,
+      actionType: actionType,
+      actionValue: actionValue,
+      payload: payload,
+      priority: priority,
+      createdAt: createdAt,
+      expiresAt: expiresAt,
       status: status,
       isStarred: isStarred,
       readAt: readAt,
-      fcmMessageId: fcmMessageId,
-      date: date,
-      data: data,
     );
   }
 }
@@ -24,17 +27,20 @@ extension AppNotificationMapper on AppNotification {
   AppNotificationModel get toModel {
     return AppNotificationModel(
       id: id,
+      typeId: typeId,
+      topicId: topicId,
       title: title,
       body: body,
-      html: html,
       imageUrl: imageUrl,
-      type: type,
+      actionType: actionType,
+      actionValue: actionValue,
+      payload: payload,
+      priority: priority,
+      createdAt: createdAt,
+      expiresAt: expiresAt,
       status: status,
       isStarred: isStarred,
       readAt: readAt,
-      fcmMessageId: fcmMessageId,
-      date: date,
-      data: data,
     );
   }
 }

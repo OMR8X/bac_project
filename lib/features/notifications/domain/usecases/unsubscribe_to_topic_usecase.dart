@@ -1,4 +1,4 @@
-import 'package:bac_project/features/notifications/data/responses/unsubscribe_from_topic_response.dart';
+
 import 'package:bac_project/features/notifications/domain/requests/unsubscribe_from_topic_request.dart';
 import 'package:dartz/dartz.dart';
 
@@ -9,7 +9,7 @@ class UnsubscribeToTopicUsecase {
   final NotificationsRepository repository;
 
   UnsubscribeToTopicUsecase({required this.repository});
-  Future<Either<Failure, UnsubscribeFromTopicResponse>> call(UnsubscribeFromTopicRequest request) async {
+  Future<Either<Failure, Unit>> call(UnsubscribeFromTopicRequest request) async {
     return await repository.unsubscribeToTopic(request);
   }
 }

@@ -1,4 +1,4 @@
-import 'package:bac_project/core/services/debug/debugs_holder.dart';
+import 'package:bac_project/core/services/logs/logs_holder.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 

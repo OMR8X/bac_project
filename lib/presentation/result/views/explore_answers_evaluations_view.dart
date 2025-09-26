@@ -32,7 +32,7 @@ class ExploreAnswersEvaluationsView extends StatelessWidget {
           create:
               (context) =>
                   ExploreAnswersEvaluationsBloc()
-                    ..add(InitializeAnswersEvaluationsBloc(questions: arguments.questions)),
+                    ..add(InitializeAnswersEvaluationsBloc(resultId: arguments.resultId)),
           child: BlocBuilder<ExploreAnswersEvaluationsBloc, ExploreAnswersEvaluationsState>(
             builder: (context, state) {
               switch (state.status) {
@@ -46,7 +46,7 @@ class ExploreAnswersEvaluationsView extends StatelessWidget {
                     failure: state.failure,
                     onRetry: () {
                       context.read<ExploreAnswersEvaluationsBloc>().add(
-                        InitializeAnswersEvaluationsBloc(questions: arguments.questions),
+                        InitializeAnswersEvaluationsBloc(resultId: arguments.resultId),
                       );
                     },
                   );
@@ -72,9 +72,6 @@ class _ExploreAnswersEvaluationsLoadedView extends StatelessWidget {
         itemCount: state.questions?.length ?? 0,
         itemBuilder: (context, index) {
           final question = state.questions![index];
-          if (question.questionAnswers.map((e) => e.isCorrect).every((e) => e == true)) {
-            return const SizedBox.shrink();
-          }
           return AnimationConfiguration.staggeredList(
             position: index,
             duration: const Duration(milliseconds: 375),
@@ -85,7 +82,7 @@ class _ExploreAnswersEvaluationsLoadedView extends StatelessWidget {
                   children: [
                     QuestionCardWidget(question: question),
                     _buildOptions(context: context, question: question),
-                    const SizedBox(height: 16.0),
+                    // SizedBoxes.s2v,
                   ],
                 ),
               ),

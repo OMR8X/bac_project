@@ -1,15 +1,17 @@
 import 'dart:async';
-
+import 'package:bac_project/core/injector/tests_feature_inj.dart';
 import 'package:bac_project/core/resources/errors/failures.dart';
+import 'package:bac_project/core/services/logs/logger.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as sp;
 
 import 'exceptions.dart';
 
 extension ExceptionsMapper on Exception {
   Failure get toFailure {
-    debugPrint(toString());
+    if (sl.isRegistered<Logger>()) {
+      sl<Logger>().logError(toString(), stackTrace: StackTrace.current);
+    }
     switch (this) {
       case DioException():
         return ServerFailure(message: (this as DioException).message);

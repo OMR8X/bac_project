@@ -13,7 +13,7 @@ class OptionModel extends Option {
   factory OptionModel.fromJson(Map<String, dynamic> json) {
     return OptionModel(
       id: json['id'] as int? ?? DateTime.now().millisecondsSinceEpoch,
-      questionId: json['question_id'] as int? ?? DateTime.now().millisecondsSinceEpoch,
+      questionId: json['question_id'] as int? ?? 0, // Default to 0 when not provided
       content: json['content'] as String,
       isCorrect: json['is_correct'] as bool?,
       sortOrder: json['sort_order'] as int?,

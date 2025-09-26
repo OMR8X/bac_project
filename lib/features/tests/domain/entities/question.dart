@@ -16,8 +16,6 @@ class Question {
 
   final int? categoryId;
 
-  final bool? isMCQ;
-
   final String? explain;
 
   final List<QuestionAnswer> questionAnswers;
@@ -31,7 +29,6 @@ class Question {
     required this.lessonId,
     this.imageUrl,
     this.categoryId,
-    this.isMCQ,
     this.explain,
     this.questionAnswers = const [],
     this.answerEvaluations = const [],
@@ -39,6 +36,9 @@ class Question {
 
   String getImageUrl() {
     if (imageUrl != null) {
+      if (imageUrl!.contains("seen")) {
+        return imageUrl!;
+      }
       return 'https://hvccufhuqizyposxasck.supabase.co/storage/v1/object/public/$imageUrl';
     }
     return '';
@@ -56,7 +56,6 @@ class Question {
     int? lessonId,
     String? imageUrl,
     int? categoryId,
-    bool? isMCQ,
     String? explain,
     List<QuestionAnswer>? questionAnswers,
     List<AnswerEvaluation>? answerEvaluations,
@@ -69,7 +68,6 @@ class Question {
       lessonId: lessonId ?? this.lessonId,
       imageUrl: imageUrl ?? this.imageUrl,
       categoryId: categoryId ?? this.categoryId,
-      isMCQ: isMCQ ?? this.isMCQ,
       explain: explain ?? this.explain,
       questionAnswers: questionAnswers ?? this.questionAnswers,
       answerEvaluations: answerEvaluations ?? this.answerEvaluations,
@@ -78,7 +76,7 @@ class Question {
 
   @override
   String toString() =>
-      'Question(id: $id, content: $content, options: $options, unitId: $unitId, lessonId: $lessonId, imageUrl: $imageUrl, categoryId: $categoryId, isMCQ: $isMCQ, explain: $explain, questionAnswers: $questionAnswers, answerEvaluations: $answerEvaluations)';
+      'Question(id: $id, content: $content, options: $options, unitId: $unitId, lessonId: $lessonId, imageUrl: $imageUrl, categoryId: $categoryId, explain: $explain, questionAnswers: $questionAnswers, answerEvaluations: $answerEvaluations)';
 
   static Question empty() {
     return Question(
@@ -88,7 +86,6 @@ class Question {
       lessonId: 0,
       imageUrl: null,
       categoryId: null,
-      isMCQ: null,
       explain: null,
       questionAnswers: [],
       answerEvaluations: [],

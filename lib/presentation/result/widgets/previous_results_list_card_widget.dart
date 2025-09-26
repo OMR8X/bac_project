@@ -52,7 +52,7 @@ class PreviousResultsListCardWidget extends StatelessWidget {
                     child: ListTile(
                       contentPadding: Paddings.zero,
                       onTap: () {
-                        context.push(
+                        context.pushReplacement(
                           AppRoutes.exploreResult.path,
                           extra: ExploreResultViewArguments(resultId: results[index].id),
                         );

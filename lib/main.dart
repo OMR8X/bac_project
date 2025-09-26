@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:bac_project/firebase_options.dart';
 import 'package:bac_project/presentation/root/views/app_root.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -34,6 +32,7 @@ void main() async {
   //   FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
   //   return true;
   // };
+
 
   ///
   runApp(AppRoot());

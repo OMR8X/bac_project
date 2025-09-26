@@ -53,7 +53,7 @@ class TextualQuestionsBuilderWidget extends StatelessWidget {
               didAnswer: questionsAnswers.isNotEmpty,
               onSubmitText: onSubmitText == null ? null : (v) => onSubmitText?.call(option, v),
             ),
-            if (questionAnswer?.isCorrect != true)
+            if (questionAnswer?.isCorrect != true && testMode == null)
               AnswerEvaluationsNotesWidget(option: option, answerEvaluation: evaluation),
           ],
         );

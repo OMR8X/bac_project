@@ -1,9 +1,8 @@
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
+import 'package:bac_project/core/resources/errors/failures.dart';
 import 'package:bac_project/core/resources/styles/assets_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
-// sizes_resources not used in this file
 import 'package:bac_project/core/services/router/app_routes.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
 import 'package:bac_project/core/widgets/messages/dialogs/details_dialog.dart';
@@ -11,20 +10,18 @@ import 'package:bac_project/core/widgets/ui/fields/mode_switcher_widget.dart';
 import 'package:bac_project/core/widgets/ui/fields/questions_categories_picker_widget.dart';
 import 'package:bac_project/core/widgets/ui/fields/questions_count_picker_widget.dart';
 import 'package:bac_project/core/widgets/ui/fields/switch_tile_widget.dart';
-import 'package:bac_project/core/widgets/ui/icons/appbar_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/icons/information_icon_widget.dart';
+import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
 import 'package:bac_project/features/tests/domain/entities/question_category.dart';
 import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lottie/lottie.dart';
 import '../../../core/services/router/app_arguments.dart';
 import '../../../core/widgets/ui/fields/bottom_buttons_widget.dart';
 import '../../../core/widgets/ui/loading_widget.dart';
 import '../../../core/resources/styles/spaces_resources.dart';
-import '../../../core/injector/app_injection.dart';
 import '../blocs/test_mode_settings/test_mode_settings_bloc.dart';
 
 class TestModeSettingsView extends StatelessWidget {
@@ -34,86 +31,69 @@ class TestModeSettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocConsumer<TestModeSettingsBloc, TestModeSettingsState>(
-        buildWhen: (previous, current) {
-          if (current.status == TestModeSettingsStatus.fetchingQuestions) {
-            return false;
-          }
-          return previous.status != current.status;
-        },
-        listener: (BuildContext context, TestModeSettingsState state) {
-          if (state.status == TestModeSettingsStatus.saved) {
-            context.pushReplacementNamed(
-              AppRoutes.quizzing.name,
-              extra: QuizzingArguments(
-                questions: state.questions,
-                timeLimit: null,
-                testMode: state.testOptions.selectedMode,
-                lessonIds: state.testOptions.selectedLessonsIDs,
-              ),
-            );
-          }
-        },
-        builder: (context, state) {
-          if (state.status == TestModeSettingsStatus.loaded ||
-              state.status == TestModeSettingsStatus.fetchingQuestions) {
-            return _LoadedView(key: ValueKey(state.testOptions.selectedMode), state: state);
-          }
-          if (state.status == TestModeSettingsStatus.error) {
-            return _ErrorView(message: state.message ?? 'An error occurred');
-          }
-          return const _LoadingView();
-        },
-      ),
-    );
-  }
-}
-
-class _LoadingView extends StatelessWidget {
-  const _LoadingView();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
       appBar: AppBar(
         title: Text(context.l10n.testPropertiesTitle),
         centerTitle: true,
         leading: CloseIconWidget(),
-      ),
-      body: const LoadingWidget(),
-    );
-  }
-}
-
-class _ErrorView extends StatelessWidget {
-  const _ErrorView({required this.message});
-  final String message;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(context.l10n.testPropertiesTitle),
-        centerTitle: true,
-        leading: CloseIconWidget(),
+        actions: [
+          BlocBuilder<TestModeSettingsBloc, TestModeSettingsState>(
+            builder: (context, state) {
+              if (state.status == TestModeSettingsStatus.loaded) {
+                return InformationIconWidget(
+                  onPressed: () {
+                    if (state.testOptions.selectedMode == TestMode.testing) {
+                      _showTestModeDetailsDialog(context);
+                    } else {
+                      _showExploreModeDetailsDialog(context);
+                    }
+                  },
+                );
+              }
+              return const SizedBox.shrink();
+            },
+          ),
+        ],
       ),
       body: Center(
-        child: Padding(
-          padding: Paddings.screenSidesPadding,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.error_outline, size: 64, color: Theme.of(context).colorScheme.error),
-              SizedBox(height: SpacesResources.s15),
-              Text(
-                message,
-                style: Theme.of(context).textTheme.bodyLarge,
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: SpacesResources.s15),
-              ElevatedButton(
-                onPressed: () {
-                  final state = context.read<TestModeSettingsBloc>().state;
+        child: BlocConsumer<TestModeSettingsBloc, TestModeSettingsState>(
+          buildWhen: (previous, current) {
+            if (current.status == TestModeSettingsStatus.fetchingQuestions) {
+              return false;
+            }
+            return previous.status != current.status;
+          },
+          listener: (BuildContext context, TestModeSettingsState state) {
+            if (state.status == TestModeSettingsStatus.saved) {
+              context.pushReplacementNamed(
+                AppRoutes.quizzing.name,
+                extra: QuizzingArguments(
+                  questions: state.questions,
+                  timeLimit: null,
+                  testMode: state.testOptions.selectedMode,
+                  lessonIds: state.testOptions.selectedLessonsIDs,
+                ),
+              );
+            }
+          },
+          builder: (context, state) {
+            if (state.status == TestModeSettingsStatus.noQuestions) {
+              return ErrorStateBodyWidget(
+                title: context.l10n.testPropertiesTitle,
+                failure: state.failure ?? UnknownFailure(),
+                onCancel: () {
+                  context.pop();
+                },
+              );
+            }
+            if (state.status == TestModeSettingsStatus.loaded ||
+                state.status == TestModeSettingsStatus.fetchingQuestions) {
+              return _LoadedView(key: ValueKey(state.testOptions.selectedMode), state: state);
+            }
+            if (state.status == TestModeSettingsStatus.error) {
+              return ErrorStateBodyWidget(
+                title: context.l10n.testPropertiesTitle,
+                failure: state.failure ?? UnknownFailure(),
+                onRetry: () {
                   context.read<TestModeSettingsBloc>().add(
                     TestModeSettingsLoadEvent(
                       unitIds: state.testOptions.selectedUnitsIDs,
@@ -121,11 +101,123 @@ class _ErrorView extends StatelessWidget {
                     ),
                   );
                 },
-                child: Text(context.l10n.buttonsRetryTest),
-              ),
-            ],
-          ),
+                onCancel: () {
+                  context.pop();
+                },
+              );
+            }
+            return const LoadingWidget();
+          },
         ),
+      ),
+    );
+  }
+
+  void _showTestModeDetailsDialog(BuildContext context) {
+    showDetailsDialog(
+      context: context,
+      title: context.l10n.testMode,
+      content: Column(
+        children: [
+          ///
+          RichText(
+            text: TextSpan(
+              style: DefaultTextStyle.of(context).style,
+              children: [
+                TextSpan(
+                  text: context.l10n.testModeDetailsTitle,
+                  style: TextStylesResources.dialogBody.copyWith(
+                    height: 2.2,
+                    color: Theme.of(context).colorScheme.onSurface,
+                    fontWeight: FontWeightResources.bold,
+                  ),
+                ),
+                const TextSpan(text: '\n'),
+                TextSpan(
+                  text: context.l10n.testModeDetailsContent,
+                  style: TextStylesResources.dialogBody.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    fontWeight: FontWeightResources.medium,
+                    fontSize: FontSizeResources.s12,
+                  ),
+                ),
+                const TextSpan(text: '\n\n'),
+                TextSpan(
+                  text: context.l10n.testModeAdditionalFeaturesTitle,
+                  style: TextStylesResources.dialogBody.copyWith(
+                    height: 2.2,
+                    color: Theme.of(context).colorScheme.onSurface,
+                    fontWeight: FontWeightResources.bold,
+                  ),
+                ),
+                const TextSpan(text: '\n'),
+                TextSpan(
+                  text: context.l10n.testModeAdditionalFeaturesContent,
+                  style: TextStylesResources.dialogBody.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    fontWeight: FontWeightResources.medium,
+                    fontSize: FontSizeResources.s12,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showExploreModeDetailsDialog(BuildContext context) {
+    showDetailsDialog(
+      context: context,
+      title: context.l10n.exploreMode,
+      content: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          ///
+          RichText(
+            text: TextSpan(
+              style: DefaultTextStyle.of(context).style,
+              children: [
+                TextSpan(
+                  text: context.l10n.exploreModeDetailsTitle,
+                  style: TextStylesResources.dialogBody.copyWith(
+                    height: 2.2,
+                    color: Theme.of(context).colorScheme.onSurface,
+                    fontWeight: FontWeightResources.bold,
+                  ),
+                ),
+                const TextSpan(text: '\n'),
+                TextSpan(
+                  text: context.l10n.exploreModeDetailsContent,
+                  style: TextStylesResources.dialogBody.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    fontWeight: FontWeightResources.medium,
+                    fontSize: FontSizeResources.s12,
+                  ),
+                ),
+                const TextSpan(text: '\n\n'),
+                TextSpan(
+                  text: context.l10n.exploreModeAdditionalFeaturesTitle,
+                  style: TextStylesResources.dialogBody.copyWith(
+                    height: 2.2,
+                    color: Theme.of(context).colorScheme.onSurface,
+                    fontWeight: FontWeightResources.bold,
+                  ),
+                ),
+                const TextSpan(text: '\n'),
+                TextSpan(
+                  text: context.l10n.exploreModeAdditionalFeaturesContent,
+                  style: TextStylesResources.dialogBody.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    fontWeight: FontWeightResources.medium,
+                    fontSize: FontSizeResources.s12,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -139,26 +231,6 @@ class _LoadedView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.l10n.testPropertiesTitle),
-        centerTitle: true,
-        leading: CloseIconWidget(),
-        actions: [
-          BlocBuilder<TestModeSettingsBloc, TestModeSettingsState>(
-            builder: (context, state) {
-              return InformationIconWidget(
-                onPressed: () {
-                  if (state.testOptions.selectedMode == TestMode.testing) {
-                    _showTestModeDetailsDialog(context);
-                  } else {
-                    _showExploreModeDetailsDialog(context);
-                  }
-                },
-              );
-            },
-          ),
-        ],
-      ),
       body: Padding(
         padding: Paddings.screenSidesPadding,
         child: Stack(
@@ -363,115 +435,6 @@ class _LoadedView extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  void _showTestModeDetailsDialog(BuildContext context) {
-    showDetailsDialog(
-      context: context,
-      title: context.l10n.testMode,
-      content: Column(
-        children: [
-          ///
-          RichText(
-            text: TextSpan(
-              style: DefaultTextStyle.of(context).style,
-              children: [
-                TextSpan(
-                  text: context.l10n.testModeDetailsTitle,
-                  style: TextStylesResources.dialogBody.copyWith(
-                    height: 2.2,
-                    color: Theme.of(context).colorScheme.onSurface,
-                    fontWeight: FontWeightResources.bold,
-                  ),
-                ),
-                const TextSpan(text: '\n'),
-                TextSpan(
-                  text: context.l10n.testModeDetailsContent,
-                  style: TextStylesResources.dialogBody.copyWith(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    fontWeight: FontWeightResources.medium,
-                    fontSize: FontSizeResources.s12,
-                  ),
-                ),
-                const TextSpan(text: '\n\n'),
-                TextSpan(
-                  text: context.l10n.testModeAdditionalFeaturesTitle,
-                  style: TextStylesResources.dialogBody.copyWith(
-                    height: 2.2,
-                    color: Theme.of(context).colorScheme.onSurface,
-                    fontWeight: FontWeightResources.bold,
-                  ),
-                ),
-                const TextSpan(text: '\n'),
-                TextSpan(
-                  text: context.l10n.testModeAdditionalFeaturesContent,
-                  style: TextStylesResources.dialogBody.copyWith(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    fontWeight: FontWeightResources.medium,
-                    fontSize: FontSizeResources.s12,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showExploreModeDetailsDialog(BuildContext context) {
-    showDetailsDialog(
-      context: context,
-      title: context.l10n.exploreMode,
-      content: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          ///
-          RichText(
-            text: TextSpan(
-              style: DefaultTextStyle.of(context).style,
-              children: [
-                TextSpan(
-                  text: context.l10n.exploreModeDetailsTitle,
-                  style: TextStylesResources.dialogBody.copyWith(
-                    height: 2.2,
-                    color: Theme.of(context).colorScheme.onSurface,
-                    fontWeight: FontWeightResources.bold,
-                  ),
-                ),
-                const TextSpan(text: '\n'),
-                TextSpan(
-                  text: context.l10n.exploreModeDetailsContent,
-                  style: TextStylesResources.dialogBody.copyWith(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    fontWeight: FontWeightResources.medium,
-                    fontSize: FontSizeResources.s12,
-                  ),
-                ),
-                const TextSpan(text: '\n\n'),
-                TextSpan(
-                  text: context.l10n.exploreModeAdditionalFeaturesTitle,
-                  style: TextStylesResources.dialogBody.copyWith(
-                    height: 2.2,
-                    color: Theme.of(context).colorScheme.onSurface,
-                    fontWeight: FontWeightResources.bold,
-                  ),
-                ),
-                const TextSpan(text: '\n'),
-                TextSpan(
-                  text: context.l10n.exploreModeAdditionalFeaturesContent,
-                  style: TextStylesResources.dialogBody.copyWith(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    fontWeight: FontWeightResources.medium,
-                    fontSize: FontSizeResources.s12,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }

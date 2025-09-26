@@ -1,15 +1,14 @@
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
-import 'package:bac_project/core/resources/styles/assets_resources.dart';
 import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/color_extensions.dart';
 import 'package:bac_project/core/resources/themes/extensions/option_card_colors.dart';
-import 'package:bac_project/core/resources/themes/extensions/success_colors.dart';
 import 'package:bac_project/features/tests/domain/entities/option.dart';
 import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
 import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class OptionTextualFieldWidget extends StatefulWidget {
@@ -41,7 +40,11 @@ class _OptionTextualFieldWidgetState extends State<OptionTextualFieldWidget> {
     super.initState();
     didAnswer = widget.didAnswer && widget.questionAnswer?.answerText != null;
     reviewMode = widget.testMode == null;
-    controller = TextEditingController(text: widget.questionAnswer?.answerText);
+    if ((widget.questionAnswer?.answerText?.isEmpty ?? true)) {
+      controller = TextEditingController(text: widget.option.content);
+    } else {
+      controller = TextEditingController(text: widget.questionAnswer?.answerText);
+    }
     focusNode = FocusNode();
   }
 
@@ -183,29 +186,29 @@ class _OptionTextualFieldWidgetState extends State<OptionTextualFieldWidget> {
                         child: TextField(
                           controller: controller,
                           focusNode: focusNode,
+
                           enabled: (widget.onSubmitText != null),
                           onChanged: (value) {
                             if (widget.onSubmitText == null) return;
                             widget.onSubmitText!(value);
                           },
-      
+
                           style: TextStylesResources.textField.copyWith(
                             fontSize: FontSizeResources.s12,
                             color: getCardTitleColor(context),
                           ),
-      
+                          textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
                             hintText: context.l10n.hintsTextualOptionHint,
                             fillColor: Colors.transparent,
-      
+
                             suffixIcon:
                                 widget.option.sortOrder != null
                                     ? IconButton(
                                       style: IconButton.styleFrom(
                                         backgroundColor: Colors.transparent,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadiusResource.optionCardBorderRadius,
+                                          borderRadius: BorderRadiusResource.optionCardBorderRadius,
                                         ),
                                         disabledBackgroundColor: Colors.transparent,
                                         side: BorderSide(color: Colors.transparent),

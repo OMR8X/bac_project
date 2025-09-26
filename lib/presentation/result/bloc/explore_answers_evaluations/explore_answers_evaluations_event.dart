@@ -8,10 +8,10 @@ sealed class ExploreAnswersEvaluationsEvent extends Equatable {
 }
 
 final class InitializeAnswersEvaluationsBloc extends ExploreAnswersEvaluationsEvent {
-  final List<Question> questions;
+  final int resultId;
 
-  const InitializeAnswersEvaluationsBloc({required this.questions});
+  const InitializeAnswersEvaluationsBloc({required this.resultId});
 
   @override
-  List<Object> get props => [questions];
+  List<Object> get props => [resultId];
 }

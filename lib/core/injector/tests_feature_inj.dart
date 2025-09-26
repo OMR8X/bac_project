@@ -18,6 +18,7 @@ import '../../features/tests/domain/repositories/results_repository.dart';
 import '../../features/tests/domain/usecases/add_result_use_case.dart';
 import '../../features/tests/domain/usecases/get_my_results_use_case.dart';
 import '../../features/tests/domain/usecases/get_result_leaderboard_use_case.dart';
+import '../../features/tests/domain/usecases/get_result_questions_details_use_case.dart';
 
 final sl = GetIt.instance;
 
@@ -57,5 +58,8 @@ Future<void> usecases() async {
   sl.registerLazySingleton<GetResultUsecase>(() => GetResultUsecase(repository: sl()));
   sl.registerLazySingleton<GetResultLeaderboardUsecase>(
     () => GetResultLeaderboardUsecase(repository: sl()),
+  );
+  sl.registerLazySingleton<GetResultQuestionsDetailsUsecase>(
+    () => GetResultQuestionsDetailsUsecase(repository: sl()),
   );
 }

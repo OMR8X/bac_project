@@ -7,7 +7,7 @@ SECURITY DEFINER
 LANGUAGE SQL
 AS $$
     SELECT json_build_object(
-        'categories', json_agg(category_row ORDER BY category_row.title)
+        'categories', coalesce(json_agg(category_row ORDER BY category_row.title), '[]'::json) 
     )
     FROM (
         SELECT

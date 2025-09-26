@@ -45,7 +45,7 @@ class TestModeSettingsBloc extends Bloc<TestModeSettingsEvent, TestModeSettingsS
 
       await result.fold(
         (failure) async {
-          emit(state.copyWith(status: TestModeSettingsStatus.error, message: failure.message));
+          emit(state.copyWith(status: TestModeSettingsStatus.error, failure: failure));
         },
         (response) async {
           // Create TestOptions from response and event data
@@ -58,12 +58,20 @@ class TestModeSettingsBloc extends Bloc<TestModeSettingsEvent, TestModeSettingsS
             categories: response.categories,
             selectedMode: TestMode.exploring,
           );
-
-          emit(state.copyWith(status: TestModeSettingsStatus.loaded, testOptions: testOptions));
+          if (response.categories.isEmpty) {
+            emit(
+              state.copyWith(
+                status: TestModeSettingsStatus.noQuestions,
+                failure: QuestionsNotExistsFailure(),
+              ),
+            );
+          } else {
+            emit(state.copyWith(status: TestModeSettingsStatus.loaded, testOptions: testOptions));
+          }
         },
       );
     } catch (e) {
-      emit(state.copyWith(status: TestModeSettingsStatus.error, message: e.toString()));
+      emit(state.copyWith(status: TestModeSettingsStatus.error, failure: UnknownFailure()));
     }
   }
 
@@ -135,7 +143,7 @@ class TestModeSettingsBloc extends Bloc<TestModeSettingsEvent, TestModeSettingsS
 
       await result.fold(
         (failure) async {
-          emit(state.copyWith(status: TestModeSettingsStatus.error, message: failure.message));
+          emit(state.copyWith(status: TestModeSettingsStatus.error, failure: failure));
         },
         (response) async {
           if (response.questions.isEmpty) {
@@ -145,8 +153,7 @@ class TestModeSettingsBloc extends Bloc<TestModeSettingsEvent, TestModeSettingsS
         },
       );
     } on Exception catch (e) {
-      
-      emit(state.copyWith(status: TestModeSettingsStatus.error, message: e.toFailure.message));
+      emit(state.copyWith(status: TestModeSettingsStatus.error, failure: e.toFailure));
     }
   }
 }

@@ -10,6 +10,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/injector/app_injection.dart';
 import '../../../core/services/router/app_routes.dart';
+import '../../notifications/state/explore_notifications/notifications_bloc.dart';
 
 class AppLoaderView extends StatefulWidget {
   const AppLoaderView({super.key});
@@ -20,6 +21,7 @@ class AppLoaderView extends StatefulWidget {
 
 class _AppLoaderViewState extends State<AppLoaderView> {
   onSucceed() {
+    sl<NotificationsBloc>().add(StoreTokenEvent());
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.go(AppRoutes.home.path);
     });

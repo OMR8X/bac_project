@@ -50,7 +50,7 @@ class TestOptions extends Equatable {
     );
   }
 
-  List<int> countOptions({int padding = 20}) {
+  List<int> countOptions({int padding = 10}) {
     List<int> options = [];
 
     // Calculate maximum available questions from selected categories
@@ -88,7 +88,7 @@ class TestOptions extends Equatable {
     }
 
     // Generate clean multiples starting from padding value
-    int current = padding;
+    int current = 5;
 
     // Add options as clean multiples of padding
     while (current <= max) {

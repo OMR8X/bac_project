@@ -8,13 +8,15 @@ class DioFactory {
     final Dio dio = Dio();
     //
     if (kDebugMode) {
-      dio.interceptors.add(PrettyDioLogger(
-        requestBody: true,
-        requestHeader: true,
-        responseBody: true,
-        responseHeader: true,
-        enabled: true,
-      ));
+      dio.interceptors.add(
+        PrettyDioLogger(
+          requestBody: true,
+          requestHeader: true,
+          responseBody: true,
+          responseHeader: true,
+          enabled: true,
+        ),
+      );
     }
     //
     return dio;

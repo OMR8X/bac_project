@@ -14,9 +14,9 @@ class AnswerEvaluationModel extends AnswerEvaluation {
 
   factory AnswerEvaluationModel.fromJson(Map<String, dynamic> json) {
     return AnswerEvaluationModel(
-      id: json['id'] as int,
-      questionAnswerId: json['question_answer_id'] as int,
-      isCorrect: json['is_correct'] as bool,
+      id: json['id'] as int? ?? 0,
+      questionAnswerId: json['question_answer_id'] as int? ?? 0,
+      isCorrect: json['is_correct'] as bool? ?? false,
       confidence: json['confidence'] != null ? (json['confidence'] as num).toDouble() : null,
       notes: json['notes'] as String?,
       modelName: json['model_name'] as String?,
@@ -36,6 +36,19 @@ class AnswerEvaluationModel extends AnswerEvaluation {
       'created_at': createdAt?.toIso8601String(),
       'updated_at': updatedAt?.toIso8601String(),
     };
+  }
+
+  AnswerEvaluation toEntity() {
+    return AnswerEvaluation(
+      id: id,
+      questionAnswerId: questionAnswerId,
+      isCorrect: isCorrect,
+      confidence: confidence,
+      notes: notes,
+      modelName: modelName,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+    );
   }
 
   @override

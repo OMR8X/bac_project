@@ -1,5 +1,11 @@
 class UnsubscribeFromTopicRequest {
-  final String topic;
+  final int topicId;
+  final String topicName;
+  UnsubscribeFromTopicRequest({required this.topicId, required this.topicName});
 
-  UnsubscribeFromTopicRequest({required this.topic});
+  Map<String, dynamic> toJsonBody() {
+    return {
+      'p_topic_id': topicId,
+    };
+  }
 }

@@ -40,7 +40,7 @@ class ExploreResultBloc extends Bloc<ExploreResultEvent, ExploreResultState> {
       (failure) {
         emit(state.toLoadingDetailsFailure(failure));
       },
-      (response) {
+      (GetResultResponse response) {
         emit(state.toResultDetails(response));
       },
     );

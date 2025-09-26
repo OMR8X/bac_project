@@ -13,9 +13,9 @@ class QuestionAnswerModel extends QuestionAnswer {
 
   factory QuestionAnswerModel.fromJson(Map<String, dynamic> json) {
     return QuestionAnswerModel(
-      id: json['id'] as int,
-      resultId: json['result_id'] as int,
-      questionId: json['question_id'] as int,
+      id: json['id'] as int? ?? 0,
+      resultId: json['result_id'] as int? ?? 0,
+      questionId: json['question_id'] as int? ?? 0,
       optionId: json['option_id'] as int?,
       answerText: json['answer_text'] as String?,
       answerPosition: json['answer_position'] as int?,

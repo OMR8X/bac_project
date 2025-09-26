@@ -4,6 +4,7 @@ import 'package:bac_project/core/injector/notifications_injection.dart';
 import 'package:bac_project/core/injector/supabase_injection.dart';
 import 'package:bac_project/core/injector/tests_feature_inj.dart';
 import 'package:bac_project/core/injector/settings_feature_inj.dart';
+import 'package:bac_project/core/services/logs/logger.dart';
 import 'package:get_it/get_it.dart';
 
 import 'controllers_injection.dart';
@@ -17,9 +18,13 @@ final sl = GetIt.instance;
 class ServiceLocator {
   ///
   static Future<void> init() async {
-    await injectServices();
-    await initFeatures();
-    await initControllers();
+    try {
+      await injectServices();
+      await initFeatures();
+      await initControllers();
+    } catch (e) {
+      sl<Logger>().logError('Error in ServiceLocator.init: $e');
+    }
   }
 
   /// Services

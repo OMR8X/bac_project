@@ -19,8 +19,8 @@ import 'package:bac_project/features/settings/domain/entities/app_settings.dart'
 import 'package:bac_project/features/tests/domain/entities/question.dart';
 import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
 import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
-import 'package:bac_project/features/tests/domain/requests/get_questions_by_ids_request.dart';
-import 'package:bac_project/features/tests/domain/usecases/get_questions_by_ids_use_case.dart';
+import 'package:bac_project/features/tests/domain/requests/get_result_questions_details_request.dart';
+import 'package:bac_project/features/tests/domain/usecases/get_result_questions_details_use_case.dart';
 import 'package:bac_project/presentation/quizzing/widgets/multiple_choices_options_builder_widget.dart';
 import 'package:bac_project/presentation/quizzing/widgets/orderable_options_builder_widget.dart';
 import 'package:bac_project/presentation/quizzing/widgets/textual_options_builder_widget.dart';
@@ -30,7 +30,6 @@ import 'package:bac_project/presentation/result/widgets/score_gauge_widget.dart'
 import 'package:bac_project/presentation/result/widgets/state_chip_widget.dart';
 import 'package:bac_project/presentation/tests/widgets/question_card_widget.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -161,17 +160,14 @@ class _ExploreResultDetailsView extends StatelessWidget {
                           onTap: () {
                             showAppBottomSheet(
                               context: context,
-                              showDragHandle: false,
-                              child: QuestionsSheetBuilder(
-                                questionAnswers: state.response!.result.questionAnswers,
-                                onExploreAnswerEvaluations: (arguments) {
-                                  context.push(
-                                    AppRoutes.exploreAnswersEvaluations.path,
-                                    extra: arguments,
-                                  );
-                                },
-                              ),
+                              child: QuestionsSheetBuilder(resultId: state.response!.result.id),
                             );
+                            // context.push(
+                            //   AppRoutes.exploreAnswersEvaluations.path,
+                            //   extra: ExploreAnswersEvaluationsViewArguments(
+                            //     resultId: state.response!.result.id,
+                            //   ),
+                            // );
                           },
                         ),
                       ),
@@ -221,14 +217,8 @@ class _ExploreResultFailureView extends StatelessWidget {
 }
 
 class QuestionsSheetBuilder extends StatefulWidget {
-  const QuestionsSheetBuilder({
-    super.key,
-    required this.questionAnswers,
-    required this.onExploreAnswerEvaluations,
-  });
-  final List<QuestionAnswer> questionAnswers;
-  final Function(ExploreAnswersEvaluationsViewArguments arguments) onExploreAnswerEvaluations;
-
+  const QuestionsSheetBuilder({super.key, required this.resultId});
+  final int resultId;
   @override
   State<QuestionsSheetBuilder> createState() => _QuestionsSheetBuilderState();
 }
@@ -240,30 +230,13 @@ class _QuestionsSheetBuilderState extends State<QuestionsSheetBuilder> {
   late bool _isLoading;
   late List<Question> _questions;
 
-  late final PopupMenuItem<int> exploreAnswerEvaluationsItem;
-
   @override
   void initState() {
     ///
     _isLoading = true;
     _failure = null;
     _questions = [];
-
-    ///
-    WidgetsBinding.instance.addPostFrameCallback((t) {
-      exploreAnswerEvaluationsItem = buildMenuItem(
-        context: context,
-        label: context.l10n.correctionDetails,
-        icon: Icons.info_outline,
-        iconColor: Theme.of(context).colorScheme.primary,
-        onTap: () {
-          context.pop();
-
-          widget.onExploreAnswerEvaluations(
-            ExploreAnswersEvaluationsViewArguments(questions: _questions),
-          );
-        },
-      );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _fetchQuestions();
     });
     super.initState();
@@ -273,39 +246,15 @@ class _QuestionsSheetBuilderState extends State<QuestionsSheetBuilder> {
     //
     setState(() => _isLoading = true);
     //
-    final response = await sl<GetQuestionsByIdsUsecase>().call(
-      GetQuestionsByIdsRequest(
-        questionIds: widget.questionAnswers.map((e) => e.questionId).toList(),
-      ),
+    final response = await sl<GetResultQuestionsDetailsUsecase>().call(
+      GetResultQuestionsDetailsRequest(resultId: widget.resultId),
     );
     //
     response.fold((l) => _failure = l, (r) {
       _failure = null;
-      _questions =
-          r.questions.map((question) {
-            final matchingAnswers =
-                widget.questionAnswers.where((answer) => answer.questionId == question.id).toList();
-            return question.copyWith(questionAnswers: matchingAnswers);
-          }).toList();
+      _questions = r.resultQuestions;
     });
     setState(() => _isLoading = false);
-  }
-
-  PopupMenuItem<int> buildMenuItem({
-    required BuildContext context,
-    required String label,
-    required IconData icon,
-    required Color iconColor,
-    required void Function()? onTap,
-  }) {
-    return PopupMenuItem(
-      onTap: onTap,
-      height: 48,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [Text(label), Icon(icon, size: 14, color: iconColor)],
-      ),
-    );
   }
 
   @override
@@ -326,57 +275,7 @@ class _QuestionsSheetBuilderState extends State<QuestionsSheetBuilder> {
 
     return Column(
       children: [
-        SizedBox(height: SpacesResources.s6),
-        // Top menu button
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            IconButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: Icon(
-                Icons.close,
-                size: 24,
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
-              ),
-            ),
-            IconButton(
-              key: menuKey,
-              onPressed: () {
-                //
-                final RenderBox renderBox = menuKey.currentContext!.findRenderObject() as RenderBox;
-                final Offset offset = renderBox.localToGlobal(
-                  Offset.zero,
-                ); // Get the position of the button
-                final Size size = renderBox.size; // Get the size of the button
-                //
-                RelativeRect position = RelativeRect.fromLTRB(
-                  offset.dx,
-                  offset.dy + size.height,
-                  offset.dx + size.width,
-                  offset.dy,
-                );
-                //
-                late List<PopupMenuEntry<int>> items;
-                //
-                items = [exploreAnswerEvaluationsItem];
-                //
-                showMenu(
-                  context: context,
-                  position: position,
-                  menuPadding: Paddings.zero,
-                  items: items,
-                );
-              },
-              icon: Icon(
-                Icons.more_vert,
-                size: 24,
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
-              ),
-            ),
-          ],
-        ),
+        // Content
         Expanded(
           child: AnimationLimiter(
             child: ListView.builder(
@@ -391,7 +290,7 @@ class _QuestionsSheetBuilderState extends State<QuestionsSheetBuilder> {
                       _buildOptions(
                         context: context,
                         question: _questions[index],
-                        questionAnswers: widget.questionAnswers,
+                        questionAnswers: _questions[index].questionAnswers,
                         testMode: TestMode.exploring,
                       ),
                     ],
@@ -401,6 +300,8 @@ class _QuestionsSheetBuilderState extends State<QuestionsSheetBuilder> {
             ),
           ),
         ),
+
+        // Close button
         Align(
           alignment: Alignment.bottomCenter,
           child: SizedBox(
@@ -435,11 +336,23 @@ class _QuestionsSheetBuilderState extends State<QuestionsSheetBuilder> {
         questionsAnswers: questionAnswers,
       );
     } else if (category?.isOrderable ?? false) {
-      return OrderableQuestionBuilderWidget(question: question, questionsAnswers: questionAnswers);
+      return OrderableQuestionBuilderWidget(
+        question: question,
+        questionsAnswers: questionAnswers,
+        answerEvaluations: question.answerEvaluations,
+      );
     } else if ((category?.isTypeable) ?? false) {
-      return TextualQuestionsBuilderWidget(question: question, questionsAnswers: questionAnswers);
+      return TextualQuestionsBuilderWidget(
+        question: question,
+        questionsAnswers: questionAnswers,
+        answerEvaluations: question.answerEvaluations,
+      );
     } else if ((category?.isSingleAnswer) ?? false) {
-      return TextualQuestionsBuilderWidget(question: question, questionsAnswers: questionAnswers);
+      return TextualQuestionsBuilderWidget(
+        question: question,
+        questionsAnswers: questionAnswers,
+        answerEvaluations: question.answerEvaluations,
+      );
     } else {
       return const SizedBox.shrink();
     }

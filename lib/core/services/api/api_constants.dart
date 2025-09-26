@@ -41,7 +41,20 @@ class SupabaseEndpoints {
       "fn_api_evaluations_get_answers_evaluations_by_ids";
   static const getResultQuestionsWithAnswersFunctionEndpoint =
       "fn_api_results_get_result_questions_with_answers";
+  static const getResultQuestionsDetailsFunctionEndpoint =
+      "fn_api_results_get_result_questions_details";
   static const addUserResultEdgeFunctionEndpoint = "add_user_result";
+  // Device Token Management
+  static const registerDeviceTokenFunction = "fn_api_device_tokens_register_device_token";
+
+  // Notification Retrieval & Management
+  static const getUserNotificationsFunction = "fn_api_notifications_get_user_notifications";
+  static const markAsReadNotificationFunction = "fn_api_notifications_mark_as_read";
+
+  // Topic Subscription Management
+  static const subscribeToTopicFunction = "fn_api_topics_subscribe_to_topic";
+  static const unsubscribeFromTopicFunction = "fn_api_topics_unsubscribe_from_topic";
+  static const getUserSubscribedTopicsFunction = "fn_api_topics_get_user_subscribed_topics";
 
   ///
   static String rpc(String functionName) => '/rest/v1/rpc/$functionName';

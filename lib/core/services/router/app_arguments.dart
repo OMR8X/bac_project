@@ -79,7 +79,7 @@ class MotivationalQuoteArguments {
 }
 
 class ExploreAnswersEvaluationsViewArguments {
-  final List<Question> questions;
+  final int resultId;
 
-  const ExploreAnswersEvaluationsViewArguments({required this.questions});
+  const ExploreAnswersEvaluationsViewArguments({required this.resultId});
 }

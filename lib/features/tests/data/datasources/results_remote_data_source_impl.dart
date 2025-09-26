@@ -5,11 +5,13 @@ import 'package:bac_project/features/tests/data/responses/add_result_response.da
 import 'package:bac_project/features/tests/data/responses/get_results_response.dart';
 import 'package:bac_project/features/tests/data/responses/get_result_response.dart';
 import 'package:bac_project/features/tests/data/responses/get_result_leaderboard_response.dart';
+import 'package:bac_project/features/tests/data/responses/get_result_questions_details_response.dart';
 
 import '../../domain/requests/add_result_request.dart';
 import '../../domain/requests/get_my_results_request.dart';
 import '../../domain/requests/get_result_request.dart';
 import '../../domain/requests/get_result_leaderboard_request.dart';
+import '../../domain/requests/get_result_questions_details_request.dart';
 import 'results_remote_data_source.dart';
 
 class ResultsRemoteDataSourceImpl implements ResultsRemoteDataSource {
@@ -81,5 +83,23 @@ class ResultsRemoteDataSourceImpl implements ResultsRemoteDataSource {
     apiResponse.throwErrorIfExists();
 
     return GetResultLeaderboardResponse.fromJson(apiResponse.data);
+  }
+
+  @override
+  Future<GetResultQuestionsDetailsResponse> getResultQuestionsDetails(
+    GetResultQuestionsDetailsRequest request,
+  ) async {
+    final response = await apiManager().post(
+      SupabaseEndpoints.rpc(SupabaseEndpoints.getResultQuestionsDetailsFunctionEndpoint),
+      body: request.toJsonBody(),
+    );
+
+    ///
+    final ApiResponse apiResponse = ApiResponse.fromDioResponse(response);
+
+    ///
+    apiResponse.throwErrorIfExists();
+
+    return GetResultQuestionsDetailsResponse.fromJson(apiResponse.data);
   }
 }

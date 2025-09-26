@@ -1,4 +1,6 @@
+import 'package:bac_project/core/injector/tests_feature_inj.dart';
 import 'package:bac_project/core/resources/errors/exceptions.dart';
+import 'package:bac_project/core/services/logs/logger.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -46,8 +48,17 @@ class ApiResponse {
   }
 
   static Map parseData({dynamic data}) {
-    if (data["data"] != null) {
-      return data["data"];
+    try {
+      if (data is String) {
+        sl<Logger>().logWarning("API responded with string: ${data}");
+        return {};
+      }
+      if (data["data"] != null) {
+        return data["data"];
+      }
+    } catch (e) {
+      sl<Logger>().logWarning("API error type: ${e.runtimeType}");
+      return data;
     }
     return data;
   }

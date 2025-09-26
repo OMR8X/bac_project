@@ -13,3 +13,11 @@ final class LoadNotificationsEvent extends ExploreNotificationsEvent {
   @override
   List<Object> get props => [];
 }
+
+final class StoreTokenEvent extends ExploreNotificationsEvent {
+  final String? token;
+  const StoreTokenEvent({this.token});
+
+  @override
+  List<Object> get props => [];
+}
