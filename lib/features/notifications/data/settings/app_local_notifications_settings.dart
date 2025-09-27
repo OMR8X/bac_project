@@ -4,8 +4,7 @@ class AppLocalNotificationsSettings {
   ///
   static const InitializationSettings settings = InitializationSettings(
     iOS: DarwinInitializationSettings(),
-    // TODO ABOUD 'icon'
-    android: AndroidInitializationSettings("ic_launcher"),
+    android: AndroidInitializationSettings("ic_notification"),
   );
 
   ///

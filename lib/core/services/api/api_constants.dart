@@ -49,12 +49,15 @@ class SupabaseEndpoints {
 
   // Notification Retrieval & Management
   static const getUserNotificationsFunction = "fn_api_notifications_get_user_notifications";
-  static const markAsReadNotificationFunction = "fn_api_notifications_mark_as_read";
+  static const markNotificationsAsReadFunction = "fn_api_notifications_mark_notifications_as_read";
+  static const sendBulkNotificationEdgeFunctionEndpoint = "send_bulk_notification";
 
   // Topic Subscription Management
   static const subscribeToTopicFunction = "fn_api_topics_subscribe_to_topic";
   static const unsubscribeFromTopicFunction = "fn_api_topics_unsubscribe_from_topic";
   static const getUserSubscribedTopicsFunction = "fn_api_topics_get_user_subscribed_topics";
+  static const getTotalNotificationsTopicsFunction =
+      "fn_api_notifications_get_total_notifications_topics";
 
   ///
   static String rpc(String functionName) => '/rest/v1/rpc/$functionName';

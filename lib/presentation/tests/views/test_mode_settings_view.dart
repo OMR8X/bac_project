@@ -1,6 +1,5 @@
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/resources/errors/failures.dart';
-import 'package:bac_project/core/resources/styles/assets_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/services/router/app_routes.dart';
@@ -20,7 +19,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/services/router/app_arguments.dart';
 import '../../../core/widgets/ui/fields/bottom_buttons_widget.dart';
-import '../../../core/widgets/ui/loading_widget.dart';
+import '../../../core/widgets/ui/states/loading_state_body_widget.dart';
 import '../../../core/resources/styles/spaces_resources.dart';
 import '../blocs/test_mode_settings/test_mode_settings_bloc.dart';
 
@@ -106,7 +105,7 @@ class TestModeSettingsView extends StatelessWidget {
                 },
               );
             }
-            return const LoadingWidget();
+            return const LoadingStateBodyWidget();
           },
         ),
       ),

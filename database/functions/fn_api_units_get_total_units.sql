@@ -1,13 +1,14 @@
 CREATE OR REPLACE FUNCTION api.fn_api_units_get_total_units()
-RETURNS JSON
+RETURNS JSONB
 SECURITY DEFINER
 LANGUAGE SQL
 AS $$
   SELECT api.api_response(
-    data := json_build_object(
+    json_build_object(
       'units', json_agg(unit_row)
-    ),
-    message := 'Units retrieved successfully'
+    )::jsonb,
+    'ok'::text,
+    'Units retrieved successfully'::text
   )
   FROM (
     SELECT

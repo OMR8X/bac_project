@@ -2,15 +2,16 @@ CREATE OR REPLACE FUNCTION api.fn_api_lessons_get_total_lessons(
   p_unit_id integer default null,
   p_search text default null
 )
-RETURNS JSON
+RETURNS JSONB
 SECURITY DEFINER
 LANGUAGE SQL
 AS $$
   SELECT api.api_response(
-    data := json_build_object(
+    json_build_object(
       'lessons', json_agg(lesson_row)
-    ),
-    message := 'Lessons retrieved successfully'
+    )::jsonb,
+    'ok'::text,
+    'Lessons retrieved successfully'::text
   )
   FROM (
     SELECT

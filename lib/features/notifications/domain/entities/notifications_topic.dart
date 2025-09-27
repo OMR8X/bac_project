@@ -2,35 +2,51 @@ import 'package:equatable/equatable.dart';
 
 class NotificationsTopic extends Equatable {
   final int id;
-  final String name;
+  final String title;
   final String? description;
+  final String firebaseTopic;
+  final bool subscribable;
 
-  const NotificationsTopic({required this.id, required this.name, this.description});
+  const NotificationsTopic({
+    required this.id,
+    required this.title,
+    required this.firebaseTopic,
+    this.description,
+    this.subscribable = true,
+  });
 
   factory NotificationsTopic.empty() {
-    return const NotificationsTopic(id: 0, name: '');
+    return const NotificationsTopic(id: 0, title: '', firebaseTopic: '');
   }
 
-  NotificationsTopic copyWith({int? id, String? name, String? description}) {
+  NotificationsTopic copyWith({
+    int? id,
+    String? title,
+    String? description,
+    String? firebaseTopic,
+    bool? subscribable,
+  }) {
     return NotificationsTopic(
       id: id ?? this.id,
-      name: name ?? this.name,
+      title: title ?? this.title,
       description: description ?? this.description,
+      firebaseTopic: firebaseTopic ?? this.firebaseTopic,
+      subscribable: subscribable ?? this.subscribable,
     );
   }
 
   Map<String, dynamic> toJson() {
-    return {'id': id, 'name': name, 'description': description};
+    return {
+      'id': id,
+      'title': title,
+      'description': description,
+      'firebase_topic': firebaseTopic,
+      'subscribable': subscribable,
+    };
   }
 
-  factory NotificationsTopic.fromJson(Map<String, dynamic> json) {
-    return NotificationsTopic(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      description: json['description'] as String?,
-    );
-  }
+
 
   @override
-  List<Object?> get props => [id, name, description];
+  List<Object?> get props => [id, title, description, firebaseTopic, subscribable];
 }

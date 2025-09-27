@@ -1,11 +1,9 @@
 import 'package:bac_project/features/notifications/data/models/notification_model.dart';
 import 'package:bac_project/features/notifications/data/models/notification_topic_model.dart';
-import 'package:bac_project/features/notifications/data/models/notification_type_model.dart';
 import 'package:bac_project/features/notifications/data/models/user_notification_model.dart';
 import 'package:bac_project/features/notifications/data/models/user_topic_subscription_model.dart';
 import 'package:bac_project/features/notifications/domain/entities/notification.dart';
 import 'package:bac_project/features/notifications/domain/entities/notifications_topic.dart';
-import 'package:bac_project/features/notifications/domain/entities/notification_type.dart';
 import 'package:bac_project/features/notifications/domain/entities/user_notification.dart';
 import 'package:bac_project/features/notifications/domain/entities/user_topic_subscription.dart';
 
@@ -13,8 +11,8 @@ import 'package:bac_project/features/notifications/domain/entities/user_topic_su
 extension NotificationModelMapper on NotificationModel {
   Notification get toEntity => Notification(
     id: id,
-    typeId: typeId,
     topicId: topicId,
+    topicTitle: topicTitle,
     title: title,
     body: body,
     imageUrl: imageUrl,
@@ -30,13 +28,11 @@ extension NotificationModelMapper on NotificationModel {
 extension NotificationMapper on Notification {
   NotificationModel get toModel => NotificationModel(
     id: id,
-    typeId: typeId,
     topicId: topicId,
+    topicTitle: topicTitle,
     title: title,
     body: body,
     imageUrl: imageUrl,
-    actionType: actionType,
-    actionValue: actionValue,
     payload: payload,
     priority: priority,
     createdAt: createdAt,
@@ -46,23 +42,23 @@ extension NotificationMapper on Notification {
 
 // NotificationTopic Mappers
 extension NotificationTopicModelMapper on NotificationTopicModel {
-  NotificationsTopic get toEntity =>
-      NotificationsTopic(id: id, name: name, description: description);
+  NotificationsTopic get toEntity => NotificationsTopic(
+    id: id,
+    title: title,
+    description: description,
+    firebaseTopic: firebaseTopic,
+    subscribable: subscribable,
+  );
 }
 
 extension NotificationTopicMapper on NotificationsTopic {
-  NotificationTopicModel get toModel =>
-      NotificationTopicModel(id: id, name: name, description: description);
-}
-
-// NotificationType Mappers
-extension NotificationTypeModelMapper on NotificationTypeModel {
-  NotificationType get toEntity => NotificationType(id: id, name: name, description: description);
-}
-
-extension NotificationTypeMapper on NotificationType {
-  NotificationTypeModel get toModel =>
-      NotificationTypeModel(id: id, name: name, description: description);
+  NotificationTopicModel get toModel => NotificationTopicModel(
+    id: id,
+    title: title,
+    description: description,
+    firebaseTopic: firebaseTopic,
+    subscribable: subscribable,
+  );
 }
 
 // UserNotification Mappers

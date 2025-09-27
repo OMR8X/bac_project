@@ -15,6 +15,7 @@ import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/icons/retry_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/loading_widget.dart';
 import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
+import 'package:bac_project/core/widgets/ui/states/loading_state_body_widget.dart';
 import 'package:bac_project/features/settings/domain/entities/app_settings.dart';
 import 'package:bac_project/features/tests/domain/entities/question.dart';
 import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
@@ -97,7 +98,7 @@ class _ExploreResultViewState extends State<ExploreResultView> with TickerProvid
                 },
               );
             }
-            return const LoadingWidget();
+            return const LoadingStateBodyWidget();
           },
         ),
       ),

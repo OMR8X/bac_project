@@ -2,15 +2,16 @@ CREATE OR REPLACE FUNCTION api.fn_api_questions_get_test_options(
     p_lessons_ids integer[],
     p_units_ids integer[]
 )
-RETURNS JSON
+RETURNS JSONB
 SECURITY DEFINER
 LANGUAGE SQL
 AS $$
     SELECT api.api_response(
-        data := json_build_object(
+        json_build_object(
             'categories', coalesce(json_agg(category_row ORDER BY category_row.title), '[]'::json)
-        ),
-        message := 'Test options retrieved successfully'
+        )::jsonb,
+        'ok'::text,
+        'Test options retrieved successfully'::text
     )
     FROM (
         SELECT

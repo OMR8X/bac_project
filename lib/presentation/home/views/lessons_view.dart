@@ -12,7 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/resources/styles/spacing_resources.dart';
-import '../../../core/widgets/ui/loading_widget.dart';
+import '../../../core/widgets/ui/states/loading_state_body_widget.dart';
 import '../blocs/lessons_bloc.dart';
 
 class LessonsView extends StatefulWidget {
@@ -51,7 +51,7 @@ class _LessonsViewState extends State<LessonsView> {
         child: BlocBuilder<LessonsBloc, LessonsState>(
           builder: (context, state) {
             if (state is LessonsLoading) {
-              return const LoadingWidget();
+              return const LoadingStateBodyWidget();
             } else if (state is LessonsLoaded) {
               return Stack(
                 children: [

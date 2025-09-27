@@ -1,19 +1,18 @@
 import 'dart:io';
 
+import 'package:bac_project/core/injector/app_injection.dart';
+import 'package:bac_project/core/services/logs/logger.dart';
 import 'package:bac_project/features/notifications/domain/requests/subscribe_to_topic_request.dart';
 import 'package:bac_project/features/notifications/domain/requests/unsubscribe_from_topic_request.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-
-import 'package:flutter/foundation.dart';
 import 'package:dartz/dartz.dart';
 import 'package:bac_project/features/notifications/data/handlers/firebase_messaging_handlers.dart';
 import 'package:bac_project/features/notifications/data/settings/app_local_notifications_settings.dart';
 import 'package:bac_project/features/notifications/data/settings/firebase_messaging_settings.dart';
-import 'package:bac_project/features/notifications/data/datasources/notifications_database_datasource.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../domain/entities/app_notification.dart';
+import '../../domain/entities/remote_notification.dart';
 
 abstract class NotificationsRemoteDatasource {
   ///
@@ -21,8 +20,7 @@ abstract class NotificationsRemoteDatasource {
   Future<Unit> initializeFirebaseNotification();
 
   ///
-  Future<Unit> displayFirebaseNotification(RemoteMessage message);
-  Future<Unit> displayLocalNotification({
+  Future<Unit> displayNotification({
     required AppNotification notification,
     bool oneTimeNotification = true,
     NotificationDetails? details,
@@ -35,16 +33,16 @@ abstract class NotificationsRemoteDatasource {
   ///
   Future<String> getDeviceToken();
   Future<Unit> deleteDeviceToken();
+
+
 }
 
 class NotificationsRemoteDatasourceImplements implements NotificationsRemoteDatasource {
   final _firebaseMessaging = FirebaseMessaging.instance;
   final _localNotificationsPlugin = FlutterLocalNotificationsPlugin();
-  final NotificationsDatabaseDatasource _supabaseDatasource;
+  final Logger _logger = sl<Logger>();
 
-  NotificationsRemoteDatasourceImplements({
-    required NotificationsDatabaseDatasource supabaseDatasource,
-  }) : _supabaseDatasource = supabaseDatasource;
+  NotificationsRemoteDatasourceImplements();
 
   @override
   Future<Unit> initializeLocalNotification() async {
@@ -68,9 +66,9 @@ class NotificationsRemoteDatasourceImplements implements NotificationsRemoteData
     await _firebaseMessaging.requestPermission();
 
     await _firebaseMessaging.setForegroundNotificationPresentationOptions(
-      alert: AppRemoteNotificationsSettings.showAlert,
-      badge: AppRemoteNotificationsSettings.showBadge,
-      sound: AppRemoteNotificationsSettings.showSound,
+      alert: AppAppNotificationsSettings.showAlert,
+      badge: AppAppNotificationsSettings.showBadge,
+      sound: AppAppNotificationsSettings.showSound,
     );
 
     final handlers = FirebaseMessagingHandlers();
@@ -88,13 +86,7 @@ class NotificationsRemoteDatasourceImplements implements NotificationsRemoteData
     // Handle initial notification (when app is opened from terminated state)
     await handlers.onInitialNotification();
 
-    // TODO: Uncomment this when the topics are available
-    // // Subscribe to topics
-    // for (var topic in AppRemoteNotificationsSettings.defaultTopicList) {
-    //   await subscribeToTopic(SubscribeToTopicRequest(topic: topic));
-    // }
-
-    debugPrint("Firebase token: ${await getDeviceToken()}");
+    _logger.logWarning('Firebase token: ${await getDeviceToken()}');
     return unit;
   }
 
@@ -107,13 +99,15 @@ class NotificationsRemoteDatasourceImplements implements NotificationsRemoteData
   }
 
   @override
-  Future<Unit> displayLocalNotification({
+  Future<Unit> displayNotification({
     required AppNotification notification,
     bool oneTimeNotification = true,
     NotificationDetails? details,
   }) async {
-    if (!notification.isValid()) return unit;
-
+    if (!notification.isValid()) {
+      _logger.logError('Notification is not valid: ${notification.toJson()}');
+      return unit;
+    }
     await _localNotificationsPlugin.show(
       DateTime.now().millisecondsSinceEpoch % 2147483647, // Ensure it fits in int32
       notification.title,
@@ -125,46 +119,14 @@ class NotificationsRemoteDatasourceImplements implements NotificationsRemoteData
   }
 
   @override
-  Future<Unit> displayFirebaseNotification(RemoteMessage message) async {
-    final notification = AppNotification.fromRemoteMessage(message);
-
-    if (notification.isValid()) {
-      await _localNotificationsPlugin.show(
-        DateTime.now().millisecondsSinceEpoch % 2147483647, // Ensure it fits in int32
-        notification.title,
-        notification.body,
-        AppLocalNotificationsSettings.defaultNotificationsDetails(),
-      );
-    }
-
-    return unit;
-  }
-
-  @override
   Future<Unit> subscribeToTopic(SubscribeToTopicRequest request) async {
-    await _firebaseMessaging.subscribeToTopic(request.topicName);
-
-    // Also track in database via datasource
-    try {
-      await _supabaseDatasource.subscribeToTopicInDatabase(request);
-    } catch (e) {
-      debugPrint('Failed to track topic subscription in database: $e');
-    }
-
+    await _firebaseMessaging.subscribeToTopic(request.firebaseTopicName);
     return unit;
   }
 
   @override
   Future<Unit> unsubscribeToTopic(UnsubscribeFromTopicRequest request) async {
-    await _firebaseMessaging.unsubscribeFromTopic(request.topicName);
-
-    // Also remove from database
-    try {
-      await _supabaseDatasource.unsubscribeFromTopicInDatabase(request);
-    } catch (e) {
-      debugPrint('Failed to remove topic subscription from database: $e');
-    }
-
+    await _firebaseMessaging.unsubscribeFromTopic(request.firebaseTopicName);
     return unit;
   }
 
@@ -180,10 +142,11 @@ class NotificationsRemoteDatasourceImplements implements NotificationsRemoteData
         Platform.isIOS
             ? await _firebaseMessaging.getAPNSToken()
             : await _firebaseMessaging.getToken();
-
     if (token == null) throw Exception("FCM token is null");
     return token;
   }
+
+
 
   Future<void> _requestNotificationPermission() async {
     if (Platform.isAndroid) {

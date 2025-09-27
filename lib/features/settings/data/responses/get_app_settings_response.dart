@@ -8,7 +8,6 @@ class GetAppSettingsResponse {
   GetAppSettingsResponse({required this.message, required this.appSettings});
 
   factory GetAppSettingsResponse.fromResponse(Map<String, dynamic> json) {
-    print("debug json: $json");
     return GetAppSettingsResponse(
       message: json['message'] as String? ?? '',
       appSettings: AppSettingsModel.fromJson(json),

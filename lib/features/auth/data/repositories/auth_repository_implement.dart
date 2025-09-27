@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:bac_project/core/resources/errors/exceptions_mapper.dart';
+import 'package:bac_project/core/resources/errors/error_mapper.dart';
 import 'package:bac_project/core/resources/errors/failures.dart';
 import 'package:bac_project/core/services/cache/cache_constant.dart';
 import 'package:bac_project/core/services/cache/cache_manager.dart';
@@ -52,7 +52,7 @@ class AuthRepositoryImplement implements AuthRepository {
       return right(response);
       //
     } on Exception catch (e) {
-      return left(e.toFailure);
+      return Left(errorToFailure(e));
     }
   }
 
@@ -66,7 +66,7 @@ class AuthRepositoryImplement implements AuthRepository {
       return right(response);
       //
     } on Exception catch (e) {
-      return left(e.toFailure);
+      return Left(errorToFailure(e));
     }
   }
 
@@ -78,7 +78,7 @@ class AuthRepositoryImplement implements AuthRepository {
       return right(response);
       //
     } on Exception catch (e) {
-      return left(e.toFailure);
+      return Left(errorToFailure(e));
     }
   }
 
@@ -91,7 +91,7 @@ class AuthRepositoryImplement implements AuthRepository {
       //
     } on Exception catch (e) {
       debugPrint(e.toString());
-      return left(e.toFailure);
+      return Left(errorToFailure(e));
     }
   }
 
@@ -107,7 +107,7 @@ class AuthRepositoryImplement implements AuthRepository {
       return right(response);
       //
     } on Exception catch (e) {
-      return left(e.toFailure);
+      return Left(errorToFailure(e));
     }
   }
 
@@ -124,7 +124,7 @@ class AuthRepositoryImplement implements AuthRepository {
       return right(response);
       //
     } on Exception catch (e) {
-      return left(e.toFailure);
+      return Left(errorToFailure(e));
     }
   }
 
@@ -135,7 +135,7 @@ class AuthRepositoryImplement implements AuthRepository {
       return right(response);
       //
     } on Exception catch (e) {
-      return left(e.toFailure);
+      return Left(errorToFailure(e));
     }
   }
 
@@ -148,7 +148,7 @@ class AuthRepositoryImplement implements AuthRepository {
       return right(response);
       //
     } on Exception catch (e) {
-      return left(e.toFailure);
+      return Left(errorToFailure(e));
     }
   }
 
@@ -161,7 +161,7 @@ class AuthRepositoryImplement implements AuthRepository {
       return right(response);
       //
     } on Exception catch (e) {
-      return left(e.toFailure);
+      return Left(errorToFailure(e));
     }
   }
 
@@ -172,7 +172,7 @@ class AuthRepositoryImplement implements AuthRepository {
       return right(response);
       //
     } on Exception catch (e) {
-      return left(e.toFailure);
+      return Left(errorToFailure(e));
     }
   }
 }

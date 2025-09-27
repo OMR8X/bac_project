@@ -1,14 +1,14 @@
 import 'package:bac_project/core/resources/errors/failures.dart';
 import 'package:dartz/dartz.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:bac_project/features/notifications/domain/entities/app_notification.dart';
+import 'package:bac_project/features/notifications/domain/entities/remote_notification.dart';
 import 'package:bac_project/features/notifications/domain/requests/get_notifications_request.dart';
 import 'package:bac_project/features/notifications/domain/requests/register_device_token_request.dart';
-import 'package:bac_project/features/notifications/domain/requests/mark_notification_as_read_request.dart';
+import 'package:bac_project/features/notifications/domain/requests/mark_notifications_as_read_request.dart';
 import 'package:bac_project/features/notifications/domain/requests/subscribe_to_topic_request.dart';
 import 'package:bac_project/features/notifications/domain/requests/unsubscribe_from_topic_request.dart';
 import 'package:bac_project/features/notifications/data/responses/get_notifications_response.dart';
+import 'package:bac_project/features/notifications/data/responses/get_notifications_topics_response.dart';
 import 'package:bac_project/features/notifications/data/responses/get_user_subscribed_topics_response.dart';
 
 abstract class NotificationsRepository {
@@ -27,8 +27,6 @@ abstract class NotificationsRepository {
     bool oneTimeNotification = false,
   });
 
-  Future<Either<Failure, Unit>> displayFirebaseNotification({required RemoteMessage message});
-
   /// [ TOKENS ]
   Future<Either<Failure, String>> getDeviceToken();
 
@@ -39,11 +37,15 @@ abstract class NotificationsRepository {
   Future<Either<Failure, Unit>> registerDeviceToken(RegisterDeviceTokenRequest request);
 
   /// [ STATUS ]
-  Future<Either<Failure, Unit>> markNotificationAsRead(MarkNotificationAsReadRequest request);
+  Future<Either<Failure, Unit>> markNotificationsAsRead(MarkNotificationsAsReadRequest request);
 
   /// [ TOPICS ]
   Future<Either<Failure, GetUserSubscribedTopicsResponse>> getUserSubscribedTopics();
+  Future<Either<Failure, GetNotificationsTopicsResponse>> getNotificationsTopics();
   Future<Either<Failure, Unit>> subscribeToTopic(SubscribeToTopicRequest request);
 
   Future<Either<Failure, Unit>> unsubscribeToTopic(UnsubscribeFromTopicRequest request);
+
+  /// [ SYNCHRONIZATION ]
+  Future<Either<Failure, Unit>> syncNotifications();
 }

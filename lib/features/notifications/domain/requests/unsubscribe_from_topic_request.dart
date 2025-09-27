@@ -1,7 +1,7 @@
 class UnsubscribeFromTopicRequest {
   final int topicId;
-  final String topicName;
-  UnsubscribeFromTopicRequest({required this.topicId, required this.topicName});
+  final String firebaseTopicName;
+  UnsubscribeFromTopicRequest({required this.topicId, required this.firebaseTopicName});
 
   Map<String, dynamic> toJsonBody() {
     return {

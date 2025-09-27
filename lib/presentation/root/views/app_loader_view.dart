@@ -21,8 +21,8 @@ class AppLoaderView extends StatefulWidget {
 
 class _AppLoaderViewState extends State<AppLoaderView> {
   onSucceed() {
-    sl<NotificationsBloc>().add(StoreTokenEvent());
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      sl<NotificationsBloc>().add(SyncNotificationsEvent());
       context.go(AppRoutes.home.path);
     });
   }

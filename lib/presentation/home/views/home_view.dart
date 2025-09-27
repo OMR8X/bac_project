@@ -13,7 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/services/router/app_routes.dart';
-import '../../../core/widgets/ui/loading_widget.dart';
+import '../../../core/widgets/ui/states/loading_state_body_widget.dart';
 import '../blocs/home_bloc.dart';
 import '../widgets/home_action_card_bilder_widget.dart';
 
@@ -51,7 +51,9 @@ class _HomeViewState extends State<HomeView> {
         child: BlocBuilder<HomeBloc, HomeState>(
           builder: (context, state) {
             if (state is HomeLoading) {
-              return CustomScrollView(slivers: [SliverFillRemaining(child: LoadingWidget())]);
+              return CustomScrollView(
+                slivers: [SliverFillRemaining(child: LoadingStateBodyWidget())],
+              );
             } else if (state is HomeLoaded) {
               return Padding(
                 padding: Paddings.screenSidesPadding,

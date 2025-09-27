@@ -6,10 +6,17 @@ import 'package:bac_project/features/auth/domain/usecases/sign_in_usecase.dart';
 import 'package:bac_project/features/auth/domain/usecases/sign_out_usecase.dart';
 import 'package:bac_project/features/auth/domain/usecases/sign_up_usecase.dart';
 import 'package:bac_project/features/auth/domain/usecases/update_user_data_usecase.dart';
+import 'package:bac_project/features/notifications/domain/usecases/get_notifications_usecase.dart';
+import 'package:bac_project/features/notifications/domain/usecases/get_notifications_topics_usecase.dart';
+import 'package:bac_project/features/notifications/domain/usecases/get_user_subscribed_topics_usecase.dart';
+import 'package:bac_project/features/notifications/domain/usecases/subscribe_to_topic_usecase.dart';
+import 'package:bac_project/features/notifications/domain/usecases/unsubscribe_to_topic_usecase.dart';
+import 'package:bac_project/features/notifications/domain/usecases/sync_notifications_usecase.dart';
 import 'package:bac_project/features/settings/domain/usecases/get_app_settings_usecase.dart';
 import 'package:bac_project/features/notifications/domain/usecases/initialize_notifications_usecase.dart';
 import 'package:bac_project/presentation/auth/state/bloc/auth_bloc.dart';
 import 'package:bac_project/presentation/home/blocs/home_bloc.dart';
+import 'package:bac_project/presentation/notifications/state/topics_management/notifications_topics_bloc.dart';
 import 'package:bac_project/presentation/result/bloc/explore_results/explore_results_bloc.dart';
 import 'package:bac_project/presentation/result/bloc/submit_results/explore_result_bloc.dart';
 import 'package:bac_project/presentation/search/bloc/bloc/search_bloc.dart';
@@ -19,6 +26,7 @@ import 'package:bac_project/presentation/tests/blocs/custom_questions/fetch_cust
 
 import '../../presentation/home/blocs/lessons_bloc.dart';
 
+import '../../presentation/notifications/state/explore_notifications/notifications_bloc.dart';
 import '../../presentation/root/blocs/loader/app_loader_bloc.dart';
 import '../../presentation/root/blocs/theme/app_theme_bloc.dart';
 
@@ -71,4 +79,21 @@ controllersInjection() {
   // Results
   sl.registerLazySingleton(() => ExploreResultsBloc(getMyResultsUsecase: sl()));
   sl.registerFactory(() => ExploreResultBloc(getResultUsecase: sl()));
+
+  ///
+  sl.registerLazySingleton<NotificationsBloc>(
+    () =>
+        NotificationsBloc(sl<GetNotificationsUsecase>(), sl<SyncNotificationsUsecase>())
+          ..add(const LoadNotificationsEvent()),
+  );
+
+  ///
+  sl.registerLazySingleton<NotificationsTopicsBloc>(
+    () => NotificationsTopicsBloc(
+      sl<GetNotificationsTopicsUsecase>(),
+      sl<GetUserSubscribedTopicsUsecase>(),
+      sl<SubscribeToTopicUsecase>(),
+      sl<UnsubscribeToTopicUsecase>(),
+    ),
+  );
 }

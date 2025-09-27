@@ -2,7 +2,6 @@ import 'package:bac_project/core/injector/tests_feature_inj.dart';
 import 'package:bac_project/core/resources/errors/exceptions.dart';
 import 'package:bac_project/core/services/logs/logger.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 
 class ApiResponse {
   //
@@ -47,22 +46,6 @@ class ApiResponse {
     throw const ServerException();
   }
 
-  static Map parseData({dynamic data}) {
-    try {
-      if (data is String) {
-        sl<Logger>().logWarning("API responded with string: ${data}");
-        return {};
-      }
-      if (data["data"] != null) {
-        return data["data"];
-      }
-    } catch (e) {
-      sl<Logger>().logWarning("API error type: ${e.runtimeType}");
-      return data;
-    }
-    return data;
-  }
-
   String getMessage() {
     //
     String details = message;
@@ -81,15 +64,20 @@ class ApiResponse {
   }
 
   factory ApiResponse.fromDioResponse(Response response) {
-    final data = parseData(data: response.data);
-    return ApiResponse(
-      data: data,
-      status: (response.data["status"] as String?) == "success",
-      statusCode: response.statusCode,
-      errors: response.data["errors"],
-      message: response.data["message"] ?? "",
-      currentPage: response.data["current_page"] ?? 0,
-      lastPage: response.data["last_page"] ?? 0,
-    );
+    try {
+      return ApiResponse(
+        data: response.data["data"],
+        status: (response.data["status"] as String?) == "success",
+        statusCode: response.statusCode,
+        errors: response.data["errors"],
+        message: response.data["message"] ?? "",
+        currentPage: response.data["current_page"] ?? 0,
+        lastPage: response.data["last_page"] ?? 0,
+      );
+    } on Error catch (e) {
+      throw e;
+    } on Exception catch (e) {
+      throw e;
+    }
   }
 }

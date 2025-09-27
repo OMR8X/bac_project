@@ -1,3 +1,4 @@
+import 'package:bac_project/features/notifications/data/models/notification_topic_model.dart';
 import 'package:bac_project/features/notifications/domain/entities/notifications_topic.dart';
 
 class GetUserSubscribedTopicsResponse {
@@ -9,7 +10,7 @@ class GetUserSubscribedTopicsResponse {
     return GetUserSubscribedTopicsResponse(
       topics:
           (json['data'] as List)
-              .map((topic) => NotificationsTopic.fromJson(topic as Map<String, dynamic>))
+              .map((topic) => NotificationTopicModel.fromJson(topic as Map<String, dynamic>))
               .toList(),
     );
   }

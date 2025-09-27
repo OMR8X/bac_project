@@ -1,6 +1,6 @@
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
-import 'package:bac_project/core/widgets/ui/loading_widget.dart';
+import 'package:bac_project/core/widgets/ui/states/loading_state_body_widget.dart';
 import 'package:bac_project/presentation/home/widgets/lessons_navigation_card_bilder_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -80,6 +80,6 @@ class _SearchLoadingView extends StatelessWidget {
   final SearchState state;
   @override
   Widget build(BuildContext context) {
-    return const SliverFillRemaining(child: Center(child: LoadingWidget()));
+    return const SliverFillRemaining(child: LoadingStateBodyWidget());
   }
 }

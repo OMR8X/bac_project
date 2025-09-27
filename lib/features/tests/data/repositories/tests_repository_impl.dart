@@ -1,4 +1,4 @@
-import 'package:bac_project/core/resources/errors/exceptions_mapper.dart';
+import 'package:bac_project/core/resources/errors/error_mapper.dart';
 import 'package:dartz/dartz.dart';
 import '../../../../core/resources/errors/failures.dart';
 import '../../../../core/resources/errors/exceptions.dart';
@@ -31,7 +31,7 @@ class TestsRepositoryImpl implements TestsRepository {
       final result = await remoteDataSource.getUnits(request);
       return Right(result);
     } on Exception catch (e) {
-      return Left(e.toFailure);
+      return Left(errorToFailure(e));
     }
   }
 
@@ -41,7 +41,7 @@ class TestsRepositoryImpl implements TestsRepository {
       final result = await remoteDataSource.getLessons(request);
       return Right(result);
     } on Exception catch (e) {
-      return Left(e.toFailure);
+      return Left(errorToFailure(e));
     }
   }
 
@@ -51,7 +51,7 @@ class TestsRepositoryImpl implements TestsRepository {
       final result = await remoteDataSource.getQuestions(request);
       return Right(result);
     } on Exception catch (e) {
-      return Left(e.toFailure);
+      return Left(errorToFailure(e));
     }
   }
 
@@ -63,7 +63,7 @@ class TestsRepositoryImpl implements TestsRepository {
       final result = await remoteDataSource.getQuestionsByIds(request);
       return Right(result);
     } on Exception catch (e) {
-      return Left(e.toFailure);
+      return Left(errorToFailure(e));
     }
   }
 
@@ -75,7 +75,7 @@ class TestsRepositoryImpl implements TestsRepository {
       final result = await remoteDataSource.getTestOptions(request);
       return Right(result);
     } on Exception catch (e) {
-      return Left(e.toFailure);
+      return Left(errorToFailure(e));
     }
   }
 
@@ -87,7 +87,7 @@ class TestsRepositoryImpl implements TestsRepository {
       final result = await remoteDataSource.getAnswerEvaluations(request);
       return Right(result);
     } on Exception catch (e) {
-      return Left(e.toFailure);
+      return Left(errorToFailure(e));
     }
   }
 }

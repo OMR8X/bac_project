@@ -1,0 +1,21 @@
+{
+  "message": {
+    "token": "{{TOKEN}}",
+    "notification": {
+      "title": "{{TITLE}}",
+      "body": "{{BODY}}",
+      "image": "{{IMAGE_URL}}"
+    },
+    "data": {
+      "{{DATA_KEY}}": "{{DATA_VALUE}}"
+    },
+    "android": {
+      "priority": "{{PRIORITY}}"
+    },
+    "apns": {
+      "headers": {
+        "apns-priority": "{{APNS_PRIORITY}}"
+      }
+    }
+  }
+}

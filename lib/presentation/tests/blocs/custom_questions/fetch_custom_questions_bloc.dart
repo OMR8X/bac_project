@@ -1,4 +1,4 @@
-import 'package:bac_project/core/resources/errors/exceptions_mapper.dart';
+import 'package:bac_project/core/resources/errors/error_mapper.dart';
 import 'package:bac_project/features/tests/data/responses/get_questions_response.dart';
 import 'package:bac_project/features/tests/domain/entities/question.dart';
 import 'package:bac_project/features/tests/domain/requests/get_questions_by_ids_request.dart';
@@ -62,8 +62,8 @@ class FetchCustomQuestionsBloc extends Bloc<FetchCustomQuestionsEvent, FetchCust
           );
         },
       );
-    } on Exception catch (e) {
-      emit(FetchCustomQuestionsFailed(message: e.toFailure.message));
+    } catch (e) {
+      emit(FetchCustomQuestionsFailed(message: errorToFailure(e).message));
     }
   }
 
@@ -84,8 +84,8 @@ class FetchCustomQuestionsBloc extends Bloc<FetchCustomQuestionsEvent, FetchCust
         (failure) => emit(FetchCustomQuestionsFailed(message: failure.message)),
         (response) => emit(FetchCustomQuestionsSuccess(questions: response.questions)),
       );
-    } on Exception catch (e) {
-      emit(FetchCustomQuestionsFailed(message: e.toFailure.message));
+    } catch (e) {
+      emit(FetchCustomQuestionsFailed(message: errorToFailure(e).message));
     }
   }
 

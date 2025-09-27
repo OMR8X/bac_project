@@ -14,9 +14,8 @@ final class LoadNotificationsEvent extends ExploreNotificationsEvent {
   List<Object> get props => [];
 }
 
-final class StoreTokenEvent extends ExploreNotificationsEvent {
-  final String? token;
-  const StoreTokenEvent({this.token});
+final class SyncNotificationsEvent extends ExploreNotificationsEvent {
+  const SyncNotificationsEvent();
 
   @override
   List<Object> get props => [];

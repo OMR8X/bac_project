@@ -142,12 +142,6 @@ abstract class AppLocalizations {
   /// **'تأكيد'**
   String get buttonsConfirm;
 
-  /// No description provided for @correctAnswerLabel.
-  ///
-  /// In ar, this message translates to:
-  /// **'الإجابة الصحيحة'**
-  String get correctAnswerLabel;
-
   /// No description provided for @buttonsCustomize.
   ///
   /// In ar, this message translates to:
@@ -165,6 +159,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'إنهاء'**
   String get buttonsFinish;
+
+  /// No description provided for @buttonsManageNotificationTopics.
+  ///
+  /// In ar, this message translates to:
+  /// **'ادارة الاشعارات'**
+  String get buttonsManageNotificationTopics;
 
   /// No description provided for @buttonsNext.
   ///
@@ -268,11 +268,29 @@ abstract class AppLocalizations {
   /// **'إغلاق الاختبار'**
   String get closeQuizDialogTitle;
 
+  /// No description provided for @correctAnswerLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'الإجابة الصحيحة'**
+  String get correctAnswerLabel;
+
   /// No description provided for @correctionDetails.
   ///
   /// In ar, this message translates to:
   /// **'تفاصيل التصحيح'**
   String get correctionDetails;
+
+  /// No description provided for @emptyStateSubtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'ستظهر العناصر هنا عند توفرها'**
+  String get emptyStateSubtitle;
+
+  /// No description provided for @emptyStateTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'لا توجد عناصر'**
+  String get emptyStateTitle;
 
   /// No description provided for @enableSoundEffectsSubtitle.
   ///
@@ -370,6 +388,12 @@ abstract class AppLocalizations {
   /// **'الرئيسية'**
   String get navigationHome;
 
+  /// No description provided for @navigationNotifications.
+  ///
+  /// In ar, this message translates to:
+  /// **'الإشعارات'**
+  String get navigationNotifications;
+
   /// No description provided for @navigationResults.
   ///
   /// In ar, this message translates to:
@@ -381,6 +405,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'الإعدادات'**
   String get navigationSettings;
+
+  /// No description provided for @notificationTopicsTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'إدارة مواضيع الإشعارات'**
+  String get notificationTopicsTitle;
 
   /// No description provided for @pickLessonsTitle.
   ///
@@ -495,6 +525,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'تحديد الكل'**
   String get selectAll;
+
+  /// No description provided for @settingsManageNotificationTopics.
+  ///
+  /// In ar, this message translates to:
+  /// **'تحديث بياناتك'**
+  String get settingsManageNotificationTopics;
 
   /// No description provided for @settingsTitle.
   ///

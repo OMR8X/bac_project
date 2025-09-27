@@ -6,7 +6,8 @@ import 'package:bac_project/core/services/router/app_routes.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
 import 'package:bac_project/core/widgets/ui/fields/bottom_buttons_widget.dart';
 import 'package:bac_project/core/widgets/ui/icons/arrow_back_icon_widget.dart';
-import 'package:bac_project/core/widgets/ui/loading_widget.dart';
+import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
+import 'package:bac_project/core/widgets/ui/states/loading_state_body_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:bac_project/core/widgets/ui/lesson_card_widget.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
@@ -76,9 +77,17 @@ class _PickLessonsViewState extends State<PickLessonsView> {
         child: BlocBuilder<PickLessonsBloc, PickLessonsState>(
           builder: (context, state) {
             if (state.status == PickLessonsStatus.loading) {
-              return const Center(child: LoadingWidget());
+              return const LoadingStateBodyWidget();
             } else if (state.status == PickLessonsStatus.error) {
-              return Center(child: Text('Error: ${state.failure?.message}'));
+              return ErrorStateBodyWidget(
+                title: 'Failed to Load Lessons',
+                failure: state.failure,
+                onRetry: () {
+                  context.read<PickLessonsBloc>().add(
+                    PickLessonsInitializeEvent(unitId: widget.arguments.unitId),
+                  );
+                },
+              );
             } else if (state.status == PickLessonsStatus.loaded) {
               return Stack(
                 children: [

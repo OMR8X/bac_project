@@ -43,7 +43,7 @@ This document lists all the important files that should have unit tests written 
 ## 🗺️ Data Mappers (Entity ↔ Model Conversion)
 
 ### Core Mappers
-- 🔴 `lib/core/resources/errors/exceptions_mapper.dart` - Error handling conversion
+- 🔴 `lib/core/resources/errors/error_mapper.dart` - Error handling conversion
 - 🔴 `lib/features/auth/data/mappers/user_data_mapper.dart` - User data conversion
 
 ### Tests Feature Mappers

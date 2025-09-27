@@ -9,7 +9,6 @@ class GetResultQuestionsDetailsResponse {
   const GetResultQuestionsDetailsResponse({required this.resultQuestions});
 
   factory GetResultQuestionsDetailsResponse.fromJson(Map<String, dynamic> json) {
-
     try {
       return GetResultQuestionsDetailsResponse(
         resultQuestions:
@@ -18,10 +17,8 @@ class GetResultQuestionsDetailsResponse {
                 .toList() ??
             [],
       );
-    } on Error catch (e) {
-      throw e.toException;
-    } on Exception {
-      rethrow;
+    } catch (e) {
+      throw errorToFailure(e);
     }
   }
 

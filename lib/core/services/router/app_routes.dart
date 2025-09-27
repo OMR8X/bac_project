@@ -19,7 +19,8 @@ enum AppRoutes {
   pickLessons(name: 'pick-lessons', path: '/pick-lessons'),
   quizzing(name: 'quizzing', path: '/quizzing'),
   search(name: 'search', path: '/search'),
-  notificationDetails(name: 'notification-details', path: '/notification-details'),
+  notifications(name: 'notifications', path: '/notifications'),
+  notificationsTopics(name: 'notifications-topics', path: '/notifications-topics'),
   updateUserData(name: 'update-user-data', path: '/update-user-data'),
   fetchCustomQuestions(name: 'fetch-custom-questions', path: '/fetch-custom-questions'),
   motivationalQuote(name: 'motivational-quote', path: '/motivational-quote');

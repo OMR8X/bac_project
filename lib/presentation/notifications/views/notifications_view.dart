@@ -1,22 +1,27 @@
-import 'package:bac_project/core/resources/styles/assets_resources.dart';
-import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
-import 'package:bac_project/core/resources/styles/decoration_resources.dart';
-import 'package:bac_project/core/resources/styles/sizes_resources.dart';
-import 'package:bac_project/core/services/router/app_routes.dart';
+import 'package:bac_project/core/widgets/ui/states/empty_state_body_widget.dart';
+import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
+import 'package:bac_project/core/widgets/ui/states/loading_state_body_widget.dart';
 import 'package:bac_project/presentation/notifications/state/explore_notifications/notifications_bloc.dart';
+import 'package:bac_project/presentation/notifications/widgets/notification_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart' as intl;
+import '../../../core/extensions/build_context_l10n.dart';
 import '../../../core/injector/app_injection.dart';
 import '../../../core/resources/styles/spacing_resources.dart';
-import '../../../core/resources/styles/spaces_resources.dart';
-import '../../../core/resources/themes/extensions/surface_container_colors.dart';
-import '../../../core/widgets/animations/staggered_list_wrapper_widget.dart';
-import '../../../features/notifications/domain/entities/app_notification.dart';
 
-class NotificationsView extends StatelessWidget {
+class NotificationsView extends StatefulWidget {
   const NotificationsView({super.key});
+
+  @override
+  State<NotificationsView> createState() => _NotificationsViewState();
+}
+
+class _NotificationsViewState extends State<NotificationsView> {
+  @override
+  void initState() {
+    super.initState();
+    sl<NotificationsBloc>().add(const LoadNotificationsEvent());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,188 +36,39 @@ class NotificationsView extends StatelessWidget {
           builder: (context, state) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text("الإشعارات"),
+                title: Text(context.l10n.navigationNotifications),
                 actions: [],
               ),
-              body: _buildBody(state),
+              body: switch (state.status) {
+                NotificationsStatus.loading => const LoadingStateBodyWidget(),
+                NotificationsStatus.failure => ErrorStateBodyWidget(
+                  title: "حدث خطأ في تحميل الإشعارات",
+                  failure: state.failure,
+                  onRetry: () => sl<NotificationsBloc>().add(const LoadNotificationsEvent()),
+                ),
+                NotificationsStatus.success =>
+                  state.notifications.isEmpty
+                      ? const EmptyStateBodyWidget()
+                      : Padding(
+                        padding: Paddings.screenSidesPadding,
+                        child: ListView.builder(
+                          padding: Paddings.listViewPadding,
+                          key: const ValueKey("notifications_list_builder_widget"),
+                          itemCount: state.notifications.length,
+                          itemBuilder: (context, index) {
+                            final notification = state.notifications[index];
+                            return NotificationCardWidget(
+                              notification: notification,
+                              position: index,
+                            );
+                          },
+                        ),
+                      ),
+              },
             );
           },
         ),
       ),
     );
-  }
-
-  Widget _buildBody(ExploreNotificationsState state) {
-    switch (state.status) {
-      case NotificationsStatus.initial:
-      case NotificationsStatus.loading:
-        return const Center(child: CircularProgressIndicator());
-      case NotificationsStatus.failure:
-        return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.error_outline, size: 64, color: Colors.grey[400]),
-              const SizedBox(height: 16),
-              Text(
-                "حدث خطأ في تحميل الإشعارات",
-                style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-              ),
-              const SizedBox(height: 8),
-              if (state.errorMessage != null)
-                Text(
-                  state.errorMessage!,
-                  style: TextStyle(fontSize: 12, color: Colors.grey[500]),
-                  textAlign: TextAlign.center,
-                ),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {
-                  sl<NotificationsBloc>().add(const LoadNotificationsEvent());
-                },
-                child: const Text("إعادة المحاولة"),
-              ),
-            ],
-          ),
-        );
-      case NotificationsStatus.success:
-        if (state.notifications.isEmpty) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.notifications_off_outlined, size: 64, color: Colors.grey[400]),
-                const SizedBox(height: 16),
-                Text("لا توجد إشعارات", style: TextStyle(fontSize: 16, color: Colors.grey[600])),
-                const SizedBox(height: 8),
-                Text(
-                  "ستظهر الإشعارات هنا عند وصولها",
-                  style: TextStyle(fontSize: 12, color: Colors.grey[500]),
-                ),
-              ],
-            ),
-          );
-        }
-        return ListView.builder(
-          key: const ValueKey("notifications_list_builder_widget"),
-          itemCount: state.notifications.length,
-          itemBuilder: (context, index) {
-            final notification = state.notifications[index];
-            return NotificationTileWidget(notification: notification, position: index);
-          },
-        );
-    }
-  }
-}
-
-class NotificationTileWidget extends StatelessWidget {
-  const NotificationTileWidget({super.key, required this.notification, required this.position});
-  final int position;
-  final AppNotification notification;
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        StaggeredListWrapperWidget(
-          key: ValueKey(notification),
-          position: position,
-          child: Container(
-            margin: Margins.cardMargin,
-            width: SizesResources.mainWidth(context),
-            decoration: DecorationResources.inputDialogDecoration(theme: Theme.of(context)),
-            child: Material(
-              color: Colors.transparent,
-              borderRadius: BorderRadiusResource.tileBorderRadius,
-              child: InkWell(
-                borderRadius: BorderRadiusResource.tileBorderRadius,
-
-                child: Padding(
-                  padding: Paddings.customPadding(5, 5),
-                  child: Row(
-                    children: [
-                      Column(
-                        children: [
-                          Container(
-                            height: 50,
-                            width: 50,
-                            margin: const EdgeInsets.only(left: SpacesResources.s5),
-                            decoration: BoxDecoration(
-                              color:
-                                  Theme.of(
-                                    context,
-                                  ).extension<SurfaceContainerColors>()!.surfaceContainerHigh,
-                              borderRadius: BorderRadiusResource.tileBoxBorderRadius,
-                            ),
-                            child: Center(
-                              child: Image.asset(
-                                UIImagesResources.bellUIIcon,
-                                width: 20,
-                                height: 20,
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    notification.title,
-                                    textAlign: TextAlign.start,
-                                    style: const TextStyle(fontWeight: FontWeight.w500),
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                                Text(
-                                  timeAgo(notification.createdAt),
-                                  style: TextStyle(fontSize: 12, color: Colors.grey[600]),
-                                ),
-                              ],
-                            ),
-                            if (notification.body.isNotEmpty) ...[
-                              const SizedBox(height: 4),
-                              Text(
-                                notification.body,
-                                style: TextStyle(fontSize: 14, color: Colors.grey[700]),
-                                maxLines: 3,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ],
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  String timeAgo(DateTime dateTime) {
-    final now = DateTime.now();
-    final difference = now.difference(dateTime);
-
-    if (difference.inMinutes < 1) {
-      return 'الآن';
-    } else if (difference.inMinutes < 60) {
-      return '${difference.inMinutes}د';
-    } else if (difference.inHours < 24) {
-      return '${difference.inHours}س';
-    } else if (difference.inDays < 7) {
-      return '${difference.inDays}ي';
-    } else {
-      return intl.DateFormat('dd/MM/yyyy').format(dateTime);
-    }
   }
 }

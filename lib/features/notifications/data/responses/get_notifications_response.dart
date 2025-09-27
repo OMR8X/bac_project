@@ -1,4 +1,4 @@
-import 'package:bac_project/features/notifications/domain/entities/app_notification.dart';
+import 'package:bac_project/features/notifications/domain/entities/remote_notification.dart';
 
 class GetNotificationsResponse {
   final List<AppNotification> notifications;
@@ -9,7 +9,9 @@ class GetNotificationsResponse {
     return GetNotificationsResponse(
       notifications:
           (json['data'] as List)
-              .map((notification) => AppNotification.fromJson(notification as Map<String, dynamic>))
+              .map(
+                (notification) => AppNotification.fromJson(notification as Map<String, dynamic>),
+              )
               .toList(),
     );
   }

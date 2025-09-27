@@ -1,3 +1,14 @@
+-- create table public.profiles (  
+   -- id uuid references auth.users(id) not null primary key,
+   -- fcm_token text
+-- );
+-- create table public.notifications (  
+-- 	id uuid not null default gen_random_uuid(),
+-- 	user_id uuid references auth.users(id) not null,
+-- 	created_at timestamp with time zone not null default now(),
+-- 	body text not null
+-- );
+
 -- Table: sections
 CREATE TABLE public.sections (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -86,7 +97,7 @@ CREATE TABLE public.question_options (
 -- Table: results
 CREATE TABLE public.results (
     id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    user_id UUID NOT NULL,
+    user_id uuid not null references auth.users(id) on delete cascade,
     lesson_id INTEGER NULL,
     total_questions INTEGER NOT NULL,
     correct_answers INTEGER NOT NULL,
@@ -131,46 +142,37 @@ CREATE TABLE public.answer_evaluations (
 -- Table: notification_topics
 CREATE TABLE notification_topics (
     id BIGSERIAL PRIMARY KEY,
-    name VARCHAR(50) NOT NULL UNIQUE,  -- e.g., 'news', 'ads', 'updates'
-    description TEXT                   -- optional description
-);
--- Table: notification_types
-CREATE TABLE notification_types (
-    id BIGSERIAL PRIMARY KEY,
-    name VARCHAR(50) NOT NULL UNIQUE,  -- 'info', 'action', 'marketing', 'weakness', etc.
-    description TEXT
+    title VARCHAR(50) NOT NULL UNIQUE, -- display title in Arabic (e.g., 'تحديثات', 'محتوى', 'رؤى')
+    description TEXT,                  -- optional description (in Arabic)
+    firebase_topic VARCHAR(50) UNIQUE, -- English identifier for Firebase topic subscription (e.g., 'updates', 'content', 'insights')
+    subscribable BOOLEAN NOT NULL DEFAULT TRUE  -- whether users can subscribe/unsubscribe to this topic
 );
 -- Table: notifications
 CREATE TYPE notification_priority AS ENUM ('low', 'normal', 'high');
 CREATE TABLE notifications (
     id BIGSERIAL PRIMARY KEY,
-    type_id BIGINT NOT NULL,
 	topic_id BIGINT NOT NULL,
     title TEXT NOT NULL,
     body TEXT NOT NULL,
     image_url TEXT,
-    action_type VARCHAR(50),  -- 'open_url', 'open_quiz', 'none', etc.
-    action_value TEXT,         -- actual URL, quiz ID, etc.
-	payload JSONB,
+	payload JSONB,  -- Contains action info and additional metadata (e.g., {"action": {"type": "open_url", "value": "https://example.com"}, "metadata": {...}})
     priority notification_priority DEFAULT 'normal',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     expires_at TIMESTAMP,
-	FOREIGN KEY (type_id) REFERENCES public.notification_types(id) ON DELETE CASCADE,
     FOREIGN KEY (topic_id) REFERENCES public.notification_topics(id) ON DELETE CASCADE
 );
 
 -- Table: user_topic_subscriptions
 CREATE TABLE user_topic_subscriptions (
-    user_id UUID NOT NULL DEFAULT auth.uid(),
+    user_id uuid not null references auth.users(id) on delete cascade,
     topic_id BIGINT NOT NULL,
     PRIMARY KEY (user_id, topic_id),
-	FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE,
     FOREIGN KEY (topic_id) REFERENCES public.notification_topics(id) ON DELETE CASCADE
 );
 -- Table: user_notifications
 CREATE TABLE user_notifications (
     id BIGSERIAL PRIMARY KEY,
-    user_id UUID NOT NULL DEFAULT auth.uid(),
+    user_id uuid not null references auth.users(id) on delete cascade,
     notification_id BIGINT NOT NULL,
     delivered_at TIMESTAMP,
     read_at TIMESTAMP,
@@ -184,7 +186,7 @@ CREATE TABLE user_notifications (
 -- Table: device_tokens
 CREATE TABLE public.user_device_tokens (
     id BIGSERIAL PRIMARY KEY,
-    user_id UUID NOT NULL DEFAULT auth.uid(),
+	user_id uuid not null references auth.users(id) on delete cascade,
     device_brand TEXT NOT NULL,
     device_model TEXT NOT NULL,
     device_token TEXT NOT NULL,

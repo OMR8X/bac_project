@@ -22,31 +22,41 @@ class AppSettingsModel extends AppSettings {
   });
 
   factory AppSettingsModel.fromJson(Map<String, dynamic> json) {
+    final data = json['data'];
     return AppSettingsModel(
       userData:
-          json['user_data'] != null
-              ? UserDataModel.fromJson(json['user_data'] as Map<String, dynamic>)
+          data['user_data'] != null
+              ? UserDataModel.fromJson(data['user_data'] as Map<String, dynamic>)
               : null,
       motivationalQuote:
-          json['motivational_quote'] != null
-              ? MotivationalQuoteModel.fromJson(json['motivational_quote'] as Map<String, dynamic>)
+          data['motivational_quote'] != null
+              ? MotivationalQuoteModel.fromJson(data['motivational_quote'] as Map<String, dynamic>)
               : null,
       sections:
-          (json['sections'] as List<dynamic>?)
-              ?.map((e) => SectionModel.fromJson(e as Map<String, dynamic>).toEntity)
+          (data['sections'] as List<dynamic>?)
+              ?.map(
+                (e) => SectionModel.fromJson(e as Map<String, dynamic>).toEntity,
+              )
               .toList() ??
           [],
       governorates:
-          (json['governorates'] as List<dynamic>?)
-              ?.map((e) => GovernorateModel.fromJson(e))
+          (data['governorates'] as List<dynamic>?)
+              ?.map(
+                (e) => GovernorateModel.fromJson(e as Map<String, dynamic>),
+              )
               .toList() ??
           [],
       categories:
-          (json['categories'] as List<dynamic>?)
-              ?.map((e) => QuestionCategoryModel.fromJson(e as Map<String, dynamic>).toEntity)
+          (data['categories'] as List<dynamic>?)
+              ?.map(
+                (e) =>
+                    QuestionCategoryModel.fromJson(
+                      e as Map<String, dynamic>,
+                    ).toEntity,
+              )
               .toList() ??
           [],
-      version: VersionModel.fromJson(json['version'] as Map<String, dynamic>),
+      version: VersionModel.fromJson(data['version'] as Map<String, dynamic>),
     );
   }
 

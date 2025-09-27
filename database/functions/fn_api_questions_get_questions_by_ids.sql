@@ -1,15 +1,16 @@
 CREATE OR REPLACE FUNCTION api.fn_api_questions_get_questions_by_ids(
   p_questions_ids int[]
 )
-RETURNS JSON
+RETURNS JSONB
 SECURITY DEFINER
 LANGUAGE sql
 AS $$
   SELECT api.api_response(
-    data := json_build_object(
+    json_build_object(
       'questions', json_agg(q_with_options)
-    ),
-    message := 'Questions retrieved successfully'
+    )::jsonb,
+    'ok'::text,
+    'Questions retrieved successfully'::text
   )
   FROM (
     SELECT

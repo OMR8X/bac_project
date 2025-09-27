@@ -2,8 +2,8 @@ import 'package:bac_project/core/services/router/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bac_project/core/injector/app_injection.dart';
-import 'package:bac_project/core/widgets/ui/loading_widget.dart';
 import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
+import 'package:bac_project/core/widgets/ui/states/loading_state_body_widget.dart';
 import 'package:bac_project/core/resources/errors/failures.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
 import 'package:go_router/go_router.dart';
@@ -54,7 +54,7 @@ class _FetchCustomQuestionsLoadingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(), body: const LoadingWidget());
+    return Scaffold(appBar: AppBar(), body: const LoadingStateBodyWidget());
   }
 }
 

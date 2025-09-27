@@ -1,4 +1,5 @@
 import 'package:bac_project/core/services/logs/logs_holder.dart';
+import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart' as l;
 
 class Logger {
@@ -11,35 +12,37 @@ class Logger {
   }
 
   void logMessage(String message, {StackTrace? stackTrace}) {
+    if (kReleaseMode) debugPrint(message);
     DebugsHolder().addLogs(l.LogEvent(l.Level.info, message));
     _logger.i(message, stackTrace: stackTrace);
   }
 
   void logDebug(String message, {StackTrace? stackTrace}) {
-    // if (kReleaseMode) debugPrint(message);
+    if (kReleaseMode) debugPrint(message);
     DebugsHolder().addLogs(l.LogEvent(l.Level.debug, message));
     _logger.d(message, stackTrace: stackTrace);
   }
 
   void logError(String message, {StackTrace? stackTrace}) {
-    // if (kReleaseMode) debugPrint(message);
+    if (kReleaseMode) debugPrint(message);
     DebugsHolder().addLogs(l.LogEvent(l.Level.error, message));
     _logger.e(message, stackTrace: stackTrace);
   }
 
   void logWarning(String message, {StackTrace? stackTrace}) {
-    // if (kReleaseMode) debugPrint(message);
+    if (kReleaseMode) debugPrint(message);
     DebugsHolder().addLogs(l.LogEvent(l.Level.warning, message));
     _logger.w(message, stackTrace: stackTrace);
   }
 
   void logVerbose(String message, {StackTrace? stackTrace}) {
-    // if (kReleaseMode) debugPrint(message);
+    if (kReleaseMode) debugPrint(message);
     DebugsHolder().addLogs(l.LogEvent(l.Level.trace, message));
     _logger.t(message, stackTrace: stackTrace);
   }
 
   void logFatal(String message, {StackTrace? stackTrace}) {
+    if (kReleaseMode) debugPrint(message);
     DebugsHolder().addLogs(l.LogEvent(l.Level.fatal, message));
     _logger.f(message, stackTrace: stackTrace);
   }

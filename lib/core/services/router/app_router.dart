@@ -24,6 +24,8 @@ import 'package:bac_project/presentation/tests/blocs/pick_lessons/pick_lessons_b
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import '../../../presentation/auth/view/auth_views_manager.dart';
+import '../../../presentation/notifications/views/notifications_topics_view.dart';
+import '../../../presentation/notifications/views/notifications_view.dart';
 import '../../../presentation/result/views/explore_results_view.dart';
 import '../../../presentation/root/views/app_loader_view.dart';
 import '../../../presentation/root/views/pages_holder.dart';
@@ -145,6 +147,46 @@ class AppRouter {
                 );
               },
               child: AppLoaderView(key: state.pageKey),
+            ),
+      ),
+      // notifications route
+      GoRoute(
+        name: AppRoutes.notifications.name,
+        path: AppRoutes.notifications.path,
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              transitionDuration: AppTransitions.transitionDuration,
+              reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
+              },
+              child: NotificationsView(key: state.pageKey),
+            ),
+      ),
+      // notifications topics route
+      GoRoute(
+        name: AppRoutes.notificationsTopics.name,
+        path: AppRoutes.notificationsTopics.path,
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              transitionDuration: AppTransitions.transitionDuration,
+              reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
+              },
+              child: NotificationsTopicsView(key: state.pageKey),
             ),
       ),
       // lessons route

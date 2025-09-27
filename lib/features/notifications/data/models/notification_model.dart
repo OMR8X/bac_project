@@ -4,13 +4,11 @@ import 'package:bac_project/features/notifications/domain/enums/notification_pri
 class NotificationModel extends Notification {
   const NotificationModel({
     required super.id,
-    required super.typeId,
     required super.topicId,
+    super.topicTitle,
     required super.title,
     required super.body,
     super.imageUrl,
-    super.actionType,
-    super.actionValue,
     super.payload,
     required super.priority,
     required super.createdAt,
@@ -20,13 +18,11 @@ class NotificationModel extends Notification {
   factory NotificationModel.fromJson(Map<String, dynamic> json) {
     return NotificationModel(
       id: json['id'] as int,
-      typeId: json['type_id'] as int,
       topicId: json['topic_id'] as int,
+      topicTitle: json['topic_title'] as String?,
       title: json['title'] as String,
       body: json['body'] as String,
       imageUrl: json['image_url'] as String?,
-      actionType: json['action_type'] as String?,
-      actionValue: json['action_value'] as String?,
       payload: json['payload'] as Map<String, dynamic>?,
       priority: NotificationPriority.fromString(json['priority'] ?? 'normal'),
       createdAt: DateTime.parse(json['created_at']),
@@ -37,13 +33,11 @@ class NotificationModel extends Notification {
   Map<String, dynamic> toDatabaseJson() {
     return {
       'id': id,
-      'type_id': typeId,
       'topic_id': topicId,
+      'topic_title': topicTitle,
       'title': title,
       'body': body,
       'image_url': imageUrl,
-      'action_type': actionType,
-      'action_value': actionValue,
       'payload': payload,
       'priority': priority.value,
       'created_at': createdAt.toIso8601String(),

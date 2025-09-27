@@ -3,8 +3,8 @@ import '../enums/notification_priority.dart';
 
 class Notification extends Equatable {
   final int id;
-  final int typeId;
   final int topicId;
+  final String? topicTitle;
   final String title;
   final String body;
   final String? imageUrl;
@@ -17,8 +17,8 @@ class Notification extends Equatable {
 
   const Notification({
     required this.id,
-    required this.typeId,
     required this.topicId,
+    this.topicTitle,
     required this.title,
     required this.body,
     this.imageUrl,
@@ -33,8 +33,8 @@ class Notification extends Equatable {
   factory Notification.empty() {
     return Notification(
       id: 0,
-      typeId: 0,
       topicId: 0,
+      topicTitle: null,
       title: '',
       body: '',
       createdAt: DateTime.now(),
@@ -43,8 +43,8 @@ class Notification extends Equatable {
 
   Notification copyWith({
     int? id,
-    int? typeId,
     int? topicId,
+    String? topicTitle,
     String? title,
     String? body,
     String? imageUrl,
@@ -57,8 +57,8 @@ class Notification extends Equatable {
   }) {
     return Notification(
       id: id ?? this.id,
-      typeId: typeId ?? this.typeId,
       topicId: topicId ?? this.topicId,
+      topicTitle: topicTitle ?? this.topicTitle,
       title: title ?? this.title,
       body: body ?? this.body,
       imageUrl: imageUrl ?? this.imageUrl,
@@ -74,13 +74,11 @@ class Notification extends Equatable {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'type_id': typeId,
       'topic_id': topicId,
+      'topic_title': topicTitle,
       'title': title,
       'body': body,
       'image_url': imageUrl,
-      'action_type': actionType,
-      'action_value': actionValue,
       'payload': payload,
       'priority': priority.value,
       'created_at': createdAt.toIso8601String(),
@@ -91,13 +89,11 @@ class Notification extends Equatable {
   factory Notification.fromJson(Map<String, dynamic> json) {
     return Notification(
       id: json['id'] as int,
-      typeId: json['type_id'] as int,
       topicId: json['topic_id'] as int,
+      topicTitle: json['topic_title'] as String?,
       title: json['title'] as String,
       body: json['body'] as String,
       imageUrl: json['image_url'] as String?,
-      actionType: json['action_type'] as String?,
-      actionValue: json['action_value'] as String?,
       payload: json['payload'] as Map<String, dynamic>?,
       priority: NotificationPriority.fromString(json['priority'] ?? 'normal'),
       createdAt: DateTime.parse(json['created_at']),
@@ -108,13 +104,11 @@ class Notification extends Equatable {
   @override
   List<Object?> get props => [
     id,
-    typeId,
     topicId,
+    topicTitle,
     title,
     body,
     imageUrl,
-    actionType,
-    actionValue,
     payload,
     priority,
     createdAt,

@@ -18,7 +18,6 @@ class SupabaseSettings {
   static const String questionAnswersTable = 'question_answers';
   static const String answerEvaluationsTable = 'answer_evaluations';
   static const String notificationTopicsTable = 'notification_topics';
-  static const String notificationTypesTable = 'notification_types';
   static const String notificationsTable = 'notifications';
   static const String userTopicSubscriptionsTable = 'user_topic_subscriptions';
   static const String userNotificationsTable = 'user_notifications';

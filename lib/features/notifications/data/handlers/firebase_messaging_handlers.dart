@@ -1,11 +1,12 @@
 import 'package:bac_project/core/services/api/supabase/supabase_settings.dart';
+import 'package:bac_project/features/notifications/domain/entities/remote_notification.dart';
+import 'package:bac_project/features/notifications/domain/usecases/display_notification_usecase.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:bac_project/core/constant/navigation_key.dart';
 import 'package:bac_project/core/injector/app_injection.dart';
-import 'package:bac_project/features/notifications/domain/usecases/display_firebase_notification_usecase.dart';
 import 'package:bac_project/presentation/notifications/state/explore_notifications/notifications_bloc.dart';
 import 'package:bac_project/presentation/notifications/views/notifications_view.dart';
 import 'package:bac_project/firebase_options.dart';
@@ -27,7 +28,9 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
     await Supabase.initialize(url: SupabaseSettings.url, anonKey: SupabaseSettings.anonKey);
     logger.logMessage('Supabase initialized');
     sl<NotificationsBloc>().add(LoadNotificationsEvent());
-    await sl<DisplayFirebaseNotificationUsecase>().call(message: message);
+    await sl<DisplayNotificationUsecase>().call(
+      notification: AppNotification.fromRemoteMessage(message),
+    );
     logger.logMessage('DisplayFirebaseNotificationUsecase called');
   } on Exception catch (e) {
     logger.logError('Error in firebaseMessagingBackgroundHandler: $e');
@@ -49,7 +52,7 @@ void onDidReceiveBackgroundNotificationResponse(NotificationResponse? response) 
 
     logger.logMessage('Supabase initialized');
 
-    if (!sl.isRegistered<DisplayFirebaseNotificationUsecase>()) {
+    if (!sl.isRegistered<DisplayNotificationUsecase>()) {
       await ServiceLocator.init();
     }
 
@@ -72,7 +75,9 @@ class FirebaseMessagingHandlers {
     await ServiceLocator.init();
     final logger = sl<Logger>();
     logger.logWarning('A foreground message was received: ${message.messageId}');
-    await sl<DisplayFirebaseNotificationUsecase>().call(message: message);
+    await sl<DisplayNotificationUsecase>().call(
+      notification: AppNotification.fromRemoteMessage(message),
+    );
     sl<NotificationsBloc>().add(LoadNotificationsEvent());
   }
 
@@ -81,7 +86,7 @@ class FirebaseMessagingHandlers {
     await ServiceLocator.init();
     final logger = sl<Logger>();
     logger.logMessage('Firebase token refreshed: $newToken');
-    sl<NotificationsBloc>().add(StoreTokenEvent(token: newToken));
+    sl<NotificationsBloc>().add(SyncNotificationsEvent());
   }
 
   ///

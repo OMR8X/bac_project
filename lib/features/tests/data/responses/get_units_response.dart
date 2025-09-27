@@ -11,7 +11,7 @@ class GetUnitsResponse {
     return GetUnitsResponse(units: units ?? this.units);
   }
 
-  factory GetUnitsResponse.fromJson(Map<String, dynamic> json) {
+  factory GetUnitsResponse.fromJson(dynamic json) {
     return GetUnitsResponse(
       units:
           (json['units'] as List)

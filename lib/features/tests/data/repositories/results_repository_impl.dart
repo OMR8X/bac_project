@@ -1,4 +1,4 @@
-import 'package:bac_project/core/resources/errors/exceptions_mapper.dart';
+import 'package:bac_project/core/resources/errors/error_mapper.dart';
 import 'package:dartz/dartz.dart';
 import '../../../../core/resources/errors/failures.dart';
 import '../../domain/repositories/results_repository.dart';
@@ -25,7 +25,7 @@ class ResultsRepositoryImpl implements ResultsRepository {
       final result = await remoteDataSource.addResult(request);
       return Right(result);
     } on Exception catch (e) {
-      return Left(e.toFailure);
+      return Left(errorToFailure(e));
     }
   }
 
@@ -35,7 +35,7 @@ class ResultsRepositoryImpl implements ResultsRepository {
       final result = await remoteDataSource.getMyResults(request);
       return Right(result);
     } on Exception catch (e) {
-      return Left(e.toFailure);
+      return Left(errorToFailure(e));
     }
   }
 
@@ -57,7 +57,7 @@ class ResultsRepositoryImpl implements ResultsRepository {
       final result = await remoteDataSource.getResultLeaderboard(request);
       return Right(result);
     } on Exception catch (e) {
-      return Left(e.toFailure);
+      return Left(errorToFailure(e));
     }
   }
 
@@ -69,7 +69,7 @@ class ResultsRepositoryImpl implements ResultsRepository {
       final result = await remoteDataSource.getResultQuestionsDetails(request);
       return Right(result);
     } on Exception catch (e) {
-      return Left(e.toFailure);
+      return Left(errorToFailure(e));
     }
   }
 }

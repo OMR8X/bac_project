@@ -33,9 +33,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get buttonsConfirm => 'تأكيد';
 
   @override
-  String get correctAnswerLabel => 'الإجابة الصحيحة';
-
-  @override
   String get buttonsCustomize => 'تخصيص';
 
   @override
@@ -43,6 +40,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get buttonsFinish => 'إنهاء';
+
+  @override
+  String get buttonsManageNotificationTopics => 'ادارة الاشعارات';
 
   @override
   String get buttonsNext => 'التالي';
@@ -96,7 +96,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get closeQuizDialogTitle => 'إغلاق الاختبار';
 
   @override
+  String get correctAnswerLabel => 'الإجابة الصحيحة';
+
+  @override
   String get correctionDetails => 'تفاصيل التصحيح';
+
+  @override
+  String get emptyStateSubtitle => 'ستظهر العناصر هنا عند توفرها';
+
+  @override
+  String get emptyStateTitle => 'لا توجد عناصر';
 
   @override
   String get enableSoundEffectsSubtitle => 'تشغيل مؤثرات صوتية عند الإجابة.';
@@ -149,10 +158,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get navigationHome => 'الرئيسية';
 
   @override
+  String get navigationNotifications => 'الإشعارات';
+
+  @override
   String get navigationResults => 'نتائجي';
 
   @override
   String get navigationSettings => 'الإعدادات';
+
+  @override
+  String get notificationTopicsTitle => 'إدارة مواضيع الإشعارات';
 
   @override
   String get pickLessonsTitle => 'اختيار الدروس';
@@ -211,6 +226,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get selectAll => 'تحديد الكل';
+
+  @override
+  String get settingsManageNotificationTopics => 'تحديث بياناتك';
 
   @override
   String get settingsTitle => 'الإعدادات';

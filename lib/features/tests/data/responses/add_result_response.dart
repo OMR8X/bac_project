@@ -10,10 +10,8 @@ class AddResultResponse {
   factory AddResultResponse.fromJson(Map<String, dynamic> json) {
     try {
       return AddResultResponse(result: ResultModel.fromJson(json['result']));
-    } on Error catch (e) {
-      throw e.toException;
-    } on Exception {
-      rethrow;
+    } catch (e) {
+      throw errorToFailure(e);
     }
   }
 }

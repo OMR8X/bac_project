@@ -1,6 +1,6 @@
 // router imports not used in bloc
 import 'package:bac_project/core/resources/errors/exceptions.dart';
-import 'package:bac_project/core/resources/errors/exceptions_mapper.dart';
+import 'package:bac_project/core/resources/errors/error_mapper.dart';
 import 'package:bac_project/core/resources/errors/failures.dart';
 import 'package:bac_project/features/tests/domain/entities/question.dart';
 import 'package:bac_project/features/tests/domain/entities/question_category.dart';
@@ -152,8 +152,8 @@ class TestModeSettingsBloc extends Bloc<TestModeSettingsEvent, TestModeSettingsS
           emit(state.copyWith(status: TestModeSettingsStatus.saved, questions: response.questions));
         },
       );
-    } on Exception catch (e) {
-      emit(state.copyWith(status: TestModeSettingsStatus.error, failure: e.toFailure));
+    } catch (e) {
+      emit(state.copyWith(status: TestModeSettingsStatus.error, failure: errorToFailure(e)));
     }
   }
 }

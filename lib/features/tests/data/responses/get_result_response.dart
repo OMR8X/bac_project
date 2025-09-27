@@ -18,10 +18,8 @@ class GetResultResponse {
                 .toList() ??
             [],
       );
-    } on Error catch (e) {
-      throw e.toException;
-    } on Exception {
-      rethrow;
+      } catch (e) {
+      throw errorToFailure(e);
     }
   }
 
