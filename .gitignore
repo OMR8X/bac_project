@@ -44,5 +44,10 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
+/supabase
+/supabase/
+/database
+/database/
+
 # Signing files
 **/android/key.properties
