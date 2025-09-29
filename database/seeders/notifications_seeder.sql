@@ -13,7 +13,8 @@ INSERT INTO notification_topics (id, title, description, firebase_topic, subscri
 (3, 'رؤى', 'التحليلات الشخصية ورؤى الأداء وتوصيات الدراسة', 'insights', TRUE),
 (4, 'نظام', 'صيانة النظام وتحديثات الأمان والإعلانات المهمة', 'system', FALSE),
 (5, 'إنجازات', 'الشارات والمعالم واحتفالات التقدم', 'achievements', TRUE),
-(6, 'ملاحظات', 'استطلاعات الرأي وطلبات تعليقات المستخدمين واقتراحات التحسين', 'feedback', TRUE);
+(6, 'ملاحظات', 'استطلاعات الرأي وطلبات تعليقات المستخدمين واقتراحات التحسين', 'feedback', TRUE),
+(7, 'تحفيز', 'محتوى تحفيزي عام', 'motivation', TRUE);
 
 -- Insert sample notifications for testing with Arabic content (one per topic)
 INSERT INTO notifications (id, topic_id, title, body, image_url, priority, created_at, expires_at) VALUES

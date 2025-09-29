@@ -1,3 +1,4 @@
+import 'package:bac_project/core/services/logs/logger.dart';
 import 'package:bac_project/firebase_options.dart';
 import 'package:bac_project/presentation/root/views/app_root.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -8,8 +9,8 @@ import 'core/injector/app_injection.dart';
 void main() async {
   ///
   WidgetsFlutterBinding.ensureInitialized();
-  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
+  ///
   try {
     await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   } catch (_) {}

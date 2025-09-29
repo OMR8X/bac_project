@@ -6,10 +6,10 @@ class GetNotificationsTopicsResponse {
 
   GetNotificationsTopicsResponse({required this.topics});
 
-  factory GetNotificationsTopicsResponse.fromJson(Map<String, dynamic> json) {
+  factory GetNotificationsTopicsResponse.fromJson(List<dynamic> json) {
     return GetNotificationsTopicsResponse(
       topics:
-          (json['data'] as List)
+          json
               .map((topic) => NotificationTopicModel.fromJson(topic as Map<String, dynamic>))
               .toList(),
     );

@@ -1,9 +1,9 @@
 CREATE OR REPLACE FUNCTION api.api_response(
   data JSONB DEFAULT '{}'::jsonb,
-  status TEXT DEFAULT 'ok',
+  status TEXT DEFAULT 'success',
   message TEXT DEFAULT 'success',
-  code TEXT DEFAULT null,
-  details JSONB DEFAULT '{}'::jsonb
+  status_code INTEGER DEFAULT null,
+  errors JSONB DEFAULT '{}'::jsonb
 )
 RETURNS jsonb
 LANGUAGE plpgsql
@@ -12,8 +12,8 @@ BEGIN
   RETURN jsonb_build_object(
     'status', status,
     'message', message,
-    'code', code,
-    'details', details,
+    'statusCode', status_code,
+    'errors', errors,
     'data', data
   );
 EXCEPTION
@@ -21,8 +21,8 @@ EXCEPTION
     RETURN jsonb_build_object(
       'status', 'error',
       'message', SQLERRM,
-      'code', SQLSTATE,
-      'details', '{}'::jsonb,
+      'statusCode', null,
+      'errors', '{}'::jsonb,
       'data', '{}'::jsonb
     );
 END;

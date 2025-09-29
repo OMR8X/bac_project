@@ -25,7 +25,7 @@ begin
   -- Return the standardized response
   return api.api_response(
     coalesce(row_to_json(result_record), '{}'::json)::jsonb,
-    'ok'::text,
+    'success'::text,
     'Successfully subscribed to topic'::text
   );
 end;

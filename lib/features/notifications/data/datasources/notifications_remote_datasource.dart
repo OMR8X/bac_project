@@ -12,7 +12,7 @@ import 'package:bac_project/features/notifications/data/settings/app_local_notif
 import 'package:bac_project/features/notifications/data/settings/firebase_messaging_settings.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../domain/entities/remote_notification.dart';
+import '../../domain/entities/app_notification.dart';
 
 abstract class NotificationsRemoteDatasource {
   ///
@@ -33,14 +33,11 @@ abstract class NotificationsRemoteDatasource {
   ///
   Future<String> getDeviceToken();
   Future<Unit> deleteDeviceToken();
-
-
 }
 
 class NotificationsRemoteDatasourceImplements implements NotificationsRemoteDatasource {
   final _firebaseMessaging = FirebaseMessaging.instance;
   final _localNotificationsPlugin = FlutterLocalNotificationsPlugin();
-  final Logger _logger = sl<Logger>();
 
   NotificationsRemoteDatasourceImplements();
 
@@ -71,22 +68,20 @@ class NotificationsRemoteDatasourceImplements implements NotificationsRemoteData
       sound: AppAppNotificationsSettings.showSound,
     );
 
-    final handlers = FirebaseMessagingHandlers();
-
     // Set up handlers
     FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
     FirebaseMessaging.onMessage.listen(
-      handlers.onData,
-      onDone: handlers.onDone,
-      onError: handlers.onError,
+      onDataHandler,
+      onDone: onDoneHandler,
+      onError: onErrorHandler,
     );
-    FirebaseMessaging.instance.onTokenRefresh.listen(handlers.onTokenRefreshed);
-    FirebaseMessaging.onMessageOpenedApp.listen(handlers.onNotificationOpened);
+    FirebaseMessaging.instance.onTokenRefresh.listen(onTokenRefreshedHandler);
+    FirebaseMessaging.onMessageOpenedApp.listen(onNotificationOpenedHandler);
 
     // Handle initial notification (when app is opened from terminated state)
-    await handlers.onInitialNotification();
+    await onInitialNotificationHandler();
 
-    _logger.logWarning('Firebase token: ${await getDeviceToken()}');
+    Logger.warning('Firebase token: ${await getDeviceToken()}');
     return unit;
   }
 
@@ -105,7 +100,7 @@ class NotificationsRemoteDatasourceImplements implements NotificationsRemoteData
     NotificationDetails? details,
   }) async {
     if (!notification.isValid()) {
-      _logger.logError('Notification is not valid: ${notification.toJson()}');
+      Logger.error('Notification is not valid: ${notification.toJson()}');
       return unit;
     }
     await _localNotificationsPlugin.show(
@@ -145,8 +140,6 @@ class NotificationsRemoteDatasourceImplements implements NotificationsRemoteData
     if (token == null) throw Exception("FCM token is null");
     return token;
   }
-
-
 
   Future<void> _requestNotificationPermission() async {
     if (Platform.isAndroid) {

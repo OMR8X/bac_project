@@ -14,6 +14,14 @@ final class LoadNotificationsEvent extends ExploreNotificationsEvent {
   List<Object> get props => [];
 }
 
+final class DisplayForegroundNotificationsEvent extends ExploreNotificationsEvent {
+  final RemoteMessage message;
+  const DisplayForegroundNotificationsEvent({required this.message});
+
+  @override
+  List<Object> get props => [];
+}
+
 final class SyncNotificationsEvent extends ExploreNotificationsEvent {
   const SyncNotificationsEvent();
 

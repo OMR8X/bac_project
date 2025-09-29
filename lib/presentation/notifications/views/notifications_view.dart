@@ -1,3 +1,4 @@
+import 'package:bac_project/core/services/router/app_router.dart';
 import 'package:bac_project/core/widgets/ui/states/empty_state_body_widget.dart';
 import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
 import 'package:bac_project/core/widgets/ui/states/loading_state_body_widget.dart';
@@ -5,6 +6,7 @@ import 'package:bac_project/presentation/notifications/state/explore_notificatio
 import 'package:bac_project/presentation/notifications/widgets/notification_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import '../../../core/extensions/build_context_l10n.dart';
 import '../../../core/injector/app_injection.dart';
 import '../../../core/resources/styles/spacing_resources.dart';
@@ -25,6 +27,7 @@ class _NotificationsViewState extends State<NotificationsView> {
 
   @override
   Widget build(BuildContext context) {
+     
     return RefreshIndicator(
       onRefresh: () async {
         await Future.delayed(Durations.medium4);

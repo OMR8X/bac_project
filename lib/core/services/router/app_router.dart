@@ -42,10 +42,12 @@ class AppRouter {
   static final _rootNavigatorResult = GlobalKey<NavigatorState>();
   static final _rootNavigatorSetting = GlobalKey<NavigatorState>();
 
+  static GlobalKey<NavigatorState> get rootNavigatorKey => _rootNavigatorKey;
+
   /// developing
   ///
   static final router = GoRouter(
-    debugLogDiagnostics: false,
+    debugLogDiagnostics: true,
     initialLocation: AppRoutes.loader.path,
     navigatorKey: _rootNavigatorKey,
     routes: [
@@ -210,7 +212,7 @@ class AppRouter {
                 create: (context) => sl<LessonsBloc>(),
                 child: LessonsView(
                   key: state.pageKey,
-                  arguments: state.extra as LessonsViewArguments?,
+                  arguments: LessonsViewArguments.fromState(state),
                 ),
               ),
             ),
@@ -310,7 +312,7 @@ class AppRouter {
                 create: (context) => sl<PickLessonsBloc>(),
                 child: PickLessonsView(
                   key: state.pageKey,
-                  arguments: state.extra as PickLessonsArguments,
+                  arguments: PickLessonsArguments.fromState(state),
                 ),
               ),
             ),
@@ -337,7 +339,7 @@ class AppRouter {
                 create: (context) => sl<SearchBloc>(),
                 child: SearchView(
                   key: state.pageKey,
-                  arguments: state.extra as SearchViewArguments,
+                  arguments: SearchViewArguments.fromState(state),
                 ),
               ),
             ),
@@ -364,7 +366,7 @@ class AppRouter {
                 create: (context) => sl<ExploreResultBloc>(),
                 child: ExploreResultView(
                   key: state.pageKey,
-                  arguments: state.extra as ExploreResultViewArguments,
+                  arguments: ExploreResultViewArguments.fromState(state),
                 ),
               ),
             ),
@@ -413,7 +415,7 @@ class AppRouter {
               },
               child: FetchCustomQuestionsView(
                 key: state.pageKey,
-                arguments: state.extra as FetchCustomQuestionsArguments,
+                arguments: FetchCustomQuestionsArguments.fromState(state),
               ),
             ),
       ),

@@ -13,6 +13,7 @@ class AppRoot extends StatelessWidget {
   static const AppRoot _instance = AppRoot._internal();
 
   factory AppRoot() => _instance;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(

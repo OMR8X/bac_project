@@ -9,7 +9,7 @@ AS $$
     json_build_object(
       'questions', json_agg(q_with_options)
     )::jsonb,
-    'ok'::text,
+    'success'::text,
     'Questions retrieved successfully'::text
   )
   FROM (

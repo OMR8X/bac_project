@@ -3,12 +3,16 @@
 -- Parameters: p_answers_ids integer[]
 -- Returns: JSON with answer evaluations data
 CREATE OR REPLACE FUNCTION api.fn_api_evaluations_get_answers_evaluations_by_ids(p_answers_ids integer[])
- RETURNS json
+ RETURNS jsonb
  LANGUAGE sql
  SECURITY DEFINER
 AS $function$
-  SELECT json_build_object(
-    'answers_evaluations', json_agg(evaluations_row )
+  SELECT api.api_response(
+    json_build_object(
+      'answers_evaluations', coalesce(json_agg(evaluations_row), '[]'::json)
+    )::jsonb,
+    'success'::text,
+    'Answer evaluations retrieved successfully'::text
   )
   FROM (
     SELECT

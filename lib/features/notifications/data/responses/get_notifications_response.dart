@@ -1,14 +1,14 @@
-import 'package:bac_project/features/notifications/domain/entities/remote_notification.dart';
+import 'package:bac_project/features/notifications/domain/entities/app_notification.dart';
 
 class GetNotificationsResponse {
   final List<AppNotification> notifications;
 
   GetNotificationsResponse({required this.notifications});
 
-  factory GetNotificationsResponse.fromJson(Map<String, dynamic> json) {
+  factory GetNotificationsResponse.fromJson(List<dynamic> json) {
     return GetNotificationsResponse(
       notifications:
-          (json['data'] as List)
+          json
               .map(
                 (notification) => AppNotification.fromJson(notification as Map<String, dynamic>),
               )

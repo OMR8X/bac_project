@@ -1,0 +1,32 @@
+{
+    "topic": "urgent_alerts",
+    "notification": {
+        "title": "Security Update Required",
+        "body": "Please update your app immediately for important security fixes.",
+        "image_url": "https://example.com/notification-image.jpg",
+        "topic_id": 2,
+        "priority": "urgent",
+        "payload": {
+            "actions": [
+                {
+                    "id": "update_now",
+                    "type": "deeplink",
+                    "value": "app://settings/update",
+                    "title": "Update Now"
+                },
+                {
+                    "id": "dismiss",
+                    "type": "dismiss",
+                    "title": "Later"
+                }
+            ],
+            "default_action": "update_now",
+            "metadata": {
+                "version": "2.1.0",
+                "critical": true,
+                "campaign_id": "security_2024_q1"
+            }
+        },
+        "expires_at": "2024-12-31T23:59:59Z"
+    }
+}

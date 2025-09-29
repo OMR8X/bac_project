@@ -1,5 +1,5 @@
 import 'package:bac_project/features/notifications/data/models/app_notification_model.dart';
-import 'package:bac_project/features/notifications/domain/entities/remote_notification.dart';
+import 'package:bac_project/features/notifications/domain/entities/app_notification.dart';
 
 extension AppNotificationModelMapper on AppNotificationModel {
   AppNotification get toEntity {

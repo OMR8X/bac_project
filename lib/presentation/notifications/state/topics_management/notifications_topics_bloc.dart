@@ -8,9 +8,6 @@ import 'package:bac_project/features/notifications/domain/usecases/subscribe_to_
 import 'package:bac_project/features/notifications/domain/usecases/unsubscribe_to_topic_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
-import '../../../../core/injector/tests_feature_inj.dart';
 import '../../../../core/services/logs/logger.dart';
 part 'notifications_topics_event.dart';
 part 'notifications_topics_state.dart';
@@ -64,7 +61,7 @@ class NotificationsTopicsBloc extends Bloc<NotificationsTopicsEvent, Notificatio
 
   @override
   void onError(Object error, StackTrace stackTrace) {
-    Fluttertoast.showToast(msg: error.toString());
+    Logger.error(error.toString());
     super.onError(error, stackTrace);
   }
 
@@ -115,13 +112,9 @@ class NotificationsTopicsBloc extends Bloc<NotificationsTopicsEvent, Notificatio
       (failure) {
         // Revert optimistic update on failure
         final revertedSubscribedTopicIds = [...state.subscribedTopicIds, event.topic.id];
-        emit(state.copyWith(subscribedTopicIds: revertedSubscribedTopicIds));
-        Fluttertoast.showToast(msg: 'Failed to unsubscribe from topic: ${failure.message}');
+        emit(state.copyWith(subscribedTopicIds: revertedSubscribedTopicIds, failure: failure));
       },
-      (_) {
-        // Success - sync notifications
-        Fluttertoast.showToast(msg: 'Unsubscribed from ${event.topic.title}');
-      },
+      (_) {},
     );
   }
 }

@@ -49,7 +49,7 @@ begin
                 'previous_results', (select coalesce(json_agg(pr), '[]'::json) from previous_results pr)
               )
         )::jsonb,
-        'ok'::text,
+        'success'::text,
         'Result fetched successfully'::text
     );
 end;

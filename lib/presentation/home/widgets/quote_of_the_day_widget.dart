@@ -23,12 +23,12 @@ class QuoteOfTheDayWidget extends StatelessWidget {
         margin: Margins.quoteOfTheDayCardMargin,
         key: Key(quote.quote),
         child: InkWell(
-          onTap: () {
-            context.push(
-              AppRoutes.motivationalQuote.path,
-              extra: MotivationalQuoteArguments(quote: quote),
-            );
-          },
+          // onTap: () {
+          //   context.pushNamed(
+          //     AppRoutes.motivationalQuote.name,
+          //     extra: MotivationalQuoteArguments(quote: quote),
+          //   );
+          // },
           child: Padding(
             padding: Paddings.cardMediumPadding,
             child: Row(

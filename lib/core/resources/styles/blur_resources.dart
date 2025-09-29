@@ -15,6 +15,10 @@ class BlurResources {
     return ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0);
   }
 
+  static ImageFilter snackbarBlur(BuildContext context) {
+    return ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0);
+  }
+
   static ImageFilter fullUnTestCardBlur(BuildContext context) {
     return ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0);
   }

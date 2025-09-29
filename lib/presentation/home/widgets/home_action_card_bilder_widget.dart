@@ -32,14 +32,14 @@ class HomeCardsBuilderWidget extends StatelessWidget {
             subtitle: card.subtitle,
             lessonsCount: unit.lessonsCount,
             onStartTestPressed:
-                () => context.push(
-                  AppRoutes.pickLessons.path,
-                  extra: PickLessonsArguments(unitId: unit.id),
+                () => context.pushNamed(
+                  AppRoutes.pickLessons.name,
+                  queryParameters: PickLessonsArguments(unitId: unit.id).toQueryParameters(),
                 ),
             onExploreLessonsPressed:
-                () => context.push(
-                  AppRoutes.lessons.path,
-                  extra: LessonsViewArguments(unitId: unit.id),
+                () => context.pushNamed(
+                  AppRoutes.lessons.name,
+                  queryParameters: LessonsViewArguments(unitId: unit.id).toQueryParameters(),
                 ),
           ),
         );

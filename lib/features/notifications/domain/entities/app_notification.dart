@@ -1,5 +1,6 @@
 import 'package:bac_project/core/injector/tests_feature_inj.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
 import '../../../../core/services/logs/logger.dart';
 import '../enums/notification_status.dart';
 import '../enums/notification_priority.dart';
@@ -23,45 +24,7 @@ class AppNotification {
   bool get seen => status == 'read';
 
   bool isValid() {
-    return title.trim().isNotEmpty &&
-        body.trim().isNotEmpty &&
-        NotificationStatus.isValid(status) &&
-        id > 0;
-  }
-
-  // Validation helpers
-  static int validateAndSanitizeId(int id) {
-    if (id <= 0) {
-      sl<Logger>().logError('Notification ID must be positive: $id');
-      throw ArgumentError('Notification ID must be positive');
-    }
-    return id;
-  }
-
-  static String validateAndSanitizeTitle(String title) {
-    final sanitized = title.trim();
-    if (sanitized.isEmpty) {
-      sl<Logger>().logError('Notification title cannot be empty: $title');
-      throw ArgumentError('Notification title cannot be empty');
-    }
-    return sanitized;
-  }
-
-  static String validateAndSanitizeBody(String body) {
-    final sanitized = body.trim();
-    if (sanitized.isEmpty) {
-      sl<Logger>().logError('Notification body cannot be empty: $body');
-      throw ArgumentError('Notification body cannot be empty');
-    }
-    return sanitized;
-  }
-
-  static String validateStatus(String status) {
-    if (!NotificationStatus.isValid(status)) {
-      sl<Logger>().logError('Invalid notification status: $status');
-      throw ArgumentError('Invalid notification status: $status');
-    }
-    return status;
+    return title.trim().isNotEmpty && body.trim().isNotEmpty;
   }
 
   AppNotification copyWith({
@@ -104,18 +67,19 @@ class AppNotification {
       try {
         createdAt = DateTime.parse(message.data["date"]);
       } catch (e) {
-        sl<Logger>().logError('Error parsing date: $e');
-        // Keep default date if parsing fails
+        Logger.error('Error parsing date: $e');
         createdAt = DateTime.now();
       }
     }
+    String title = message.data["title"] ?? message.notification?.title ?? '';
+    String body = message.data["body"] ?? message.notification?.body ?? '';
 
     return AppNotification(
-      id: int.tryParse(message.data['id']?.toString() ?? '0') ?? 0,
+      id: int.tryParse(message.data['id']?.toString() ?? '0') ?? DateTime.now().millisecond,
       topicId: int.tryParse(message.data['topic_id']?.toString() ?? '0') ?? 0,
       topicTitle: message.data['topic_title']?.toString(),
-      title: message.data["title"] ?? message.notification?.title ?? '',
-      body: message.data["body"] ?? message.notification?.body ?? '',
+      title: title,
+      body: body,
       imageUrl: message.data["image_url"],
       payload: Map<String, dynamic>.from(message.data["payload"] as Map<dynamic, dynamic>? ?? {}),
       priority: NotificationPriority.fromString(message.data["priority"] ?? 'normal'),
@@ -149,19 +113,17 @@ class AppNotification {
     required this.id,
     required this.topicId,
     this.topicTitle,
-    required String title,
-    required String body,
+    required this.title,
+    required this.body,
     this.imageUrl,
     this.payload,
     this.priority = NotificationPriority.normal,
     required this.createdAt,
     this.expiresAt,
-    String status = 'unread',
+    this.status = 'unread',
     this.isStarred = false,
     this.readAt,
-  }) : title = validateAndSanitizeTitle(title),
-       body = validateAndSanitizeBody(body),
-       status = validateStatus(status);
+  });
 
   Map<String, dynamic> toJson() {
     return {

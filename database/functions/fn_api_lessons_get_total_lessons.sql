@@ -10,7 +10,7 @@ AS $$
     json_build_object(
       'lessons', json_agg(lesson_row)
     )::jsonb,
-    'ok'::text,
+    'success'::text,
     'Lessons retrieved successfully'::text
   )
   FROM (

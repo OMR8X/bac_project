@@ -1,4 +1,4 @@
-import 'package:bac_project/features/notifications/domain/entities/remote_notification.dart';
+import 'package:bac_project/features/notifications/domain/entities/app_notification.dart';
 import 'package:bac_project/features/notifications/domain/enums/notification_priority.dart';
 
 class AppNotificationModel extends AppNotification {

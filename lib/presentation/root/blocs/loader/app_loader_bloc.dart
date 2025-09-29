@@ -78,12 +78,12 @@ class AppLoaderBloc extends Bloc<AppLoaderLoadData, AppLoaderState> {
     final deviceTokenResult = await sl<GetDeviceTokenUsecase>().call();
     await deviceTokenResult.fold(
       (l) {
-        sl<Logger>().logError('Failed to get device token: $l');
+        Logger.error('Failed to get device token: $l');
       },
       (
         deviceToken,
       ) async {
-        sl<Logger>().logMessage('Device token: $deviceToken');
+        Logger.message('Device token: $deviceToken');
         await sl<RegisterDeviceTokenUsecase>().call(
           await RegisterDeviceTokenRequest.fromDeviceToken(deviceToken),
         );

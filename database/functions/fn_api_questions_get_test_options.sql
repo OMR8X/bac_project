@@ -10,7 +10,7 @@ AS $$
         json_build_object(
             'categories', coalesce(json_agg(category_row ORDER BY category_row.title), '[]'::json)
         )::jsonb,
-        'ok'::text,
+        'success'::text,
         'Test options retrieved successfully'::text
     )
     FROM (

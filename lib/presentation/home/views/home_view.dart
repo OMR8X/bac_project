@@ -2,18 +2,26 @@ import 'dart:math';
 
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/injector/tests_feature_inj.dart';
+import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
+import 'package:bac_project/core/services/router/app_router.dart';
+import 'package:bac_project/core/widgets/messages/snackbars/alert_snackbar_widget.dart';
+import 'package:bac_project/core/widgets/messages/snackbars/success_snackbar_widget.dart';
 import 'package:bac_project/core/widgets/ui/icons/notifications_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/icons/search_icon_widget.dart';
 import 'package:bac_project/features/settings/other/fake_quotes_list.dart';
 import 'package:bac_project/presentation/home/widgets/quote_of_the_day_widget.dart';
+import 'package:bac_project/presentation/root/views/app_root.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/services/router/app_routes.dart';
+import '../../../core/widgets/messages/snackbars/error_snackbar_widget.dart';
 import '../../../core/widgets/ui/states/loading_state_body_widget.dart';
+import '../../notifications/state/explore_notifications/notifications_bloc.dart';
 import '../blocs/home_bloc.dart';
 import '../widgets/home_action_card_bilder_widget.dart';
 
@@ -28,6 +36,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     sl<HomeBloc>().add(HomeEventInitialize());
+
     super.initState();
   }
 
@@ -40,7 +49,10 @@ class _HomeViewState extends State<HomeView> {
         actions: [
           SearchIconWidget(
             onPressed: () {
-              context.pushNamed(AppRoutes.search.name, extra: SearchViewArguments(unitId: null));
+              context.pushNamed(
+                AppRoutes.search.name,
+                queryParameters: SearchViewArguments(unitId: null).toQueryParameters(),
+              );
             },
           ),
           //  SwitchThemeWidget()

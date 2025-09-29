@@ -27,7 +27,7 @@ LANGUAGE SQL as $$
                         'id', id,
                         'title', title
                     )
-                ) FROM sections 
+                ) FROM sections
             ),
             'governorates', (
                 SELECT json_agg(
@@ -35,7 +35,7 @@ LANGUAGE SQL as $$
                         'id', id,
                         'title', title
                     )
-                ) FROM governorates  
+                ) FROM governorates
             ),
             'categories', (
                 SELECT json_agg(
@@ -59,7 +59,7 @@ LANGUAGE SQL as $$
                'app_version', '2.0.0'
             )
         )::jsonb,
-        'ok'::text,
+        'success'::text,
         'App settings retrieved successfully'::text
     );
 $$;

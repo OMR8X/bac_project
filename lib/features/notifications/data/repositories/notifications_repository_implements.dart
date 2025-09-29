@@ -1,4 +1,3 @@
-import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/resources/errors/error_mapper.dart';
 import 'package:bac_project/core/services/logs/logger.dart';
 import 'package:dartz/dartz.dart';
@@ -7,7 +6,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:bac_project/core/resources/errors/failures.dart';
 import 'package:bac_project/features/notifications/data/datasources/notifications_remote_datasource.dart';
 import 'package:bac_project/features/notifications/data/datasources/notifications_database_datasource.dart';
-import 'package:bac_project/features/notifications/domain/entities/remote_notification.dart';
+import 'package:bac_project/features/notifications/domain/entities/app_notification.dart';
 import '../../domain/repositories/notifications_repository.dart';
 import '../../domain/requests/get_notifications_request.dart';
 import '../../domain/requests/register_device_token_request.dart';
@@ -21,7 +20,6 @@ import '../responses/get_user_subscribed_topics_response.dart';
 class NotificationsRepositoryImplements implements NotificationsRepository {
   final NotificationsRemoteDatasource _remoteDatasource;
   final NotificationsDatabaseDatasource _databaseDatasource;
-  final Logger _logger = sl<Logger>();
 
   NotificationsRepositoryImplements(this._remoteDatasource, this._databaseDatasource);
 
@@ -62,7 +60,7 @@ class NotificationsRepositoryImplements implements NotificationsRepository {
       final response = await _databaseDatasource.getNotifications(request);
       return Right(response);
     } on Exception catch (e) {
-        return left(errorToFailure(e));
+      return left(errorToFailure(e));
     }
   }
 
@@ -132,7 +130,7 @@ class NotificationsRepositoryImplements implements NotificationsRepository {
       final response = await _databaseDatasource.markNotificationsAsRead(request);
       return Right(response);
     } on Exception catch (e) {
-        return left(errorToFailure(e));
+      return left(errorToFailure(e));
     }
   }
 
@@ -168,7 +166,7 @@ class NotificationsRepositoryImplements implements NotificationsRepository {
       final registerTokenRequest = await RegisterDeviceTokenRequest.fromDeviceToken(deviceToken);
       final registerResult = await registerDeviceToken(registerTokenRequest);
       registerResult.getOrElse(() => throw Exception('Failed to register device token'));
-      _logger.logMessage('✅ Device token sync successfully.');
+      Logger.message('✅ Device token sync successfully.');
 
       // Then, get user subscribed topics and subscribe to them locally
       final subscribedTopicsResult = await getUserSubscribedTopics();
@@ -185,10 +183,10 @@ class NotificationsRepositoryImplements implements NotificationsRepository {
         await _remoteDatasource.subscribeToTopic(subscribeRequest);
       }
 
-      _logger.logMessage('✅ Topics synced successfully.');
+      Logger.message('✅ Topics synced successfully.');
       return right(unit);
     } on Exception catch (e) {
-      _logger.logError(
+      Logger.error(
         'Notifications sync failed: ${e.toString()}',
         stackTrace: StackTrace.current,
       );

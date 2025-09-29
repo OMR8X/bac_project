@@ -5,7 +5,7 @@ AS $$
 BEGIN
   RETURN api.api_response(
     json_agg(to_jsonb(r))::jsonb,
-    'ok'::text,
+    'success'::text,
     'Results leaderboard retrieved successfully'::text
   )
   FROM (

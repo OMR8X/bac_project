@@ -30,5 +30,7 @@ class BorderRadiusResource {
   //
   static final cardBorderRadius = bordersRadiusLarge;
   //
+  static final snackbarBorderRadius = bordersRadiusMedium;
+  //
   static final optionCardBorderRadius = bordersRadiusTiny;
 }

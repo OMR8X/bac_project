@@ -34,9 +34,10 @@ class ResultListBuilderWidget extends StatelessWidget {
               child: ResultCardWidget(
                 result: result,
                 onExplore: () {
-                  context.push(
-                    AppRoutes.exploreResult.path,
-                    extra: ExploreResultViewArguments(resultId: result.id),
+                  context.pushNamed(
+                    AppRoutes.exploreResult.name,
+                    queryParameters:
+                        ExploreResultViewArguments(resultId: result.id).toQueryParameters(),
                   );
                 },
               ),

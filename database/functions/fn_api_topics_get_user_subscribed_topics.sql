@@ -27,7 +27,7 @@ select api.api_response(
     ),
     '[]'::json
   )::jsonb,
-  'ok'::text,
+  'success'::text,
   'User subscribed topics retrieved successfully'::text
 );
 $$;

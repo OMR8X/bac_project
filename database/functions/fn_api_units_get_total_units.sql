@@ -7,7 +7,7 @@ AS $$
     json_build_object(
       'units', json_agg(unit_row)
     )::jsonb,
-    'ok'::text,
+    'success'::text,
     'Units retrieved successfully'::text
   )
   FROM (

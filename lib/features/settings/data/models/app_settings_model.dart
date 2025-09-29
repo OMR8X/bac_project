@@ -22,32 +22,31 @@ class AppSettingsModel extends AppSettings {
   });
 
   factory AppSettingsModel.fromJson(Map<String, dynamic> json) {
-    final data = json['data'];
     return AppSettingsModel(
       userData:
-          data['user_data'] != null
-              ? UserDataModel.fromJson(data['user_data'] as Map<String, dynamic>)
+          json['user_data'] != null
+              ? UserDataModel.fromJson(json['user_data'] as Map<String, dynamic>)
               : null,
       motivationalQuote:
-          data['motivational_quote'] != null
-              ? MotivationalQuoteModel.fromJson(data['motivational_quote'] as Map<String, dynamic>)
+          json['motivational_quote'] != null
+              ? MotivationalQuoteModel.fromJson(json['motivational_quote'] as Map<String, dynamic>)
               : null,
       sections:
-          (data['sections'] as List<dynamic>?)
+          (json['sections'] as List<dynamic>?)
               ?.map(
                 (e) => SectionModel.fromJson(e as Map<String, dynamic>).toEntity,
               )
               .toList() ??
           [],
       governorates:
-          (data['governorates'] as List<dynamic>?)
+          (json['governorates'] as List<dynamic>?)
               ?.map(
                 (e) => GovernorateModel.fromJson(e as Map<String, dynamic>),
               )
               .toList() ??
           [],
       categories:
-          (data['categories'] as List<dynamic>?)
+          (json['categories'] as List<dynamic>?)
               ?.map(
                 (e) =>
                     QuestionCategoryModel.fromJson(
@@ -56,7 +55,7 @@ class AppSettingsModel extends AppSettings {
               )
               .toList() ??
           [],
-      version: VersionModel.fromJson(data['version'] as Map<String, dynamic>),
+      version: VersionModel.fromJson(json['version'] as Map<String, dynamic>),
     );
   }
 

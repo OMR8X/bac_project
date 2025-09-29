@@ -14,7 +14,7 @@ extension ColorExtension on Color {
     assert(amount >= 0 && amount <= 1);
     return Color.lerp(this, Colors.white, amount)!;
   }
-
+ 
   ({Color deep, Color light}) withValues() {
     return (deep: darker(0.2), light: lighter(0.2));
   }

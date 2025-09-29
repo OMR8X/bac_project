@@ -1,5 +1,5 @@
 import 'package:bac_project/core/services/api/supabase/supabase_settings.dart';
-import 'package:bac_project/features/notifications/domain/entities/remote_notification.dart';
+import 'package:bac_project/features/notifications/domain/entities/app_notification.dart';
 import 'package:bac_project/features/notifications/domain/usecases/display_notification_usecase.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -16,41 +16,33 @@ import '../../../../core/services/logs/logger.dart';
 
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  if (!sl.isRegistered<Logger>()) {
-    await ServiceLocator.init();
-  }
-  final logger = sl<Logger>();
+  Logger.warning('A background message was received: ${message.messageId}');
   try {
-    logger.logWarning('A background message was received: ${message.messageId}');
+    await ServiceLocator.init();
     await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-    logger.logMessage('Firebase initialized');
-    // TODO: Initialize Supabase
+    Logger.message('Firebase initialized');
     await Supabase.initialize(url: SupabaseSettings.url, anonKey: SupabaseSettings.anonKey);
-    logger.logMessage('Supabase initialized');
+    Logger.message('Supabase initialized');
     sl<NotificationsBloc>().add(LoadNotificationsEvent());
     await sl<DisplayNotificationUsecase>().call(
       notification: AppNotification.fromRemoteMessage(message),
     );
-    logger.logMessage('DisplayFirebaseNotificationUsecase called');
+    Logger.message('DisplayFirebaseNotificationUsecase called');
   } on Exception catch (e) {
-    logger.logError('Error in firebaseMessagingBackgroundHandler: $e');
+    Logger.error('Error in firebaseMessagingBackgroundHandler: $e');
   }
 }
 
 @pragma('vm:entry-point')
 void onDidReceiveBackgroundNotificationResponse(NotificationResponse? response) async {
-  if (!sl.isRegistered<Logger>()) {
-    await ServiceLocator.init();
-  }
-  final logger = sl<Logger>();
-  logger.logWarning('A background notification response was received: ${response?.payload}');
+  Logger.warning('A background notification response was received: ${response?.payload}');
   try {
     await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-    logger.logMessage('Firebase initialized');
+    Logger.message('Firebase initialized');
 
     await Supabase.initialize(url: SupabaseSettings.url, anonKey: SupabaseSettings.anonKey);
 
-    logger.logMessage('Supabase initialized');
+    Logger.message('Supabase initialized');
 
     if (!sl.isRegistered<DisplayNotificationUsecase>()) {
       await ServiceLocator.init();
@@ -64,81 +56,74 @@ void onDidReceiveBackgroundNotificationResponse(NotificationResponse? response) 
       navigatorKey.currentState?.push(MaterialPageRoute(builder: (_) => const NotificationsView()));
     }
   } catch (e) {
-    logger.logError('Error in onDidReceiveBackgroundNotificationResponse: $e');
+    Logger.error('Error in onDidReceiveBackgroundNotificationResponse: $e');
   }
 }
 
-class FirebaseMessagingHandlers {
-  ///
-  /// [firebase messaging foreground handler]
-  Future<void> onData(RemoteMessage message) async {
-    await ServiceLocator.init();
-    final logger = sl<Logger>();
-    logger.logWarning('A foreground message was received: ${message.messageId}');
-    await sl<DisplayNotificationUsecase>().call(
-      notification: AppNotification.fromRemoteMessage(message),
-    );
-    sl<NotificationsBloc>().add(LoadNotificationsEvent());
-  }
+///
+/// [firebase messaging foreground handler]
+@pragma('vm:entry-point')
+Future<void> onDataHandler(RemoteMessage message) async {
+  Logger.warning('A foreground message was received: ${message.messageId}');
+  await ServiceLocator.init();
+  sl<NotificationsBloc>().add(
+    DisplayForegroundNotificationsEvent(message: message),
+  );
+}
 
-  ///
-  Future<void> onTokenRefreshed(String newToken) async {
-    await ServiceLocator.init();
-    final logger = sl<Logger>();
-    logger.logMessage('Firebase token refreshed: $newToken');
-    sl<NotificationsBloc>().add(SyncNotificationsEvent());
-  }
+///
+@pragma('vm:entry-point')
+Future<void> onTokenRefreshedHandler(String newToken) async {
+  Logger.message('Firebase token refreshed: $newToken');
+  await ServiceLocator.init();
+  sl<NotificationsBloc>().add(SyncNotificationsEvent());
+}
 
-  ///
-  void onDone() {}
+///
+@pragma('vm:entry-point')
+void onDoneHandler() {}
 
-  ///
-  void onError(error) {}
+///
+@pragma('vm:entry-point')
+void onErrorHandler(error) {}
 
-  Future<void> onNotificationOpened(RemoteMessage message) async {
-    if (!sl.isRegistered<Logger>()) {
-      await ServiceLocator.init();
-    }
-    sl<Logger>().logWarning(
-      'Notification opened from background/terminated state: ${message.messageId}',
-    );
+@pragma('vm:entry-point')
+Future<void> onNotificationOpenedHandler(RemoteMessage message) async {
+  Logger.warning('Notification opened from background state: ${message.messageId}');
+  await ServiceLocator.init();
 
-    // Refresh notifications
-    sl<NotificationsBloc>().add(LoadNotificationsEvent());
+  // Refresh notifications
+  sl<NotificationsBloc>().add(LoadNotificationsEvent());
 
-    // Add delay to ensure the app is fully resumed and navigation context is ready
-    await Future.delayed(const Duration(milliseconds: 300));
+  // Add delay to ensure the app is fully resumed and navigation context is ready
+  await Future.delayed(const Duration(milliseconds: 300));
 
-    // Check if navigator is ready
+  // Check if navigator is ready
+  if (navigatorKey.currentState?.mounted == true) {
+    navigatorKey.currentState?.push(MaterialPageRoute(builder: (_) => const NotificationsView()));
+  } else {
+    // If navigator is not ready, wait and try again
+    await Future.delayed(const Duration(milliseconds: 500));
     if (navigatorKey.currentState?.mounted == true) {
-      navigatorKey.currentState?.push(MaterialPageRoute(builder: (_) => const NotificationsView()));
+      navigatorKey.currentState?.push(
+        MaterialPageRoute(builder: (_) => const NotificationsView()),
+      );
     } else {
-      // If navigator is not ready, wait and try again
-      await Future.delayed(const Duration(milliseconds: 500));
-      if (navigatorKey.currentState?.mounted == true) {
-        navigatorKey.currentState?.push(
-          MaterialPageRoute(builder: (_) => const NotificationsView()),
-        );
-      } else {
-        sl<Logger>().logWarning('Navigator not ready for notification navigation');
-      }
+      Logger.warning('Navigator not ready for notification navigation');
     }
   }
+}
 
-  /// [firebase notification initial handler]
-  Future<void> onInitialNotification() async {
-    if (!sl.isRegistered<Logger>()) {
-      await ServiceLocator.init();
-    }
-    final RemoteMessage? initialMessage = await FirebaseMessaging.instance.getInitialMessage();
+/// [firebase notification initial handler]
+@pragma('vm:entry-point')
+Future<void> onInitialNotificationHandler() async {
+  Logger.warning('App opened from terminated state via notification');
+  await ServiceLocator.init();
+  final RemoteMessage? initialMessage = await FirebaseMessaging.instance.getInitialMessage();
 
-    if (initialMessage != null) {
-      sl<Logger>().logWarning(
-        'App opened from terminated state via notification: ${initialMessage.messageId}',
-      );
-      // Add delay to ensure app is fully initialized
-      await Future.delayed(const Duration(milliseconds: 1000));
-      await onNotificationOpened(initialMessage);
-    }
+  if (initialMessage != null) {
+    // Add delay to ensure app is fully initialized
+    await Future.delayed(const Duration(milliseconds: 1000));
+    await onNotificationOpenedHandler(initialMessage);
   }
 }

@@ -174,13 +174,19 @@ CREATE TABLE user_notifications (
     id BIGSERIAL PRIMARY KEY,
     user_id uuid not null references auth.users(id) on delete cascade,
     notification_id BIGINT NOT NULL,
-    delivered_at TIMESTAMP,
-    read_at TIMESTAMP,
-    dismissed_at TIMESTAMP,         
-	--  TODO: trace actions status
-    action_performed BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
 	FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE,
     FOREIGN KEY (notification_id) REFERENCES public.notifications(id) ON DELETE CASCADE
+);
+
+-- Table: motivational_quotes
+CREATE TABLE motivational_quotes (
+    id BIGSERIAL PRIMARY KEY,
+    quote TEXT NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    used BOOLEAN NOT NULL DEFAULT FALSE,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 -- Table: device_tokens

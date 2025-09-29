@@ -1,7 +1,7 @@
 import 'package:bac_project/core/resources/errors/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:bac_project/features/notifications/domain/entities/remote_notification.dart';
+import 'package:bac_project/features/notifications/domain/entities/app_notification.dart';
 import 'package:bac_project/features/notifications/domain/requests/get_notifications_request.dart';
 import 'package:bac_project/features/notifications/domain/requests/register_device_token_request.dart';
 import 'package:bac_project/features/notifications/domain/requests/mark_notifications_as_read_request.dart';

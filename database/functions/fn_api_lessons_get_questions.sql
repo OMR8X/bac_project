@@ -77,7 +77,7 @@ BEGIN
         WHERE o.question_id = q.id
       ) options ON true
     )::jsonb,
-    'ok'::text,
+    'success'::text,
     'Questions retrieved successfully'::text
   );
 END;

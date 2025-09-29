@@ -1,0 +1,13 @@
+[
+    {
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.neuro.bac",
+        "sha256_cert_fingerprints": [
+          "E7:D3:50:65:8B:B1:3B:99:36:B5:1A:3E:B1:4D:8A:77:79:38:8E:33:C8:A9:26:F4:50:3A:87:84:DE:09:7B:31"
+        ]
+      }
+    }
+  ]
+  

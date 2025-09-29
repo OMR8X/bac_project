@@ -1,20 +1,34 @@
 part of 'explore_results_bloc.dart';
 
-sealed class ExploreResultsState extends Equatable {
-  const ExploreResultsState();
-  @override
-  List<Object?> get props => [];
+enum ExploreResultsStatus {
+  loading,
+  loaded,
+  failure,
 }
 
-final class ExploreResultsLoading extends ExploreResultsState {}
+class ExploreResultsState extends Equatable {
+  const ExploreResultsState({
+    this.status = ExploreResultsStatus.loading,
+    this.results = const [],
+    this.failure,
+  });
 
-final class ExploreResultsLoaded extends ExploreResultsState {
-  final List<Result> results; // List<ResultModel> but keep dynamic to avoid import here
+  final ExploreResultsStatus status;
+  final List<Result> results;
+  final Failure? failure;
 
-  final String? message;
+  const ExploreResultsState.loading() : this(status: ExploreResultsStatus.loading);
 
-  const ExploreResultsLoaded({required this.results, this.message});
+  const ExploreResultsState.loaded(List<Result> results)
+    : this(status: ExploreResultsStatus.loaded, results: results);
+
+  const ExploreResultsState.failure(Failure failure)
+    : this(status: ExploreResultsStatus.failure, failure: failure);
+
+  bool get isLoading => status == ExploreResultsStatus.loading;
+  bool get isLoaded => status == ExploreResultsStatus.loaded;
+  bool get isFailure => status == ExploreResultsStatus.failure;
 
   @override
-  List<Object?> get props => [results, message];
+  List<Object?> get props => [status, results, failure];
 }

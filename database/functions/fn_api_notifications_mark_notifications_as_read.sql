@@ -24,7 +24,7 @@ begin
   -- Return the standardized response
   return api.api_response(
     jsonb_build_object('updated_count', updated_count),
-    'ok'::text,
+    'success'::text,
     format('Successfully marked %s notifications as read', updated_count)::text
   );
 end;

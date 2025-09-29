@@ -1,5 +1,9 @@
 import 'package:bac_project/core/resources/errors/failures.dart';
 import 'package:bac_project/core/services/router/index.dart';
+import 'package:bac_project/features/auth/data/responses/sign_in_response.dart';
+import 'package:bac_project/features/auth/data/responses/sign_out_response.dart';
+import 'package:bac_project/features/auth/data/responses/sign_up_response.dart';
+import 'package:bac_project/features/auth/data/responses/update_user_data_response.dart';
 import 'package:bac_project/features/auth/domain/requests/sign_out_request.dart';
 import 'package:bac_project/features/auth/domain/requests/update_user_data_request.dart';
 import 'package:bac_project/features/auth/domain/usecases/get_user_data_usecase.dart';
@@ -98,12 +102,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     //
     response.fold(
       (l) {
-        Fluttertoast.showToast(msg: l.message);
         emit(AuthSigningInState(loading: false, failure: l));
       },
-      (r) {
-        Fluttertoast.showToast(msg: r.message);
-        emit(const AuthSigningInState(loading: false, failure: null));
+      (SignInResponse r) {
+        emit(AuthSigningInState(loading: false, failure: null, successMessage: r.message));
         sl<AuthBloc>().add(const AuthInitializeEvent());
       },
     );
@@ -134,12 +136,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     //
     response.fold(
       (l) {
-        Fluttertoast.showToast(msg: l.message);
         emit(AuthSigningUpState(loading: false, failure: l));
       },
-      (r) {
-        Fluttertoast.showToast(msg: r.message);
-        emit(const AuthSigningUpState(loading: false, failure: null));
+      (SignUpResponse r) {
+        emit(AuthSigningUpState(loading: false, failure: null, successMessage: r.message));
         sl<AuthBloc>().add(const AuthInitializeEvent());
       },
     );
@@ -169,14 +169,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     //
     response.fold(
       (l) {
-        Fluttertoast.showToast(msg: l.message);
-        emit(AuthDoneState(loading: false));
+        emit(AuthDoneState(loading: false, failure: l));
       },
-      (r) {
-        Fluttertoast.showToast(msg: r.message);
+      (UpdateUserDataResponse r) {
         _injectUserData(r.user);
         //
-        emit(AuthDoneState(loading: false));
+        emit(AuthDoneState(loading: false, failure: null, successMessage: r.message));
         AppRouter.router.pop();
       },
     );
@@ -186,22 +184,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   //
   onAuthSignOutEvent(AuthSignOutEvent event, Emitter<AuthState> emit) async {
     //
-    AppRouter.router.go(AppRoutes.authViewsManager.path);
-
-    //
     emit(const AuthLoadingState());
     //
     final response = await _signOutUsecase(request: SignOutRequest());
     //
     response.fold(
       (l) {
-        Fluttertoast.showToast(msg: l.message);
         emit(AuthStartState(loading: false, failure: l));
       },
-      (r) async {
-        Fluttertoast.showToast(msg: r.message);
-        emit(const AuthStartState(loading: false, failure: null));
+      (SignOutResponse r) async {
+        emit(AuthStartState(loading: false, failure: null, successMessage: r.message));
         sl<AuthBloc>().add(const AuthInitializeEvent());
+        AppRouter.router.goNamed(AppRoutes.loader.name);
       },
     );
     //

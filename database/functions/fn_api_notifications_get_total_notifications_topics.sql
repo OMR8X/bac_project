@@ -24,7 +24,7 @@ select api.api_response(
     ),
     '[]'::json
   )::jsonb,
-  'ok'::text,
+  'success'::text,
   'Notification topics retrieved successfully'::text
 );
 $$;

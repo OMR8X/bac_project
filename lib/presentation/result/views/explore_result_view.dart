@@ -73,9 +73,12 @@ class _ExploreResultViewState extends State<ExploreResultView> with TickerProvid
                 body: context.l10n.resultRetryTestDialogBody,
                 action: context.l10n.buttonsRetryTest,
                 onConform: () {
-                  context.pushReplacement(
-                    AppRoutes.fetchCustomQuestions.path,
-                    extra: FetchCustomQuestionsArguments(resultId: widget.arguments.resultId),
+                  context.pushReplacementNamed(
+                    AppRoutes.fetchCustomQuestions.name,
+                    queryParameters:
+                        FetchCustomQuestionsArguments(
+                          resultId: widget.arguments.resultId,
+                        ).toQueryParameters(),
                   );
                 },
               );
@@ -163,12 +166,6 @@ class _ExploreResultDetailsView extends StatelessWidget {
                               context: context,
                               child: QuestionsSheetBuilder(resultId: state.response!.result.id),
                             );
-                            // context.push(
-                            //   AppRoutes.exploreAnswersEvaluations.path,
-                            //   extra: ExploreAnswersEvaluationsViewArguments(
-                            //     resultId: state.response!.result.id,
-                            //   ),
-                            // );
                           },
                         ),
                       ),

@@ -114,6 +114,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get enableSoundEffectsTitle => 'تفعيل الأصوات';
 
   @override
+  String get errorAuth => 'خطأ في المصادقة';
+
+  @override
+  String get errorLoadingApp => 'فشل في تحميل التطبيق';
+
+  @override
+  String get errorLoadingResults => 'فشل في تحميل النتائج';
+
+  @override
   String get exploreMode => 'وضع التصفح';
 
   @override

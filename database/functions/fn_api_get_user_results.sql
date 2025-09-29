@@ -27,7 +27,7 @@ AS $$
         '[]'::json
       )
     )::jsonb,
-    'ok'::text,
+    'success'::text,
     'User results retrieved successfully'::text
   );
 $$;

@@ -304,6 +304,24 @@ abstract class AppLocalizations {
   /// **'تفعيل الأصوات'**
   String get enableSoundEffectsTitle;
 
+  /// No description provided for @errorAuth.
+  ///
+  /// In ar, this message translates to:
+  /// **'خطأ في المصادقة'**
+  String get errorAuth;
+
+  /// No description provided for @errorLoadingApp.
+  ///
+  /// In ar, this message translates to:
+  /// **'فشل في تحميل التطبيق'**
+  String get errorLoadingApp;
+
+  /// No description provided for @errorLoadingResults.
+  ///
+  /// In ar, this message translates to:
+  /// **'فشل في تحميل النتائج'**
+  String get errorLoadingResults;
+
   /// No description provided for @exploreMode.
   ///
   /// In ar, this message translates to:

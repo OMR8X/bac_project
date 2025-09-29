@@ -1,8 +1,6 @@
-import 'package:bac_project/core/widgets/ui/icons/notifications_icon_widget.dart';
-import 'package:bac_project/core/widgets/ui/icons/switch_theme_widget.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
+import 'package:bac_project/core/widgets/ui/states/loading_state_body_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/extensions/build_context_l10n.dart';
 import '../../../core/injector/app_injection.dart';
@@ -27,27 +25,26 @@ class _ExploreResultsViewState extends State<ExploreResultsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(context.l10n.resultsTitle)),
-      body: BlocConsumer<ExploreResultsBloc, ExploreResultsState>(
+      body: BlocBuilder<ExploreResultsBloc, ExploreResultsState>(
         bloc: sl<ExploreResultsBloc>(),
-        listener: (context, state) {
-          if (state is ExploreResultsLoaded) {
-            if (state.message != null && state.message!.isNotEmpty) {
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                Fluttertoast.showToast(msg: state.message!);
-              });
-            }
-          }
-        },
         builder: (context, state) {
-          if (state is ExploreResultsLoading) {
-            return const Center(child: CupertinoActivityIndicator());
+          if (state.isLoading) {
+            return const LoadingStateBodyWidget();
           }
 
-          if (state is ExploreResultsLoaded) {
+          if (state.isFailure) {
+            return ErrorStateBodyWidget(
+              title: context.l10n.errorLoadingResults,
+              failure: state.failure,
+              onRetry: () => sl<ExploreResultsBloc>().add(const FetchResults()),
+            );
+          }
+
+          if (state.isLoaded) {
             return ResultListBuilderWidget(results: state.results);
           }
 
-          return const Center();
+          return const LoadingStateBodyWidget();
         },
       ),
     );

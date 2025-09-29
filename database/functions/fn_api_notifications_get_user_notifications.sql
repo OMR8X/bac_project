@@ -36,7 +36,7 @@ coalesce(
 ),
 '[]'::json
 )::jsonb,
-'ok'::text,
+'success'::text,
 'User notifications retrieved successfully'::text
 );
 $$;

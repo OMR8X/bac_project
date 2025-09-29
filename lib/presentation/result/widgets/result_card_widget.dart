@@ -35,9 +35,10 @@ class _ResultCardWidgetState extends State<ResultCardWidget> {
         icon: Icons.refresh,
         iconColor: Theme.of(context).colorScheme.primary,
         onTap: () {
-          context.push(
-            AppRoutes.fetchCustomQuestions.path,
-            extra: FetchCustomQuestionsArguments(resultId: widget.result.id),
+          context.pushNamed(
+            AppRoutes.fetchCustomQuestions.name,
+            queryParameters:
+                FetchCustomQuestionsArguments(resultId: widget.result.id).toQueryParameters(),
           );
         },
       );
