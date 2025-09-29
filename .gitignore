@@ -44,10 +44,16 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-/supabase
-/supabase/
-/database
-/database/
+
 
 # Signing files
 **/android/key.properties
+
+# IDE and development directories
+.cursor/
+
+# Supabase configuration and functions
+supabase/
+
+# Database files and configurations
+database/
