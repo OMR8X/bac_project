@@ -15,7 +15,8 @@ class RetryIconWidget extends StatelessWidget {
     return AppBarIconWidget(
       icon: Image.asset(
         UIImagesResources.retryUIIcon,
-        color: Theme.of(context).colorScheme.onSurface,
+        color: Color(0xff8D8B85),
+        // color: Theme.of(context).colorScheme.onSurface,
       ),
       onPressed: onPressed ?? () => context.pop(),
     );

@@ -20,7 +20,8 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace = "com.neuro.bac"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 36
+    // ndkVersion = "29.0.14206765"
     ndkVersion = "27.0.12077973"
 
     compileOptions {

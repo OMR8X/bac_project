@@ -1,8 +1,8 @@
 import 'package:bac_project/features/tests/data/mappers/option_mapper.dart';
-import 'package:bac_project/features/tests/data/models/answer_evaluation_model.dart';
+import 'package:bac_project/features/results/data/models/answer_evaluation_model.dart';
 import 'package:bac_project/features/tests/data/models/option_model.dart';
 import 'package:bac_project/features/tests/data/models/question_answer_model.dart';
-import 'package:bac_project/features/tests/domain/entities/answer_evaluation.dart';
+import 'package:bac_project/features/results/domain/entities/answer_evaluation.dart';
 import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
 
 import '../../domain/entities/question.dart';

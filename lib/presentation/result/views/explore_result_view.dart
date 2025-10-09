@@ -7,21 +7,21 @@ import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/extra_colors.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
-import 'package:bac_project/core/services/router/app_routes.dart';
+import 'package:bac_project/core/services/router/routes.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
 import 'package:bac_project/core/widgets/animations/staggered_list_wrapper_widget.dart';
 import 'package:bac_project/core/widgets/messages/sheets/app_bottom_sheet.dart';
 import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/icons/retry_icon_widget.dart';
-import 'package:bac_project/core/widgets/ui/loading_widget.dart';
 import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
-import 'package:bac_project/core/widgets/ui/states/loading_state_body_widget.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:bac_project/features/settings/domain/entities/app_settings.dart';
 import 'package:bac_project/features/tests/domain/entities/question.dart';
 import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
+import 'package:bac_project/features/results/domain/entities/result.dart';
 import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
-import 'package:bac_project/features/tests/domain/requests/get_result_questions_details_request.dart';
-import 'package:bac_project/features/tests/domain/usecases/get_result_questions_details_use_case.dart';
+import 'package:bac_project/features/results/domain/requests/get_result_questions_details_request.dart';
+import 'package:bac_project/features/results/domain/usecases/get_result_questions_details_use_case.dart';
 import 'package:bac_project/presentation/quizzing/widgets/multiple_choices_options_builder_widget.dart';
 import 'package:bac_project/presentation/quizzing/widgets/orderable_options_builder_widget.dart';
 import 'package:bac_project/presentation/quizzing/widgets/textual_options_builder_widget.dart';
@@ -35,8 +35,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:go_router/go_router.dart';
+import '../../../core/widgets/animations/skeletonizer_effect_list_wraper.dart';
 import '../../../core/widgets/messages/dialogs/conform_dialog.dart';
+import '../../../features/results/data/responses/get_result_response.dart';
 import '../../../features/tests/domain/entities/question_category.dart';
+import '../widgets/questions_sheet_builder.dart';
 
 class ExploreResultView extends StatefulWidget {
   final ExploreResultViewArguments arguments;
@@ -74,7 +77,7 @@ class _ExploreResultViewState extends State<ExploreResultView> with TickerProvid
                 action: context.l10n.buttonsRetryTest,
                 onConform: () {
                   context.pushReplacementNamed(
-                    AppRoutes.fetchCustomQuestions.name,
+                    Routes.fetchCustomQuestions.name,
                     queryParameters:
                         FetchCustomQuestionsArguments(
                           resultId: widget.arguments.resultId,
@@ -101,7 +104,7 @@ class _ExploreResultViewState extends State<ExploreResultView> with TickerProvid
                 },
               );
             }
-            return const LoadingStateBodyWidget();
+            return const _ExploreResultLoadingView();
           },
         ),
       ),
@@ -214,145 +217,22 @@ class _ExploreResultFailureView extends StatelessWidget {
   }
 }
 
-class QuestionsSheetBuilder extends StatefulWidget {
-  const QuestionsSheetBuilder({super.key, required this.resultId});
-  final int resultId;
-  @override
-  State<QuestionsSheetBuilder> createState() => _QuestionsSheetBuilderState();
-}
-
-class _QuestionsSheetBuilderState extends State<QuestionsSheetBuilder> {
-  final GlobalKey menuKey = GlobalKey();
-
-  late Failure? _failure;
-  late bool _isLoading;
-  late List<Question> _questions;
-
-  @override
-  void initState() {
-    ///
-    _isLoading = true;
-    _failure = null;
-    _questions = [];
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _fetchQuestions();
-    });
-    super.initState();
-  }
-
-  Future<void> _fetchQuestions() async {
-    //
-    setState(() => _isLoading = true);
-    //
-    final response = await sl<GetResultQuestionsDetailsUsecase>().call(
-      GetResultQuestionsDetailsRequest(resultId: widget.resultId),
-    );
-    //
-    response.fold((l) => _failure = l, (r) {
-      _failure = null;
-      _questions = r.resultQuestions;
-    });
-    setState(() => _isLoading = false);
-  }
+class _ExploreResultLoadingView extends StatelessWidget {
+  const _ExploreResultLoadingView();
 
   @override
   Widget build(BuildContext context) {
-    if (_isLoading) {
-      return const LoadingWidget();
-    }
-    if (_failure != null) {
-      return ErrorStateBodyWidget(
-        title: "خطأ في الحصول على الاسئلة",
-        failure: _failure,
-        onRetry: () {
-          setState(() => _isLoading = true);
-          _fetchQuestions();
-        },
-      );
-    }
-
-    return Column(
-      children: [
-        // Content
-        Expanded(
-          child: AnimationLimiter(
-            child: ListView.builder(
-              padding: Paddings.listViewPadding,
-              itemCount: _questions.length,
-              itemBuilder: (context, index) {
-                return StaggeredListWrapperWidget(
-                  position: index,
-                  child: Column(
-                    children: [
-                      QuestionCardWidget(question: _questions[index]),
-                      _buildOptions(
-                        context: context,
-                        question: _questions[index],
-                        questionAnswers: _questions[index].questionAnswers,
-                        testMode: TestMode.exploring,
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
+    return Skeletonizer(
+      child: _ExploreResultDetailsView(
+        state: ExploreResultState(
+          status: ExploreResultStatus.loaded,
+          response: GetResultResponse(
+            result: Result.mock(),
+            previousResults: List.generate(5, (index) => Result.mock()),
           ),
         ),
-
-        // Close button
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: SizedBox(
-            height: SizesResources.buttonLargeHeight,
-            child: FilledButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text(context.l10n.buttonsClose),
-            ),
-          ),
-        ),
-      ],
+        arguments: ExploreResultViewArguments(resultId: 1),
+      ),
     );
-  }
-
-  Widget _buildOptions({
-    required BuildContext context,
-    required Question question,
-    required List<QuestionAnswer> questionAnswers,
-    required TestMode testMode,
-  }) {
-    ///
-    final QuestionCategory? category = sl<AppSettings>().categories.firstWhereOrNull(
-      (c) => c.id == question.categoryId,
-    );
-
-    ///
-    if (category?.isMCQ ?? false) {
-      return MultipleChoicesQuestionBuilderWidget(
-        question: question,
-        questionsAnswers: questionAnswers,
-      );
-    } else if (category?.isOrderable ?? false) {
-      return OrderableQuestionBuilderWidget(
-        question: question,
-        questionsAnswers: questionAnswers,
-        answerEvaluations: question.answerEvaluations,
-      );
-    } else if ((category?.isTypeable) ?? false) {
-      return TextualQuestionsBuilderWidget(
-        question: question,
-        questionsAnswers: questionAnswers,
-        answerEvaluations: question.answerEvaluations,
-      );
-    } else if ((category?.isSingleAnswer) ?? false) {
-      return TextualQuestionsBuilderWidget(
-        question: question,
-        questionsAnswers: questionAnswers,
-        answerEvaluations: question.answerEvaluations,
-      );
-    } else {
-      return const SizedBox.shrink();
-    }
   }
 }

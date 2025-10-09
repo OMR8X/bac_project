@@ -12,6 +12,7 @@ import 'package:bac_project/features/notifications/domain/usecases/get_user_subs
 import 'package:bac_project/features/notifications/domain/usecases/subscribe_to_topic_usecase.dart';
 import 'package:bac_project/features/notifications/domain/usecases/unsubscribe_to_topic_usecase.dart';
 import 'package:bac_project/features/notifications/domain/usecases/sync_notifications_usecase.dart';
+import 'package:bac_project/features/notifications/domain/usecases/mark_notifications_as_read_usecase.dart';
 import 'package:bac_project/features/settings/domain/usecases/get_app_settings_usecase.dart';
 import 'package:bac_project/features/notifications/domain/usecases/initialize_notifications_usecase.dart';
 import 'package:bac_project/presentation/auth/state/bloc/auth_bloc.dart';
@@ -28,6 +29,7 @@ import '../../presentation/home/blocs/lessons_bloc.dart';
 
 import '../../presentation/notifications/state/explore_notifications/notifications_bloc.dart';
 import '../../presentation/root/blocs/loader/app_loader_bloc.dart';
+import '../../presentation/root/blocs/navigation/navigation_cubit.dart';
 import '../../presentation/root/blocs/theme/app_theme_bloc.dart';
 
 controllersInjection() {
@@ -39,9 +41,12 @@ controllersInjection() {
 
   ///
   sl.registerLazySingleton(
-    () =>
-        AppLoaderBloc(sl<GetAppSettingsUsecase>(), sl<InitializeNotificationsUsecase>())
-          ..add(const AppLoaderLoadData()),
+    () => NavigationCubit(),
+  );
+
+  ///
+  sl.registerLazySingleton(
+    () => AppLoaderBloc(sl<GetAppSettingsUsecase>(), sl<InitializeNotificationsUsecase>()),
   );
 
   ///
@@ -82,9 +87,11 @@ controllersInjection() {
 
   ///
   sl.registerLazySingleton<NotificationsBloc>(
-    () =>
-        NotificationsBloc(sl<GetNotificationsUsecase>(), sl<SyncNotificationsUsecase>())
-          ..add(const LoadNotificationsEvent()),
+    () => NotificationsBloc(
+      sl<GetNotificationsUsecase>(),
+      sl<SyncNotificationsUsecase>(),
+      sl<MarkNotificationsAsReadUsecase>(),
+    )..add(const LoadNotificationsEvent()),
   );
 
   ///

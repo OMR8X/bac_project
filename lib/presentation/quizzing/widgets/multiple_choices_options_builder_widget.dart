@@ -1,5 +1,4 @@
-import 'package:bac_project/features/tests/domain/entities/answer_evaluation.dart';
-import 'package:bac_project/presentation/result/widgets/answer_evaluations_notes_widget.dart';
+import 'package:bac_project/features/results/domain/entities/answer_evaluation.dart';
 import 'package:bac_project/presentation/quizzing/widgets/option_multiple_choices_card_widget.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +7,7 @@ import '../../../features/tests/domain/entities/option.dart';
 import '../../../features/tests/domain/entities/question.dart';
 import '../../../features/tests/domain/entities/question_answer.dart';
 import '../../../features/tests/domain/entities/test_mode.dart';
+import '../../result/widgets/answer_evaluations_card_widget.dart';
 
 class MultipleChoicesQuestionBuilderWidget extends StatelessWidget {
   const MultipleChoicesQuestionBuilderWidget({
@@ -47,7 +47,7 @@ class MultipleChoicesQuestionBuilderWidget extends StatelessWidget {
               didAnswer: questionsAnswers.isNotEmpty,
               onSelectOption: onSelectOption,
             ),
-            AnswerEvaluationsNotesWidget(answerEvaluation: evaluation),
+            AnswerEvaluationsCardWidget(answerEvaluation: evaluation),
           ],
         );
       },

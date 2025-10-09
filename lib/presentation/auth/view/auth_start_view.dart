@@ -5,7 +5,7 @@ import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
 import 'package:bac_project/presentation/auth/state/bloc/auth_bloc.dart';
-import 'package:bac_project/core/widgets/ui/icons/switch_theme_widget.dart';
+import 'package:bac_project/core/widgets/ui/icons/switch_theme_icon_widget.dart';
 import 'package:flutter/material.dart';
 
 class AuthStartView extends StatefulWidget {
@@ -19,7 +19,7 @@ class _AuthStartViewState extends State<AuthStartView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(actions: [SwitchThemeWidget()]),
+      appBar: AppBar(actions: [SwitchThemeIconWidget()]),
       body: SafeArea(
         child: Padding(
           padding: Paddings.screenSidesPadding,

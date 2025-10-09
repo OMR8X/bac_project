@@ -9,6 +9,7 @@ import 'package:bac_project/features/tests/domain/usecases/get_questions_use_cas
 import 'package:bac_project/features/tests/domain/usecases/get_test_options_use_case.dart';
 import 'package:bac_project/features/tests/domain/requests/get_test_options_request.dart';
 import 'package:bac_project/features/tests/domain/entities/test_options.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import '../../../../features/tests/domain/entities/test_mode.dart';

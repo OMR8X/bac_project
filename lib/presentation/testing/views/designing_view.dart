@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/features/tests/domain/entities/option.dart';
@@ -9,7 +11,15 @@ import 'package:bac_project/presentation/quizzing/widgets/textual_options_builde
 import 'package:bac_project/presentation/quizzing/widgets/Orderable_options_builder_widget.dart';
 import 'package:bac_project/presentation/tests/widgets/question_card_widget.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
+
+import '../../../core/widgets/messages/snackbars/alert_snackbar_widget.dart';
+import '../../../core/widgets/messages/snackbars/informations_snackbar_widget.dart';
+import '../../../core/widgets/messages/snackbars/success_snackbar_widget.dart';
+import '../../../core/widgets/messages/snackbars/error_snackbar_widget.dart';
+import '../../../core/widgets/ui/icons/switch_theme_icon_widget.dart';
 
 class DesigningView extends StatefulWidget {
   const DesigningView({super.key});
@@ -19,6 +29,73 @@ class DesigningView extends StatefulWidget {
 }
 
 class _DesigningViewState extends State<DesigningView> with TickerProviderStateMixin {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Designing'),
+        actions: [
+          SwitchThemeIconWidget(),
+        ],
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: Paddings.customPadding(6, 6),
+          child: TestSnackbars(),
+        ),
+      ),
+    );
+  }
+}
+
+class TestSnackbars extends StatelessWidget {
+  const TestSnackbars({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ElevatedButton(
+          onPressed: () {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            showAlertSnackbar(context: context, title: 'Test', subtitle: 'Test');
+          },
+          child: Text('Show Alert Snackbar'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            showInformationsSnackbar(context: context, title: 'Test', subtitle: 'Test');
+          },
+          child: Text('Show Informations Snackbar'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            showSuccessSnackbar(context: context, title: 'Test', subtitle: 'Test');
+          },
+          child: Text('Show Success Snackbar'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            showErrorSnackbar(context: context, title: 'Test', subtitle: 'Test');
+          },
+          child: Text('Show Error Snackbar'),
+        ),
+      ],
+    );
+  }
+}
+
+class TestOptionsDesign extends StatefulWidget {
+  const TestOptionsDesign({super.key});
+
+  @override
+  State<TestOptionsDesign> createState() => _TestOptionsDesignState();
+}
+
+class _TestOptionsDesignState extends State<TestOptionsDesign> {
   late final Question multipleChoicesQuestion;
   late final Question textualQuestion;
   late final Question orderableQuestion;
@@ -84,77 +161,70 @@ class _DesigningViewState extends State<DesigningView> with TickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: Paddings.customPadding(6, 6),
-          child: PageView(
-            children: [
-              MultipleChoicesQuestionBuilderWidget(
-                question: multipleChoicesQuestion,
-                questionsAnswers: _filterQuestionsAnswers(multipleChoicesQuestion.id),
-                onSelectOption: (option) {
-                  ///
-                  questionsAnswers.removeWhere(
-                    (answer) => answer.questionId == multipleChoicesQuestion.id,
-                  );
+    return PageView(
+      children: [
+        MultipleChoicesQuestionBuilderWidget(
+          question: multipleChoicesQuestion,
+          questionsAnswers: _filterQuestionsAnswers(multipleChoicesQuestion.id),
+          onSelectOption: (option) {
+            ///
+            questionsAnswers.removeWhere(
+              (answer) => answer.questionId == multipleChoicesQuestion.id,
+            );
 
-                  ///
-                  questionsAnswers.add(
-                    QuestionAnswer(questionId: multipleChoicesQuestion.id, optionId: option.id),
-                  );
-                  setState(() {});
-                },
-              ),
-              TextualQuestionsBuilderWidget(
-                // testMode: TestMode.testing,
-                question: textualQuestion,
-                questionsAnswers: _filterQuestionsAnswers(textualQuestion.id),
-                onSubmitText: (option, value) {
-                  ///
-                  questionsAnswers.removeWhere((answer) {
-                    return answer.questionId == textualQuestion.id && answer.optionId == option.id;
-                  });
-
-                  ///
-                  questionsAnswers.add(
-                    QuestionAnswer(
-                      questionId: textualQuestion.id,
-                      answerText: value,
-                      optionId: option.id,
-                    ),
-                  );
-                  setState(() {});
-                },
-              ),
-              OrderableQuestionBuilderWidget(
-                testMode: TestMode.testing,
-                question: orderableQuestion,
-                questionsAnswers: _filterQuestionsAnswers(orderableQuestion.id),
-                onSubmitOrder: (options) {
-                  ///
-                  questionsAnswers.removeWhere((answer) {
-                    return answer.questionId == orderableQuestion.id;
-                  });
-
-                  ///
-                  questionsAnswers.addAll(
-                    List.generate(
-                      options.length,
-                      (index) => QuestionAnswer(
-                        questionId: orderableQuestion.id,
-                        answerPosition: index,
-                        optionId: options[index].id,
-                      ),
-                    ),
-                  );
-                  setState(() {});
-                },
-              ),
-            ],
-          ),
+            ///
+            questionsAnswers.add(
+              QuestionAnswer(questionId: multipleChoicesQuestion.id, optionId: option.id),
+            );
+            setState(() {});
+          },
         ),
-      ),
+        TextualQuestionsBuilderWidget(
+          // testMode: TestMode.testing,
+          question: textualQuestion,
+          questionsAnswers: _filterQuestionsAnswers(textualQuestion.id),
+          onSubmitText: (option, value) {
+            ///
+            questionsAnswers.removeWhere((answer) {
+              return answer.questionId == textualQuestion.id && answer.optionId == option.id;
+            });
+
+            ///
+            questionsAnswers.add(
+              QuestionAnswer(
+                questionId: textualQuestion.id,
+                answerText: value,
+                optionId: option.id,
+              ),
+            );
+            setState(() {});
+          },
+        ),
+        OrderableQuestionBuilderWidget(
+          testMode: TestMode.testing,
+          question: orderableQuestion,
+          questionsAnswers: _filterQuestionsAnswers(orderableQuestion.id),
+          onSubmitOrder: (options) {
+            ///
+            questionsAnswers.removeWhere((answer) {
+              return answer.questionId == orderableQuestion.id;
+            });
+
+            ///
+            questionsAnswers.addAll(
+              List.generate(
+                options.length,
+                (index) => QuestionAnswer(
+                  questionId: orderableQuestion.id,
+                  answerPosition: index,
+                  optionId: options[index].id,
+                ),
+              ),
+            );
+            setState(() {});
+          },
+        ),
+      ],
     );
   }
 }

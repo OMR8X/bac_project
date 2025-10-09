@@ -6,8 +6,8 @@ class GetNotificationsRequest {
 
   Map<String, dynamic> toJsonBody() {
     return {
-      if (limit != null) 'limit': limit,
-      if (offset != null) 'offset': offset,
+      if (limit != null) 'limit_param': limit,
+      if (offset != null) 'offset_param': offset,
     };
   }
 }

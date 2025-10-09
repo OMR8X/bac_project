@@ -10,13 +10,11 @@ class NotificationTopicCardWidget extends StatelessWidget {
     required this.topic,
     required this.isSubscribed,
     required this.onToggleSubscription,
-    required this.position,
   });
 
   final NotificationsTopic topic;
   final bool isSubscribed;
-  final VoidCallback onToggleSubscription;
-  final int position;
+  final void Function(bool value) onToggleSubscription;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +54,7 @@ class NotificationTopicCardWidget extends StatelessWidget {
             value: isSubscribed,
             onChanged: (value) {
               HapticFeedback.lightImpact();
-              onToggleSubscription();
+              onToggleSubscription(value);
             },
           ),
         ),

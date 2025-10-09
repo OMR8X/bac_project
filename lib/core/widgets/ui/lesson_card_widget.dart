@@ -73,10 +73,10 @@ class LessonCardWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(SpacesResources.s5),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primaryContainer,
+        color: Theme.of(context).colorScheme.surfaceContainerLow,
         borderRadius: BorderRadiusResource.tileBoxBorderRadius,
       ),
-      child: Icon(icon, color: Theme.of(context).colorScheme.primary, size: 20),
+      child: Icon(icon, color: Theme.of(context).colorScheme.onSurface, size: 20),
     );
   }
 

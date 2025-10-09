@@ -5,7 +5,6 @@ import '../../../resources/styles/border_radius_resources.dart';
 import '../../../resources/styles/font_styles_manager.dart';
 import '../../../resources/styles/spacing_resources.dart';
 import '../../../resources/styles/sizes_resources.dart';
-import '../../../resources/themes/extensions/surface_container_colors.dart';
 import '../../animations/staggered_item_wrapper_widget.dart';
 
 class DropDownWidget<T> extends StatefulWidget {
@@ -63,23 +62,50 @@ class _DropDownWidgetState<T> extends State<DropDownWidget<T>> {
             setState(() => _isDropdownOpen = true);
             FocusManager.instance.primaryFocus?.unfocus();
           },
-          child: DropdownMenu(
-            width: double.infinity,
-            textStyle: TextStylesResources.title,
-            hintText: widget.hintText,
-            label: widget.hintText != null ? Text(widget.hintText!) : null,
-            initialSelection: widget.initialSelection,
-            onSelected: (item) {
-              setState(() => _isDropdownOpen = false);
-              FocusManager.instance.primaryFocus?.unfocus();
-              if (widget.onSelected != null) {
-                widget.onSelected!(item);
-              }
-            },
-            dropdownMenuEntries:
-                widget.entries.map((e) {
-                  return DropdownMenuEntry<T?>(value: e, label: widget.toLabel(e));
-                }).toList(),
+          child: Theme(
+            data: Theme.of(context).copyWith(
+              iconButtonTheme: IconButtonThemeData(
+                style: IconButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  shape: RoundedSuperellipseBorder(
+                    side: BorderSide(
+                      color: Colors.transparent,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            child: DropdownMenu(
+              width: double.infinity,
+              textStyle: TextStylesResources.title,
+              hintText: widget.hintText,
+              label: widget.hintText != null ? Text(widget.hintText!) : null,
+              initialSelection: widget.initialSelection,
+              onSelected: (item) {
+                setState(() => _isDropdownOpen = false);
+                FocusManager.instance.primaryFocus?.unfocus();
+                if (widget.onSelected != null) {
+                  widget.onSelected!(item);
+                }
+              },
+              inputDecorationTheme: InputDecorationTheme(
+                fillColor: Theme.of(context).inputDecorationTheme.fillColor,
+                filled: true,
+
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadiusResource.fieldBorderRadius,
+                  borderSide: BorderSide(
+                    color:
+                        Theme.of(context).inputDecorationTheme.border?.borderSide.color ??
+                        Colors.transparent,
+                  ),
+                ),
+              ),
+              dropdownMenuEntries:
+                  widget.entries.map((e) {
+                    return DropdownMenuEntry<T?>(value: e, label: widget.toLabel(e));
+                  }).toList(),
+            ),
           ),
         ),
       ),

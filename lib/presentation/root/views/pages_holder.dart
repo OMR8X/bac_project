@@ -6,6 +6,7 @@ import 'package:bac_project/core/resources/styles/blur_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -36,12 +37,12 @@ class _PagesHolderViewState extends State<PagesHolderView> {
             widget.navigationShell,
             Align(
               alignment: Alignment.bottomCenter,
+
               child: _NavigationBar(widget.navigationShell.currentIndex, _changePage),
             ),
           ],
         ),
       ),
-      // bottomNavigationBar: _NavigationBar(widget.navigationShell.currentIndex, _changePage),
     );
   }
 }
@@ -67,7 +68,7 @@ class _NavigationBar extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.only(
               bottom: MediaQuery.of(context).padding.bottom + SpacesResources.s1,
-              top: SpacesResources.s6,
+              top: SpacesResources.s4,
               left: Paddings.screenSidesPadding.left,
               right: Paddings.screenSidesPadding.right,
             ),

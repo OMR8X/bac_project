@@ -4,8 +4,8 @@ import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/color_extensions.dart';
 import 'package:bac_project/core/resources/themes/extensions/extra_colors.dart';
 import 'package:bac_project/core/resources/themes/extensions/option_card_colors.dart';
-import 'package:bac_project/core/resources/themes/extensions/surface_container_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import '../styles/font_styles_manager.dart';
 import '../styles/sizes_resources.dart';
 import 'extensions/success_colors.dart';
@@ -22,8 +22,16 @@ class AppLightTheme {
         primary: ColorsResourcesLight.primary,
         primaryContainer: ColorsResourcesLight.primaryContainer,
         onPrimary: ColorsResourcesLight.onPrimary,
-        secondary: ColorsResourcesLight.primary,
-        onSecondary: ColorsResourcesLight.primary,
+        onPrimaryContainer: ColorsResourcesLight.onPrimaryContainer,
+        secondary: ColorsResourcesLight.secondary,
+        secondaryContainer: ColorsResourcesLight.secondaryContainer,
+        onSecondary: ColorsResourcesLight.onSecondary,
+        onSecondaryContainer: ColorsResourcesLight.onSecondaryContainer,
+
+        tertiary: ColorsResourcesLight.tertiary,
+        tertiaryContainer: ColorsResourcesLight.tertiaryContainer,
+        onTertiary: ColorsResourcesLight.onTertiary,
+        onTertiaryContainer: ColorsResourcesLight.onTertiaryContainer,
         error: ColorsResourcesLight.error,
         errorContainer: ColorsResourcesLight.errorContainer,
         onError: ColorsResourcesLight.onError,
@@ -32,9 +40,11 @@ class AppLightTheme {
         surface: ColorsResourcesLight.surface,
         onSurface: ColorsResourcesLight.onSurface,
 
-        surfaceContainer: ColorsResourcesLight.surfaceContainer,
-        surfaceContainerHigh: ColorsResourcesLight.surfaceContainerHigh,
-        surfaceContainerHighest: ColorsResourcesLight.surfaceContainerHighest,
+        surfaceContainerLowest: ColorsResourcesLight.containerColors.surfaceContainerLowest,
+        surfaceContainerLow: ColorsResourcesLight.containerColors.surfaceContainerLow,
+        surfaceContainer: ColorsResourcesLight.containerColors.surfaceContainer,
+        surfaceContainerHigh: ColorsResourcesLight.containerColors.surfaceContainerHigh,
+        surfaceContainerHighest: ColorsResourcesLight.containerColors.surfaceContainerHighest,
         onSurfaceVariant: ColorsResourcesLight.onSurfaceVariant,
         //
         outline: ColorsResourcesLight.outline,
@@ -44,13 +54,16 @@ class AppLightTheme {
       ),
 
       extensions: <ThemeExtension<dynamic>>[
-        SurfaceContainerColors(
-          surfaceContainer: ColorsResourcesLight.surfaceContainer,
-          surfaceContainerHigh: ColorsResourcesLight.surfaceContainerHigh,
+        SkeletonizerConfigData(
+          containersColor: ColorsResourcesLight.surface,
+          switchAnimationConfig: SwitchAnimationConfig(
+            duration: Duration(milliseconds: 1000),
+          ),
         ),
         SuccessColors(
           success: ColorsResourcesLight.success,
           onSuccess: ColorsResourcesLight.onSuccess,
+          successContainer: ColorsResourcesLight.successContainer,
         ),
         ExtraColors(
           blue: ColorsResourcesLight.blue,
@@ -66,7 +79,7 @@ class AppLightTheme {
           bordersCorrect: ColorsResourcesLight.success.withAlpha(100),
           bordersIncorrect: ColorsResourcesLight.error.withAlpha(100),
           bordersNotes: ColorsResourcesLight.warning.withAlpha(100),
-          background: ColorsResourcesLight.surfaceContainer,
+          background: ColorsResourcesLight.containerColors.surfaceContainerLowest,
           backgroundCorrect: ColorsResourcesLight.successContainer.withAlpha(50),
           backgroundIncorrect: ColorsResourcesLight.errorContainer.withAlpha(50),
           backgroundNotes: ColorsResourcesLight.warningContainer.withAlpha(50),
@@ -129,7 +142,7 @@ class AppLightTheme {
           if (states.contains(WidgetState.selected)) {
             return ColorsResourcesLight.primary;
           }
-          return ColorsResourcesLight.primaryContainer;
+          return ColorsResourcesLight.containerColors.surfaceContainer;
         }),
         elevation: 0.0,
         shadowColor: Colors.transparent,
@@ -148,7 +161,7 @@ class AppLightTheme {
           if (states.contains(WidgetState.selected)) {
             return ColorsResourcesLight.primary;
           }
-          return ColorsResourcesLight.surfaceContainer;
+          return ColorsResourcesLight.containerColors.surfaceContainerLowest;
         }),
         overlayColor: WidgetStateProperty.resolveWith<Color>((states) {
           if (states.contains(WidgetState.selected)) {
@@ -171,7 +184,7 @@ class AppLightTheme {
 
       ///
       dialogTheme: DialogThemeData(
-        backgroundColor: ColorsResourcesLight.surfaceContainer,
+        backgroundColor: ColorsResourcesLight.containerColors.surfaceContainerLowest,
         insetPadding: Paddings.dialogInset,
         shape: RoundedRectangleBorder(borderRadius: BorderRadiusResource.dialogBorderRadius),
       ),
@@ -180,17 +193,22 @@ class AppLightTheme {
       cardTheme: CardThemeData(
         elevation: 0,
         shadowColor: Colors.transparent,
-        color: ColorsResourcesLight.surfaceContainer,
+        color: ColorsResourcesLight.containerColors.surfaceContainerLowest,
         shape: RoundedSuperellipseBorder(
           borderRadius: BorderRadiusResource.cardBorderRadius,
-          side: BorderSide(color: ColorsResourcesLight.outline, width: 0.25),
+          side: BorderSide(
+            color: ColorsResourcesLight.outlineVariant,
+            width: SizesResources.cardMediumBorderWidth,
+          ),
         ),
       ),
 
       ///
       menuTheme: MenuThemeData(
         style: MenuStyle(
-          backgroundColor: const WidgetStatePropertyAll(ColorsResourcesLight.surfaceContainer),
+          backgroundColor: WidgetStatePropertyAll(
+            ColorsResourcesLight.containerColors.surfaceContainerLowest,
+          ),
           alignment: Alignment.topCenter,
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(borderRadius: BorderRadiusResource.fieldBorderRadius),
@@ -208,7 +226,10 @@ class AppLightTheme {
           shape: RoundedSuperellipseBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
           textStyle: TextStylesResources.button,
           minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
-          side: BorderSide(color: ColorsResourcesLight.outline, width: 0.1),
+          side: BorderSide(
+            color: ColorsResourcesLight.outline,
+            width: SizesResources.buttonBorderWidth,
+          ),
         ),
       ),
 
@@ -246,7 +267,7 @@ class AppLightTheme {
         style: OutlinedButton.styleFrom(
           elevation: 0,
           shadowColor: Colors.transparent,
-          backgroundColor: ColorsResourcesLight.surfaceContainer,
+          backgroundColor: ColorsResourcesLight.containerColors.surfaceContainerLowest,
           foregroundColor: ColorsResourcesLight.onSurface,
           minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
           shape: RoundedSuperellipseBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
@@ -267,7 +288,10 @@ class AppLightTheme {
           backgroundColor: ColorsResourcesLight.surface,
           foregroundColor: ColorsResourcesLight.onSurface,
           shape: RoundedSuperellipseBorder(
-            side: BorderSide(color: ColorsResourcesLight.outlineVariant, width: 0.75),
+            side: BorderSide(
+              color: ColorsResourcesLight.outlineVariant,
+              width: SizesResources.iconButtonBorderWidth,
+            ),
             borderRadius: BorderRadiusResource.buttonBorderRadius,
           ),
         ),
@@ -296,15 +320,21 @@ class AppLightTheme {
           ),
         ),
         inputDecorationTheme: InputDecorationTheme(
-          fillColor: ColorsResourcesLight.surfaceContainer,
+          fillColor: ColorsResourcesLight.containerColors.surfaceContainerLow,
 
           border: OutlineInputBorder(
             borderRadius: BorderRadiusResource.fieldBorderRadius,
-            borderSide: BorderSide(color: ColorsResourcesLight.outline, width: 0.75),
+            borderSide: BorderSide(
+              color: ColorsResourcesLight.outline,
+              width: SizesResources.fieldBorderWidth,
+            ),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadiusResource.fieldBorderRadius,
-            borderSide: BorderSide(color: ColorsResourcesLight.outline),
+            borderSide: BorderSide(
+              color: ColorsResourcesLight.outline,
+              width: SizesResources.fieldBorderWidth,
+            ),
           ),
           contentPadding: Paddings.fieldContentPadding,
         ),
@@ -312,7 +342,7 @@ class AppLightTheme {
 
       ///
       inputDecorationTheme: InputDecorationTheme(
-        fillColor: ColorsResourcesLight.surfaceContainer,
+        fillColor: ColorsResourcesLight.containerColors.surfaceContainerLow,
 
         labelStyle: TextStylesResources.textField.copyWith(
           color: ColorsResourcesLight.onSurfaceVariant,
@@ -323,15 +353,24 @@ class AppLightTheme {
 
         border: OutlineInputBorder(
           borderRadius: BorderRadiusResource.fieldBorderRadius,
-          borderSide: BorderSide(color: ColorsResourcesLight.outline, width: 0.5),
+          borderSide: BorderSide(
+            color: ColorsResourcesLight.outline,
+            width: SizesResources.fieldBorderWidth,
+          ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadiusResource.fieldBorderRadius,
-          borderSide: BorderSide(color: ColorsResourcesLight.outline, width: 0.5),
+          borderSide: BorderSide(
+            color: ColorsResourcesLight.outline,
+            width: SizesResources.fieldBorderWidth,
+          ),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadiusResource.fieldBorderRadius,
-          borderSide: BorderSide(color: ColorsResourcesLight.outline, width: 0.5),
+          borderSide: BorderSide(
+            color: ColorsResourcesLight.outline,
+            width: SizesResources.fieldBorderWidth,
+          ),
         ),
         // errorBorder: OutlineInputBorder(
         //   borderRadius: BorderRadiusResource.fieldBorderRadius,
@@ -340,7 +379,10 @@ class AppLightTheme {
         filled: true,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadiusResource.fieldBorderRadius,
-          borderSide: BorderSide(color: ColorsResourcesLight.outline, width: 0.5),
+          borderSide: BorderSide(
+            color: ColorsResourcesLight.outline,
+            width: SizesResources.fieldBorderWidth,
+          ),
         ),
         outlineBorder: BorderSide(color: ColorsResourcesLight.outline),
         contentPadding: Paddings.fieldContentPadding,

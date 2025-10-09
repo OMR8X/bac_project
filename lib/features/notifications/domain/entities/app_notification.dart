@@ -1,8 +1,11 @@
-import 'package:bac_project/core/injector/tests_feature_inj.dart';
+import 'dart:convert';
+
+import 'package:bac_project/features/notifications/data/mappers/notification_entities_mapper.dart';
+import 'package:bac_project/features/notifications/data/models/notification_action_model.dart';
+import 'package:bac_project/features/notifications/domain/entities/notification_action.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../core/services/logs/logger.dart';
-import '../enums/notification_status.dart';
 import '../enums/notification_priority.dart';
 
 class AppNotification {
@@ -16,49 +19,29 @@ class AppNotification {
   final NotificationPriority priority;
   final DateTime createdAt;
   final DateTime? expiresAt;
-  final String status; // 'unread', 'read', 'deleted'
-  final bool isStarred;
-  final DateTime? readAt;
+  final DateTime? readedAt;
 
   // Computed property for backward compatibility
-  bool get seen => status == 'read';
+  bool get seen => readedAt != null;
+
+  // Computed status property derived from readedAt
+  String get status => readedAt != null ? 'read' : 'unread';
 
   bool isValid() {
     return title.trim().isNotEmpty && body.trim().isNotEmpty;
   }
 
-  AppNotification copyWith({
-    int? id,
-    int? topicId,
-    String? topicTitle,
-    String? title,
-    String? body,
-    String? imageUrl,
-    String? actionType,
-    String? actionValue,
-    Map<String, dynamic>? payload,
-    NotificationPriority? priority,
-    DateTime? createdAt,
-    DateTime? expiresAt,
-    String? status,
-    bool? isStarred,
-    DateTime? readAt,
-  }) {
-    return AppNotification(
-      id: id ?? this.id,
-      topicId: topicId ?? this.topicId,
-      topicTitle: topicTitle ?? this.topicTitle,
-      title: title ?? this.title,
-      body: body ?? this.body,
-      imageUrl: imageUrl ?? this.imageUrl,
-      payload: payload ?? this.payload,
-      priority: priority ?? this.priority,
-      createdAt: createdAt ?? this.createdAt,
-      expiresAt: expiresAt ?? this.expiresAt,
-      status: status ?? this.status,
-      isStarred: isStarred ?? this.isStarred,
-      readAt: readAt ?? this.readAt,
-    );
+  List<NotificationAction> actions() {
+    if (payload?['actions'] == null) return [];
+    final actionsList = jsonDecode(jsonEncode(payload!['actions'])) as List<dynamic>;
+    final actions =
+        actionsList
+            .map(
+              (actionJson) =>
+                  NotificationActionModel.fromJson(actionJson as Map<String, dynamic>).toEntity,
+            )
+            .toList();
+    return actions;
   }
 
   factory AppNotification.fromRemoteMessage(RemoteMessage message) {
@@ -81,13 +64,11 @@ class AppNotification {
       title: title,
       body: body,
       imageUrl: message.data["image_url"],
-      payload: Map<String, dynamic>.from(message.data["payload"] as Map<dynamic, dynamic>? ?? {}),
+      payload: message.data,
       priority: NotificationPriority.fromString(message.data["priority"] ?? 'normal'),
       createdAt: createdAt,
       expiresAt: null,
-      status: 'unread',
-      isStarred: false,
-      readAt: null,
+      readedAt: null,
     );
   }
 
@@ -103,9 +84,51 @@ class AppNotification {
       priority: NotificationPriority.normal,
       createdAt: DateTime.now(),
       expiresAt: null,
-      status: 'unread',
-      isStarred: false,
-      readAt: null,
+      readedAt: null,
+    );
+  }
+
+  factory AppNotification.mock() {
+    return AppNotification(
+      id: 0,
+      topicId: 0,
+      topicTitle: null,
+      title: BoneMock.title,
+      body: BoneMock.words(8),
+      imageUrl: null,
+      payload: null,
+      priority: NotificationPriority.normal,
+      createdAt: DateTime.now(),
+      expiresAt: null,
+      readedAt: DateTime.now(),
+    );
+  }
+
+  AppNotification copyWith({
+    int? id,
+    int? topicId,
+    String? topicTitle,
+    String? title,
+    String? body,
+    String? imageUrl,
+    Map<String, dynamic>? payload,
+    NotificationPriority? priority,
+    DateTime? createdAt,
+    DateTime? expiresAt,
+    DateTime? readedAt,
+  }) {
+    return AppNotification(
+      id: id ?? this.id,
+      topicId: topicId ?? this.topicId,
+      topicTitle: topicTitle ?? this.topicTitle,
+      title: title ?? this.title,
+      body: body ?? this.body,
+      imageUrl: imageUrl ?? this.imageUrl,
+      payload: payload ?? this.payload,
+      priority: priority ?? this.priority,
+      createdAt: createdAt ?? this.createdAt,
+      expiresAt: expiresAt ?? this.expiresAt,
+      readedAt: readedAt ?? this.readedAt,
     );
   }
 
@@ -120,71 +143,6 @@ class AppNotification {
     this.priority = NotificationPriority.normal,
     required this.createdAt,
     this.expiresAt,
-    this.status = 'unread',
-    this.isStarred = false,
-    this.readAt,
+    this.readedAt,
   });
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'topic_id': topicId,
-      'topic_title': topicTitle,
-      'title': title,
-      'body': body,
-      'image_url': imageUrl,
-      'payload': payload,
-      'priority': priority.value,
-      'created_at': createdAt.toIso8601String(),
-      'expires_at': expiresAt?.toIso8601String(),
-      'status': status,
-      'is_starred': isStarred,
-      'read_at': readAt?.toIso8601String(),
-    };
-  }
-
-  factory AppNotification.fromJson(Map<String, dynamic> json) {
-    DateTime? readAt;
-    if (json['read_at'] != null) {
-      try {
-        readAt = DateTime.parse(json['read_at']);
-      } catch (e) {
-        readAt = null;
-      }
-    }
-
-    DateTime createdAt = DateTime.now();
-    if (json['created_at'] != null) {
-      try {
-        createdAt = DateTime.parse(json['created_at']);
-      } catch (e) {
-        createdAt = DateTime.now();
-      }
-    }
-
-    DateTime? expiresAt;
-    if (json['expires_at'] != null) {
-      try {
-        expiresAt = DateTime.parse(json['expires_at']);
-      } catch (e) {
-        expiresAt = null;
-      }
-    }
-
-    return AppNotification(
-      id: json['id'] as int? ?? 0,
-      topicId: json['topic_id'] as int? ?? 0,
-      topicTitle: json['topic_title']?.toString(),
-      title: json['title']?.toString() ?? '',
-      body: json['body']?.toString() ?? '',
-      imageUrl: json['image_url']?.toString(),
-      payload: json['payload'] is Map ? Map<String, dynamic>.from(json['payload']) : null,
-      priority: NotificationPriority.fromString(json['priority'] ?? 'normal'),
-      createdAt: createdAt,
-      expiresAt: expiresAt,
-      status: json['status']?.toString() ?? 'unread',
-      isStarred: json['is_starred'] == true,
-      readAt: readAt,
-    );
-  }
 }

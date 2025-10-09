@@ -23,7 +23,9 @@ class AppBarIconWidget extends StatelessWidget {
                   SizesResources.iconButtonAppBarHeight,
                   SizesResources.iconButtonAppBarHeight,
                 ),
-                foregroundColor: Theme.of(context).colorScheme.onSurface,
+
+                // foregroundColor: Theme.of(context).colorScheme.onSurface,
+                foregroundColor: Color(0xff55534F),
                 backgroundColor: Theme.of(context).colorScheme.surface,
                 padding: Paddings.zero,
               ),

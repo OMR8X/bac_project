@@ -1,3 +1,5 @@
+import 'package:skeletonizer/skeletonizer.dart';
+
 class Unit {
   final int id;
   final String title;
@@ -34,6 +36,18 @@ class Unit {
       icon: icon ?? this.icon,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
+    );
+  }
+
+  factory Unit.mock() {
+    return Unit(
+      id: 1,
+      title: BoneMock.title,
+      subtitle: BoneMock.words(3),
+      lessonsCount: 5,
+      icon: 'book',
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
     );
   }
 

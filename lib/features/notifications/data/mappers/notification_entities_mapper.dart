@@ -1,8 +1,10 @@
+import 'package:bac_project/features/notifications/data/models/notification_action_model.dart';
 import 'package:bac_project/features/notifications/data/models/notification_model.dart';
 import 'package:bac_project/features/notifications/data/models/notification_topic_model.dart';
 import 'package:bac_project/features/notifications/data/models/user_notification_model.dart';
 import 'package:bac_project/features/notifications/data/models/user_topic_subscription_model.dart';
 import 'package:bac_project/features/notifications/domain/entities/notification.dart';
+import 'package:bac_project/features/notifications/domain/entities/notification_action.dart';
 import 'package:bac_project/features/notifications/domain/entities/notifications_topic.dart';
 import 'package:bac_project/features/notifications/domain/entities/user_notification.dart';
 import 'package:bac_project/features/notifications/domain/entities/user_topic_subscription.dart';
@@ -16,8 +18,6 @@ extension NotificationModelMapper on NotificationModel {
     title: title,
     body: body,
     imageUrl: imageUrl,
-    actionType: actionType,
-    actionValue: actionValue,
     payload: payload,
     priority: priority,
     createdAt: createdAt,
@@ -94,4 +94,21 @@ extension UserTopicSubscriptionModelMapper on UserTopicSubscriptionModel {
 extension UserTopicSubscriptionMapper on UserTopicSubscription {
   UserTopicSubscriptionModel get toModel =>
       UserTopicSubscriptionModel(userId: userId, topicId: topicId);
+}
+
+// NotificationAction Mappers
+extension NotificationActionModelMapper on NotificationActionModel {
+  NotificationAction get toEntity => NotificationAction(
+    label: label,
+    type: type,
+    uri: uri,
+  );
+}
+
+extension NotificationActionMapper on NotificationAction {
+  NotificationActionModel get toModel => NotificationActionModel(
+    label: label,
+    type: type,
+    uri: uri,
+  );
 }

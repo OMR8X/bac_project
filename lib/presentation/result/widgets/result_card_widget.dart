@@ -3,8 +3,8 @@ import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/color_extensions.dart';
 import 'package:bac_project/core/resources/themes/extensions/extra_colors.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
-import 'package:bac_project/core/services/router/app_routes.dart';
-import 'package:bac_project/features/tests/domain/entities/result.dart';
+import 'package:bac_project/core/services/router/routes.dart';
+import 'package:bac_project/features/results/domain/entities/result.dart';
 import 'package:flutter/material.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
@@ -36,7 +36,7 @@ class _ResultCardWidgetState extends State<ResultCardWidget> {
         iconColor: Theme.of(context).colorScheme.primary,
         onTap: () {
           context.pushNamed(
-            AppRoutes.fetchCustomQuestions.name,
+            Routes.fetchCustomQuestions.name,
             queryParameters:
                 FetchCustomQuestionsArguments(resultId: widget.result.id).toQueryParameters(),
           );

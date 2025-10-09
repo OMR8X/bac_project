@@ -1,3 +1,5 @@
+import 'package:skeletonizer/skeletonizer.dart';
+
 class Lesson {
   final int id;
   final String title;
@@ -16,6 +18,15 @@ class Lesson {
       title: title ?? this.title,
       unitId: unitId ?? this.unitId,
       questionsCount: questionsCount ?? this.questionsCount,
+    );
+  }
+
+  factory Lesson.mock() {
+    return const Lesson(
+      id: 1,
+      title: 'Sample Lesson',
+      unitId: 1,
+      questionsCount: 10,
     );
   }
 

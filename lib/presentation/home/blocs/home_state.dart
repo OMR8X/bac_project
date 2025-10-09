@@ -12,13 +12,12 @@ final class HomeInitial extends HomeState {}
 final class HomeLoading extends HomeState {}
 
 final class HomeLoaded extends HomeState {
-  final List<CustomCardData> cards;
   final List<Unit> units;
 
-  const HomeLoaded(this.cards, this.units);
+  const HomeLoaded({required this.units});
 
   @override
-  List<Object> get props => [cards, units];
+  List<Object> get props => [units];
 }
 
 final class HomeError extends HomeState {

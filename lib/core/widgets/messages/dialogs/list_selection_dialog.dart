@@ -3,7 +3,6 @@ import 'package:bac_project/core/resources/styles/decoration_resources.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
-import 'package:bac_project/core/resources/themes/extensions/surface_container_colors.dart';
 import 'package:bac_project/core/widgets/ui/fields/elevated_button_widget.dart';
 import 'package:bac_project/core/widgets/ui/fields/text_button_widget.dart';
 import 'package:flutter/material.dart';
@@ -84,8 +83,7 @@ class _ItemsSelectorState<T> extends State<ItemsSelector<T>> {
                 height: 55,
                 margin: const EdgeInsets.symmetric(vertical: 4, horizontal: SpacesResources.s4),
                 decoration: BoxDecoration(
-                  color:
-                      Theme.of(context).extension<SurfaceContainerColors>()!.surfaceContainerHigh,
+                  color: Theme.of(context).colorScheme.surfaceContainerLow,
                   border: Border.all(color: Theme.of(context).colorScheme.outline),
                   borderRadius: BorderRadiusResource.fieldBorderRadius,
                 ),

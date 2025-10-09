@@ -10,10 +10,17 @@ class DioFactory {
     if (kDebugMode) {
       dio.interceptors.add(
         PrettyDioLogger(
-          requestBody: true,
+          requestBody: false,
           requestHeader: true,
-          responseBody: true,
-          responseHeader: true,
+          responseBody: false,
+          responseHeader: false,
+          filter: (options, args) {
+            // Only log when there's an error (4xx or 5xx status codes)
+            if (args is Response) {
+              return (args as Response).statusCode != null && (args as Response).statusCode! >= 400;
+            }
+            return false;
+          },
           enabled: true,
         ),
       );

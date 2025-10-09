@@ -2,7 +2,7 @@ import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/resources/errors/failures.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
-import 'package:bac_project/core/services/router/app_routes.dart';
+import 'package:bac_project/core/services/router/routes.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
 import 'package:bac_project/core/widgets/messages/dialogs/details_dialog.dart';
 import 'package:bac_project/core/widgets/ui/fields/mode_switcher_widget.dart';
@@ -14,13 +14,15 @@ import 'package:bac_project/core/widgets/ui/icons/information_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
 import 'package:bac_project/features/tests/domain/entities/question_category.dart';
 import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
+import 'package:bac_project/features/tests/domain/entities/test_options.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/services/router/app_arguments.dart';
 import '../../../core/widgets/ui/fields/bottom_buttons_widget.dart';
-import '../../../core/widgets/ui/states/loading_state_body_widget.dart';
 import '../../../core/resources/styles/spaces_resources.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import '../blocs/test_mode_settings/test_mode_settings_bloc.dart';
 
 class TestModeSettingsView extends StatelessWidget {
@@ -64,7 +66,7 @@ class TestModeSettingsView extends StatelessWidget {
           listener: (BuildContext context, TestModeSettingsState state) {
             if (state.status == TestModeSettingsStatus.saved) {
               context.pushReplacementNamed(
-                AppRoutes.quizzing.name,
+                Routes.quizzing.name,
                 extra: QuizzingArguments(
                   questions: state.questions,
                   timeLimit: null,
@@ -105,7 +107,7 @@ class TestModeSettingsView extends StatelessWidget {
                 },
               );
             }
-            return const LoadingStateBodyWidget();
+            return const _LoadingView();
           },
         ),
       ),
@@ -433,6 +435,30 @@ class _LoadedView extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _LoadingView extends StatelessWidget {
+  const _LoadingView();
+
+  @override
+  Widget build(BuildContext context) {
+    return Skeletonizer(
+      child: _LoadedView(
+        state: TestModeSettingsState(
+          testOptions: TestOptions(
+            showTrueAnswers: false,
+            enableSounds: false,
+            categories: List.generate(5, (index) => QuestionCategory.mock()),
+            selectedCategories: [],
+            selectedQuestionsCount: 0,
+            selectedMode: TestMode.exploring,
+            selectedUnitsIDs: List.generate(5, (index) => index),
+            selectedLessonsIDs: List.generate(5, (index) => index),
+          ),
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class NotificationsTopic extends Equatable {
   final int id;
@@ -17,6 +18,16 @@ class NotificationsTopic extends Equatable {
 
   factory NotificationsTopic.empty() {
     return const NotificationsTopic(id: 0, title: '', firebaseTopic: '');
+  }
+
+  factory NotificationsTopic.mock() {
+    return NotificationsTopic(
+      id: 1,
+      title: BoneMock.title,
+      description: BoneMock.words(6),
+      firebaseTopic: 'mock_topic',
+      subscribable: true,
+    );
   }
 
   NotificationsTopic copyWith({
@@ -44,8 +55,6 @@ class NotificationsTopic extends Equatable {
       'subscribable': subscribable,
     };
   }
-
-
 
   @override
   List<Object?> get props => [id, title, description, firebaseTopic, subscribable];

@@ -14,12 +14,7 @@ showErrorSnackbar({
       title: title,
       subtitle: subtitle,
       backgroundColor: Theme.of(context).colorScheme.error,
-      titleColor: Theme.of(context).colorScheme.surface,
-      subtitleColor: Theme.of(context).colorScheme.surface,
-      iconContainerColor: Theme.of(context).colorScheme.errorContainer,
-      iconColor: Theme.of(context).colorScheme.error,
-      icon: Icons.error_outline,
+      icon: Icons.do_not_disturb_alt_outlined,
     ).call(),
   );
 }
-  

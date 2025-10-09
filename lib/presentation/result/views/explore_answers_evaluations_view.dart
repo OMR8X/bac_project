@@ -3,10 +3,10 @@ import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
 import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
-import 'package:bac_project/core/widgets/ui/states/loading_state_body_widget.dart';
+import 'package:bac_project/core/widgets/animations/skeletonizer_effect_list_wraper.dart';
 import 'package:bac_project/features/settings/domain/entities/app_settings.dart';
+import 'package:bac_project/features/tests/domain/entities/question.dart';
 import 'package:bac_project/features/tests/domain/entities/question_category.dart';
-import 'package:bac_project/l10n/generated/app_localizations.dart';
 import 'package:bac_project/presentation/quizzing/widgets/multiple_choices_options_builder_widget.dart';
 import 'package:bac_project/presentation/quizzing/widgets/orderable_options_builder_widget.dart';
 import 'package:bac_project/presentation/quizzing/widgets/textual_options_builder_widget.dart';
@@ -37,7 +37,7 @@ class ExploreAnswersEvaluationsView extends StatelessWidget {
             builder: (context, state) {
               switch (state.status) {
                 case ExploreAnswersEvaluationsStatus.loading:
-                  return const LoadingStateBodyWidget();
+                  return const _ExploreAnswersEvaluationsLoadingWidget();
                 case ExploreAnswersEvaluationsStatus.loaded:
                   return _ExploreAnswersEvaluationsLoadedView(state: state);
                 case ExploreAnswersEvaluationsStatus.failure:
@@ -125,5 +125,29 @@ class _ExploreAnswersEvaluationsLoadedView extends StatelessWidget {
     } else {
       return const SizedBox.shrink();
     }
+  }
+}
+
+class _ExploreAnswersEvaluationsLoadingWidget extends StatelessWidget {
+  const _ExploreAnswersEvaluationsLoadingWidget();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: Paddings.screenSidesPadding,
+      child: SkeletonizerEffectListWrapper.loading(
+        child: Column(
+          children: [
+            QuestionCardWidget(
+              question: Question.mock(),
+            ),
+            MultipleChoicesQuestionBuilderWidget(
+              question: Question.mock(),
+              questionsAnswers: [],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

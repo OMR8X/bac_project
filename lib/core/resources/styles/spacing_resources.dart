@@ -51,6 +51,13 @@ class Paddings {
     return const EdgeInsets.symmetric(horizontal: SpacesResources.s6, vertical: SpacesResources.s7);
   }
 
+  static EdgeInsets get notificationCardPadding {
+    return EdgeInsets.symmetric(
+      horizontal: screenSidesPadding.horizontal / 2,
+      vertical: SpacesResources.s8,
+    );
+  }
+
   static EdgeInsets get cardSmallPadding {
     return const EdgeInsets.symmetric(horizontal: SpacesResources.s6, vertical: SpacesResources.s4);
   }
@@ -167,7 +174,7 @@ class Margins {
   }
 
   static EdgeInsets get quoteOfTheDayCardMargin {
-    return const EdgeInsets.symmetric(vertical: SpacesResources.s6);
+    return const EdgeInsets.symmetric(vertical: SpacesResources.s2);
   }
 
   static EdgeInsets get cardMargin {
@@ -234,6 +241,10 @@ class SizedBoxes {
 
   static SizedBox get s4v {
     return SizedBox(height: SpacesResources.s4);
+  }
+
+  static SizedBox get s5v {
+    return SizedBox(height: SpacesResources.s5);
   }
 
   static SizedBox get s6v {

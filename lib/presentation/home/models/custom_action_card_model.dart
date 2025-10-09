@@ -19,4 +19,13 @@ class CustomCardData {
       secondButtonText: json['secondButtonText'],
     );
   }
+
+  static CustomCardData mock() {
+    return CustomCardData(
+      title: 'Title',
+      subtitle: 'Subtitle',
+      firstButtonText: 'First Button Text',
+      secondButtonText: 'Second Button Text',
+    );
+  }
 }

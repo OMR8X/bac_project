@@ -27,18 +27,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       result.fold((failure) => emit(HomeError(failure.message)), (response) {
         // Convert units to action cards
-        final cards =
-            response.units
-                .map(
-                  (unit) => CustomCardData(
-                    title: unit.title,
-                    subtitle: unit.subtitle,
-                    firstButtonText: 'ابدأ الدراسة',
-                    secondButtonText: 'معاينة',
-                  ),
-                )
-                .toList();
-        emit(HomeLoaded(cards, response.units));
+
+        emit(HomeLoaded(units: response.units));
       });
     } catch (e) {
       emit(HomeError(e.toString()));
@@ -53,18 +43,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       result.fold((failure) => emit(HomeError(failure.message)), (response) {
         // Convert units to action cards
-        final cards =
-            response.units
-                .map(
-                  (unit) => CustomCardData(
-                    title: unit.title,
-                    subtitle: unit.subtitle,
-                    firstButtonText: 'ابدأ الدراسة',
-                    secondButtonText: 'معاينة',
-                  ),
-                )
-                .toList();
-        emit(HomeLoaded(cards, response.units));
+
+        emit(HomeLoaded(units: response.units));
       });
     } catch (e) {
       emit(HomeError(e.toString()));

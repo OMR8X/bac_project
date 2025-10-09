@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
 
+import '../themes/extensions/container_colors.dart';
+
 class ColorsResourcesLight {
   //
-  static Color primary = primaryState[900]!;
-  // static const Color primary = Color(0xff1E1E26);
-  static Color primaryContainer = primaryState[100]!;
-  // static const Color primaryContainer = Color(0xffEEEEEE);
-  static const Color onPrimary = Color(0xffF5F5F5);
+  static const Color primary = Color(0xFF593EEB);
+  static const Color primaryContainer = Color(0xFFF0F1FF);
+  static const Color onPrimary = Color(0xFFFFFFFF);
+  static const Color onPrimaryContainer = Color(0xFF1A1A2E);
+  //
+  static const Color secondary = Color(0xff274A72);
+  static const Color onSecondary = Color(0xffD0DFF0);
+  static const Color secondaryContainer = Color(0xffF5F9FC);
+  static const Color onSecondaryContainer = Color(0xff2883DE);
+  //
+  static const Color tertiary = Color(0xFFE5D5F0);
+  static const Color onTertiary = Color(0xFF553B69);
+  static const Color tertiaryContainer = Color(0xFFFBF7FC);
+  static const Color onTertiaryContainer = Color(0xFFB577D6);
   //
   static const Color error = Color(0xffF15858);
   static const Color errorContainer = Color(0xffFDECEA);
@@ -21,15 +32,15 @@ class ColorsResourcesLight {
   static const Color onWarning = Color(0xff965A1C);
   //
   static const Color surface = Color(0xffFFFFFF);
-  static Color onSurface = primaryState[900]!;
-  static Color onBackground = primaryState[700]!;
-  static Color onSurfaceVariant = primaryState[500]!;
+  static const Color onSurface = Color(0xFF0f172a);
+  static const Color onBackground = Color(0xFF334155);
+  static const Color onSurfaceVariant = Color(0xff5B5B5B);
   // static const Color onSurface = Color(0xff0A0A10);
   // static const Color onSurfaceVariant = Color(0xff717171);
   //
-  static const Color surfaceContainer = Color(0xffFFFFFF);
-  static const Color surfaceContainerHigh = Color(0xffE3E9EA);
-  static const Color surfaceContainerHighest = Color(0xffBDBDBD);
+  // static const Color surfaceContainer = Color(0xffFFFFFF);
+  // static const Color surfaceContainerHigh = Color(0xffE3E9EA);
+  // static const Color surfaceContainerHighest = Color(0xffBDBDBD);
   //
   // static Color outline = primaryState[300]!;
   static const Color outline = Color(0xffE5E4E5);
@@ -65,31 +76,47 @@ class ColorsResourcesLight {
     800: Color(0xFF1e293b),
     900: Color(0xFF0f172a),
   });
+  //
+  static ContainerColors containerColors = ContainerColors(
+    surfaceContainerLowest: Color(0xffFCFCFC),
+    surfaceContainerLow: Color(0xffF6F6F6),
+    surfaceContainer: Color(0xffF0F0F0),
+    surfaceContainerHigh: Color(0xffEBEBEB),
+    surfaceContainerHighest: Color(0xffE6E6E6),
+  );
 }
 
 class ColorsResourcesDark {
   //
-  static const Color primary = Color(0xffE6E6E6);
-  static const Color primaryContainer = Color(0xff0B0C0E);
-  static const Color onPrimary = Color(0xff0B0A10);
+  static const Color primary = Color(0xFF8B8DFF);
+  static const Color primaryContainer = Color(0xFF1A1B2E);
+  static const Color onPrimary = Color(0xFF0B0A10);
+  static const Color onPrimaryContainer = Color(0xFFE8E9FF);
+  //
+  static const Color secondary = Color(0xff6CB7FF);
+  static const Color onSecondary = Color(0xffE8F2FA);
+  static const Color secondaryContainer = Color(0xff1A2027);
+  static const Color onSecondaryContainer = Color(0xff2883DE);
+  //
+  static const Color tertiary = Color(0xFFF9A8D4);
+  static const Color onTertiary = Color(0xFF1A0A12);
+  static const Color tertiaryContainer = Color(0xFF4A1D34);
+  static const Color onTertiaryContainer = Color(0xFFFCE7F3);
   //
   static const Color error = Color(0xffFF8198);
   static const Color errorContainer = Color(0xffB05D6B);
   static const Color onError = Color(0xff251B1B);
   //
-  static const Color success = Color(0xff1CFDAB);
+  static const Color success = Color(0xff00AE6F);
+  static const Color successContainer = Color(0xff1CFDAB);
   static const Color onSuccess = Color(0xff1B2522);
   //
-  static const Color surface = Color(0xff080808);
+  static const Color surface = Color.fromARGB(255, 0, 0, 0);
   static const Color onSurface = Color(0xffF3F3F3);
   static const Color onSurfaceVariant = Color(0xff9E9E9F);
   //
-  static const Color surfaceContainer = Color(0xff080808);
-  static const Color surfaceContainerHigh = Color(0xff1C1C1F);
-  static const Color surfaceContainerHighest = Color(0xff1E1E1E);
-  //
-  static const Color outline = Color(0xff404040);
-  static const Color outlineVariant = Color(0xff252525);
+  static const Color outline = Color.fromARGB(255, 39, 39, 39);
+  static const Color outlineVariant = Color.fromARGB(255, 18, 18, 18);
   //
   static const Color boldShadow = Color(0xffE3EEFF);
   static const Color lightShadow = Color(0xff080808);
@@ -111,4 +138,12 @@ class ColorsResourcesDark {
     400: Color(0xFFBDBDBD),
     500: Color(0xFF717171),
   });
+  //
+  static ContainerColors containerColors = ContainerColors(
+    surfaceContainerLowest: const Color(0xff050505),
+    surfaceContainerLow: const Color(0xff0A0A0A),
+    surfaceContainer: const Color(0xff0F0F0F),
+    surfaceContainerHigh: const Color(0xff141414),
+    surfaceContainerHighest: const Color(0xff1A1A1A),
+  );
 }

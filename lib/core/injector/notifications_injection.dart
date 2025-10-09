@@ -12,14 +12,17 @@ import 'package:bac_project/features/notifications/domain/usecases/register_devi
 import 'package:bac_project/features/notifications/domain/usecases/subscribe_to_topic_usecase.dart';
 import 'package:bac_project/features/notifications/domain/usecases/sync_notifications_usecase.dart';
 import 'package:bac_project/features/notifications/domain/usecases/unsubscribe_to_topic_usecase.dart';
-import 'package:bac_project/presentation/notifications/state/explore_notifications/notifications_bloc.dart';
-import 'package:bac_project/presentation/notifications/state/topics_management/notifications_topics_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import '../../features/notifications/data/repositories/notifications_repository_implements.dart';
 import 'package:bac_project/features/notifications/data/datasources/notifications_database_datasource.dart';
 import '../../features/notifications/domain/repositories/notifications_repository.dart';
 import '../../features/notifications/domain/usecases/get_device_token_usecase.dart';
+import '../../features/notifications/data/services/action_handlers/http_action_handler_impl.dart';
+import '../../features/notifications/data/services/action_handlers/screen_action_handler_impl.dart';
+import '../../features/notifications/data/services/notification_action_service.dart';
+import '../../features/notifications/domain/services/http_action_handler.dart';
+import '../../features/notifications/domain/services/screen_action_handler.dart';
 
 Future<void> notificationsFeatureInjection() async {
   ///
@@ -71,5 +74,22 @@ Future<void> notificationsFeatureInjection() async {
   );
   sl.registerFactory<SyncNotificationsUsecase>(
     () => SyncNotificationsUsecase(repository: sl()),
+  );
+
+  // Action Handlers
+  sl.registerLazySingleton<HttpActionHandler>(
+    () => HttpActionHandlerImpl(sl()),
+  );
+
+  sl.registerLazySingleton<ScreenActionHandler>(
+    () => ScreenActionHandlerImpl(),
+  );
+
+  // Notification Action Service
+  sl.registerLazySingleton<NotificationActionService>(
+    () => NotificationActionService(
+      httpActionHandler: sl<HttpActionHandler>(),
+      screenActionHandler: sl<ScreenActionHandler>(),
+    ),
   );
 }

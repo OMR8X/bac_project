@@ -91,7 +91,7 @@ class _ModeSwitcherWidgetState<T> extends State<ModeSwitcherWidget<T>>
 
   Widget _buildSlidingBackground(BoxConstraints constraints) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+      padding: const EdgeInsets.symmetric(horizontal: 2.0),
       child: AnimatedAlign(
         alignment:
             _isFirstSelected
@@ -105,10 +105,10 @@ class _ModeSwitcherWidgetState<T> extends State<ModeSwitcherWidget<T>>
         curve: _animationCurve,
         child: Container(
           width: constraints.maxWidth / 2,
-          height: constraints.maxHeight * 0.8,
+          height: constraints.maxHeight * 0.9 ,
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.surface,
-            borderRadius: BorderRadiusResource.bordersRadiusTiny,
+            borderRadius: BorderRadiusResource.switcherCardInnerBorderRadius,
             boxShadow: [
               BoxShadow(
                 color: Theme.of(context).colorScheme.shadow.withOpacity(0.1),
@@ -189,9 +189,8 @@ class _ModeSwitcherWidgetState<T> extends State<ModeSwitcherWidget<T>>
       height: 45,
       margin: Paddings.cardLargeTitlePadding,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primaryContainer,
-        // color: Theme.of(context).colorScheme.surfaceContainer,
-        borderRadius: BorderRadiusResource.buttonBorderRadius,
+        color: Theme.of(context).colorScheme.surfaceContainer,
+        borderRadius: BorderRadiusResource.switcherCardOuterBorderRadius,
         border: Border.all(color: Theme.of(context).colorScheme.outline, width: 0.75),
       ),
       child: Material(

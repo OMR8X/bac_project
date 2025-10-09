@@ -54,28 +54,29 @@ abstract class AuthRemoteDataSource {
 
 class AuthRemoteDataSourceImplements implements AuthRemoteDataSource {
   final ApiManager apiManager;
+  final SupabaseClient _supabaseClient;
 
-  AuthRemoteDataSourceImplements({required this.apiManager});
+  AuthRemoteDataSourceImplements({
+    required this.apiManager,
+    SupabaseClient? supabaseClient,
+  }) : _supabaseClient = supabaseClient ?? Supabase.instance.client;
 
   @override
   Future<ChangePasswordResponse> changePassword({required ChangePasswordRequest request}) async {
     // Supabase: update user password
-    final supabase = Supabase.instance.client;
-    await supabase.auth.updateUser(UserAttributes(password: request.password));
+    await _supabaseClient.auth.updateUser(UserAttributes(password: request.password));
     return ChangePasswordResponse(message: 'تم تغيير كلمة المرور');
   }
 
   @override
   Future<ForgetPasswordResponse> forgetPassword({required ForgetPasswordRequest request}) async {
-    final supabase = Supabase.instance.client;
-    await supabase.auth.resetPasswordForEmail(request.email);
+    await _supabaseClient.auth.resetPasswordForEmail(request.email);
     return ForgetPasswordResponse(message: 'تم إرسال رابط إعادة التعيين إلى بريدك');
   }
 
   @override
   Future<SignInResponse> signIn({required SignInRequest request}) async {
-    final supabase = Supabase.instance.client;
-    final result = await supabase.auth.signInWithPassword(
+    final result = await _supabaseClient.auth.signInWithPassword(
       email: request.email,
       password: request.password,
     );
@@ -99,8 +100,7 @@ class AuthRemoteDataSourceImplements implements AuthRemoteDataSource {
 
   @override
   Future<SignUpResponse> signUp({required SignUpRequest request}) async {
-    final supabase = Supabase.instance.client;
-    final result = await supabase.auth.signUp(
+    final result = await _supabaseClient.auth.signUp(
       email: request.email,
       password: request.password,
       data: {
@@ -130,8 +130,7 @@ class AuthRemoteDataSourceImplements implements AuthRemoteDataSource {
 
   @override
   Future<GetUserDataResponse> getUserData({required GetUserDataRequest request}) async {
-    final supabase = Supabase.instance.client;
-    final currentUser = supabase.auth.currentUser;
+    final currentUser = _supabaseClient.auth.currentUser;
 
     if (currentUser == null) {
       throw AuthException('غير مسجل الدخول');
@@ -172,23 +171,21 @@ class AuthRemoteDataSourceImplements implements AuthRemoteDataSource {
 
   @override
   Future<SignOutResponse> signOut({required SignOutRequest request}) async {
-    final supabase = Supabase.instance.client;
-    await supabase.auth.signOut();
+    await _supabaseClient.auth.signOut();
     await TokenManager().deleteToken();
     return SignOutResponse(message: 'تم تسجيل الخروج');
   }
 
   @override
   Future<UpdateUserDataResponse> updateUserData({required UpdateUserDataRequest request}) async {
-    final supabase = Supabase.instance.client;
     final attributes = UserAttributes(
       email: request.email,
       password: request.password,
-      data: request.toBody(old: supabase.auth.currentUser?.userMetadata),
+      data: request.toBody(old: _supabaseClient.auth.currentUser?.userMetadata),
     );
-    final res = await supabase.auth.updateUser(attributes);
+    final res = await _supabaseClient.auth.updateUser(attributes);
     final user = res.user;
-    final accessToken = supabase.auth.currentSession?.accessToken;
+    final accessToken = _supabaseClient.auth.currentSession?.accessToken;
 
     return UpdateUserDataResponse(
       message: 'تم تحديث البيانات',

@@ -3,7 +3,7 @@ import 'package:bac_project/features/auth/domain/entites/user_data.dart';
 import 'package:bac_project/core/services/api/responses/api_response.dart';
 
 class SignUpResponse {
-  final String message;
+  final String? message;
   final String token;
   final UserData user;
 

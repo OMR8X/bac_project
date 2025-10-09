@@ -2,7 +2,7 @@ import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/color_extensions.dart';
 import 'package:bac_project/core/resources/themes/extensions/extra_colors.dart';
-import 'package:bac_project/features/tests/domain/entities/result.dart';
+import 'package:bac_project/features/results/domain/entities/result.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 

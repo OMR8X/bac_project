@@ -6,6 +6,7 @@ import 'package:bac_project/features/notifications/domain/requests/register_devi
 import 'package:bac_project/features/notifications/domain/usecases/get_device_token_usecase.dart';
 import 'package:bac_project/features/notifications/domain/usecases/register_device_token_usecase.dart';
 import 'package:bac_project/features/settings/domain/entities/version.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:bac_project/features/settings/domain/usecases/get_app_settings_usecase.dart';
@@ -15,13 +16,14 @@ import 'package:bac_project/features/notifications/domain/usecases/initialize_no
 part 'app_loader_event.dart';
 part 'app_loader_state.dart';
 
-class AppLoaderBloc extends Bloc<AppLoaderLoadData, AppLoaderState> {
+class AppLoaderBloc extends Bloc<AppLoader, AppLoaderState> {
   final GetAppSettingsUsecase _getAppSettingsUsecase;
   final InitializeNotificationsUsecase _initializeNotificationsUsecase;
 
   AppLoaderBloc(this._getAppSettingsUsecase, this._initializeNotificationsUsecase)
     : super(AppLoaderState.loading()) {
     on<AppLoaderLoadData>(onAppLoaderLoadData);
+    on<AppLoaderSucceedEvent>(onAppLoaderSucceed);
   }
 
   onAppLoaderLoadData(AppLoaderLoadData event, Emitter<AppLoaderState> emit) async {
@@ -53,6 +55,8 @@ class AppLoaderBloc extends Bloc<AppLoaderLoadData, AppLoaderState> {
       emit(AppLoaderState.failure(failure: UnknownFailure(message: e.toString())));
     }
   }
+
+  onAppLoaderSucceed(AppLoaderSucceedEvent event, Emitter<AppLoaderState> emit) {}
 
   registerAppSettings(AppSettings appSettings) {
     try {

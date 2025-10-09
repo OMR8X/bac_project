@@ -5,12 +5,10 @@ import '../requests/get_lessons_request.dart';
 import '../requests/get_questions_request.dart';
 import '../requests/get_questions_by_ids_request.dart';
 import '../requests/get_test_options_request.dart';
-import '../requests/get_answer_evaluations_request.dart';
 import '../../data/responses/get_units_response.dart';
 import '../../data/responses/get_lessons_response.dart';
 import '../../data/responses/get_questions_response.dart';
 import '../../data/responses/get_test_options_response.dart';
-import '../../data/responses/get_answer_evaluations_response.dart';
 
 abstract class TestsRepository {
   Future<Either<Failure, GetUnitsResponse>> getUnits(GetUnitsRequest request);
@@ -18,7 +16,4 @@ abstract class TestsRepository {
   Future<Either<Failure, GetQuestionsResponse>> getQuestions(GetQuestionsRequest request);
   Future<Either<Failure, GetQuestionsResponse>> getQuestionsByIds(GetQuestionsByIdsRequest request);
   Future<Either<Failure, GetTestOptionsResponse>> getTestOptions(GetTestOptionsRequest request);
-  Future<Either<Failure, GetAnswerEvaluationsResponse>> getAnswerEvaluations(
-    GetAnswerEvaluationsRequest request,
-  );
 }

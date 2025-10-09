@@ -8,14 +8,14 @@ class StaggeredItemWrapperWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimationConfiguration.staggeredList(
-      position: position,
+      position: 0,
       duration: const Duration(milliseconds: 220),
       child: FadeInAnimation(
         duration: const Duration(milliseconds: 220),
         child: ScaleAnimation(
-          scale: 0.9,
+          scale: 0.95,
           curve: Curves.easeOutCirc,
-          child: SlideAnimation(verticalOffset: 9, curve: Curves.easeOut, child: child),
+          child: SlideAnimation(verticalOffset: 5, curve: Curves.easeOut, child: child),
         ),
       ),
     );

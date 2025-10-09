@@ -3,7 +3,6 @@ import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/extra_colors.dart';
 import 'package:bac_project/core/resources/themes/extensions/option_card_colors.dart';
-import 'package:bac_project/core/resources/themes/extensions/surface_container_colors.dart';
 import 'package:flutter/material.dart';
 import '../styles/border_radius_resources.dart';
 import '../styles/spacing_resources.dart';
@@ -16,22 +15,30 @@ class AppDarkTheme {
       brightness: Brightness.dark,
       fontFamily: AppFontStyles.fontFamily,
       // textTheme: GoogleFonts.ibmPlexSansArabicTextTheme(),
-      colorScheme: const ColorScheme(
+      colorScheme: ColorScheme(
         brightness: Brightness.dark,
         primary: ColorsResourcesDark.primary,
         primaryContainer: ColorsResourcesDark.primaryContainer,
         onPrimary: ColorsResourcesDark.onPrimary,
-        secondary: ColorsResourcesDark.primary,
-        onSecondary: ColorsResourcesDark.primary,
+        onPrimaryContainer: ColorsResourcesDark.onPrimaryContainer,
+        secondary: ColorsResourcesDark.secondary,
+        secondaryContainer: ColorsResourcesDark.secondaryContainer,
+        onSecondary: ColorsResourcesDark.onSecondaryContainer,
+        tertiary: ColorsResourcesDark.tertiary,
+        tertiaryContainer: ColorsResourcesDark.tertiaryContainer,
+        onTertiary: ColorsResourcesDark.onTertiary,
+        onTertiaryContainer: ColorsResourcesDark.onTertiaryContainer,
         error: ColorsResourcesDark.error,
         errorContainer: ColorsResourcesDark.errorContainer,
         onError: ColorsResourcesDark.onError,
         //
         surface: ColorsResourcesDark.surface,
         onSurface: ColorsResourcesDark.onSurface,
-        surfaceContainer: ColorsResourcesDark.surfaceContainer,
-        surfaceContainerHigh: ColorsResourcesDark.surfaceContainerHigh,
-        surfaceContainerHighest: ColorsResourcesDark.surfaceContainerHighest,
+        surfaceContainer: ColorsResourcesDark.containerColors.surfaceContainer,
+        surfaceContainerHigh: ColorsResourcesDark.containerColors.surfaceContainerHigh,
+        surfaceContainerHighest: ColorsResourcesDark.containerColors.surfaceContainerHighest,
+        surfaceContainerLowest: ColorsResourcesDark.containerColors.surfaceContainerLowest,
+        surfaceContainerLow: ColorsResourcesDark.containerColors.surfaceContainerLow,
         onSurfaceVariant: ColorsResourcesDark.onSurfaceVariant,
         //
         outline: ColorsResourcesDark.outline,
@@ -41,13 +48,10 @@ class AppDarkTheme {
       ),
 
       extensions: <ThemeExtension<dynamic>>[
-        SurfaceContainerColors(
-          surfaceContainer: ColorsResourcesDark.surfaceContainer,
-          surfaceContainerHigh: ColorsResourcesDark.surfaceContainerHigh,
-        ),
         SuccessColors(
           success: ColorsResourcesDark.success,
           onSuccess: ColorsResourcesDark.onSuccess,
+          successContainer: ColorsResourcesDark.successContainer,
         ),
         ExtraColors(
           blue: ColorsResourcesDark.blue,
@@ -63,8 +67,8 @@ class AppDarkTheme {
           bordersCorrect: ColorsResourcesDark.success.withAlpha(100),
           bordersIncorrect: ColorsResourcesDark.error.withAlpha(100),
           bordersNotes: ColorsResourcesDark.yellow,
-          background: ColorsResourcesDark.surfaceContainer,
-          backgroundCorrect: ColorsResourcesDark.onSuccess.withAlpha(50),
+          background: ColorsResourcesDark.containerColors.surfaceContainerLowest,
+          backgroundCorrect: ColorsResourcesDark.successContainer.withAlpha(50),
           backgroundIncorrect: ColorsResourcesDark.onError.withAlpha(50),
           backgroundNotes: ColorsResourcesDark.yellow.withAlpha(50),
           text: ColorsResourcesDark.onSurface,
@@ -128,7 +132,7 @@ class AppDarkTheme {
           if (states.contains(WidgetState.selected)) {
             return ColorsResourcesDark.primary;
           }
-          return ColorsResourcesDark.surfaceContainer;
+          return ColorsResourcesDark.containerColors.surfaceContainerLowest;
         }),
         overlayColor: WidgetStateProperty.resolveWith<Color>((states) {
           if (states.contains(WidgetState.selected)) {
@@ -163,7 +167,7 @@ class AppDarkTheme {
 
       ///
       dialogTheme: DialogThemeData(
-        backgroundColor: ColorsResourcesDark.surfaceContainer,
+        backgroundColor: ColorsResourcesDark.containerColors.surfaceContainerLowest,
         insetPadding: Paddings.dialogInset,
         shape: RoundedRectangleBorder(borderRadius: BorderRadiusResource.dialogBorderRadius),
       ),
@@ -172,7 +176,7 @@ class AppDarkTheme {
       cardTheme: CardThemeData(
         elevation: 0,
         shadowColor: Colors.transparent,
-        color: ColorsResourcesDark.surfaceContainer,
+        color: ColorsResourcesDark.containerColors.surfaceContainerLowest,
         shape: RoundedSuperellipseBorder(
           borderRadius: BorderRadiusResource.cardBorderRadius,
           side: BorderSide(color: ColorsResourcesDark.outline, width: 0.25),
@@ -182,7 +186,9 @@ class AppDarkTheme {
       ///
       menuTheme: MenuThemeData(
         style: MenuStyle(
-          backgroundColor: const WidgetStatePropertyAll(ColorsResourcesDark.surfaceContainer),
+          backgroundColor: WidgetStatePropertyAll(
+            ColorsResourcesDark.containerColors.surfaceContainerLowest,
+          ),
           alignment: Alignment.topCenter,
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(borderRadius: BorderRadiusResource.fieldBorderRadius),
@@ -222,7 +228,7 @@ class AppDarkTheme {
         style: OutlinedButton.styleFrom(
           elevation: 0,
           shadowColor: Colors.transparent,
-          backgroundColor: ColorsResourcesDark.surfaceContainer,
+          backgroundColor: ColorsResourcesDark.containerColors.surfaceContainerLowest,
           foregroundColor: ColorsResourcesDark.onSurface,
           minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
           shape: RoundedSuperellipseBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
@@ -260,7 +266,7 @@ class AppDarkTheme {
           ),
         ),
         inputDecorationTheme: InputDecorationTheme(
-          fillColor: ColorsResourcesDark.surfaceContainer,
+          fillColor: ColorsResourcesDark.containerColors.surfaceContainerLowest,
 
           border: OutlineInputBorder(
             borderRadius: BorderRadiusResource.fieldBorderRadius,
@@ -276,7 +282,7 @@ class AppDarkTheme {
 
       ///
       inputDecorationTheme: InputDecorationTheme(
-        fillColor: ColorsResourcesDark.surfaceContainer,
+        fillColor: ColorsResourcesDark.containerColors.surfaceContainerLowest,
 
         labelStyle: TextStylesResources.textField.copyWith(
           color: ColorsResourcesDark.onSurfaceVariant,

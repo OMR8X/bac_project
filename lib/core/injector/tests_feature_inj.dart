@@ -1,24 +1,14 @@
-import 'package:bac_project/features/tests/domain/usecases/get_answer_evaluations_use_case.dart';
-import 'package:bac_project/features/tests/domain/usecases/get_lessons_use_case.dart';
-import 'package:bac_project/features/tests/domain/usecases/get_questions_by_ids_use_case.dart';
-import 'package:bac_project/features/tests/domain/usecases/get_questions_use_case.dart';
-import 'package:bac_project/features/tests/domain/usecases/get_result_use_case.dart';
-import 'package:bac_project/features/tests/domain/usecases/get_test_options_use_case.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../features/tests/data/datasources/tests_remote_data_source.dart';
 import '../../features/tests/data/datasources/tests_remote_data_source_impl.dart';
 import '../../features/tests/data/repositories/tests_repository_impl.dart';
 import '../../features/tests/domain/repositories/tests_repository.dart';
+import '../../features/tests/domain/usecases/get_lessons_use_case.dart';
+import '../../features/tests/domain/usecases/get_questions_by_ids_use_case.dart';
+import '../../features/tests/domain/usecases/get_questions_use_case.dart';
+import '../../features/tests/domain/usecases/get_test_options_use_case.dart';
 import '../../features/tests/domain/usecases/get_units_use_case.dart';
-import '../../features/tests/data/datasources/results_remote_data_source.dart';
-import '../../features/tests/data/datasources/results_remote_data_source_impl.dart';
-import '../../features/tests/data/repositories/results_repository_impl.dart';
-import '../../features/tests/domain/repositories/results_repository.dart';
-import '../../features/tests/domain/usecases/add_result_use_case.dart';
-import '../../features/tests/domain/usecases/get_my_results_use_case.dart';
-import '../../features/tests/domain/usecases/get_result_leaderboard_use_case.dart';
-import '../../features/tests/domain/usecases/get_result_questions_details_use_case.dart';
 
 final sl = GetIt.instance;
 
@@ -32,14 +22,10 @@ Future<void> datasources() async {
   sl.registerLazySingleton<TestsRemoteDataSource>(
     () => TestsRemoteDataSourceImpl(client: sl(), apiManager: sl()),
   );
-  sl.registerLazySingleton<ResultsRemoteDataSource>(
-    () => ResultsRemoteDataSourceImpl(apiManager: sl()),
-  );
 }
 
 Future<void> repositories() async {
   sl.registerLazySingleton<TestsRepository>(() => TestsRepositoryImpl(remoteDataSource: sl()));
-  sl.registerLazySingleton<ResultsRepository>(() => ResultsRepositoryImpl(remoteDataSource: sl()));
 }
 
 Future<void> usecases() async {
@@ -47,19 +33,7 @@ Future<void> usecases() async {
   sl.registerLazySingleton<GetLessonsUsecase>(() => GetLessonsUsecase(repository: sl()));
   sl.registerLazySingleton<GetQuestionsUsecase>(() => GetQuestionsUsecase(repository: sl()));
   sl.registerLazySingleton<GetTestOptionsUsecase>(() => GetTestOptionsUsecase(repository: sl()));
-  sl.registerLazySingleton<AddResultUsecase>(() => AddResultUsecase(repository: sl()));
-  sl.registerLazySingleton<GetMyResultsUsecase>(() => GetMyResultsUsecase(repository: sl()));
-  sl.registerLazySingleton<GetAnswerEvaluationsUsecase>(
-    () => GetAnswerEvaluationsUsecase(repository: sl()),
-  );
   sl.registerLazySingleton<GetQuestionsByIdsUsecase>(
     () => GetQuestionsByIdsUsecase(repository: sl()),
-  );
-  sl.registerLazySingleton<GetResultUsecase>(() => GetResultUsecase(repository: sl()));
-  sl.registerLazySingleton<GetResultLeaderboardUsecase>(
-    () => GetResultLeaderboardUsecase(repository: sl()),
-  );
-  sl.registerLazySingleton<GetResultQuestionsDetailsUsecase>(
-    () => GetResultQuestionsDetailsUsecase(repository: sl()),
   );
 }

@@ -1,3 +1,5 @@
+import 'package:skeletonizer/skeletonizer.dart';
+
 class QuestionCategory {
   final int id;
   final String title;
@@ -19,5 +21,17 @@ class QuestionCategory {
   @override
   String toString() {
     return 'QuestionCategory(id: $id, title: $title, isTypeable: $isTypeable, isOrderable: $isOrderable, isMCQ: $isMCQ, isSingleAnswer: $isSingleAnswer, questionsCount: $questionsCount)';
+  }
+
+  factory QuestionCategory.mock() {
+    return QuestionCategory(
+      id: 1,
+      title: BoneMock.title,
+      isTypeable: true,
+      isOrderable: true,
+      isMCQ: true,
+      isSingleAnswer: true,
+      questionsCount: 10,
+    );
   }
 }

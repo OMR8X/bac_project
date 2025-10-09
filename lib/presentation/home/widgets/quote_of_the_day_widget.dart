@@ -3,9 +3,6 @@ import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/features/settings/domain/entities/motivational_quote.dart';
-import 'package:bac_project/core/services/router/app_routes.dart';
-import 'package:bac_project/core/services/router/app_arguments.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 
 class QuoteOfTheDayWidget extends StatelessWidget {
@@ -18,19 +15,21 @@ class QuoteOfTheDayWidget extends StatelessWidget {
     return Semantics(
       label: "اقتباس اليوم: ${quote.quote}, من ${quote.author}",
       child: Card(
-        color: Theme.of(context).colorScheme.primary,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadiusResource.bordersRadiusMedium),
+        color: Theme.of(context).colorScheme.primaryContainer,
+        elevation: 0,
+        // color: Theme.of(context).colorScheme.surfaceContainerLowest,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusResource.bordersRadiusMedium,
+          side: BorderSide(
+            color: Theme.of(context).colorScheme.primary,
+            width: 2.5,
+          ),
+        ),
         margin: Margins.quoteOfTheDayCardMargin,
         key: Key(quote.quote),
         child: InkWell(
-          // onTap: () {
-          //   context.pushNamed(
-          //     AppRoutes.motivationalQuote.name,
-          //     extra: MotivationalQuoteArguments(quote: quote),
-          //   );
-          // },
           child: Padding(
-            padding: Paddings.cardMediumPadding,
+            padding: Paddings.customPadding(2, 6),
             child: Row(
               children: [
                 Expanded(
@@ -43,17 +42,17 @@ class QuoteOfTheDayWidget extends StatelessWidget {
                         // Quote label (optional)
                         Container(
                           padding: EdgeInsets.symmetric(
-                            vertical: SpacesResources.s2,
-                            horizontal: SpacesResources.s3,
+                            vertical: SpacesResources.s3,
+                            horizontal: SpacesResources.s4,
                           ),
                           decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.surface.withOpacity(0.2),
-                            borderRadius: BorderRadiusResource.bordersRadiusSmall,
+                            color: Theme.of(context).colorScheme.primary,
+                            borderRadius: BorderRadiusResource.bordersRadiusXTiny,
                           ),
                           child: Text(
                             "اقتباس اليوم",
                             style: TextStylesResources.caption.copyWith(
-                              color: Theme.of(context).colorScheme.surface,
+                              color: Theme.of(context).colorScheme.onPrimary,
                               fontSize: FontSizeResources.s10,
                               fontWeight: FontWeightResources.medium,
                             ),
@@ -66,7 +65,7 @@ class QuoteOfTheDayWidget extends StatelessWidget {
                           children: [
                             Icon(
                               Icons.format_quote,
-                              color: Theme.of(context).colorScheme.surface.withOpacity(0.7),
+                              color: Theme.of(context).colorScheme.onPrimaryContainer,
                               size: 20,
                             ),
                             SizedBox(width: SpacesResources.s2),
@@ -74,7 +73,7 @@ class QuoteOfTheDayWidget extends StatelessWidget {
                               child: Text(
                                 quote.quote,
                                 style: TextStylesResources.cardMediumTitle.copyWith(
-                                  color: Theme.of(context).colorScheme.surface,
+                                  color: Theme.of(context).colorScheme.onPrimaryContainer,
                                   fontSize: FontSizeResources.s16,
                                   fontWeight: FontWeightResources.bold,
                                   height: 1.6,
@@ -87,12 +86,14 @@ class QuoteOfTheDayWidget extends StatelessWidget {
 
                         // Author attribution
                         Padding(
-                          padding: EdgeInsets.only(right: SpacesResources.s6),
+                          padding: EdgeInsets.only(right: SpacesResources.s2),
                           child: Text(
-                            "— ${quote.author}",
+                            "- ${quote.author}",
                             style: TextStylesResources.caption.copyWith(
-                              color: Theme.of(context).colorScheme.surface.withOpacity(0.8),
-                              fontSize: FontSizeResources.s11,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.onPrimaryContainer.withOpacity(0.8),
+                              fontSize: FontSizeResources.s9,
                               fontWeight: FontWeightResources.medium,
                               fontStyle: FontStyle.italic,
                             ),

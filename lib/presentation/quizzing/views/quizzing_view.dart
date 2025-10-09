@@ -1,10 +1,14 @@
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/services/router/index.dart';
+import 'package:bac_project/core/widgets/animations/skeletonizer_effect_list_wraper.dart';
 import 'package:bac_project/core/widgets/messages/dialogs/conform_dialog.dart';
 import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
-import 'package:bac_project/core/widgets/ui/states/loading_state_body_widget.dart';
+import 'package:bac_project/features/tests/domain/entities/question.dart';
+import 'package:bac_project/presentation/tests/widgets/question_card_widget.dart';
+import 'package:bac_project/presentation/quizzing/widgets/multiple_choices_options_builder_widget.dart';
 import 'package:bac_project/presentation/result/bloc/explore_results/explore_results_bloc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
@@ -54,14 +58,14 @@ class QuizzingView extends StatelessWidget {
                 if (state is QuizzingResultUploaded) {
                   sl<ExploreResultsBloc>().add(RefreshResults());
                   context.pushReplacement(
-                    AppRoutes.exploreResult.path,
+                    Routes.exploreResult.path,
                     extra: ExploreResultViewArguments(resultId: state.result.id),
                   );
                 }
               },
               builder: (context, state) {
-                if (state is QuizzingLoading) return const LoadingStateBodyWidget();
-                if (state is QuizzingUploadingResult) return const LoadingStateBodyWidget();
+                if (state is QuizzingLoading) return const _QuizzingLoadingView();
+                if (state is QuizzingUploadingResult) return _QuizzingUploadingResultView();
                 if (state is QuizzingFailedUploadingResult) {
                   return ErrorStateBodyWidget(
                     title: 'Failed to Upload Result',
@@ -101,6 +105,46 @@ class QuizzingView extends StatelessWidget {
               },
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _QuizzingLoadingView extends StatelessWidget {
+  const _QuizzingLoadingView();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: Paddings.screenSidesPadding,
+      child: SkeletonizerEffectListWrapper.loading(
+        child: Column(
+          children: [
+            QuestionCardWidget(
+              question: Question.mock(),
+            ),
+            MultipleChoicesQuestionBuilderWidget(
+              question: Question.mock(),
+              questionsAnswers: [],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _QuizzingUploadingResultView extends StatelessWidget {
+  const _QuizzingUploadingResultView();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: Paddings.screenSidesPadding,
+      child: Center(
+        child: CupertinoActivityIndicator(
+          color: Theme.of(context).colorScheme.onSurfaceVariant,
         ),
       ),
     );

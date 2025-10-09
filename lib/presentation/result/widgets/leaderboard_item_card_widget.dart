@@ -3,7 +3,7 @@ import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/extra_colors.dart';
-import 'package:bac_project/features/tests/domain/entities/result.dart';
+import 'package:bac_project/features/results/domain/entities/result.dart';
 import 'package:flutter/material.dart';
 
 class LeaderboardItemCardWidget extends StatelessWidget {

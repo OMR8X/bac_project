@@ -1,7 +1,8 @@
+import 'dart:convert';
 import 'dart:io';
 
-import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/services/logs/logger.dart';
+import 'package:bac_project/features/notifications/data/mappers/app_notification_mapper.dart';
 import 'package:bac_project/features/notifications/domain/requests/subscribe_to_topic_request.dart';
 import 'package:bac_project/features/notifications/domain/requests/unsubscribe_from_topic_request.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -36,10 +37,14 @@ abstract class NotificationsRemoteDatasource {
 }
 
 class NotificationsRemoteDatasourceImplements implements NotificationsRemoteDatasource {
-  final _firebaseMessaging = FirebaseMessaging.instance;
-  final _localNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  final FirebaseMessaging _firebaseMessaging;
+  final FlutterLocalNotificationsPlugin _localNotificationsPlugin;
 
-  NotificationsRemoteDatasourceImplements();
+  NotificationsRemoteDatasourceImplements({
+    FirebaseMessaging? firebaseMessaging,
+    FlutterLocalNotificationsPlugin? localNotificationsPlugin,
+  }) : _firebaseMessaging = firebaseMessaging ?? FirebaseMessaging.instance,
+       _localNotificationsPlugin = localNotificationsPlugin ?? FlutterLocalNotificationsPlugin();
 
   @override
   Future<Unit> initializeLocalNotification() async {
@@ -51,7 +56,7 @@ class NotificationsRemoteDatasourceImplements implements NotificationsRemoteData
 
     await _localNotificationsPlugin.initialize(
       AppLocalNotificationsSettings.settings,
-      onDidReceiveNotificationResponse: (response) {},
+      onDidReceiveNotificationResponse: onDidReceiveNotificationResponse,
       onDidReceiveBackgroundNotificationResponse: onDidReceiveBackgroundNotificationResponse,
     );
 
@@ -99,15 +104,37 @@ class NotificationsRemoteDatasourceImplements implements NotificationsRemoteData
     bool oneTimeNotification = true,
     NotificationDetails? details,
   }) async {
+    ///
     if (!notification.isValid()) {
-      Logger.error('Notification is not valid: ${notification.toJson()}');
+      Logger.error('Notification is not valid: ${notification.toModel.toDatabaseJson()}');
       return unit;
     }
+
+    ///
+    if (details == null) {
+      details = AppLocalNotificationsSettings.defaultNotificationsDetails(
+        androidActions:
+            notification.actions().map((action) => action.toAndroidNotificationAction()).toList(),
+      );
+    }
+
+    ///
+    String? payloadString;
+    if (notification.payload != null) {
+      try {
+        payloadString = jsonEncode(notification.payload);
+      } catch (e) {
+        Logger.error('Error encoding notification payload: $e');
+      }
+    }
+
+    ///
     await _localNotificationsPlugin.show(
       DateTime.now().millisecondsSinceEpoch % 2147483647, // Ensure it fits in int32
       notification.title,
       notification.body,
-      details ?? AppLocalNotificationsSettings.defaultNotificationsDetails(),
+      details,
+      payload: payloadString,
     );
 
     return unit;

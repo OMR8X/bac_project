@@ -1,7 +1,7 @@
 import 'package:bac_project/core/resources/errors/failures.dart';
-import 'package:bac_project/features/tests/data/responses/get_result_response.dart';
-import 'package:bac_project/features/tests/domain/requests/get_result_request.dart';
-import 'package:bac_project/features/tests/domain/usecases/get_result_use_case.dart';
+import 'package:bac_project/features/results/data/responses/get_result_response.dart';
+import 'package:bac_project/features/results/domain/requests/get_result_request.dart';
+import 'package:bac_project/features/results/domain/usecases/get_result_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 

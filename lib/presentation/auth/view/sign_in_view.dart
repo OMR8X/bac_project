@@ -54,7 +54,7 @@ class _SignInViewState extends State<SignInView> {
         title: const Text("تسجيل الدخول"),
         leading: CloseIconWidget(
           onPressed: () {
-            context.read<AuthBloc>().add(const AuthStartAuthEvent());
+            context.read<AuthBloc>().add(const AuthStartAuthenticationEvent());
           },
         ),
       ),

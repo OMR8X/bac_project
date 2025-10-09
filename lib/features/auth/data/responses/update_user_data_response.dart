@@ -3,7 +3,7 @@ import 'package:bac_project/features/auth/domain/entites/user_data.dart';
 import 'package:bac_project/features/auth/data/models/user_data_model.dart';
 
 class UpdateUserDataResponse {
-  final String message;
+  final String? message;
   final String? token;
   final UserData user;
 

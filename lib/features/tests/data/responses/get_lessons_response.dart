@@ -14,9 +14,10 @@ class GetLessonsResponse {
   factory GetLessonsResponse.fromJson(Map<String, dynamic> json) {
     return GetLessonsResponse(
       lessons:
-          (json['lessons'] as List).map((lesson) {
+          (json['lessons'] as List?)?.map((lesson) {
             return LessonModel.fromJson(lesson as Map<String, dynamic>);
-          }).toList(),
+          }).toList() ??
+          [],
     );
   }
 

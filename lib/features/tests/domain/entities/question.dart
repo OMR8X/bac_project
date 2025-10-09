@@ -1,7 +1,8 @@
-import 'package:bac_project/features/tests/domain/entities/answer_evaluation.dart';
+import 'package:bac_project/features/results/domain/entities/answer_evaluation.dart';
 import 'package:bac_project/features/tests/domain/entities/option.dart';
 import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
 import 'package:collection/collection.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class Question {
   //
@@ -71,6 +72,26 @@ class Question {
       explain: explain ?? this.explain,
       questionAnswers: questionAnswers ?? this.questionAnswers,
       answerEvaluations: answerEvaluations ?? this.answerEvaluations,
+    );
+  }
+
+  factory Question.mock() {
+    return Question(
+      id: 1,
+      content: BoneMock.words(8),
+      options: [
+        Option(id: 1, questionId: 1, content: 'Option A', isCorrect: false),
+        Option(id: 2, questionId: 1, content: 'Option B', isCorrect: false),
+        Option(id: 3, questionId: 1, content: 'Option C', isCorrect: false),
+        Option(id: 4, questionId: 1, content: 'Option D', isCorrect: false),
+      ],
+      unitId: 1,
+      lessonId: 1,
+      imageUrl: null,
+      categoryId: 1,
+      explain: BoneMock.words(5),
+      questionAnswers: [],
+      answerEvaluations: [],
     );
   }
 

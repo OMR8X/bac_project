@@ -13,50 +13,27 @@ import 'package:bac_project/firebase_options.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../core/services/logs/logger.dart';
+import 'notifications_actions_handlers.dart';
 
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  Logger.warning("Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {");
   Logger.warning('A background message was received: ${message.messageId}');
   try {
+    /// initialize services
     await ServiceLocator.init();
     await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-    Logger.message('Firebase initialized');
     await Supabase.initialize(url: SupabaseSettings.url, anonKey: SupabaseSettings.anonKey);
-    Logger.message('Supabase initialized');
-    sl<NotificationsBloc>().add(LoadNotificationsEvent());
+
+    /// create notification with additional safety checks
+    final notification = AppNotification.fromRemoteMessage(message);
+
+    /// display notification
     await sl<DisplayNotificationUsecase>().call(
-      notification: AppNotification.fromRemoteMessage(message),
+      notification: notification,
     );
-    Logger.message('DisplayFirebaseNotificationUsecase called');
-  } on Exception catch (e) {
-    Logger.error('Error in firebaseMessagingBackgroundHandler: $e');
-  }
-}
-
-@pragma('vm:entry-point')
-void onDidReceiveBackgroundNotificationResponse(NotificationResponse? response) async {
-  Logger.warning('A background notification response was received: ${response?.payload}');
-  try {
-    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-    Logger.message('Firebase initialized');
-
-    await Supabase.initialize(url: SupabaseSettings.url, anonKey: SupabaseSettings.anonKey);
-
-    Logger.message('Supabase initialized');
-
-    if (!sl.isRegistered<DisplayNotificationUsecase>()) {
-      await ServiceLocator.init();
-    }
-
-    sl<NotificationsBloc>().add(LoadNotificationsEvent());
-
-    await Future.delayed(const Duration(milliseconds: 500));
-
-    if (navigatorKey.currentState != null) {
-      navigatorKey.currentState?.push(MaterialPageRoute(builder: (_) => const NotificationsView()));
-    }
-  } catch (e) {
-    Logger.error('Error in onDidReceiveBackgroundNotificationResponse: $e');
+  } catch (e, stackTrace) {
+    Logger.error('Error in firebaseMessagingBackgroundHandler: $e\nStack: $stackTrace');
   }
 }
 
@@ -90,27 +67,31 @@ void onErrorHandler(error) {}
 @pragma('vm:entry-point')
 Future<void> onNotificationOpenedHandler(RemoteMessage message) async {
   Logger.warning('Notification opened from background state: ${message.messageId}');
-  await ServiceLocator.init();
+  try {
+    await ServiceLocator.init();
 
-  // Refresh notifications
-  sl<NotificationsBloc>().add(LoadNotificationsEvent());
+    // Refresh notifications
+    sl<NotificationsBloc>().add(LoadNotificationsEvent());
 
-  // Add delay to ensure the app is fully resumed and navigation context is ready
-  await Future.delayed(const Duration(milliseconds: 300));
+    // Add delay to ensure the app is fully resumed and navigation context is ready
+    await Future.delayed(const Duration(milliseconds: 300));
 
-  // Check if navigator is ready
-  if (navigatorKey.currentState?.mounted == true) {
-    navigatorKey.currentState?.push(MaterialPageRoute(builder: (_) => const NotificationsView()));
-  } else {
-    // If navigator is not ready, wait and try again
-    await Future.delayed(const Duration(milliseconds: 500));
+    // Check if navigator is ready
     if (navigatorKey.currentState?.mounted == true) {
-      navigatorKey.currentState?.push(
-        MaterialPageRoute(builder: (_) => const NotificationsView()),
-      );
+      navigatorKey.currentState?.push(MaterialPageRoute(builder: (_) => const NotificationsView()));
     } else {
-      Logger.warning('Navigator not ready for notification navigation');
+      // If navigator is not ready, wait and try again
+      await Future.delayed(const Duration(milliseconds: 500));
+      if (navigatorKey.currentState?.mounted == true) {
+        navigatorKey.currentState?.push(
+          MaterialPageRoute(builder: (_) => const NotificationsView()),
+        );
+      } else {
+        Logger.warning('Navigator not ready for notification navigation');
+      }
     }
+  } catch (e) {
+    Logger.error('Error in onNotificationOpenedHandler: $e');
   }
 }
 
@@ -118,12 +99,44 @@ Future<void> onNotificationOpenedHandler(RemoteMessage message) async {
 @pragma('vm:entry-point')
 Future<void> onInitialNotificationHandler() async {
   Logger.warning('App opened from terminated state via notification');
-  await ServiceLocator.init();
-  final RemoteMessage? initialMessage = await FirebaseMessaging.instance.getInitialMessage();
+  try {
+    await ServiceLocator.init();
+    final RemoteMessage? initialMessage = await FirebaseMessaging.instance.getInitialMessage();
+    if (initialMessage != null) {
+      // Add delay to ensure app is fully initialized
+      await Future.delayed(const Duration(milliseconds: 1000));
+      await onNotificationOpenedHandler(initialMessage);
+    }
+  } catch (e) {
+    Logger.error('Error in onInitialNotificationHandler: $e');
+  }
+}
 
-  if (initialMessage != null) {
-    // Add delay to ensure app is fully initialized
-    await Future.delayed(const Duration(milliseconds: 1000));
-    await onNotificationOpenedHandler(initialMessage);
+@pragma('vm:entry-point')
+Future<void> onDidReceiveNotificationResponse(NotificationResponse? response) async {
+  Logger.warning("=== FOREGROUND NOTIFICATION RESPONSE START ===");
+  try {
+    // Initialize services for action handling
+    await ServiceLocator.init();
+    await Supabase.initialize(url: SupabaseSettings.url, anonKey: SupabaseSettings.anonKey);
+
+    await handleNotificationActions(response);
+  } catch (e) {
+    Logger.error('Error in onDidReceiveNotificationResponse: $e');
+  }
+}
+
+@pragma('vm:entry-point')
+Future<void> onDidReceiveBackgroundNotificationResponse(NotificationResponse? response) async {
+  Logger.warning("=== BACKGROUND NOTIFICATION RESPONSE START ===");
+  try {
+    // Initialize services for action handling
+    await ServiceLocator.init();
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+    await Supabase.initialize(url: SupabaseSettings.url, anonKey: SupabaseSettings.anonKey);
+
+    await handleNotificationActions(response);
+  } catch (e) {
+    Logger.error('Error in onDidReceiveBackgroundNotificationResponse: $e');
   }
 }

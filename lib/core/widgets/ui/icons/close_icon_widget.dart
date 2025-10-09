@@ -15,7 +15,8 @@ class CloseIconWidget extends StatelessWidget {
     return AppBarIconWidget(
       icon: Image.asset(
         UIImagesResources.closeUIIcon,
-        color: Theme.of(context).colorScheme.onSurface,
+        // color: Theme.of(context).colorScheme.onSurface,
+        color: Color(0xff55534F),
       ),
       onPressed: onPressed ?? () => context.pop(),
     );

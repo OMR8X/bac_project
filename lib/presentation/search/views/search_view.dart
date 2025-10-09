@@ -1,6 +1,5 @@
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
-import 'package:bac_project/core/widgets/ui/states/loading_state_body_widget.dart';
 import 'package:bac_project/presentation/home/widgets/lessons_navigation_card_bilder_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,7 +7,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
 import 'package:bac_project/core/widgets/ui/search_bar_widget.dart';
+import 'package:bac_project/core/widgets/animations/skeletonizer_effect_list_wraper.dart';
+import 'package:bac_project/core/widgets/ui/lesson_card_widget.dart';
+import 'package:bac_project/features/tests/domain/entities/lesson.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../bloc/bloc/search_bloc.dart';
 
@@ -58,28 +61,29 @@ class _SearchViewState extends State<SearchView> {
                     },
                   ),
                 ),
+
                 if (state.status == SearchStatus.initial)
                   SliverPadding(
                     padding: Paddings.listViewPadding,
-                    sliver: LessonsCardsBuilderWidget(lessons: state.lessons),
+                    sliver: LessonsCardsBuilderWidget(
+                      lessons: state.lessons,
+                    ),
+                  )
+                else if (state.status == SearchStatus.searching)
+                  SliverPadding(
+                    key: const ValueKey('search_lessons_cards_builder_widget'),
+                    padding: Paddings.listViewPadding,
+                    sliver: SliverSkeletonizer(
+                      child: LessonsCardsBuilderWidget(
+                        lessons: List.generate(10, (index) => Lesson.mock()),
+                      ),
+                    ),
                   ),
-
-                if (state.status == SearchStatus.searching) _SearchLoadingView(state: state),
               ],
             ),
           );
         },
       ),
     );
-  }
-}
-
-class _SearchLoadingView extends StatelessWidget {
-  const _SearchLoadingView({required this.state});
-
-  final SearchState state;
-  @override
-  Widget build(BuildContext context) {
-    return const SliverFillRemaining(child: LoadingStateBodyWidget());
   }
 }

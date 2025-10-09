@@ -1,3 +1,4 @@
+import 'package:bac_project/features/notifications/data/models/app_notification_model.dart';
 import 'package:bac_project/features/notifications/domain/entities/app_notification.dart';
 
 class GetNotificationsResponse {
@@ -8,11 +9,11 @@ class GetNotificationsResponse {
   factory GetNotificationsResponse.fromJson(List<dynamic> json) {
     return GetNotificationsResponse(
       notifications:
-          json
-              .map(
-                (notification) => AppNotification.fromJson(notification as Map<String, dynamic>),
-              )
-              .toList(),
+          json.map(
+            (notification) {
+              return AppNotificationModel.fromDatabaseJson(notification as Map<String, dynamic>);
+            },
+          ).toList(),
     );
   }
 }

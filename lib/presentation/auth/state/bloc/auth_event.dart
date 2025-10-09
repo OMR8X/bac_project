@@ -1,38 +1,38 @@
 part of 'auth_bloc.dart';
 
-final class AuthEvent extends Equatable {
-  const AuthEvent();
+final class AuthenticationEvent extends Equatable {
+  const AuthenticationEvent();
 
   @override
   List<Object> get props => [];
 }
 
-final class AuthInitializeEvent extends AuthEvent {
+final class AuthInitializeEvent extends AuthenticationEvent {
   const AuthInitializeEvent();
 
   @override
   List<Object> get props => [];
 }
 
-final class AuthStartAuthEvent extends AuthEvent {
-  const AuthStartAuthEvent();
+final class AuthStartAuthenticationEvent extends AuthenticationEvent {
+  const AuthStartAuthenticationEvent();
   @override
   List<Object> get props => [];
 }
 
-final class AuthStartSignInEvent extends AuthEvent {
+final class AuthStartSignInEvent extends AuthenticationEvent {
   const AuthStartSignInEvent();
   @override
   List<Object> get props => [];
 }
 
-final class AuthStartSignUpEvent extends AuthEvent {
+final class AuthStartSignUpEvent extends AuthenticationEvent {
   const AuthStartSignUpEvent();
   @override
   List<Object> get props => [];
 }
 
-final class AuthSignInEvent extends AuthEvent {
+final class AuthSignInEvent extends AuthenticationEvent {
   final String email;
   final String password;
 
@@ -41,7 +41,7 @@ final class AuthSignInEvent extends AuthEvent {
   List<Object> get props => [];
 }
 
-final class AuthSignUpEvent extends AuthEvent {
+final class AuthSignUpEvent extends AuthenticationEvent {
   final String name;
   final String email;
   final int sectionId;
@@ -59,7 +59,7 @@ final class AuthSignUpEvent extends AuthEvent {
   List<Object> get props => [];
 }
 
-final class AuthUpdateUserDataEvent extends AuthEvent {
+final class AuthUpdateUserDataEvent extends AuthenticationEvent {
   final String? name;
   final String? email;
   final int? sectionId;
@@ -77,7 +77,7 @@ final class AuthUpdateUserDataEvent extends AuthEvent {
   List<Object> get props => [];
 }
 
-final class AuthSignOutEvent extends AuthEvent {
+final class AuthSignOutEvent extends AuthenticationEvent {
   const AuthSignOutEvent();
 
   @override

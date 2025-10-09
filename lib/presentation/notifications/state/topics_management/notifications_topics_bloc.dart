@@ -83,6 +83,7 @@ class NotificationsTopicsBloc extends Bloc<NotificationsTopicsEvent, Notificatio
 
     result.fold(
       (failure) {
+        Logger.error(failure.message, stackTrace: StackTrace.current);
         final topicsIds = state.subscribedTopicIds.where((id) => id != event.topic.id).toList();
         emit(state.copyWith(subscribedTopicIds: topicsIds));
         throw Exception(failure.message);
@@ -95,6 +96,7 @@ class NotificationsTopicsBloc extends Bloc<NotificationsTopicsEvent, Notificatio
     UnsubscribeFromTopicEvent event,
     Emitter<NotificationsTopicsState> emit,
   ) async {
+    Logger.message('Unsubscribing from topic: ${event.topic.id}');
     // Optimistically update UI immediately
     final updatedSubscribedTopicIds =
         state.subscribedTopicIds.where((id) => id != event.topic.id).toList();
@@ -110,6 +112,7 @@ class NotificationsTopicsBloc extends Bloc<NotificationsTopicsEvent, Notificatio
 
     result.fold(
       (failure) {
+        Logger.error(failure.message, stackTrace: StackTrace.current);
         // Revert optimistic update on failure
         final revertedSubscribedTopicIds = [...state.subscribedTopicIds, event.topic.id];
         emit(state.copyWith(subscribedTopicIds: revertedSubscribedTopicIds, failure: failure));

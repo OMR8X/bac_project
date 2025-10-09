@@ -1,7 +1,7 @@
 import 'package:bac_project/core/services/api/responses/api_response.dart';
 
 class ChangePasswordResponse {
-  final String message;
+  final String? message;
 
   ChangePasswordResponse({required this.message});
 

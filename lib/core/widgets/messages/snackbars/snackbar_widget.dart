@@ -2,7 +2,6 @@ import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/color_extensions.dart';
-import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
@@ -12,11 +11,7 @@ import '../../../resources/styles/blur_resources.dart';
 class SnackbarWidget {
   final String title;
   final String? subtitle;
-  final Color titleColor;
-  final Color subtitleColor;
   final Color backgroundColor;
-  final Color? iconColor;
-  final Color iconContainerColor;
   final IconData? icon;
 
   final Duration duration;
@@ -27,11 +22,7 @@ class SnackbarWidget {
     required this.title,
     this.subtitle,
     required this.backgroundColor,
-    required this.titleColor,
-    required this.subtitleColor,
-    required this.iconContainerColor,
 
-    this.iconColor,
     this.icon,
     this.duration = const Duration(seconds: 3),
   });
@@ -60,7 +51,7 @@ class SnackbarWidget {
                     margin: Margins.snackbarMargin,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadiusResource.snackbarBorderRadius,
-                      color: backgroundColor.withAlpha(200),
+                      color: _backgroundColor,
                     ),
                     child: Padding(
                       padding: Paddings.cardSmallPadding,
@@ -69,12 +60,12 @@ class SnackbarWidget {
                           Container(
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                              color: iconContainerColor,
+                              color: _iconContainerColor,
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Icon(
                               icon ?? Icons.notifications_outlined,
-                              color: iconColor ?? Theme.of(context).colorScheme.surface,
+                              color: Theme.of(context).colorScheme.onSurface,
                               size: 24,
                             ),
                           ),
@@ -88,10 +79,11 @@ class SnackbarWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisSize: MainAxisSize.min,
                               children: [
+                                SizedBoxes.s2v,
                                 Text(
                                   title,
                                   style: TextStylesResources.cardMediumTitle.copyWith(
-                                    color: titleColor,
+                                    color: Theme.of(context).colorScheme.onSurface,
                                   ),
                                 ),
                                 if (subtitle != null) ...[
@@ -101,10 +93,11 @@ class SnackbarWidget {
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStylesResources.cardSmallSubtitle.copyWith(
-                                      color: subtitleColor,
+                                      color: Theme.of(context).colorScheme.onSurface,
                                     ),
                                   ),
                                 ],
+                                SizedBoxes.s4v,
                               ],
                             ),
                           ),
@@ -125,15 +118,18 @@ class SnackbarWidget {
                                       width: 28,
                                       height: 28,
                                       child: CircularProgressIndicator(
-                                        color: iconContainerColor.withAlpha(200),
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.surface.withAlpha(150),
                                         value: value,
+
                                         strokeCap: StrokeCap.round,
                                         strokeWidth: 2,
                                       ),
                                     ),
                                     Icon(
                                       Icons.close,
-                                      color: iconContainerColor.withAlpha(200),
+                                      color: Theme.of(context).colorScheme.surface.withAlpha(150),
                                       size: 16,
                                     ),
                                   ],
@@ -158,5 +154,19 @@ class SnackbarWidget {
       ),
       behavior: SnackBarBehavior.floating,
     );
+  }
+
+  Color get _backgroundColor {
+    if (Theme.of(context).brightness == Brightness.light) {
+      return backgroundColor.lighter(0.5).withAlpha(220);
+    }
+    return backgroundColor.darker(0.2).withAlpha(220);
+  }
+
+  Color get _iconContainerColor {
+    if (Theme.of(context).brightness == Brightness.light) {
+      return backgroundColor.lighter(0.75);
+    }
+    return backgroundColor.darker(0.5);
   }
 }

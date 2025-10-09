@@ -28,3 +28,26 @@ final class SyncNotificationsEvent extends ExploreNotificationsEvent {
   @override
   List<Object> get props => [];
 }
+
+final class MarkNotificationsAsReadEvent extends ExploreNotificationsEvent {
+  final List<String> notificationIds;
+
+  const MarkNotificationsAsReadEvent({required this.notificationIds});
+
+  @override
+  List<Object> get props => [notificationIds];
+}
+
+final class LoadMoreNotificationsEvent extends ExploreNotificationsEvent {
+  const LoadMoreNotificationsEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
+final class RefreshNotificationsEvent extends ExploreNotificationsEvent {
+  const RefreshNotificationsEvent();
+
+  @override
+  List<Object> get props => [];
+}

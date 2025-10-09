@@ -25,6 +25,7 @@ class MotivationalQuoteCardWidget extends StatelessWidget {
     return Card(
       margin: Margins.quoteOfTheDayCardMargin,
       elevation: 0,
+
       child: InkWell(
         borderRadius: BorderRadiusResource.cardBorderRadius,
         onTap: onTap,

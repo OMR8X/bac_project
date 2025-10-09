@@ -10,7 +10,7 @@ class BacFileModel {
 }
 
 class GetUserFavoritesResponse {
-  final String message;
+  final String? message;
   final List<BacFile> favorites;
 
   GetUserFavoritesResponse({required this.message, required this.favorites});

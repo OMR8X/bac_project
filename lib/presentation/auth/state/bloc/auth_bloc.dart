@@ -1,5 +1,6 @@
 import 'package:bac_project/core/resources/errors/failures.dart';
 import 'package:bac_project/core/services/router/index.dart';
+import 'package:bac_project/core/widgets/messages/snackbars/success_snackbar_widget.dart';
 import 'package:bac_project/features/auth/data/responses/sign_in_response.dart';
 import 'package:bac_project/features/auth/data/responses/sign_out_response.dart';
 import 'package:bac_project/features/auth/data/responses/sign_up_response.dart';
@@ -15,20 +16,22 @@ import 'package:bac_project/features/notifications/domain/usecases/refresh_devic
 import 'package:bac_project/features/settings/domain/entities/app_settings.dart';
 import 'package:bac_project/features/settings/domain/entities/governorate.dart';
 import 'package:bac_project/features/settings/domain/entities/section.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/scheduler.dart';
 import '../../../../features/auth/domain/requests/get_user_data_request.dart';
 import '../../../../features/auth/domain/requests/sign_in_request.dart';
 import '../../../../features/auth/domain/requests/sign_up_request.dart';
 import '../../../../features/auth/domain/entites/user_data.dart';
 import '../../../../core/injector/app_injection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../features/notifications/domain/usecases/get_device_token_usecase.dart';
+import '../../../root/blocs/navigation/navigation_cubit.dart';
 part 'auth_event.dart';
 part 'auth_state.dart';
 
-class AuthBloc extends Bloc<AuthEvent, AuthState> {
+class AuthBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
   final GetUserDataUsecase _getUserDataUsecase;
   final SignInUsecase _signInUsecase;
   final SignUpUsecase _signUpUsecase;
@@ -47,7 +50,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     //
     on<AuthInitializeEvent>(onAuthInitializeEvent);
     //
-    on<AuthStartAuthEvent>((event, emit) => emit(const AuthStartState()));
+    on<AuthStartAuthenticationEvent>((event, emit) => emit(const AuthStartState()));
     //
     on<AuthStartSignInEvent>((event, emit) => emit(const AuthSigningInState()));
     on<AuthStartSignUpEvent>(
@@ -66,7 +69,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     //
   }
   //
-  onAuthInitializeEvent(AuthInitializeEvent event, Emitter<AuthState> emit) async {
+  onAuthInitializeEvent(AuthInitializeEvent event, Emitter<AuthenticationState> emit) async {
     //
     emit(const AuthLoadingState());
     //
@@ -84,7 +87,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   //
-  onAuthSignInEvent(AuthSignInEvent event, Emitter<AuthState> emit) async {
+  onAuthSignInEvent(AuthSignInEvent event, Emitter<AuthenticationState> emit) async {
     //
     final String email = event.email.trim().toLowerCase();
     final String password = event.password.trim();
@@ -113,7 +116,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   //
-  onAuthSignUpEvent(AuthSignUpEvent event, Emitter<AuthState> emit) async {
+  onAuthSignUpEvent(AuthSignUpEvent event, Emitter<AuthenticationState> emit) async {
     //
     final String name = event.name.trim();
     final String email = event.email.trim().toLowerCase();
@@ -147,7 +150,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   //
-  onAuthUpdateUserDataEvent(AuthUpdateUserDataEvent event, Emitter<AuthState> emit) async {
+  onAuthUpdateUserDataEvent(
+    AuthUpdateUserDataEvent event,
+    Emitter<AuthenticationState> emit,
+  ) async {
     //
     emit(const AuthLoadingState(loading: true));
     //
@@ -182,7 +188,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   //
-  onAuthSignOutEvent(AuthSignOutEvent event, Emitter<AuthState> emit) async {
+  onAuthSignOutEvent(AuthSignOutEvent event, Emitter<AuthenticationState> emit) async {
     //
     emit(const AuthLoadingState());
     //
@@ -193,9 +199,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(AuthStartState(loading: false, failure: l));
       },
       (SignOutResponse r) async {
-        emit(AuthStartState(loading: false, failure: null, successMessage: r.message));
-        sl<AuthBloc>().add(const AuthInitializeEvent());
-        AppRouter.router.goNamed(AppRoutes.loader.name);
+        /// Initialize the auth bloc
+        add(const AuthInitializeEvent());
+        AppRouter.router.go(Routes.authentication.path);
+
+        /// Show success message
+        final context = AppRouter.rootNavigatorKey.currentContext;
+        if (context != null && r.message != null) {
+          showSuccessSnackbar(context: context, title: r.message!);
+        }
+        sl<NavigationCubit>().updateFromAuthenticationState(const AuthStartState());
       },
     );
     //

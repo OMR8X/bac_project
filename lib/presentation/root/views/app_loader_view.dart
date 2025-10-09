@@ -7,12 +7,10 @@ import 'package:bac_project/presentation/root/blocs/loader/app_loader_bloc.dart'
 import 'package:bac_project/presentation/root/views/app_available_update_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../core/extensions/build_context_l10n.dart';
 import '../../../core/injector/app_injection.dart';
-import '../../../core/services/router/app_routes.dart';
-import '../../notifications/state/explore_notifications/notifications_bloc.dart';
+import '../blocs/navigation/navigation_cubit.dart';
 
 class AppLoaderView extends StatefulWidget {
   const AppLoaderView({super.key});
@@ -22,16 +20,12 @@ class AppLoaderView extends StatefulWidget {
 }
 
 class _AppLoaderViewState extends State<AppLoaderView> {
-  onSucceed() {
+  bool didNavigate = false;
+  @override
+  void initState() {
+    super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      sl<NotificationsBloc>().add(SyncNotificationsEvent());
-      context.go(AppRoutes.home.path);
-    });
-  }
-
-  onUnAuthorized() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.go(AppRoutes.authViewsManager.path);
+      sl<AppLoaderBloc>().add(const AppLoaderLoadData());
     });
   }
 
@@ -40,23 +34,17 @@ class _AppLoaderViewState extends State<AppLoaderView> {
     return Scaffold(
       body: BlocProvider.value(
         value: sl<AppLoaderBloc>(),
-        child: BlocBuilder<AppLoaderBloc, AppLoaderState>(
+        child: BlocConsumer<AppLoaderBloc, AppLoaderState>(
+          buildWhen: (previous, current) => previous.state != current.state,
+          listener: (context, state) {
+            sl<NavigationCubit>().updateFromLoader(state);
+          },
           builder: (context, state) {
-            if (state.state == LoadState.succeed) {
-              onSucceed();
-            } else if (state.state == LoadState.unauthorized) {
-              onUnAuthorized();
-            } else if (state.state == LoadState.failure) {
+            if (state.state == LoadState.failure) {
               return ErrorStateBodyWidget(
                 title: context.l10n.errorLoadingApp,
                 failure: state.failure,
                 onRetry: () => sl<AppLoaderBloc>().add(const AppLoaderLoadData()),
-              );
-            } else if (state.state == LoadState.update) {
-              return AppAvailableUpdateView(
-                version: state.version,
-                onUpdate: () {},
-                onSkip: onSucceed,
               );
             }
             return SafeArea(

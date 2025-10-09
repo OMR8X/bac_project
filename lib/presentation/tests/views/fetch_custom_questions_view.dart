@@ -1,9 +1,13 @@
-import 'package:bac_project/core/services/router/app_routes.dart';
+import 'package:bac_project/core/services/router/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
-import 'package:bac_project/core/widgets/ui/states/loading_state_body_widget.dart';
+import 'package:bac_project/core/widgets/animations/skeletonizer_effect_list_wraper.dart';
+import 'package:bac_project/core/resources/styles/spacing_resources.dart';
+import 'package:bac_project/features/tests/domain/entities/question.dart';
+import 'package:bac_project/presentation/tests/widgets/question_card_widget.dart';
+import 'package:bac_project/presentation/quizzing/widgets/multiple_choices_options_builder_widget.dart';
 import 'package:bac_project/core/resources/errors/failures.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
 import 'package:go_router/go_router.dart';
@@ -31,7 +35,7 @@ class FetchCustomQuestionsView extends StatelessWidget {
           listener: (context, state) {
             if (state is FetchCustomQuestionsSuccess) {
               context.pushReplacement(
-                AppRoutes.quizzing.path,
+                Routes.quizzing.path,
                 extra: QuizzingArguments(questions: state.questions, lessonIds: state.lessonsIds),
               );
             }
@@ -54,7 +58,31 @@ class _FetchCustomQuestionsLoadingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(), body: const LoadingStateBodyWidget());
+    return Scaffold(appBar: AppBar(), body: const _FetchCustomQuestionsLoadingWidget());
+  }
+}
+
+class _FetchCustomQuestionsLoadingWidget extends StatelessWidget {
+  const _FetchCustomQuestionsLoadingWidget();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: Paddings.screenSidesPadding,
+      child: SkeletonizerEffectListWrapper.loading(
+        child: Column(
+          children: [
+            QuestionCardWidget(
+              question: Question.mock(),
+            ),
+            MultipleChoicesQuestionBuilderWidget(
+              question: Question.mock(),
+              questionsAnswers: [],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 

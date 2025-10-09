@@ -1,10 +1,10 @@
 import 'package:bac_project/core/resources/errors/failures.dart';
-import 'package:bac_project/features/tests/domain/entities/result.dart';
+import 'package:bac_project/features/results/domain/entities/result.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../../features/tests/domain/usecases/get_my_results_use_case.dart';
-import '../../../../features/tests/domain/requests/get_my_results_request.dart';
+import '../../../../features/results/domain/usecases/get_my_results_use_case.dart';
+import '../../../../features/results/domain/requests/get_my_results_request.dart';
 
 part 'explore_results_event.dart';
 part 'explore_results_state.dart';

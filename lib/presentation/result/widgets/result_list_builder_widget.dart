@@ -1,10 +1,10 @@
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
-import 'package:bac_project/core/services/router/app_routes.dart';
+import 'package:bac_project/core/services/router/routes.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
-import 'package:bac_project/features/tests/domain/entities/result.dart';
+import 'package:bac_project/features/results/domain/entities/result.dart';
 import 'package:flutter/material.dart';
-import 'package:bac_project/features/tests/data/models/result_model.dart';
+import 'package:bac_project/features/results/data/models/result_model.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:go_router/go_router.dart';
 import 'result_card_widget.dart';
@@ -35,7 +35,7 @@ class ResultListBuilderWidget extends StatelessWidget {
                 result: result,
                 onExplore: () {
                   context.pushNamed(
-                    AppRoutes.exploreResult.name,
+                    Routes.exploreResult.name,
                     queryParameters:
                         ExploreResultViewArguments(resultId: result.id).toQueryParameters(),
                   );

@@ -25,7 +25,7 @@ class LessonsTestCardWidget extends StatelessWidget {
             style: AppFontStyles.makeFontStyle(
               fontSize: FontSizeResources.s16,
               fontWeight: FontWeightResources.bold,
-              color: Theme.of(context).colorScheme.onPrimary,
+              color: Theme.of(context).colorScheme.onPrimaryContainer,
             ),
           ),
           const SizedBox(height: SpacesResources.s1),
@@ -34,7 +34,7 @@ class LessonsTestCardWidget extends StatelessWidget {
             style: AppFontStyles.makeFontStyle(
               fontWeight: FontWeightResources.medium,
               fontSize: FontSizeResources.s10,
-              color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.9),
+              color: Theme.of(context).colorScheme.onPrimaryContainer.withOpacity(0.7),
             ),
           ),
           const SizedBox(height: SpacesResources.s2),
@@ -43,7 +43,7 @@ class LessonsTestCardWidget extends StatelessWidget {
               Icon(
                 Icons.book_outlined,
                 size: FontSizeResources.s10,
-                color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.7),
+                color: Theme.of(context).colorScheme.onPrimaryContainer.withOpacity(0.7),
               ),
               const SizedBox(width: SpacesResources.s1),
               Text(
@@ -51,7 +51,7 @@ class LessonsTestCardWidget extends StatelessWidget {
                 style: AppFontStyles.makeFontStyle(
                   fontSize: FontSizeResources.s10,
                   fontWeight: FontWeightResources.medium,
-                  color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.7),
+                  color: Theme.of(context).colorScheme.onPrimaryContainer.withOpacity(0.7),
                 ),
               ),
             ],
@@ -67,10 +67,10 @@ class LessonsTestCardWidget extends StatelessWidget {
       height: 44,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: Theme.of(context).colorScheme.primaryContainer,
+        color: Theme.of(context).colorScheme.primary,
       ),
       child: Center(
-        child: Icon(Icons.book, color: Theme.of(context).colorScheme.primary, size: 24),
+        child: Icon(Icons.book, color: Theme.of(context).colorScheme.onPrimary, size: 24),
       ),
     );
   }
@@ -83,27 +83,19 @@ class LessonsTestCardWidget extends StatelessWidget {
         SizedBox(
           width: 110,
           height: SizesResources.buttonSmallHeight,
-          child: FilledButton.icon(
-            onPressed: onTestAllLessonsPressed,
-            style: FilledButton.styleFrom(
-              backgroundColor: Theme.of(context).colorScheme.onPrimary,
-              foregroundColor: Theme.of(context).colorScheme.primary,
-              elevation: 2,
-              shadowColor: Theme.of(context).colorScheme.shadow.withOpacity(0.15),
+          child: OutlinedButton.icon(
+            style: OutlinedButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              foregroundColor: Theme.of(context).colorScheme.onPrimary,
               shape: RoundedRectangleBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
-              padding: const EdgeInsets.symmetric(
-                horizontal: SpacesResources.s3,
-                vertical: SpacesResources.s2,
-              ),
-              overlayColor: Theme.of(context).colorScheme.primary.withOpacity(0.1),
-              animationDuration: const Duration(milliseconds: 200),
+              side: BorderSide(color: Colors.transparent),
             ),
-
+            onPressed: onTestAllLessonsPressed,
             label: Text(
               'اختبر الآن',
               style: TextStylesResources.button.copyWith(
-                color: Theme.of(context).colorScheme.primary,
-                fontSize: FontSizeResources.s11,
+                color: Theme.of(context).colorScheme.onPrimary,
+                fontSize: FontSizeResources.s10,
                 fontWeight: FontWeightResources.bold,
               ),
             ),
@@ -118,9 +110,12 @@ class LessonsTestCardWidget extends StatelessWidget {
     return Card(
       shape: RoundedSuperellipseBorder(
         borderRadius: BorderRadiusResource.cardBorderRadius,
-        side: BorderSide(color: Theme.of(context).colorScheme.outline),
+        side: BorderSide(
+          color: Theme.of(context).colorScheme.primary,
+          width: SizesResources.cardMediumBorderWidth,
+        ),
       ),
-      color: Theme.of(context).colorScheme.primary,
+      color: Theme.of(context).colorScheme.primaryContainer,
       margin: Paddings.fullTestCardPadding,
       child: Padding(
         padding: Paddings.cardLargePadding,

@@ -2,8 +2,23 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class AppLocalNotificationsSettings {
   ///
-  static const InitializationSettings settings = InitializationSettings(
-    iOS: DarwinInitializationSettings(),
+  static InitializationSettings settings = InitializationSettings(
+    iOS: DarwinInitializationSettings(
+      notificationCategories: [
+        DarwinNotificationCategory(
+          'cancel_operation_category',
+          actions: <DarwinNotificationAction>[
+            DarwinNotificationAction.plain(
+              'cancel_operation_button',
+              'الغاء العملية',
+              options: <DarwinNotificationActionOption>{
+                DarwinNotificationActionOption.foreground,
+              },
+            ),
+          ],
+        ),
+      ],
+    ),
     android: AndroidInitializationSettings("ic_notification"),
   );
 
@@ -21,7 +36,9 @@ class AppLocalNotificationsSettings {
   static const List<AndroidNotificationChannel> channels = [defaultChannel];
 
   ///
-  static NotificationDetails defaultNotificationsDetails() {
+  static NotificationDetails defaultNotificationsDetails({
+    List<AndroidNotificationAction>? androidActions,
+  }) {
     return NotificationDetails(
       android: AndroidNotificationDetails(
         defaultChannel.id,
@@ -32,8 +49,9 @@ class AppLocalNotificationsSettings {
         enableVibration: false,
         enableLights: false,
         groupKey: 'com.app.notifications',
+        actions: androidActions,
       ),
-      iOS: const DarwinNotificationDetails(
+      iOS: DarwinNotificationDetails(
         badgeNumber: 1,
         presentAlert: false,
         presentBadge: false,

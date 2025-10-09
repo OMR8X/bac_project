@@ -1,5 +1,6 @@
 import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
+import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/color_extensions.dart';
 import 'package:bac_project/core/resources/themes/extensions/option_card_colors.dart';
@@ -38,7 +39,11 @@ class OptionMultipleChoicesCardWidget extends StatelessWidget {
         shape: RoundedRectangleBorder(
           side: BorderSide(
             color: getCardBorderColor(context),
-            width: (questionAnswer != null) ? 1 : 0.5,
+            width: SizesResources.cardMediumBorderWidth,
+            // width:
+            //     (questionAnswer != null)
+            //         ? SizesResources.cardLargeBorderWidth
+            // : SizesResources.cardMediumBorderWidth,
           ),
           borderRadius: BorderRadiusResource.optionCardBorderRadius,
         ),
@@ -59,6 +64,9 @@ class OptionMultipleChoicesCardWidget extends StatelessWidget {
   Color getRadioIconColor(BuildContext context) {
     final isSelected = questionAnswer != null;
     final reviewMode = testMode == null;
+    if (reviewMode && option.isCorrect == true) {
+      return Theme.of(context).extension<SuccessColors>()!.success;
+    }
     if (isSelected) {
       if (reviewMode) {
         return questionAnswer?.isCorrect == true
@@ -75,6 +83,9 @@ class OptionMultipleChoicesCardWidget extends StatelessWidget {
     final optionCardColors = Theme.of(context).extension<OptionCardColors>()!;
     final isSelected = questionAnswer != null;
     final reviewMode = testMode == null;
+    if (reviewMode && option.isCorrect == true) {
+      return optionCardColors.backgroundCorrect;
+    }
     if (isSelected && reviewMode) {
       return questionAnswer?.isCorrect == true
           ? optionCardColors.backgroundCorrect
@@ -87,11 +98,15 @@ class OptionMultipleChoicesCardWidget extends StatelessWidget {
     final optionCardColors = Theme.of(context).extension<OptionCardColors>()!;
     final isSelected = questionAnswer != null;
     final reviewMode = testMode == null;
+    if (reviewMode && option.isCorrect == true) {
+      return optionCardColors.bordersCorrect;
+    }
     if (isSelected && reviewMode) {
       return questionAnswer?.isCorrect == true
           ? optionCardColors.bordersCorrect
           : optionCardColors.bordersIncorrect;
     }
+
     return optionCardColors.borders;
   }
 
@@ -99,6 +114,9 @@ class OptionMultipleChoicesCardWidget extends StatelessWidget {
     final optionCardColors = Theme.of(context).extension<OptionCardColors>()!;
     final isSelected = questionAnswer != null;
     final reviewMode = testMode == null;
+    if (reviewMode && option.isCorrect == true) {
+      return optionCardColors.textCorrect;
+    }
     if (isSelected && reviewMode) {
       final green = optionCardColors.textCorrect;
       final red = optionCardColors.textIncorrect;

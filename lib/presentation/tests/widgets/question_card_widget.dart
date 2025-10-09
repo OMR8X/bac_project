@@ -50,7 +50,7 @@ class QuestionCardWidget extends StatelessWidget {
 
   ShapeBorder getShape(BuildContext context) {
     return RoundedRectangleBorder(
-      side: BorderSide(color: getCardBorderColor(context)),
+      side: BorderSide(color: getCardBorderColor(context), width: 2.5),
       borderRadius: BorderRadiusResource.optionCardBorderRadius,
     );
   }
@@ -60,11 +60,11 @@ class QuestionCardWidget extends StatelessWidget {
   }
 
   Color getCardColor(BuildContext context) {
-    return Theme.of(context).colorScheme.surfaceContainer;
+    return Theme.of(context).colorScheme.surfaceContainerLowest;
   }
 
   Color getCardBorderColor(BuildContext context) {
-    return Theme.of(context).colorScheme.outline;
+    return Theme.of(context).colorScheme.outlineVariant;
   }
 
   Color getCardTitleColor(BuildContext context) {

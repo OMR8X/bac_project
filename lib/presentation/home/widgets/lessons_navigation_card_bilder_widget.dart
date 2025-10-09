@@ -14,7 +14,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/resources/styles/spacing_resources.dart';
 import '../../../core/services/router/app_arguments.dart';
-import '../../../core/services/router/app_routes.dart';
+import '../../../core/services/router/routes.dart';
 import '../../../core/widgets/ui/loading_widget.dart';
 // api المحلي
 
@@ -33,7 +33,6 @@ class LessonsCardsBuilderWidget extends StatelessWidget {
     }
     return AnimationLimiter(
       child: SliverList.builder(
-        
         itemCount: lessons.length,
         itemBuilder: (context, index) {
           final lesson = lessons[index];
@@ -48,7 +47,7 @@ class LessonsCardsBuilderWidget extends StatelessWidget {
                   questionsCount: lesson.questionsCount,
                   onTap: () {
                     context.pushReplacement(
-                      AppRoutes.testModeSettings.path,
+                      Routes.testModeSettings.path,
                       extra: TestModeSettingsArguments(
                         unitIds: [lesson.unitId],
                         lessonIds: [lesson.id],

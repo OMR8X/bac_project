@@ -1,22 +1,16 @@
-import 'package:bac_project/core/resources/errors/failures.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/widgets/ui/fields/elevated_button_widget.dart';
 import 'package:bac_project/core/widgets/ui/fields/text_button_widget.dart';
 import 'package:bac_project/features/settings/domain/entities/version.dart';
 import 'package:flutter/material.dart';
 
-class AppAvailableUpdateView extends StatelessWidget {
-  const AppAvailableUpdateView({
+class UpdateAvailableView extends StatelessWidget {
+  const UpdateAvailableView({
     super.key,
     required this.version,
-    required this.onUpdate,
-    required this.onSkip,
   });
   final Version version;
-  final VoidCallback onUpdate;
-  final VoidCallback onSkip;
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +28,9 @@ class AppAvailableUpdateView extends StatelessWidget {
             SizedBox(height: SpacesResources.s2),
             Text("الاصدار الجديد ${version.currentVersion}", style: TextStylesResources.largeTitle),
             Spacer(),
-            ElevatedButtonWidget(title: "تحديث", onPressed: onUpdate),
+            ElevatedButtonWidget(title: "تحديث", onPressed: () {}),
             if (!version.updateRequired)
-              TextButtonWidget(title: "تخطي", onPressed: onSkip)
+              TextButtonWidget(title: "تخطي", onPressed: () {})
             else
               Column(
                 children: [

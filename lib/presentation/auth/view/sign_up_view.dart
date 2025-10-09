@@ -77,7 +77,7 @@ class _SignUpViewState extends State<SignUpView> {
         title: const Text("انشاء حساب جديد"),
         leading: CloseIconWidget(
           onPressed: () {
-            context.read<AuthBloc>().add(const AuthStartAuthEvent());
+            context.read<AuthBloc>().add(const AuthStartAuthenticationEvent());
           },
         ),
       ),

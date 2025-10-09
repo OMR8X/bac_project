@@ -13,9 +13,10 @@ class GetQuestionsResponse {
 
   factory GetQuestionsResponse.fromJson(Map<String, dynamic> json) {
     final questions =
-        (json['questions'] as List).map((question) {
+        (json['questions'] as List?)?.map((question) {
           return QuestionModel.fromJson(question as Map<String, dynamic>);
-        }).toList();
+        }).toList() ??
+        [];
 
     return GetQuestionsResponse(questions: questions);
   }

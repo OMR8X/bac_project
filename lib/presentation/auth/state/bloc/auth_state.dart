@@ -1,38 +1,38 @@
 part of 'auth_bloc.dart';
 
-final class AuthState extends Equatable {
-  const AuthState({this.failure, this.loading = false, this.successMessage});
+final class AuthenticationState extends Equatable {
+  const AuthenticationState({this.failure, this.loading = false, this.successMessage});
   final bool loading;
   final Failure? failure;
   final String? successMessage;
 
-  AuthState copyWith({Failure? failure, bool loading = false, String? successMessage}) {
-    return AuthState(failure: failure, loading: loading, successMessage: successMessage);
+  AuthenticationState copyWith({Failure? failure, bool loading = false, String? successMessage}) {
+    return AuthenticationState(failure: failure, loading: loading, successMessage: successMessage);
   }
 
   @override
   List<Object?> get props => [failure, loading, successMessage];
 }
 
-final class AuthLoadingState extends AuthState {
+final class AuthLoadingState extends AuthenticationState {
   const AuthLoadingState({super.failure, super.loading = true, super.successMessage});
   @override
   List<Object?> get props => [failure, loading, successMessage];
 }
 
-final class AuthStartState extends AuthState {
+final class AuthStartState extends AuthenticationState {
   const AuthStartState({super.failure, super.loading = false, super.successMessage});
   @override
   List<Object?> get props => [failure, loading, successMessage];
 }
 
-final class AuthSigningInState extends AuthState {
+final class AuthSigningInState extends AuthenticationState {
   const AuthSigningInState({super.failure, super.loading = false, super.successMessage});
   @override
   List<Object?> get props => [failure, loading, successMessage];
 }
 
-final class AuthSigningUpState extends AuthState {
+final class AuthSigningUpState extends AuthenticationState {
   final List<Section> sections;
   final List<Governorate> governorates;
   const AuthSigningUpState({
@@ -46,7 +46,7 @@ final class AuthSigningUpState extends AuthState {
   List<Object?> get props => [failure, loading, successMessage, sections, governorates];
 }
 
-final class AuthDoneState extends AuthState {
+final class AuthDoneState extends AuthenticationState {
   const AuthDoneState({super.failure, super.loading = false, super.successMessage});
   @override
   List<Object?> get props => [failure, loading, successMessage];

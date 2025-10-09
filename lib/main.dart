@@ -1,4 +1,3 @@
-import 'package:bac_project/core/services/logs/logger.dart';
 import 'package:bac_project/firebase_options.dart';
 import 'package:bac_project/presentation/root/views/app_root.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -6,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'core/injector/app_injection.dart';
 
-void main() async {
+Future<void> main() async {
   ///
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -59,3 +58,11 @@ class ErrorsCopier {
     errors.add(details);
   }
 }
+
+
+/*
+external links  : Advertising, Website, Instagram, Facebook, etc.
+internal links  : Open screen, Open test, Open notification, etc.
+*/
+
+

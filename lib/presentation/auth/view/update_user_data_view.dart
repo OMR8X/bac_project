@@ -237,7 +237,7 @@ class _UpdateUserDataViewState extends State<UpdateUserDataView> {
                   const SizedBox(height: SpacesResources.s10),
                   BlocProvider.value(
                     value: sl<AuthBloc>(),
-                    child: BlocBuilder<AuthBloc, AuthState>(
+                    child: BlocBuilder<AuthBloc, AuthenticationState>(
                       builder: (context, state) {
                         return FilledButton(
                           style: FilledButton.styleFrom(

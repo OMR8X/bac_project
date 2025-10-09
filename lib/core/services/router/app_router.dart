@@ -4,6 +4,7 @@ import 'package:bac_project/presentation/auth/view/update_user_data_view.dart';
 import 'package:bac_project/presentation/home/blocs/lessons_bloc.dart';
 import 'package:bac_project/presentation/home/views/home_view.dart';
 import 'package:bac_project/presentation/home/views/lessons_view.dart';
+import 'package:bac_project/presentation/root/blocs/loader/app_loader_bloc.dart';
 import 'package:bac_project/presentation/search/bloc/bloc/search_bloc.dart';
 import 'package:bac_project/presentation/settings/views/setting_view.dart';
 import 'package:bac_project/presentation/testing/views/designing_view.dart';
@@ -23,16 +24,17 @@ import 'package:bac_project/presentation/tests/blocs/pick_lessons/pick_lessons_b
 
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import '../../../presentation/auth/view/auth_views_manager.dart';
+import '../../../presentation/auth/view/auth_view.dart';
 import '../../../presentation/notifications/views/notifications_topics_view.dart';
 import '../../../presentation/notifications/views/notifications_view.dart';
 import '../../../presentation/result/views/explore_results_view.dart';
+import '../../../presentation/root/blocs/navigation/navigation_cubit.dart';
 import '../../../presentation/root/views/app_loader_view.dart';
 import '../../../presentation/root/views/pages_holder.dart';
 import '../../../presentation/testing/views/debugs_view.dart';
 
 import '../../../presentation/tests/views/test_mode_settings_view.dart';
-import 'app_routes.dart';
+import 'routes.dart';
 
 class AppRouter {
   ///
@@ -47,14 +49,16 @@ class AppRouter {
   /// developing
   ///
   static final router = GoRouter(
-    debugLogDiagnostics: true,
-    initialLocation: AppRoutes.loader.path,
+    debugLogDiagnostics: false,
+    initialLocation: Routes.home.path,
     navigatorKey: _rootNavigatorKey,
+    refreshListenable: sl<NavigationCubit>(),
+    redirect: sl<NavigationCubit>().redirect,
     routes: [
       /// debugging route
       GoRoute(
-        name: AppRoutes.root.name,
-        path: AppRoutes.root.path,
+        name: Routes.root.name,
+        path: Routes.root.path,
         pageBuilder:
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
@@ -74,8 +78,8 @@ class AppRouter {
 
       // auth views manager route
       GoRoute(
-        name: AppRoutes.authViewsManager.name,
-        path: AppRoutes.authViewsManager.path,
+        name: Routes.authentication.name,
+        path: Routes.authentication.path,
         pageBuilder:
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
@@ -89,12 +93,13 @@ class AppRouter {
                   child,
                 );
               },
-              child: const AuthViewsManager(),
+              child: const AuthenticationView(),
             ),
       ),
+      // update user data route
       GoRoute(
-        name: AppRoutes.updateUserData.name,
-        path: AppRoutes.updateUserData.path,
+        name: Routes.updateUserData.name,
+        path: Routes.updateUserData.path,
         pageBuilder:
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
@@ -113,8 +118,8 @@ class AppRouter {
       ),
       // designing route
       GoRoute(
-        name: AppRoutes.designing.name,
-        path: AppRoutes.designing.path,
+        name: Routes.designing.name,
+        path: Routes.designing.path,
         pageBuilder:
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
@@ -133,8 +138,8 @@ class AppRouter {
       ),
       // loader route
       GoRoute(
-        name: AppRoutes.loader.name,
-        path: AppRoutes.loader.path,
+        name: Routes.loader.name,
+        path: Routes.loader.path,
         pageBuilder:
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
@@ -148,13 +153,13 @@ class AppRouter {
                   child,
                 );
               },
-              child: AppLoaderView(key: state.pageKey),
+              child: const AppLoaderView(),
             ),
       ),
       // notifications route
       GoRoute(
-        name: AppRoutes.notifications.name,
-        path: AppRoutes.notifications.path,
+        name: Routes.notifications.name,
+        path: Routes.notifications.path,
         pageBuilder:
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
@@ -173,8 +178,8 @@ class AppRouter {
       ),
       // notifications topics route
       GoRoute(
-        name: AppRoutes.notificationsTopics.name,
-        path: AppRoutes.notificationsTopics.path,
+        name: Routes.notificationsTopics.name,
+        path: Routes.notificationsTopics.path,
         pageBuilder:
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
@@ -193,8 +198,8 @@ class AppRouter {
       ),
       // lessons route
       GoRoute(
-        name: AppRoutes.lessons.name,
-        path: AppRoutes.lessons.path,
+        name: Routes.lessons.name,
+        path: Routes.lessons.path,
         pageBuilder:
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
@@ -219,8 +224,8 @@ class AppRouter {
       ),
       // test mode settings route
       GoRoute(
-        name: AppRoutes.testModeSettings.name,
-        path: AppRoutes.testModeSettings.path,
+        name: Routes.testModeSettings.name,
+        path: Routes.testModeSettings.path,
         pageBuilder:
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
@@ -253,8 +258,8 @@ class AppRouter {
       ),
       // testing route
       GoRoute(
-        name: AppRoutes.quizzing.name,
-        path: AppRoutes.quizzing.path,
+        name: Routes.quizzing.name,
+        path: Routes.quizzing.path,
         pageBuilder:
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
@@ -273,8 +278,8 @@ class AppRouter {
       ),
       // set test properties route
       GoRoute(
-        name: AppRoutes.setTestProperties.name,
-        path: AppRoutes.setTestProperties.path,
+        name: Routes.setTestProperties.name,
+        path: Routes.setTestProperties.path,
         pageBuilder:
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
@@ -293,8 +298,8 @@ class AppRouter {
       ),
       // pick lessons route
       GoRoute(
-        name: AppRoutes.pickLessons.name,
-        path: AppRoutes.pickLessons.path,
+        name: Routes.pickLessons.name,
+        path: Routes.pickLessons.path,
         pageBuilder:
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
@@ -320,8 +325,8 @@ class AppRouter {
 
       // Search route
       GoRoute(
-        name: AppRoutes.search.name,
-        path: AppRoutes.search.path,
+        name: Routes.search.name,
+        path: Routes.search.path,
         pageBuilder:
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
@@ -347,8 +352,8 @@ class AppRouter {
 
       // Submit Result route
       GoRoute(
-        name: AppRoutes.exploreResult.name,
-        path: AppRoutes.exploreResult.path,
+        name: Routes.exploreResult.name,
+        path: Routes.exploreResult.path,
         pageBuilder:
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
@@ -374,8 +379,8 @@ class AppRouter {
 
       // Explore Answers Evaluations route
       GoRoute(
-        name: AppRoutes.exploreAnswersEvaluations.name,
-        path: AppRoutes.exploreAnswersEvaluations.path,
+        name: Routes.exploreAnswersEvaluations.name,
+        path: Routes.exploreAnswersEvaluations.path,
         pageBuilder:
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
@@ -398,8 +403,8 @@ class AppRouter {
 
       // Fetch Custom Questions route
       GoRoute(
-        name: AppRoutes.fetchCustomQuestions.name,
-        path: AppRoutes.fetchCustomQuestions.path,
+        name: Routes.fetchCustomQuestions.name,
+        path: Routes.fetchCustomQuestions.path,
         pageBuilder:
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
@@ -422,8 +427,8 @@ class AppRouter {
 
       // Motivational Quote route
       GoRoute(
-        name: AppRoutes.motivationalQuote.name,
-        path: AppRoutes.motivationalQuote.path,
+        name: Routes.motivationalQuote.name,
+        path: Routes.motivationalQuote.path,
         pageBuilder:
             (context, state) => CustomTransitionPage(
               key: state.pageKey,
@@ -445,7 +450,7 @@ class AppRouter {
             ),
       ),
 
-      /// add page view route
+      /// root page view route
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
           return PagesHolderView(navigationShell: navigationShell);
@@ -457,8 +462,8 @@ class AppRouter {
               ///
               /// Home route
               GoRoute(
-                name: AppRoutes.home.name,
-                path: AppRoutes.home.path,
+                name: Routes.home.name,
+                path: Routes.home.path,
                 pageBuilder:
                     (context, state) => CustomTransitionPage(
                       key: state.pageKey,
@@ -474,6 +479,8 @@ class AppRouter {
                       },
                       child: HomeView(key: state.pageKey),
                     ),
+
+                routes: [],
               ),
             ],
           ),
@@ -483,8 +490,8 @@ class AppRouter {
               ///
               /// Result route
               GoRoute(
-                name: AppRoutes.exploreResults.name,
-                path: AppRoutes.exploreResults.path,
+                name: Routes.exploreResults.name,
+                path: Routes.exploreResults.path,
                 pageBuilder:
                     (context, state) => CustomTransitionPage(
                       key: state.pageKey,
@@ -510,8 +517,8 @@ class AppRouter {
               ///
               /// Setting route
               GoRoute(
-                name: AppRoutes.setting.name,
-                path: AppRoutes.setting.path,
+                name: Routes.setting.name,
+                path: Routes.setting.path,
                 pageBuilder:
                     (context, state) => CustomTransitionPage(
                       key: state.pageKey,

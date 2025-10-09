@@ -3,11 +3,14 @@ import 'dart:async';
 import 'package:bac_project/core/resources/errors/failures.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/rendering.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as sp;
 
 import 'exceptions.dart';
 
 Failure errorToFailure(dynamic error) {
+  debugPrint("${error}");
+  // debugPrint("${error}, ${StackTrace.current}");
   switch (error) {
     case DioException():
       return ServerFailure(message: (error).message);

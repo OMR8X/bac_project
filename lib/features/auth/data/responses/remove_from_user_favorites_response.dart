@@ -10,7 +10,7 @@ class BacFileModel {
 }
 
 class RemoveFromUserFavoritesResponse {
-  final String message;
+  final String? message;
   final List<BacFile> favorites;
 
   RemoveFromUserFavoritesResponse({required this.message, required this.favorites});

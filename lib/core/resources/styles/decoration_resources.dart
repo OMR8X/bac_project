@@ -1,4 +1,3 @@
-import 'package:bac_project/core/resources/themes/extensions/surface_container_colors.dart';
 import 'package:flutter/material.dart';
 import 'border_radius_resources.dart';
 
@@ -23,7 +22,7 @@ class DecorationResources {
   ///
   static BoxDecoration tileBoxDecoration({required ThemeData theme}) {
     return BoxDecoration(
-      color: theme.extension<SurfaceContainerColors>()?.surfaceContainerHigh,
+      color: theme.colorScheme.surfaceContainerLow,
       borderRadius: BorderRadiusResource.tileBoxBorderRadius,
       border: Border(bottom: BorderSide(color: theme.colorScheme.outlineVariant, width: 0.5)),
       boxShadow: [
@@ -39,14 +38,14 @@ class DecorationResources {
 
   static BoxDecoration inputFieldDecoration({required ThemeData theme}) {
     return BoxDecoration(
-      color: theme.extension<SurfaceContainerColors>()?.surfaceContainerHigh,
+      color: theme.colorScheme.surfaceContainerLow,
       borderRadius: BorderRadiusResource.fieldBorderRadius,
     );
   }
 
   static BoxDecoration inputDialogDecoration({required ThemeData theme}) {
     return BoxDecoration(
-      color: theme.extension<SurfaceContainerColors>()?.surfaceContainer,
+      color: theme.colorScheme.surfaceContainerLowest,
       borderRadius: BorderRadiusResource.fieldBorderRadius,
     );
   }

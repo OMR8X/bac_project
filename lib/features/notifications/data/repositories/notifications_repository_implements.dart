@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:bac_project/core/resources/errors/error_mapper.dart';
 import 'package:bac_project/core/services/logs/logger.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:bac_project/core/resources/errors/failures.dart';
 import 'package:bac_project/features/notifications/data/datasources/notifications_remote_datasource.dart';
@@ -29,7 +32,10 @@ class NotificationsRepositoryImplements implements NotificationsRepository {
       await _remoteDatasource.initializeLocalNotification();
       await _remoteDatasource.initializeFirebaseNotification();
       return right(unit);
-    } on Exception catch (e) {
+    } catch (e) {
+      if (Platform.isIOS && kDebugMode) {
+        return right(unit);
+      }
       return left(errorToFailure(e));
     }
   }
@@ -47,7 +53,7 @@ class NotificationsRepositoryImplements implements NotificationsRepository {
         details: details,
       );
       return right(unit);
-    } on Exception catch (e) {
+    } catch (e) {
       return left(errorToFailure(e));
     }
   }
@@ -59,7 +65,7 @@ class NotificationsRepositoryImplements implements NotificationsRepository {
     try {
       final response = await _databaseDatasource.getNotifications(request);
       return Right(response);
-    } on Exception catch (e) {
+    } catch (e) {
       return left(errorToFailure(e));
     }
   }
@@ -70,7 +76,7 @@ class NotificationsRepositoryImplements implements NotificationsRepository {
       await _remoteDatasource.subscribeToTopic(request);
       await _databaseDatasource.subscribeToTopicInDatabase(request);
       return Right(unit);
-    } on Exception catch (e) {
+    } catch (e) {
       return left(errorToFailure(e));
     }
   }
@@ -80,7 +86,7 @@ class NotificationsRepositoryImplements implements NotificationsRepository {
     try {
       await _remoteDatasource.deleteDeviceToken();
       return right(unit);
-    } on Exception catch (e) {
+    } catch (e) {
       return left(errorToFailure(e));
     }
   }
@@ -91,7 +97,7 @@ class NotificationsRepositoryImplements implements NotificationsRepository {
       await _remoteDatasource.unsubscribeToTopic(request);
       await _databaseDatasource.unsubscribeFromTopicInDatabase(request);
       return Right(unit);
-    } on Exception catch (e) {
+    } catch (e) {
       return left(errorToFailure(e));
     }
   }
@@ -101,7 +107,10 @@ class NotificationsRepositoryImplements implements NotificationsRepository {
     try {
       final response = await _remoteDatasource.getDeviceToken();
       return right(response);
-    } on Exception catch (e) {
+    } catch (e) {
+      if (Platform.isIOS && kDebugMode) {
+        return left(UnknownFailure());
+      }
       return left(errorToFailure(e));
     }
   }
@@ -117,7 +126,7 @@ class NotificationsRepositoryImplements implements NotificationsRepository {
     try {
       await _databaseDatasource.registerDeviceToken(request);
       return Right(unit);
-    } on Exception catch (e) {
+    } catch (e) {
       return left(errorToFailure(e));
     }
   }
@@ -129,7 +138,7 @@ class NotificationsRepositoryImplements implements NotificationsRepository {
     try {
       final response = await _databaseDatasource.markNotificationsAsRead(request);
       return Right(response);
-    } on Exception catch (e) {
+    } catch (e) {
       return left(errorToFailure(e));
     }
   }
@@ -139,7 +148,7 @@ class NotificationsRepositoryImplements implements NotificationsRepository {
     try {
       final response = await _databaseDatasource.getUserSubscribedTopics();
       return Right(response);
-    } on Exception catch (e) {
+    } catch (e) {
       return left(errorToFailure(e));
     }
   }
@@ -149,7 +158,7 @@ class NotificationsRepositoryImplements implements NotificationsRepository {
     try {
       final response = await _databaseDatasource.getNotificationsTopics();
       return Right(response);
-    } on Exception catch (e) {
+    } catch (e) {
       return left(errorToFailure(e));
     }
   }
@@ -185,11 +194,15 @@ class NotificationsRepositoryImplements implements NotificationsRepository {
 
       Logger.message('✅ Topics synced successfully.');
       return right(unit);
-    } on Exception catch (e) {
+    } catch (e) {
+      if (Platform.isIOS && kDebugMode) {
+        return right(unit);
+      }
       Logger.error(
         'Notifications sync failed: ${e.toString()}',
         stackTrace: StackTrace.current,
       );
+
       return left(errorToFailure(e));
     }
   }

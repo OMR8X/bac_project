@@ -13,9 +13,7 @@ class AppNotificationModel extends AppNotification {
     required super.priority,
     required super.createdAt,
     super.expiresAt,
-    required super.status,
-    required super.isStarred,
-    super.readAt,
+    super.readedAt,
   });
 
   factory AppNotificationModel.fromDatabaseJson(Map json) {
@@ -30,9 +28,7 @@ class AppNotificationModel extends AppNotification {
       priority: NotificationPriority.fromString(json['priority'] ?? 'normal'),
       createdAt: DateTime.parse(json['created_at']),
       expiresAt: json['expires_at'] != null ? DateTime.parse(json['expires_at']) : null,
-      status: json['status'] ?? 'unread',
-      isStarred: json['is_starred'] ?? false,
-      readAt: json['read_at'] != null ? DateTime.parse(json['read_at']) : null,
+      readedAt: json['readed_at'] != null ? DateTime.parse(json['readed_at']) : null,
     );
   }
 
@@ -54,9 +50,7 @@ class AppNotificationModel extends AppNotification {
     return {
       'notification_id': id,
       'user_id': userId,
-      'status': status,
-      'is_starred': isStarred,
-      'read_at': readAt?.toIso8601String(),
+      'readed_at': readedAt?.toIso8601String(),
     };
   }
 }
