@@ -29,10 +29,6 @@ class NotificationTopicCardWidget extends StatelessWidget {
             topic.title,
             style: TextStylesResources.cardMediumTitle.copyWith(
               color: Theme.of(context).colorScheme.onSurface,
-              fontSize: FontSizeResources.s14,
-              fontWeight: FontWeightResources.medium,
-              height: 1.2,
-              letterSpacing: 0.5,
             ),
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
@@ -51,6 +47,7 @@ class NotificationTopicCardWidget extends StatelessWidget {
                   )
                   : null,
           trailing: Switch(
+            padding: Paddings.zero,
             value: isSubscribed,
             onChanged: (value) {
               HapticFeedback.lightImpact();

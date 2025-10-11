@@ -109,13 +109,13 @@ class NotificationCardWidget extends StatelessWidget {
         Container(
           padding: Paddings.customPadding(3, 1),
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.primaryContainer,
+            color: Theme.of(context).colorScheme.secondaryContainer,
             borderRadius: BorderRadiusResource.bordersRadiusTiny,
           ),
           child: Text(
             topicTitle(context),
             style: TextStylesResources.caption.copyWith(
-              color: Theme.of(context).colorScheme.primary,
+              color: Theme.of(context).colorScheme.onSecondaryContainer,
               fontSize: FontSizeResources.s9,
               fontWeight: FontWeightResources.medium,
             ),

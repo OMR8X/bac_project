@@ -15,13 +15,13 @@ class QuoteOfTheDayWidget extends StatelessWidget {
     return Semantics(
       label: "اقتباس اليوم: ${quote.quote}, من ${quote.author}",
       child: Card(
-        color: Theme.of(context).colorScheme.primaryContainer,
+        color: Theme.of(context).colorScheme.secondaryContainer,
         elevation: 0,
         // color: Theme.of(context).colorScheme.surfaceContainerLowest,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadiusResource.bordersRadiusMedium,
           side: BorderSide(
-            color: Theme.of(context).colorScheme.primary,
+            color: Theme.of(context).colorScheme.secondary,
             width: 2.5,
           ),
         ),
@@ -46,13 +46,13 @@ class QuoteOfTheDayWidget extends StatelessWidget {
                             horizontal: SpacesResources.s4,
                           ),
                           decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.primary,
+                            color: Theme.of(context).colorScheme.secondary,
                             borderRadius: BorderRadiusResource.bordersRadiusXTiny,
                           ),
                           child: Text(
                             "اقتباس اليوم",
                             style: TextStylesResources.caption.copyWith(
-                              color: Theme.of(context).colorScheme.onPrimary,
+                              color: Theme.of(context).colorScheme.onSecondary,
                               fontSize: FontSizeResources.s10,
                               fontWeight: FontWeightResources.medium,
                             ),
@@ -65,7 +65,7 @@ class QuoteOfTheDayWidget extends StatelessWidget {
                           children: [
                             Icon(
                               Icons.format_quote,
-                              color: Theme.of(context).colorScheme.onPrimaryContainer,
+                              color: Theme.of(context).colorScheme.onSecondaryContainer,
                               size: 20,
                             ),
                             SizedBox(width: SpacesResources.s2),
@@ -73,7 +73,7 @@ class QuoteOfTheDayWidget extends StatelessWidget {
                               child: Text(
                                 quote.quote,
                                 style: TextStylesResources.cardMediumTitle.copyWith(
-                                  color: Theme.of(context).colorScheme.onPrimaryContainer,
+                                  color: Theme.of(context).colorScheme.onSecondaryContainer,
                                   fontSize: FontSizeResources.s16,
                                   fontWeight: FontWeightResources.bold,
                                   height: 1.6,
@@ -92,7 +92,7 @@ class QuoteOfTheDayWidget extends StatelessWidget {
                             style: TextStylesResources.caption.copyWith(
                               color: Theme.of(
                                 context,
-                              ).colorScheme.onPrimaryContainer.withOpacity(0.8),
+                              ).colorScheme.onSecondaryContainer.withOpacity(0.8),
                               fontSize: FontSizeResources.s9,
                               fontWeight: FontWeightResources.medium,
                               fontStyle: FontStyle.italic,

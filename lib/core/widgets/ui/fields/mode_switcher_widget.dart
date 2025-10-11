@@ -105,7 +105,7 @@ class _ModeSwitcherWidgetState<T> extends State<ModeSwitcherWidget<T>>
         curve: _animationCurve,
         child: Container(
           width: constraints.maxWidth / 2,
-          height: constraints.maxHeight * 0.9 ,
+          height: constraints.maxHeight * 0.9,
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.surface,
             borderRadius: BorderRadiusResource.switcherCardInnerBorderRadius,
@@ -127,7 +127,7 @@ class _ModeSwitcherWidgetState<T> extends State<ModeSwitcherWidget<T>>
       animation: _scaleAnimation,
       builder: (context, child) {
         final colorScheme = Theme.of(context).colorScheme;
-        final activeColor = colorScheme.primary;
+        final activeColor = colorScheme.onSurface;
         final inactiveColor = colorScheme.onSurfaceVariant;
 
         return Transform.scale(
@@ -152,7 +152,12 @@ class _ModeSwitcherWidgetState<T> extends State<ModeSwitcherWidget<T>>
                     color: isActive ? activeColor : inactiveColor,
                     fontWeight: isActive ? FontWeight.w600 : FontWeight.w500,
                   ),
-                  child: Text(text),
+                  child: Text(
+                    text,
+                    style: TextStyle(
+                      color: isActive ? activeColor : inactiveColor,
+                    ),
+                  ),
                 ),
               ],
             ),

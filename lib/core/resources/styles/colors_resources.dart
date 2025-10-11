@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
-
 import '../themes/extensions/container_colors.dart';
 
 class ColorsResourcesLight {
-  //
-  static const Color primary = Color(0xFF593EEB);
-  static const Color primaryContainer = Color(0xFFF0F1FF);
-  static const Color onPrimary = Color(0xFFFFFFFF);
+  static const Color primary = Color(0xFF0f172a);
+  static const Color onPrimary = Color(0xffF5F5F5);
+  static const Color primaryContainer = Color(0xFFF3F3F3);
   static const Color onPrimaryContainer = Color(0xFF1A1A2E);
+  //
+  // static const Color primary = Color(0xFF2B267E);
+  // static const Color primary = Color(0xFF695BDF);
+  // static const Color primary = Color(0xFF5055D6);
+  // static const Color primary = Color(0xFF572BF8);
+  // static const Color primary = Color(0xFF3021AB);
+  // static const Color primary = Color(0xFF33006f);
+  //
+  // static const Color primary = Color(0xFF33006f);
+  // static const Color onPrimary = Color(0xFFFFFFFF);
+  // static const Color primaryContainer = Color(0xFFF0F1FF);
+  // static const Color onPrimaryContainer = Color(0xFF1A1A2E);
   //
   static const Color secondary = Color(0xff274A72);
   static const Color onSecondary = Color(0xffD0DFF0);
   static const Color secondaryContainer = Color(0xffF5F9FC);
-  static const Color onSecondaryContainer = Color(0xff2883DE);
+  static const Color onSecondaryContainer = Color(0xff2B5586);
   //
   static const Color tertiary = Color(0xFFE5D5F0);
   static const Color onTertiary = Color(0xFF553B69);
@@ -64,19 +74,6 @@ class ColorsResourcesLight {
   static const Color orange = Color(0xffFB6824);
   static const Color pink = Color(0xffFB24BE);
   //
-  static MaterialColor primaryState = MaterialColor(0xFF717171, <int, Color>{
-    50: Color(0xFFf8fafc),
-    100: Color(0xFFf1f5f9),
-    200: Color(0xFFe2e8f0),
-    300: Color(0xFFcbd5e1),
-    400: Color(0xFF94a3b8),
-    500: Color(0xFF64748b),
-    600: Color(0xFF475569),
-    700: Color(0xFF334155),
-    800: Color(0xFF1e293b),
-    900: Color(0xFF0f172a),
-  });
-  //
   static ContainerColors containerColors = ContainerColors(
     surfaceContainerLowest: Color(0xffFCFCFC),
     surfaceContainerLow: Color(0xffF6F6F6),
@@ -88,15 +85,21 @@ class ColorsResourcesLight {
 
 class ColorsResourcesDark {
   //
+  // static const Color primary = Color(0xffE6E6E6);
+  // static const Color primaryContainer = Color(0xff373737);
+  // static const Color onPrimary = Color(0xff0B0A10);
+  // static const Color onPrimaryContainer = Color(0xFFE8E9FF);
+  // //
+  // very good
   static const Color primary = Color(0xFF8B8DFF);
   static const Color primaryContainer = Color(0xFF1A1B2E);
   static const Color onPrimary = Color(0xFF0B0A10);
   static const Color onPrimaryContainer = Color(0xFFE8E9FF);
   //
-  static const Color secondary = Color(0xff6CB7FF);
+  static const Color secondary = Color(0xff366392);
   static const Color onSecondary = Color(0xffE8F2FA);
   static const Color secondaryContainer = Color(0xff1A2027);
-  static const Color onSecondaryContainer = Color(0xff2883DE);
+  static const Color onSecondaryContainer = Color(0xffB5D2F9);
   //
   static const Color tertiary = Color(0xFFF9A8D4);
   static const Color onTertiary = Color(0xFF1A0A12);
@@ -129,15 +132,6 @@ class ColorsResourcesDark {
   static const Color yellow = Color.fromARGB(255, 255, 210, 97);
   static const Color orange = Color.fromARGB(255, 255, 147, 96);
   static const Color pink = Color.fromARGB(255, 248, 105, 208);
-  //
-  static const MaterialColor primaryState = MaterialColor(0xFF717171, <int, Color>{
-    50: Color(0xFFFAFAFA),
-    100: Color(0xFFF5F5F5),
-    200: Color(0xFFEEEEEE),
-    300: Color(0xFFE0E0E0),
-    400: Color(0xFFBDBDBD),
-    500: Color(0xFF717171),
-  });
   //
   static ContainerColors containerColors = ContainerColors(
     surfaceContainerLowest: const Color(0xff050505),

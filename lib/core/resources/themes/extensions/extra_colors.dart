@@ -7,7 +7,6 @@ class ExtraColors extends ThemeExtension<ExtraColors> {
   final Color orange;
   final Color pink;
   final Color red;
-  final MaterialColor primaryState;
 
   ExtraColors({
     required this.blue,
@@ -16,7 +15,6 @@ class ExtraColors extends ThemeExtension<ExtraColors> {
     required this.orange,
     required this.pink,
     required this.red,
-    required this.primaryState,
   });
 
   @override
@@ -27,7 +25,6 @@ class ExtraColors extends ThemeExtension<ExtraColors> {
     Color? orange,
     Color? pink,
     Color? red,
-    MaterialColor? primaryState,
   }) {
     return ExtraColors(
       blue: blue ?? this.blue,
@@ -36,7 +33,6 @@ class ExtraColors extends ThemeExtension<ExtraColors> {
       orange: orange ?? this.orange,
       pink: pink ?? this.pink,
       red: red ?? this.red,
-      primaryState: primaryState ?? this.primaryState,
     );
   }
 
@@ -52,7 +48,6 @@ class ExtraColors extends ThemeExtension<ExtraColors> {
       orange: Color.lerp(orange, other.orange, t) ?? orange,
       pink: Color.lerp(pink, other.pink, t) ?? pink,
       red: Color.lerp(red, other.red, t) ?? red,
-      primaryState: primaryState,
     );
   }
 }

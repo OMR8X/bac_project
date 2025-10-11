@@ -1,6 +1,8 @@
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
+import 'package:bac_project/core/widgets/ui/icons/switch_theme_icon_widget.dart';
 import 'package:bac_project/presentation/home/widgets/lessons_navigation_card_bilder_widget.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,7 +35,13 @@ class _SearchViewState extends State<SearchView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.l10n.searchTitle), leading: CloseIconWidget()),
+      appBar: AppBar(
+        title: Text(context.l10n.searchTitle),
+        leading: CloseIconWidget(),
+        actions: [
+          if (kDebugMode) SwitchThemeIconWidget(),
+        ],
+      ),
       body: BlocConsumer<SearchBloc, SearchState>(
         listener: (context, state) {
           if (state.message?.isNotEmpty ?? false) {

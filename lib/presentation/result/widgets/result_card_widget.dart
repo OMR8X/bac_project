@@ -157,6 +157,9 @@ class _ResultCardWidgetState extends State<ResultCardWidget> {
   }
 
   Color _getScoreBackgroundColor(BuildContext context, int score) {
+    if (1 == 1) {
+      return Theme.of(context).colorScheme.surfaceContainer;
+    }
     if (score > 50) {
       if (score >= 85) {
         return Theme.of(context).extension<ExtraColors>()!.green.withAlpha(20);
@@ -169,6 +172,9 @@ class _ResultCardWidgetState extends State<ResultCardWidget> {
   }
 
   Color _getScoreTextColor(BuildContext context, int score) {
+    if (1 == 1) {
+      return Theme.of(context).colorScheme.onSurface;
+    }
     if (score > 50) {
       if (score >= 85) {
         return Theme.of(context).extension<ExtraColors>()!.green.darker(0.3);

@@ -131,7 +131,7 @@ class BottomNavTab extends StatelessWidget {
   Widget build(BuildContext context) {
     final color =
         selected
-            ? Theme.of(context).colorScheme.primary
+            ? Theme.of(context).colorScheme.onSurface
             : Theme.of(context).colorScheme.onSurfaceVariant;
 
     return GestureDetector(

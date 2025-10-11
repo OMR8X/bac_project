@@ -1,4 +1,5 @@
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
+import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/states/empty_state_body_widget.dart';
 import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
 import 'package:bac_project/features/notifications/domain/entities/notifications_topic.dart';
@@ -36,6 +37,7 @@ class _NotificationsTopicsViewState extends State<NotificationsTopicsView> {
           return Scaffold(
             appBar: AppBar(
               title: Text(context.l10n.notificationTopicsTitle),
+              leading: CloseIconWidget(),
               actions: [],
             ),
             body: switch (state.status) {

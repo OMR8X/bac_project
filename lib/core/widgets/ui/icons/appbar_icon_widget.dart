@@ -1,7 +1,6 @@
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class AppBarIconWidget extends StatelessWidget {
   const AppBarIconWidget({super.key, required this.icon, required this.onPressed, this.padding});
@@ -23,9 +22,7 @@ class AppBarIconWidget extends StatelessWidget {
                   SizesResources.iconButtonAppBarHeight,
                   SizesResources.iconButtonAppBarHeight,
                 ),
-
-                // foregroundColor: Theme.of(context).colorScheme.onSurface,
-                foregroundColor: Color(0xff55534F),
+                foregroundColor: Theme.of(context).colorScheme.onSurfaceVariant,
                 backgroundColor: Theme.of(context).colorScheme.surface,
                 padding: Paddings.zero,
               ),

@@ -11,8 +11,7 @@ class NotificationsIconWidget extends StatelessWidget {
     return AppBarIconWidget(
       icon: Image.asset(
         UIImagesResources.bellUIIcon,
-        // color: Theme.of(context).colorScheme.onSurface,
-        color: Color(0xff55534F),
+        color: Theme.of(context).colorScheme.onSurfaceVariant,
       ),
       onPressed: () {
         context.pushNamed(Routes.notifications.name);

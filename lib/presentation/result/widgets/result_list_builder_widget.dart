@@ -11,7 +11,6 @@ import 'result_card_widget.dart';
 
 class ResultListBuilderWidget extends StatelessWidget {
   final List<Result> results;
-
   const ResultListBuilderWidget({super.key, required this.results});
 
   @override

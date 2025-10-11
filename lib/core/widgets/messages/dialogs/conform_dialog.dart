@@ -30,7 +30,7 @@ showConformDialog({
 
               ///
               const SizedBox(height: SpacesResources.s10),
-              
+
               Divider(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -46,10 +46,6 @@ showConformDialog({
                   SizedBoxes.s4h,
                   Expanded(
                     child: FilledButton(
-                      style: FilledButton.styleFrom(
-                        backgroundColor: Theme.of(context).colorScheme.primary,
-                        foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                      ),
                       onPressed: () {
                         Navigator.of(context).pop();
                         onConform();

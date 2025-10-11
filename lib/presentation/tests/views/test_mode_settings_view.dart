@@ -23,6 +23,7 @@ import '../../../core/services/router/app_arguments.dart';
 import '../../../core/widgets/ui/fields/bottom_buttons_widget.dart';
 import '../../../core/resources/styles/spaces_resources.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import '../../../core/widgets/ui/icons/switch_theme_icon_widget.dart';
 import '../blocs/test_mode_settings/test_mode_settings_bloc.dart';
 
 class TestModeSettingsView extends StatelessWidget {
@@ -37,6 +38,7 @@ class TestModeSettingsView extends StatelessWidget {
         centerTitle: true,
         leading: CloseIconWidget(),
         actions: [
+          if (kDebugMode) SwitchThemeIconWidget(),
           BlocBuilder<TestModeSettingsBloc, TestModeSettingsState>(
             builder: (context, state) {
               if (state.status == TestModeSettingsStatus.loaded) {
@@ -454,6 +456,7 @@ class _LoadingView extends StatelessWidget {
             enableSounds: false,
             categories: List.generate(5, (index) => QuestionCategory.mock()),
             selectedCategories: [],
+
             selectedQuestionsCount: 0,
             selectedMode: TestMode.exploring,
             selectedUnitsIDs: List.generate(5, (index) => index),

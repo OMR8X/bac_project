@@ -5,6 +5,8 @@ import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/icons/appbar_icon_widget.dart';
+import 'package:bac_project/core/widgets/ui/icons/switch_theme_icon_widget.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class QuizzingAnswerTopControls extends StatelessWidget {
@@ -45,10 +47,14 @@ class QuizzingAnswerTopControls extends StatelessWidget {
               UIImagesResources.closeUIIcon,
               width: SizesResources.iconAppBarHeight,
               height: SizesResources.iconAppBarHeight,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
             ),
             style: IconButton.styleFrom(
               shape: RoundedRectangleBorder(
-                side: BorderSide(color: Theme.of(context).colorScheme.outline, width: 0.5),
+                side: BorderSide(
+                  color: Theme.of(context).colorScheme.outlineVariant,
+                  width: SizesResources.iconButtonBorderWidth,
+                ),
                 borderRadius: BorderRadiusResource.buttonBorderRadius,
               ),
             ),
@@ -57,7 +63,10 @@ class QuizzingAnswerTopControls extends StatelessWidget {
         Container(
           height: SizesResources.iconButtonAppBarHeight,
           decoration: BoxDecoration(
-            border: Border.all(color: Theme.of(context).colorScheme.outline, width: 0.5),
+            border: Border.all(
+              color: Theme.of(context).colorScheme.outlineVariant,
+              width: SizesResources.iconButtonBorderWidth,
+            ),
             borderRadius: BorderRadiusResource.buttonBorderRadius,
           ),
           margin: EdgeInsets.only(
@@ -86,7 +95,10 @@ class QuizzingAnswerTopControls extends StatelessWidget {
         Container(
           height: SizesResources.iconButtonAppBarHeight,
           decoration: BoxDecoration(
-            border: Border.all(color: Theme.of(context).colorScheme.outline, width: 0.5),
+            border: Border.all(
+              color: Theme.of(context).colorScheme.outlineVariant,
+              width: SizesResources.iconButtonBorderWidth,
+            ),
             borderRadius: BorderRadiusResource.buttonBorderRadius,
           ),
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -95,10 +107,12 @@ class QuizzingAnswerTopControls extends StatelessWidget {
               _formatQuestionCount(current, total),
               style: TextStylesResources.cardMediumTitle.copyWith(
                 fontWeight: FontWeightResources.regular,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
               ),
             ),
           ),
         ),
+        if (kDebugMode) SwitchThemeIconWidget(),
       ],
     );
   }

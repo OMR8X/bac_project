@@ -41,7 +41,7 @@ class ScoreGauge extends StatelessWidget {
             child: CustomPaint(
               painter: ArcGaugePainter(
                 percentage: percentage,
-                backgroundColor: theme.colorScheme.primaryContainer,
+                backgroundColor: theme.colorScheme.surfaceContainer,
                 foregroundColor: theme.colorScheme.onSurface,
                 strokeWidth: 24,
               ),
@@ -64,7 +64,7 @@ class ScoreGauge extends StatelessWidget {
                           text: timeTakenLabel,
                           style: TextStylesResources.subTitle.copyWith(
                             fontSize: FontSizeResources.s12,
-                            color: theme.extension<ExtraColors>()!.primaryState[500]!,
+                            color: theme.colorScheme.onSurface,
                             fontWeight: FontWeightResources.medium,
                           ),
                         ),
@@ -72,7 +72,7 @@ class ScoreGauge extends StatelessWidget {
                           text: ' / ',
                           style: TextStylesResources.subTitle.copyWith(
                             fontSize: FontSizeResources.s12,
-                            color: theme.extension<ExtraColors>()!.primaryState[400]!,
+                            color: theme.colorScheme.onSurfaceVariant,
                             fontWeight: FontWeightResources.bold,
                           ),
                         ),
@@ -81,7 +81,7 @@ class ScoreGauge extends StatelessWidget {
                           text: fullTimeLabel,
                           style: TextStylesResources.subTitle.copyWith(
                             fontSize: FontSizeResources.s12,
-                            color: theme.extension<ExtraColors>()!.primaryState[400]!,
+                            color: theme.colorScheme.onSurfaceVariant,
                             fontWeight: FontWeightResources.regular,
                           ),
                         ),
@@ -92,7 +92,7 @@ class ScoreGauge extends StatelessWidget {
                             child: Image.asset(
                               UIImagesResources.timerUIIcon,
                               height: FontSizeResources.s12,
-                              color: theme.extension<ExtraColors>()!.primaryState[400]!,
+                              color: theme.colorScheme.onSurfaceVariant,
                             ),
                           ),
                         ),

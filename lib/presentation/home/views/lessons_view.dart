@@ -8,6 +8,7 @@ import 'package:bac_project/core/widgets/ui/icons/switch_theme_icon_widget.dart'
 import 'package:bac_project/features/tests/domain/entities/lesson.dart';
 import 'package:bac_project/presentation/home/widgets/lessons_navigation_card_bilder_widget.dart';
 import 'package:bac_project/presentation/home/widgets/lessons_test_card_widget.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -48,7 +49,10 @@ class _LessonsViewState extends State<LessonsView> {
       appBar: AppBar(
         title: Text(context.l10n.lessonsTitle),
         leading: ArrowBackIconWidget(),
-        actions: [SearchIconWidget(onPressed: _navigateToSearch), SwitchThemeIconWidget()],
+        actions: [
+          if (kDebugMode) SearchIconWidget(onPressed: _navigateToSearch),
+          SwitchThemeIconWidget(),
+        ],
       ),
       body: BlocProvider(
         create: (_) => context.read<LessonsBloc>(),

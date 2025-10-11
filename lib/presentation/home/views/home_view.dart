@@ -21,6 +21,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../core/services/router/routes.dart';
 import '../../../core/widgets/animations/skeletonizer_effect_list_wraper.dart';
 
+import '../../../core/widgets/ui/icons/switch_theme_icon_widget.dart';
 import '../../../core/widgets/ui/unit_card_widget.dart';
 import '../../../features/notifications/domain/entities/app_notification.dart';
 import '../../../features/tests/domain/entities/unit.dart';
@@ -59,7 +60,8 @@ class _HomeViewState extends State<HomeView> {
               );
             },
           ),
-          //  SwitchThemeIconWidget()
+
+          if (kDebugMode) SwitchThemeIconWidget(),
         ],
       ),
       body: BlocProvider.value(
@@ -94,16 +96,15 @@ class _LoadedView extends StatelessWidget {
       padding: Paddings.screenSidesPadding,
       child: CustomScrollView(
         slivers: [
-          SliverPadding(
-            padding: EdgeInsetsGeometry.only(top: Paddings.listViewPadding.top),
-            sliver: SliverFloatingHeader(
-              snapMode: FloatingHeaderSnapMode.overlay,
-              child: QuoteOfTheDayWidget(
-                quote: fakeQuotes[Random().nextInt(fakeQuotes.length - 1)],
-              ),
-            ),
-          ),
-
+          // SliverPadding(
+          //   padding: EdgeInsetsGeometry.only(top: Paddings.listViewPadding.top),
+          //   sliver: SliverFloatingHeader(
+          //     snapMode: FloatingHeaderSnapMode.overlay,
+          //     child: QuoteOfTheDayWidget(
+          //       quote: fakeQuotes[Random().nextInt(fakeQuotes.length - 1)],
+          //     ),
+          //   ),
+          // ),
           SliverPadding(
             padding: Paddings.listViewPadding,
             sliver: HomeCardsBuilderWidget(units: state.units),

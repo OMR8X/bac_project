@@ -72,7 +72,6 @@ class AppLightTheme {
           orange: ColorsResourcesLight.orange,
           pink: ColorsResourcesLight.pink,
           red: ColorsResourcesLight.error,
-          primaryState: ColorsResourcesLight.primaryState,
         ),
         OptionCardColors(
           borders: ColorsResourcesLight.outlineVariant,
@@ -130,7 +129,7 @@ class AppLightTheme {
       chipTheme: ChipThemeData(
         // Unselected text
         labelStyle: TextStylesResources.chipLabelStyle.copyWith(
-          color: ColorsResourcesLight.primary,
+          color: ColorsResourcesLight.onSurface,
         ),
         // Selected text
         secondaryLabelStyle: TextStylesResources.chipLabelStyle.copyWith(
@@ -140,7 +139,7 @@ class AppLightTheme {
         selectedColor: ColorsResourcesLight.primaryContainer,
         color: WidgetStateProperty.resolveWith<Color>((states) {
           if (states.contains(WidgetState.selected)) {
-            return ColorsResourcesLight.primary;
+            return ColorsResourcesLight.onPrimaryContainer;
           }
           return ColorsResourcesLight.containerColors.surfaceContainer;
         }),
@@ -221,8 +220,8 @@ class AppLightTheme {
         style: ElevatedButton.styleFrom(
           elevation: 0,
           shadowColor: Colors.transparent,
-          backgroundColor: ColorsResourcesLight.primaryState[100],
-          foregroundColor: ColorsResourcesLight.primaryState[800],
+          backgroundColor: ColorsResourcesLight.primaryContainer,
+          foregroundColor: ColorsResourcesLight.onPrimaryContainer,
           shape: RoundedSuperellipseBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
           textStyle: TextStylesResources.button,
           minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
@@ -286,7 +285,8 @@ class AppLightTheme {
             SizesResources.iconButtonAppBarHeight,
           ),
           backgroundColor: ColorsResourcesLight.surface,
-          foregroundColor: ColorsResourcesLight.onSurface,
+          // foregroundColor: ColorsResourcesLight.onSurface,
+          foregroundColor: Color(0xff55534F),
           shape: RoundedSuperellipseBorder(
             side: BorderSide(
               color: ColorsResourcesLight.outlineVariant,

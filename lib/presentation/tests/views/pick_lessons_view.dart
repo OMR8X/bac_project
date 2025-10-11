@@ -16,6 +16,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bac_project/presentation/tests/blocs/pick_lessons/pick_lessons_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:go_router/go_router.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class PickLessonsView extends StatefulWidget {
   final PickLessonsArguments arguments;
@@ -78,7 +79,9 @@ class _PickLessonsViewState extends State<PickLessonsView> {
         child: BlocBuilder<PickLessonsBloc, PickLessonsState>(
           builder: (context, state) {
             if (state.status == PickLessonsStatus.loading) {
-              return const _PickLessonsLoadingWidget();
+              return const _LoadingView();
+            } else if (state.status == PickLessonsStatus.loaded) {
+              return _LoadedView(state: state);
             } else if (state.status == PickLessonsStatus.error) {
               return ErrorStateBodyWidget(
                 title: 'Failed to Load Lessons',
@@ -89,54 +92,6 @@ class _PickLessonsViewState extends State<PickLessonsView> {
                   );
                 },
               );
-            } else if (state.status == PickLessonsStatus.loaded) {
-              return Stack(
-                children: [
-                  AnimationLimiter(
-                    child: ListView.builder(
-                      itemCount: state.allLessons.length,
-                      padding: Paddings.listViewPadding,
-                      itemBuilder: (context, index) {
-                        final lesson = state.allLessons[index];
-                        final isSelected = state.pickedLessonsId.contains(lesson.id);
-                        return StaggeredItemWrapperWidget(
-                          position: index,
-                          child: LessonCardWidget(
-                            title: lesson.title,
-                            questionsCount: lesson.questionsCount,
-                            icon: Icons.book,
-                            isSelected: isSelected,
-                            onTap: () {
-                              if (isSelected) {
-                                context.read<PickLessonsBloc>().add(
-                                  UnselectLessonEvent(lesson: lesson),
-                                );
-                              } else {
-                                context.read<PickLessonsBloc>().add(
-                                  SelectLessonEvent(lesson: lesson),
-                                );
-                              }
-                            },
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: BottomButtonWidget(
-                      isEnabled: state.pickedLessonsId.isNotEmpty,
-                      onPressed: () {
-                        context.pushReplacement(
-                          Routes.testModeSettings.path,
-                          extra: TestModeSettingsArguments(lessonIds: state.pickedLessonsId),
-                        );
-                      },
-                      text: context.l10n.buttonsPick,
-                    ),
-                  ),
-                ],
-              );
             }
             return const SizedBox.shrink(); // Initial state or unexpected state
           },
@@ -146,20 +101,76 @@ class _PickLessonsViewState extends State<PickLessonsView> {
   }
 }
 
-class _PickLessonsLoadingWidget extends StatelessWidget {
-  const _PickLessonsLoadingWidget();
+class _LoadedView extends StatelessWidget {
+  const _LoadedView({
+    required this.state,
+  });
+
+  final PickLessonsState state;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: Paddings.screenSidesPadding,
-      child: SkeletonizerEffectListWrapper.loading(
-        child: LessonCardWidget(
-          icon: Icons.school,
-          title: Lesson.mock().title,
-          questionsCount: Lesson.mock().questionsCount,
-          onTap: () {},
-          isSelected: false,
+    return Stack(
+      children: [
+        AnimationLimiter(
+          child: ListView.builder(
+            itemCount: state.allLessons.length,
+            padding: Paddings.listViewPadding,
+            itemBuilder: (context, index) {
+              final lesson = state.allLessons[index];
+              final isSelected = state.pickedLessonsId.contains(lesson.id);
+              return StaggeredItemWrapperWidget(
+                position: index,
+                child: LessonCardWidget(
+                  title: lesson.title,
+                  questionsCount: lesson.questionsCount,
+                  icon: Icons.book,
+                  isSelected: isSelected,
+                  onTap: () {
+                    if (isSelected) {
+                      context.read<PickLessonsBloc>().add(
+                        UnselectLessonEvent(lesson: lesson),
+                      );
+                    } else {
+                      context.read<PickLessonsBloc>().add(
+                        SelectLessonEvent(lesson: lesson),
+                      );
+                    }
+                  },
+                ),
+              );
+            },
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: BottomButtonWidget(
+            isEnabled: state.pickedLessonsId.isNotEmpty,
+            onPressed: () {
+              context.pushReplacement(
+                Routes.testModeSettings.path,
+                extra: TestModeSettingsArguments(lessonIds: state.pickedLessonsId),
+              );
+            },
+            text: context.l10n.buttonsPick,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _LoadingView extends StatelessWidget {
+  const _LoadingView();
+
+  @override
+  Widget build(BuildContext context) {
+    return Skeletonizer(
+      child: _LoadedView(
+        state: PickLessonsState(
+          allLessons: List.generate(10, (index) => Lesson.mock()),
+          pickedLessonsId: [],
+          status: PickLessonsStatus.loaded,
         ),
       ),
     );

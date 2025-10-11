@@ -2,6 +2,7 @@ import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/widgets/animations/skeletonizer_effect_list_wraper.dart';
 import 'package:bac_project/core/widgets/ui/icons/arrow_back_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
+import 'package:bac_project/core/widgets/ui/icons/switch_theme_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/states/empty_state_body_widget.dart';
 import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
 import 'package:bac_project/features/notifications/data/settings/app_local_notifications_settings.dart';
@@ -9,6 +10,7 @@ import 'package:bac_project/features/notifications/domain/entities/app_notificat
 import 'package:bac_project/presentation/notifications/state/explore_notifications/notifications_bloc.dart';
 import 'package:bac_project/presentation/notifications/widgets/notification_card_widget.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -78,21 +80,7 @@ class _NotificationsViewState extends State<NotificationsView> {
               title: Text(context.l10n.navigationNotifications),
               leading: CloseIconWidget(),
               actions: [
-                IconButton(
-                  onPressed: () {
-                    FlutterLocalNotificationsPlugin().show(
-                      DateTime.now().millisecondsSinceEpoch % 2147483647, // Ensure it fits in int32
-                      "title",
-                      "body",
-                      NotificationDetails(
-                        iOS: DarwinNotificationDetails(
-                          categoryIdentifier: 'cancel_operation_category',
-                        ),
-                      ),
-                    );
-                  },
-                  icon: Icon(Icons.settings),
-                ),
+                if (kDebugMode) SwitchThemeIconWidget(),
               ],
             ),
             body: switch (state.status) {

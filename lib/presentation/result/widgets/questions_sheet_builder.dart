@@ -118,7 +118,7 @@ class _QuestionsSheetBuilderState extends State<QuestionsSheetBuilder> {
           alignment: Alignment.bottomCenter,
           child: SizedBox(
             height: SizesResources.buttonLargeHeight,
-            child: FilledButton(
+            child: ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },

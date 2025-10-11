@@ -1,7 +1,11 @@
+import 'dart:ui';
+
+import 'package:bac_project/core/widgets/ui/icons/switch_theme_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
 import 'package:bac_project/core/widgets/animations/skeletonizer_effect_list_wraper.dart';
 import 'package:bac_project/features/results/domain/entities/result.dart';
 import 'package:bac_project/presentation/result/widgets/result_card_widget.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -28,7 +32,12 @@ class _ExploreResultsViewState extends State<ExploreResultsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.l10n.resultsTitle)),
+      appBar: AppBar(
+        title: Text(context.l10n.resultsTitle),
+        actions: [
+          if (kDebugMode) SwitchThemeIconWidget(),
+        ],
+      ),
       body: BlocBuilder<ExploreResultsBloc, ExploreResultsState>(
         bloc: sl<ExploreResultsBloc>(),
         builder: (context, state) {
@@ -45,7 +54,9 @@ class _ExploreResultsViewState extends State<ExploreResultsView> {
           }
 
           if (state.isLoaded) {
-            return ResultListBuilderWidget(results: state.results);
+            return ResultListBuilderWidget(
+              results: state.results,
+            );
           }
 
           return const _ExploreResultsLoadingWidget();
@@ -61,7 +72,9 @@ class _ExploreResultsLoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Skeletonizer(
-      child: ResultListBuilderWidget(results: List.generate(5, (index) => Result.mock())),
+      child: ResultListBuilderWidget(
+        results: List.generate(5, (index) => Result.mock()),
+      ),
     );
   }
 }
