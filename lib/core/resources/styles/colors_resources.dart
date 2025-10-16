@@ -41,9 +41,12 @@ class ColorsResourcesLight {
   static const Color warningContainer = Color(0xffFDFBE6);
   static const Color onWarning = Color(0xff965A1C);
   //
-  static const Color surface = Color(0xffFFFFFF);
-  static const Color onSurface = Color(0xFF0f172a);
-  static const Color onBackground = Color(0xFF334155);
+  // static const Color surface = Color(0xffFFFFFF);
+  // static const Color onSurface = Color(0xFF0f172a);
+  // static const Color onBackground = Color(0xFF334155);
+  static const Color surface = Color(0xffF6F7FB);
+  static const Color onSurface = Color(0xFF292D46);
+  static const Color onBackground = Color(0xFF4E4D77);
   static const Color onSurfaceVariant = Color(0xff5B5B5B);
   // static const Color onSurface = Color(0xff0A0A10);
   // static const Color onSurfaceVariant = Color(0xff717171);
