@@ -50,7 +50,7 @@ class AppRouter {
   ///
   static final router = GoRouter(
     debugLogDiagnostics: false,
-    initialLocation: Routes.home.path,
+    initialLocation: Routes.designing.path,
     navigatorKey: _rootNavigatorKey,
     refreshListenable: sl<NavigationCubit>(),
     redirect: sl<NavigationCubit>().redirect,

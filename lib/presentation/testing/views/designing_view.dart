@@ -11,6 +11,7 @@ import 'package:bac_project/presentation/quizzing/widgets/textual_options_builde
 import 'package:bac_project/presentation/quizzing/widgets/Orderable_options_builder_widget.dart';
 import 'package:bac_project/presentation/tests/widgets/question_card_widget.dart';
 import 'package:collection/collection.dart';
+import 'package:cupertino_native/cupertino_native.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,8 @@ class DesigningView extends StatefulWidget {
 }
 
 class _DesigningViewState extends State<DesigningView> with TickerProviderStateMixin {
+  int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +42,50 @@ class _DesigningViewState extends State<DesigningView> with TickerProviderStateM
           SwitchThemeIconWidget(),
         ],
       ),
-      body: TestRichTextLinks(),
+      body: Stack(
+        children: [
+          // List of images
+          ListView.builder(
+            itemCount: 100,
+            itemBuilder: (context, index) {
+              return Image.network(
+                'https://picsum.photos/400/300?random=$index',
+                height: 200,
+                fit: BoxFit.cover,
+              );
+            },
+          ),
+          // Top navbar
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: TestingNavBar(_currentIndex, (index) {
+              setState(() {
+                _currentIndex = index;
+              });
+            }),
+          ),
+          // Bottom navbar
+        ],
+      ),
+    );
+  }
+}
+
+class TestingNavBar extends StatelessWidget {
+  const TestingNavBar(this.currentIndex, this.changePage);
+  final int currentIndex;
+  final void Function(int pageIndex) changePage;
+
+  @override
+  Widget build(BuildContext context) {
+    return CNTabBar(
+      items: const [
+        CNTabBarItem(label: 'Home', icon: CNSymbol('house.fill')),
+        CNTabBarItem(label: 'Results', icon: CNSymbol('chart.bar.fill')),
+        CNTabBarItem(label: 'Settings', icon: CNSymbol('gearshape.fill')),
+      ],
+      currentIndex: currentIndex,
+      onTap: (i) => changePage(i),
     );
   }
 }
