@@ -190,7 +190,7 @@ class TextStylesResources {
   static const TextStyle button = TextStyle(
     fontFamily: AppFontStyles.fontFamily,
     fontWeight: FontWeightResources.extraBold,
-    fontSize: FontSizeResources.s14,
+    fontSize: FontSizeResources.s12,
   );
 
   static const TextStyle menuButton = TextStyle(
