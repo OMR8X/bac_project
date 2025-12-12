@@ -15,6 +15,7 @@ class SizesResources {
   static const double iconButtonAppBarHeight = 48;
   static const double iconAppBarHeight = 20;
   static const double iconCardHeight = 26;
+  static const double iconSettingsTileHeight = 18;
   //
   static const double fieldBorderWidth = 1.0;
   static const double iconButtonBorderWidth = 2.0;

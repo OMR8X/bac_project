@@ -5,9 +5,13 @@ class GetResultLeaderboardResponse {
 
   const GetResultLeaderboardResponse({required this.topResults});
 
-  factory GetResultLeaderboardResponse.fromJson(List<dynamic> json) {
+  factory GetResultLeaderboardResponse.fromJson(Map<String, dynamic> json) {
     return GetResultLeaderboardResponse(
-      topResults: json.map((e) => ResultModel.fromJson(e as Map<String, dynamic>)).toList(),
+      topResults:
+          (json['results'] as List<dynamic>?)
+              ?.map((e) => ResultModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
     );
   }
 

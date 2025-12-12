@@ -544,17 +544,107 @@ abstract class AppLocalizations {
   /// **'تحديد الكل'**
   String get selectAll;
 
+  /// No description provided for @settingsAboutUs.
+  ///
+  /// In ar, this message translates to:
+  /// **'من نحن'**
+  String get settingsAboutUs;
+
+  /// No description provided for @settingsAccountTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'الحساب'**
+  String get settingsAccountTitle;
+
+  /// No description provided for @settingsContactUs.
+  ///
+  /// In ar, this message translates to:
+  /// **'اتصل بنا'**
+  String get settingsContactUs;
+
+  /// No description provided for @settingsHelpCenter.
+  ///
+  /// In ar, this message translates to:
+  /// **'مركز المساعدة'**
+  String get settingsHelpCenter;
+
+  /// No description provided for @settingsLanguage.
+  ///
+  /// In ar, this message translates to:
+  /// **'اللغة'**
+  String get settingsLanguage;
+
+  /// No description provided for @settingsManageNotifications.
+  ///
+  /// In ar, this message translates to:
+  /// **'إدارة الإشعارات'**
+  String get settingsManageNotifications;
+
   /// No description provided for @settingsManageNotificationTopics.
   ///
   /// In ar, this message translates to:
   /// **'تحديث بياناتك'**
   String get settingsManageNotificationTopics;
 
+  /// No description provided for @settingsManagerProfile.
+  ///
+  /// In ar, this message translates to:
+  /// **'الملف الشخصي'**
+  String get settingsManagerProfile;
+
+  /// No description provided for @settingsNotifications.
+  ///
+  /// In ar, this message translates to:
+  /// **'الإشعارات'**
+  String get settingsNotifications;
+
+  /// No description provided for @settingsPasswordAndSecurity.
+  ///
+  /// In ar, this message translates to:
+  /// **'كلمة المرور والأمان'**
+  String get settingsPasswordAndSecurity;
+
+  /// No description provided for @settingsPreferencesTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'التفضيلات'**
+  String get settingsPreferencesTitle;
+
+  /// No description provided for @settingsSupportTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'الدعم'**
+  String get settingsSupportTitle;
+
+  /// No description provided for @settingsSwitchToDarkTheme.
+  ///
+  /// In ar, this message translates to:
+  /// **'التبديل إلى المظهر الداكن'**
+  String get settingsSwitchToDarkTheme;
+
+  /// No description provided for @settingsSwitchToLightTheme.
+  ///
+  /// In ar, this message translates to:
+  /// **'التبديل إلى المظهر الفاتح'**
+  String get settingsSwitchToLightTheme;
+
+  /// No description provided for @settingsTheme.
+  ///
+  /// In ar, this message translates to:
+  /// **'المظهر'**
+  String get settingsTheme;
+
   /// No description provided for @settingsTitle.
   ///
   /// In ar, this message translates to:
   /// **'الإعدادات'**
   String get settingsTitle;
+
+  /// No description provided for @settingsUpdateMyPassword.
+  ///
+  /// In ar, this message translates to:
+  /// **'تحديث كلمة المرور'**
+  String get settingsUpdateMyPassword;
 
   /// No description provided for @showTrueAnswerSubtitle.
   ///

@@ -47,7 +47,7 @@ class ColorsResourcesLight {
   // static const Color surface = Color(0xffF6F7FB);
   // static const Color onSurface = Color(0xFF292D46);
   // static const Color onBackground = Color(0xFF4E4D77);
-  static const Color onSurfaceVariant = Color(0xff4D4E72);
+  static const Color onSurfaceVariant = Color(0xff7D7D7D);
   // static const Color onSurface = Color(0xff0A0A10);
   // static const Color onSurfaceVariant = Color(0xff717171);
   //

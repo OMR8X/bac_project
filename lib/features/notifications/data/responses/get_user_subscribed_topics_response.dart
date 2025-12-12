@@ -6,12 +6,13 @@ class GetUserSubscribedTopicsResponse {
 
   GetUserSubscribedTopicsResponse({required this.topics});
 
-  factory GetUserSubscribedTopicsResponse.fromJson(List<dynamic> json) {
+  factory GetUserSubscribedTopicsResponse.fromJson(Map<String, dynamic> json) {
     return GetUserSubscribedTopicsResponse(
       topics:
-          json
-              .map((topic) => NotificationTopicModel.fromJson(topic as Map<String, dynamic>))
-              .toList(),
+          (json['topics'] as List<dynamic>?)
+              ?.map((topic) => NotificationTopicModel.fromJson(topic as Map<String, dynamic>))
+              .toList() ??
+          [],
     );
   }
 }

@@ -14,9 +14,10 @@ class GetUnitsResponse {
   factory GetUnitsResponse.fromJson(dynamic json) {
     return GetUnitsResponse(
       units:
-          (json['units'] as List)
-              .map((unit) => UnitModel.fromJson(unit as Map<String, dynamic>))
-              .toList(),
+          (json['units'] as List?)
+              ?.map((unit) => UnitModel.fromJson(unit as Map<String, dynamic>))
+              .toList() ??
+          [],
     );
   }
   @override

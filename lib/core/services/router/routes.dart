@@ -23,6 +23,10 @@ enum Routes {
   notifications(name: 'notifications', path: '/notifications'),
   notificationsTopics(name: 'notifications-topics', path: '/notifications-topics'),
   updateUserData(name: 'update-user-data', path: '/update-user-data'),
+  updatePassword(name: 'update-password', path: '/update-password'),
+  aboutUs(name: 'about-us', path: '/about-us'),
+  helpCenter(name: 'help-center', path: '/help-center'),
+  contactUs(name: 'contact-us', path: '/contact-us'),
   fetchCustomQuestions(name: 'fetch-custom-questions', path: '/fetch-custom-questions'),
   motivationalQuote(name: 'motivational-quote', path: '/motivational-quote');
 

@@ -14,9 +14,10 @@ class GetTestOptionsResponse {
   factory GetTestOptionsResponse.fromJson(Map<String, dynamic> json) {
     return GetTestOptionsResponse(
       categories:
-          (json['categories'] as List).map((category) {
+          (json['categories'] as List?)?.map((category) {
             return QuestionCategoryModel.fromJson(category as Map<String, dynamic>);
-          }).toList(),
+          }).toList() ??
+          [],
     );
   }
 

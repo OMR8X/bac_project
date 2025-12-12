@@ -27,6 +27,10 @@ class Paddings {
     );
   }
 
+  static EdgeInsets get userInformationCardPadding {
+    return const EdgeInsets.symmetric(vertical: SpacesResources.s6, horizontal: SpacesResources.s2);
+  }
+
   static EdgeInsets screenTopPadding(BuildContext context) {
     return EdgeInsets.only(top: AppBar().preferredSize.height + MediaQuery.of(context).padding.top);
   }
@@ -183,6 +187,14 @@ class Margins {
 
   static EdgeInsets get cardMargin {
     return const EdgeInsets.symmetric(vertical: SpacesResources.s2);
+  }
+
+  static EdgeInsets get userInformationCardMargin {
+    return const EdgeInsets.symmetric(vertical: SpacesResources.s6);
+  }
+
+  static EdgeInsets get userInformationCardPadding {
+    return const EdgeInsets.symmetric(vertical: SpacesResources.s6, horizontal: SpacesResources.s6);
   }
 
   static EdgeInsets get snackbarMargin {

@@ -237,10 +237,55 @@ class AppLocalizationsAr extends AppLocalizations {
   String get selectAll => 'تحديد الكل';
 
   @override
+  String get settingsAboutUs => 'من نحن';
+
+  @override
+  String get settingsAccountTitle => 'الحساب';
+
+  @override
+  String get settingsContactUs => 'اتصل بنا';
+
+  @override
+  String get settingsHelpCenter => 'مركز المساعدة';
+
+  @override
+  String get settingsLanguage => 'اللغة';
+
+  @override
+  String get settingsManageNotifications => 'إدارة الإشعارات';
+
+  @override
   String get settingsManageNotificationTopics => 'تحديث بياناتك';
 
   @override
+  String get settingsManagerProfile => 'الملف الشخصي';
+
+  @override
+  String get settingsNotifications => 'الإشعارات';
+
+  @override
+  String get settingsPasswordAndSecurity => 'كلمة المرور والأمان';
+
+  @override
+  String get settingsPreferencesTitle => 'التفضيلات';
+
+  @override
+  String get settingsSupportTitle => 'الدعم';
+
+  @override
+  String get settingsSwitchToDarkTheme => 'التبديل إلى المظهر الداكن';
+
+  @override
+  String get settingsSwitchToLightTheme => 'التبديل إلى المظهر الفاتح';
+
+  @override
+  String get settingsTheme => 'المظهر';
+
+  @override
   String get settingsTitle => 'الإعدادات';
+
+  @override
+  String get settingsUpdateMyPassword => 'تحديث كلمة المرور';
 
   @override
   String get showTrueAnswerSubtitle => 'إظهار الإجابة الصحيحة بعد كل سؤال.';

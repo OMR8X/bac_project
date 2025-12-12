@@ -1,6 +1,10 @@
 import 'package:bac_project/core/services/router/app_transations.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
 import 'package:bac_project/presentation/auth/view/update_user_data_view.dart';
+import 'package:bac_project/presentation/auth/view/update_password_view.dart';
+import 'package:bac_project/presentation/settings/views/about_us_view.dart';
+import 'package:bac_project/presentation/settings/views/help_center_view.dart';
+import 'package:bac_project/presentation/settings/views/contact_us_view.dart';
 import 'package:bac_project/presentation/home/blocs/lessons_bloc.dart';
 import 'package:bac_project/presentation/home/views/home_view.dart';
 import 'package:bac_project/presentation/home/views/lessons_view.dart';
@@ -114,6 +118,86 @@ class AppRouter {
                 );
               },
               child: const UpdateUserDataView(),
+            ),
+      ),
+      // update password route
+      GoRoute(
+        name: Routes.updatePassword.name,
+        path: Routes.updatePassword.path,
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              transitionDuration: AppTransitions.transitionDuration,
+              reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
+              },
+              child: const UpdatePasswordView(),
+            ),
+      ),
+      // about us route
+      GoRoute(
+        name: Routes.aboutUs.name,
+        path: Routes.aboutUs.path,
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              transitionDuration: AppTransitions.transitionDuration,
+              reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
+              },
+              child: const AboutUsView(),
+            ),
+      ),
+      // help center route
+      GoRoute(
+        name: Routes.helpCenter.name,
+        path: Routes.helpCenter.path,
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              transitionDuration: AppTransitions.transitionDuration,
+              reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
+              },
+              child: const HelpCenterView(),
+            ),
+      ),
+      // contact us route
+      GoRoute(
+        name: Routes.contactUs.name,
+        path: Routes.contactUs.path,
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              transitionDuration: AppTransitions.transitionDuration,
+              reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
+              },
+              child: const ContactUsView(),
             ),
       ),
       // designing route
