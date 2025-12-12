@@ -17,15 +17,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
 import '../../../core/services/router/routes.dart';
-import '../../../core/widgets/animations/skeletonizer_effect_list_wraper.dart';
-
 import '../../../core/widgets/ui/icons/switch_theme_icon_widget.dart';
-import '../../../core/widgets/ui/unit_card_widget.dart';
-import '../../../features/notifications/domain/entities/app_notification.dart';
 import '../../../features/tests/domain/entities/unit.dart';
-
 import '../../notifications/state/explore_notifications/notifications_bloc.dart';
 import '../blocs/home_bloc.dart';
 import '../widgets/home_action_card_bilder_widget.dart';

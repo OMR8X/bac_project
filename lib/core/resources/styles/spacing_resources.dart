@@ -39,6 +39,10 @@ class Paddings {
     return const EdgeInsets.symmetric(horizontal: SpacesResources.s8, vertical: SpacesResources.s8);
   }
 
+  static EdgeInsets get customButtonPadding {
+    return const EdgeInsets.only(bottom: SpacesResources.s3);
+  }
+
   static EdgeInsets get searchBarPadding {
     return const EdgeInsets.symmetric(vertical: SpacesResources.s4);
   }

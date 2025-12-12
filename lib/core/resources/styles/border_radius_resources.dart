@@ -19,7 +19,7 @@ class BorderRadiusResource {
   static final bordersRadiusXLarge = BorderRadius.circular(10 * sizeUnit);
   static final bordersRadiusXXLarge = BorderRadius.circular(12 * sizeUnit);
   //
-  static final buttonBorderRadius = bordersRadiusSmall;
+  static final buttonBorderRadius = bordersRadiusMedium;
   //
   static final fieldBorderRadius = bordersRadiusMedium;
   //

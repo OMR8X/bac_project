@@ -47,10 +47,12 @@ class AnswerEvaluationsCardWidget extends StatelessWidget {
         margin: Margins.cardMargin,
         decoration: BoxDecoration(
           color: optionCardColors.backgroundCorrect,
-          // borderRadius: BorderRadiusResource.bordersRadiusTiny,
+          borderRadius: BorderRadiusResource.bordersRadiusTiny,
           border: Border(
             right: BorderSide(color: optionCardColors.bordersCorrect, width: 4),
-            // left: BorderSide(color: optionCardColors.bordersCorrect, width: 3),
+            left: BorderSide(color: optionCardColors.bordersCorrect, width: 0.5),
+            bottom: BorderSide(color: optionCardColors.bordersCorrect, width: 0.5),
+            top: BorderSide(color: optionCardColors.bordersCorrect, width: 0.5),
           ),
         ),
         child: Padding(
@@ -83,10 +85,12 @@ class AnswerEvaluationsCardWidget extends StatelessWidget {
         margin: Margins.cardMargin,
         decoration: BoxDecoration(
           color: optionCardColors.backgroundNotes,
-          // borderRadius: BorderRadiusResource.bordersRadiusTiny,
+          borderRadius: BorderRadiusResource.bordersRadiusTiny,
           border: Border(
             right: BorderSide(color: optionCardColors.bordersNotes, width: 4),
-            // left: BorderSide(color: optionCardColors.bordersNotes, width: 3),
+            left: BorderSide(color: optionCardColors.bordersNotes, width: 0.5),
+            bottom: BorderSide(color: optionCardColors.bordersNotes, width: 0.5),
+            top: BorderSide(color: optionCardColors.bordersNotes, width: 0.5),
           ),
         ),
         child: Padding(
@@ -94,11 +98,6 @@ class AnswerEvaluationsCardWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Text(
-              //   context.l10n.aiFeedbackLabel,
-              //   style: TextStylesResources.caption.copyWith(color: optionCardColors.textNotes),
-              // ),
-              // SizedBoxes.s2v,
               Text(
                 answerEvaluation!.notes!,
                 style: TextStylesResources.cardSmallTitle.copyWith(color: optionCardColors.text),

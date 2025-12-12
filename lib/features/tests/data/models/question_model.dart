@@ -91,33 +91,6 @@ class QuestionModel extends Question {
   }
 
   @override
-  QuestionModel copyWith({
-    int? id,
-    String? content,
-    List<Option>? options,
-    int? unitId,
-    int? lessonId,
-    String? imageUrl,
-    int? categoryId,
-    String? explain,
-    List<QuestionAnswer>? questionAnswers,
-    List<AnswerEvaluation>? answerEvaluations,
-  }) {
-    return QuestionModel(
-      id: id ?? this.id,
-      content: content ?? this.content,
-      options: options ?? this.options,
-      unitId: unitId ?? this.unitId,
-      lessonId: lessonId ?? this.lessonId,
-      imageUrl: imageUrl ?? this.imageUrl,
-      categoryId: categoryId ?? this.categoryId,
-      explain: explain ?? this.explain,
-      questionAnswers: questionAnswers ?? this.questionAnswers,
-      answerEvaluations: answerEvaluations ?? this.answerEvaluations,
-    );
-  }
-
-  @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     return other is QuestionModel &&

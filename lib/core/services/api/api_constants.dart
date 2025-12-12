@@ -4,7 +4,7 @@ class ApiSettings {
   //
   static const receiveTimeout = 60;
   static const sendTimeout = 60 * 60;
-  static const connectTimeout = 15;
+  static const connectTimeout = 10;
   //
   static const baseUrl = SupabaseSettings.url;
   //

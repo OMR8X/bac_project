@@ -3,16 +3,16 @@ import 'package:bac_project/core/services/api/supabase/supabase_settings.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import '../tokens/tokens_manager.dart';
-import 'api_constants.dart';
-import 'dio_factory.dart';
+import 'package:bac_project/core/services/tokens/tokens_manager.dart';
+import 'package:bac_project/core/services/api/api_constants.dart';
+import 'package:bac_project/core/services/api/dio_factory.dart';
 
 abstract class ApiClient {
   /// get request
   Future<Response> get(
     String uri, {
     Map<String, dynamic>? headers,
-    Map<String, dynamic> queryParameters = const {},
+    Map<String, dynamic> queryParameters = const <String, dynamic>{},
     ResponseType? responseType,
     CancelToken? cancelToken,
   });
@@ -22,7 +22,7 @@ abstract class ApiClient {
     String uri, {
     Object? body,
     Map<String, dynamic>? headers,
-    Map<String, dynamic> queryParameters = const {},
+    Map<String, dynamic> queryParameters = const <String, dynamic>{},
     ResponseType? responseType,
     Function(int, int)? onSendProgress,
     CancelToken? cancelToken,
@@ -33,7 +33,7 @@ abstract class ApiClient {
     String uri, {
     Object? body,
     Map<String, dynamic>? headers,
-    Map<String, dynamic> queryParameters = const {},
+    Map<String, dynamic> queryParameters = const <String, dynamic>{},
     ResponseType? responseType,
     CancelToken? cancelToken,
   });
@@ -43,7 +43,7 @@ abstract class ApiClient {
     String uri, {
     Object? body,
     Map<String, dynamic>? headers,
-    Map<String, dynamic> queryParameters = const {},
+    Map<String, dynamic> queryParameters = const <String, dynamic>{},
     ResponseType? responseType,
     CancelToken? cancelToken,
   });
@@ -59,7 +59,7 @@ class DioClient implements ApiClient {
     //
     _dioFactory = DioFactory();
     //
-    defaultHeaders = {
+    defaultHeaders = <String, String>{
       ApiHeaders.headerContentTypeKey: ApiHeaders.headerContentTypeJson,
       ApiHeaders.headerAcceptKey: ApiHeaders.headerContentTypeJson,
       ApiHeaders.headerApiKey: SupabaseSettings.anonKey,
@@ -72,7 +72,7 @@ class DioClient implements ApiClient {
       receiveTimeout: const Duration(seconds: ApiSettings.receiveTimeout),
       sendTimeout: const Duration(seconds: ApiSettings.sendTimeout),
       connectTimeout: const Duration(seconds: ApiSettings.connectTimeout),
-      validateStatus: (status) {
+      validateStatus: (int? status) {
         return true;
       },
     );
@@ -83,16 +83,16 @@ class DioClient implements ApiClient {
   Future<Response> get(
     String uri, {
     Map<String, dynamic>? headers,
-    Map<String, dynamic> queryParameters = const {},
+    Map<String, dynamic> queryParameters = const <String, dynamic>{},
     ResponseType? responseType,
     CancelToken? cancelToken,
   }) async {
-    final dio = await _getDio(
+    final Dio dio = await _getDio(
       headers: headers,
       params: queryParameters,
       responseType: responseType,
     );
-    final response = dio.get(uri);
+    final Future<Response> response = dio.get(uri);
     return response;
   }
 
@@ -101,17 +101,17 @@ class DioClient implements ApiClient {
     String uri, {
     Object? body,
     Map<String, dynamic>? headers,
-    Map<String, dynamic> queryParameters = const {},
+    Map<String, dynamic> queryParameters = const <String, dynamic>{},
     ResponseType? responseType,
     Function(int, int)? onSendProgress,
     CancelToken? cancelToken,
   }) async {
-    final dio = await _getDio(
+    final Dio dio = await _getDio(
       headers: headers,
       params: queryParameters,
       responseType: responseType,
     );
-    final response = dio.post(
+    final Future<Response> response = dio.post(
       uri,
       data: body,
       onSendProgress: onSendProgress,
@@ -125,16 +125,16 @@ class DioClient implements ApiClient {
     String uri, {
     Object? body,
     Map<String, dynamic>? headers,
-    Map<String, dynamic> queryParameters = const {},
+    Map<String, dynamic> queryParameters = const <String, dynamic>{},
     ResponseType? responseType,
     CancelToken? cancelToken,
   }) async {
-    final dio = await _getDio(
+    final Dio dio = await _getDio(
       headers: headers,
       params: queryParameters,
       responseType: responseType,
     );
-    final response = dio.put(uri, data: body);
+    final Future<Response> response = dio.put(uri, data: body);
     return response;
   }
 
@@ -143,16 +143,16 @@ class DioClient implements ApiClient {
     String uri, {
     Object? body,
     Map<String, dynamic>? headers,
-    Map<String, dynamic> queryParameters = const {},
+    Map<String, dynamic> queryParameters = const <String, dynamic>{},
     ResponseType? responseType,
     CancelToken? cancelToken,
   }) async {
-    final dio = await _getDio(
+    final Dio dio = await _getDio(
       headers: headers,
       params: queryParameters,
       responseType: responseType,
     );
-    final response = dio.delete(uri, data: body);
+    final Future<Response> response = dio.delete(uri, data: body);
     return response;
   }
 
@@ -164,13 +164,13 @@ class DioClient implements ApiClient {
     final Dio dio = _dioFactory();
     //
     // Start with defaultHeaders that always contain apikey
-    final Map<String, dynamic> effectiveHeaders = {...defaultHeaders};
+    final Map<String, dynamic> effectiveHeaders = <String, dynamic>{...defaultHeaders};
 
     if (headers != null) {
       effectiveHeaders.addAll(headers);
     }
 
-    final token = Supabase.instance.client.auth.currentSession?.accessToken;
+    final String? token = Supabase.instance.client.auth.currentSession?.accessToken;
 
     if (token != null && token.isNotEmpty) {
       effectiveHeaders[ApiHeaders.headerAuthorizationKey] = 'Bearer $token';
@@ -182,7 +182,7 @@ class DioClient implements ApiClient {
     options.headers = effectiveHeaders;
     options.headers[ApiHeaders.headerAcceptKey] = ApiHeaders.headerContentTypeJson;
 
-    options.queryParameters = params ?? {};
+    options.queryParameters = params ?? <String, dynamic>{};
 
     dio.options = options.copyWith(responseType: responseType);
 

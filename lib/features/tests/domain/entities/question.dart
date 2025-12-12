@@ -1,3 +1,4 @@
+import 'package:bac_project/core/services/quizz/models/question_type.dart';
 import 'package:bac_project/features/results/domain/entities/answer_evaluation.dart';
 import 'package:bac_project/features/tests/domain/entities/option.dart';
 import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
@@ -14,6 +15,7 @@ class Question {
   final String? imageUrl;
   //
   final List<Option> options;
+  final QuestionType? type;
 
   final int? categoryId;
 
@@ -26,6 +28,7 @@ class Question {
     required this.id,
     required this.content,
     required this.options,
+    this.type,
     this.unitId,
     required this.lessonId,
     this.imageUrl,
@@ -53,6 +56,7 @@ class Question {
     int? id,
     String? content,
     List<Option>? options,
+    QuestionType? type,
     int? unitId,
     int? lessonId,
     String? imageUrl,
@@ -65,6 +69,7 @@ class Question {
       id: id ?? this.id,
       content: content ?? this.content,
       options: options ?? this.options,
+      type: type ?? this.type,
       unitId: unitId ?? this.unitId,
       lessonId: lessonId ?? this.lessonId,
       imageUrl: imageUrl ?? this.imageUrl,
@@ -85,6 +90,7 @@ class Question {
         Option(id: 3, questionId: 1, content: 'Option C', isCorrect: false),
         Option(id: 4, questionId: 1, content: 'Option D', isCorrect: false),
       ],
+      type: QuestionType.singleChoice,
       unitId: 1,
       lessonId: 1,
       imageUrl: null,
@@ -104,6 +110,7 @@ class Question {
       id: 0,
       content: '',
       options: [],
+      type: null,
       lessonId: 0,
       imageUrl: null,
       categoryId: null,

@@ -19,7 +19,6 @@ Future<void> main() async {
     await ServiceLocator.init();
     await Supabase.instance.client.auth.refreshSession();
   } catch (_) {}
-  // LocalizationManager migrated; ARB-based localization loaded at build time.
 
   // ///
   // await sl<AppBackgroundService>().initializeBackgroundServiceForUploads();

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import '../themes/extensions/container_colors.dart';
 
 class ColorsResourcesLight {
-  static const Color primary = Color(0xFF0f172a);
+  static const Color primary = Color(0xFF4648D4);
   static const Color onPrimary = Color(0xffF5F5F5);
   static const Color primaryContainer = Color(0xFFF3F3F3);
-  static const Color onPrimaryContainer = Color(0xFF1A1A2E);
+  static const Color onPrimaryContainer = Color(0xFF4648D4);
   //
   // static const Color primary = Color(0xFF2B267E);
   // static const Color primary = Color(0xFF695BDF);
@@ -41,13 +41,13 @@ class ColorsResourcesLight {
   static const Color warningContainer = Color(0xffFDFBE6);
   static const Color onWarning = Color(0xff965A1C);
   //
-  // static const Color surface = Color(0xffFFFFFF);
-  // static const Color onSurface = Color(0xFF0f172a);
-  // static const Color onBackground = Color(0xFF334155);
-  static const Color surface = Color(0xffF6F7FB);
-  static const Color onSurface = Color(0xFF292D46);
-  static const Color onBackground = Color(0xFF4E4D77);
-  static const Color onSurfaceVariant = Color(0xff5B5B5B);
+  static const Color surface = Color(0xffF9F9F9);
+  static const Color onSurface = Color(0xFF494949);
+  static const Color onBackground = Color(0xFF747474);
+  // static const Color surface = Color(0xffF6F7FB);
+  // static const Color onSurface = Color(0xFF292D46);
+  // static const Color onBackground = Color(0xFF4E4D77);
+  static const Color onSurfaceVariant = Color(0xff4D4E72);
   // static const Color onSurface = Color(0xff0A0A10);
   // static const Color onSurfaceVariant = Color(0xff717171);
   //
@@ -56,8 +56,9 @@ class ColorsResourcesLight {
   // static const Color surfaceContainerHighest = Color(0xffBDBDBD);
   //
   // static Color outline = primaryState[300]!;
-  static const Color outline = Color(0xffE5E4E5);
-  static const Color outlineVariant = Color(0xffF5F5F5);
+  static const Color outline = Color(0xffE7E7F2);
+  static const Color outlineVariant = Color(0xffF1F1F7);
+  // maybe using version of outline variant : 0xffE7E7F2
   //
   static const Color shadow = Color(0xff1D212F);
   //
@@ -78,12 +79,20 @@ class ColorsResourcesLight {
   static const Color pink = Color(0xffFB24BE);
   //
   static ContainerColors containerColors = ContainerColors(
-    surfaceContainerLowest: Color(0xffFCFCFC),
-    surfaceContainerLow: Color(0xffF6F6F6),
-    surfaceContainer: Color(0xffF0F0F0),
+    surfaceContainerLowest: Color(0xffFAFAFD),
+    surfaceContainerLow: Color(0xffF1F1FB),
+    surfaceContainer: Color(0xffE9E9F9),
     surfaceContainerHigh: Color(0xffEBEBEB),
     surfaceContainerHighest: Color(0xffE6E6E6),
   );
+  // //
+  // static ContainerColors containerColors = ContainerColors(
+  //   surfaceContainerLowest: Color(0xffFCFCFC),
+  //   surfaceContainerLow: Color(0xffF6F6F6),
+  //   surfaceContainer: Color(0xffF0F0F0),
+  //   surfaceContainerHigh: Color(0xffEBEBEB),
+  //   surfaceContainerHighest: Color(0xffE6E6E6),
+  // );
 }
 
 class ColorsResourcesDark {

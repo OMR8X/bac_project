@@ -50,7 +50,7 @@ class AppRouter {
   ///
   static final router = GoRouter(
     debugLogDiagnostics: false,
-    initialLocation: Routes.designing.path,
+    initialLocation: Routes.home.path,
     navigatorKey: _rootNavigatorKey,
     refreshListenable: sl<NavigationCubit>(),
     redirect: sl<NavigationCubit>().redirect,
@@ -459,7 +459,6 @@ class AppRouter {
           StatefulShellBranch(
             navigatorKey: _rootNavigatorHome,
             routes: [
-              ///
               /// Home route
               GoRoute(
                 name: Routes.home.name,
@@ -487,7 +486,6 @@ class AppRouter {
           StatefulShellBranch(
             navigatorKey: _rootNavigatorResult,
             routes: [
-              ///
               /// Result route
               GoRoute(
                 name: Routes.exploreResults.name,
@@ -514,7 +512,6 @@ class AppRouter {
           StatefulShellBranch(
             navigatorKey: _rootNavigatorSetting,
             routes: [
-              ///
               /// Setting route
               GoRoute(
                 name: Routes.setting.name,
