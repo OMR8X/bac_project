@@ -56,4 +56,4 @@ app.*.map.json
 supabase/
 
 # Database files and configurations
-database/
+# database/
