@@ -8,7 +8,7 @@ AS $$
       'units', json_agg(unit_row)
     )::jsonb,
     true,
-    api.get_message('units_retrieved')
+    api.get_message('units_get_total_units_retrieved')
   )
   FROM (
     SELECT
@@ -24,3 +24,8 @@ AS $$
     ORDER BY u.id ASC
   ) AS unit_row;
 $$;
+
+-- Messages for fn_api_units_get_total_units
+INSERT INTO messages (key, message) VALUES
+  ('units_get_total_units_retrieved', 'تم استرجاع الوحدات بنجاح')
+ON CONFLICT (key) DO UPDATE SET message = EXCLUDED.message;

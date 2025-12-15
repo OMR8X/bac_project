@@ -53,13 +53,18 @@ LANGUAGE SQL as $$
             ),
             'version', json_build_object(
                'id', '1',
-               'current_version', '2.0.0',
-               'minimum_version', '1.5.0',
+               'current_version', '1.0.0',
+               'minimum_version', '1.0.0',
                'update_link', 'https://example.com/update',
-               'app_version', '2.0.0'
+               'app_version', '1.0.0'
             )
         )::jsonb,
         true,
-        api.get_message('app_settings_retrieved')
+        api.get_message('settings_get_app_settings_retrieved')
     );
 $$;
+
+-- Messages for fn_api_settings_get_app_settings
+INSERT INTO messages (key, message) VALUES
+  ('settings_get_app_settings_retrieved', 'تم استرجاع إعدادات التطبيق بنجاح')
+ON CONFLICT (key) DO UPDATE SET message = EXCLUDED.message;

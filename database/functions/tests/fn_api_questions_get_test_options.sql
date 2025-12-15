@@ -11,7 +11,7 @@ AS $$
             'categories', coalesce(json_agg(category_row ORDER BY category_row.title), '[]'::json)
         )::jsonb,
         true,
-        api.get_message('test_options_retrieved')
+        api.get_message('questions_get_test_options_retrieved')
     )
     FROM (
         SELECT
@@ -32,3 +32,8 @@ AS $$
         HAVING COUNT(q.id) > 0
     ) AS category_row;
 $$;
+
+-- Messages for fn_api_questions_get_test_options
+INSERT INTO messages (key, message) VALUES
+  ('questions_get_test_options_retrieved', 'تم استرجاع خيارات الاختبار بنجاح')
+ON CONFLICT (key) DO UPDATE SET message = EXCLUDED.message;

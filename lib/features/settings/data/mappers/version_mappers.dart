@@ -9,6 +9,7 @@ extension VersionMapper on Version {
       minimumVersion: minimumVersion,
       updateLink: updateLink,
       appVersion: appVersion,
+      buildNumber: buildNumber,
     );
   }
 }
@@ -21,6 +22,7 @@ extension VersionModelMapper on VersionModel {
       minimumVersion: minimumVersion,
       updateLink: updateLink,
       appVersion: appVersion,
+      buildNumber: buildNumber,
     );
   }
 }

@@ -34,9 +34,11 @@ select api.api_response(
     )
   ),
   true,
-  api.get_message('user_notifications_retrieved')
+  api.get_message('notifications_get_user_notifications_retrieved')
 );
 $$;
 
-
-
+-- Messages for fn_api_notifications_get_user_notifications
+INSERT INTO messages (key, message) VALUES
+  ('notifications_get_user_notifications_retrieved', 'تم استرجاع إشعارات المستخدم بنجاح')
+ON CONFLICT (key) DO UPDATE SET message = EXCLUDED.message;

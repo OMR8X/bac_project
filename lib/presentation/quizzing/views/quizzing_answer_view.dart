@@ -102,6 +102,7 @@ class QuizzingAnswerView extends StatelessWidget {
             debugPrint("rebuild action buttons");
             return _buildActionButtons(context, state as QuizzingAnswerQuestion);
           },
+          
         ),
       ],
     );

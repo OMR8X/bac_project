@@ -26,7 +26,13 @@ begin
   return api.api_response(
     jsonb_build_object('updated_count', updated_count),
     true,
-    api.get_message('notifications_marked_read')
+    api.get_message('notifications_mark_notifications_as_read_succeeded')
   );
 end;
 $$;
+
+-- Messages for fn_api_notifications_mark_notifications_as_read
+INSERT INTO messages (key, message) VALUES
+  ('notifications_mark_notifications_as_read_succeeded', 'تم تعليم الإشعارات كمقروءة بنجاح')
+ON CONFLICT (key) DO UPDATE SET message = EXCLUDED.message;
+

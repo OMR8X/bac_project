@@ -20,6 +20,7 @@ showDetailsDialog({required BuildContext context, required Widget content, requi
               ///
               Padding(padding: Paddings.dialogBody, child: content),
 
+              ///
               Divider(),
 
               ///

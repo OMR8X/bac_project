@@ -9,7 +9,7 @@ BEGIN
       coalesce(json_agg(to_jsonb(r)), '[]'::json)
     ),
     true,
-    api.get_message('results_leaderboard_retrieved')
+    api.get_message('results_get_result_leaderboard_retrieved')
   )
   FROM (
     SELECT *
@@ -18,3 +18,9 @@ BEGIN
   ) r;
 END;
 $$ LANGUAGE plpgsql;
+
+-- Messages for fn_api_results_get_result_leaderboard
+INSERT INTO messages (key, message) VALUES
+  ('results_get_result_leaderboard_retrieved', 'تم استرجاع لوحة الصدارة للنتائج بنجاح')
+ON CONFLICT (key) DO UPDATE SET message = EXCLUDED.message;
+

@@ -801,6 +801,102 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'الغاء التحديد'**
   String get unselectAll;
+
+  /// No description provided for @updateAvailableCurrentVersion.
+  ///
+  /// In ar, this message translates to:
+  /// **'الإصدار الحالي: {version}'**
+  String updateAvailableCurrentVersion(Object version);
+
+  /// No description provided for @updateAvailableDescription.
+  ///
+  /// In ar, this message translates to:
+  /// **'نوصي بتحديث التطبيق للحصول على أحدث المزايا وتحسينات الأداء.'**
+  String get updateAvailableDescription;
+
+  /// No description provided for @updateAvailableNewVersion.
+  ///
+  /// In ar, this message translates to:
+  /// **'الإصدار الجديد: {version}'**
+  String updateAvailableNewVersion(Object version);
+
+  /// No description provided for @updateAvailablePrimaryButton.
+  ///
+  /// In ar, this message translates to:
+  /// **'تحديث الآن'**
+  String get updateAvailablePrimaryButton;
+
+  /// No description provided for @updateAvailableRequiredLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'التحديث مطلوب'**
+  String get updateAvailableRequiredLabel;
+
+  /// No description provided for @updateAvailableRequiredMessage.
+  ///
+  /// In ar, this message translates to:
+  /// **'هذا التحديث إجباري ولا يمكن استخدام التطبيق بدونه.'**
+  String get updateAvailableRequiredMessage;
+
+  /// No description provided for @updateAvailableSkipButton.
+  ///
+  /// In ar, this message translates to:
+  /// **'تخطي الآن'**
+  String get updateAvailableSkipButton;
+
+  /// No description provided for @updateAvailableTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'يتوفر تحديث جديد للتطبيق'**
+  String get updateAvailableTitle;
+
+  /// No description provided for @versionDetailsAppVersionLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'إصدار التطبيق المثبت'**
+  String get versionDetailsAppVersionLabel;
+
+  /// No description provided for @versionDetailsBuildNumberLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'رقم البناء'**
+  String get versionDetailsBuildNumberLabel;
+
+  /// No description provided for @versionDetailsCurrentVersionLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'الإصدار الحالي على الخادم'**
+  String get versionDetailsCurrentVersionLabel;
+
+  /// No description provided for @versionDetailsMinimumVersionLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'أقل إصدار مسموح به'**
+  String get versionDetailsMinimumVersionLabel;
+
+  /// No description provided for @versionDetailsNotAvailableLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'غير متوفر'**
+  String get versionDetailsNotAvailableLabel;
+
+  /// No description provided for @versionDetailsShortLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'رقم الإصدار'**
+  String get versionDetailsShortLabel;
+
+  /// No description provided for @versionDetailsTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'تفاصيل الإصدار'**
+  String get versionDetailsTitle;
+
+  /// No description provided for @versionDetailsVersionStringLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'تفاصيل الإصدار (النص الكامل)'**
+  String get versionDetailsVersionStringLabel;
 }
 
 class _AppLocalizationsDelegate

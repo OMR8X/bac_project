@@ -4,13 +4,17 @@ import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/assets_resources.dart';
+import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/services/router/index.dart';
-import 'package:bac_project/presentation/auth/state/bloc/auth_bloc.dart';
+import 'package:bac_project/core/widgets/messages/dialogs/details_dialog.dart';
 import 'package:bac_project/core/widgets/ui/icons/switch_theme_icon_widget.dart';
+import 'package:bac_project/features/settings/domain/entities/app_settings.dart';
+import 'package:bac_project/features/settings/domain/entities/version.dart';
+import 'package:bac_project/presentation/auth/state/bloc/auth_bloc.dart';
+import 'package:bac_project/presentation/root/blocs/theme/app_theme_bloc.dart';
 import 'package:bac_project/presentation/settings/widgets/setting_tile_widget.dart';
 import 'package:bac_project/presentation/settings/widgets/settings_card_title_widget.dart';
 import 'package:bac_project/presentation/settings/widgets/user_information_card_widget.dart';
-import 'package:bac_project/presentation/root/blocs/theme/app_theme_bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -102,6 +106,7 @@ class SettingView extends StatelessWidget {
 
               // Preferences Section
               SettingsCardTitleWidget(title: context.l10n.settingsPreferencesTitle),
+              // Preferences Section Card
               Card(
                 margin: Margins.cardMargin,
                 child: Column(
@@ -160,6 +165,8 @@ class SettingView extends StatelessWidget {
 
               // Support Section
               SettingsCardTitleWidget(title: context.l10n.settingsSupportTitle),
+
+              // Support Section Card
               Card(
                 margin: Margins.cardMargin,
                 child: Column(
@@ -201,7 +208,8 @@ class SettingView extends StatelessWidget {
 
               SizedBox(height: SpacesResources.s6),
 
-              // Sign Out
+              // Other Section
+              // Sign Out Card
               Card(
                 margin: Margins.cardMargin,
                 child: SettingTileWidget(
@@ -217,10 +225,118 @@ class SettingView extends StatelessWidget {
                   },
                 ),
               ),
+              SizedBox(height: SpacesResources.s6),
+              _SettingsVersionButton(),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class _SettingsVersionButton extends StatelessWidget {
+  const _SettingsVersionButton();
+
+  @override
+  Widget build(BuildContext context) {
+    final version = sl<AppSettings>().version;
+
+    return InkWell(
+      borderRadius: BorderRadius.circular(SpacesResources.s12),
+      onTap: () {
+        _showVersionDetailsDialog(context, version);
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(SpacesResources.s8),
+        child: Text(
+          '${version.currentVersion} (${version.buildNumber})',
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
+      ),
+    );
+  }
+}
+
+void _showVersionDetailsDialog(BuildContext context, Version version) {
+  showDetailsDialog(
+    context: context,
+    title: context.l10n.versionDetailsTitle,
+    content: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(height: SpacesResources.s4),
+        _VersionDetailRow(
+          label: context.l10n.versionDetailsAppVersionLabel,
+          value: version.appVersion,
+        ),
+        if (version.appVersion != version.minimumVersion) ...[
+          _VersionDetailRow(
+            label: context.l10n.versionDetailsMinimumVersionLabel,
+            value: version.minimumVersion,
+          ),
+        ],
+        _VersionDetailRow(
+          label: context.l10n.versionDetailsCurrentVersionLabel,
+          value: version.currentVersion,
+        ),
+        _VersionDetailRow(
+          label: context.l10n.versionDetailsBuildNumberLabel,
+          value: version.buildNumber,
+        ),
+        _VersionDetailRow(
+          label: context.l10n.versionDetailsVersionStringLabel,
+          value: version.versionString,
+        ),
+        SizedBox(height: SpacesResources.s4),
+      ],
+    ),
+  );
+}
+
+class _VersionDetailRow extends StatelessWidget {
+  final String label;
+  final String value;
+
+  const _VersionDetailRow({
+    required this.label,
+    required this.value,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          flex: 3,
+          child: Text(
+            label,
+            style: TextStylesResources.dialogBody.copyWith(
+              height: 2.2,
+              color: theme.colorScheme.onSurface,
+              fontWeight: FontWeightResources.bold,
+              fontSize: FontSizeResources.s12,
+            ),
+          ),
+        ),
+        const SizedBox(width: SpacesResources.s8),
+        Expanded(
+          flex: 1,
+          child: Text(
+            value.isEmpty ? context.l10n.versionDetailsNotAvailableLabel : value,
+            style: TextStylesResources.dialogBody.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+              fontWeight: FontWeightResources.medium,
+              fontSize: FontSizeResources.s12,
+            ),
+            textAlign: TextAlign.left,
+          ),
+        ),
+      ],
     );
   }
 }

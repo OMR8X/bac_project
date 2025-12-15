@@ -78,8 +78,13 @@ BEGIN
       ) options ON true
     )::jsonb,
     true,
-    api.get_message('questions_retrieved')
+    api.get_message('lessons_get_questions_retrieved')
   );
 END;
 $function$;
+
+-- Messages for fn_api_lessons_get_questions
+INSERT INTO messages (key, message) VALUES
+  ('lessons_get_questions_retrieved', 'تم استرجاع الأسئلة بنجاح')
+ON CONFLICT (key) DO UPDATE SET message = EXCLUDED.message;
 

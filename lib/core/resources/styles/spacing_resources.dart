@@ -137,7 +137,7 @@ class Paddings {
   }
 
   static EdgeInsets get dialogInset {
-    return const EdgeInsets.symmetric(horizontal: SpacesResources.s16);
+    return const EdgeInsets.symmetric(horizontal: SpacesResources.s20);
   }
 
   static EdgeInsets customPadding(int h, int v) {

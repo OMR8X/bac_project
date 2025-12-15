@@ -28,6 +28,12 @@ select api.api_response(
     )
   ),
   true,
-  api.get_message('notification_topics_retrieved')
+  api.get_message('notifications_get_total_notifications_topics_retrieved')
 );
 $$;
+
+-- Messages for fn_api_notifications_get_total_notifications_topics
+INSERT INTO messages (key, message) VALUES
+  ('notifications_get_total_notifications_topics_retrieved', 'تم استرجاع مواضيع الإشعارات بنجاح')
+ON CONFLICT (key) DO UPDATE SET message = EXCLUDED.message;
+

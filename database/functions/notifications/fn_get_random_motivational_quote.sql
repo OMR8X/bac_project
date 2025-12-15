@@ -33,7 +33,13 @@ begin
       coalesce(row_to_json(result_record), '{}'::json)
     ),
     true,
-    api.get_message('motivational_quote_retrieved')
+    api.get_message('get_random_motivational_quote_retrieved')
   );
 end;
 $$;
+
+-- Messages for fn_get_random_motivational_quote
+INSERT INTO messages (key, message) VALUES
+  ('get_random_motivational_quote_retrieved', 'تم استرجاع الاقتباس التحفيزي بنجاح')
+ON CONFLICT (key) DO UPDATE SET message = EXCLUDED.message;
+

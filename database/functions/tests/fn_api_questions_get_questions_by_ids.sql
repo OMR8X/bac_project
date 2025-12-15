@@ -10,7 +10,7 @@ AS $$
       'questions', json_agg(q_with_options)
     )::jsonb,
     true,
-    api.get_message('questions_retrieved')
+    api.get_message('questions_get_questions_by_ids_retrieved')
   )
   FROM (
     SELECT
@@ -35,3 +35,8 @@ AS $$
     GROUP BY q.id
   ) q_with_options;
 $$;
+
+-- Messages for fn_api_questions_get_questions_by_ids
+INSERT INTO messages (key, message) VALUES
+  ('questions_get_questions_by_ids_retrieved', 'تم استرجاع الأسئلة بنجاح')
+ON CONFLICT (key) DO UPDATE SET message = EXCLUDED.message;

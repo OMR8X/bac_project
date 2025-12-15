@@ -50,7 +50,12 @@ begin
               )
         )::jsonb,
         true,
-        api.get_message('result_fetched')
+        api.get_message('results_get_user_result_by_id_retrieved')
     );
 end;
 $$ LANGUAGE PLPGSQL;
+
+-- Messages for FN_API_RESULTS_GET_USER_RESULT_BY_ID
+INSERT INTO messages (key, message) VALUES
+  ('results_get_user_result_by_id_retrieved', 'تم استرجاع النتيجة بنجاح')
+ON CONFLICT (key) DO UPDATE SET message = EXCLUDED.message;

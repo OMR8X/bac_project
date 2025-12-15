@@ -45,7 +45,7 @@ begin
         'scheduled_at', now()
       ),
       true,
-      api.get_message('motivational_notification_sent')
+      api.get_message('schedule_motivational_notifications_succeeded')
     );
   else
     -- Return error response
@@ -56,7 +56,7 @@ begin
         'scheduled_at', now()
       ),
       false,
-      api.get_message('failed_to_send_motivational_notification')
+      api.get_message('schedule_motivational_notifications_failed')
     );
   end if;
 
@@ -69,7 +69,15 @@ exception
         'scheduled_at', now()
       ),
       false,
-      api.get_message('exception_sending_motivational_notification')
+      api.get_message('schedule_motivational_notifications_exception')
     );
 end;
 $$;
+
+-- Messages for fn_schedule_motivational_notifications
+INSERT INTO messages (key, message) VALUES
+  ('schedule_motivational_notifications_succeeded', 'تم إرسال الإشعار التحفيزي بنجاح'),
+  ('schedule_motivational_notifications_failed', 'فشل في إرسال الإشعار التحفيزي'),
+  ('schedule_motivational_notifications_exception', 'حدث استثناء أثناء إرسال الإشعار التحفيزي')
+ON CONFLICT (key) DO UPDATE SET message = EXCLUDED.message;
+

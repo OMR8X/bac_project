@@ -116,5 +116,21 @@
   "testPropertiesQuestionsCategories": "مواضيع الأسئلة",
   "testPropertiesQuestionsCount": "عدد الأسئلة",
   "testPropertiesTitle": "اعدادات الاختبار",
-  "unselectAll": "الغاء التحديد"
+  "unselectAll": "الغاء التحديد",
+  "updateAvailableCurrentVersion": "الإصدار الحالي: {version}",
+  "updateAvailableDescription": "نوصي بتحديث التطبيق للحصول على أحدث المزايا وتحسينات الأداء.",
+  "updateAvailableNewVersion": "الإصدار الجديد: {version}",
+  "updateAvailablePrimaryButton": "تحديث الآن",
+  "updateAvailableRequiredLabel": "التحديث مطلوب",
+  "updateAvailableRequiredMessage": "هذا التحديث إجباري ولا يمكن استخدام التطبيق بدونه.",
+  "updateAvailableSkipButton": "تخطي الآن",
+  "updateAvailableTitle": "يتوفر تحديث جديد للتطبيق",
+  "versionDetailsAppVersionLabel": "إصدار التطبيق المثبت",
+  "versionDetailsBuildNumberLabel": "رقم البناء",
+  "versionDetailsCurrentVersionLabel": "الإصدار الحالي على الخادم",
+  "versionDetailsMinimumVersionLabel": "أقل إصدار مسموح به",
+  "versionDetailsNotAvailableLabel": "غير متوفر",
+  "versionDetailsShortLabel": "رقم الإصدار",
+  "versionDetailsTitle": "تفاصيل الإصدار",
+  "versionDetailsVersionStringLabel": "تفاصيل الإصدار (النص الكامل)"
 }

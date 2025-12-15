@@ -29,11 +29,12 @@ begin
       coalesce(row_to_json(result_record), '{}'::json)
     ),
     true,
-    api.get_message('topic_unsubscribed')
+    api.get_message('topics_unsubscribe_from_topic_succeeded')
   );
 end;
 $$;
 
-
-
-
+-- Messages for fn_api_topics_unsubscribe_from_topic
+INSERT INTO messages (key, message) VALUES
+  ('topics_unsubscribe_from_topic_succeeded', 'تم إلغاء الاشتراك من الموضوع بنجاح')
+ON CONFLICT (key) DO UPDATE SET message = EXCLUDED.message;

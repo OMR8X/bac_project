@@ -24,6 +24,13 @@ class SettingsRemoteDatasourceImpl implements SettingsRemoteDatasource {
     apiResponse.throwErrorIfExists();
 
     // Parse and return response
-    return GetAppSettingsResponse.fromResponse(apiResponse.data);
+    final GetAppSettingsResponse responseModel = GetAppSettingsResponse.fromResponse(
+      apiResponse.data,
+    );
+
+    final GetAppSettingsResponse initializedResponseModel =
+        await responseModel.initializeVersionDetails();
+
+    return initializedResponseModel;
   }
 }

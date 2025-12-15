@@ -33,6 +33,7 @@ import '../../../presentation/notifications/views/notifications_topics_view.dart
 import '../../../presentation/notifications/views/notifications_view.dart';
 import '../../../presentation/result/views/explore_results_view.dart';
 import '../../../presentation/root/blocs/navigation/navigation_cubit.dart';
+import '../../../presentation/root/views/app_available_update_view.dart';
 import '../../../presentation/root/views/app_loader_view.dart';
 import '../../../presentation/root/views/pages_holder.dart';
 import '../../../presentation/testing/views/debugs_view.dart';
@@ -118,6 +119,26 @@ class AppRouter {
                 );
               },
               child: const UpdateUserDataView(),
+            ),
+      ),
+      // update available route
+      GoRoute(
+        name: Routes.updateAvailable.name,
+        path: Routes.updateAvailable.path,
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              transitionDuration: AppTransitions.transitionDuration,
+              reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                return AppTransitions.commonTransition(
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                );
+              },
+              child: UpdateAvailableView(),
             ),
       ),
       // update password route

@@ -28,6 +28,11 @@ AS $$
       )
     )::jsonb,
     true,
-    api.get_message('user_results_retrieved')
+    api.get_message('get_user_results_retrieved')
   );
 $$;
+
+-- Messages for fn_api_get_user_results
+INSERT INTO messages (key, message) VALUES
+  ('get_user_results_retrieved', 'تم استرجاع نتائج المستخدم بنجاح')
+ON CONFLICT (key) DO UPDATE SET message = EXCLUDED.message;

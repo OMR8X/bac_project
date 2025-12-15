@@ -31,6 +31,12 @@ select api.api_response(
     )
   ),
   true,
-  api.get_message('user_subscribed_topics_retrieved')
+  api.get_message('topics_get_user_subscribed_topics_retrieved')
 );
 $$;
+
+-- Messages for fn_api_topics_get_user_subscribed_topics
+INSERT INTO messages (key, message) VALUES
+  ('topics_get_user_subscribed_topics_retrieved', 'تم استرجاع مواضيع اشتراك المستخدم بنجاح')
+ON CONFLICT (key) DO UPDATE SET message = EXCLUDED.message;
+

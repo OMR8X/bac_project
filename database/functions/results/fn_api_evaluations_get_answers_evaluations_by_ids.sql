@@ -12,7 +12,7 @@ AS $function$
       'answers_evaluations', coalesce(json_agg(evaluations_row), '[]'::json)
     )::jsonb,
     true,
-    api.get_message('answer_evaluations_retrieved')
+    api.get_message('evaluations_get_answers_evaluations_by_ids_retrieved')
   )
   FROM (
     SELECT
@@ -21,4 +21,9 @@ AS $function$
 	where question_answer_id = any(p_answers_ids)
   ) AS evaluations_row;
 $function$;
+
+-- Messages for fn_api_evaluations_get_answers_evaluations_by_ids
+INSERT INTO messages (key, message) VALUES
+  ('evaluations_get_answers_evaluations_by_ids_retrieved', 'تم استرجاع تقييمات الإجابات بنجاح')
+ON CONFLICT (key) DO UPDATE SET message = EXCLUDED.message;
 

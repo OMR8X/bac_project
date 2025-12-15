@@ -35,9 +35,12 @@ begin
       coalesce(row_to_json(result_record), '{}'::json)
     ),
     true,
-    api.get_message('device_token_registered')
+    api.get_message('device_tokens_register_device_token_succeeded')
   );
 end;
 $$;
 
-
+-- Messages for fn_api_device_tokens_register_device_token
+INSERT INTO messages (key, message) VALUES
+  ('device_tokens_register_device_token_succeeded', 'تم تسجيل رمز الجهاز بنجاح')
+ON CONFLICT (key) DO UPDATE SET message = EXCLUDED.message;

@@ -11,7 +11,7 @@ AS $$
       'lessons', json_agg(lesson_row)
     )::jsonb,
     true,
-    api.get_message('lessons_retrieved')
+    api.get_message('lessons_get_total_lessons_retrieved')
   )
   FROM (
     SELECT
@@ -30,3 +30,8 @@ AS $$
     ORDER BY l.created_at DESC
   ) AS lesson_row;
 $$;
+
+-- Messages for fn_api_lessons_get_total_lessons
+INSERT INTO messages (key, message) VALUES
+  ('lessons_get_total_lessons_retrieved', 'تم استرجاع الدروس بنجاح')
+ON CONFLICT (key) DO UPDATE SET message = EXCLUDED.message;

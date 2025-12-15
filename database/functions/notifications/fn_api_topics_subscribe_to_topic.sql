@@ -29,9 +29,12 @@ begin
       coalesce(row_to_json(result_record), '{}'::json)
     ),
     true,
-    api.get_message('topic_subscribed')
+    api.get_message('topics_subscribe_to_topic_succeeded')
   );
 end;
 $$;
 
-
+-- Messages for fn_api_topics_subscribe_to_topic
+INSERT INTO messages (key, message) VALUES
+  ('topics_subscribe_to_topic_succeeded', 'تم الاشتراك في الموضوع بنجاح')
+ON CONFLICT (key) DO UPDATE SET message = EXCLUDED.message;

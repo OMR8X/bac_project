@@ -17,7 +17,7 @@ SELECT api.api_response(
         'questions', json_agg(question_data)
     )::jsonb,
     true,
-    api.get_message('result_questions_details_retrieved')
+    api.get_message('results_get_result_questions_details_retrieved')
 )
 FROM (
     SELECT
@@ -60,4 +60,9 @@ FROM (
     ORDER BY q.id
 ) AS question_data;
 $function$;
+
+-- Messages for fn_api_results_get_result_questions_details
+INSERT INTO messages (key, message) VALUES
+  ('results_get_result_questions_details_retrieved', 'تم استرجاع تفاصيل أسئلة النتيجة بنجاح')
+ON CONFLICT (key) DO UPDATE SET message = EXCLUDED.message;
 

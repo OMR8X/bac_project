@@ -7,6 +7,7 @@ class VersionModel extends Version {
     required super.minimumVersion,
     required super.updateLink,
     super.appVersion,
+    super.buildNumber,
   });
 
   factory VersionModel.fromJson(Map<String, dynamic> json) {
@@ -16,6 +17,7 @@ class VersionModel extends Version {
       minimumVersion: json['minimum_version'],
       updateLink: json['update_link'],
       appVersion: json['app_version'] ?? '1.0.0',
+      buildNumber: (json['build_number'] ?? '0').toString(),
     );
   }
 
@@ -26,6 +28,7 @@ class VersionModel extends Version {
       'minimum_version': minimumVersion,
       'update_link': updateLink,
       'app_version': appVersion,
+      'build_number': buildNumber,
     };
   }
 }

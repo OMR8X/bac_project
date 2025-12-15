@@ -369,4 +369,58 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get unselectAll => 'الغاء التحديد';
+
+  @override
+  String updateAvailableCurrentVersion(Object version) {
+    return 'الإصدار الحالي: $version';
+  }
+
+  @override
+  String get updateAvailableDescription =>
+      'نوصي بتحديث التطبيق للحصول على أحدث المزايا وتحسينات الأداء.';
+
+  @override
+  String updateAvailableNewVersion(Object version) {
+    return 'الإصدار الجديد: $version';
+  }
+
+  @override
+  String get updateAvailablePrimaryButton => 'تحديث الآن';
+
+  @override
+  String get updateAvailableRequiredLabel => 'التحديث مطلوب';
+
+  @override
+  String get updateAvailableRequiredMessage =>
+      'هذا التحديث إجباري ولا يمكن استخدام التطبيق بدونه.';
+
+  @override
+  String get updateAvailableSkipButton => 'تخطي الآن';
+
+  @override
+  String get updateAvailableTitle => 'يتوفر تحديث جديد للتطبيق';
+
+  @override
+  String get versionDetailsAppVersionLabel => 'إصدار التطبيق المثبت';
+
+  @override
+  String get versionDetailsBuildNumberLabel => 'رقم البناء';
+
+  @override
+  String get versionDetailsCurrentVersionLabel => 'الإصدار الحالي على الخادم';
+
+  @override
+  String get versionDetailsMinimumVersionLabel => 'أقل إصدار مسموح به';
+
+  @override
+  String get versionDetailsNotAvailableLabel => 'غير متوفر';
+
+  @override
+  String get versionDetailsShortLabel => 'رقم الإصدار';
+
+  @override
+  String get versionDetailsTitle => 'تفاصيل الإصدار';
+
+  @override
+  String get versionDetailsVersionStringLabel => 'تفاصيل الإصدار (النص الكامل)';
 }
