@@ -42,31 +42,32 @@ class _DesigningViewState extends State<DesigningView> with TickerProviderStateM
           SwitchThemeIconWidget(),
         ],
       ),
-      body: Stack(
-        children: [
-          // List of images
-          ListView.builder(
-            itemCount: 100,
-            itemBuilder: (context, index) {
-              return Image.network(
-                'https://picsum.photos/400/300?random=$index',
-                height: 200,
-                fit: BoxFit.cover,
-              );
-            },
-          ),
-          // Top navbar
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: TestingNavBar(_currentIndex, (index) {
-              setState(() {
-                _currentIndex = index;
-              });
-            }),
-          ),
-          // Bottom navbar
-        ],
-      ),
+      body: TestOptionsDesign(),
+      // body: Stack(
+      //   children: [
+      //     // List of images
+      //     ListView.builder(
+      //       itemCount: 100,
+      //       itemBuilder: (context, index) {
+      //         return Image.network(
+      //           'https://picsum.photos/400/300?random=$index',
+      //           height: 200,
+      //           fit: BoxFit.cover,
+      //         );
+      //       },
+      //     ),
+      //     // Top navbar
+      //     Align(
+      //       alignment: Alignment.bottomCenter,
+      //       child: TestingNavBar(_currentIndex, (index) {
+      //         setState(() {
+      //           _currentIndex = index;
+      //         });
+      //       }),
+      //     ),
+      //     // Bottom navbar
+      //   ],
+      // ),
     );
   }
 }

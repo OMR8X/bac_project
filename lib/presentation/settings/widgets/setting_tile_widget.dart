@@ -23,8 +23,15 @@ class SettingTileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: leadingIcon,
-      trailing: trailingIcon != null ? Icon(trailingIcon) : null,
-      title: Text(title, style: TextStylesResources.cardMediumTitle),
+      trailing:
+          trailingIcon != null
+              ? Icon(
+                trailingIcon,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                size: SizesResources.iconSettingsTileHeight + 4,
+              )
+              : null,
+      title: Text(title, style: TextStylesResources.cardSmallTitle),
       subtitle: data != null ? Text(data!) : null,
       onTap: onTap,
     );

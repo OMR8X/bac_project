@@ -78,9 +78,10 @@ class QuizzingAnswerView extends StatelessWidget {
                   return false;
                 },
                 builder: (context, state) {
+                  if (state is! QuizzingAnswerQuestion) return const SizedBox.shrink();
                   return _buildOptions(
                     context: context,
-                    state: state as QuizzingAnswerQuestion,
+                    state: state,
                     testMode: testMode,
                   );
                 },

@@ -107,7 +107,7 @@ class _OptionTextualFieldWidgetState extends State<OptionTextualFieldWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: SizesResources.fieldMediumHeight,
+                // height: SizesResources.fieldMediumHeight,
                 child: IntrinsicHeight(
                   child: Row(
                     children: [
@@ -186,7 +186,8 @@ class _OptionTextualFieldWidgetState extends State<OptionTextualFieldWidget> {
                         child: TextField(
                           controller: controller,
                           focusNode: focusNode,
-
+                          minLines: 1,
+                          maxLines: 3,
                           enabled: (widget.onSubmitText != null),
                           onChanged: (value) {
                             if (widget.onSubmitText == null) return;

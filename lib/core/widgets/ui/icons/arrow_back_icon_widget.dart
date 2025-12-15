@@ -15,7 +15,7 @@ class ArrowBackIconWidget extends StatelessWidget {
     return AppBarIconWidget(
       icon: Image.asset(
         UIImagesResources.caretRightUIIcon,
-        color: Theme.of(context).colorScheme.onSurface,
+        color: Theme.of(context).colorScheme.onSurfaceVariant,
         // color: Color(0xff55534F),
       ),
       onPressed: onPressed ?? () => context.pop(),

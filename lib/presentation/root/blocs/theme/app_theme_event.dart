@@ -25,3 +25,8 @@ final class ChangeAppThemeEvent extends AppThemeEvent {
   @override
   List<Object> get props => [theme];
 }
+
+final class SystemBrightnessChangedEvent extends AppThemeEvent {
+  //
+  const SystemBrightnessChangedEvent();
+}

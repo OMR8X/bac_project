@@ -26,10 +26,17 @@ class SearchView extends StatefulWidget {
 }
 
 class _SearchViewState extends State<SearchView> {
+  final ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
     context.read<SearchBloc>().add(SearchLessons(unitId: (widget.arguments.unitId)));
+    _scrollController.addListener(_onScroll);
     super.initState();
+  }
+
+  void _onScroll() {
+     FocusManager.instance.primaryFocus?.unfocus();
   }
 
   @override
@@ -52,6 +59,7 @@ class _SearchViewState extends State<SearchView> {
           return Padding(
             padding: Paddings.screenSidesPadding,
             child: CustomScrollView(
+              controller: _scrollController,
               slivers: [
                 SliverFloatingHeader(
                   snapMode: FloatingHeaderSnapMode.overlay,

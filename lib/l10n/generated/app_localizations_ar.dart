@@ -191,6 +191,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get resultCorrect => 'صحيح';
 
   @override
+  String get resultCorrectCardSubtitle => 'عدد الإجابات الصحيحة';
+
+  @override
+  String get resultCountCardSubtitle => 'جميع الأسئلة';
+
+  @override
   String get resultRetryTestDialogBody =>
       'هل ترغب في إعادة الاختبار بنفس الأسئلة وخيارات الاختبار؟';
 
@@ -220,6 +226,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get resultWrong => 'خطأ';
+
+  @override
+  String get resultWrongCardSubtitle => 'عدد الإجابات الخاطئة';
 
   @override
   String get screenUpdateUserData => 'تحديث بيانات المتسخدم';

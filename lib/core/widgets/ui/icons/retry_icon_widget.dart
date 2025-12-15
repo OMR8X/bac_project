@@ -16,7 +16,7 @@ class RetryIconWidget extends StatelessWidget {
       icon: Image.asset(
         UIImagesResources.retryUIIcon,
         // color: Color(0xff8D8B85),
-        color: Theme.of(context).colorScheme.onSurface,
+        color: Theme.of(context).colorScheme.onSurfaceVariant,
       ),
       onPressed: onPressed ?? () => context.pop(),
     );

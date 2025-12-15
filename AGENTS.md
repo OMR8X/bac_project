@@ -71,6 +71,31 @@ Contains Supabase project configuration and serverless Edge Functions. This dire
 - **Feature Modules**: Independent, self-contained features
 - **BLoC Pattern**: Predictable state management
 
+## Localization Practices
+
+The application uses ARB-based internationalization for managing localized strings. All localization keys and values are managed through a single source of truth.
+
+### Localization File
+- **`lib/l10n/app_ar.arb`**: The primary localization file containing all Arabic (AR) translations
+- This is the **only** file where localization keys and values should be added or updated
+- Flutter automatically generates localization classes from this ARB file
+
+### Adding New Localization Keys
+1. Open `lib/l10n/app_ar.arb`
+2. Add a new key-value pair in JSON format: `"keyName": "Translation Value"`
+3. Flutter will auto-generate the corresponding getter in the localization classes
+4. Use the generated value in code via `context.l10n.keyName`
+
+### Usage in Code
+- Access localized strings using the generated `context.l10n` extension
+- Example: `Text(context.l10n.homeTitle)` will display "الرئيسية"
+- The generated classes are available in `lib/l10n/generated/app_localizations.dart` and `lib/l10n/generated/app_localizations_ar.dart`
+
+### Important Notes
+- **Never** manually edit the generated files in `lib/l10n/generated/`
+- **Always** make changes to `lib/l10n/app_ar.arb` only
+- After adding or updating keys, Flutter will automatically regenerate the localization classes on the next build
+
 ## Backend Synchronization Practices
 
 Maintain bidirectional sync between local files and remote Supabase backend. Use Supabase MCP tools to apply local changes to remote database/edge functions, and update local files when remote changes occur.

@@ -11,6 +11,7 @@ import 'package:bac_project/presentation/settings/widgets/setting_tile_widget.da
 import 'package:bac_project/presentation/settings/widgets/settings_card_title_widget.dart';
 import 'package:bac_project/presentation/settings/widgets/user_information_card_widget.dart';
 import 'package:bac_project/presentation/root/blocs/theme/app_theme_bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -21,21 +22,26 @@ class SettingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.l10n.settingsTitle), actions: [SwitchThemeIconWidget()]),
+      appBar: AppBar(
+        title: Text(context.l10n.settingsTitle),
+        actions: [if (kDebugMode) SwitchThemeIconWidget()],
+      ),
       body: Padding(
         padding: Paddings.screenSidesPadding,
         child: SingleChildScrollView(
           padding: Paddings.listViewPadding,
           child: Column(
             children: [
-              const SizedBox(height: SpacesResources.s10),
-
               const UserInformationCardWidget(),
+
+              SizedBox(height: SpacesResources.s6),
 
               // Account Section
               SettingsCardTitleWidget(title: context.l10n.settingsAccountTitle),
+
               // Account Section Card
               Card(
+                margin: Margins.cardMargin,
                 child: Column(
                   children: [
                     SettingTileWidget(
@@ -50,7 +56,13 @@ class SettingView extends StatelessWidget {
                         context.pushNamed(Routes.updateUserData.name);
                       },
                     ),
-                    const Divider(height: 2),
+                    Divider(
+                      height: 1,
+                      thickness: 1,
+
+                      indent: SizesResources.iconSettingsTileHeight * 2.5,
+                      endIndent: SpacesResources.s16,
+                    ),
                     SettingTileWidget(
                       leadingIcon: Icon(
                         Icons.lock_outline,
@@ -63,7 +75,13 @@ class SettingView extends StatelessWidget {
                         context.pushNamed(Routes.updatePassword.name);
                       },
                     ),
-                    const Divider(height: 2),
+                    Divider(
+                      height: 1,
+                      thickness: 1,
+
+                      indent: SizesResources.iconSettingsTileHeight * 2.5,
+                      endIndent: SpacesResources.s16,
+                    ),
                     SettingTileWidget(
                       leadingIcon: Icon(
                         Icons.notifications_outlined,
@@ -80,11 +98,12 @@ class SettingView extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: SpacesResources.s2),
+              SizedBox(height: SpacesResources.s6),
 
               // Preferences Section
               SettingsCardTitleWidget(title: context.l10n.settingsPreferencesTitle),
               Card(
+                margin: Margins.cardMargin,
                 child: Column(
                   children: [
                     SettingTileWidget(
@@ -99,7 +118,13 @@ class SettingView extends StatelessWidget {
                         context.pushNamed(Routes.aboutUs.name);
                       },
                     ),
-                    const Divider(height: 2),
+                    Divider(
+                      height: 1,
+                      thickness: 1,
+
+                      indent: SizesResources.iconSettingsTileHeight * 2.5,
+                      endIndent: SpacesResources.s16,
+                    ),
                     BlocBuilder<AppThemeBloc, AppThemeState>(
                       builder: (context, state) {
                         final isDarkMode = Theme.of(context).brightness == Brightness.dark;
@@ -110,7 +135,7 @@ class SettingView extends StatelessWidget {
                                 : UIImagesResources.brightnessLightUIIcon,
                             width: SizesResources.iconSettingsTileHeight,
                             height: SizesResources.iconSettingsTileHeight,
-                            color: Theme.of(context).colorScheme.onSurface,
+                            color: Theme.of(context).colorScheme.onSurfaceVariant,
                           ),
                           title:
                               isDarkMode
@@ -131,11 +156,12 @@ class SettingView extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: SpacesResources.s2),
+              SizedBox(height: SpacesResources.s6),
 
               // Support Section
               SettingsCardTitleWidget(title: context.l10n.settingsSupportTitle),
               Card(
+                margin: Margins.cardMargin,
                 child: Column(
                   children: [
                     SettingTileWidget(
@@ -150,7 +176,13 @@ class SettingView extends StatelessWidget {
                         context.pushNamed(Routes.helpCenter.name);
                       },
                     ),
-                    const Divider(height: 2),
+                    Divider(
+                      height: 1,
+                      thickness: 1,
+
+                      indent: SizesResources.iconSettingsTileHeight * 2.5,
+                      endIndent: SpacesResources.s16,
+                    ),
                     SettingTileWidget(
                       leadingIcon: Icon(
                         Icons.contact_support_outlined,
@@ -167,17 +199,18 @@ class SettingView extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: SpacesResources.s2),
+              SizedBox(height: SpacesResources.s6),
 
               // Sign Out
               Card(
+                margin: Margins.cardMargin,
                 child: SettingTileWidget(
                   leadingIcon: Icon(
                     Icons.logout_outlined,
                     size: SizesResources.iconSettingsTileHeight,
                     color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
-                  trailingIcon: Icons.chevron_right,
+                  // trailingIcon: Icons.chevron_right,
                   title: context.l10n.buttonsSignOut,
                   onTap: () {
                     sl<AuthBloc>().add(const AuthSignOutEvent());

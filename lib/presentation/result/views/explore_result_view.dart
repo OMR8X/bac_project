@@ -14,6 +14,7 @@ import 'package:bac_project/core/widgets/messages/sheets/app_bottom_sheet.dart';
 import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/icons/retry_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
+import 'package:flutter/foundation.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:bac_project/features/settings/domain/entities/app_settings.dart';
 import 'package:bac_project/features/tests/domain/entities/question.dart';
@@ -37,6 +38,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/widgets/animations/skeletonizer_effect_list_wraper.dart';
 import '../../../core/widgets/messages/dialogs/conform_dialog.dart';
+import '../../../core/widgets/ui/icons/switch_theme_icon_widget.dart';
 import '../../../features/results/data/responses/get_result_response.dart';
 import '../../../features/tests/domain/entities/question_category.dart';
 import '../widgets/questions_sheet_builder.dart';
@@ -68,6 +70,7 @@ class _ExploreResultViewState extends State<ExploreResultView> with TickerProvid
         title: Text(context.l10n.resultTitle),
         leading: CloseIconWidget(),
         actions: [
+          if (kDebugMode) SwitchThemeIconWidget(),
           RetryIconWidget(
             onPressed: () {
               showConformDialog(
@@ -154,7 +157,7 @@ class _ExploreResultDetailsView extends StatelessWidget {
                         child: StatChip(
                           iconPath: UIImagesResources.checkRoundedUIIcon,
                           title: '${state.response!.result.correctAnswers}',
-                          subtitle: context.l10n.resultCorrect,
+                          subtitle: context.l10n.resultCorrectCardSubtitle,
                           iconColor: Theme.of(context).extension<ExtraColors>()!.green,
                         ),
                       ),
@@ -163,7 +166,7 @@ class _ExploreResultDetailsView extends StatelessWidget {
                         child: StatChip(
                           iconPath: UIImagesResources.arrowSquareOutUIIcon,
                           title: '${state.response!.result.totalQuestions}',
-                          subtitle: context.l10n.resultsCount,
+                          subtitle: context.l10n.resultCountCardSubtitle,
                           onTap: () {
                             showAppBottomSheet(
                               context: context,
@@ -177,7 +180,7 @@ class _ExploreResultDetailsView extends StatelessWidget {
                         child: StatChip(
                           iconPath: UIImagesResources.cancelRoundedUIIcon,
                           title: '${state.response!.result.wrongAnswers}',
-                          subtitle: context.l10n.resultWrong,
+                          subtitle: context.l10n.resultWrongCardSubtitle,
                           iconColor: Theme.of(context).extension<ExtraColors>()!.red,
                         ),
                       ),

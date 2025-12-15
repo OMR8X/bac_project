@@ -16,13 +16,13 @@ class SettingsCardTitleWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsetsGeometry.symmetric(
         horizontal: SizesResources.sidePadding / 2,
-        vertical: SpacesResources.s2,
+        vertical: SpacesResources.s1,
       ),
       child: Row(
         children: [
           Text(
             title,
-            style: TextStylesResources.cardMediumTitle.copyWith(
+            style: TextStylesResources.cardSmallTitle.copyWith(
               color: Theme.of(context).colorScheme.onSurfaceVariant,
             ),
           ),

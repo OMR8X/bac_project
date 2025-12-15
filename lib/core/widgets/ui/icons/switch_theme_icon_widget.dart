@@ -3,7 +3,6 @@ import 'package:bac_project/core/widgets/ui/icons/appbar_icon_widget.dart';
 import 'package:bac_project/presentation/root/blocs/theme/app_theme_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 
 class SwitchThemeIconWidget extends StatelessWidget {
   const SwitchThemeIconWidget({super.key});
@@ -15,7 +14,7 @@ class SwitchThemeIconWidget extends StatelessWidget {
       return AppBarIconWidget(
         icon: Image.asset(
           UIImagesResources.brightnessDarkUIIcon,
-          color: Theme.of(context).colorScheme.onSurface,
+          color: Theme.of(context).colorScheme.onSurfaceVariant,
         ),
         onPressed: () {
           bloc.add(const ChangeAppThemeEvent(AppThemes.lightTheme));
@@ -25,7 +24,7 @@ class SwitchThemeIconWidget extends StatelessWidget {
       return AppBarIconWidget(
         icon: Image.asset(
           UIImagesResources.brightnessLightUIIcon,
-          color: Theme.of(context).colorScheme.onSurface,
+          color: Theme.of(context).colorScheme.onSurfaceVariant,
         ),
         onPressed: () {
           bloc.add(const ChangeAppThemeEvent(AppThemes.darkTheme));

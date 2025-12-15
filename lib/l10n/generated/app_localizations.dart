@@ -454,6 +454,18 @@ abstract class AppLocalizations {
   /// **'صحيح'**
   String get resultCorrect;
 
+  /// No description provided for @resultCorrectCardSubtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'عدد الإجابات الصحيحة'**
+  String get resultCorrectCardSubtitle;
+
+  /// No description provided for @resultCountCardSubtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'جميع الأسئلة'**
+  String get resultCountCardSubtitle;
+
   /// No description provided for @resultRetryTestDialogBody.
   ///
   /// In ar, this message translates to:
@@ -513,6 +525,12 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'خطأ'**
   String get resultWrong;
+
+  /// No description provided for @resultWrongCardSubtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'عدد الإجابات الخاطئة'**
+  String get resultWrongCardSubtitle;
 
   /// No description provided for @screenUpdateUserData.
   ///
