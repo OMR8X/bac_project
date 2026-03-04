@@ -1,12 +1,11 @@
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
-import 'package:bac_project/core/services/router/index.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
 import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
 import 'package:bac_project/presentation/root/blocs/loader/app_loader_bloc.dart';
-import 'package:bac_project/presentation/root/views/app_available_update_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import '../../../core/extensions/build_context_l10n.dart';
 import '../../../core/injector/app_injection.dart';
@@ -24,6 +23,7 @@ class _AppLoaderViewState extends State<AppLoaderView> {
   @override
   void initState() {
     super.initState();
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       sl<AppLoaderBloc>().add(const AppLoaderLoadData());
     });
@@ -37,6 +37,9 @@ class _AppLoaderViewState extends State<AppLoaderView> {
         child: BlocConsumer<AppLoaderBloc, AppLoaderState>(
           buildWhen: (previous, current) => previous.state != current.state,
           listener: (context, state) {
+            if (state.state != LoadState.loading) {
+              FlutterNativeSplash.remove();
+            }
             sl<NavigationCubit>().updateFromLoader(state);
           },
           builder: (context, state) {

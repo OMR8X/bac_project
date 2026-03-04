@@ -1,6 +1,4 @@
 import 'package:bac_project/core/injector/app_injection.dart';
-import 'package:bac_project/core/services/logs/logger.dart';
-import 'package:bac_project/core/services/router/index.dart';
 import 'package:bac_project/core/widgets/messages/snackbars/error_snackbar_widget.dart';
 import 'package:bac_project/presentation/auth/state/bloc/auth_bloc.dart';
 import 'package:bac_project/presentation/auth/view/auth_start_view.dart';
@@ -9,7 +7,6 @@ import 'package:bac_project/presentation/auth/view/sign_up_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../core/resources/styles/spacing_resources.dart';
 import '../../../core/widgets/messages/snackbars/success_snackbar_widget.dart';

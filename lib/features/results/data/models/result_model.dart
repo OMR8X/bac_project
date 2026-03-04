@@ -1,9 +1,6 @@
 import 'package:bac_project/features/tests/data/mappers/question_answer_mapper.dart';
-import 'package:bac_project/features/tests/data/mappers/question_mapper.dart';
 import 'package:bac_project/features/tests/data/models/question_answer_model.dart';
-import 'package:bac_project/features/tests/data/models/question_model.dart';
 import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
-import 'package:bac_project/features/tests/domain/entities/question.dart';
 import 'package:bac_project/features/results/domain/entities/result_test_mode.dart';
 
 import '../../domain/entities/result.dart';

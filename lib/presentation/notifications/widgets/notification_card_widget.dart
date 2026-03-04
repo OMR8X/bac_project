@@ -1,6 +1,7 @@
 import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
+import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/widgets/animations/staggered_list_wrapper_widget.dart';
 import 'package:bac_project/features/notifications/domain/entities/app_notification.dart';
@@ -14,6 +15,8 @@ class NotificationCardWidget extends StatelessWidget {
   final int position;
   final AppNotification notification;
 
+  bool get isUnread => notification.readedAt == null;
+
   @override
   Widget build(BuildContext context) {
     return Semantics(
@@ -22,35 +25,52 @@ class NotificationCardWidget extends StatelessWidget {
       child: StaggeredListWrapperWidget(
         key: ValueKey(notification),
         position: position,
-        child: InkWell(
-          onTap: () {
-            sl<DisplayNotificationUsecase>().call(
-              notification: notification,
-            );
-          },
-          child: Container(
-            decoration: BoxDecoration(
-              color:
-                  notification.readedAt == null
-                      ? Theme.of(context).colorScheme.primaryContainer
-                      : Colors.transparent,
-              border: Border(
-                bottom: BorderSide(
-                  color: Theme.of(context).colorScheme.outline,
-                  width: 1,
-                ),
+        child: Card(
+          margin: Margins.cardMargin,
+          child: InkWell(
+            borderRadius: BorderRadiusResource.cardBorderRadius,
+            onTap: () {
+              sl<DisplayNotificationUsecase>().call(
+                notification: notification,
+              );
+            },
+            child: Padding(
+              padding: Paddings.cardMediumPadding,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // // Unread indicator
+                  // if (isUnread)
+                  //   Padding(
+                  //     padding: EdgeInsets.only(top: SpacesResources.s2, left: SpacesResources.s2),
+                  //     child: Container(
+                  //       width: SpacesResources.s4,
+                  //       height: SpacesResources.s4,
+                  //       decoration: BoxDecoration(
+                  //         color: Theme.of(context).colorScheme.primary,
+                  //         shape: BoxShape.circle,
+                  //       ),
+                  //     ),
+                  //   )
+                  // else
+                  //   SizedBox(width: SpacesResources.s2),
+                  // SizedBoxes.s4h,
+                  // Main content
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBoxes.s2v,
+                        _buildHeader(context),
+                        SizedBoxes.s4v,
+                        _buildContent(context),
+                        SizedBoxes.s4v,
+                        _buildFooter(context),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ),
-            padding: Paddings.notificationCardPadding,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildHeader(context),
-                SizedBoxes.s4v,
-                _buildContent(context),
-                SizedBoxes.s5v,
-                _buildFooter(context),
-              ],
             ),
           ),
         ),
@@ -93,9 +113,9 @@ class NotificationCardWidget extends StatelessWidget {
     return Text(
       notification.body,
       style: TextStylesResources.caption.copyWith(
-        color: Theme.of(context).colorScheme.onSurfaceVariant,
+        color: Theme.of(context).colorScheme.onSurface,
         fontSize: FontSizeResources.s13,
-        fontWeight: FontWeightResources.medium,
+        fontWeight: FontWeightResources.regular,
         height: 1.4,
       ),
       maxLines: 3,
@@ -104,23 +124,48 @@ class NotificationCardWidget extends StatelessWidget {
   }
 
   Widget _buildFooter(BuildContext context) {
+    final topic = topicTitle(context);
+    if (topic.isEmpty) return const SizedBox.shrink();
+
     return Row(
       children: [
         Container(
-          padding: Paddings.customPadding(3, 1),
-          decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.secondaryContainer,
-            borderRadius: BorderRadiusResource.bordersRadiusTiny,
+          padding: EdgeInsets.symmetric(
+            horizontal: SpacesResources.s4,
+            vertical: SpacesResources.s2,
           ),
-          child: Text(
-            topicTitle(context),
-            style: TextStylesResources.caption.copyWith(
-              color: Theme.of(context).colorScheme.onSecondaryContainer,
-              fontSize: FontSizeResources.s9,
-              fontWeight: FontWeightResources.medium,
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.primaryContainer.withValues(alpha: 0.5),
+            borderRadius: BorderRadiusResource.bordersRadiusXTiny,
+            border: Border.all(
+              color: Theme.of(context).colorScheme.outlineVariant,
+              width: 1,
             ),
           ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                topic,
+                style: TextStylesResources.caption.copyWith(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  fontSize: FontSizeResources.s9,
+                  fontWeight: FontWeightResources.medium,
+                ),
+              ),
+            ],
+          ),
         ),
+        // Chip(
+        //   label: Text(
+        //     topic,
+        //     style: TextStylesResources.caption.copyWith(
+        //       color: Theme.of(context).colorScheme.primary,
+        //       fontSize: FontSizeResources.s9,
+        //       fontWeight: FontWeightResources.medium,
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

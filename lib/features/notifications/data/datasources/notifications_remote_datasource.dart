@@ -55,7 +55,7 @@ class NotificationsRemoteDatasourceImplements implements NotificationsRemoteData
     }
 
     await _localNotificationsPlugin.initialize(
-      AppLocalNotificationsSettings.settings,
+      settings: AppLocalNotificationsSettings.settings,
       onDidReceiveNotificationResponse: onDidReceiveNotificationResponse,
       onDidReceiveBackgroundNotificationResponse: onDidReceiveBackgroundNotificationResponse,
     );
@@ -111,12 +111,10 @@ class NotificationsRemoteDatasourceImplements implements NotificationsRemoteData
     }
 
     ///
-    if (details == null) {
-      details = AppLocalNotificationsSettings.defaultNotificationsDetails(
-        androidActions:
-            notification.actions().map((action) => action.toAndroidNotificationAction()).toList(),
-      );
-    }
+    details ??= AppLocalNotificationsSettings.defaultNotificationsDetails(
+      androidActions:
+          notification.actions().map((action) => action.toAndroidNotificationAction()).toList(),
+    );
 
     ///
     String? payloadString;
@@ -130,10 +128,10 @@ class NotificationsRemoteDatasourceImplements implements NotificationsRemoteData
 
     ///
     await _localNotificationsPlugin.show(
-      DateTime.now().millisecondsSinceEpoch % 2147483647, // Ensure it fits in int32
-      notification.title,
-      notification.body,
-      details,
+      id: DateTime.now().millisecondsSinceEpoch % 2147483647, // Ensure it fits in int32
+      title: notification.title,
+      body: notification.body,
+      notificationDetails: details,
       payload: payloadString,
     );
 

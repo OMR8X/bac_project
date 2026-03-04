@@ -1,17 +1,13 @@
-import 'dart:ui';
 
 import 'package:bac_project/core/widgets/ui/icons/switch_theme_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
-import 'package:bac_project/core/widgets/animations/skeletonizer_effect_list_wraper.dart';
 import 'package:bac_project/features/results/domain/entities/result.dart';
-import 'package:bac_project/presentation/result/widgets/result_card_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../core/extensions/build_context_l10n.dart';
 import '../../../core/injector/app_injection.dart';
-import '../../../core/resources/styles/spacing_resources.dart';
 import '../bloc/explore_results/explore_results_bloc.dart';
 import '../widgets/result_list_builder_widget.dart';
 

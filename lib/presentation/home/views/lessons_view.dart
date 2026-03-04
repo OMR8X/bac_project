@@ -16,8 +16,6 @@ import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../core/resources/styles/spacing_resources.dart';
-import '../../../core/widgets/animations/skeletonizer_effect_list_wraper.dart';
-import '../../../core/widgets/ui/lesson_card_widget.dart';
 import '../blocs/lessons_bloc.dart';
 
 class LessonsView extends StatefulWidget {
@@ -120,7 +118,7 @@ class _LoadedView extends StatelessWidget {
 }
 
 class _LoadingView extends StatelessWidget {
-  const _LoadingView({super.key});
+  const _LoadingView();
 
   @override
   Widget build(BuildContext context) {

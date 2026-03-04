@@ -1,14 +1,12 @@
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/color_extensions.dart';
 import 'package:bac_project/core/resources/themes/extensions/option_card_colors.dart';
 import 'package:bac_project/features/tests/domain/entities/option.dart';
 import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
 import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class OptionTextualFieldWidget extends StatefulWidget {

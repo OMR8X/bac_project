@@ -1,17 +1,9 @@
-import 'dart:math';
-
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/injector/tests_feature_inj.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
-import 'package:bac_project/core/widgets/messages/snackbars/informations_snackbar_widget.dart';
 import 'package:bac_project/core/widgets/ui/icons/notifications_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/icons/search_icon_widget.dart';
-import 'package:bac_project/features/notifications/domain/usecases/display_notification_usecase.dart';
-import 'package:bac_project/features/settings/other/fake_quotes_list.dart';
-import 'package:bac_project/presentation/home/models/custom_action_card_model.dart';
-import 'package:bac_project/presentation/home/widgets/quote_of_the_day_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -58,6 +50,7 @@ class _HomeViewState extends State<HomeView> {
           if (kDebugMode) SwitchThemeIconWidget(),
         ],
       ),
+      floatingActionButton: null,
       body: BlocProvider.value(
         value: sl<HomeBloc>(),
         child: BlocBuilder<HomeBloc, HomeState>(
@@ -124,3 +117,38 @@ class _LoadingView extends StatelessWidget {
     );
   }
 }
+
+
+
+
+// appBar: AppBar(
+//   backgroundColor: Colors.transparent,
+//   elevation: 0,
+//   flexibleSpace: Container(
+//     decoration: BoxDecoration(
+//       gradient: LinearGradient(
+//         begin: Alignment.topCenter,
+//         end: Alignment.bottomCenter,
+//         colors: [
+//           Theme.of(context).colorScheme.surface,
+//           Theme.of(context).colorScheme.surface,
+//           Theme.of(context).colorScheme.surface.withAlpha(200),
+//           Theme.of(context).colorScheme.surface.withAlpha(0),
+//         ],
+//       ),
+//     ),
+//   ),
+//   title: Text(context.l10n.homeTitle),
+//   leading: NotificationsIconWidget(),
+//   actions: [
+//     SearchIconWidget(
+//       onPressed: () {
+//         context.pushNamed(
+//           Routes.search.name,
+//           queryParameters: SearchViewArguments(unitId: null).toQueryParameters(),
+//         );
+//       },
+//     
+//     if (kDebugMode) SwitchThemeIconWidget(),
+//   ],
+// ),

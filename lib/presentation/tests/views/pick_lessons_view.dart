@@ -8,8 +8,7 @@ import 'package:bac_project/core/widgets/ui/fields/bottom_buttons_widget.dart';
 import 'package:bac_project/core/widgets/ui/icons/arrow_back_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:bac_project/core/widgets/ui/lesson_card_widget.dart';
-import 'package:bac_project/core/widgets/animations/skeletonizer_effect_list_wraper.dart';
+import 'package:bac_project/presentation/lessons/widgets/lesson_card_widget.dart';
 import 'package:bac_project/features/tests/domain/entities/lesson.dart';
 import 'package:bac_project/core/services/router/app_arguments.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -123,7 +122,7 @@ class _LoadedView extends StatelessWidget {
                 position: index,
                 child: LessonCardWidget(
                   title: lesson.title,
-                  questionsCount: lesson.questionsCount,
+                  // label: lesson.questionsCount,
                   icon: Icons.book,
                   isSelected: isSelected,
                   onTap: () {

@@ -1,8 +1,3 @@
-import 'package:bac_project/core/extensions/build_context_l10n.dart';
-import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
-import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
-import 'package:bac_project/core/resources/themes/extensions/option_card_colors.dart';
 import 'package:bac_project/features/results/domain/entities/answer_evaluation.dart';
 import 'package:bac_project/presentation/quizzing/widgets/option_textual_card_widget.dart';
 import 'package:collection/collection.dart';

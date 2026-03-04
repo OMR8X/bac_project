@@ -84,6 +84,8 @@ class SnackbarWidget {
                                   title,
                                   style: TextStylesResources.cardMediumTitle.copyWith(
                                     color: Theme.of(context).colorScheme.onSurface,
+                                    fontSize: FontSizeResources.s12,
+                                    fontWeight: FontWeightResources.bold,
                                   ),
                                 ),
                                 if (subtitle != null) ...[
@@ -94,6 +96,8 @@ class SnackbarWidget {
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStylesResources.cardSmallSubtitle.copyWith(
                                       color: Theme.of(context).colorScheme.onSurface,
+                                      fontSize: FontSizeResources.s11,
+                                      fontWeight: FontWeightResources.regular,
                                     ),
                                   ),
                                 ],

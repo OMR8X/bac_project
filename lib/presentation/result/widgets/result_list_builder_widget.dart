@@ -4,7 +4,6 @@ import 'package:bac_project/core/services/router/routes.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
 import 'package:bac_project/features/results/domain/entities/result.dart';
 import 'package:flutter/material.dart';
-import 'package:bac_project/features/results/data/models/result_model.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:go_router/go_router.dart';
 import 'result_card_widget.dart';

@@ -8,6 +8,7 @@ class VersionModel extends Version {
     required super.updateLink,
     super.appVersion,
     super.buildNumber,
+    super.patchNumber,
   });
 
   factory VersionModel.fromJson(Map<String, dynamic> json) {

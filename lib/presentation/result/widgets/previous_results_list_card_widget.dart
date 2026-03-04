@@ -1,10 +1,8 @@
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
-import 'package:bac_project/core/widgets/animations/staggered_list_wrapper_widget.dart';
 import 'package:bac_project/features/results/domain/entities/result.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import 'previous_result_card_widget.dart';
 

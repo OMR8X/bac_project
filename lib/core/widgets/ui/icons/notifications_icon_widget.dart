@@ -8,11 +8,8 @@ class NotificationsIconWidget extends StatelessWidget {
   const NotificationsIconWidget({super.key});
   @override
   Widget build(BuildContext context) {
-    return AppBarIconWidget(
-      icon: Image.asset(
-        UIImagesResources.bellUIIcon,
-        color: Theme.of(context).colorScheme.onSurfaceVariant,
-      ),
+    return AppBarIconWidget.asset(
+      asset: UIImagesResources.bellUIIcon,
       onPressed: () {
         context.pushNamed(Routes.notifications.name);
       },

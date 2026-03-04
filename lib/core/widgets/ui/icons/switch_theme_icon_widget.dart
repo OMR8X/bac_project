@@ -11,21 +11,15 @@ class SwitchThemeIconWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = context.read<AppThemeBloc>();
     if (Theme.of(context).brightness == Brightness.dark) {
-      return AppBarIconWidget(
-        icon: Image.asset(
-          UIImagesResources.brightnessDarkUIIcon,
-          color: Theme.of(context).colorScheme.onSurfaceVariant,
-        ),
+      return AppBarIconWidget.asset(
+        asset: UIImagesResources.brightnessDarkUIIcon,
         onPressed: () {
           bloc.add(const ChangeAppThemeEvent(AppThemes.lightTheme));
         },
       );
     } else {
-      return AppBarIconWidget(
-        icon: Image.asset(
-          UIImagesResources.brightnessLightUIIcon,
-          color: Theme.of(context).colorScheme.onSurfaceVariant,
-        ),
+      return AppBarIconWidget.asset(
+        asset: UIImagesResources.brightnessLightUIIcon,
         onPressed: () {
           bloc.add(const ChangeAppThemeEvent(AppThemes.darkTheme));
         },

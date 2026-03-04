@@ -1,4 +1,3 @@
-import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/services/api/api_manager.dart';
 import 'package:bac_project/core/services/tokens/tokens_manager.dart';
 import 'package:bac_project/features/auth/data/models/user_data_model.dart';
@@ -10,6 +9,7 @@ import 'package:bac_project/features/auth/data/responses/sign_in_response.dart';
 import 'package:bac_project/features/auth/data/responses/sign_out_response.dart';
 import 'package:bac_project/features/auth/data/responses/sign_up_response.dart';
 import 'package:bac_project/features/auth/data/responses/update_user_data_response.dart';
+import 'package:bac_project/features/auth/data/responses/update_password_response.dart';
 import 'package:bac_project/features/auth/domain/requests/add_to_user_favorites_request.dart';
 import 'package:bac_project/features/auth/domain/requests/change_password_request.dart';
 import 'package:bac_project/features/auth/domain/requests/get_user_data_request.dart';
@@ -18,9 +18,9 @@ import 'package:bac_project/features/auth/domain/requests/sign_out_request.dart'
 import 'package:bac_project/features/auth/domain/requests/sign_in_request.dart';
 import 'package:bac_project/features/auth/domain/requests/sign_up_request.dart';
 import 'package:bac_project/features/auth/domain/requests/update_user_data_request.dart';
+import 'package:bac_project/features/auth/domain/requests/update_password_request.dart';
 import 'package:bac_project/features/auth/data/responses/add_to_user_favorites_response.dart';
 import 'package:bac_project/features/auth/data/responses/get_user_favorites_response.dart';
-import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../domain/requests/forget_password_request.dart';
@@ -48,7 +48,9 @@ abstract class AuthRemoteDataSource {
   Future<RemoveFromUserFavoritesResponse> removeFromUserFavorites({
     required RemoveFromUserFavoritesRequest request,
   });
-  // update user data
+  // update password
+  Future<UpdatePasswordResponse> updatePassword({required UpdatePasswordRequest request});
+  // get user favorites
   Future<GetUserFavoritesResponse> getUserFavorites();
 }
 
@@ -180,7 +182,6 @@ class AuthRemoteDataSourceImplements implements AuthRemoteDataSource {
   Future<UpdateUserDataResponse> updateUserData({required UpdateUserDataRequest request}) async {
     final attributes = UserAttributes(
       email: request.email,
-      password: request.password,
       data: request.toBody(old: _supabaseClient.auth.currentUser?.userMetadata),
     );
     final res = await _supabaseClient.auth.updateUser(attributes);
@@ -198,5 +199,13 @@ class AuthRemoteDataSourceImplements implements AuthRemoteDataSource {
         email: user?.email ?? '',
       ),
     );
+  }
+
+  @override
+  Future<UpdatePasswordResponse> updatePassword({required UpdatePasswordRequest request}) async {
+    await _supabaseClient.auth.updateUser(
+      UserAttributes(password: request.newPassword),
+    );
+    return UpdatePasswordResponse(message: 'تم تحديث كلمة المرور بنجاح');
   }
 }

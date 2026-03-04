@@ -1,7 +1,4 @@
-import 'package:bac_project/core/extensions/build_context_l10n.dart';
-import 'package:bac_project/core/resources/styles/assets_resources.dart';
 import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
-import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/resources/themes/extensions/option_card_colors.dart';
 import 'package:bac_project/features/tests/domain/entities/option.dart';
 import 'package:flutter/material.dart';

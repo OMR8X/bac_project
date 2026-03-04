@@ -1,19 +1,15 @@
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/widgets/animations/skeletonizer_effect_list_wraper.dart';
-import 'package:bac_project/core/widgets/ui/icons/arrow_back_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/icons/switch_theme_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/states/empty_state_body_widget.dart';
 import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
-import 'package:bac_project/features/notifications/data/settings/app_local_notifications_settings.dart';
 import 'package:bac_project/features/notifications/domain/entities/app_notification.dart';
 import 'package:bac_project/presentation/notifications/state/explore_notifications/notifications_bloc.dart';
 import 'package:bac_project/presentation/notifications/widgets/notification_card_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../core/extensions/build_context_l10n.dart';
@@ -103,9 +99,7 @@ class _NotificationsViewState extends State<NotificationsView> {
 }
 
 class _LoadingView extends StatelessWidget {
-  const _LoadingView({
-    super.key,
-  });
+  const _LoadingView();
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +118,6 @@ class _LoadingView extends StatelessWidget {
 
 class _LoadedView extends StatelessWidget {
   const _LoadedView({
-    super.key,
     required this.scrollController,
     required this.state,
   });
@@ -133,27 +126,30 @@ class _LoadedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimationLimiter(
-      child: ListView.builder(
-        controller: scrollController,
-        padding: Paddings.zero,
-        key: const ValueKey("notifications_list_builder_widget"),
-        itemCount: state.notifications.length + (state.isLoadingMore ? 1 : 0),
-        itemBuilder: (context, index) {
-          if (index == state.notifications.length) {
-            return SkeletonizerEffectListWrapper.pagination(
-              child: NotificationCardWidget(
-                notification: AppNotification.mock(),
-                position: 0,
-              ),
+    return Padding(
+      padding: Paddings.screenBodyPadding,
+      child: AnimationLimiter(
+        child: ListView.builder(
+          controller: scrollController,
+          padding: Paddings.listViewPadding,
+          key: const ValueKey("notifications_list_builder_widget"),
+          itemCount: state.notifications.length + (state.isLoadingMore ? 1 : 0),
+          itemBuilder: (context, index) {
+            if (index == state.notifications.length) {
+              return SkeletonizerEffectListWrapper.pagination(
+                child: NotificationCardWidget(
+                  notification: AppNotification.mock(),
+                  position: 0,
+                ),
+              );
+            }
+            final notification = state.notifications[index];
+            return NotificationCardWidget(
+              notification: notification,
+              position: index,
             );
-          }
-          final notification = state.notifications[index];
-          return NotificationCardWidget(
-            notification: notification,
-            position: index,
-          );
-        },
+          },
+        ),
       ),
     );
   }

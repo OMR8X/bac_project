@@ -1,10 +1,8 @@
 import 'dart:async';
 
-import 'package:bac_project/core/services/logs/logger.dart';
 import 'package:bac_project/presentation/root/blocs/loader/app_loader_bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

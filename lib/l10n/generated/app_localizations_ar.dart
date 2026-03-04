@@ -419,8 +419,29 @@ class AppLocalizationsAr extends AppLocalizations {
   String get versionDetailsShortLabel => 'رقم الإصدار';
 
   @override
+  String get versionDetailsPatchNumberLabel => 'رقم التصحيح';
+
+  @override
   String get versionDetailsTitle => 'تفاصيل الإصدار';
 
   @override
   String get versionDetailsVersionStringLabel => 'تفاصيل الإصدار (النص الكامل)';
+
+  @override
+  String get codePushUpdateCompletedTitle => 'اكتمل التحديث';
+
+  @override
+  String get codePushUpdateCompletedSubtitle =>
+      'تم تحميل التحديث بنجاح. يرجى إعادة تشغيل التطبيق لتطبيق التغييرات.';
+
+  @override
+  String get codePushUpdateErrorTitle => 'خطأ في التحديث';
+
+  @override
+  String get pickSubjectTitle => 'اختيار المادة';
+
+  @override
+  String pickLessonTitle(Object subjectName) {
+    return 'دروس $subjectName';
+  }
 }

@@ -1,4 +1,3 @@
-import 'package:skeletonizer/skeletonizer.dart';
 
 class Lesson {
   final int id;

@@ -1,5 +1,4 @@
 import 'package:bac_project/core/injector/app_injection.dart';
-import 'package:bac_project/core/resources/styles/colors_resources.dart';
 import 'package:bac_project/core/services/router/index.dart';
 import 'package:bac_project/presentation/root/blocs/theme/app_theme_bloc.dart';
 import 'package:flutter/material.dart';

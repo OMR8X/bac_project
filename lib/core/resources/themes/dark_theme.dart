@@ -17,7 +17,7 @@ class AppDarkTheme {
       // textTheme: GoogleFonts.ibmPlexSansArabicTextTheme(),
       colorScheme: ColorScheme(
         brightness: Brightness.dark,
-        primary: const Color.fromARGB(255, 45, 45, 75),
+        primary: ColorsResourcesDark.primary,
         primaryContainer: ColorsResourcesDark.primaryContainer,
         onPrimary: ColorsResourcesDark.onPrimary,
         onPrimaryContainer: ColorsResourcesDark.onPrimaryContainer,
@@ -210,14 +210,15 @@ class AppDarkTheme {
           elevation: 0,
           shadowColor: Colors.transparent,
           backgroundColor: ColorsResourcesDark.primaryContainer,
-          foregroundColor: ColorsResourcesDark.primary,
+          foregroundColor: ColorsResourcesDark.onPrimaryContainer,
           shape: RoundedSuperellipseBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
           textStyle: TextStylesResources.button,
           minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
-          side: BorderSide(
-            color: ColorsResourcesDark.outline,
-            width: SizesResources.buttonBorderWidth,
-          ),
+          side: BorderSide(color: Colors.transparent),
+          // side: BorderSide(
+          //   color: ColorsResourcesDark.outline,
+          //   width: SizesResources.buttonBorderWidth,
+          // ),
         ),
       ),
 
@@ -230,6 +231,7 @@ class AppDarkTheme {
           shape: RoundedSuperellipseBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
           textStyle: TextStylesResources.button.copyWith(color: ColorsResourcesDark.primary),
           minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
+          side: BorderSide(color: Colors.transparent),
         ),
       ),
 
@@ -244,7 +246,8 @@ class AppDarkTheme {
           minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
           shape: RoundedSuperellipseBorder(
             borderRadius: BorderRadiusResource.buttonBorderRadius,
-            side: BorderSide(color: ColorsResourcesDark.outline, width: 0.5),
+            // side: BorderSide(color: ColorsResourcesDark.outline, width: 0.5),
+            side: BorderSide(color: Colors.transparent),
           ),
           textStyle: TextStylesResources.button,
         ),
@@ -260,7 +263,7 @@ class AppDarkTheme {
           minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
           shape: RoundedSuperellipseBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
           textStyle: TextStylesResources.button,
-          side: BorderSide(color: ColorsResourcesDark.outlineVariant),
+          side: BorderSide(color: Colors.transparent),
         ),
       ),
 
@@ -274,8 +277,7 @@ class AppDarkTheme {
             SizesResources.iconButtonAppBarHeight,
           ),
           backgroundColor: ColorsResourcesDark.surface,
-          // foregroundColor: ColorsResourcesDark.onSurface,
-          foregroundColor: Color(0xff55534F),
+          foregroundColor: ColorsResourcesDark.onSurface,
           shape: RoundedSuperellipseBorder(
             side: BorderSide(
               color: ColorsResourcesDark.outlineVariant,

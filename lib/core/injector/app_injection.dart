@@ -1,6 +1,8 @@
 import 'package:bac_project/core/injector/cache_injection.dart';
+import 'package:bac_project/core/injector/codepush_injection.dart';
 import 'package:bac_project/core/injector/client_injection.dart';
 import 'package:bac_project/core/injector/notifications_injection.dart';
+import 'package:bac_project/core/injector/reports_feature_injection.dart';
 import 'package:bac_project/core/injector/results_feature_inj.dart';
 import 'package:bac_project/core/injector/supabase_injection.dart';
 import 'package:bac_project/core/injector/tests_feature_inj.dart';
@@ -9,6 +11,7 @@ import 'package:bac_project/core/services/api/api_manager.dart';
 import 'package:bac_project/core/services/logs/logger.dart';
 import 'package:get_it/get_it.dart';
 import 'controllers_injection.dart';
+import 'environment_injection.dart';
 import 'package_info_injection.dart';
 import 'paths_injection.dart';
 import 'auth_injection.dart';
@@ -35,7 +38,9 @@ class ServiceLocator {
     await supabaseInjection();
     await packageInfoInjection();
     await cacheInjection();
+    await codepushInjection();
     await pathsInjection();
+    await environmentInjection();
   }
 
   /// Features
@@ -46,6 +51,7 @@ class ServiceLocator {
     await settingsFeatureInjection();
     await notificationsFeatureInjection();
     await authFeatureInjection();
+    await reportsFeatureInjection();
   }
 
   /// controllers

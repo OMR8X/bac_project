@@ -23,7 +23,6 @@ linter:
   # `// ignore_for_file: name_of_lint` syntax on the line or in the file
   # producing the lint.
   rules:
-    transform_commas: preserve
     # always_declare_return_types: true
     # always_specify_types: true
     # always_use_package_imports: true

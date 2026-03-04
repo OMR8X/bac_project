@@ -1,5 +1,4 @@
 import 'package:bac_project/core/resources/styles/assets_resources.dart';
-import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/widgets/ui/icons/appbar_icon_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -8,12 +7,8 @@ class SearchIconWidget extends StatelessWidget {
   final VoidCallback? onPressed;
   @override
   Widget build(BuildContext context) {
-    return AppBarIconWidget(
-      icon: Image.asset(
-        UIImagesResources.searchUIIcon,
-        color: Theme.of(context).colorScheme.onSurfaceVariant,
-        // color: Color(0xff55534F),
-      ),
+    return AppBarIconWidget.asset(
+      asset: UIImagesResources.searchUIIcon,
       onPressed: onPressed ?? () {},
     );
   }

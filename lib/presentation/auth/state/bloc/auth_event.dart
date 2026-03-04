@@ -64,17 +64,28 @@ final class AuthUpdateUserDataEvent extends AuthenticationEvent {
   final String? email;
   final int? sectionId;
   final int? governorateId;
-  final String? password;
 
   const AuthUpdateUserDataEvent({
     required this.name,
     required this.email,
     required this.governorateId,
     required this.sectionId,
-    required this.password,
   });
   @override
   List<Object> get props => [];
+}
+
+final class AuthUpdatePasswordEvent extends AuthenticationEvent {
+  final String currentPassword;
+  final String newPassword;
+
+  const AuthUpdatePasswordEvent({
+    required this.currentPassword,
+    required this.newPassword,
+  });
+
+  @override
+  List<Object> get props => [currentPassword, newPassword];
 }
 
 final class AuthSignOutEvent extends AuthenticationEvent {

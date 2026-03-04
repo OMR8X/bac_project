@@ -1,6 +1,41 @@
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:flutter/material.dart';
 
+/// ---------------------------------------------------------------------------
+/// SPACING RESOURCES
+/// ---------------------------------------------------------------------------
+///
+/// This file defines the **only allowed way** to apply spacing in the app.
+///
+/// ❌ Do NOT use:
+/// - EdgeInsets directly
+/// - SizedBox(height / width) with hardcoded values
+///
+/// ✅ Always use:
+/// - Paddings  → inside spacing
+/// - Margins   → outside spacing
+/// - SizedBoxes → spacing between widgets
+///
+/// Mental model:
+/// - Padding  = inside a widget
+/// - Margin   = outside a widget
+/// - SizedBox = gap between widgets
+///
+/// ---------------------------------------------------------------------------
+
+/// ---------------------------------------------------------------------------
+/// PADDINGS
+/// ---------------------------------------------------------------------------
+///
+/// Use `Paddings` when you need **internal spacing**.
+///
+/// Examples:
+/// - Padding inside a Card
+/// - Content padding inside containers
+/// - Touch-area padding
+///
+/// ❌ Do not use Paddings to separate widgets from each other.
+/// That is the responsibility of Margins or SizedBoxes.
 ///
 class Paddings {
   const Paddings();
@@ -165,6 +200,19 @@ class Paddings {
   }
 }
 
+/// ---------------------------------------------------------------------------
+/// MARGINS
+/// ---------------------------------------------------------------------------
+///
+/// Use `Margins` when you need **external spacing**.
+///
+/// Examples:
+/// - Space between cards
+/// - Space between sections
+/// - Separation between major layout blocks
+///
+/// ❌ Do not use Margins for internal spacing.
+/// That is the responsibility of Paddings.
 ///
 class Margins {
   const Margins();
@@ -187,6 +235,10 @@ class Margins {
 
   static EdgeInsets get cardMargin {
     return const EdgeInsets.symmetric(vertical: SpacesResources.s2);
+  }
+
+  static EdgeInsets get cardBigMargin {
+    return const EdgeInsets.symmetric(vertical: SpacesResources.s4, horizontal: SpacesResources.s4);
   }
 
   static EdgeInsets get userInformationCardMargin {
@@ -225,6 +277,18 @@ class Margins {
   }
 }
 
+/// ---------------------------------------------------------------------------
+/// SIZED BOXES
+/// ---------------------------------------------------------------------------
+///
+/// Use `SizedBoxes` to create **space between widgets**.
+///
+/// Examples:
+/// - Vertical gaps in a Column
+/// - Horizontal gaps in a Row
+///
+/// ❌ Do not use SizedBoxes for padding or margins.
+/// ❌ Do not create custom SizedBox(height / width).
 ///
 class SizedBoxes {
   const SizedBoxes();

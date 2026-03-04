@@ -22,6 +22,7 @@ class SpacesResources {
   static const double s20 = 20 * sizeUnit;
   static const double s24 = 24 * sizeUnit;
   static const double s30 = 30 * sizeUnit;
+  static const double s32 = 32 * sizeUnit;
   static const double s40 = 40 * sizeUnit;
   static const double s50 = 50 * sizeUnit;
   static const double s60 = 60 * sizeUnit;

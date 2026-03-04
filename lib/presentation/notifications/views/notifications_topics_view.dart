@@ -12,7 +12,6 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../core/extensions/build_context_l10n.dart';
 import '../../../core/injector/app_injection.dart';
 import '../../../core/resources/styles/spacing_resources.dart';
-import '../../../core/widgets/animations/skeletonizer_effect_list_wraper.dart';
 
 class NotificationsTopicsView extends StatefulWidget {
   const NotificationsTopicsView({super.key});
@@ -59,7 +58,6 @@ class _NotificationsTopicsViewState extends State<NotificationsTopicsView> {
 
 class _LoadedView extends StatelessWidget {
   const _LoadedView({
-    super.key,
     required this.state,
   });
 

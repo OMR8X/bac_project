@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../../../resources/styles/border_radius_resources.dart';
 import '../../../resources/styles/font_styles_manager.dart';
-import '../../../resources/styles/spacing_resources.dart';
-import '../../../resources/styles/sizes_resources.dart';
 import '../../animations/staggered_item_wrapper_widget.dart';
 
 class DropDownWidget<T> extends StatefulWidget {

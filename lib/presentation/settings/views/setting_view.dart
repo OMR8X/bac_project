@@ -285,11 +285,16 @@ void _showVersionDetailsDialog(BuildContext context, Version version) {
           label: context.l10n.versionDetailsBuildNumberLabel,
           value: version.buildNumber,
         ),
+        if (version.patchNumber != null)
+          _VersionDetailRow(
+            label: context.l10n.versionDetailsPatchNumberLabel,
+            value: version.patchNumber?.toString() ?? context.l10n.versionDetailsNotAvailableLabel,
+          ),
         _VersionDetailRow(
           label: context.l10n.versionDetailsVersionStringLabel,
           value: version.versionString,
         ),
-        SizedBox(height: SpacesResources.s4),
+        SizedBox(height: SpacesResources.s2),
       ],
     ),
   );
@@ -319,7 +324,7 @@ class _VersionDetailRow extends StatelessWidget {
               height: 2.2,
               color: theme.colorScheme.onSurface,
               fontWeight: FontWeightResources.bold,
-              fontSize: FontSizeResources.s12,
+              fontSize: FontSizeResources.s10,
             ),
           ),
         ),
@@ -331,7 +336,7 @@ class _VersionDetailRow extends StatelessWidget {
             style: TextStylesResources.dialogBody.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
               fontWeight: FontWeightResources.medium,
-              fontSize: FontSizeResources.s12,
+              fontSize: FontSizeResources.s10,
             ),
             textAlign: TextAlign.left,
           ),

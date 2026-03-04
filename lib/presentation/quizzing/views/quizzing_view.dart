@@ -1,16 +1,11 @@
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/services/router/index.dart';
-import 'package:bac_project/core/widgets/animations/skeletonizer_effect_list_wraper.dart';
 import 'package:bac_project/core/widgets/messages/dialogs/conform_dialog.dart';
-import 'package:bac_project/core/widgets/ui/icons/switch_theme_icon_widget.dart';
 import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
 import 'package:bac_project/features/tests/domain/entities/question.dart';
-import 'package:bac_project/presentation/tests/widgets/question_card_widget.dart';
-import 'package:bac_project/presentation/quizzing/widgets/multiple_choices_options_builder_widget.dart';
 import 'package:bac_project/presentation/result/bloc/explore_results/explore_results_bloc.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';

@@ -2,8 +2,6 @@ import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/resources/errors/failures.dart';
 import 'package:bac_project/features/results/data/responses/get_result_questions_details_response.dart';
 import 'package:bac_project/features/tests/domain/entities/question.dart';
-import 'package:bac_project/features/results/domain/requests/get_answer_evaluations_request.dart';
-import 'package:bac_project/features/results/domain/usecases/get_answer_evaluations_use_case.dart';
 import 'package:bac_project/features/results/domain/usecases/get_result_questions_details_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';

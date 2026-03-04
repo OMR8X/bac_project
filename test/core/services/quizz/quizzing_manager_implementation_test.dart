@@ -1,11 +1,9 @@
-import 'dart:async';
 
 import 'package:bac_project/core/services/quizz/models/models.dart';
 import 'package:bac_project/core/services/quizz/quizzing_manager_implementation.dart';
 import 'package:bac_project/features/results/domain/entities/result.dart';
 import 'package:bac_project/features/tests/domain/entities/option.dart';
 import 'package:bac_project/features/tests/domain/entities/question.dart';
-import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

@@ -1,6 +1,5 @@
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:flutter/material.dart';
 

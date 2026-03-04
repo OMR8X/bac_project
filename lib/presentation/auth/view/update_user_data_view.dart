@@ -33,8 +33,6 @@ class _UpdateUserDataViewState extends State<UpdateUserDataView> {
   //
   late final TextEditingController _nameController;
   late final TextEditingController _emailController;
-  late final TextEditingController _passwordController;
-  late final TextEditingController _confirmPasswordController;
   //
   late Section? _section;
   late Governorate? _governorate;
@@ -48,8 +46,6 @@ class _UpdateUserDataViewState extends State<UpdateUserDataView> {
     //
     _nameController = TextEditingController();
     _emailController = TextEditingController();
-    _passwordController = TextEditingController();
-    _confirmPasswordController = TextEditingController();
     //
     //
     _section = sl<AppSettings>().sections.firstWhereOrNull(
@@ -67,17 +63,11 @@ class _UpdateUserDataViewState extends State<UpdateUserDataView> {
   initListeners() {
     _nameController.addListener(_updateButtonState);
     _emailController.addListener(_updateButtonState);
-    _passwordController.addListener(_updateButtonState);
-    _confirmPasswordController.addListener(_updateButtonState);
   }
 
   void _updateButtonState() {
     //
-    _didFillInfo =
-        _nameController.text.isNotEmpty ||
-        _emailController.text.isNotEmpty ||
-        _passwordController.text.isNotEmpty ||
-        _confirmPasswordController.text.isNotEmpty;
+    _didFillInfo = _nameController.text.isNotEmpty || _emailController.text.isNotEmpty;
 
     //
     if (!_didFillInfo &&
@@ -94,8 +84,6 @@ class _UpdateUserDataViewState extends State<UpdateUserDataView> {
   void dispose() {
     _nameController.dispose();
     _emailController.dispose();
-    _passwordController.dispose();
-    _confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -103,7 +91,6 @@ class _UpdateUserDataViewState extends State<UpdateUserDataView> {
     //
     String? name = _nameController.text.isNotEmpty ? _nameController.text : null;
     String? email = _emailController.text.isNotEmpty ? _emailController.text : null;
-    String? password = _passwordController.text.isNotEmpty ? _passwordController.text : null;
     //
     sl<AuthBloc>().add(
       AuthUpdateUserDataEvent(
@@ -111,7 +98,6 @@ class _UpdateUserDataViewState extends State<UpdateUserDataView> {
         email: email,
         governorateId: _governorate?.id,
         sectionId: _section?.id,
-        password: password,
       ),
     );
   }
@@ -151,33 +137,6 @@ class _UpdateUserDataViewState extends State<UpdateUserDataView> {
                       return InputValidator.emailValidator(text);
                     },
                   ),
-                  TextFormFieldWidget(
-                    hintText: "كلمة المرور",
-                    maxLength: 64,
-                    position: 3,
-                    obscureText: true,
-                    keyboardType: TextInputType.visiblePassword,
-                    controller: _passwordController,
-                    validator: (text) {
-                      if (text?.isEmpty ?? true) return null;
-                      return InputValidator.passwordValidator(text);
-                    },
-                  ),
-                  TextFormFieldWidget(
-                    hintText: "تاكيد كلمة المرور",
-                    maxLength: 64,
-                    position: 4,
-                    obscureText: true,
-                    keyboardType: TextInputType.visiblePassword,
-                    controller: _confirmPasswordController,
-                    validator: (text) {
-                      if (_passwordController.text != _confirmPasswordController.text) {
-                        return "كلمة المرور غير متطابقة";
-                      }
-                      if (text?.isEmpty ?? true) return null;
-                      return InputValidator.passwordValidator(text);
-                    },
-                  ),
                   DropDownWidget<Governorate>(
                     hintText: "المحافظة",
                     initialSelection: sl<AppSettings>().governorates.firstWhereOrNull(
@@ -197,11 +156,8 @@ class _UpdateUserDataViewState extends State<UpdateUserDataView> {
                       }
                       //
                       if (_nameController.text.isEmpty && _emailController.text.isEmpty) {
-                        if (_passwordController.text.isEmpty &&
-                            _confirmPasswordController.text.isEmpty) {
-                          if (_section?.id == sl<UserData>().sectionId) {
-                            setState(() => _didFillInfo = false);
-                          }
+                        if (_section?.id == sl<UserData>().sectionId) {
+                          setState(() => _didFillInfo = false);
                         }
                       }
                     },
@@ -225,11 +181,8 @@ class _UpdateUserDataViewState extends State<UpdateUserDataView> {
                   //     }
                   //     //
                   //     if (_nameController.text.isEmpty && _emailController.text.isEmpty) {
-                  //       if (_passwordController.text.isEmpty &&
-                  //           _confirmPasswordController.text.isEmpty) {
-                  //         if (_governorate.id == sl<UserData>().governorateId) {
-                  //           setState(() => _didFillInfo = false);
-                  //         }
+                  //       if (_governorate.id == sl<UserData>().governorateId) {
+                  //         setState(() => _didFillInfo = false);
                   //       }
                   //     }
                   //   },

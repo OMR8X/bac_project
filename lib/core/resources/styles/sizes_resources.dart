@@ -18,7 +18,7 @@ class SizesResources {
   static const double iconSettingsTileHeight = 18;
   //
   static const double fieldBorderWidth = 1.0;
-  static const double iconButtonBorderWidth = 2.0;
+  static const double iconButtonBorderWidth = 1.0;
   static const double buttonBorderWidth = 1.0;
   static const double cardMediumBorderWidth = 1.5;
   static const double cardLargeBorderWidth = 3.0;

@@ -1,7 +1,6 @@
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
-import 'package:bac_project/core/widgets/ui/fields/elevated_button_widget.dart';
 import 'package:bac_project/core/widgets/ui/fields/text_button_widget.dart';
 import 'package:flutter/material.dart';
 

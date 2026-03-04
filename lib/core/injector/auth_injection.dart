@@ -9,6 +9,7 @@ import 'package:bac_project/features/auth/domain/usecases/get_user_data_usecase.
 import 'package:bac_project/features/auth/domain/usecases/remove_from_user_favorites_usecase.dart';
 import 'package:bac_project/features/auth/domain/usecases/sign_up_usecase.dart';
 import 'package:bac_project/features/auth/domain/usecases/update_user_data_usecase.dart';
+import 'package:bac_project/features/auth/domain/usecases/update_password_usecase.dart';
 import '../../features/auth/data/datasources/auth_local_data_source.dart';
 import '../../features/auth/data/repositories/auth_repository_implement.dart';
 import '../../features/auth/domain/usecases/add_to_user_favorites_usecase.dart';
@@ -45,6 +46,9 @@ void injectUsecases() {
   );
   sl.registerFactory<UpdateUserDataUsecase>(
     () => UpdateUserDataUsecase(repository: sl<AuthRepository>()),
+  );
+  sl.registerFactory<UpdatePasswordUsecase>(
+    () => UpdatePasswordUsecase(repository: sl<AuthRepository>()),
   );
   sl.registerFactory<SignOutUsecase>(() => SignOutUsecase(repository: sl<AuthRepository>()));
 }

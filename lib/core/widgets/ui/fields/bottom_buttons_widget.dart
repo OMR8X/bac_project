@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:bac_project/core/resources/styles/blur_resources.dart';
 import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';

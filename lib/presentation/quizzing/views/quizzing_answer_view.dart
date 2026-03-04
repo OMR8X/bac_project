@@ -1,9 +1,7 @@
 import 'package:bac_project/core/injector/tests_feature_inj.dart';
-import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
 import 'package:bac_project/features/settings/domain/entities/app_settings.dart';
-import 'package:bac_project/features/tests/domain/entities/question.dart';
 import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
 import 'package:bac_project/features/tests/domain/entities/question_category.dart';
 import 'package:bac_project/presentation/quizzing/widgets/Orderable_options_builder_widget.dart';
@@ -11,7 +9,6 @@ import 'package:bac_project/presentation/quizzing/widgets/multiple_choices_optio
 import 'package:bac_project/presentation/quizzing/widgets/textual_options_builder_widget.dart';
 import 'package:bac_project/presentation/tests/widgets/question_card_widget.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

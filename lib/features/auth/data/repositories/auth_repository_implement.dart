@@ -17,6 +17,7 @@ import 'package:bac_project/features/auth/data/responses/sign_in_response.dart';
 import 'package:bac_project/features/auth/data/responses/sign_out_response.dart';
 import 'package:bac_project/features/auth/data/responses/sign_up_response.dart';
 import 'package:bac_project/features/auth/data/responses/update_user_data_response.dart';
+import 'package:bac_project/features/auth/data/responses/update_password_response.dart';
 import 'package:bac_project/features/auth/domain/requests/add_to_user_favorites_request.dart';
 import 'package:bac_project/features/auth/domain/requests/get_user_data_request.dart';
 import 'package:bac_project/features/auth/domain/requests/remove_from_user_favorites_request.dart';
@@ -29,6 +30,7 @@ import '../../domain/requests/forget_password_request.dart';
 import '../../domain/requests/sign_in_request.dart';
 import '../../domain/requests/sign_up_request.dart';
 import '../../domain/requests/update_user_data_request.dart';
+import '../../domain/requests/update_password_request.dart';
 import '../responses/add_to_user_favorites_response.dart';
 import '../responses/get_user_favorites_response.dart';
 
@@ -106,6 +108,18 @@ class AuthRepositoryImplement implements AuthRepository {
       }
       return right(response);
       //
+    } on Exception catch (e) {
+      return Left(errorToFailure(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UpdatePasswordResponse>> updatePassword({
+    required UpdatePasswordRequest request,
+  }) async {
+    try {
+      final response = await remoteDataSource.updatePassword(request: request);
+      return right(response);
     } on Exception catch (e) {
       return Left(errorToFailure(e));
     }

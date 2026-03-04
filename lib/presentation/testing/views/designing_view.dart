@@ -1,7 +1,10 @@
 import 'dart:ui';
-import 'dart:math' as math;
-import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
+import 'package:bac_project/core/injector/results_feature_inj.dart';
+import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
+import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
+import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
+import 'package:bac_project/core/services/codepush/codepush_manager.dart';
 import 'package:bac_project/features/tests/domain/entities/option.dart';
 import 'package:bac_project/features/tests/domain/entities/question.dart';
 import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
@@ -9,19 +12,58 @@ import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
 import 'package:bac_project/presentation/quizzing/widgets/multiple_choices_options_builder_widget.dart';
 import 'package:bac_project/presentation/quizzing/widgets/textual_options_builder_widget.dart';
 import 'package:bac_project/presentation/quizzing/widgets/Orderable_options_builder_widget.dart';
-import 'package:bac_project/presentation/tests/widgets/question_card_widget.dart';
-import 'package:collection/collection.dart';
 import 'package:cupertino_native/cupertino_native.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
+import '../../../../features/study_planner_prototype/presentation/views/planner_dashboard_view.dart';
 import '../../../core/widgets/messages/snackbars/alert_snackbar_widget.dart';
 import '../../../core/widgets/messages/snackbars/informations_snackbar_widget.dart';
 import '../../../core/widgets/messages/snackbars/success_snackbar_widget.dart';
 import '../../../core/widgets/messages/snackbars/error_snackbar_widget.dart';
 import '../../../core/widgets/ui/icons/switch_theme_icon_widget.dart';
+import '../../../core/widgets/buttons/filled_button_widget.dart';
+import '../../../core/widgets/buttons/elevated_button_widget.dart';
+import '../../../core/widgets/buttons/outline_button_widget.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../core/services/router/routes.dart';
+import '../../../../core/services/router/app_arguments.dart';
+
+import '../../../../features/tests/domain/entities/lesson.dart';
+import '../../subjects/view/pick_subject_view.dart';
+
+// Subject Data Imports
+import '../../../../features/subjects/data/analysis/subject.dart';
+import '../../../../features/subjects/data/analysis/lessons.dart';
+import '../../../../features/subjects/data/arabic/subject.dart';
+import '../../../../features/subjects/data/arabic/lessons.dart';
+import '../../../../features/subjects/data/chemistry/subject.dart';
+import '../../../../features/subjects/data/chemistry/lessons.dart';
+import '../../../../features/subjects/data/english/subject.dart';
+import '../../../../features/subjects/data/english/lessons.dart';
+import '../../../../features/subjects/data/french/materaill.dart';
+import '../../../../features/subjects/data/french/lessons.dart';
+import '../../../../features/subjects/data/geography/subject.dart';
+import '../../../../features/subjects/data/geography/lessons.dart';
+import '../../../../features/subjects/data/history/subject.dart';
+import '../../../../features/subjects/data/history/lessons.dart';
+import '../../../../features/subjects/data/patriotism/subject.dart';
+import '../../../../features/subjects/data/patriotism/lessons.dart';
+import '../../../../features/subjects/data/philosophy1/subject.dart';
+import '../../../../features/subjects/data/philosophy1/lessons.dart';
+import '../../../../features/subjects/data/philosophy2/subject.dart';
+import '../../../../features/subjects/data/philosophy2/lessons.dart';
+import '../../../../features/subjects/data/physics/subject.dart';
+import '../../../../features/subjects/data/physics/lessons.dart';
+import '../../../../features/subjects/data/rays/subject.dart';
+import '../../../../features/subjects/data/rays/lessons.dart';
+import '../../../../features/subjects/data/religion/subject.dart';
+import '../../../../features/subjects/data/religion/lessons.dart';
+import '../../../../features/subjects/data/sciences/subject.dart';
+import '../../../../features/subjects/data/sciences/lessons.dart';
+
+// Prototypes
+import 'prototypes/home_variation_a.dart';
 
 class DesigningView extends StatefulWidget {
   const DesigningView({super.key});
@@ -31,49 +73,216 @@ class DesigningView extends StatefulWidget {
 }
 
 class _DesigningViewState extends State<DesigningView> with TickerProviderStateMixin {
-  int _currentIndex = 0;
+  final int _currentIndex = 0;
+
+  void _openPrototype(BuildContext context, String title, Widget page) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => page),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Designing'),
+        title: const Text('Prototypes'),
         actions: [
           SwitchThemeIconWidget(),
         ],
       ),
-      body: TestOptionsDesign(),
-      // body: Stack(
-      //   children: [
-      //     // List of images
-      //     ListView.builder(
-      //       itemCount: 100,
-      //       itemBuilder: (context, index) {
-      //         return Image.network(
-      //           'https://picsum.photos/400/300?random=$index',
-      //           height: 200,
-      //           fit: BoxFit.cover,
-      //         );
-      //       },
-      //     ),
-      //     // Top navbar
-      //     Align(
-      //       alignment: Alignment.bottomCenter,
-      //       child: TestingNavBar(_currentIndex, (index) {
-      //         setState(() {
-      //           _currentIndex = index;
-      //         });
-      //       }),
-      //     ),
-      //     // Bottom navbar
-      //   ],
-      // ),
+      body: Padding(
+        padding: Paddings.screenSidesPadding,
+        child: ListView(
+          padding: Paddings.listViewPadding,
+          children: [
+            // Section: Home View Variations
+            Padding(
+              padding: EdgeInsets.only(bottom: SpacesResources.s4),
+              child: Text(
+                'Home View Variations',
+                style: TextStylesResources.headline1.copyWith(color: cs.onSurface),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: SpacesResources.s6),
+              child: Text(
+                'اضغط على أي تصميم لتجربته',
+                style: TextStylesResources.caption.copyWith(color: cs.onSurfaceVariant),
+              ),
+            ),
+            _PrototypeButton(
+              label: '🏠',
+              title: 'Home View',
+              subtitle: 'بطاقة السلسلة والتقدم + قائمة الدروس بتصميم الشريط الملون',
+              color: const Color(0xFF2196F3),
+              onTap: () => _openPrototype(context, 'Home', const HomeVariationA()),
+            ),
+
+            // Divider
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: SpacesResources.s6),
+              child: Divider(color: cs.outlineVariant),
+            ),
+
+            // Legacy: Study Planner Prototype
+            _PrototypeButton(
+              label: '📋',
+              title: 'Study Planner (Old Prototype)',
+              subtitle: 'النموذج الأولي القديم من study_planner_prototype',
+              color: const Color(0xFF607D8B),
+              onTap: () => _openPrototype(context, 'Old', const PlannerDashboardView()),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _PrototypeButton extends StatelessWidget {
+  const _PrototypeButton({
+    required this.label,
+    required this.title,
+    required this.subtitle,
+    required this.color,
+    required this.onTap,
+  });
+
+  final String label;
+  final String title;
+  final String subtitle;
+  final Color color;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+
+    return Padding(
+      padding: EdgeInsets.only(bottom: SpacesResources.s3),
+      child: Card(
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          borderRadius: BorderRadiusResource.cardBorderRadius,
+          onTap: onTap,
+          child: Padding(
+            padding: Paddings.cardMediumPadding,
+            child: Row(
+              children: [
+                // Label badge
+                Container(
+                  width: SpacesResources.s16,
+                  height: SpacesResources.s16,
+                  decoration: BoxDecoration(
+                    color: color.withOpacity(0.12),
+                    borderRadius: BorderRadiusResource.bordersRadiusSmall,
+                  ),
+                  child: Center(
+                    child: Text(
+                      label,
+                      style: TextStylesResources.cardMediumTitle.copyWith(
+                        color: color,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: SpacesResources.s4),
+                // Text
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: TextStylesResources.cardMediumTitle.copyWith(
+                          color: cs.onSurface,
+                        ),
+                      ),
+                      const SizedBox(height: SpacesResources.s1),
+                      Text(
+                        subtitle,
+                        style: TextStylesResources.caption.copyWith(
+                          color: cs.onSurfaceVariant,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(Icons.chevron_left, color: cs.onSurfaceVariant, size: 20),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class TestCodepushFunctionality extends StatelessWidget {
+  const TestCodepushFunctionality({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            onPressed: () async {
+              await sl<CodePushManager>()().initialize();
+            },
+            child: const Text('Test Codepush Functionality'),
+          ),
+          ElevatedButton(
+            onPressed: () async {},
+            child: const Text('Siiii 2? 🙅'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class TestButtonsDesign extends StatelessWidget {
+  const TestButtonsDesign({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: Paddings.screenBodyPadding,
+      child: Center(
+        child: Column(
+          spacing: SpacesResources.s10,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FilledButtonWidget(onPressed: () {}, child: const Text('Filled Button')),
+            ElevatedButtonWidget(onPressed: () {}, child: const Text('Elevated Button')),
+            OutlineButtonWidget(onPressed: () {}, child: const Text('Outlined Button')),
+            FilledButton(onPressed: () {}, child: const Text('Filled Button')),
+            ElevatedButton(onPressed: () {}, child: const Text('Elevated Button')),
+            OutlinedButton(onPressed: () {}, child: const Text('Outlined Button')),
+            const SizedBox(height: 20),
+            FilledButtonWidget(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const PlannerDashboardView(),
+                  ),
+                );
+              },
+              child: const Text('Open Study Planner Prototype'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
 
 class TestingNavBar extends StatelessWidget {
-  const TestingNavBar(this.currentIndex, this.changePage);
+  const TestingNavBar(this.currentIndex, this.changePage, {super.key});
   final int currentIndex;
   final void Function(int pageIndex) changePage;
 
@@ -380,6 +589,7 @@ class AnimatedAppBarTitle extends StatelessWidget {
   final double scrollProgress;
 
   const AnimatedAppBarTitle({
+    super.key,
     required this.title,
     required this.scrollProgress,
   });
@@ -453,28 +663,28 @@ class TestSnackbars extends StatelessWidget {
         ElevatedButton(
           onPressed: () {
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            showAlertSnackbar(context: context, title: 'Test', subtitle: 'Test');
+            showAlertSnackbar(context: context, title: 'Test', subtitle: 'Test ' * 10);
           },
           child: Text('Show Alert Snackbar'),
         ),
         ElevatedButton(
           onPressed: () {
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            showInformationsSnackbar(context: context, title: 'Test', subtitle: 'Test');
+            showInformationsSnackbar(context: context, title: 'Test', subtitle: 'Test ' * 10);
           },
           child: Text('Show Informations Snackbar'),
         ),
         ElevatedButton(
           onPressed: () {
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            showSuccessSnackbar(context: context, title: 'Test', subtitle: 'Test');
+            showSuccessSnackbar(context: context, title: 'Test', subtitle: 'Test ' * 10);
           },
           child: Text('Show Success Snackbar'),
         ),
         ElevatedButton(
           onPressed: () {
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            showErrorSnackbar(context: context, title: 'Test', subtitle: 'Test');
+            showErrorSnackbar(context: context, title: 'Test', subtitle: 'Test ' * 10);
           },
           child: Text('Show Error Snackbar'),
         ),

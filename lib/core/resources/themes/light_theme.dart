@@ -225,10 +225,11 @@ class AppLightTheme {
           shape: RoundedSuperellipseBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
           textStyle: TextStylesResources.button,
           minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
-          side: BorderSide(
-            color: ColorsResourcesLight.outline,
-            width: SizesResources.buttonBorderWidth,
-          ),
+          side: BorderSide(color: Colors.transparent),
+          // side: BorderSide(
+          //   color: ColorsResourcesLight.outline,
+          //   width: SizesResources.buttonBorderWidth,
+          // ),
         ),
       ),
 
@@ -241,6 +242,7 @@ class AppLightTheme {
           shape: RoundedSuperellipseBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
           textStyle: TextStylesResources.button.copyWith(color: ColorsResourcesLight.primary),
           minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
+          side: BorderSide(color: Colors.transparent),
         ),
       ),
 
@@ -248,15 +250,18 @@ class AppLightTheme {
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
           elevation: 0,
+
           shadowColor: Colors.transparent,
           backgroundColor: ColorsResourcesLight.primary,
           foregroundColor: ColorsResourcesLight.primaryContainer,
           disabledBackgroundColor: ColorsResourcesLight.primaryContainer.withAlpha(100),
           minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
+          side: BorderSide(color: Colors.transparent),
           shape: RoundedSuperellipseBorder(
             borderRadius: BorderRadiusResource.buttonBorderRadius,
-            side: BorderSide(color: ColorsResourcesLight.outline, width: 0.5),
+            // side: BorderSide(color: ColorsResourcesLight.outline, width: 0.5),
           ),
+
           textStyle: TextStylesResources.button,
         ),
       ),
@@ -271,7 +276,8 @@ class AppLightTheme {
           minimumSize: const Size.fromHeight(SizesResources.buttonMediumHeight),
           shape: RoundedSuperellipseBorder(borderRadius: BorderRadiusResource.buttonBorderRadius),
           textStyle: TextStylesResources.button,
-          side: BorderSide(color: ColorsResourcesLight.outlineVariant),
+
+          // side: BorderSide(color: ColorsResourcesLight.outlineVariant),
         ),
       ),
 
@@ -285,8 +291,7 @@ class AppLightTheme {
             SizesResources.iconButtonAppBarHeight,
           ),
           backgroundColor: ColorsResourcesLight.surface,
-          // foregroundColor: ColorsResourcesLight.onSurface,
-          foregroundColor: Color(0xff55534F),
+          foregroundColor: ColorsResourcesLight.onSurface,
           shape: RoundedSuperellipseBorder(
             side: BorderSide(
               color: ColorsResourcesLight.outlineVariant,

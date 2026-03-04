@@ -1,7 +1,5 @@
 import 'dart:convert';
 import 'package:bac_project/presentation/home/models/custom_action_card_model.dart';
-import 'package:bac_project/presentation/home/models/custom_navigation_card_model.dart';
-import 'package:bac_project/presentation/result/models/custom_result_card_model.dart';
 import 'package:bac_project/features/tests/data/models/unit_model.dart';
 import 'package:bac_project/features/tests/data/models/lesson_model.dart';
 import 'package:bac_project/features/tests/data/models/question_model.dart';

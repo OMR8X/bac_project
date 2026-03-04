@@ -1,8 +1,10 @@
 import 'package:bac_project/core/resources/errors/failures.dart';
 import 'package:bac_project/features/auth/data/responses/add_to_user_favorites_response.dart';
 import 'package:bac_project/features/auth/data/responses/get_user_favorites_response.dart';
+import 'package:bac_project/features/auth/data/responses/update_password_response.dart';
 import 'package:bac_project/features/auth/domain/requests/add_to_user_favorites_request.dart';
 import 'package:bac_project/features/auth/domain/requests/remove_from_user_favorites_request.dart';
+import 'package:bac_project/features/auth/domain/requests/update_password_request.dart';
 import 'package:dartz/dartz.dart';
 import '../../data/responses/change_password_response.dart';
 import '../../data/responses/forget_password_response.dart';
@@ -38,6 +40,10 @@ abstract class AuthRepository {
   // update user data
   Future<Either<Failure, UpdateUserDataResponse>> updateUserData({
     required UpdateUserDataRequest request,
+  });
+  // update password
+  Future<Either<Failure, UpdatePasswordResponse>> updatePassword({
+    required UpdatePasswordRequest request,
   });
   // get user data
   Future<Either<Failure, GetUserDataResponse>> getUserData({required GetUserDataRequest request});

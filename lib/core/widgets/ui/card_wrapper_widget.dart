@@ -1,6 +1,5 @@
 import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/shadows_resources.dart';
-import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:flutter/material.dart';
 
 class CardWrapperWidget extends StatelessWidget {

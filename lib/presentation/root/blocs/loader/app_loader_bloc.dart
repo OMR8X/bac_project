@@ -1,12 +1,12 @@
 import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/resources/errors/failures.dart';
+import 'package:bac_project/core/services/codepush/codepush_manager.dart';
 import 'package:bac_project/core/services/logs/logger.dart';
 import 'package:bac_project/features/auth/domain/entites/user_data.dart';
 import 'package:bac_project/features/notifications/domain/requests/register_device_token_request.dart';
 import 'package:bac_project/features/notifications/domain/usecases/get_device_token_usecase.dart';
 import 'package:bac_project/features/notifications/domain/usecases/register_device_token_usecase.dart';
 import 'package:bac_project/features/settings/domain/entities/version.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:bac_project/features/settings/domain/usecases/get_app_settings_usecase.dart';
@@ -17,11 +17,15 @@ part 'app_loader_event.dart';
 part 'app_loader_state.dart';
 
 class AppLoaderBloc extends Bloc<AppLoader, AppLoaderState> {
+  final CodePushManager _codePushManager;
   final GetAppSettingsUsecase _getAppSettingsUsecase;
   final InitializeNotificationsUsecase _initializeNotificationsUsecase;
 
-  AppLoaderBloc(this._getAppSettingsUsecase, this._initializeNotificationsUsecase)
-    : super(AppLoaderState.loading()) {
+  AppLoaderBloc(
+    this._codePushManager,
+    this._getAppSettingsUsecase,
+    this._initializeNotificationsUsecase,
+  ) : super(AppLoaderState.loading()) {
     on<AppLoaderLoadData>(onAppLoaderLoadData);
     on<AppLoaderSucceedEvent>(onAppLoaderSucceed);
   }
@@ -54,6 +58,9 @@ class AppLoaderBloc extends Bloc<AppLoader, AppLoaderState> {
     } on Exception catch (e) {
       emit(AppLoaderState.failure(failure: UnknownFailure(message: e.toString())));
     }
+
+    ///
+    // await _codePushManager().initialize();
   }
 
   onAppLoaderSucceed(AppLoaderSucceedEvent event, Emitter<AppLoaderState> emit) {}

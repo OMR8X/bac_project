@@ -1,7 +1,5 @@
-import 'package:bac_project/core/resources/styles/colors_resources.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../../../resources/styles/sizes_resources.dart';
 

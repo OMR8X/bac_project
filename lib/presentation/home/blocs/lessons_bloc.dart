@@ -5,7 +5,6 @@ import 'package:meta/meta.dart';
 import 'package:bac_project/features/tests/domain/usecases/get_lessons_use_case.dart';
 import 'package:bac_project/features/tests/domain/requests/get_lessons_request.dart';
 import 'package:bac_project/core/injector/app_injection.dart';
-import 'package:bac_project/presentation/home/models/custom_navigation_card_model.dart';
 
 part 'lessons_event.dart';
 part 'lessons_state.dart';

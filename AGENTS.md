@@ -18,6 +18,7 @@ Flutter mobile application built with Clean Architecture, featuring a modular st
 - **Push Notifications**: Firebase Cloud Messaging + Local Notifications
 - **Routing**: Go Router
 - **Localization**: ARB-based internationalization
+- **Shorebird**: Building releases and deleiver patches.
 
 ## Project Structure
 
@@ -113,4 +114,5 @@ Maintain bidirectional sync between local files and remote Supabase backend. Use
 
 ### Supabase Edge Functions (`supabase/functions/`)
 - Keep local files and remote edge functions synced
+
 

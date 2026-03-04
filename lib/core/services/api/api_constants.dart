@@ -59,6 +59,9 @@ class SupabaseEndpoints {
   static const getTotalNotificationsTopicsFunction =
       "fn_api_notifications_get_total_notifications_topics";
 
+  // Exception Reports
+  static const submitExceptionReportFunctionEndpoint = "fn_api_reports_submit_exception_report";
+
   ///
   static String rpc(String functionName) => '/rest/v1/rpc/$functionName';
   static String edge(String functionName) => '/functions/v1/$functionName';

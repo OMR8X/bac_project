@@ -3,9 +3,8 @@ class UpdateUserDataRequest {
   final String? email;
   final int? sectionId;
   final int? governorateId;
-  final String? password;
 
-  UpdateUserDataRequest({this.name, this.email, this.sectionId, this.governorateId, this.password});
+  UpdateUserDataRequest({this.name, this.email, this.sectionId, this.governorateId});
 
   ///
   Map<String, dynamic> toBody({Map<String, dynamic>? old}) {
@@ -14,7 +13,6 @@ class UpdateUserDataRequest {
       "email": email ?? old?['email'],
       "section_id": sectionId ?? old?['section_id'],
       "governorate_id": governorateId ?? old?['governorate_id'],
-      "password": password ?? old?['password'],
     };
   }
 }

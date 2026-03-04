@@ -131,6 +131,12 @@
   "versionDetailsMinimumVersionLabel": "أقل إصدار مسموح به",
   "versionDetailsNotAvailableLabel": "غير متوفر",
   "versionDetailsShortLabel": "رقم الإصدار",
+  "versionDetailsPatchNumberLabel": "رقم التصحيح",
   "versionDetailsTitle": "تفاصيل الإصدار",
-  "versionDetailsVersionStringLabel": "تفاصيل الإصدار (النص الكامل)"
+  "versionDetailsVersionStringLabel": "تفاصيل الإصدار (النص الكامل)",
+  "codePushUpdateCompletedTitle": "اكتمل التحديث",
+  "codePushUpdateCompletedSubtitle": "تم تحميل التحديث بنجاح. يرجى إعادة تشغيل التطبيق لتطبيق التغييرات.",
+  "codePushUpdateErrorTitle": "خطأ في التحديث",
+  "pickSubjectTitle": "اختيار المادة",
+  "pickLessonTitle": "دروس {subjectName}"
 }

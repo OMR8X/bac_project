@@ -3,7 +3,6 @@ import 'package:bac_project/core/resources/styles/decoration_resources.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
-import 'package:bac_project/core/widgets/ui/fields/elevated_button_widget.dart';
 import 'package:bac_project/core/widgets/ui/fields/text_button_widget.dart';
 import 'package:flutter/material.dart';
 

@@ -1,21 +1,12 @@
-import 'package:bac_project/core/resources/styles/spaces_resources.dart';
-import 'package:bac_project/core/services/local/local_json_data_api.dart';
 import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
-import 'package:bac_project/core/widgets/animations/staggered_list_wrapper_widget.dart';
-import 'package:bac_project/core/widgets/ui/lesson_card_widget.dart';
+import 'package:bac_project/presentation/lessons/widgets/lesson_card_widget.dart';
 import 'package:bac_project/features/tests/domain/entities/lesson.dart';
-import 'package:bac_project/presentation/home/models/custom_action_card_model.dart'
-    show CustomCardData;
-import 'package:bac_project/presentation/home/models/custom_navigation_card_model.dart';
-import 'package:bac_project/presentation/home/views/lessons_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/resources/styles/spacing_resources.dart';
 import '../../../core/services/router/app_arguments.dart';
 import '../../../core/services/router/routes.dart';
-import '../../../core/widgets/ui/loading_widget.dart';
 // api المحلي
 
 class LessonsCardsBuilderWidget extends StatelessWidget {
@@ -44,7 +35,7 @@ class LessonsCardsBuilderWidget extends StatelessWidget {
                 LessonCardWidget(
                   icon: Icons.school,
                   title: lesson.title,
-                  questionsCount: lesson.questionsCount,
+                  // label: lesson.questionsCount,
                   onTap: () {
                     context.pushReplacement(
                       Routes.testModeSettings.path,

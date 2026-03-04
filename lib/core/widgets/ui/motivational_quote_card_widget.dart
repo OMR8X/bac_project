@@ -1,8 +1,6 @@
-import 'package:bac_project/core/injector/app_injection.dart';
 import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
-import 'package:bac_project/core/resources/styles/shadows_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
 import 'package:flutter/material.dart';
 

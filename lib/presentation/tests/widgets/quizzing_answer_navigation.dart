@@ -1,6 +1,5 @@
 import 'package:bac_project/core/extensions/build_context_l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:bac_project/core/injector/app_injection.dart';
 
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';

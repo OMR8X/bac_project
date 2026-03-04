@@ -37,9 +37,9 @@ class TimeTakenCard extends StatelessWidget {
             //   ),
             //   child: Icon(Icons.timer, color: theme.colorScheme.onSurfaceVariant),
             // ),
-            AppBarIconWidget(
+            AppBarIconWidget.icon(
               padding: Paddings.zero,
-              icon: Icon(Icons.timer, size: 18, color: theme.colorScheme.onSurface.lighter(0.4)),
+              icon: Icons.timer,
               onPressed: () {},
             ),
             const SizedBox(width: 12),

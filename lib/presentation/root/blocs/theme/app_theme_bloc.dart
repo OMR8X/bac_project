@@ -4,7 +4,6 @@ import 'package:bac_project/core/services/cache/cache_manager.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 part 'app_theme_event.dart';
 part 'app_theme_state.dart';
 

@@ -3,22 +3,24 @@ import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/resources/styles/spacing_resources.dart';
 import 'package:flutter/material.dart';
 
-import '../../resources/styles/spaces_resources.dart';
+import '../../../core/resources/styles/spaces_resources.dart';
 
 class LessonCardWidget extends StatelessWidget {
   final String title;
-  final int? questionsCount;
+  final String? label;
   final VoidCallback onTap;
   final IconData icon;
+  final IconData? trailingIcon;
   final bool? isSelected;
 
   const LessonCardWidget({
     super.key,
     required this.title,
-    this.questionsCount,
+    this.label,
     required this.onTap,
     required this.icon,
     this.isSelected,
+    this.trailingIcon,
   });
 
   @override
@@ -42,7 +44,7 @@ class LessonCardWidget extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(SpacesResources.s4),
                     child: Icon(
-                      Icons.arrow_forward_ios,
+                      trailingIcon ?? Icons.check,
                       color: Theme.of(context).colorScheme.onSurfaceVariant,
                       size: SpacesResources.s6,
                     ),
@@ -83,6 +85,7 @@ class LessonCardWidget extends StatelessWidget {
   Widget _buildTextInformation(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
@@ -91,25 +94,14 @@ class LessonCardWidget extends StatelessWidget {
             color: Theme.of(context).colorScheme.onSurface,
           ),
         ),
-        const SizedBox(height: SpacesResources.s3),
-        if (questionsCount != null)
-          Row(
-            children: [
-              Icon(
-                Icons.quiz_outlined,
-                size: FontSizeResources.s12,
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
-              ),
-              const SizedBox(width: SpacesResources.s2),
-              Text(
-                "$questionsCount سوال",
-                style: TextStylesResources.caption.copyWith(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                  fontSize: FontSizeResources.s10,
-                  fontWeight: FontWeightResources.medium,
-                ),
-              ),
-            ],
+        if (label != null)
+          Text(
+            "$label",
+            style: TextStylesResources.caption.copyWith(
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+              fontSize: FontSizeResources.s10,
+              fontWeight: FontWeightResources.medium,
+            ),
           ),
       ],
     );

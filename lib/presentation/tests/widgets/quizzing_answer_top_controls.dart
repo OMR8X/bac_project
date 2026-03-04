@@ -3,10 +3,6 @@ import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
 import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
 import 'package:bac_project/core/resources/styles/sizes_resources.dart';
 import 'package:bac_project/core/resources/styles/spaces_resources.dart';
-import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
-import 'package:bac_project/core/widgets/ui/icons/appbar_icon_widget.dart';
-import 'package:bac_project/core/widgets/ui/icons/switch_theme_icon_widget.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class QuizzingAnswerTopControls extends StatelessWidget {
@@ -49,15 +45,15 @@ class QuizzingAnswerTopControls extends StatelessWidget {
               height: SizesResources.iconAppBarHeight,
               color: Theme.of(context).colorScheme.onSurfaceVariant,
             ),
-            style: IconButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                side: BorderSide(
-                  color: Theme.of(context).colorScheme.outlineVariant,
-                  width: SizesResources.iconButtonBorderWidth,
-                ),
-                borderRadius: BorderRadiusResource.buttonBorderRadius,
-              ),
-            ),
+            // style: IconButton.styleFrom(
+            //   shape: RoundedRectangleBorder(
+            //     side: BorderSide(
+            //       color: Theme.of(context).colorScheme.outlineVariant,
+            //       width: SizesResources.iconButtonBorderWidth,
+            //     ),
+            //     borderRadius: BorderRadiusResource.buttonBorderRadius,
+            //   ),
+            // ),
           ),
         ),
         Container(
@@ -112,7 +108,7 @@ class QuizzingAnswerTopControls extends StatelessWidget {
             ),
           ),
         ),
-        if (kDebugMode) SwitchThemeIconWidget(),
+        // if (kDebugMode) SwitchThemeIconWidget(),
       ],
     );
   }

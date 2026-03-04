@@ -12,12 +12,13 @@ import 'package:bac_project/features/auth/domain/usecases/sign_in_usecase.dart';
 import 'package:bac_project/features/auth/domain/usecases/sign_out_usecase.dart';
 import 'package:bac_project/features/auth/domain/usecases/sign_up_usecase.dart';
 import 'package:bac_project/features/auth/domain/usecases/update_user_data_usecase.dart';
+import 'package:bac_project/features/auth/domain/usecases/update_password_usecase.dart';
+import 'package:bac_project/features/auth/data/responses/update_password_response.dart';
+import 'package:bac_project/features/auth/domain/requests/update_password_request.dart';
 import 'package:bac_project/features/notifications/domain/usecases/refresh_device_token_usecase.dart';
 import 'package:bac_project/features/settings/domain/entities/app_settings.dart';
 import 'package:bac_project/features/settings/domain/entities/governorate.dart';
 import 'package:bac_project/features/settings/domain/entities/section.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/scheduler.dart';
 import '../../../../features/auth/domain/requests/get_user_data_request.dart';
 import '../../../../features/auth/domain/requests/sign_in_request.dart';
 import '../../../../features/auth/domain/requests/sign_up_request.dart';
@@ -38,6 +39,7 @@ class AuthBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
   final SignOutUsecase _signOutUsecase;
   // final DeleteDeviceTokenUsecase _deleteDeviceTokenUsecase;
   final UpdateUserDataUsecase _updateUserDataUsecase;
+  final UpdatePasswordUsecase _updatePasswordUsecase;
 
   AuthBloc(
     this._getUserDataUsecase,
@@ -45,6 +47,7 @@ class AuthBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
     this._signUpUsecase,
     this._signOutUsecase,
     this._updateUserDataUsecase,
+    this._updatePasswordUsecase,
     // this._deleteDeviceTokenUsecase,
   ) : super(const AuthLoadingState()) {
     //
@@ -66,6 +69,7 @@ class AuthBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
     on<AuthSignUpEvent>(onAuthSignUpEvent);
     on<AuthSignOutEvent>(onAuthSignOutEvent);
     on<AuthUpdateUserDataEvent>(onAuthUpdateUserDataEvent);
+    on<AuthUpdatePasswordEvent>(onAuthUpdatePasswordEvent);
     //
   }
   //
@@ -161,14 +165,12 @@ class AuthBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
     final String? email = event.email?.trim();
     final int? governorateId = event.governorateId;
     final int? sectionId = event.sectionId;
-    final String? password = event.password?.trim();
     //
     final updateUserDataRequest = UpdateUserDataRequest(
       name: name,
       email: email,
       governorateId: governorateId,
       sectionId: sectionId,
-      password: password,
     );
     //
     final response = await _updateUserDataUsecase(request: updateUserDataRequest);
@@ -180,6 +182,33 @@ class AuthBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
       (UpdateUserDataResponse r) {
         _injectUserData(r.user);
         //
+        emit(AuthDoneState(loading: false, failure: null, successMessage: r.message));
+        AppRouter.router.pop();
+      },
+    );
+    //
+  }
+
+  //
+  onAuthUpdatePasswordEvent(
+    AuthUpdatePasswordEvent event,
+    Emitter<AuthenticationState> emit,
+  ) async {
+    //
+    emit(const AuthLoadingState(loading: true));
+    //
+    final updatePasswordRequest = UpdatePasswordRequest(
+      currentPassword: event.currentPassword,
+      newPassword: event.newPassword,
+    );
+    //
+    final response = await _updatePasswordUsecase(request: updatePasswordRequest);
+    //
+    response.fold(
+      (failure) {
+        emit(AuthDoneState(loading: false, failure: failure));
+      },
+      (UpdatePasswordResponse r) {
         emit(AuthDoneState(loading: false, failure: null, successMessage: r.message));
         AppRouter.router.pop();
       },

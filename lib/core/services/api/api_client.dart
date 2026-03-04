@@ -1,11 +1,8 @@
-import 'package:bac_project/core/injector/tests_feature_inj.dart';
 import 'package:bac_project/core/services/api/supabase/supabase_settings.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:bac_project/core/services/tokens/tokens_manager.dart';
 import 'package:bac_project/core/services/api/api_constants.dart';
 import 'package:bac_project/core/services/api/dio_factory.dart';
+import 'package:bac_project/core/services/api/token_provider.dart';
 
 abstract class ApiClient {
   /// get request
@@ -54,8 +51,11 @@ class DioClient implements ApiClient {
   late final DioFactory _dioFactory;
   late final Map<String, String> defaultHeaders;
   late final BaseOptions options;
+  late final TokenProvider _tokenProvider;
   //
-  DioClient() {
+  DioClient({TokenProvider? tokenProvider}) {
+    //
+    _tokenProvider = tokenProvider ?? SupabaseTokenProvider();
     //
     _dioFactory = DioFactory();
     //
@@ -170,7 +170,7 @@ class DioClient implements ApiClient {
       effectiveHeaders.addAll(headers);
     }
 
-    final String? token = Supabase.instance.client.auth.currentSession?.accessToken;
+    final String? token = await _tokenProvider.getToken();
 
     if (token != null && token.isNotEmpty) {
       effectiveHeaders[ApiHeaders.headerAuthorizationKey] = 'Bearer $token';

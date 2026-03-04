@@ -886,6 +886,12 @@ abstract class AppLocalizations {
   /// **'رقم الإصدار'**
   String get versionDetailsShortLabel;
 
+  /// No description provided for @versionDetailsPatchNumberLabel.
+  ///
+  /// In ar, this message translates to:
+  /// **'رقم التصحيح'**
+  String get versionDetailsPatchNumberLabel;
+
   /// No description provided for @versionDetailsTitle.
   ///
   /// In ar, this message translates to:
@@ -897,6 +903,36 @@ abstract class AppLocalizations {
   /// In ar, this message translates to:
   /// **'تفاصيل الإصدار (النص الكامل)'**
   String get versionDetailsVersionStringLabel;
+
+  /// No description provided for @codePushUpdateCompletedTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'اكتمل التحديث'**
+  String get codePushUpdateCompletedTitle;
+
+  /// No description provided for @codePushUpdateCompletedSubtitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'تم تحميل التحديث بنجاح. يرجى إعادة تشغيل التطبيق لتطبيق التغييرات.'**
+  String get codePushUpdateCompletedSubtitle;
+
+  /// No description provided for @codePushUpdateErrorTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'خطأ في التحديث'**
+  String get codePushUpdateErrorTitle;
+
+  /// No description provided for @pickSubjectTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'اختيار المادة'**
+  String get pickSubjectTitle;
+
+  /// No description provided for @pickLessonTitle.
+  ///
+  /// In ar, this message translates to:
+  /// **'دروس {subjectName}'**
+  String pickLessonTitle(Object subjectName);
 }
 
 class _AppLocalizationsDelegate

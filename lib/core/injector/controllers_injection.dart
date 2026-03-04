@@ -6,6 +6,7 @@ import 'package:bac_project/features/auth/domain/usecases/sign_in_usecase.dart';
 import 'package:bac_project/features/auth/domain/usecases/sign_out_usecase.dart';
 import 'package:bac_project/features/auth/domain/usecases/sign_up_usecase.dart';
 import 'package:bac_project/features/auth/domain/usecases/update_user_data_usecase.dart';
+import 'package:bac_project/features/auth/domain/usecases/update_password_usecase.dart';
 import 'package:bac_project/features/notifications/domain/usecases/get_notifications_usecase.dart';
 import 'package:bac_project/features/notifications/domain/usecases/get_notifications_topics_usecase.dart';
 import 'package:bac_project/features/notifications/domain/usecases/get_user_subscribed_topics_usecase.dart';
@@ -31,6 +32,7 @@ import '../../presentation/notifications/state/explore_notifications/notificatio
 import '../../presentation/root/blocs/loader/app_loader_bloc.dart';
 import '../../presentation/root/blocs/navigation/navigation_cubit.dart';
 import '../../presentation/root/blocs/theme/app_theme_bloc.dart';
+import '../services/codepush/codepush_manager.dart';
 
 controllersInjection() {
   ///
@@ -46,7 +48,7 @@ controllersInjection() {
 
   ///
   sl.registerLazySingleton(
-    () => AppLoaderBloc(sl<GetAppSettingsUsecase>(), sl<InitializeNotificationsUsecase>()),
+    () => AppLoaderBloc(sl<CodePushManager>(), sl<GetAppSettingsUsecase>(), sl<InitializeNotificationsUsecase>()),
   );
 
   ///
@@ -57,6 +59,7 @@ controllersInjection() {
       sl<SignUpUsecase>(),
       sl<SignOutUsecase>(),
       sl<UpdateUserDataUsecase>(),
+      sl<UpdatePasswordUsecase>(),
     )..add(AuthInitializeEvent()),
   );
 
