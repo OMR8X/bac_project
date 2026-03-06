@@ -29,16 +29,14 @@ class ResultModel extends Result {
       userId: json['user_id'] as String,
       lessonId: json['lesson_id'] as int?,
       lessonTitle: json['lesson_title'] as String?,
-      resultOrder: json['result_order'] as int?,
+      resultOrder: json['user_rank'] as int?,
       totalQuestions: json['total_questions'] as int,
       correctAnswers: json['correct_answers'] as int,
       wrongAnswers: json['wrong_answers'] as int,
       score: (json['score'] as num).toDouble(),
       durationSeconds: json['duration_seconds'] as int,
       resultTestMode:
-          json['result_test_mode'] == null
-              ? null
-              : ResultTestMode.values.byName(json['result_test_mode'] as String),
+          json['is_test_mode'] == true ? ResultTestMode.testing : ResultTestMode.exploring,
       questionAnswers:
           (json['question_answers'] as List<dynamic>?)
               ?.map((a) => QuestionAnswerModel.fromJson(a as Map<String, dynamic>))

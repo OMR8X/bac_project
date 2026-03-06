@@ -61,78 +61,6 @@ class _PagesHolderViewState extends State<PagesHolderView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          final subjectLessonsMap = {
-            arabic: arabicSubjectLessons,
-            analysis: analysisSubjectLessons,
-            rays: raysSubjectLesson,
-            physics: physicsSubjectLessons,
-            chemistry: chemistrySubjectLessons,
-            sciences: sciencesSubjectLessons,
-            english: englishSubjectLessons,
-            french: frenchSubjectLessons,
-            history: historySubjectLessons,
-            geography: gerographySubjectLessons,
-            patriotism: patriotismSubjectLessons,
-            religion: religionSubjectLessons,
-            philosophy1: philosophy1SubjectLessons,
-            philosophy2: philosophy2SubjectLessons,
-          };
-          context.pushNamed(
-            Routes.pickSubject.name,
-            extra: PickSubjectArguments(
-              subjects: [
-                arabic,
-                analysis,
-                rays,
-                physics,
-                chemistry,
-                sciences,
-                english,
-                french,
-                history,
-                geography,
-                patriotism,
-                religion,
-                philosophy1,
-                philosophy2,
-              ],
-              getLessonCount: (subject) {
-                return subjectLessonsMap[subject]?.length ?? 0;
-              },
-              onPickSubject: (subject) {
-                final subjectLessons = subjectLessonsMap[subject] ?? [];
-
-                final lessons =
-                    subjectLessons
-                        .map(
-                          (sl) => Lesson(
-                            id: subjectLessons.indexOf(sl) + 1,
-                            title: sl.title,
-                            unitId: 0,
-                            questionsCount: 0,
-                          ),
-                        )
-                        .toList();
-
-                context.pushNamed(
-                  Routes.pickSubjectLesson.name,
-                  extra: PickSubjectLessonArguments(
-                    subject: subject,
-                    lessons: lessons,
-                    onPickLesson: (lesson) {
-                      // Handle lesson pick
-                    },
-                  ),
-                );
-              },
-            ),
-          );
-        },
-        backgroundColor: Theme.of(context).primaryColor,
-        child: const Icon(Icons.add),
-      ),
       body: SizedBox(
         width: double.infinity,
         height: double.infinity,
@@ -187,15 +115,15 @@ class _NavigationBar extends StatelessWidget {
                     onTap: () => changePage(0),
                   ),
                 ),
-                // Expanded(
-                //   child: BottomNavTab(
-                //     selectedIconPath: UIImagesResources.resultsIconFilled,
-                //     unselectedIconPath: UIImagesResources.resultsIconOutline,
-                //     label: context.l10n.navigationResults,
-                //     selected: currentIndex == 1,
-                //     onTap: () => changePage(1),
-                //   ),
-                // ),
+                Expanded(
+                  child: BottomNavTab(
+                    selectedIconPath: UIImagesResources.resultsIconFilled,
+                    unselectedIconPath: UIImagesResources.resultsIconOutline,
+                    label: context.l10n.navigationResults,
+                    selected: currentIndex == 1,
+                    onTap: () => changePage(1),
+                  ),
+                ),
                 Expanded(
                   child: BottomNavTab(
                     selectedIconPath: UIImagesResources.settingsIconFilled,

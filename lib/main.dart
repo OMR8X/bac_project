@@ -64,8 +64,6 @@ Future<void> main() async {
   );
 }
 
-/// Reports an exception to the backend using the reports feature.
-/// This is fire-and-forget to avoid blocking the main thread.
 void _reportException({
   required String exceptionType,
   required String message,
@@ -86,56 +84,9 @@ void _reportException({
     // Silently fail if reporting fails (avoid infinite loops)
   }
 }
-
-// class ErrorsCopier {
-//   ///
-//   // Private constructor for singleton pattern
-//   ErrorsCopier._privateConstructor();
-
-//   // The single instance
-//   static final ErrorsCopier _instance = ErrorsCopier._privateConstructor();
-
-//   // Factory constructor to return the same instance every time
-//   factory ErrorsCopier() => _instance;
-
-//   ///
-//   final List<String> errors = List.empty(growable: true);
-
-//   static List<String> get errorsList => _instance.errors;
-
-//   ///
-//   Future<void> addErrorLogs(String details) async {
-//     errors.add(details);
-//   }
-// }
-
-
-/*
-external links  : Advertising, Website, Instagram, Facebook, etc.
-internal links  : Open screen, Open test, Open notification, etc.
-
-when building an apk with shorebird we use command:
-flutter clean && flutter pub get && shorebird release android --artifact apk          
-
-when building an apk with normal flutter we use command:
-flutter clean && flutter pub get && flutter build apk --release
-
-when pathcing an app with normal flutter we use command (we always spicify android):
-shorebird patch android
-
-flutter clean && flutter build appbundle --release
-
-
-Naming :
-1. using - instade of _
-example: moatmat_teacher.apk => moatmat-teacher.apk
-2. use the main name
-example: moatmat_teacher => teacher.apk
-3. append version details:
-teacher.apk => teacher(1.0.0+5).apk
-4. if build apk with shorebird we mark it with "sp":
-teacher-sp(1.0.0+5).apk
-
-*/
-
-
+///
+// 1- collect users screens activities
+// 2- collect users status (online/offline)
+// 3- create users table
+// 4- 
+///

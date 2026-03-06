@@ -117,8 +117,12 @@ class NotificationsRepositoryImplements implements NotificationsRepository {
 
   @override
   Future<Either<Failure, String>> refreshDeviceToken() async {
-    await FirebaseMessaging.instance.deleteToken();
-    return getDeviceToken();
+    try {
+      await FirebaseMessaging.instance.deleteToken();
+      return getDeviceToken();
+    } catch (e) {
+      return left(errorToFailure(e));
+    }
   }
 
   @override

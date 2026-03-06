@@ -35,7 +35,7 @@ class LessonsCardsBuilderWidget extends StatelessWidget {
                 LessonCardWidget(
                   icon: Icons.school,
                   title: lesson.title,
-                  // label: lesson.questionsCount,
+                  label: lesson.questionsCount.toString(),
                   onTap: () {
                     context.pushReplacement(
                       Routes.testModeSettings.path,

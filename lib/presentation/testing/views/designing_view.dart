@@ -16,7 +16,6 @@ import 'package:cupertino_native/cupertino_native.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../features/study_planner_prototype/presentation/views/planner_dashboard_view.dart';
 import '../../../core/widgets/messages/snackbars/alert_snackbar_widget.dart';
 import '../../../core/widgets/messages/snackbars/informations_snackbar_widget.dart';
 import '../../../core/widgets/messages/snackbars/success_snackbar_widget.dart';
@@ -124,15 +123,6 @@ class _DesigningViewState extends State<DesigningView> with TickerProviderStateM
             Padding(
               padding: EdgeInsets.symmetric(vertical: SpacesResources.s6),
               child: Divider(color: cs.outlineVariant),
-            ),
-
-            // Legacy: Study Planner Prototype
-            _PrototypeButton(
-              label: '📋',
-              title: 'Study Planner (Old Prototype)',
-              subtitle: 'النموذج الأولي القديم من study_planner_prototype',
-              color: const Color(0xFF607D8B),
-              onTap: () => _openPrototype(context, 'Old', const PlannerDashboardView()),
             ),
           ],
         ),
@@ -264,16 +254,6 @@ class TestButtonsDesign extends StatelessWidget {
             ElevatedButton(onPressed: () {}, child: const Text('Elevated Button')),
             OutlinedButton(onPressed: () {}, child: const Text('Outlined Button')),
             const SizedBox(height: 20),
-            FilledButtonWidget(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const PlannerDashboardView(),
-                  ),
-                );
-              },
-              child: const Text('Open Study Planner Prototype'),
-            ),
           ],
         ),
       ),

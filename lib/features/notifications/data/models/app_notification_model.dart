@@ -28,7 +28,7 @@ class AppNotificationModel extends AppNotification {
       priority: NotificationPriority.fromString(json['priority'] ?? 'normal'),
       createdAt: DateTime.parse(json['created_at']),
       expiresAt: json['expires_at'] != null ? DateTime.parse(json['expires_at']) : null,
-      readedAt: json['readed_at'] != null ? DateTime.parse(json['readed_at']) : null,
+      readedAt: json['read_at'] != null ? DateTime.parse(json['read_at']) : null,
     );
   }
 
