@@ -1,6 +1,10 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:neuro_app/features/reports/domain/entities/exception_report.dart';
 
+part 'exception_report_model.g.dart';
+
 /// Data model for exception reports with JSON serialization.
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ExceptionReportModel extends ExceptionReport {
   const ExceptionReportModel({
     required super.id,
@@ -15,33 +19,8 @@ class ExceptionReportModel extends ExceptionReport {
     required super.createdAt,
   });
 
-  factory ExceptionReportModel.fromJson(Map<String, dynamic> json) {
-    return ExceptionReportModel(
-      id: json['id'] as int,
-      exceptionType: json['exception_type'] as String,
-      message: json['message'] as String,
-      stackTrace: json['stack_trace'] as String?,
-      trigger: json['trigger'] as String?,
-      appVersion: json['app_version'] as String?,
-      platform: json['platform'] as String?,
-      deviceModel: json['device_model'] as String?,
-      userId: json['user_id'] as String?,
-      createdAt: DateTime.parse(json['created_at'] as String),
-    );
-  }
+  factory ExceptionReportModel.fromJson(Map<String, dynamic> json) =>
+      _$ExceptionReportModelFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'exception_type': exceptionType,
-      'message': message,
-      'stack_trace': stackTrace,
-      'trigger': trigger,
-      'app_version': appVersion,
-      'platform': platform,
-      'device_model': deviceModel,
-      'user_id': userId,
-      'created_at': createdAt.toIso8601String(),
-    };
-  }
+  Map<String, dynamic> toJson() => _$ExceptionReportModelToJson(this);
 }

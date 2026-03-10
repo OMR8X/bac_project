@@ -24,10 +24,6 @@ import 'package:neuro_app/presentation/home/views/motivational_quote_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neuro_app/core/injector/app_injection.dart';
 import 'package:neuro_app/presentation/tests/blocs/pick_lessons/pick_lessons_bloc.dart';
-
-import '../../../../presentation/lessons/view/pick_subject_lesson_view.dart';
-import '../../../../presentation/subjects/view/pick_subject_view.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import '../../../presentation/auth/view/auth_view.dart';
@@ -39,7 +35,6 @@ import '../../../presentation/root/views/app_available_update_view.dart';
 import '../../../presentation/root/views/app_loader_view.dart';
 import '../../../presentation/root/views/pages_holder.dart';
 import '../../../presentation/testing/views/debugs_view.dart';
-
 import '../../../presentation/tests/views/test_mode_settings_view.dart';
 import 'routes.dart';
 
@@ -555,60 +550,6 @@ class AppRouter {
                 quote: (state.extra as MotivationalQuoteArguments).quote,
               ),
             ),
-      ),
-      // pick subject route
-      GoRoute(
-        name: Routes.pickSubject.name,
-        path: Routes.pickSubject.path,
-        pageBuilder: (context, state) {
-          final args = state.extra as PickSubjectArguments;
-
-          return CustomTransitionPage(
-            key: state.pageKey,
-            transitionDuration: AppTransitions.transitionDuration,
-            reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
-            transitionsBuilder: (context, animation, secondaryAnimation, child) {
-              return AppTransitions.commonTransition(
-                context,
-                animation,
-                secondaryAnimation,
-                child,
-              );
-            },
-            child: PickSubjectView(
-              subjects: args.subjects,
-              onPickSubject: args.onPickSubject,
-              getLessonCount: args.getLessonCount,
-            ),
-          );
-        },
-      ),
-      // pick subject lesson route
-      GoRoute(
-        name: Routes.pickSubjectLesson.name,
-        path: Routes.pickSubjectLesson.path,
-        pageBuilder: (context, state) {
-          final args = state.extra as PickSubjectLessonArguments;
-
-          return CustomTransitionPage(
-            key: state.pageKey,
-            transitionDuration: AppTransitions.transitionDuration,
-            reverseTransitionDuration: AppTransitions.reverseTransitionDuration,
-            transitionsBuilder: (context, animation, secondaryAnimation, child) {
-              return AppTransitions.commonTransition(
-                context,
-                animation,
-                secondaryAnimation,
-                child,
-              );
-            },
-            child: PickSubjectLessonView(
-              subject: args.subject,
-              lessons: args.lessons,
-              onPickLesson: args.onPickLesson,
-            ),
-          );
-        },
       ),
 
       /// root page view route

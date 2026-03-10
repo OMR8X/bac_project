@@ -28,9 +28,7 @@ enum Routes {
   helpCenter(name: 'help-center', path: '/help-center'),
   contactUs(name: 'contact-us', path: '/contact-us'),
   fetchCustomQuestions(name: 'fetch-custom-questions', path: '/fetch-custom-questions'),
-  motivationalQuote(name: 'motivational-quote', path: '/motivational-quote'),
-  pickSubject(name: 'pick-subject', path: '/pick-subject'),
-  pickSubjectLesson(name: 'pick-subject-lesson', path: '/pick-subject-lesson');
+  motivationalQuote(name: 'motivational-quote', path: '/motivational-quote');
 
   const Routes({required this.name, required this.path});
 

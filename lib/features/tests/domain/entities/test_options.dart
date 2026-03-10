@@ -6,8 +6,8 @@ class TestOptions extends Equatable {
   //
   final bool showTrueAnswers, enableSounds;
   final int? selectedQuestionsCount;
-  final List<int>? selectedUnitsIDs;
-  final List<int>? selectedLessonsIDs;
+  final List<int>? selectedUnitsIds;
+  final List<int>? selectedLessonsIds;
   final List<QuestionCategory>? selectedCategories;
   //
   final List<QuestionCategory>? categories;
@@ -17,8 +17,8 @@ class TestOptions extends Equatable {
     required this.showTrueAnswers,
     required this.enableSounds,
     this.selectedQuestionsCount,
-    this.selectedUnitsIDs,
-    this.selectedLessonsIDs,
+    this.selectedUnitsIds,
+    this.selectedLessonsIds,
     required this.selectedCategories,
     this.categories,
     required this.selectedMode,
@@ -28,8 +28,8 @@ class TestOptions extends Equatable {
     bool? showTrueAnswers,
     bool? enableSounds,
     int? selectedQuestionsCount,
-    List<int>? selectedUnitsIDs,
-    List<int>? selectedLessonsIDs,
+    List<int>? selectedUnitsIds,
+    List<int>? selectedLessonsIds,
     List<QuestionCategory>? selectedCategories,
     List<QuestionCategory>? categories,
     TestMode? selectedMode,
@@ -42,8 +42,8 @@ class TestOptions extends Equatable {
           setSelectedQuestionsCountNull
               ? null
               : selectedQuestionsCount ?? this.selectedQuestionsCount,
-      selectedUnitsIDs: selectedUnitsIDs ?? this.selectedUnitsIDs,
-      selectedLessonsIDs: selectedLessonsIDs ?? this.selectedLessonsIDs,
+      selectedUnitsIds: selectedUnitsIds ?? this.selectedUnitsIds,
+      selectedLessonsIds: selectedLessonsIds ?? this.selectedLessonsIds,
       selectedCategories: selectedCategories ?? this.selectedCategories,
       categories: categories ?? this.categories,
       selectedMode: selectedMode ?? this.selectedMode,
@@ -109,8 +109,8 @@ class TestOptions extends Equatable {
     showTrueAnswers,
     enableSounds,
     selectedQuestionsCount,
-    selectedUnitsIDs,
-    selectedLessonsIDs,
+    selectedUnitsIds,
+    selectedLessonsIds,
     selectedCategories,
     categories,
     selectedMode,

@@ -1,16 +1,15 @@
 class GetTestOptionsRequest {
-  final List<String>? unitIds;
+  // final List<String>? unitIds;
   final List<String>? lessonIds;
 
-  const GetTestOptionsRequest({this.unitIds, this.lessonIds});
+  const GetTestOptionsRequest({this.lessonIds});
 
   Map<String, dynamic> toJsonBody() {
-    return {'p_units_ids': unitIds, 'p_lessons_ids': lessonIds};
+    return {'p_lessons_ids': lessonIds};
   }
 
-  GetTestOptionsRequest copyWith({List<String>? unitIds, List<String>? lessonIds}) {
+  GetTestOptionsRequest copyWith({List<String>? lessonIds}) {
     return GetTestOptionsRequest(
-      unitIds: unitIds ?? this.unitIds,
       lessonIds: lessonIds ?? this.lessonIds,
     );
   }
@@ -18,14 +17,12 @@ class GetTestOptionsRequest {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    return other is GetTestOptionsRequest &&
-        other.unitIds == unitIds &&
-        other.lessonIds == lessonIds;
+    return other is GetTestOptionsRequest && other.lessonIds == lessonIds;
   }
 
   @override
-  int get hashCode => unitIds.hashCode ^ lessonIds.hashCode;
+  int get hashCode => lessonIds.hashCode;
 
   @override
-  String toString() => 'GetTestOptionsRequest(unitIds: $unitIds, lessonIds: $lessonIds)';
+  String toString() => 'GetTestOptionsRequest(lessonIds: $lessonIds)';
 }

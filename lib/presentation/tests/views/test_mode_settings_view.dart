@@ -73,7 +73,7 @@ class TestModeSettingsView extends StatelessWidget {
                   questions: state.questions,
                   timeLimit: null,
                   testMode: state.testOptions.selectedMode,
-                  lessonIds: state.testOptions.selectedLessonsIDs,
+                  lessonIds: state.testOptions.selectedLessonsIds,
                 ),
               );
             }
@@ -99,8 +99,8 @@ class TestModeSettingsView extends StatelessWidget {
                 onRetry: () {
                   context.read<TestModeSettingsBloc>().add(
                     TestModeSettingsLoadEvent(
-                      unitIds: state.testOptions.selectedUnitsIDs,
-                      lessonIds: state.testOptions.selectedLessonsIDs,
+                      unitIds: state.testOptions.selectedUnitsIds,
+                      lessonIds: state.testOptions.selectedLessonsIds,
                     ),
                   );
                 },
@@ -459,8 +459,8 @@ class _LoadingView extends StatelessWidget {
 
             selectedQuestionsCount: 0,
             selectedMode: TestMode.exploring,
-            selectedUnitsIDs: List.generate(5, (index) => index),
-            selectedLessonsIDs: List.generate(5, (index) => index),
+            selectedUnitsIds: List.generate(5, (index) => index),
+            selectedLessonsIds: List.generate(5, (index) => index),
           ),
         ),
       ),

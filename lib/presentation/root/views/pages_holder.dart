@@ -14,35 +14,6 @@ import '../../../../core/services/router/routes.dart';
 
 import '../../../../features/tests/domain/entities/lesson.dart';
 
-// Subject Data Imports
-import '../../../../features/subjects/data/analysis/subject.dart';
-import '../../../../features/subjects/data/analysis/lessons.dart';
-import '../../../../features/subjects/data/arabic/subject.dart';
-import '../../../../features/subjects/data/arabic/lessons.dart';
-import '../../../../features/subjects/data/chemistry/subject.dart';
-import '../../../../features/subjects/data/chemistry/lessons.dart';
-import '../../../../features/subjects/data/english/subject.dart';
-import '../../../../features/subjects/data/english/lessons.dart';
-import '../../../../features/subjects/data/french/materaill.dart';
-import '../../../../features/subjects/data/french/lessons.dart';
-import '../../../../features/subjects/data/geography/subject.dart';
-import '../../../../features/subjects/data/geography/lessons.dart';
-import '../../../../features/subjects/data/history/subject.dart';
-import '../../../../features/subjects/data/history/lessons.dart';
-import '../../../../features/subjects/data/patriotism/subject.dart';
-import '../../../../features/subjects/data/patriotism/lessons.dart';
-import '../../../../features/subjects/data/philosophy1/subject.dart';
-import '../../../../features/subjects/data/philosophy1/lessons.dart';
-import '../../../../features/subjects/data/philosophy2/subject.dart';
-import '../../../../features/subjects/data/philosophy2/lessons.dart';
-import '../../../../features/subjects/data/physics/subject.dart';
-import '../../../../features/subjects/data/physics/lessons.dart';
-import '../../../../features/subjects/data/rays/subject.dart';
-import '../../../../features/subjects/data/rays/lessons.dart';
-import '../../../../features/subjects/data/religion/subject.dart';
-import '../../../../features/subjects/data/religion/lessons.dart';
-import '../../../../features/subjects/data/sciences/subject.dart';
-import '../../../../features/subjects/data/sciences/lessons.dart';
 
 class PagesHolderView extends StatefulWidget {
   const PagesHolderView({super.key, required this.navigationShell});
@@ -61,78 +32,6 @@ class _PagesHolderViewState extends State<PagesHolderView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          final subjectLessonsMap = {
-            arabic: arabicSubjectLessons,
-            analysis: analysisSubjectLessons,
-            rays: raysSubjectLesson,
-            physics: physicsSubjectLessons,
-            chemistry: chemistrySubjectLessons,
-            sciences: sciencesSubjectLessons,
-            english: englishSubjectLessons,
-            french: frenchSubjectLessons,
-            history: historySubjectLessons,
-            geography: gerographySubjectLessons,
-            patriotism: patriotismSubjectLessons,
-            religion: religionSubjectLessons,
-            philosophy1: philosophy1SubjectLessons,
-            philosophy2: philosophy2SubjectLessons,
-          };
-          context.pushNamed(
-            Routes.pickSubject.name,
-            extra: PickSubjectArguments(
-              subjects: [
-                arabic,
-                analysis,
-                rays,
-                physics,
-                chemistry,
-                sciences,
-                english,
-                french,
-                history,
-                geography,
-                patriotism,
-                religion,
-                philosophy1,
-                philosophy2,
-              ],
-              getLessonCount: (subject) {
-                return subjectLessonsMap[subject]?.length ?? 0;
-              },
-              onPickSubject: (subject) {
-                final subjectLessons = subjectLessonsMap[subject] ?? [];
-
-                final lessons =
-                    subjectLessons
-                        .map(
-                          (sl) => Lesson(
-                            id: subjectLessons.indexOf(sl) + 1,
-                            title: sl.title,
-                            unitId: 0,
-                            questionsCount: 0,
-                          ),
-                        )
-                        .toList();
-
-                context.pushNamed(
-                  Routes.pickSubjectLesson.name,
-                  extra: PickSubjectLessonArguments(
-                    subject: subject,
-                    lessons: lessons,
-                    onPickLesson: (lesson) {
-                      // Handle lesson pick
-                    },
-                  ),
-                );
-              },
-            ),
-          );
-        },
-        backgroundColor: Theme.of(context).primaryColor,
-        child: const Icon(Icons.add),
-      ),
       body: SizedBox(
         width: double.infinity,
         height: double.infinity,
@@ -187,15 +86,15 @@ class _NavigationBar extends StatelessWidget {
                     onTap: () => changePage(0),
                   ),
                 ),
-                // Expanded(
-                //   child: BottomNavTab(
-                //     selectedIconPath: UIImagesResources.resultsIconFilled,
-                //     unselectedIconPath: UIImagesResources.resultsIconOutline,
-                //     label: context.l10n.navigationResults,
-                //     selected: currentIndex == 1,
-                //     onTap: () => changePage(1),
-                //   ),
-                // ),
+                Expanded(
+                  child: BottomNavTab(
+                    selectedIconPath: UIImagesResources.resultsIconFilled,
+                    unselectedIconPath: UIImagesResources.resultsIconOutline,
+                    label: context.l10n.navigationResults,
+                    selected: currentIndex == 1,
+                    onTap: () => changePage(1),
+                  ),
+                ),
                 Expanded(
                   child: BottomNavTab(
                     selectedIconPath: UIImagesResources.settingsIconFilled,

@@ -1,4 +1,6 @@
-class AnswerEvaluation {
+import 'package:equatable/equatable.dart';
+
+class AnswerEvaluation extends Equatable {
   final int id;
   final int questionAnswerId;
   final bool isCorrect;
@@ -42,31 +44,14 @@ class AnswerEvaluation {
   }
 
   @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    return other is AnswerEvaluation &&
-        other.id == id &&
-        other.questionAnswerId == questionAnswerId &&
-        other.isCorrect == isCorrect &&
-        other.confidence == confidence &&
-        other.notes == notes &&
-        other.modelName == modelName &&
-        other.createdAt == createdAt &&
-        other.updatedAt == updatedAt;
-  }
-
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      questionAnswerId.hashCode ^
-      isCorrect.hashCode ^
-      confidence.hashCode ^
-      notes.hashCode ^
-      modelName.hashCode ^
-      createdAt.hashCode ^
-      updatedAt.hashCode;
-
-  @override
-  String toString() =>
-      'AnswerEvaluation(id: $id, questionAnswerId: $questionAnswerId, isCorrect: $isCorrect, confidence: $confidence, notes: $notes, modelName: $modelName, createdAt: $createdAt, updatedAt: $updatedAt)';
+  List<Object?> get props => [
+    id,
+    questionAnswerId,
+    isCorrect,
+    confidence,
+    notes,
+    modelName,
+    createdAt,
+    updatedAt,
+  ];
 }

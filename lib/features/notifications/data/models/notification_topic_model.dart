@@ -1,5 +1,9 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:neuro_app/features/notifications/domain/entities/notifications_topic.dart';
 
+part 'notification_topic_model.g.dart';
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class NotificationTopicModel extends NotificationsTopic {
   const NotificationTopicModel({
     required super.id,
@@ -9,23 +13,11 @@ class NotificationTopicModel extends NotificationsTopic {
     super.subscribable,
   });
 
-  factory NotificationTopicModel.fromJson(Map<String, dynamic> json) {
-    return NotificationTopicModel(
-      id: json['id'] as int,
-      title: json['title'] as String,
-      description: json['description'] as String?,
-      firebaseTopic: json['firebase_topic'] as String,
-      subscribable: json['subscribable'] as bool? ?? true,
-    );
-  }
+  factory NotificationTopicModel.fromJson(Map<String, dynamic> json) =>
+      _$NotificationTopicModelFromJson(json);
 
-  Map<String, dynamic> toDatabaseJson() {
-    return {
-      'id': id,
-      'title': title,
-      'description': description,
-      'firebase_topic': firebaseTopic,
-      'subscribable': subscribable,
-    };
-  }
+  @override
+  Map<String, dynamic> toJson() => _$NotificationTopicModelToJson(this);
+
+  Map<String, dynamic> toDatabaseJson() => _$NotificationTopicModelToJson(this);
 }

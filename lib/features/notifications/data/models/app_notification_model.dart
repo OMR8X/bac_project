@@ -1,8 +1,12 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:neuro_app/features/notifications/domain/entities/app_notification.dart';
 import 'package:neuro_app/features/notifications/domain/enums/notification_priority.dart';
 
+part 'app_notification_model.g.dart';
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class AppNotificationModel extends AppNotification {
-  AppNotificationModel({
+  const AppNotificationModel({
     required super.id,
     required super.topicId,
     super.topicTitle,
@@ -10,47 +14,19 @@ class AppNotificationModel extends AppNotification {
     required super.body,
     super.imageUrl,
     super.payload,
+    // Kept: custom enum from/to string mapping
+    @JsonKey(fromJson: NotificationPriority.fromString, toJson: _priorityToString)
     required super.priority,
     required super.createdAt,
     super.expiresAt,
-    super.readedAt,
+    // Kept: mapping for mismatched DB/Dart field names
+    @JsonKey(name: 'read_at') super.readAt,
   });
 
-  factory AppNotificationModel.fromDatabaseJson(Map json) {
-    return AppNotificationModel(
-      id: json['id'],
-      topicId: json['topic_id'],
-      topicTitle: json['topic_title'],
-      title: json['title'],
-      body: json['body'],
-      imageUrl: json['image_url'],
-      payload: json['payload'],
-      priority: NotificationPriority.fromString(json['priority'] ?? 'normal'),
-      createdAt: DateTime.parse(json['created_at']),
-      expiresAt: json['expires_at'] != null ? DateTime.parse(json['expires_at']) : null,
-      readedAt: json['readed_at'] != null ? DateTime.parse(json['readed_at']) : null,
-    );
-  }
+  static String _priorityToString(NotificationPriority priority) => priority.value;
 
-  Map<String, dynamic> toDatabaseJson() {
-    return {
-      'id': id,
-      'topic_id': topicId,
-      'title': title,
-      'body': body,
-      'image_url': imageUrl,
-      'payload': payload,
-      'priority': priority.value,
-      'created_at': createdAt.toIso8601String(),
-      'expires_at': expiresAt?.toIso8601String(),
-    };
-  }
+  factory AppNotificationModel.fromJson(Map<String, dynamic> json) =>
+      _$AppNotificationModelFromJson(json);
 
-  Map<String, dynamic> toUserNotificationJson(String userId) {
-    return {
-      'notification_id': id,
-      'user_id': userId,
-      'readed_at': readedAt?.toIso8601String(),
-    };
-  }
+  Map<String, dynamic> toJson() => _$AppNotificationModelToJson(this);
 }

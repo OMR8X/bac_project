@@ -3,7 +3,7 @@ import 'package:neuro_app/features/tests/data/models/question_answer_model.dart'
 import '../../domain/entities/question_answer.dart';
 
 extension QuestionAnswerModelExtension on QuestionAnswerModel {
-  QuestionAnswer toEntity() {
+  QuestionAnswer get toEntity {
     return QuestionAnswer(
       id: id,
       resultId: resultId,
@@ -17,7 +17,7 @@ extension QuestionAnswerModelExtension on QuestionAnswerModel {
 }
 
 extension QuestionAnswerEntityExtension on QuestionAnswer {
-  QuestionAnswerModel toModel() {
+  QuestionAnswerModel get toModel {
     return QuestionAnswerModel(
       id: id,
       resultId: resultId,

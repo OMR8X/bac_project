@@ -61,7 +61,7 @@ class _NotificationsViewState extends State<NotificationsView> {
           if (state.status == NotificationsStatus.success) {
             final unreadNotifications =
                 state.notifications.where((e) {
-                  return e.readedAt == null;
+                  return e.readAt == null;
                 }).toList();
             sl<NotificationsBloc>().add(
               MarkNotificationsAsReadEvent(

@@ -15,7 +15,7 @@ class NotificationCardWidget extends StatelessWidget {
   final int position;
   final AppNotification notification;
 
-  bool get isUnread => notification.readedAt == null;
+  bool get isUnread => notification.readAt == null;
 
   @override
   Widget build(BuildContext context) {

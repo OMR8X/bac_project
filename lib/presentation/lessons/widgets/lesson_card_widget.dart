@@ -40,16 +40,7 @@ class LessonCardWidget extends StatelessWidget {
                 const SizedBox(width: 12),
                 Expanded(child: _buildTextInformation(context)),
                 const SizedBox(width: 12),
-                if (isSelected == null)
-                  Padding(
-                    padding: const EdgeInsets.all(SpacesResources.s4),
-                    child: Icon(
-                      trailingIcon ?? Icons.check,
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
-                      size: SpacesResources.s6,
-                    ),
-                  )
-                else
+                if (isSelected != null)
                   Padding(
                     padding: const EdgeInsets.all(SpacesResources.s4),
                     child: SizedBox(

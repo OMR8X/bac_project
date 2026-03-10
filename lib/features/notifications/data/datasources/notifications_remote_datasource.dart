@@ -106,7 +106,6 @@ class NotificationsRemoteDatasourceImplements implements NotificationsRemoteData
   }) async {
     ///
     if (!notification.isValid()) {
-      Logger.error('Notification is not valid: ${notification.toModel.toDatabaseJson()}');
       return unit;
     }
 

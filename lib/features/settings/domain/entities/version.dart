@@ -3,7 +3,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shorebird_code_push/shorebird_code_push.dart';
 
 class Version extends Equatable {
-  final String id;
+  final int id;
   final String currentVersion;
   final String minimumVersion;
   final String updateLink;
@@ -12,7 +12,7 @@ class Version extends Equatable {
   final int? patchNumber;
 
   const Version({
-    this.id = "0",
+    this.id = 0,
     required this.currentVersion,
     required this.minimumVersion,
     required this.updateLink,
@@ -64,7 +64,7 @@ class Version extends Equatable {
 
   factory Version.empty() {
     return Version(
-      id: "0",
+      id: 0,
       currentVersion: "1.0.0",
       minimumVersion: "1.0.0",
       appVersion: "1.0.0",
@@ -77,10 +77,5 @@ class Version extends Equatable {
   @override
   List<Object?> get props {
     return [id, currentVersion, minimumVersion, updateLink, appVersion, buildNumber, patchNumber];
-  }
-
-  @override
-  String toString() {
-    return 'Version(id: $id, currentVersion: $currentVersion, minimumVersion: $minimumVersion, updateLink: $updateLink, appVersion: $appVersion, patchNumber: $patchNumber)';
   }
 }

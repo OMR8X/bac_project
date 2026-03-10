@@ -3,7 +3,7 @@ import 'package:neuro_app/features/tests/data/models/option_model.dart';
 import '../../domain/entities/option.dart';
 
 extension OptionModelExtension on OptionModel {
-  Option toEntity() {
+  Option get toEntity {
     return Option(
       id: id,
       questionId: questionId,
@@ -16,7 +16,7 @@ extension OptionModelExtension on OptionModel {
 }
 
 extension OptionEntityExtension on Option {
-  OptionModel toModel() {
+  OptionModel get toModel {
     return OptionModel(
       id: id,
       questionId: questionId,

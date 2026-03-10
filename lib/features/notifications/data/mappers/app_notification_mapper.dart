@@ -14,7 +14,7 @@ extension AppNotificationModelMapper on AppNotificationModel {
       priority: priority,
       createdAt: createdAt,
       expiresAt: expiresAt,
-      readedAt: readedAt,
+      readAt: readAt,
     );
   }
 }
@@ -32,7 +32,7 @@ extension AppNotificationMapper on AppNotification {
       priority: priority,
       createdAt: createdAt,
       expiresAt: expiresAt,
-      readedAt: readedAt,
+      readAt: readAt,
     );
   }
 }

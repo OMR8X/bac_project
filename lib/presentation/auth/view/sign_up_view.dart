@@ -94,6 +94,7 @@ class _SignUpViewState extends State<SignUpView> {
                     hintText: "الاسم",
                     position: 1,
                     keyboardType: TextInputType.name,
+                    autofillHints: const [AutofillHints.name],
                     maxLength: 64,
                     controller: _nameController,
                     validator: (text) {
@@ -105,6 +106,7 @@ class _SignUpViewState extends State<SignUpView> {
                     maxLength: 64,
                     position: 2,
                     keyboardType: TextInputType.emailAddress,
+                    autofillHints: const [AutofillHints.email],
                     controller: _emailController,
                     validator: (text) {
                       return InputValidator.emailValidator(text);
@@ -116,6 +118,7 @@ class _SignUpViewState extends State<SignUpView> {
                     position: 3,
                     obscureText: true,
                     keyboardType: TextInputType.visiblePassword,
+                    autofillHints: const [AutofillHints.password],
                     controller: _passwordController,
                     validator: (text) {
                       return InputValidator.passwordValidator(text);
@@ -127,6 +130,7 @@ class _SignUpViewState extends State<SignUpView> {
                     position: 4,
                     obscureText: true,
                     keyboardType: TextInputType.visiblePassword,
+                    autofillHints: const [AutofillHints.password],
                     controller: _confirmPasswordController,
                     validator: (text) {
                       if (_passwordController.text != _confirmPasswordController.text) {

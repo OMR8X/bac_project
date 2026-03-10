@@ -1,4 +1,6 @@
-class Option {
+import 'package:equatable/equatable.dart';
+
+class Option extends Equatable {
   final int id;
   final int questionId;
   final String content;
@@ -43,4 +45,7 @@ class Option {
       sortOrder: null,
     );
   }
+
+  @override
+  List<Object?> get props => [id, questionId, content, isCorrect, sortOrder, typedAnswer];
 }

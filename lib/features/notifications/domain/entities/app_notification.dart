@@ -8,7 +8,9 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../core/services/logs/logger.dart';
 import '../enums/notification_priority.dart';
 
-class AppNotification {
+import 'package:equatable/equatable.dart';
+
+class AppNotification extends Equatable {
   final int id;
   final int topicId;
   final String? topicTitle;
@@ -19,13 +21,15 @@ class AppNotification {
   final NotificationPriority priority;
   final DateTime createdAt;
   final DateTime? expiresAt;
-  final DateTime? readedAt;
+  final DateTime? readAt;
+  final DateTime? dismissedAt;
+  final bool actionPerformed;
 
   // Computed property for backward compatibility
-  bool get seen => readedAt != null;
+  bool get seen => readAt != null;
 
-  // Computed status property derived from readedAt
-  String get status => readedAt != null ? 'read' : 'unread';
+  // Computed status property derived from readAt
+  String get status => readAt != null ? 'read' : 'unread';
 
   bool isValid() {
     return title.trim().isNotEmpty && body.trim().isNotEmpty;
@@ -68,7 +72,9 @@ class AppNotification {
       priority: NotificationPriority.fromString(message.data["priority"] ?? 'normal'),
       createdAt: createdAt,
       expiresAt: null,
-      readedAt: null,
+      readAt: null,
+      dismissedAt: null,
+      actionPerformed: false,
     );
   }
 
@@ -82,9 +88,11 @@ class AppNotification {
       imageUrl: null,
       payload: null,
       priority: NotificationPriority.normal,
-      createdAt: DateTime.now(),
+      createdAt: DateTime.parse('2024-01-01T10:00:00Z'),
       expiresAt: null,
-      readedAt: null,
+      readAt: null,
+      dismissedAt: null,
+      actionPerformed: false,
     );
   }
 
@@ -98,9 +106,11 @@ class AppNotification {
       imageUrl: null,
       payload: null,
       priority: NotificationPriority.normal,
-      createdAt: DateTime.now(),
+      createdAt: DateTime.parse('2024-01-01T10:00:00Z'),
       expiresAt: null,
-      readedAt: DateTime.now(),
+      readAt: DateTime.now(),
+      dismissedAt: null,
+      actionPerformed: false,
     );
   }
 
@@ -115,7 +125,9 @@ class AppNotification {
     NotificationPriority? priority,
     DateTime? createdAt,
     DateTime? expiresAt,
-    DateTime? readedAt,
+    DateTime? readAt,
+    DateTime? dismissedAt,
+    bool? actionPerformed,
   }) {
     return AppNotification(
       id: id ?? this.id,
@@ -128,11 +140,13 @@ class AppNotification {
       priority: priority ?? this.priority,
       createdAt: createdAt ?? this.createdAt,
       expiresAt: expiresAt ?? this.expiresAt,
-      readedAt: readedAt ?? this.readedAt,
+      readAt: readAt ?? this.readAt,
+      dismissedAt: dismissedAt ?? this.dismissedAt,
+      actionPerformed: actionPerformed ?? this.actionPerformed,
     );
   }
 
-  AppNotification({
+  const AppNotification({
     required this.id,
     required this.topicId,
     this.topicTitle,
@@ -143,6 +157,25 @@ class AppNotification {
     this.priority = NotificationPriority.normal,
     required this.createdAt,
     this.expiresAt,
-    this.readedAt,
+    this.readAt,
+    this.dismissedAt,
+    this.actionPerformed = false,
   });
+
+  @override
+  List<Object?> get props => [
+    id,
+    topicId,
+    topicTitle,
+    title,
+    body,
+    imageUrl,
+    payload,
+    priority,
+    createdAt,
+    expiresAt,
+    readAt,
+    dismissedAt,
+    actionPerformed,
+  ];
 }

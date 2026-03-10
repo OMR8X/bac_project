@@ -1,6 +1,10 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:neuro_app/features/notifications/domain/entities/notification.dart';
 import 'package:neuro_app/features/notifications/domain/enums/notification_priority.dart';
 
+part 'notification_model.g.dart';
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class NotificationModel extends Notification {
   const NotificationModel({
     required super.id,
@@ -10,38 +14,19 @@ class NotificationModel extends Notification {
     required super.body,
     super.imageUrl,
     super.payload,
+    // Kept: custom enum from/to string mapping
+    @JsonKey(fromJson: NotificationPriority.fromString, toJson: _priorityToString)
     required super.priority,
     required super.createdAt,
     super.expiresAt,
   });
 
-  factory NotificationModel.fromJson(Map<String, dynamic> json) {
-    return NotificationModel(
-      id: json['id'] as int,
-      topicId: json['topic_id'] as int,
-      topicTitle: json['topic_title'] as String?,
-      title: json['title'] as String,
-      body: json['body'] as String,
-      imageUrl: json['image_url'] as String?,
-      payload: json['payload'] as Map<String, dynamic>?,
-      priority: NotificationPriority.fromString(json['priority'] ?? 'normal'),
-      createdAt: DateTime.parse(json['created_at']),
-      expiresAt: json['expires_at'] != null ? DateTime.parse(json['expires_at']) : null,
-    );
-  }
+  static String _priorityToString(NotificationPriority priority) => priority.value;
 
-  Map<String, dynamic> toDatabaseJson() {
-    return {
-      'id': id,
-      'topic_id': topicId,
-      'topic_title': topicTitle,
-      'title': title,
-      'body': body,
-      'image_url': imageUrl,
-      'payload': payload,
-      'priority': priority.value,
-      'created_at': createdAt.toIso8601String(),
-      'expires_at': expiresAt?.toIso8601String(),
-    };
-  }
+  factory NotificationModel.fromJson(Map<String, dynamic> json) =>
+      _$NotificationModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$NotificationModelToJson(this);
+
+  Map<String, dynamic> toDatabaseJson() => _$NotificationModelToJson(this);
 }

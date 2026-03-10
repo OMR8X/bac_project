@@ -36,7 +36,6 @@ class TestModeSettingsBloc extends Bloc<TestModeSettingsEvent, TestModeSettingsS
     try {
       // Create request from event parameters
       final request = GetTestOptionsRequest(
-        unitIds: event.unitIds?.map((id) => id.toString()).toList(),
         lessonIds: event.lessonIds?.map((id) => id.toString()).toList(),
       );
 
@@ -52,8 +51,8 @@ class TestModeSettingsBloc extends Bloc<TestModeSettingsEvent, TestModeSettingsS
           final testOptions = TestOptions(
             showTrueAnswers: false,
             enableSounds: false,
-            selectedUnitsIDs: event.unitIds,
-            selectedLessonsIDs: event.lessonIds,
+            selectedUnitsIds: event.unitIds,
+            selectedLessonsIds: event.lessonIds,
             selectedCategories: [],
             categories: response.categories,
             selectedMode: TestMode.exploring,

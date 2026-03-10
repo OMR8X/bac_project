@@ -22,14 +22,5 @@ class GetAnswerEvaluationsResponse {
   }
 
   @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    return other is GetAnswerEvaluationsResponse && other.answerEvaluations == answerEvaluations;
-  }
-
-  @override
-  int get hashCode => answerEvaluations.hashCode;
-
-  @override
   String toString() => 'GetAnswerEvaluationsResponse(answerEvaluations: $answerEvaluations)';
 }

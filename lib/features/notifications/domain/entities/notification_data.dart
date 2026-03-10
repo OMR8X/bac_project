@@ -1,5 +1,7 @@
+import 'package:equatable/equatable.dart';
+
 // Not In Use yet
-class NotificationData {
+class NotificationData extends Equatable {
   final String sentBy;
   final String type;
   final String? referenceId;
@@ -11,10 +13,10 @@ class NotificationData {
   });
 
   Map<String, dynamic> toJson() => {
-        'sent_by': sentBy,
-        'type': type,
-        if (referenceId != null) 'reference_id': referenceId,
-      };
+    'sent_by': sentBy,
+    'type': type,
+    if (referenceId != null) 'reference_id': referenceId,
+  };
 
   factory NotificationData.fromJson(Map<String, dynamic> json) {
     return NotificationData(
@@ -23,4 +25,7 @@ class NotificationData {
       referenceId: json['reference_id'],
     );
   }
+
+  @override
+  List<Object?> get props => [sentBy, type, referenceId];
 }

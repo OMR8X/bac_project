@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:neuro_app/features/tests/domain/entities/question.dart';
 import 'package:neuro_app/features/tests/domain/entities/test_mode.dart';
 import 'package:neuro_app/features/settings/domain/entities/motivational_quote.dart';
-import 'package:neuro_app/features/subjects/domain/entities/subject.dart';
 import 'package:neuro_app/features/tests/domain/entities/lesson.dart';
 
 class ExploreManagerViewArguments {
@@ -269,26 +268,3 @@ class ExploreAnswersEvaluationsViewArguments {
   const ExploreAnswersEvaluationsViewArguments({required this.resultId});
 }
 
-class PickSubjectArguments {
-  final List<Subject> subjects;
-  final void Function(Subject) onPickSubject;
-  final int Function(Subject) getLessonCount;
-
-  const PickSubjectArguments({
-    required this.subjects,
-    required this.onPickSubject,
-    required this.getLessonCount,
-  });
-}
-
-class PickSubjectLessonArguments {
-  final Subject subject;
-  final List<Lesson> lessons;
-  final void Function(Lesson) onPickLesson;
-
-  const PickSubjectLessonArguments({
-    required this.subject,
-    required this.lessons,
-    required this.onPickLesson,
-  });
-}

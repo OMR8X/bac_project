@@ -16,7 +16,6 @@ import 'package:cupertino_native/cupertino_native.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../features/study_planner_prototype/presentation/views/planner_dashboard_view.dart';
 import '../../../core/widgets/messages/snackbars/alert_snackbar_widget.dart';
 import '../../../core/widgets/messages/snackbars/informations_snackbar_widget.dart';
 import '../../../core/widgets/messages/snackbars/success_snackbar_widget.dart';
@@ -30,37 +29,8 @@ import '../../../../core/services/router/routes.dart';
 import '../../../../core/services/router/app_arguments.dart';
 
 import '../../../../features/tests/domain/entities/lesson.dart';
-import '../../subjects/view/pick_subject_view.dart';
 
-// Subject Data Imports
-import '../../../../features/subjects/data/analysis/subject.dart';
-import '../../../../features/subjects/data/analysis/lessons.dart';
-import '../../../../features/subjects/data/arabic/subject.dart';
-import '../../../../features/subjects/data/arabic/lessons.dart';
-import '../../../../features/subjects/data/chemistry/subject.dart';
-import '../../../../features/subjects/data/chemistry/lessons.dart';
-import '../../../../features/subjects/data/english/subject.dart';
-import '../../../../features/subjects/data/english/lessons.dart';
-import '../../../../features/subjects/data/french/materaill.dart';
-import '../../../../features/subjects/data/french/lessons.dart';
-import '../../../../features/subjects/data/geography/subject.dart';
-import '../../../../features/subjects/data/geography/lessons.dart';
-import '../../../../features/subjects/data/history/subject.dart';
-import '../../../../features/subjects/data/history/lessons.dart';
-import '../../../../features/subjects/data/patriotism/subject.dart';
-import '../../../../features/subjects/data/patriotism/lessons.dart';
-import '../../../../features/subjects/data/philosophy1/subject.dart';
-import '../../../../features/subjects/data/philosophy1/lessons.dart';
-import '../../../../features/subjects/data/philosophy2/subject.dart';
-import '../../../../features/subjects/data/philosophy2/lessons.dart';
-import '../../../../features/subjects/data/physics/subject.dart';
-import '../../../../features/subjects/data/physics/lessons.dart';
-import '../../../../features/subjects/data/rays/subject.dart';
-import '../../../../features/subjects/data/rays/lessons.dart';
-import '../../../../features/subjects/data/religion/subject.dart';
-import '../../../../features/subjects/data/religion/lessons.dart';
-import '../../../../features/subjects/data/sciences/subject.dart';
-import '../../../../features/subjects/data/sciences/lessons.dart';
+
 
 // Prototypes
 import 'prototypes/home_variation_a.dart';
@@ -124,15 +94,6 @@ class _DesigningViewState extends State<DesigningView> with TickerProviderStateM
             Padding(
               padding: EdgeInsets.symmetric(vertical: SpacesResources.s6),
               child: Divider(color: cs.outlineVariant),
-            ),
-
-            // Legacy: Study Planner Prototype
-            _PrototypeButton(
-              label: '📋',
-              title: 'Study Planner (Old Prototype)',
-              subtitle: 'النموذج الأولي القديم من study_planner_prototype',
-              color: const Color(0xFF607D8B),
-              onTap: () => _openPrototype(context, 'Old', const PlannerDashboardView()),
             ),
           ],
         ),
@@ -264,16 +225,6 @@ class TestButtonsDesign extends StatelessWidget {
             ElevatedButton(onPressed: () {}, child: const Text('Elevated Button')),
             OutlinedButton(onPressed: () {}, child: const Text('Outlined Button')),
             const SizedBox(height: 20),
-            FilledButtonWidget(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const PlannerDashboardView(),
-                  ),
-                );
-              },
-              child: const Text('Open Study Planner Prototype'),
-            ),
           ],
         ),
       ),

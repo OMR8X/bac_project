@@ -4,8 +4,9 @@ import 'package:neuro_app/features/tests/domain/entities/option.dart';
 import 'package:neuro_app/features/tests/domain/entities/question_answer.dart';
 import 'package:collection/collection.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:equatable/equatable.dart';
 
-class Question {
+class Question extends Equatable {
   //
   final int id;
   final String content;
@@ -101,10 +102,6 @@ class Question {
     );
   }
 
-  @override
-  String toString() =>
-      'Question(id: $id, content: $content, options: $options, unitId: $unitId, lessonId: $lessonId, imageUrl: $imageUrl, categoryId: $categoryId, explain: $explain, questionAnswers: $questionAnswers, answerEvaluations: $answerEvaluations)';
-
   static Question empty() {
     return Question(
       id: 0,
@@ -119,4 +116,19 @@ class Question {
       answerEvaluations: [],
     );
   }
+
+  @override
+  List<Object?> get props => [
+    id,
+    content,
+    unitId,
+    lessonId,
+    imageUrl,
+    options,
+    type,
+    categoryId,
+    explain,
+    questionAnswers,
+    answerEvaluations,
+  ];
 }

@@ -1,5 +1,6 @@
+import 'package:equatable/equatable.dart';
 
-class Lesson {
+class Lesson extends Equatable {
   final int id;
   final String title;
   final int unitId;
@@ -30,19 +31,5 @@ class Lesson {
   }
 
   @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    return other is Lesson &&
-        other.id == id &&
-        other.title == title &&
-        other.unitId == unitId &&
-        other.questionsCount == questionsCount;
-  }
-
-  @override
-  int get hashCode => id.hashCode ^ title.hashCode ^ unitId.hashCode ^ questionsCount.hashCode;
-
-  @override
-  String toString() =>
-      'Lesson(id: $id, title: $title, unitId: $unitId, questionsCount: $questionsCount)';
+  List<Object?> get props => [id, title, unitId, questionsCount];
 }

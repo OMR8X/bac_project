@@ -1,35 +1,23 @@
+import 'package:json_annotation/json_annotation.dart';
 import '../../domain/entities/version.dart';
 
+part 'version_model.g.dart';
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class VersionModel extends Version {
   const VersionModel({
     required super.id,
     required super.currentVersion,
     required super.minimumVersion,
     required super.updateLink,
-    super.appVersion,
-    super.buildNumber,
-    super.patchNumber,
+    @JsonKey(defaultValue: '1.0.0') super.appVersion,
+    @JsonKey(fromJson: _buildNumberFromJson) super.buildNumber,
   });
 
-  factory VersionModel.fromJson(Map<String, dynamic> json) {
-    return VersionModel(
-      id: json['id'].toString(),
-      currentVersion: json['current_version'],
-      minimumVersion: json['minimum_version'],
-      updateLink: json['update_link'],
-      appVersion: json['app_version'] ?? '1.0.0',
-      buildNumber: (json['build_number'] ?? '0').toString(),
-    );
-  }
+  // Kept: DB field might be string for build number or int
+  static String _buildNumberFromJson(dynamic value) => (value ?? '0').toString();
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'current_version': currentVersion,
-      'minimum_version': minimumVersion,
-      'update_link': updateLink,
-      'app_version': appVersion,
-      'build_number': buildNumber,
-    };
-  }
+  factory VersionModel.fromJson(Map<String, dynamic> json) => _$VersionModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$VersionModelToJson(this);
 }

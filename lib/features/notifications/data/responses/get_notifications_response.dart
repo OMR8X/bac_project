@@ -11,7 +11,7 @@ class GetNotificationsResponse {
       notifications:
           (json['notifications'] as List<dynamic>?)?.map(
             (notification) {
-              return AppNotificationModel.fromDatabaseJson(notification as Map<String, dynamic>);
+              return AppNotificationModel.fromJson(notification as Map<String, dynamic>);
             },
           ).toList() ??
           [],

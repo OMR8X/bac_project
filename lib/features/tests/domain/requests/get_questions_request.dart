@@ -14,7 +14,7 @@ class GetQuestionsRequest {
       // 'p_test_mode': options.selectedMode.name,
       'p_selected_categories': options.selectedCategories?.map((e) => e.id).toList(),
       'p_questions_count': options.selectedQuestionsCount,
-      'p_lessons_ids': options.selectedLessonsIDs,
+      'p_lessons_ids': options.selectedLessonsIds,
       'p_show_true_answers': options.showTrueAnswers,
     };
   }

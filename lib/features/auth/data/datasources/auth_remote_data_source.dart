@@ -93,8 +93,8 @@ class AuthRemoteDataSourceImplements implements AuthRemoteDataSource {
       user: UserDataModel(
         uuid: user.id,
         name: user.userMetadata?['name'] ?? '',
-        governorateId: (user.userMetadata?['governorate_id'] ?? '').toString(),
-        sectionId: (user.userMetadata?['section_id'] ?? '').toString(),
+        governorateId: int.tryParse((user.userMetadata?['governorate_id'] ?? '').toString()) ?? 0,
+        sectionId: int.tryParse((user.userMetadata?['section_id'] ?? '').toString()) ?? 0,
         email: user.email ?? '',
       ),
     );
@@ -123,8 +123,8 @@ class AuthRemoteDataSourceImplements implements AuthRemoteDataSource {
       user: UserDataModel(
         uuid: user.id,
         name: user.userMetadata?['name'] ?? '',
-        governorateId: (user.userMetadata?['governorate_id'] ?? '').toString(),
-        sectionId: (user.userMetadata?['section_id'] ?? '').toString(),
+        governorateId: int.tryParse((user.userMetadata?['governorate_id'] ?? '').toString()) ?? 0,
+        sectionId: int.tryParse((user.userMetadata?['section_id'] ?? '').toString()) ?? 0,
         email: user.email ?? '',
       ),
     );
@@ -144,8 +144,8 @@ class AuthRemoteDataSourceImplements implements AuthRemoteDataSource {
       user: UserDataModel(
         uuid: user.id,
         name: user.userMetadata?['name'] ?? '',
-        governorateId: (user.userMetadata?['governorate_id'] ?? '').toString(),
-        sectionId: (user.userMetadata?['section_id'] ?? '').toString(),
+        governorateId: int.tryParse((user.userMetadata?['governorate_id'] ?? '').toString()) ?? 0,
+        sectionId: int.tryParse((user.userMetadata?['section_id'] ?? '').toString()) ?? 0,
         email: user.email ?? '',
       ),
     );
@@ -194,8 +194,8 @@ class AuthRemoteDataSourceImplements implements AuthRemoteDataSource {
       user: UserDataModel(
         uuid: user?.id ?? '',
         name: user?.userMetadata?['name'] ?? '',
-        governorateId: (user?.userMetadata?['governorate_id'] ?? '').toString(),
-        sectionId: (user?.userMetadata?['section_id'] ?? '').toString(),
+        governorateId: int.tryParse((user?.userMetadata?['governorate_id'] ?? '').toString()) ?? 0,
+        sectionId: int.tryParse((user?.userMetadata?['section_id'] ?? '').toString()) ?? 0,
         email: user?.email ?? '',
       ),
     );

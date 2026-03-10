@@ -1,5 +1,9 @@
+import 'package:json_annotation/json_annotation.dart';
 import '../../domain/entities/question_answer.dart';
 
+part 'question_answer_model.g.dart';
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class QuestionAnswerModel extends QuestionAnswer {
   const QuestionAnswerModel({
     required super.id,
@@ -11,29 +15,10 @@ class QuestionAnswerModel extends QuestionAnswer {
     super.isCorrect,
   });
 
-  factory QuestionAnswerModel.fromJson(Map<String, dynamic> json) {
-    return QuestionAnswerModel(
-      id: json['id'] as int? ?? 0,
-      resultId: json['result_id'] as int? ?? 0,
-      questionId: json['question_id'] as int? ?? 0,
-      optionId: json['option_id'] as int?,
-      answerText: json['answer_text'] as String?,
-      answerPosition: json['answer_position'] as int?,
-      isCorrect: json['is_correct'] as bool?,
-    );
-  }
+  factory QuestionAnswerModel.fromJson(Map<String, dynamic> json) =>
+      _$QuestionAnswerModelFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'result_id': resultId,
-      'question_id': questionId,
-      'option_id': optionId,
-      'answer_text': answerText,
-      'answer_position': answerPosition,
-      'is_correct': isCorrect,
-    };
-  }
+  Map<String, dynamic> toJson() => _$QuestionAnswerModelToJson(this);
 
   QuestionAnswer toEntity() {
     return QuestionAnswer(
@@ -67,31 +52,4 @@ class QuestionAnswerModel extends QuestionAnswer {
       isCorrect: isCorrect ?? this.isCorrect,
     );
   }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    return other is QuestionAnswerModel &&
-        other.id == id &&
-        other.resultId == resultId &&
-        other.questionId == questionId &&
-        other.optionId == optionId &&
-        other.answerText == answerText &&
-        other.answerPosition == answerPosition &&
-        other.isCorrect == isCorrect;
-  }
-
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      resultId.hashCode ^
-      questionId.hashCode ^
-      optionId.hashCode ^
-      answerText.hashCode ^
-      answerPosition.hashCode ^
-      isCorrect.hashCode;
-
-  @override
-  String toString() =>
-      'QuestionAnswerModel(id: $id, resultId: $resultId, questionId: $questionId, optionId: $optionId, answerText: $answerText, answerPosition: $answerPosition, isCorrect: $isCorrect)';
 }

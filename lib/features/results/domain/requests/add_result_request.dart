@@ -23,7 +23,7 @@ class AddResultRequest {
       'lesson_id': lessonId,
       'duration_seconds': durationSeconds,
       'questions_ids': questionsIds,
-      'questions_answers': questionsAnswers.map((a) => a.toModel().toJson()).toList(),
+      'questions_answers': questionsAnswers.map((a) => a.toModel.toJson()).toList(),
     };
   }
 }

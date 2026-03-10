@@ -1,11 +1,13 @@
-class UserData {
+import 'package:equatable/equatable.dart';
+
+class UserData extends Equatable {
   final String uuid;
   final String name;
-  final String sectionId;
-  final String governorateId;
+  final int sectionId;
+  final int governorateId;
   final String email;
 
-  UserData({
+  const UserData({
     required this.uuid,
     required this.name,
     required this.sectionId,
@@ -14,6 +16,9 @@ class UserData {
   });
 
   factory UserData.empty() {
-    return UserData(uuid: "", name: "", sectionId: "", governorateId: "", email: "");
+    return UserData(uuid: "", name: "", sectionId: 0, governorateId: 0, email: "");
   }
+
+  @override
+  List<Object?> get props => [uuid, name, sectionId, governorateId, email];
 }

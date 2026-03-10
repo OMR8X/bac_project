@@ -1,7 +1,15 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'device_token_model.g.dart';
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class DeviceTokenModel {
   final String userId;
+
   final String deviceToken;
+
   final String platform;
+
   final DateTime updatedAt;
 
   DeviceTokenModel({
@@ -11,20 +19,17 @@ class DeviceTokenModel {
     required this.updatedAt,
   });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'user_id': userId,
-      'device_token': deviceToken,
-      'platform': platform,
-      'updated_at': updatedAt.toIso8601String(),
-    };
-  }
+  factory DeviceTokenModel.fromJson(Map<String, dynamic> json) => _$DeviceTokenModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DeviceTokenModelToJson(this);
+
+  Map<String, dynamic> toMap() => toJson();
 
   static DeviceTokenModel create({
     required String userId,
     required String deviceToken,
     required String platform,
-  })  {
+  }) {
     return DeviceTokenModel(
       userId: userId,
       deviceToken: deviceToken,

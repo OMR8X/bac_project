@@ -2,10 +2,10 @@ import 'dart:math';
 
 import 'package:neuro_app/features/tests/domain/entities/question_answer.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
+import 'package:equatable/equatable.dart';
 import 'result_test_mode.dart';
 
-class Result {
+class Result extends Equatable {
   // Identification
   final int id;
   final String userId;
@@ -115,43 +115,20 @@ class Result {
   }
 
   @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    return other is Result &&
-        other.id == id &&
-        other.userId == userId &&
-        other.lessonId == lessonId &&
-        other.lessonTitle == lessonTitle &&
-        other.resultOrder == resultOrder &&
-        other.totalQuestions == totalQuestions &&
-        other.correctAnswers == correctAnswers &&
-        other.wrongAnswers == wrongAnswers &&
-        other.score == score &&
-        other.durationSeconds == durationSeconds &&
-        other.resultTestMode == resultTestMode && // Add this line
-        other.questionAnswers == questionAnswers &&
-        other.createdAt == createdAt &&
-        other.updatedAt == updatedAt;
-  }
-
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      userId.hashCode ^
-      (lessonId?.hashCode ?? 0) ^
-      (lessonTitle?.hashCode ?? 0) ^
-      (resultOrder?.hashCode ?? 0) ^
-      totalQuestions.hashCode ^
-      correctAnswers.hashCode ^
-      wrongAnswers.hashCode ^
-      score.hashCode ^
-      durationSeconds.hashCode ^
-      (resultTestMode?.hashCode ?? 0) ^ // Add this line
-      questionAnswers.hashCode ^
-      createdAt.hashCode ^
-      updatedAt.hashCode;
-
-  @override
-  String toString() =>
-      'Result(id: $id, userId: $userId, lessonId: $lessonId, lessonTitle: $lessonTitle, resultOrder: $resultOrder, totalQuestions: $totalQuestions, correctAnswers: $correctAnswers, wrongAnswers: $wrongAnswers, score: $score, durationSeconds: $durationSeconds, resultTestMode: $resultTestMode, questionAnswers: $questionAnswers, createdAt: $createdAt, updatedAt: $updatedAt)';
+  List<Object?> get props => [
+    id,
+    userId,
+    lessonId,
+    lessonTitle,
+    resultOrder,
+    totalQuestions,
+    correctAnswers,
+    wrongAnswers,
+    score,
+    durationSeconds,
+    resultTestMode,
+    questionAnswers,
+    createdAt,
+    updatedAt,
+  ];
 }

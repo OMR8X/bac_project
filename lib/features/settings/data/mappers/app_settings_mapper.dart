@@ -7,7 +7,7 @@ extension AppSettingsMapper on AppSettings {
   AppSettingsModel get toModel {
     return AppSettingsModel(
       userData: userData,
-      motivationalQuote: motivationalQuote?.toModel(),
+      motivationalQuote: motivationalQuote?.toModel,
       sections: sections,
       governorates: governorates,
       categories: categories,
