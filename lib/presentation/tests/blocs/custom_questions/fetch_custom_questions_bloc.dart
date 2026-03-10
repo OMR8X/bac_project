@@ -1,12 +1,12 @@
-import 'package:bac_project/core/resources/errors/error_mapper.dart';
-import 'package:bac_project/features/tests/data/responses/get_questions_response.dart';
-import 'package:bac_project/features/tests/domain/entities/question.dart';
-import 'package:bac_project/features/tests/domain/requests/get_questions_by_ids_request.dart';
-import 'package:bac_project/features/results/domain/requests/get_result_request.dart';
-import 'package:bac_project/features/results/domain/usecases/get_result_use_case.dart';
+import 'package:neuro_app/core/resources/errors/error_mapper.dart';
+import 'package:neuro_app/features/tests/data/responses/get_questions_response.dart';
+import 'package:neuro_app/features/tests/domain/entities/question.dart';
+import 'package:neuro_app/features/tests/domain/requests/get_questions_by_ids_request.dart';
+import 'package:neuro_app/features/results/domain/requests/get_result_request.dart';
+import 'package:neuro_app/features/results/domain/usecases/get_result_use_case.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:bac_project/features/tests/domain/usecases/get_questions_by_ids_use_case.dart';
+import 'package:neuro_app/features/tests/domain/usecases/get_questions_by_ids_use_case.dart';
 
 part 'fetch_custom_questions_event.dart';
 part 'fetch_custom_questions_state.dart';

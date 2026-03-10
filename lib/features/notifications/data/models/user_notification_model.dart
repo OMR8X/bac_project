@@ -1,4 +1,4 @@
-import 'package:bac_project/features/notifications/domain/entities/user_notification.dart';
+import 'package:neuro_app/features/notifications/domain/entities/user_notification.dart';
 
 class UserNotificationModel extends UserNotification {
   const UserNotificationModel({

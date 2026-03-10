@@ -1,8 +1,8 @@
-import 'package:bac_project/core/injector/app_injection.dart';
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
-import 'package:bac_project/core/resources/styles/sizes_resources.dart';
-import 'package:bac_project/core/widgets/ui/fields/text_form_field_widget.dart';
-import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
+import 'package:neuro_app/core/injector/app_injection.dart';
+import 'package:neuro_app/core/resources/styles/spacing_resources.dart';
+import 'package:neuro_app/core/resources/styles/sizes_resources.dart';
+import 'package:neuro_app/core/widgets/ui/fields/text_form_field_widget.dart';
+import 'package:neuro_app/core/widgets/ui/icons/close_icon_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

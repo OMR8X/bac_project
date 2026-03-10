@@ -1,4 +1,4 @@
-import 'package:bac_project/core/resources/errors/error_mapper.dart';
+import 'package:neuro_app/core/resources/errors/error_mapper.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shorebird_code_push/shorebird_code_push.dart';
 

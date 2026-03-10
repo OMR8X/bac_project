@@ -1,6 +1,6 @@
-import 'package:bac_project/core/services/api/api_constants.dart';
-import 'package:bac_project/core/services/api/api_manager.dart';
-import 'package:bac_project/core/services/api/responses/api_response.dart';
+import 'package:neuro_app/core/services/api/api_constants.dart';
+import 'package:neuro_app/core/services/api/api_manager.dart';
+import 'package:neuro_app/core/services/api/responses/api_response.dart';
 import '../../domain/requests/get_app_settings_request.dart';
 import '../responses/get_app_settings_response.dart';
 import 'settings_remote_datasource.dart';

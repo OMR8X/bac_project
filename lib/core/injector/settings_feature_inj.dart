@@ -1,5 +1,5 @@
-import 'package:bac_project/core/injector/app_injection.dart';
-import 'package:bac_project/core/services/api/api_manager.dart';
+import 'package:neuro_app/core/injector/app_injection.dart';
+import 'package:neuro_app/core/services/api/api_manager.dart';
 
 import '../../features/settings/data/datasources/settings_remote_datasource.dart';
 import '../../features/settings/data/datasources/settings_remote_datasource_impl.dart';

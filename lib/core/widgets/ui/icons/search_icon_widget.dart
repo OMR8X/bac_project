@@ -1,5 +1,5 @@
-import 'package:bac_project/core/resources/styles/assets_resources.dart';
-import 'package:bac_project/core/widgets/ui/icons/appbar_icon_widget.dart';
+import 'package:neuro_app/core/resources/styles/assets_resources.dart';
+import 'package:neuro_app/core/widgets/ui/icons/appbar_icon_widget.dart';
 import 'package:flutter/material.dart';
 
 class SearchIconWidget extends StatelessWidget {

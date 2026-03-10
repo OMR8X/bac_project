@@ -1,4 +1,4 @@
-import 'package:bac_project/core/services/api/api_manager.dart';
+import 'package:neuro_app/core/services/api/api_manager.dart';
 import '../../../../../core/services/logs/logger.dart';
 import '../../../domain/entities/notification_action.dart';
 import '../../../domain/services/http_action_handler.dart';

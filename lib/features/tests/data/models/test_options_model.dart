@@ -1,6 +1,6 @@
-import 'package:bac_project/features/tests/domain/entities/test_options.dart';
-import 'package:bac_project/features/tests/domain/entities/question_category.dart';
-import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
+import 'package:neuro_app/features/tests/domain/entities/test_options.dart';
+import 'package:neuro_app/features/tests/domain/entities/question_category.dart';
+import 'package:neuro_app/features/tests/domain/entities/test_mode.dart';
 
 class TestOptionsModel extends TestOptions {
   const TestOptionsModel({

@@ -1,5 +1,5 @@
-import 'package:bac_project/core/injector/tests_feature_inj.dart';
-import 'package:bac_project/core/services/api/supabase/supabase_settings.dart';
+import 'package:neuro_app/core/injector/tests_feature_inj.dart';
+import 'package:neuro_app/core/services/api/supabase/supabase_settings.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> supabaseInjection() async {

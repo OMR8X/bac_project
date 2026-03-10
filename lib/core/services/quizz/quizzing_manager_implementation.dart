@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:bac_project/core/services/quizz/models/models.dart';
-import 'package:bac_project/core/services/quizz/quizzing_manager.dart';
-import 'package:bac_project/features/results/domain/entities/result.dart';
-import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
+import 'package:neuro_app/core/services/quizz/models/models.dart';
+import 'package:neuro_app/core/services/quizz/quizzing_manager.dart';
+import 'package:neuro_app/features/results/domain/entities/result.dart';
+import 'package:neuro_app/features/tests/domain/entities/question_answer.dart';
 
 typedef SubmitAttemptHandler = Future<Result> Function(QuizAttempt attempt);
 

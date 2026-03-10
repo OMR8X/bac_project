@@ -1,8 +1,8 @@
-import 'package:bac_project/core/services/router/routes.dart';
-import 'package:bac_project/core/services/router/app_arguments.dart';
-import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
-import 'package:bac_project/core/widgets/ui/unit_card_widget.dart';
-import 'package:bac_project/features/tests/domain/entities/unit.dart';
+import 'package:neuro_app/core/services/router/routes.dart';
+import 'package:neuro_app/core/services/router/app_arguments.dart';
+import 'package:neuro_app/core/widgets/animations/staggered_item_wrapper_widget.dart';
+import 'package:neuro_app/core/widgets/ui/unit_card_widget.dart';
+import 'package:neuro_app/features/tests/domain/entities/unit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

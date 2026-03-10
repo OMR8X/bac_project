@@ -1,11 +1,11 @@
 // 'equatable' not required here
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:bac_project/features/tests/domain/entities/question.dart';
-import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
-import 'package:bac_project/features/settings/domain/entities/motivational_quote.dart';
-import 'package:bac_project/features/subjects/domain/entities/subject.dart';
-import 'package:bac_project/features/tests/domain/entities/lesson.dart';
+import 'package:neuro_app/features/tests/domain/entities/question.dart';
+import 'package:neuro_app/features/tests/domain/entities/test_mode.dart';
+import 'package:neuro_app/features/settings/domain/entities/motivational_quote.dart';
+import 'package:neuro_app/features/subjects/domain/entities/subject.dart';
+import 'package:neuro_app/features/tests/domain/entities/lesson.dart';
 
 class ExploreManagerViewArguments {
   final String title;

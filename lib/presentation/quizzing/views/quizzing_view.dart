@@ -1,19 +1,19 @@
-import 'package:bac_project/core/extensions/build_context_l10n.dart';
-import 'package:bac_project/core/injector/app_injection.dart';
-import 'package:bac_project/core/services/router/index.dart';
-import 'package:bac_project/core/widgets/messages/dialogs/conform_dialog.dart';
-import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
-import 'package:bac_project/features/tests/domain/entities/question.dart';
-import 'package:bac_project/presentation/result/bloc/explore_results/explore_results_bloc.dart';
+import 'package:neuro_app/core/extensions/build_context_l10n.dart';
+import 'package:neuro_app/core/injector/app_injection.dart';
+import 'package:neuro_app/core/services/router/index.dart';
+import 'package:neuro_app/core/widgets/messages/dialogs/conform_dialog.dart';
+import 'package:neuro_app/core/widgets/ui/states/error_state_body_widget.dart';
+import 'package:neuro_app/features/tests/domain/entities/question.dart';
+import 'package:neuro_app/presentation/result/bloc/explore_results/explore_results_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
+import 'package:neuro_app/core/resources/styles/spacing_resources.dart';
 // spaces resources not needed here
-import 'package:bac_project/presentation/quizzing/blocs/quizzing_bloc.dart';
-import 'package:bac_project/presentation/quizzing/views/quizzing_answer_view.dart';
-import 'package:bac_project/core/services/router/app_arguments.dart';
-import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
+import 'package:neuro_app/presentation/quizzing/blocs/quizzing_bloc.dart';
+import 'package:neuro_app/presentation/quizzing/views/quizzing_answer_view.dart';
+import 'package:neuro_app/core/services/router/app_arguments.dart';
+import 'package:neuro_app/features/tests/domain/entities/test_mode.dart';
 import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 

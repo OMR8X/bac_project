@@ -1,4 +1,4 @@
-import 'package:bac_project/core/resources/styles/spaces_resources.dart';
+import 'package:neuro_app/core/resources/styles/spaces_resources.dart';
 import 'package:flutter/material.dart';
 
 /// ---------------------------------------------------------------------------

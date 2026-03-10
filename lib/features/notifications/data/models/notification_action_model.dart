@@ -1,5 +1,5 @@
-import 'package:bac_project/features/notifications/domain/entities/notification_action.dart';
-import 'package:bac_project/features/notifications/domain/enums/notification_action_type.dart';
+import 'package:neuro_app/features/notifications/domain/entities/notification_action.dart';
+import 'package:neuro_app/features/notifications/domain/enums/notification_action_type.dart';
 
 class NotificationActionModel extends NotificationAction {
   const NotificationActionModel({

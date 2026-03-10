@@ -1,10 +1,10 @@
-import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
-import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
-import 'package:bac_project/core/widgets/ui/states/empty_state_body_widget.dart';
-import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
-import 'package:bac_project/features/notifications/domain/entities/notifications_topic.dart';
-import 'package:bac_project/presentation/notifications/state/topics_management/notifications_topics_bloc.dart';
-import 'package:bac_project/presentation/notifications/widgets/notification_topic_card_widget.dart';
+import 'package:neuro_app/core/widgets/animations/staggered_item_wrapper_widget.dart';
+import 'package:neuro_app/core/widgets/ui/icons/close_icon_widget.dart';
+import 'package:neuro_app/core/widgets/ui/states/empty_state_body_widget.dart';
+import 'package:neuro_app/core/widgets/ui/states/error_state_body_widget.dart';
+import 'package:neuro_app/features/notifications/domain/entities/notifications_topic.dart';
+import 'package:neuro_app/presentation/notifications/state/topics_management/notifications_topics_bloc.dart';
+import 'package:neuro_app/presentation/notifications/widgets/notification_topic_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';

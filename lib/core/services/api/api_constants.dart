@@ -1,4 +1,4 @@
-import 'package:bac_project/core/services/api/supabase/supabase_settings.dart';
+import 'package:neuro_app/core/services/api/supabase/supabase_settings.dart';
 
 class ApiSettings {
   //

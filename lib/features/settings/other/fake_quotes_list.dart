@@ -1,4 +1,4 @@
-import 'package:bac_project/features/settings/domain/entities/motivational_quote.dart';
+import 'package:neuro_app/features/settings/domain/entities/motivational_quote.dart';
 
 List<MotivationalQuote> fakeQuotes = [
   MotivationalQuote(

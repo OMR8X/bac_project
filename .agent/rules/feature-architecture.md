@@ -217,11 +217,11 @@ extension UserDataMapper on UserData {
 
 ```dart
 import 'package:dartz/dartz.dart';
-import 'package:bac_project/core/resources/errors/failures.dart';
-import 'package:bac_project/core/resources/errors/error_mapper.dart';
-import 'package:bac_project/core/services/api/api_manager.dart';
-import 'package:bac_project/core/services/api/api_constants.dart';
-import 'package:bac_project/core/services/api/responses/api_response.dart';
+import 'package:neuro_app/core/resources/errors/failures.dart';
+import 'package:neuro_app/core/resources/errors/error_mapper.dart';
+import 'package:neuro_app/core/services/api/api_manager.dart';
+import 'package:neuro_app/core/services/api/api_constants.dart';
+import 'package:neuro_app/core/services/api/responses/api_response.dart';
 ```
 
 ---

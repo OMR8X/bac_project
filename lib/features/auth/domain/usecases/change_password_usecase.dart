@@ -1,4 +1,4 @@
-import 'package:bac_project/core/resources/errors/failures.dart';
+import 'package:neuro_app/core/resources/errors/failures.dart';
 import '../../data/responses/change_password_response.dart';
 import '../repositories/auth_repository.dart';
 

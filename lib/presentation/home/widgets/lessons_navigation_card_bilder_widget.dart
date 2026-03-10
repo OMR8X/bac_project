@@ -1,6 +1,6 @@
-import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
-import 'package:bac_project/presentation/lessons/widgets/lesson_card_widget.dart';
-import 'package:bac_project/features/tests/domain/entities/lesson.dart';
+import 'package:neuro_app/core/widgets/animations/staggered_item_wrapper_widget.dart';
+import 'package:neuro_app/presentation/lessons/widgets/lesson_card_widget.dart';
+import 'package:neuro_app/features/tests/domain/entities/lesson.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:go_router/go_router.dart';

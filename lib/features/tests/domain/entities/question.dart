@@ -1,7 +1,7 @@
-import 'package:bac_project/core/services/quizz/models/question_type.dart';
-import 'package:bac_project/features/results/domain/entities/answer_evaluation.dart';
-import 'package:bac_project/features/tests/domain/entities/option.dart';
-import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
+import 'package:neuro_app/core/services/quizz/models/question_type.dart';
+import 'package:neuro_app/features/results/domain/entities/answer_evaluation.dart';
+import 'package:neuro_app/features/tests/domain/entities/option.dart';
+import 'package:neuro_app/features/tests/domain/entities/question_answer.dart';
 import 'package:collection/collection.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 

@@ -1,7 +1,7 @@
-import 'package:bac_project/core/injector/app_injection.dart';
-import 'package:bac_project/features/auth/domain/entites/user_data.dart';
-import 'package:bac_project/features/auth/domain/requests/get_user_data_request.dart';
-import 'package:bac_project/features/auth/domain/usecases/get_user_data_usecase.dart';
+import 'package:neuro_app/core/injector/app_injection.dart';
+import 'package:neuro_app/features/auth/domain/entites/user_data.dart';
+import 'package:neuro_app/features/auth/domain/requests/get_user_data_request.dart';
+import 'package:neuro_app/features/auth/domain/usecases/get_user_data_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';

@@ -1,4 +1,4 @@
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
+import 'package:neuro_app/core/resources/styles/spacing_resources.dart';
 import 'package:flutter/material.dart';
 
 class RadioAnswerWidget extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:bac_project/features/tests/data/responses/get_questions_response.dart';
+import 'package:neuro_app/features/tests/data/responses/get_questions_response.dart';
 
 import '../../domain/requests/get_units_request.dart';
 import '../../domain/requests/get_lessons_request.dart';

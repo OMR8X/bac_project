@@ -1,5 +1,5 @@
-import 'package:bac_project/core/extensions/build_context_l10n.dart';
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
+import 'package:neuro_app/core/extensions/build_context_l10n.dart';
+import 'package:neuro_app/core/resources/styles/spacing_resources.dart';
 import 'package:flutter/material.dart';
 import '../../../../features/subjects/domain/entities/subject.dart';
 import '../../../../features/tests/domain/entities/lesson.dart';

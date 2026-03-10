@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:bac_project/features/notifications/data/mappers/notification_entities_mapper.dart';
-import 'package:bac_project/features/notifications/data/models/notification_action_model.dart';
-import 'package:bac_project/features/notifications/domain/entities/notification_action.dart';
+import 'package:neuro_app/features/notifications/data/mappers/notification_entities_mapper.dart';
+import 'package:neuro_app/features/notifications/data/models/notification_action_model.dart';
+import 'package:neuro_app/features/notifications/domain/entities/notification_action.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../core/services/logs/logger.dart';

@@ -1,10 +1,10 @@
-import 'package:bac_project/core/injector/app_injection.dart';
-import 'package:bac_project/core/services/router/index.dart';
-import 'package:bac_project/presentation/root/blocs/theme/app_theme_bloc.dart';
+import 'package:neuro_app/core/injector/app_injection.dart';
+import 'package:neuro_app/core/services/router/index.dart';
+import 'package:neuro_app/presentation/root/blocs/theme/app_theme_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:bac_project/l10n/generated/app_localizations.dart';
+import 'package:neuro_app/l10n/generated/app_localizations.dart';
 
 class AppRoot extends StatelessWidget {
   const AppRoot._internal();

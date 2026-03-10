@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-import 'package:bac_project/core/resources/errors/failures.dart';
-import 'package:bac_project/features/notifications/domain/entities/app_notification.dart';
+import 'package:neuro_app/core/resources/errors/failures.dart';
+import 'package:neuro_app/features/notifications/domain/entities/app_notification.dart';
 import '../repositories/notifications_repository.dart';
 
 class DisplayNotificationUsecase {

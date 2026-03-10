@@ -1,8 +1,8 @@
 
-import 'package:bac_project/features/notifications/domain/requests/unsubscribe_from_topic_request.dart';
+import 'package:neuro_app/features/notifications/domain/requests/unsubscribe_from_topic_request.dart';
 import 'package:dartz/dartz.dart';
 
-import 'package:bac_project/core/resources/errors/failures.dart';
+import 'package:neuro_app/core/resources/errors/failures.dart';
 import '../repositories/notifications_repository.dart';
 
 class UnsubscribeToTopicUsecase {

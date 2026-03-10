@@ -1,8 +1,8 @@
-import 'package:bac_project/core/services/api/supabase/supabase_settings.dart';
+import 'package:neuro_app/core/services/api/supabase/supabase_settings.dart';
 import 'package:dio/dio.dart';
-import 'package:bac_project/core/services/api/api_constants.dart';
-import 'package:bac_project/core/services/api/dio_factory.dart';
-import 'package:bac_project/core/services/api/token_provider.dart';
+import 'package:neuro_app/core/services/api/api_constants.dart';
+import 'package:neuro_app/core/services/api/dio_factory.dart';
+import 'package:neuro_app/core/services/api/token_provider.dart';
 
 abstract class ApiClient {
   /// get request

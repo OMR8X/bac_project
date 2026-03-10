@@ -1,6 +1,6 @@
-import 'package:bac_project/core/resources/errors/error_mapper.dart';
+import 'package:neuro_app/core/resources/errors/error_mapper.dart';
 import 'package:dartz/dartz.dart';
-import 'package:bac_project/core/resources/errors/failures.dart';
+import 'package:neuro_app/core/resources/errors/failures.dart';
 import '../../domain/requests/get_app_settings_request.dart';
 import '../../domain/repositories/settings_repository.dart';
 import '../datasources/settings_remote_datasource.dart';

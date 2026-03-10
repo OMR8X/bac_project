@@ -1,5 +1,5 @@
-import 'package:bac_project/core/resources/errors/error_mapper.dart';
-import 'package:bac_project/features/results/domain/entities/result.dart';
+import 'package:neuro_app/core/resources/errors/error_mapper.dart';
+import 'package:neuro_app/features/results/domain/entities/result.dart';
 
 import '../models/result_model.dart';
 

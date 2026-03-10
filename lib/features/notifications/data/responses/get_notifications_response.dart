@@ -1,5 +1,5 @@
-import 'package:bac_project/features/notifications/data/models/app_notification_model.dart';
-import 'package:bac_project/features/notifications/domain/entities/app_notification.dart';
+import 'package:neuro_app/features/notifications/data/models/app_notification_model.dart';
+import 'package:neuro_app/features/notifications/domain/entities/app_notification.dart';
 
 class GetNotificationsResponse {
   final List<AppNotification> notifications;

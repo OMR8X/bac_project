@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
+import 'package:neuro_app/features/tests/domain/entities/question_answer.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import 'result_test_mode.dart';

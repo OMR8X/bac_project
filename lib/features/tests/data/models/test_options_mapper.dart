@@ -1,5 +1,5 @@
-import 'package:bac_project/features/tests/data/models/test_options_model.dart';
-import 'package:bac_project/features/tests/domain/entities/test_options.dart';
+import 'package:neuro_app/features/tests/data/models/test_options_model.dart';
+import 'package:neuro_app/features/tests/domain/entities/test_options.dart';
 
 extension TestOptionsMapper on TestOptions {
   TestOptionsModel toModel() {

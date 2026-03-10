@@ -1,4 +1,4 @@
-import 'package:bac_project/features/reports/domain/entities/exception_report.dart';
+import 'package:neuro_app/features/reports/domain/entities/exception_report.dart';
 
 /// Data model for exception reports with JSON serialization.
 class ExceptionReportModel extends ExceptionReport {

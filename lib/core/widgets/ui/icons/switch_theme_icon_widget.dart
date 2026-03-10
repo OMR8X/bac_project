@@ -1,6 +1,6 @@
-import 'package:bac_project/core/resources/styles/assets_resources.dart';
-import 'package:bac_project/core/widgets/ui/icons/appbar_icon_widget.dart';
-import 'package:bac_project/presentation/root/blocs/theme/app_theme_bloc.dart';
+import 'package:neuro_app/core/resources/styles/assets_resources.dart';
+import 'package:neuro_app/core/widgets/ui/icons/appbar_icon_widget.dart';
+import 'package:neuro_app/presentation/root/blocs/theme/app_theme_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

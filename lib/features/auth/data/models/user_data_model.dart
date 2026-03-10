@@ -1,4 +1,4 @@
-import 'package:bac_project/features/auth/domain/entites/user_data.dart';
+import 'package:neuro_app/features/auth/domain/entites/user_data.dart';
 
 class UserDataModel extends UserData {
   UserDataModel({

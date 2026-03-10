@@ -1,7 +1,7 @@
-import 'package:bac_project/core/resources/styles/assets_resources.dart';
-import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
-import 'package:bac_project/features/settings/domain/entities/motivational_quote.dart';
+import 'package:neuro_app/core/resources/styles/assets_resources.dart';
+import 'package:neuro_app/core/resources/styles/border_radius_resources.dart';
+import 'package:neuro_app/core/resources/styles/spacing_resources.dart';
+import 'package:neuro_app/features/settings/domain/entities/motivational_quote.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

@@ -1,5 +1,5 @@
-import 'package:bac_project/features/notifications/data/models/notification_topic_model.dart';
-import 'package:bac_project/features/notifications/domain/entities/notifications_topic.dart';
+import 'package:neuro_app/features/notifications/data/models/notification_topic_model.dart';
+import 'package:neuro_app/features/notifications/domain/entities/notifications_topic.dart';
 
 class GetNotificationsTopicsResponse {
   final List<NotificationsTopic> topics;

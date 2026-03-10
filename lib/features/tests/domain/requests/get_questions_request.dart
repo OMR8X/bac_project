@@ -1,4 +1,4 @@
-import 'package:bac_project/features/tests/domain/entities/test_options.dart';
+import 'package:neuro_app/features/tests/domain/entities/test_options.dart';
 
 class GetQuestionsRequest {
   final TestOptions options;

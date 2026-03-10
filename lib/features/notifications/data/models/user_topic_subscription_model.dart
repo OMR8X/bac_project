@@ -1,4 +1,4 @@
-import 'package:bac_project/features/notifications/domain/entities/user_topic_subscription.dart';
+import 'package:neuro_app/features/notifications/domain/entities/user_topic_subscription.dart';
 
 class UserTopicSubscriptionModel extends UserTopicSubscription {
   const UserTopicSubscriptionModel({required super.userId, required super.topicId});

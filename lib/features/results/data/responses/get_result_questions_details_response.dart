@@ -1,7 +1,7 @@
-import 'package:bac_project/core/resources/errors/error_mapper.dart';
+import 'package:neuro_app/core/resources/errors/error_mapper.dart';
 
-import 'package:bac_project/features/tests/domain/entities/question.dart';
-import 'package:bac_project/features/tests/data/models/question_model.dart';
+import 'package:neuro_app/features/tests/domain/entities/question.dart';
+import 'package:neuro_app/features/tests/data/models/question_model.dart';
 
 class GetResultQuestionsDetailsResponse {
   final List<Question> resultQuestions;

@@ -1,5 +1,5 @@
-import 'package:bac_project/core/services/quizz/models/quiz_configuration.dart';
-import 'package:bac_project/features/tests/domain/entities/question.dart';
+import 'package:neuro_app/core/services/quizz/models/quiz_configuration.dart';
+import 'package:neuro_app/features/tests/domain/entities/question.dart';
 
 class Quiz {
   const Quiz({

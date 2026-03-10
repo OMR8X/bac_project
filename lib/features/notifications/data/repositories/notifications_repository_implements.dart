@@ -1,15 +1,15 @@
 import 'dart:io';
 
-import 'package:bac_project/core/resources/errors/error_mapper.dart';
-import 'package:bac_project/core/services/logs/logger.dart';
+import 'package:neuro_app/core/resources/errors/error_mapper.dart';
+import 'package:neuro_app/core/services/logs/logger.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:bac_project/core/resources/errors/failures.dart';
-import 'package:bac_project/features/notifications/data/datasources/notifications_remote_datasource.dart';
-import 'package:bac_project/features/notifications/data/datasources/notifications_database_datasource.dart';
-import 'package:bac_project/features/notifications/domain/entities/app_notification.dart';
+import 'package:neuro_app/core/resources/errors/failures.dart';
+import 'package:neuro_app/features/notifications/data/datasources/notifications_remote_datasource.dart';
+import 'package:neuro_app/features/notifications/data/datasources/notifications_database_datasource.dart';
+import 'package:neuro_app/features/notifications/domain/entities/app_notification.dart';
 import '../../domain/repositories/notifications_repository.dart';
 import '../../domain/requests/get_notifications_request.dart';
 import '../../domain/requests/register_device_token_request.dart';

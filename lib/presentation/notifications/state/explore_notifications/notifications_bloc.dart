@@ -1,10 +1,10 @@
-import 'package:bac_project/core/resources/errors/failures.dart';
-import 'package:bac_project/core/services/logs/logger.dart';
-import 'package:bac_project/core/services/router/app_router.dart';
-import 'package:bac_project/core/widgets/messages/snackbars/alert_snackbar_widget.dart';
-import 'package:bac_project/features/notifications/domain/entities/app_notification.dart';
-import 'package:bac_project/features/notifications/domain/requests/get_notifications_request.dart';
-import 'package:bac_project/features/notifications/domain/usecases/get_notifications_usecase.dart';
+import 'package:neuro_app/core/resources/errors/failures.dart';
+import 'package:neuro_app/core/services/logs/logger.dart';
+import 'package:neuro_app/core/services/router/app_router.dart';
+import 'package:neuro_app/core/widgets/messages/snackbars/alert_snackbar_widget.dart';
+import 'package:neuro_app/features/notifications/domain/entities/app_notification.dart';
+import 'package:neuro_app/features/notifications/domain/requests/get_notifications_request.dart';
+import 'package:neuro_app/features/notifications/domain/usecases/get_notifications_usecase.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

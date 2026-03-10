@@ -1,7 +1,7 @@
-import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
-import 'package:bac_project/core/resources/styles/decoration_resources.dart';
-import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/widgets/messages/dialogs/list_selection_dialog.dart';
+import 'package:neuro_app/core/resources/styles/border_radius_resources.dart';
+import 'package:neuro_app/core/resources/styles/decoration_resources.dart';
+import 'package:neuro_app/core/resources/styles/font_styles_manager.dart';
+import 'package:neuro_app/core/widgets/messages/dialogs/list_selection_dialog.dart';
 import 'package:flutter/material.dart';
 import '../../../resources/styles/sizes_resources.dart';
 

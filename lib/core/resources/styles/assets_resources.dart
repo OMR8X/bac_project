@@ -66,7 +66,7 @@ class AudiosAssetsResources {
 }
 
 class LottieAssetsResources {
-  // /Users/omr8x/projects/flutter/personal/bac_project/assets/lottie/scanner.json
+  // /Users/omr8x/projects/flutter/personal/neuro_app/assets/lottie/scanner.json
   static const String path = '$basePath/lottie';
   static const String scanner = '$path/scanner.json';
 }

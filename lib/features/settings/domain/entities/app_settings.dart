@@ -1,9 +1,9 @@
-import 'package:bac_project/features/auth/domain/entites/user_data.dart';
-import 'package:bac_project/features/settings/domain/entities/motivational_quote.dart';
-import 'package:bac_project/features/settings/domain/entities/section.dart';
-import 'package:bac_project/features/settings/domain/entities/governorate.dart';
-import 'package:bac_project/features/settings/domain/entities/version.dart';
-import 'package:bac_project/features/tests/domain/entities/question_category.dart';
+import 'package:neuro_app/features/auth/domain/entites/user_data.dart';
+import 'package:neuro_app/features/settings/domain/entities/motivational_quote.dart';
+import 'package:neuro_app/features/settings/domain/entities/section.dart';
+import 'package:neuro_app/features/settings/domain/entities/governorate.dart';
+import 'package:neuro_app/features/settings/domain/entities/version.dart';
+import 'package:neuro_app/features/tests/domain/entities/question_category.dart';
 
 class AppSettings {
   final UserData? userData;

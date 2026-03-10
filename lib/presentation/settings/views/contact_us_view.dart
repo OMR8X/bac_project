@@ -1,4 +1,4 @@
-import 'package:bac_project/core/extensions/build_context_l10n.dart';
+import 'package:neuro_app/core/extensions/build_context_l10n.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/widgets/ui/icons/arrow_back_icon_widget.dart';

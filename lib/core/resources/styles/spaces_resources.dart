@@ -1,4 +1,4 @@
-import 'package:bac_project/core/resources/styles/sizes_resources.dart';
+import 'package:neuro_app/core/resources/styles/sizes_resources.dart';
 
 class SpacesResources {
   ///

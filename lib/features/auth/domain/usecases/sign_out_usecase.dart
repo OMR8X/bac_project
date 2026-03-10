@@ -1,7 +1,7 @@
-import 'package:bac_project/features/auth/data/responses/sign_out_response.dart';
-import 'package:bac_project/features/auth/domain/requests/sign_out_request.dart';
+import 'package:neuro_app/features/auth/data/responses/sign_out_response.dart';
+import 'package:neuro_app/features/auth/domain/requests/sign_out_request.dart';
 
-import 'package:bac_project/core/resources/errors/failures.dart';
+import 'package:neuro_app/core/resources/errors/failures.dart';
 import '../repositories/auth_repository.dart';
 
 import 'package:dartz/dartz.dart';

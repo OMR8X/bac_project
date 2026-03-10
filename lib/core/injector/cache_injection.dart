@@ -1,5 +1,5 @@
-import 'package:bac_project/core/injector/app_injection.dart';
-import 'package:bac_project/core/services/cache/cache_manager.dart';
+import 'package:neuro_app/core/injector/app_injection.dart';
+import 'package:neuro_app/core/services/cache/cache_manager.dart';
 
 import '../services/cache/cache_client.dart';
 

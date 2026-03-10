@@ -1,5 +1,5 @@
-import 'package:bac_project/features/tests/domain/entities/question_category.dart';
-import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
+import 'package:neuro_app/features/tests/domain/entities/question_category.dart';
+import 'package:neuro_app/features/tests/domain/entities/test_mode.dart';
 import 'package:equatable/equatable.dart';
 
 class TestOptions extends Equatable {

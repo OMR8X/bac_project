@@ -1,4 +1,4 @@
-import 'package:bac_project/features/settings/domain/entities/section.dart';
+import 'package:neuro_app/features/settings/domain/entities/section.dart';
 
 class SectionModel extends Section {
   const SectionModel({required super.id, required super.title});

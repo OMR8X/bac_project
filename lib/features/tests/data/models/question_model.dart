@@ -1,7 +1,7 @@
-import 'package:bac_project/features/tests/data/mappers/option_mapper.dart';
-import 'package:bac_project/features/results/data/models/answer_evaluation_model.dart';
-import 'package:bac_project/features/tests/data/models/option_model.dart';
-import 'package:bac_project/features/tests/data/models/question_answer_model.dart';
+import 'package:neuro_app/features/tests/data/mappers/option_mapper.dart';
+import 'package:neuro_app/features/results/data/models/answer_evaluation_model.dart';
+import 'package:neuro_app/features/tests/data/models/option_model.dart';
+import 'package:neuro_app/features/tests/data/models/question_answer_model.dart';
 
 import '../../domain/entities/question.dart';
 

@@ -1,6 +1,6 @@
-import 'package:bac_project/core/resources/themes/dark_theme.dart';
-import 'package:bac_project/core/resources/themes/light_theme.dart';
-import 'package:bac_project/core/services/cache/cache_manager.dart';
+import 'package:neuro_app/core/resources/themes/dark_theme.dart';
+import 'package:neuro_app/core/resources/themes/light_theme.dart';
+import 'package:neuro_app/core/services/cache/cache_manager.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';

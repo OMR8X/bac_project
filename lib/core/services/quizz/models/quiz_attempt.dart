@@ -1,6 +1,6 @@
-import 'package:bac_project/core/services/quizz/models/attempt_status.dart';
-import 'package:bac_project/features/tests/domain/entities/question.dart';
-import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
+import 'package:neuro_app/core/services/quizz/models/attempt_status.dart';
+import 'package:neuro_app/features/tests/domain/entities/question.dart';
+import 'package:neuro_app/features/tests/domain/entities/question_answer.dart';
 
 class QuizAttempt {
   const QuizAttempt({

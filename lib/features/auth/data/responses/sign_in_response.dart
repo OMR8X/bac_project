@@ -1,6 +1,6 @@
-import 'package:bac_project/core/services/api/responses/api_response.dart';
-import 'package:bac_project/features/auth/domain/entites/user_data.dart';
-import 'package:bac_project/features/auth/data/models/user_data_model.dart';
+import 'package:neuro_app/core/services/api/responses/api_response.dart';
+import 'package:neuro_app/features/auth/domain/entites/user_data.dart';
+import 'package:neuro_app/features/auth/data/models/user_data_model.dart';
 
 class SignInResponse {
   final String? message;

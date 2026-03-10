@@ -1,6 +1,6 @@
-import 'package:bac_project/features/tests/data/mappers/question_answer_mapper.dart';
-import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
-import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
+import 'package:neuro_app/features/tests/data/mappers/question_answer_mapper.dart';
+import 'package:neuro_app/features/tests/domain/entities/question_answer.dart';
+import 'package:neuro_app/features/tests/domain/entities/test_mode.dart';
 
 class AddResultRequest {
   final TestMode? testMode;

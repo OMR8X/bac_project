@@ -1,6 +1,6 @@
-import 'package:bac_project/core/services/api/api_constants.dart';
-import 'package:bac_project/core/services/api/api_manager.dart';
-import 'package:bac_project/core/services/api/responses/api_response.dart';
+import 'package:neuro_app/core/services/api/api_constants.dart';
+import 'package:neuro_app/core/services/api/api_manager.dart';
+import 'package:neuro_app/core/services/api/responses/api_response.dart';
 import '../responses/add_result_response.dart';
 import '../responses/get_results_response.dart';
 import '../responses/get_result_response.dart';

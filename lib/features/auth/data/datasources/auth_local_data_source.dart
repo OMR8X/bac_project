@@ -1,8 +1,8 @@
-import 'package:bac_project/core/resources/errors/exceptions.dart';
-import 'package:bac_project/core/services/cache/cache_constant.dart';
-import 'package:bac_project/core/services/cache/cache_manager.dart';
-import 'package:bac_project/features/auth/data/responses/get_user_data_response.dart';
-import 'package:bac_project/features/auth/domain/requests/get_user_data_request.dart';
+import 'package:neuro_app/core/resources/errors/exceptions.dart';
+import 'package:neuro_app/core/services/cache/cache_constant.dart';
+import 'package:neuro_app/core/services/cache/cache_manager.dart';
+import 'package:neuro_app/features/auth/data/responses/get_user_data_response.dart';
+import 'package:neuro_app/features/auth/domain/requests/get_user_data_request.dart';
 
 abstract class AuthLocalDataSource {
   // update user data

@@ -1,8 +1,8 @@
-import 'package:bac_project/core/services/api/api_constants.dart';
-import 'package:bac_project/core/services/api/api_manager.dart';
-import 'package:bac_project/core/services/api/responses/api_response.dart';
-import 'package:bac_project/features/tests/data/responses/get_questions_response.dart';
-import 'package:bac_project/features/tests/data/responses/get_test_options_response.dart';
+import 'package:neuro_app/core/services/api/api_constants.dart';
+import 'package:neuro_app/core/services/api/api_manager.dart';
+import 'package:neuro_app/core/services/api/responses/api_response.dart';
+import 'package:neuro_app/features/tests/data/responses/get_questions_response.dart';
+import 'package:neuro_app/features/tests/data/responses/get_test_options_response.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../domain/requests/get_units_request.dart';

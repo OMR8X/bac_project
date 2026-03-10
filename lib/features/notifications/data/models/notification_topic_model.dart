@@ -1,4 +1,4 @@
-import 'package:bac_project/features/notifications/domain/entities/notifications_topic.dart';
+import 'package:neuro_app/features/notifications/domain/entities/notifications_topic.dart';
 
 class NotificationTopicModel extends NotificationsTopic {
   const NotificationTopicModel({

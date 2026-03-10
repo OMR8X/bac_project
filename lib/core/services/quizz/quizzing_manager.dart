@@ -1,5 +1,5 @@
-import 'package:bac_project/core/services/quizz/models/models.dart';
-import 'package:bac_project/features/results/domain/entities/result.dart';
+import 'package:neuro_app/core/services/quizz/models/models.dart';
+import 'package:neuro_app/features/results/domain/entities/result.dart';
 
 abstract class QuizzingManager {
   /// Start a new quiz attempt.

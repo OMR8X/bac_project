@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:bac_project/features/tests/domain/entities/lesson.dart';
-import 'package:bac_project/features/tests/domain/usecases/get_lessons_use_case.dart';
-import 'package:bac_project/features/tests/domain/requests/get_lessons_request.dart';
-import 'package:bac_project/core/resources/errors/failures.dart';
+import 'package:neuro_app/features/tests/domain/entities/lesson.dart';
+import 'package:neuro_app/features/tests/domain/usecases/get_lessons_use_case.dart';
+import 'package:neuro_app/features/tests/domain/requests/get_lessons_request.dart';
+import 'package:neuro_app/core/resources/errors/failures.dart';
 
 part 'pick_lessons_event.dart';
 part 'pick_lessons_state.dart';

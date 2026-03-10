@@ -1,5 +1,5 @@
 import '../models/result_model.dart';
-import 'package:bac_project/features/results/domain/entities/result.dart';
+import 'package:neuro_app/features/results/domain/entities/result.dart';
 
 extension ResultModelExtension on ResultModel {
   Result toEntity() {

@@ -1,10 +1,10 @@
-import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
-import 'package:bac_project/core/resources/styles/sizes_resources.dart';
-import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
-import 'package:bac_project/features/settings/domain/entities/app_settings.dart';
-import 'package:bac_project/features/settings/domain/entities/governorate.dart';
-import 'package:bac_project/features/settings/domain/entities/section.dart';
+import 'package:neuro_app/core/resources/styles/font_styles_manager.dart';
+import 'package:neuro_app/core/resources/styles/spacing_resources.dart';
+import 'package:neuro_app/core/resources/styles/sizes_resources.dart';
+import 'package:neuro_app/core/widgets/ui/icons/close_icon_widget.dart';
+import 'package:neuro_app/features/settings/domain/entities/app_settings.dart';
+import 'package:neuro_app/features/settings/domain/entities/governorate.dart';
+import 'package:neuro_app/features/settings/domain/entities/section.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

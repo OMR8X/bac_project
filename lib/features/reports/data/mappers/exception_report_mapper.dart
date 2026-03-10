@@ -1,5 +1,5 @@
-import 'package:bac_project/features/reports/data/models/exception_report_model.dart';
-import 'package:bac_project/features/reports/domain/entities/exception_report.dart';
+import 'package:neuro_app/features/reports/data/models/exception_report_model.dart';
+import 'package:neuro_app/features/reports/domain/entities/exception_report.dart';
 
 extension ExceptionReportModelMapper on ExceptionReportModel {
   ExceptionReport get toEntity {

@@ -1,6 +1,6 @@
-import 'package:bac_project/core/services/environment/environment_info.dart';
-import 'package:bac_project/features/reports/data/mappers/exception_report_mapper.dart';
-import 'package:bac_project/features/reports/domain/entities/exception_report.dart';
+import 'package:neuro_app/core/services/environment/environment_info.dart';
+import 'package:neuro_app/features/reports/data/mappers/exception_report_mapper.dart';
+import 'package:neuro_app/features/reports/domain/entities/exception_report.dart';
 
 class ExceptionReportRequest {
   final String exceptionType;

@@ -1,5 +1,5 @@
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
-import 'package:bac_project/presentation/tests/widgets/radio_answer_widget.dart';
+import 'package:neuro_app/core/resources/styles/spacing_resources.dart';
+import 'package:neuro_app/presentation/tests/widgets/radio_answer_widget.dart';
 import 'package:flutter/material.dart';
 
 class OptionsWidget extends StatefulWidget {

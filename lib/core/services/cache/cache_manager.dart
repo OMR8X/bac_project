@@ -1,4 +1,4 @@
-import 'package:bac_project/core/resources/errors/failures.dart';
+import 'package:neuro_app/core/resources/errors/failures.dart';
 import 'package:path_provider/path_provider.dart';
 import 'cache_client.dart';
 
