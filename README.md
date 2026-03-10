@@ -1,4 +1,4 @@
-# bac_project
+# neuro_app
 
 A new Flutter project.
 

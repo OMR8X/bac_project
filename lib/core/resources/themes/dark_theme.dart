@@ -1,8 +1,8 @@
-import 'package:bac_project/core/resources/styles/colors_resources.dart';
-import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/sizes_resources.dart';
-import 'package:bac_project/core/resources/themes/extensions/extra_colors.dart';
-import 'package:bac_project/core/resources/themes/extensions/option_card_colors.dart';
+import 'package:neuro_app/core/resources/styles/colors_resources.dart';
+import 'package:neuro_app/core/resources/styles/font_styles_manager.dart';
+import 'package:neuro_app/core/resources/styles/sizes_resources.dart';
+import 'package:neuro_app/core/resources/themes/extensions/extra_colors.dart';
+import 'package:neuro_app/core/resources/themes/extensions/option_card_colors.dart';
 import 'package:flutter/material.dart';
 import '../styles/border_radius_resources.dart';
 import '../styles/spacing_resources.dart';

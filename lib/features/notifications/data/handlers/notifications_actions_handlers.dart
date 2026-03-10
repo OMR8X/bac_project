@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:bac_project/core/injector/app_injection.dart';
-import 'package:bac_project/core/services/logs/logger.dart';
-import 'package:bac_project/features/notifications/data/services/notification_action_service.dart';
+import 'package:neuro_app/core/injector/app_injection.dart';
+import 'package:neuro_app/core/services/logs/logger.dart';
+import 'package:neuro_app/features/notifications/data/services/notification_action_service.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 

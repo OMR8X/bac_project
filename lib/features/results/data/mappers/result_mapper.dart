@@ -1,8 +1,8 @@
 import '../models/result_model.dart';
-import 'package:bac_project/features/results/domain/entities/result.dart';
+import 'package:neuro_app/features/results/domain/entities/result.dart';
 
 extension ResultModelExtension on ResultModel {
-  Result toEntity() {
+  Result get toEntity {
     return Result(
       id: id,
       userId: userId,
@@ -23,7 +23,7 @@ extension ResultModelExtension on ResultModel {
 }
 
 extension ResultEntityExtension on Result {
-  ResultModel toModel() {
+  ResultModel get toModel {
     return ResultModel(
       id: id,
       userId: userId,

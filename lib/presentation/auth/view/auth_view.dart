@@ -1,9 +1,9 @@
-import 'package:bac_project/core/injector/app_injection.dart';
-import 'package:bac_project/core/widgets/messages/snackbars/error_snackbar_widget.dart';
-import 'package:bac_project/presentation/auth/state/bloc/auth_bloc.dart';
-import 'package:bac_project/presentation/auth/view/auth_start_view.dart';
-import 'package:bac_project/presentation/auth/view/sign_in_view.dart';
-import 'package:bac_project/presentation/auth/view/sign_up_view.dart';
+import 'package:neuro_app/core/injector/app_injection.dart';
+import 'package:neuro_app/core/widgets/messages/snackbars/error_snackbar_widget.dart';
+import 'package:neuro_app/presentation/auth/state/bloc/auth_bloc.dart';
+import 'package:neuro_app/presentation/auth/view/auth_start_view.dart';
+import 'package:neuro_app/presentation/auth/view/sign_in_view.dart';
+import 'package:neuro_app/presentation/auth/view/sign_up_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,5 +1,5 @@
-import 'package:bac_project/features/results/domain/entities/answer_evaluation.dart';
-import 'package:bac_project/presentation/quizzing/widgets/option_multiple_choices_card_widget.dart';
+import 'package:neuro_app/features/results/domain/entities/answer_evaluation.dart';
+import 'package:neuro_app/presentation/quizzing/widgets/option_multiple_choices_card_widget.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 

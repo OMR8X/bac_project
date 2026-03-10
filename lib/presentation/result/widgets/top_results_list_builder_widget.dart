@@ -1,5 +1,5 @@
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
-import 'package:bac_project/features/results/domain/entities/result.dart';
+import 'package:neuro_app/core/resources/styles/spacing_resources.dart';
+import 'package:neuro_app/features/results/domain/entities/result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';

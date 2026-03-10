@@ -1,5 +1,9 @@
+import 'package:json_annotation/json_annotation.dart';
 import '../../domain/entities/question_category.dart';
 
+part 'question_category_model.g.dart';
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class QuestionCategoryModel extends QuestionCategory {
   const QuestionCategoryModel({
     required super.id,
@@ -11,27 +15,8 @@ class QuestionCategoryModel extends QuestionCategory {
     required super.isSingleAnswer,
   });
 
-  factory QuestionCategoryModel.fromJson(Map<String, dynamic> json) {
-    return QuestionCategoryModel(
-      id: json['id'],
-      title: json['title'],
-      questionsCount: json['questions_count'],
-      isTypeable: json['is_typeable'],
-      isOrderable: json['is_orderable'],
-      isMCQ: json['is_mcq'],
-      isSingleAnswer: json['is_single_answer'],
-    );
-  }
+  factory QuestionCategoryModel.fromJson(Map<String, dynamic> json) =>
+      _$QuestionCategoryModelFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'title': title,
-      'questions_count': questionsCount,
-      'is_typeable': isTypeable,
-      'is_orderable': isOrderable,
-      'is_mcq': isMCQ,
-      'is_single_answer': isSingleAnswer,
-    };
-  }
+  Map<String, dynamic> toJson() => _$QuestionCategoryModelToJson(this);
 }

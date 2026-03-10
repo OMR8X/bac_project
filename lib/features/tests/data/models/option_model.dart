@@ -1,5 +1,9 @@
+import 'package:json_annotation/json_annotation.dart';
 import '../../domain/entities/option.dart';
 
+part 'option_model.g.dart';
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class OptionModel extends Option {
   const OptionModel({
     required super.id,
@@ -7,28 +11,12 @@ class OptionModel extends Option {
     required super.content,
     required super.isCorrect,
     super.sortOrder,
-    super.typedAnswer,
+    @JsonKey(includeFromJson: false, includeToJson: false) super.typedAnswer,
   });
 
-  factory OptionModel.fromJson(Map<String, dynamic> json) {
-    return OptionModel(
-      id: json['id'] as int? ?? DateTime.now().millisecondsSinceEpoch,
-      questionId: json['question_id'] as int? ?? 0, // Default to 0 when not provided
-      content: json['content'] as String,
-      isCorrect: json['is_correct'] as bool?,
-      sortOrder: json['sort_order'] as int?,
-    );
-  }
+  factory OptionModel.fromJson(Map<String, dynamic> json) => _$OptionModelFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'question_id': questionId,
-      'content': content,
-      'is_correct': isCorrect,
-      'sort_order': sortOrder,
-    };
-  }
+  Map<String, dynamic> toJson() => _$OptionModelToJson(this);
 
   Option toEntity() {
     return Option(
@@ -59,29 +47,4 @@ class OptionModel extends Option {
       typedAnswer: typedAnswer ?? this.typedAnswer,
     );
   }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    return other is OptionModel &&
-        other.id == id &&
-        other.questionId == questionId &&
-        other.content == content &&
-        other.isCorrect == isCorrect &&
-        other.sortOrder == sortOrder &&
-        other.typedAnswer == typedAnswer;
-  }
-
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      questionId.hashCode ^
-      content.hashCode ^
-      isCorrect.hashCode ^
-      sortOrder.hashCode ^
-      typedAnswer.hashCode;
-
-  @override
-  String toString() =>
-      'OptionModel(id: $id, questionId: $questionId, content: $content, isCorrect: $isCorrect, sortOrder: $sortOrder, typedAnswer: $typedAnswer)';
 }

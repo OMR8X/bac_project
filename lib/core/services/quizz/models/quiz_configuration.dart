@@ -1,4 +1,4 @@
-import 'package:bac_project/core/services/quizz/models/correctness_visibility.dart';
+import 'package:neuro_app/core/services/quizz/models/correctness_visibility.dart';
 
 class QuizConfiguration {
   const QuizConfiguration({

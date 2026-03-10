@@ -1,4 +1,4 @@
-import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
+import 'package:neuro_app/core/resources/styles/font_styles_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

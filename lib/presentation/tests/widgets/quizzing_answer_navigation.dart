@@ -1,8 +1,8 @@
-import 'package:bac_project/core/extensions/build_context_l10n.dart';
+import 'package:neuro_app/core/extensions/build_context_l10n.dart';
 import 'package:flutter/material.dart';
 
-import 'package:bac_project/core/resources/styles/sizes_resources.dart';
-import 'package:bac_project/core/resources/styles/spaces_resources.dart';
+import 'package:neuro_app/core/resources/styles/sizes_resources.dart';
+import 'package:neuro_app/core/resources/styles/spaces_resources.dart';
 
 class QuizzingAnswerNavigation extends StatelessWidget {
   const QuizzingAnswerNavigation({

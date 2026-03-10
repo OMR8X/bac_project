@@ -1,6 +1,6 @@
-import 'package:bac_project/features/auth/data/responses/remove_from_user_favorites_response.dart';
-import 'package:bac_project/features/auth/domain/requests/remove_from_user_favorites_request.dart';
-import 'package:bac_project/core/resources/errors/failures.dart';
+import 'package:neuro_app/features/auth/data/responses/remove_from_user_favorites_response.dart';
+import 'package:neuro_app/features/auth/domain/requests/remove_from_user_favorites_request.dart';
+import 'package:neuro_app/core/resources/errors/failures.dart';
 import '../repositories/auth_repository.dart';
 
 import 'package:dartz/dartz.dart';

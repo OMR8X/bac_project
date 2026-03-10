@@ -1,8 +1,8 @@
-import 'package:bac_project/core/services/api/api_constants.dart';
-import 'package:bac_project/core/services/api/api_manager.dart';
-import 'package:bac_project/core/services/api/responses/api_response.dart';
-import 'package:bac_project/core/services/environment/environment_info.dart';
-import 'package:bac_project/features/reports/domain/requests/exception_report_request.dart';
+import 'package:neuro_app/core/services/api/api_constants.dart';
+import 'package:neuro_app/core/services/api/api_manager.dart';
+import 'package:neuro_app/core/services/api/responses/api_response.dart';
+import 'package:neuro_app/core/services/environment/environment_info.dart';
+import 'package:neuro_app/features/reports/domain/requests/exception_report_request.dart';
 import 'package:dartz/dartz.dart';
 
 /// Abstract datasource for exception reports remote operations.

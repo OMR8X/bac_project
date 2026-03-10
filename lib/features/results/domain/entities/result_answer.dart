@@ -1,4 +1,6 @@
-class ResultAnswer {
+import 'package:equatable/equatable.dart';
+
+class ResultAnswer extends Equatable {
   final int id;
   final int resultId;
   final int questionId;
@@ -10,4 +12,7 @@ class ResultAnswer {
     required this.questionId,
     this.optionId,
   });
+
+  @override
+  List<Object?> get props => [id, resultId, questionId, optionId];
 }

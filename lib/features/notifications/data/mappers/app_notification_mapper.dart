@@ -1,5 +1,5 @@
-import 'package:bac_project/features/notifications/data/models/app_notification_model.dart';
-import 'package:bac_project/features/notifications/domain/entities/app_notification.dart';
+import 'package:neuro_app/features/notifications/data/models/app_notification_model.dart';
+import 'package:neuro_app/features/notifications/domain/entities/app_notification.dart';
 
 extension AppNotificationModelMapper on AppNotificationModel {
   AppNotification get toEntity {
@@ -14,7 +14,7 @@ extension AppNotificationModelMapper on AppNotificationModel {
       priority: priority,
       createdAt: createdAt,
       expiresAt: expiresAt,
-      readedAt: readedAt,
+      readAt: readAt,
     );
   }
 }
@@ -32,7 +32,7 @@ extension AppNotificationMapper on AppNotification {
       priority: priority,
       createdAt: createdAt,
       expiresAt: expiresAt,
-      readedAt: readedAt,
+      readAt: readAt,
     );
   }
 }

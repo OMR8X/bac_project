@@ -1,119 +1,82 @@
-import 'package:bac_project/features/tests/data/mappers/option_mapper.dart';
-import 'package:bac_project/features/results/data/models/answer_evaluation_model.dart';
-import 'package:bac_project/features/tests/data/models/option_model.dart';
-import 'package:bac_project/features/tests/data/models/question_answer_model.dart';
-
+import 'package:json_annotation/json_annotation.dart';
 import '../../domain/entities/question.dart';
+import '../../domain/entities/option.dart';
+import '../../domain/entities/question_answer.dart';
+import 'package:neuro_app/features/results/domain/entities/answer_evaluation.dart';
+import 'package:neuro_app/features/tests/data/models/option_model.dart';
+import 'package:neuro_app/features/tests/data/models/question_answer_model.dart';
+import 'package:neuro_app/features/results/data/models/answer_evaluation_model.dart';
 
+import 'package:neuro_app/features/tests/data/mappers/option_mapper.dart';
+import 'package:neuro_app/features/tests/data/mappers/question_answer_mapper.dart';
+import 'package:neuro_app/features/results/data/mappers/answer_evaluation_mapper.dart';
+import 'package:neuro_app/core/services/quizz/models/question_type.dart';
+
+part 'question_model.g.dart';
+
+@JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
 class QuestionModel extends Question {
+  @override
+  @JsonKey(defaultValue: [], fromJson: _optionsFromJson, toJson: _optionsToJson)
+  final List<Option> options;
+
+  @override
+  // Kept: custom converters for nested lists
+  @JsonKey(
+    fromJson: _questionAnswersFromJson,
+    toJson: _questionAnswersToJson,
+  )
+  final List<QuestionAnswer> questionAnswers;
+
+  @override
+  // Kept: custom converters for nested lists
+  @JsonKey(
+    fromJson: _answerEvaluationsFromJson,
+    toJson: _answerEvaluationsToJson,
+  )
+  final List<AnswerEvaluation> answerEvaluations;
+
   const QuestionModel({
     required super.id,
     required super.content,
-    required super.options,
+    required this.options,
+    super.type,
     super.unitId,
     required super.lessonId,
     super.imageUrl,
     super.categoryId,
     super.explain,
-    super.questionAnswers,
-    super.answerEvaluations,
-  });
+    this.questionAnswers = const [],
+    this.answerEvaluations = const [],
+  }) : super(
+         options: options,
+         questionAnswers: questionAnswers,
+         answerEvaluations: answerEvaluations,
+       );
 
-  factory QuestionModel.fromJson(Map<String, dynamic> json) {
-    return QuestionModel(
-      id: json['id'] as int,
-      content: json['content'] as String,
-      options:
-          (json['options'] as List<dynamic>?)?.map((option) {
-            return OptionModel.fromJson(option as Map<String, dynamic>).toEntity();
-          }).toList() ??
-          [],
-      unitId: json['unit_id'] as int?,
-      lessonId: json['lesson_id'] as int,
-      imageUrl: (json['image_url'] as String?),
-      categoryId: json['category_id'] as int?,
-      explain: json['explain'] as String?,
-      questionAnswers:
-          (json['question_answers'] as List<dynamic>?)?.map((answer) {
-            return QuestionAnswerModel.fromJson(answer as Map<String, dynamic>).toEntity();
-          }).toList() ??
-          [],
-      answerEvaluations:
-          (json['answer_evaluations'] as List<dynamic>?)?.map((evaluation) {
-            return AnswerEvaluationModel.fromJson(evaluation as Map<String, dynamic>).toEntity();
-          }).toList() ??
-          [],
-    );
+  static List<Option> _optionsFromJson(List<dynamic>? json) =>
+      json?.map((e) => OptionModel.fromJson(e as Map<String, dynamic>)).toList() ?? [];
+
+  static List<Map<String, dynamic>> _optionsToJson(List<Option> options) =>
+      options.map((e) => e.toModel.toJson()).toList();
+
+  static List<QuestionAnswer> _questionAnswersFromJson(List<dynamic>? json) =>
+      json?.map((e) => QuestionAnswerModel.fromJson(e as Map<String, dynamic>)).toList() ?? [];
+
+  static List<Map<String, dynamic>>? _questionAnswersToJson(List<QuestionAnswer>? answers) {
+    if (answers == null) return null;
+    return answers.map((e) => e.toModel.toJson()).toList();
   }
 
-  // factory QuestionModel.fromResultDetailsJson(Map<String, dynamic> json) {
-  //   return QuestionModel(
-  //     id: json['id'] as int,
-  //     content: json['content'] as String,
-  //     options:
-  //         (json['options'] as List<dynamic>?)?.map((option) {
-  //           return OptionModel.fromJson(option as Map<String, dynamic>).toEntity();
-  //         }).toList() ??
-  //         [],
-  //     unitId: null, // Not provided in result details
-  //     lessonId: json['lesson_id'] as int,
-  //     imageUrl: (json['image_url'] as String?),
-  //     categoryId: json['category_id'] as int,
-  //     isMCQ: null, // Not provided in result details
-  //     explain: null, // Not provided in result details
-  //     questionAnswers:
-  //         (json['answers'] as List<dynamic>?)?.map((answer) {
-  //           return QuestionAnswerModel.fromJson(answer as Map<String, dynamic>).toEntity();
-  //         }).toList() ??
-  //         [],
-  //     answerEvaluations:
-  //         (json['evaluations'] as List<dynamic>?)?.map((evaluation) {
-  //           return AnswerEvaluationModel.fromJson(evaluation as Map<String, dynamic>).toEntity();
-  //         }).toList() ??
-  //         [],
-  //   );
-  // }
+  static List<AnswerEvaluation> _answerEvaluationsFromJson(List<dynamic>? json) =>
+      json?.map((e) => AnswerEvaluationModel.fromJson(e as Map<String, dynamic>)).toList() ?? [];
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'content': content,
-      'options': options.map((option) => option.toModel().toJson()).toList(),
-      'unit_id': unitId,
-      'lesson_id': lessonId,
-      'image': imageUrl,
-      'category_id': categoryId,
-      'explain': explain,
-    };
+  static List<Map<String, dynamic>>? _answerEvaluationsToJson(List<AnswerEvaluation>? evaluations) {
+    if (evaluations == null) return null;
+    return evaluations.map((e) => e.toModel.toJson()).toList();
   }
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    return other is QuestionModel &&
-        other.id == id &&
-        other.content == content &&
-        other.options == options &&
-        other.unitId == unitId &&
-        other.lessonId == lessonId &&
-        other.imageUrl == imageUrl &&
-        other.categoryId == categoryId &&
-        other.explain == explain &&
-        other.questionAnswers == questionAnswers &&
-        other.answerEvaluations == answerEvaluations;
-  }
+  factory QuestionModel.fromJson(Map<String, dynamic> json) => _$QuestionModelFromJson(json);
 
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      content.hashCode ^
-      options.hashCode ^
-      unitId.hashCode ^
-      lessonId.hashCode ^
-      questionAnswers.hashCode ^
-      answerEvaluations.hashCode;
-
-  @override
-  String toString() =>
-      'QuestionModel(id: $id, content: $content, options: $options, unitId: $unitId, lessonId: $lessonId, questionAnswers: $questionAnswers, answerEvaluations: $answerEvaluations)';
+  Map<String, dynamic> toJson() => _$QuestionModelToJson(this);
 }

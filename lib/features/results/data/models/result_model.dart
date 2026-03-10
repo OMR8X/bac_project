@@ -1,70 +1,68 @@
-import 'package:bac_project/features/tests/data/mappers/question_answer_mapper.dart';
-import 'package:bac_project/features/tests/data/models/question_answer_model.dart';
-import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
-import 'package:bac_project/features/results/domain/entities/result_test_mode.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:neuro_app/features/tests/data/mappers/question_answer_mapper.dart';
+import 'package:neuro_app/features/tests/data/models/question_answer_model.dart';
+import 'package:neuro_app/features/tests/domain/entities/question_answer.dart';
+import 'package:neuro_app/features/results/domain/entities/result_test_mode.dart';
 
 import '../../domain/entities/result.dart';
 
+part 'result_model.g.dart';
+
+@JsonSerializable(explicitToJson: true, fieldRename: FieldRename.snake)
 class ResultModel extends Result {
+  @override
+  // Kept: custom enum mapping from boolean field is_test_mode
+  @JsonKey(name: 'is_test_mode', fromJson: _resultTestModeFromJson, toJson: _resultTestModeToJson)
+  final ResultTestMode? resultTestMode;
+
+  @override
+  // Kept: custom object list mappings
+  @JsonKey(
+    defaultValue: [],
+    fromJson: _questionAnswersFromJson,
+    toJson: _questionAnswersToJson,
+  )
+  final List<QuestionAnswer> questionAnswers;
+
   const ResultModel({
     required super.id,
     required super.userId,
     super.lessonId,
     super.lessonTitle,
-    super.resultOrder,
+    // Kept: DB column name is user_rank but Dart field is resultOrder
+    @JsonKey(name: 'user_rank') super.resultOrder,
     required super.totalQuestions,
     required super.correctAnswers,
     required super.wrongAnswers,
     required super.score,
     required super.durationSeconds,
-    super.resultTestMode,
-    required super.questionAnswers,
+    this.resultTestMode,
+    required this.questionAnswers,
     required super.createdAt,
     required super.updatedAt,
-  });
+  }) : super(
+         resultTestMode: resultTestMode,
+         questionAnswers: questionAnswers,
+       );
 
-  factory ResultModel.fromJson(Map<String, dynamic> json) {
-    return ResultModel(
-      id: json['id'] as int,
-      userId: json['user_id'] as String,
-      lessonId: json['lesson_id'] as int?,
-      lessonTitle: json['lesson_title'] as String?,
-      resultOrder: json['user_rank'] as int?,
-      totalQuestions: json['total_questions'] as int,
-      correctAnswers: json['correct_answers'] as int,
-      wrongAnswers: json['wrong_answers'] as int,
-      score: (json['score'] as num).toDouble(),
-      durationSeconds: json['duration_seconds'] as int,
-      resultTestMode:
-          json['is_test_mode'] == true ? ResultTestMode.testing : ResultTestMode.exploring,
-      questionAnswers:
-          (json['question_answers'] as List<dynamic>?)
-              ?.map((a) => QuestionAnswerModel.fromJson(a as Map<String, dynamic>))
-              .toList() ??
-          [],
-      createdAt: DateTime.parse(json['created_at'] as String),
-      updatedAt: DateTime.parse(json['updated_at'] as String),
-    );
+  static ResultTestMode? _resultTestModeFromJson(bool? isTestMode) =>
+      isTestMode == null ? null : (isTestMode ? ResultTestMode.testing : ResultTestMode.exploring);
+
+  static bool? _resultTestModeToJson(ResultTestMode? mode) =>
+      mode != null ? mode == ResultTestMode.testing : null;
+
+  static List<QuestionAnswer> _questionAnswersFromJson(List<dynamic>? jsonItems) {
+    if (jsonItems == null) return [];
+    return jsonItems.map((a) => QuestionAnswerModel.fromJson(a as Map<String, dynamic>)).toList();
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'user_id': userId,
-      'lesson_id': lessonId,
-      'lesson_title': lessonTitle,
-      'result_order': resultOrder,
-      'total_questions': totalQuestions,
-      'correct_answers': correctAnswers,
-      'wrong_answers': wrongAnswers,
-      'score': score,
-      'duration_seconds': durationSeconds,
-      'result_test_mode': resultTestMode?.name,
-      'question_answers': questionAnswers.map((a) => (a.toModel().toJson())).toList(),
-      'created_at': createdAt.toIso8601String(),
-      'updated_at': updatedAt.toIso8601String(),
-    };
+  static List<Map<String, dynamic>> _questionAnswersToJson(List<QuestionAnswer> items) {
+    return items.map((a) => a.toModel.toJson()).toList();
   }
+
+  factory ResultModel.fromJson(Map<String, dynamic> json) => _$ResultModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ResultModelToJson(this);
 
   @override
   ResultModel copyWith({

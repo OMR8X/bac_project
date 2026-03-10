@@ -2,7 +2,7 @@ import '../models/lesson_model.dart';
 import '../../domain/entities/lesson.dart';
 
 extension LessonModelExtension on LessonModel {
-  Lesson toEntity() {
+  Lesson get toEntity {
     return Lesson(
       id: id,
       title: title,
@@ -13,7 +13,7 @@ extension LessonModelExtension on LessonModel {
 }
 
 extension LessonEntityExtension on Lesson {
-  LessonModel toModel() {
+  LessonModel get toModel {
     return LessonModel(
       id: id,
       title: title,

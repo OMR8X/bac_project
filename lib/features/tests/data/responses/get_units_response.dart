@@ -1,4 +1,4 @@
-import 'package:bac_project/features/tests/data/models/unit_model.dart';
+import 'package:neuro_app/features/tests/data/models/unit_model.dart';
 
 import '../../domain/entities/unit.dart';
 

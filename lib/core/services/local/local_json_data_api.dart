@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'package:bac_project/presentation/home/models/custom_action_card_model.dart';
-import 'package:bac_project/features/tests/data/models/unit_model.dart';
-import 'package:bac_project/features/tests/data/models/lesson_model.dart';
-import 'package:bac_project/features/tests/data/models/question_model.dart';
+import 'package:neuro_app/presentation/home/models/custom_action_card_model.dart';
+import 'package:neuro_app/features/tests/data/models/unit_model.dart';
+import 'package:neuro_app/features/tests/data/models/lesson_model.dart';
+import 'package:neuro_app/features/tests/data/models/question_model.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
 class LocalJsonDataApi {

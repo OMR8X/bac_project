@@ -1,18 +1,18 @@
-import 'package:bac_project/core/extensions/build_context_l10n.dart';
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
+import 'package:neuro_app/core/extensions/build_context_l10n.dart';
+import 'package:neuro_app/core/resources/styles/spacing_resources.dart';
 // ... existing code ...
 
-import 'package:bac_project/core/services/router/routes.dart';
-import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
-import 'package:bac_project/core/widgets/ui/fields/bottom_buttons_widget.dart';
-import 'package:bac_project/core/widgets/ui/icons/arrow_back_icon_widget.dart';
-import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
+import 'package:neuro_app/core/services/router/routes.dart';
+import 'package:neuro_app/core/widgets/animations/staggered_item_wrapper_widget.dart';
+import 'package:neuro_app/core/widgets/ui/fields/bottom_buttons_widget.dart';
+import 'package:neuro_app/core/widgets/ui/icons/arrow_back_icon_widget.dart';
+import 'package:neuro_app/core/widgets/ui/states/error_state_body_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:bac_project/presentation/lessons/widgets/lesson_card_widget.dart';
-import 'package:bac_project/features/tests/domain/entities/lesson.dart';
-import 'package:bac_project/core/services/router/app_arguments.dart';
+import 'package:neuro_app/presentation/lessons/widgets/lesson_card_widget.dart';
+import 'package:neuro_app/features/tests/domain/entities/lesson.dart';
+import 'package:neuro_app/core/services/router/app_arguments.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bac_project/presentation/tests/blocs/pick_lessons/pick_lessons_bloc.dart';
+import 'package:neuro_app/presentation/tests/blocs/pick_lessons/pick_lessons_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';

@@ -1,11 +1,11 @@
 import 'dart:math';
 
-import 'package:bac_project/core/extensions/build_context_l10n.dart';
-import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
-import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
-import 'package:bac_project/core/resources/styles/sizes_resources.dart';
-import 'package:bac_project/core/resources/styles/spaces_resources.dart';
+import 'package:neuro_app/core/extensions/build_context_l10n.dart';
+import 'package:neuro_app/core/resources/styles/border_radius_resources.dart';
+import 'package:neuro_app/core/resources/styles/font_styles_manager.dart';
+import 'package:neuro_app/core/resources/styles/spacing_resources.dart';
+import 'package:neuro_app/core/resources/styles/sizes_resources.dart';
+import 'package:neuro_app/core/resources/styles/spaces_resources.dart';
 import 'package:flutter/material.dart';
 
 class UnitCardWidget extends StatelessWidget {

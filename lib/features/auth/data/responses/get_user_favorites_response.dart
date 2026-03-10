@@ -1,5 +1,5 @@
 // Placeholder types until files feature exists in this app
-import 'package:bac_project/core/services/api/responses/api_response.dart';
+import 'package:neuro_app/core/services/api/responses/api_response.dart';
 
 class BacFile {
   BacFile();

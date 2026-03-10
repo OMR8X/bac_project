@@ -1,14 +1,14 @@
 // router imports not used in bloc
-import 'package:bac_project/core/resources/errors/exceptions.dart';
-import 'package:bac_project/core/resources/errors/error_mapper.dart';
-import 'package:bac_project/core/resources/errors/failures.dart';
-import 'package:bac_project/features/tests/domain/entities/question.dart';
-import 'package:bac_project/features/tests/domain/entities/question_category.dart';
-import 'package:bac_project/features/tests/domain/requests/get_questions_request.dart';
-import 'package:bac_project/features/tests/domain/usecases/get_questions_use_case.dart';
-import 'package:bac_project/features/tests/domain/usecases/get_test_options_use_case.dart';
-import 'package:bac_project/features/tests/domain/requests/get_test_options_request.dart';
-import 'package:bac_project/features/tests/domain/entities/test_options.dart';
+import 'package:neuro_app/core/resources/errors/exceptions.dart';
+import 'package:neuro_app/core/resources/errors/error_mapper.dart';
+import 'package:neuro_app/core/resources/errors/failures.dart';
+import 'package:neuro_app/features/tests/domain/entities/question.dart';
+import 'package:neuro_app/features/tests/domain/entities/question_category.dart';
+import 'package:neuro_app/features/tests/domain/requests/get_questions_request.dart';
+import 'package:neuro_app/features/tests/domain/usecases/get_questions_use_case.dart';
+import 'package:neuro_app/features/tests/domain/usecases/get_test_options_use_case.dart';
+import 'package:neuro_app/features/tests/domain/requests/get_test_options_request.dart';
+import 'package:neuro_app/features/tests/domain/entities/test_options.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import '../../../../features/tests/domain/entities/test_mode.dart';
@@ -51,8 +51,8 @@ class TestModeSettingsBloc extends Bloc<TestModeSettingsEvent, TestModeSettingsS
           final testOptions = TestOptions(
             showTrueAnswers: false,
             enableSounds: false,
-            selectedUnitsIDs: event.unitIds,
-            selectedLessonsIDs: event.lessonIds,
+            selectedUnitsIds: event.unitIds,
+            selectedLessonsIds: event.lessonIds,
             selectedCategories: [],
             categories: response.categories,
             selectedMode: TestMode.exploring,

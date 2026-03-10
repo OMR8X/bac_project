@@ -1,9 +1,9 @@
-import 'package:bac_project/core/extensions/build_context_l10n.dart';
-import 'package:bac_project/core/injector/tests_feature_inj.dart';
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
-import 'package:bac_project/core/services/router/app_arguments.dart';
-import 'package:bac_project/core/widgets/ui/icons/notifications_icon_widget.dart';
-import 'package:bac_project/core/widgets/ui/icons/search_icon_widget.dart';
+import 'package:neuro_app/core/extensions/build_context_l10n.dart';
+import 'package:neuro_app/core/injector/tests_feature_inj.dart';
+import 'package:neuro_app/core/resources/styles/spacing_resources.dart';
+import 'package:neuro_app/core/services/router/app_arguments.dart';
+import 'package:neuro_app/core/widgets/ui/icons/notifications_icon_widget.dart';
+import 'package:neuro_app/core/widgets/ui/icons/search_icon_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

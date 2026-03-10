@@ -2,13 +2,13 @@ import '../models/unit_model.dart';
 import '../../domain/entities/unit.dart';
 
 extension UnitModelExtension on UnitModel {
-  Unit toEntity() {
+  Unit get toEntity {
     return Unit(
       id: id,
       title: title,
       subtitle: subtitle,
       lessonsCount: lessonsCount,
-      icon: icon,
+      iconUrl: iconUrl,
       createdAt: createdAt,
       updatedAt: updatedAt,
     );
@@ -16,13 +16,13 @@ extension UnitModelExtension on UnitModel {
 }
 
 extension UnitEntityExtension on Unit {
-  UnitModel toModel() {
+  UnitModel get toModel {
     return UnitModel(
       id: id,
       title: title,
       subtitle: subtitle,
       lessonsCount: lessonsCount,
-      icon: icon,
+      iconUrl: iconUrl,
       createdAt: createdAt,
       updatedAt: updatedAt,
     );

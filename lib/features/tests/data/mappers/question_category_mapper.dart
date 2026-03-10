@@ -1,5 +1,5 @@
-import 'package:bac_project/features/tests/data/models/question_category_model.dart';
-import 'package:bac_project/features/tests/domain/entities/question_category.dart';
+import 'package:neuro_app/features/tests/data/models/question_category_model.dart';
+import 'package:neuro_app/features/tests/domain/entities/question_category.dart';
 
 extension QuestionCategoryMapper on QuestionCategory {
   QuestionCategoryModel get toModel {

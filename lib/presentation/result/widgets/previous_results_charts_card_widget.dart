@@ -1,6 +1,6 @@
-import 'package:bac_project/core/resources/themes/extensions/color_extensions.dart';
-import 'package:bac_project/core/resources/themes/extensions/extra_colors.dart';
-import 'package:bac_project/features/results/domain/entities/result.dart';
+import 'package:neuro_app/core/resources/themes/extensions/color_extensions.dart';
+import 'package:neuro_app/core/resources/themes/extensions/extra_colors.dart';
+import 'package:neuro_app/features/results/domain/entities/result.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 

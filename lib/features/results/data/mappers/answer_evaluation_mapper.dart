@@ -2,7 +2,7 @@ import '../models/answer_evaluation_model.dart';
 import '../../domain/entities/answer_evaluation.dart';
 
 extension AnswerEvaluationModelExtension on AnswerEvaluationModel {
-  AnswerEvaluation toEntity() {
+  AnswerEvaluation get toEntity {
     return AnswerEvaluation(
       id: id,
       questionAnswerId: questionAnswerId,
@@ -17,7 +17,7 @@ extension AnswerEvaluationModelExtension on AnswerEvaluationModel {
 }
 
 extension AnswerEvaluationEntityExtension on AnswerEvaluation {
-  AnswerEvaluationModel toModel() {
+  AnswerEvaluationModel get toModel {
     return AnswerEvaluationModel(
       id: id,
       questionAnswerId: questionAnswerId,

@@ -1,7 +1,7 @@
 
-import 'package:bac_project/core/widgets/ui/icons/switch_theme_icon_widget.dart';
-import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
-import 'package:bac_project/features/results/domain/entities/result.dart';
+import 'package:neuro_app/core/widgets/ui/icons/switch_theme_icon_widget.dart';
+import 'package:neuro_app/core/widgets/ui/states/error_state_body_widget.dart';
+import 'package:neuro_app/features/results/domain/entities/result.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

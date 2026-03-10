@@ -1,10 +1,10 @@
-import 'package:bac_project/features/tests/domain/entities/lesson.dart';
+import 'package:neuro_app/features/tests/domain/entities/lesson.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
-import 'package:bac_project/features/tests/domain/usecases/get_lessons_use_case.dart';
-import 'package:bac_project/features/tests/domain/requests/get_lessons_request.dart';
-import 'package:bac_project/core/injector/app_injection.dart';
+import 'package:neuro_app/features/tests/domain/usecases/get_lessons_use_case.dart';
+import 'package:neuro_app/features/tests/domain/requests/get_lessons_request.dart';
+import 'package:neuro_app/core/injector/app_injection.dart';
 
 part 'lessons_event.dart';
 part 'lessons_state.dart';

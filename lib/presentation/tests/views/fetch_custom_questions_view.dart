@@ -1,15 +1,15 @@
-import 'package:bac_project/core/services/router/routes.dart';
+import 'package:neuro_app/core/services/router/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bac_project/core/injector/app_injection.dart';
-import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
-import 'package:bac_project/core/widgets/animations/skeletonizer_effect_list_wraper.dart';
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
-import 'package:bac_project/features/tests/domain/entities/question.dart';
-import 'package:bac_project/presentation/tests/widgets/question_card_widget.dart';
-import 'package:bac_project/presentation/quizzing/widgets/multiple_choices_options_builder_widget.dart';
-import 'package:bac_project/core/resources/errors/failures.dart';
-import 'package:bac_project/core/services/router/app_arguments.dart';
+import 'package:neuro_app/core/injector/app_injection.dart';
+import 'package:neuro_app/core/widgets/ui/states/error_state_body_widget.dart';
+import 'package:neuro_app/core/widgets/animations/skeletonizer_effect_list_wraper.dart';
+import 'package:neuro_app/core/resources/styles/spacing_resources.dart';
+import 'package:neuro_app/features/tests/domain/entities/question.dart';
+import 'package:neuro_app/presentation/tests/widgets/question_card_widget.dart';
+import 'package:neuro_app/presentation/quizzing/widgets/multiple_choices_options_builder_widget.dart';
+import 'package:neuro_app/core/resources/errors/failures.dart';
+import 'package:neuro_app/core/services/router/app_arguments.dart';
 import 'package:go_router/go_router.dart';
 import '../blocs/custom_questions/fetch_custom_questions_bloc.dart';
 

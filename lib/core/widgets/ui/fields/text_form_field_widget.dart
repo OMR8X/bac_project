@@ -19,6 +19,7 @@ class TextFormFieldWidget extends StatelessWidget {
     this.maxLines = 1,
     this.position = 1,
     this.keyboardType,
+    this.autofillHints,
   });
   //
   final TextInputType? keyboardType;
@@ -33,6 +34,8 @@ class TextFormFieldWidget extends StatelessWidget {
   final int? maxLines;
   //
   final bool obscureText;
+  //
+  final Iterable<String>? autofillHints;
   //
   final void Function(String?)? onSaved;
   final void Function(String)? onChanged;
@@ -58,6 +61,7 @@ class TextFormFieldWidget extends StatelessWidget {
           maxLength: maxLength,
           onChanged: onChanged,
           onFieldSubmitted: onFieldSubmitted,
+          autofillHints: autofillHints,
           style: TextStylesResources.textField,
           decoration: InputDecoration(labelText: " $hintText"),
         ),

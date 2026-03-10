@@ -1,6 +1,6 @@
-import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
-import 'package:bac_project/features/notifications/domain/entities/notifications_topic.dart';
+import 'package:neuro_app/core/resources/styles/font_styles_manager.dart';
+import 'package:neuro_app/core/resources/styles/spacing_resources.dart';
+import 'package:neuro_app/features/notifications/domain/entities/notifications_topic.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

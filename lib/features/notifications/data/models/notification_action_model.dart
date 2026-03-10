@@ -1,26 +1,23 @@
-import 'package:bac_project/features/notifications/domain/entities/notification_action.dart';
-import 'package:bac_project/features/notifications/domain/enums/notification_action_type.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:neuro_app/features/notifications/domain/entities/notification_action.dart';
+import 'package:neuro_app/features/notifications/domain/enums/notification_action_type.dart';
 
+part 'notification_action_model.g.dart';
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class NotificationActionModel extends NotificationAction {
   const NotificationActionModel({
     required super.label,
+    // Kept: custom enum from/to string mapping
+    @JsonKey(fromJson: NotificationActionType.fromString, toJson: _typeToString)
     required super.type,
     required super.uri,
   });
 
-  factory NotificationActionModel.fromJson(Map<String, dynamic> json) {
-    return NotificationActionModel(
-      label: json['label'] as String,
-      type: NotificationActionType.fromString(json['type'] ?? 'screen'),
-      uri: json['uri'] as String,
-    );
-  }
+  static String _typeToString(NotificationActionType type) => type.value;
 
-  Map<String, dynamic> toJson() {
-    return {
-      'label': label,
-      'type': type.value,
-      'uri': uri,
-    };
-  }
+  factory NotificationActionModel.fromJson(Map<String, dynamic> json) =>
+      _$NotificationActionModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$NotificationActionModelToJson(this);
 }

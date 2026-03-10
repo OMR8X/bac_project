@@ -1,11 +1,12 @@
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:equatable/equatable.dart';
 
-class Unit {
+class Unit extends Equatable {
   final int id;
   final String title;
   final String subtitle;
   final int? lessonsCount;
-  final String? icon;
+  final String? iconUrl;
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
@@ -14,7 +15,7 @@ class Unit {
     required this.title,
     required this.subtitle,
     this.lessonsCount,
-    this.icon,
+    this.iconUrl,
     this.createdAt,
     this.updatedAt,
   });
@@ -24,7 +25,7 @@ class Unit {
     String? title,
     String? subtitle,
     int? lessonsCount,
-    String? icon,
+    String? iconUrl,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
@@ -33,7 +34,7 @@ class Unit {
       title: title ?? this.title,
       subtitle: subtitle ?? this.subtitle,
       lessonsCount: lessonsCount ?? this.lessonsCount,
-      icon: icon ?? this.icon,
+      iconUrl: iconUrl ?? this.iconUrl,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
     );
@@ -45,36 +46,20 @@ class Unit {
       title: BoneMock.title,
       subtitle: BoneMock.words(3),
       lessonsCount: 5,
-      icon: 'book',
+      iconUrl: 'book',
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
     );
   }
 
   @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    return other is Unit &&
-        other.id == id &&
-        other.title == title &&
-        other.subtitle == subtitle &&
-        other.lessonsCount == lessonsCount &&
-        other.icon == icon &&
-        other.createdAt == createdAt &&
-        other.updatedAt == updatedAt;
-  }
-
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      title.hashCode ^
-      subtitle.hashCode ^
-      lessonsCount.hashCode ^
-      icon.hashCode ^
-      createdAt.hashCode ^
-      updatedAt.hashCode;
-
-  @override
-  String toString() =>
-      'Unit(id: $id, title: $title, subtitle: $subtitle, lessonsCount: $lessonsCount, icon: $icon, createdAt: $createdAt, updatedAt: $updatedAt)';
+  List<Object?> get props => [
+    id,
+    title,
+    subtitle,
+    lessonsCount,
+    iconUrl,
+    createdAt,
+    updatedAt,
+  ];
 }

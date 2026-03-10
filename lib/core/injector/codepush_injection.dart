@@ -1,5 +1,5 @@
-import 'package:bac_project/core/injector/app_injection.dart';
-import 'package:bac_project/core/services/codepush/codepush_manager.dart';
+import 'package:neuro_app/core/injector/app_injection.dart';
+import 'package:neuro_app/core/services/codepush/codepush_manager.dart';
 
 import '../services/codepush/codepush_client.dart';
 

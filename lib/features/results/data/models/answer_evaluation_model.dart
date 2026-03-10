@@ -1,5 +1,9 @@
+import 'package:json_annotation/json_annotation.dart';
 import '../../domain/entities/answer_evaluation.dart';
 
+part 'answer_evaluation_model.g.dart';
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class AnswerEvaluationModel extends AnswerEvaluation {
   const AnswerEvaluationModel({
     required super.id,
@@ -12,44 +16,10 @@ class AnswerEvaluationModel extends AnswerEvaluation {
     super.updatedAt,
   });
 
-  factory AnswerEvaluationModel.fromJson(Map<String, dynamic> json) {
-    return AnswerEvaluationModel(
-      id: json['id'] as int? ?? 0,
-      questionAnswerId: json['question_answer_id'] as int? ?? 0,
-      isCorrect: json['is_correct'] as bool? ?? false,
-      confidence: json['confidence'] != null ? (json['confidence'] as num).toDouble() : null,
-      notes: json['notes'] as String?,
-      modelName: json['model_name'] as String?,
-      createdAt: json['created_at'] != null ? DateTime.parse(json['created_at'] as String) : null,
-      updatedAt: json['updated_at'] != null ? DateTime.parse(json['updated_at'] as String) : null,
-    );
-  }
+  factory AnswerEvaluationModel.fromJson(Map<String, dynamic> json) =>
+      _$AnswerEvaluationModelFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'question_answer_id': questionAnswerId,
-      'is_correct': isCorrect,
-      'confidence': confidence,
-      'notes': notes,
-      'model_name': modelName,
-      'created_at': createdAt?.toIso8601String(),
-      'updated_at': updatedAt?.toIso8601String(),
-    };
-  }
-
-  AnswerEvaluation toEntity() {
-    return AnswerEvaluation(
-      id: id,
-      questionAnswerId: questionAnswerId,
-      isCorrect: isCorrect,
-      confidence: confidence,
-      notes: notes,
-      modelName: modelName,
-      createdAt: createdAt,
-      updatedAt: updatedAt,
-    );
-  }
+  Map<String, dynamic> toJson() => _$AnswerEvaluationModelToJson(this);
 
   @override
   AnswerEvaluationModel copyWith({
@@ -73,33 +43,4 @@ class AnswerEvaluationModel extends AnswerEvaluation {
       updatedAt: updatedAt ?? this.updatedAt,
     );
   }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    return other is AnswerEvaluationModel &&
-        other.id == id &&
-        other.questionAnswerId == questionAnswerId &&
-        other.isCorrect == isCorrect &&
-        other.confidence == confidence &&
-        other.notes == notes &&
-        other.modelName == modelName &&
-        other.createdAt == createdAt &&
-        other.updatedAt == updatedAt;
-  }
-
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      questionAnswerId.hashCode ^
-      isCorrect.hashCode ^
-      confidence.hashCode ^
-      notes.hashCode ^
-      modelName.hashCode ^
-      createdAt.hashCode ^
-      updatedAt.hashCode;
-
-  @override
-  String toString() =>
-      'AnswerEvaluationModel(id: $id, questionAnswerId: $questionAnswerId, isCorrect: $isCorrect, confidence: $confidence, notes: $notes, modelName: $modelName, createdAt: $createdAt, updatedAt: $updatedAt)';
 }

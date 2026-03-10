@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'dart:ui';
 
-import 'package:bac_project/firebase_options.dart';
-import 'package:bac_project/presentation/root/views/app_root.dart';
+import 'package:neuro_app/firebase_options.dart';
+import 'package:neuro_app/presentation/root/views/app_root.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:bac_project/features/reports/domain/requests/exception_report_request.dart';
-import 'package:bac_project/features/reports/domain/usecases/submit_exception_report_usecase.dart';
+import 'package:neuro_app/features/reports/domain/requests/exception_report_request.dart';
+import 'package:neuro_app/features/reports/domain/usecases/submit_exception_report_usecase.dart';
 import 'core/injector/app_injection.dart';
 
 Future<void> main() async {

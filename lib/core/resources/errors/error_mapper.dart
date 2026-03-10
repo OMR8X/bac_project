@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:bac_project/core/resources/errors/failures.dart';
+import 'package:neuro_app/core/resources/errors/failures.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/rendering.dart';

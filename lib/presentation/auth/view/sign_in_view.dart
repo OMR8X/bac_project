@@ -1,11 +1,12 @@
-import 'package:bac_project/core/injector/app_injection.dart';
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
-import 'package:bac_project/core/resources/styles/sizes_resources.dart';
-import 'package:bac_project/core/widgets/ui/fields/text_form_field_widget.dart';
-import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
+import 'package:neuro_app/core/injector/app_injection.dart';
+import 'package:neuro_app/core/resources/styles/spacing_resources.dart';
+import 'package:neuro_app/core/resources/styles/sizes_resources.dart';
+import 'package:neuro_app/core/widgets/ui/fields/text_form_field_widget.dart';
+import 'package:neuro_app/core/widgets/ui/icons/close_icon_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/services.dart';
 import '../../../core/helpers/input_validator.dart';
 import '../../../core/resources/styles/spaces_resources.dart';
 import '../state/bloc/auth_bloc.dart';
@@ -42,6 +43,7 @@ class _SignInViewState extends State<SignInView> {
   }
 
   void _submit() async {
+    TextInput.finishAutofillContext();
     sl<AuthBloc>().add(
       AuthSignInEvent(email: _emailController.text, password: _passwordController.text),
     );
@@ -72,6 +74,7 @@ class _SignInViewState extends State<SignInView> {
                     maxLength: 64,
                     position: 1,
                     keyboardType: TextInputType.emailAddress,
+                    autofillHints: const [AutofillHints.email],
                     controller: _emailController,
                     validator: (text) {
                       return InputValidator.emailValidator(text);
@@ -84,6 +87,7 @@ class _SignInViewState extends State<SignInView> {
                     maxLines: 1,
                     keyboardType: TextInputType.visiblePassword,
                     position: 2,
+                    autofillHints: const [AutofillHints.password],
                     controller: _passwordController,
                     validator: (text) {
                       return InputValidator.passwordValidator(text);

@@ -1,4 +1,4 @@
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
+import 'package:neuro_app/core/resources/styles/spacing_resources.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,11 +8,11 @@ import '../../../core/resources/styles/spaces_resources.dart';
 import '../../../core/widgets/ui/fields/drop_down_widget.dart';
 import '../../../core/widgets/ui/fields/text_form_field_widget.dart';
 import '../state/bloc/auth_bloc.dart';
-import 'package:bac_project/core/resources/styles/sizes_resources.dart';
-import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
-import 'package:bac_project/features/settings/domain/entities/app_settings.dart';
-import 'package:bac_project/features/settings/domain/entities/governorate.dart';
-import 'package:bac_project/features/settings/domain/entities/section.dart';
+import 'package:neuro_app/core/resources/styles/sizes_resources.dart';
+import 'package:neuro_app/core/widgets/ui/icons/close_icon_widget.dart';
+import 'package:neuro_app/features/settings/domain/entities/app_settings.dart';
+import 'package:neuro_app/features/settings/domain/entities/governorate.dart';
+import 'package:neuro_app/features/settings/domain/entities/section.dart';
 
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key, required this.state});
@@ -94,6 +94,7 @@ class _SignUpViewState extends State<SignUpView> {
                     hintText: "الاسم",
                     position: 1,
                     keyboardType: TextInputType.name,
+                    autofillHints: const [AutofillHints.name],
                     maxLength: 64,
                     controller: _nameController,
                     validator: (text) {
@@ -105,6 +106,7 @@ class _SignUpViewState extends State<SignUpView> {
                     maxLength: 64,
                     position: 2,
                     keyboardType: TextInputType.emailAddress,
+                    autofillHints: const [AutofillHints.email],
                     controller: _emailController,
                     validator: (text) {
                       return InputValidator.emailValidator(text);
@@ -116,6 +118,7 @@ class _SignUpViewState extends State<SignUpView> {
                     position: 3,
                     obscureText: true,
                     keyboardType: TextInputType.visiblePassword,
+                    autofillHints: const [AutofillHints.password],
                     controller: _passwordController,
                     validator: (text) {
                       return InputValidator.passwordValidator(text);
@@ -127,6 +130,7 @@ class _SignUpViewState extends State<SignUpView> {
                     position: 4,
                     obscureText: true,
                     keyboardType: TextInputType.visiblePassword,
+                    autofillHints: const [AutofillHints.password],
                     controller: _confirmPasswordController,
                     validator: (text) {
                       if (_passwordController.text != _confirmPasswordController.text) {

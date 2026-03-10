@@ -5,7 +5,7 @@ import '../../domain/entities/question.dart';
 // question_category not needed after refactor
 
 extension QuestionModelExtension on QuestionModel {
-  Question toEntity() {
+  Question get toEntity {
     return Question(
       id: id,
       content: content,
@@ -22,7 +22,7 @@ extension QuestionModelExtension on QuestionModel {
 }
 
 extension QuestionEntityExtension on Question {
-  QuestionModel toModel() {
+  QuestionModel get toModel {
     return QuestionModel(
       id: id,
       content: content,

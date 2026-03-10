@@ -1,17 +1,21 @@
+import 'package:json_annotation/json_annotation.dart';
 import '../../domain/entities/motivational_quote.dart';
 
+part 'motivational_quote_model.g.dart';
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class MotivationalQuoteModel extends MotivationalQuote {
-  MotivationalQuoteModel({required super.quote, required super.author, required super.date});
+  MotivationalQuoteModel({
+    required super.quote,
+    required super.author,
+    @JsonKey(fromJson: _dateFromJson) required super.createdAt,
+  });
 
-  factory MotivationalQuoteModel.fromJson(Map<String, dynamic> json) {
-    return MotivationalQuoteModel(
-      quote: json['quote'] as String,
-      author: json['author'] as String,
-      date: json['date'] != null ? DateTime.parse(json['date']) : DateTime.now(),
-    );
-  }
+  static DateTime _dateFromJson(String? dateStr) =>
+      dateStr != null ? DateTime.parse(dateStr) : DateTime.now();
 
-  Map<String, dynamic> toJson() {
-    return {'quote': quote, 'author': author, 'date': date.toIso8601String()};
-  }
+  factory MotivationalQuoteModel.fromJson(Map<String, dynamic> json) =>
+      _$MotivationalQuoteModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MotivationalQuoteModelToJson(this);
 }

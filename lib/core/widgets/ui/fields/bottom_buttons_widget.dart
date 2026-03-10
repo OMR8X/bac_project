@@ -1,6 +1,6 @@
-import 'package:bac_project/core/resources/styles/blur_resources.dart';
-import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
-import 'package:bac_project/core/resources/styles/sizes_resources.dart';
+import 'package:neuro_app/core/resources/styles/blur_resources.dart';
+import 'package:neuro_app/core/resources/styles/border_radius_resources.dart';
+import 'package:neuro_app/core/resources/styles/sizes_resources.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

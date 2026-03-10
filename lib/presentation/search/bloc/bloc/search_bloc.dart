@@ -2,9 +2,9 @@ import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:bac_project/features/tests/domain/entities/lesson.dart';
-import 'package:bac_project/features/tests/domain/usecases/get_lessons_use_case.dart';
-import 'package:bac_project/features/tests/domain/requests/get_lessons_request.dart';
+import 'package:neuro_app/features/tests/domain/entities/lesson.dart';
+import 'package:neuro_app/features/tests/domain/usecases/get_lessons_use_case.dart';
+import 'package:neuro_app/features/tests/domain/requests/get_lessons_request.dart';
 
 part 'search_event.dart';
 part 'search_state.dart';

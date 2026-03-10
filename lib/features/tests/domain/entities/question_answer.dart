@@ -1,11 +1,13 @@
-class QuestionAnswer {
+import 'package:equatable/equatable.dart';
+
+class QuestionAnswer extends Equatable {
   final int id;
   final int resultId;
   final int questionId;
   final int? optionId;
   final String? answerText;
   final int? answerPosition;
-  final bool? isCorrect;
+  final bool isCorrect;
 
   const QuestionAnswer({
     this.id = 0,
@@ -14,7 +16,7 @@ class QuestionAnswer {
     this.optionId,
     this.answerText,
     this.answerPosition,
-    this.isCorrect,
+    this.isCorrect = false,
   });
 
   QuestionAnswer copyWith({
@@ -36,4 +38,15 @@ class QuestionAnswer {
       isCorrect: isCorrect ?? this.isCorrect,
     );
   }
+
+  @override
+  List<Object?> get props => [
+    id,
+    resultId,
+    questionId,
+    optionId,
+    answerText,
+    answerPosition,
+    isCorrect,
+  ];
 }

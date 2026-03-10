@@ -1,8 +1,8 @@
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
-import 'package:bac_project/core/resources/styles/spaces_resources.dart';
-import 'package:bac_project/core/widgets/animations/staggered_item_wrapper_widget.dart';
-import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
-import 'package:bac_project/presentation/root/blocs/loader/app_loader_bloc.dart';
+import 'package:neuro_app/core/resources/styles/spacing_resources.dart';
+import 'package:neuro_app/core/resources/styles/spaces_resources.dart';
+import 'package:neuro_app/core/widgets/animations/staggered_item_wrapper_widget.dart';
+import 'package:neuro_app/core/widgets/ui/states/error_state_body_widget.dart';
+import 'package:neuro_app/presentation/root/blocs/loader/app_loader_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';

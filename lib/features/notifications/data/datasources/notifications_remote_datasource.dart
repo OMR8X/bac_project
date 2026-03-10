@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:bac_project/core/services/logs/logger.dart';
-import 'package:bac_project/features/notifications/data/mappers/app_notification_mapper.dart';
-import 'package:bac_project/features/notifications/domain/requests/subscribe_to_topic_request.dart';
-import 'package:bac_project/features/notifications/domain/requests/unsubscribe_from_topic_request.dart';
+import 'package:neuro_app/core/services/logs/logger.dart';
+import 'package:neuro_app/features/notifications/data/mappers/app_notification_mapper.dart';
+import 'package:neuro_app/features/notifications/domain/requests/subscribe_to_topic_request.dart';
+import 'package:neuro_app/features/notifications/domain/requests/unsubscribe_from_topic_request.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:dartz/dartz.dart';
-import 'package:bac_project/features/notifications/data/handlers/firebase_messaging_handlers.dart';
-import 'package:bac_project/features/notifications/data/settings/app_local_notifications_settings.dart';
-import 'package:bac_project/features/notifications/data/settings/firebase_messaging_settings.dart';
+import 'package:neuro_app/features/notifications/data/handlers/firebase_messaging_handlers.dart';
+import 'package:neuro_app/features/notifications/data/settings/app_local_notifications_settings.dart';
+import 'package:neuro_app/features/notifications/data/settings/firebase_messaging_settings.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../domain/entities/app_notification.dart';
@@ -106,7 +106,6 @@ class NotificationsRemoteDatasourceImplements implements NotificationsRemoteData
   }) async {
     ///
     if (!notification.isValid()) {
-      Logger.error('Notification is not valid: ${notification.toModel.toDatabaseJson()}');
       return unit;
     }
 

@@ -1,9 +1,9 @@
-import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
-import 'package:bac_project/core/resources/styles/decoration_resources.dart';
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
-import 'package:bac_project/core/resources/styles/sizes_resources.dart';
-import 'package:bac_project/core/resources/styles/spaces_resources.dart';
-import 'package:bac_project/core/widgets/ui/fields/text_button_widget.dart';
+import 'package:neuro_app/core/resources/styles/border_radius_resources.dart';
+import 'package:neuro_app/core/resources/styles/decoration_resources.dart';
+import 'package:neuro_app/core/resources/styles/spacing_resources.dart';
+import 'package:neuro_app/core/resources/styles/sizes_resources.dart';
+import 'package:neuro_app/core/resources/styles/spaces_resources.dart';
+import 'package:neuro_app/core/widgets/ui/fields/text_button_widget.dart';
 import 'package:flutter/material.dart';
 
 void listSelectionDialog<T>({

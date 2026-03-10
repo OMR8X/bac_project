@@ -1,8 +1,8 @@
-import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
-import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
-import 'package:bac_project/core/resources/styles/spaces_resources.dart';
-import 'package:bac_project/features/settings/domain/entities/motivational_quote.dart';
+import 'package:neuro_app/core/resources/styles/border_radius_resources.dart';
+import 'package:neuro_app/core/resources/styles/font_styles_manager.dart';
+import 'package:neuro_app/core/resources/styles/spacing_resources.dart';
+import 'package:neuro_app/core/resources/styles/spaces_resources.dart';
+import 'package:neuro_app/features/settings/domain/entities/motivational_quote.dart';
 import 'package:flutter/material.dart';
 
 class QuoteOfTheDayWidget extends StatelessWidget {

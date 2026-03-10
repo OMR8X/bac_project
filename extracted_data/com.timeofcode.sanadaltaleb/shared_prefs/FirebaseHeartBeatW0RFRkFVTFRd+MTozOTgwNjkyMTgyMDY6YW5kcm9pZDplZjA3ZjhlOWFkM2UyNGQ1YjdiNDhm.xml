@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<map>
+    <long name="fire-global" value="1773072635372" />
+    <set name="fire-transport/18.2.0 fire-installations/18.0.0 android-min-sdk/24 android-installer/ device-model/j7velte device-name/j7velte device-brand/samsung flutter-fire-core/3.15.2 fire-android/25 fire-core/21.0.0 fire-fcm/24.1.2 fire-core-ktx/21.0.0 android-platform/ kotlin/1.9.24 android-target-sdk/35 flutter-fire-fcm/15.2.10">
+        <string>2026-03-09</string>
+    </set>
+    <string name="last-used-date">2026-03-09</string>
+    <long name="fire-count" value="1" />
+</map>

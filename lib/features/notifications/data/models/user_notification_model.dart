@@ -1,5 +1,9 @@
-import 'package:bac_project/features/notifications/domain/entities/user_notification.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:neuro_app/features/notifications/domain/entities/user_notification.dart';
 
+part 'user_notification_model.g.dart';
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UserNotificationModel extends UserNotification {
   const UserNotificationModel({
     required super.id,
@@ -11,27 +15,11 @@ class UserNotificationModel extends UserNotification {
     super.actionPerformed,
   });
 
-  factory UserNotificationModel.fromJson(Map<String, dynamic> json) {
-    return UserNotificationModel(
-      id: json['id'] as int,
-      userId: json['user_id'] as String,
-      notificationId: json['notification_id'] as int,
-      deliveredAt: json['delivered_at'] != null ? DateTime.parse(json['delivered_at']) : null,
-      readAt: json['read_at'] != null ? DateTime.parse(json['read_at']) : null,
-      dismissedAt: json['dismissed_at'] != null ? DateTime.parse(json['dismissed_at']) : null,
-      actionPerformed: json['action_performed'] as bool? ?? false,
-    );
-  }
+  factory UserNotificationModel.fromJson(Map<String, dynamic> json) =>
+      _$UserNotificationModelFromJson(json);
 
-  Map<String, dynamic> toDatabaseJson() {
-    return {
-      'id': id,
-      'user_id': userId,
-      'notification_id': notificationId,
-      'delivered_at': deliveredAt?.toIso8601String(),
-      'read_at': readAt?.toIso8601String(),
-      'dismissed_at': dismissedAt?.toIso8601String(),
-      'action_performed': actionPerformed,
-    };
-  }
+  @override
+  Map<String, dynamic> toJson() => _$UserNotificationModelToJson(this);
+
+  Map<String, dynamic> toDatabaseJson() => _$UserNotificationModelToJson(this);
 }

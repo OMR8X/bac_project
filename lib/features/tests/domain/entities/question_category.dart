@@ -1,6 +1,7 @@
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:equatable/equatable.dart';
 
-class QuestionCategory {
+class QuestionCategory extends Equatable {
   final int id;
   final String title;
   final bool isTypeable;
@@ -18,11 +19,6 @@ class QuestionCategory {
     required this.isSingleAnswer,
   });
 
-  @override
-  String toString() {
-    return 'QuestionCategory(id: $id, title: $title, isTypeable: $isTypeable, isOrderable: $isOrderable, isMCQ: $isMCQ, isSingleAnswer: $isSingleAnswer, questionsCount: $questionsCount)';
-  }
-
   factory QuestionCategory.mock() {
     return QuestionCategory(
       id: 1,
@@ -34,4 +30,15 @@ class QuestionCategory {
       questionsCount: 10,
     );
   }
+
+  @override
+  List<Object?> get props => [
+    id,
+    title,
+    isTypeable,
+    isOrderable,
+    isMCQ,
+    isSingleAnswer,
+    questionsCount,
+  ];
 }

@@ -1,11 +1,11 @@
-import 'package:bac_project/core/injector/app_injection.dart';
-import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
-import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/spaces_resources.dart';
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
-import 'package:bac_project/core/widgets/animations/staggered_list_wrapper_widget.dart';
-import 'package:bac_project/features/notifications/domain/entities/app_notification.dart';
-import 'package:bac_project/features/notifications/domain/usecases/display_notification_usecase.dart';
+import 'package:neuro_app/core/injector/app_injection.dart';
+import 'package:neuro_app/core/resources/styles/border_radius_resources.dart';
+import 'package:neuro_app/core/resources/styles/font_styles_manager.dart';
+import 'package:neuro_app/core/resources/styles/spaces_resources.dart';
+import 'package:neuro_app/core/resources/styles/spacing_resources.dart';
+import 'package:neuro_app/core/widgets/animations/staggered_list_wrapper_widget.dart';
+import 'package:neuro_app/features/notifications/domain/entities/app_notification.dart';
+import 'package:neuro_app/features/notifications/domain/usecases/display_notification_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' as intl;
 
@@ -15,7 +15,7 @@ class NotificationCardWidget extends StatelessWidget {
   final int position;
   final AppNotification notification;
 
-  bool get isUnread => notification.readedAt == null;
+  bool get isUnread => notification.readAt == null;
 
   @override
   Widget build(BuildContext context) {

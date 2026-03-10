@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import 'package:bac_project/features/tests/domain/usecases/get_units_use_case.dart';
-import 'package:bac_project/features/tests/domain/requests/get_units_request.dart';
-import 'package:bac_project/features/tests/domain/entities/unit.dart';
-import 'package:bac_project/core/injector/app_injection.dart';
+import 'package:neuro_app/features/tests/domain/usecases/get_units_use_case.dart';
+import 'package:neuro_app/features/tests/domain/requests/get_units_request.dart';
+import 'package:neuro_app/features/tests/domain/entities/unit.dart';
+import 'package:neuro_app/core/injector/app_injection.dart';
 part 'home_event.dart';
 part 'home_state.dart';
 

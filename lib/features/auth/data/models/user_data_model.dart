@@ -1,7 +1,11 @@
-import 'package:bac_project/features/auth/domain/entites/user_data.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:neuro_app/features/auth/domain/entites/user_data.dart';
 
+part 'user_data_model.g.dart';
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UserDataModel extends UserData {
-  UserDataModel({
+  const UserDataModel({
     required super.uuid,
     required super.name,
     required super.governorateId,
@@ -9,15 +13,8 @@ class UserDataModel extends UserData {
     required super.email,
   });
 
-  factory UserDataModel.fromJson(Map json) {
-    return UserDataModel(
-      uuid: json['uuid'].toString(),
-      name: json['name'],
-      sectionId: json['section_id'].toString(),
-      governorateId: json['governorate_id'].toString(),
-      email: json['email'],
-    );
-  }
+  factory UserDataModel.fromJson(Map<String, dynamic> json) => _$UserDataModelFromJson(json);
+
   factory UserDataModel.fromEntity(UserData userData) {
     return UserDataModel(
       uuid: userData.uuid,
@@ -28,13 +25,5 @@ class UserDataModel extends UserData {
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      "uuid": uuid,
-      "email": email,
-      "governorate_id": governorateId,
-      "section_id": sectionId,
-      "name": name,
-    };
-  }
+  Map<String, dynamic> toJson() => _$UserDataModelToJson(this);
 }

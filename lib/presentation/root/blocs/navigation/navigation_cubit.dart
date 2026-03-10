@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:bac_project/presentation/root/blocs/loader/app_loader_bloc.dart';
+import 'package:neuro_app/presentation/root/blocs/loader/app_loader_bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';

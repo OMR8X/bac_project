@@ -1,5 +1,5 @@
-import 'package:bac_project/features/auth/domain/entites/user_data.dart';
-import 'package:bac_project/features/auth/data/models/user_data_model.dart';
+import 'package:neuro_app/features/auth/domain/entites/user_data.dart';
+import 'package:neuro_app/features/auth/data/models/user_data_model.dart';
 
 extension UserDataMapper on UserData {
   UserDataModel get toModel {

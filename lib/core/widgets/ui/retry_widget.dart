@@ -1,5 +1,5 @@
-import 'package:bac_project/core/resources/errors/failures.dart';
-import 'package:bac_project/core/widgets/ui/fields/elevated_button_widget.dart';
+import 'package:neuro_app/core/resources/errors/failures.dart';
+import 'package:neuro_app/core/widgets/ui/fields/elevated_button_widget.dart';
 import 'package:flutter/cupertino.dart';
 
 class FailureWidget extends StatelessWidget {

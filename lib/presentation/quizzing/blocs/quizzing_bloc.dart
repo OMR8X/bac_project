@@ -1,14 +1,14 @@
-import 'package:bac_project/core/resources/errors/failures.dart';
-import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
-import 'package:bac_project/features/results/domain/entities/result.dart';
-import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
-import 'package:bac_project/features/results/domain/requests/add_result_request.dart';
+import 'package:neuro_app/core/resources/errors/failures.dart';
+import 'package:neuro_app/features/tests/domain/entities/question_answer.dart';
+import 'package:neuro_app/features/results/domain/entities/result.dart';
+import 'package:neuro_app/features/tests/domain/entities/test_mode.dart';
+import 'package:neuro_app/features/results/domain/requests/add_result_request.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'dart:async';
-import 'package:bac_project/features/tests/domain/entities/question.dart';
-import 'package:bac_project/features/results/domain/usecases/add_result_use_case.dart';
-import 'package:bac_project/core/injector/app_injection.dart';
+import 'package:neuro_app/features/tests/domain/entities/question.dart';
+import 'package:neuro_app/features/results/domain/usecases/add_result_use_case.dart';
+import 'package:neuro_app/core/injector/app_injection.dart';
 
 part 'quizzing_event.dart';
 part 'quizzing_state.dart';

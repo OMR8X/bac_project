@@ -1,12 +1,12 @@
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
-import 'package:bac_project/core/widgets/animations/skeletonizer_effect_list_wraper.dart';
-import 'package:bac_project/core/widgets/ui/icons/close_icon_widget.dart';
-import 'package:bac_project/core/widgets/ui/icons/switch_theme_icon_widget.dart';
-import 'package:bac_project/core/widgets/ui/states/empty_state_body_widget.dart';
-import 'package:bac_project/core/widgets/ui/states/error_state_body_widget.dart';
-import 'package:bac_project/features/notifications/domain/entities/app_notification.dart';
-import 'package:bac_project/presentation/notifications/state/explore_notifications/notifications_bloc.dart';
-import 'package:bac_project/presentation/notifications/widgets/notification_card_widget.dart';
+import 'package:neuro_app/core/resources/styles/spacing_resources.dart';
+import 'package:neuro_app/core/widgets/animations/skeletonizer_effect_list_wraper.dart';
+import 'package:neuro_app/core/widgets/ui/icons/close_icon_widget.dart';
+import 'package:neuro_app/core/widgets/ui/icons/switch_theme_icon_widget.dart';
+import 'package:neuro_app/core/widgets/ui/states/empty_state_body_widget.dart';
+import 'package:neuro_app/core/widgets/ui/states/error_state_body_widget.dart';
+import 'package:neuro_app/features/notifications/domain/entities/app_notification.dart';
+import 'package:neuro_app/presentation/notifications/state/explore_notifications/notifications_bloc.dart';
+import 'package:neuro_app/presentation/notifications/widgets/notification_card_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -61,7 +61,7 @@ class _NotificationsViewState extends State<NotificationsView> {
           if (state.status == NotificationsStatus.success) {
             final unreadNotifications =
                 state.notifications.where((e) {
-                  return e.readedAt == null;
+                  return e.readAt == null;
                 }).toList();
             sl<NotificationsBloc>().add(
               MarkNotificationsAsReadEvent(

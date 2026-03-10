@@ -1,4 +1,4 @@
-import 'package:bac_project/core/resources/errors/error_mapper.dart';
+import 'package:neuro_app/core/resources/errors/error_mapper.dart';
 import 'package:dartz/dartz.dart';
 import '../../../../core/resources/errors/failures.dart';
 import '../../domain/repositories/results_repository.dart';

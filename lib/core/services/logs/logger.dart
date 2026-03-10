@@ -1,4 +1,4 @@
-import 'package:bac_project/core/services/logs/logs_holder.dart';
+import 'package:neuro_app/core/services/logs/logs_holder.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart' as l;
 

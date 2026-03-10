@@ -1,12 +1,12 @@
 // import 'dart:math';
 
-// import 'package:bac_project/core/helpers/input_validator.dart';
-// import 'package:bac_project/core/injector/app_injection.dart';
-// import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-// import 'package:bac_project/core/resources/styles/padding_resources.dart';
-// import 'package:bac_project/core/resources/styles/spaces_resources.dart';
-// import 'package:bac_project/core/widgets/ui/fields/text_form_field_widget.dart';
-// import 'package:bac_project/features/managers/domain/usecases/reports/create_report_usecase.dart';
+// import 'package:neuro_app/core/helpers/input_validator.dart';
+// import 'package:neuro_app/core/injector/app_injection.dart';
+// import 'package:neuro_app/core/resources/styles/font_styles_manager.dart';
+// import 'package:neuro_app/core/resources/styles/padding_resources.dart';
+// import 'package:neuro_app/core/resources/styles/spaces_resources.dart';
+// import 'package:neuro_app/core/widgets/ui/fields/text_form_field_widget.dart';
+// import 'package:neuro_app/features/managers/domain/usecases/reports/create_report_usecase.dart';
 // import 'package:flutter/cupertino.dart';
 // import 'package:flutter/material.dart';
 // import 'package:fluttertoast/fluttertoast.dart';

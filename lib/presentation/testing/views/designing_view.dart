@@ -1,17 +1,17 @@
 import 'dart:ui';
-import 'package:bac_project/core/injector/results_feature_inj.dart';
-import 'package:bac_project/core/resources/styles/spaces_resources.dart';
-import 'package:bac_project/core/resources/styles/spacing_resources.dart';
-import 'package:bac_project/core/resources/styles/font_styles_manager.dart';
-import 'package:bac_project/core/resources/styles/border_radius_resources.dart';
-import 'package:bac_project/core/services/codepush/codepush_manager.dart';
-import 'package:bac_project/features/tests/domain/entities/option.dart';
-import 'package:bac_project/features/tests/domain/entities/question.dart';
-import 'package:bac_project/features/tests/domain/entities/question_answer.dart';
-import 'package:bac_project/features/tests/domain/entities/test_mode.dart';
-import 'package:bac_project/presentation/quizzing/widgets/multiple_choices_options_builder_widget.dart';
-import 'package:bac_project/presentation/quizzing/widgets/textual_options_builder_widget.dart';
-import 'package:bac_project/presentation/quizzing/widgets/Orderable_options_builder_widget.dart';
+import 'package:neuro_app/core/injector/results_feature_inj.dart';
+import 'package:neuro_app/core/resources/styles/spaces_resources.dart';
+import 'package:neuro_app/core/resources/styles/spacing_resources.dart';
+import 'package:neuro_app/core/resources/styles/font_styles_manager.dart';
+import 'package:neuro_app/core/resources/styles/border_radius_resources.dart';
+import 'package:neuro_app/core/services/codepush/codepush_manager.dart';
+import 'package:neuro_app/features/tests/domain/entities/option.dart';
+import 'package:neuro_app/features/tests/domain/entities/question.dart';
+import 'package:neuro_app/features/tests/domain/entities/question_answer.dart';
+import 'package:neuro_app/features/tests/domain/entities/test_mode.dart';
+import 'package:neuro_app/presentation/quizzing/widgets/multiple_choices_options_builder_widget.dart';
+import 'package:neuro_app/presentation/quizzing/widgets/textual_options_builder_widget.dart';
+import 'package:neuro_app/presentation/quizzing/widgets/Orderable_options_builder_widget.dart';
 import 'package:cupertino_native/cupertino_native.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -29,37 +29,8 @@ import '../../../../core/services/router/routes.dart';
 import '../../../../core/services/router/app_arguments.dart';
 
 import '../../../../features/tests/domain/entities/lesson.dart';
-import '../../subjects/view/pick_subject_view.dart';
 
-// Subject Data Imports
-import '../../../../features/subjects/data/analysis/subject.dart';
-import '../../../../features/subjects/data/analysis/lessons.dart';
-import '../../../../features/subjects/data/arabic/subject.dart';
-import '../../../../features/subjects/data/arabic/lessons.dart';
-import '../../../../features/subjects/data/chemistry/subject.dart';
-import '../../../../features/subjects/data/chemistry/lessons.dart';
-import '../../../../features/subjects/data/english/subject.dart';
-import '../../../../features/subjects/data/english/lessons.dart';
-import '../../../../features/subjects/data/french/materaill.dart';
-import '../../../../features/subjects/data/french/lessons.dart';
-import '../../../../features/subjects/data/geography/subject.dart';
-import '../../../../features/subjects/data/geography/lessons.dart';
-import '../../../../features/subjects/data/history/subject.dart';
-import '../../../../features/subjects/data/history/lessons.dart';
-import '../../../../features/subjects/data/patriotism/subject.dart';
-import '../../../../features/subjects/data/patriotism/lessons.dart';
-import '../../../../features/subjects/data/philosophy1/subject.dart';
-import '../../../../features/subjects/data/philosophy1/lessons.dart';
-import '../../../../features/subjects/data/philosophy2/subject.dart';
-import '../../../../features/subjects/data/philosophy2/lessons.dart';
-import '../../../../features/subjects/data/physics/subject.dart';
-import '../../../../features/subjects/data/physics/lessons.dart';
-import '../../../../features/subjects/data/rays/subject.dart';
-import '../../../../features/subjects/data/rays/lessons.dart';
-import '../../../../features/subjects/data/religion/subject.dart';
-import '../../../../features/subjects/data/religion/lessons.dart';
-import '../../../../features/subjects/data/sciences/subject.dart';
-import '../../../../features/subjects/data/sciences/lessons.dart';
+
 
 // Prototypes
 import 'prototypes/home_variation_a.dart';

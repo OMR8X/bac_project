@@ -1,4 +1,4 @@
-import 'package:bac_project/core/resources/errors/exceptions.dart';
+import 'package:neuro_app/core/resources/errors/exceptions.dart';
 import 'package:dio/dio.dart';
 
 class ApiResponse {
