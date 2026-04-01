@@ -10,16 +10,12 @@ class MotivationalQuoteModel extends MotivationalQuote {
     required super.quote,
     required super.author,
     super.used,
-    @JsonKey(fromJson: _dateFromJson) required super.createdAt,
+    @JsonKey(fromJson: _nullableDateFromJson) super.createdAt,
     @JsonKey(fromJson: _nullableDateFromJson) super.updatedAt,
   });
 
   static DateTime? _nullableDateFromJson(String? dateStr) =>
       dateStr != null ? DateTime.parse(dateStr) : null;
-
-  static DateTime _dateFromJson(String? dateStr) =>
-      dateStr != null ? DateTime.parse(dateStr) : DateTime.now();
-
   factory MotivationalQuoteModel.fromJson(Map<String, dynamic> json) =>
       _$MotivationalQuoteModelFromJson(json);
 

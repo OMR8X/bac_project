@@ -5,7 +5,7 @@ class MotivationalQuote extends Equatable {
   final String quote;
   final String author;
   final bool? used;
-  final DateTime createdAt;
+  final DateTime? createdAt;
   final DateTime? updatedAt;
 
   const MotivationalQuote({
@@ -13,7 +13,7 @@ class MotivationalQuote extends Equatable {
     required this.quote,
     required this.author,
     this.used,
-    required this.createdAt,
+    this.createdAt,
     this.updatedAt,
   });
 

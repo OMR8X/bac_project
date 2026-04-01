@@ -13,7 +13,10 @@ MotivationalQuoteModel _$MotivationalQuoteModelFromJson(
   quote: json['quote'] as String,
   author: json['author'] as String,
   used: json['used'] as bool?,
-  createdAt: DateTime.parse(json['created_at'] as String),
+  createdAt:
+      json['created_at'] == null
+          ? null
+          : DateTime.parse(json['created_at'] as String),
   updatedAt:
       json['updated_at'] == null
           ? null
@@ -27,6 +30,6 @@ Map<String, dynamic> _$MotivationalQuoteModelToJson(
   'quote': instance.quote,
   'author': instance.author,
   'used': instance.used,
-  'created_at': instance.createdAt.toIso8601String(),
+  'created_at': instance.createdAt?.toIso8601String(),
   'updated_at': instance.updatedAt?.toIso8601String(),
 };
