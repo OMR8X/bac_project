@@ -17,6 +17,7 @@ class ExceptionReportModel extends ExceptionReport {
     super.deviceModel,
     super.userId,
     required super.createdAt,
+    super.updatedAt,
   });
 
   factory ExceptionReportModel.fromJson(Map<String, dynamic> json) =>

@@ -13,14 +13,16 @@ class Question extends Equatable {
   //
   final int? unitId;
   final int lessonId;
-  final String? imageUrl;
+  final String? questionImageUrl;
   //
   final List<Option> options;
   final QuestionType? type;
 
   final int? categoryId;
 
-  final String? explain;
+  final String? hintContent;
+  final String? hintImageUrl;
+  final int? sortOrder;
 
   final List<QuestionAnswer> questionAnswers;
   final List<AnswerEvaluation> answerEvaluations;
@@ -32,19 +34,21 @@ class Question extends Equatable {
     this.type,
     this.unitId,
     required this.lessonId,
-    this.imageUrl,
+    this.questionImageUrl,
     this.categoryId,
-    this.explain,
+    this.hintContent,
+    this.hintImageUrl,
+    this.sortOrder,
     this.questionAnswers = const [],
     this.answerEvaluations = const [],
   });
 
   String getImageUrl() {
-    if (imageUrl != null) {
-      if (imageUrl!.contains("seen")) {
-        return imageUrl!;
+    if (questionImageUrl != null) {
+      if (questionImageUrl!.contains("seen")) {
+        return questionImageUrl!;
       }
-      return 'https://hvccufhuqizyposxasck.supabase.co/storage/v1/object/public/$imageUrl';
+      return 'https://hvccufhuqizyposxasck.supabase.co/storage/v1/object/public/$questionImageUrl';
     }
     return '';
   }
@@ -60,9 +64,11 @@ class Question extends Equatable {
     QuestionType? type,
     int? unitId,
     int? lessonId,
-    String? imageUrl,
+    String? questionImageUrl,
     int? categoryId,
-    String? explain,
+    String? hintContent,
+    String? hintImageUrl,
+    int? sortOrder,
     List<QuestionAnswer>? questionAnswers,
     List<AnswerEvaluation>? answerEvaluations,
   }) {
@@ -73,9 +79,11 @@ class Question extends Equatable {
       type: type ?? this.type,
       unitId: unitId ?? this.unitId,
       lessonId: lessonId ?? this.lessonId,
-      imageUrl: imageUrl ?? this.imageUrl,
+      questionImageUrl: questionImageUrl ?? this.questionImageUrl,
       categoryId: categoryId ?? this.categoryId,
-      explain: explain ?? this.explain,
+      hintContent: hintContent ?? this.hintContent,
+      hintImageUrl: hintImageUrl ?? this.hintImageUrl,
+      sortOrder: sortOrder ?? this.sortOrder,
       questionAnswers: questionAnswers ?? this.questionAnswers,
       answerEvaluations: answerEvaluations ?? this.answerEvaluations,
     );
@@ -94,9 +102,11 @@ class Question extends Equatable {
       type: QuestionType.singleChoice,
       unitId: 1,
       lessonId: 1,
-      imageUrl: null,
+      questionImageUrl: null,
       categoryId: 1,
-      explain: BoneMock.words(5),
+      hintContent: BoneMock.words(5),
+      hintImageUrl: null,
+      sortOrder: null,
       questionAnswers: [],
       answerEvaluations: [],
     );
@@ -109,9 +119,11 @@ class Question extends Equatable {
       options: [],
       type: null,
       lessonId: 0,
-      imageUrl: null,
+      questionImageUrl: null,
       categoryId: null,
-      explain: null,
+      hintContent: null,
+      hintImageUrl: null,
+      sortOrder: null,
       questionAnswers: [],
       answerEvaluations: [],
     );
@@ -123,11 +135,13 @@ class Question extends Equatable {
     content,
     unitId,
     lessonId,
-    imageUrl,
+    questionImageUrl,
     options,
     type,
     categoryId,
-    explain,
+    hintContent,
+    hintImageUrl,
+    sortOrder,
     questionAnswers,
     answerEvaluations,
   ];

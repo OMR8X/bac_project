@@ -12,6 +12,7 @@ UnitModel _$UnitModelFromJson(Map<String, dynamic> json) => UnitModel(
   subtitle: json['subtitle'] as String,
   lessonsCount: (json['lessons_count'] as num?)?.toInt(),
   iconUrl: json['icon_url'] as String?,
+  sortOrder: (json['sort_order'] as num?)?.toInt(),
   createdAt:
       json['created_at'] == null
           ? null
@@ -28,6 +29,7 @@ Map<String, dynamic> _$UnitModelToJson(UnitModel instance) => <String, dynamic>{
   'subtitle': instance.subtitle,
   'lessons_count': instance.lessonsCount,
   'icon_url': instance.iconUrl,
+  'sort_order': instance.sortOrder,
   'created_at': instance.createdAt?.toIso8601String(),
   'updated_at': instance.updatedAt?.toIso8601String(),
 };

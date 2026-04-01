@@ -11,6 +11,7 @@ class UnitModel extends Unit {
     required super.subtitle,
     super.lessonsCount,
     super.iconUrl,
+    super.sortOrder,
     super.createdAt,
     super.updatedAt,
   });
@@ -26,6 +27,7 @@ class UnitModel extends Unit {
     String? subtitle,
     int? lessonsCount,
     String? iconUrl,
+    int? sortOrder,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
@@ -35,6 +37,7 @@ class UnitModel extends Unit {
       subtitle: subtitle ?? this.subtitle,
       lessonsCount: lessonsCount ?? this.lessonsCount,
       iconUrl: iconUrl ?? this.iconUrl,
+      sortOrder: sortOrder ?? this.sortOrder,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
     );

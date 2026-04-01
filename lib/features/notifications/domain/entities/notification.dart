@@ -3,7 +3,7 @@ import '../enums/notification_priority.dart';
 
 class Notification extends Equatable {
   final int id;
-  final int topicId;
+  final int? topicId;
   final String? topicTitle;
   final String title;
   final String body;
@@ -15,7 +15,7 @@ class Notification extends Equatable {
 
   const Notification({
     required this.id,
-    required this.topicId,
+    this.topicId,
     this.topicTitle,
     required this.title,
     required this.body,
@@ -29,7 +29,7 @@ class Notification extends Equatable {
   factory Notification.empty() {
     return Notification(
       id: 0,
-      topicId: 0,
+      topicId: null,
       topicTitle: null,
       title: '',
       body: '',

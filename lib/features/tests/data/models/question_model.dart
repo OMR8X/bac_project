@@ -43,9 +43,11 @@ class QuestionModel extends Question {
     super.type,
     super.unitId,
     required super.lessonId,
-    super.imageUrl,
+    super.questionImageUrl,
     super.categoryId,
-    super.explain,
+    super.hintContent,
+    super.hintImageUrl,
+    super.sortOrder,
     this.questionAnswers = const [],
     this.answerEvaluations = const [],
   }) : super(

@@ -9,6 +9,9 @@ class QuestionCategory extends Equatable {
   final bool isMCQ;
   final bool isSingleAnswer;
   final int? questionsCount;
+  final int? sortOrder;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
   const QuestionCategory({
     required this.id,
     required this.title,
@@ -17,6 +20,9 @@ class QuestionCategory extends Equatable {
     required this.isOrderable,
     required this.isMCQ,
     required this.isSingleAnswer,
+    this.sortOrder,
+    this.createdAt,
+    this.updatedAt,
   });
 
   factory QuestionCategory.mock() {
@@ -28,6 +34,9 @@ class QuestionCategory extends Equatable {
       isMCQ: true,
       isSingleAnswer: true,
       questionsCount: 10,
+      sortOrder: 0,
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
     );
   }
 
@@ -40,5 +49,8 @@ class QuestionCategory extends Equatable {
     isMCQ,
     isSingleAnswer,
     questionsCount,
+    sortOrder,
+    createdAt,
+    updatedAt,
   ];
 }

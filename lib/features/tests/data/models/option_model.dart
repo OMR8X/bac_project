@@ -12,6 +12,7 @@ class OptionModel extends Option {
     required super.isCorrect,
     super.sortOrder,
     @JsonKey(includeFromJson: false, includeToJson: false) super.typedAnswer,
+    super.imageUrl,
   });
 
   factory OptionModel.fromJson(Map<String, dynamic> json) => _$OptionModelFromJson(json);
@@ -26,6 +27,7 @@ class OptionModel extends Option {
       isCorrect: isCorrect,
       sortOrder: sortOrder,
       typedAnswer: typedAnswer,
+      imageUrl: imageUrl,
     );
   }
 
@@ -37,6 +39,7 @@ class OptionModel extends Option {
     bool? isCorrect,
     String? typedAnswer,
     int? sortOrder,
+    String? imageUrl,
   }) {
     return OptionModel(
       id: id ?? this.id,
@@ -45,6 +48,7 @@ class OptionModel extends Option {
       isCorrect: isCorrect ?? this.isCorrect,
       sortOrder: sortOrder ?? this.sortOrder,
       typedAnswer: typedAnswer ?? this.typedAnswer,
+      imageUrl: imageUrl ?? this.imageUrl,
     );
   }
 }

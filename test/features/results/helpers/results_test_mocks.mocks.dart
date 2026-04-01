@@ -5,6 +5,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i10;
 
+import 'package:dartz/dartz.dart' as _i8;
+import 'package:mockito/mockito.dart' as _i1;
 import 'package:neuro_app/core/resources/errors/failures.dart' as _i18;
 import 'package:neuro_app/features/results/data/datasources/results_remote_data_source.dart'
     as _i9;
@@ -34,8 +36,6 @@ import 'package:neuro_app/features/results/domain/requests/get_result_questions_
     as _i15;
 import 'package:neuro_app/features/results/domain/requests/get_result_request.dart'
     as _i13;
-import 'package:dartz/dartz.dart' as _i8;
-import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

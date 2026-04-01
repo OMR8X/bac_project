@@ -14,6 +14,7 @@ import 'core/injector/app_injection.dart';
 Future<void> main() async {
   runZonedGuarded(
     () async {
+      ///
       WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
       FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
@@ -88,5 +89,8 @@ void _reportException({
 // 1- collect users screens activities
 // 2- collect users status (online/offline)
 // 3- create users table
-// 4- 
+// 4- flashcard
+///
+// merge sound and balance receivers lessons!!!!!.
+// 
 ///

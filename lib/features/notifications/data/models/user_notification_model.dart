@@ -9,10 +9,8 @@ class UserNotificationModel extends UserNotification {
     required super.id,
     required super.userId,
     required super.notificationId,
-    super.deliveredAt,
+    required super.createdAt,
     super.readAt,
-    super.dismissedAt,
-    super.actionPerformed,
   });
 
   factory UserNotificationModel.fromJson(Map<String, dynamic> json) =>

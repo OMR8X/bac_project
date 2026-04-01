@@ -30,7 +30,7 @@ class QuestionCardWidget extends StatelessWidget {
               textAlign: TextAlign.start,
               style: TextStylesResources.questionsTitle.copyWith(color: getCardTitleColor(context)),
             ),
-            if (question.imageUrl != null)
+            if (question.questionImageUrl != null)
               Card(
                 shape: getShape(context),
                 margin: Margins.questionImageMargin,

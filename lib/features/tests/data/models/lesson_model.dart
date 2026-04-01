@@ -10,6 +10,10 @@ class LessonModel extends Lesson {
     required super.title,
     required super.unitId,
     required super.questionsCount,
+    super.iconUrl,
+    super.sortOrder,
+    super.createdAt,
+    super.updatedAt,
   });
 
   factory LessonModel.fromJson(Map<String, dynamic> json) => _$LessonModelFromJson(json);
@@ -17,12 +21,25 @@ class LessonModel extends Lesson {
   Map<String, dynamic> toJson() => _$LessonModelToJson(this);
 
   @override
-  LessonModel copyWith({int? id, String? title, int? questionsCount, int? unitId}) {
+  LessonModel copyWith({
+    int? id,
+    String? title,
+    int? questionsCount,
+    int? unitId,
+    String? iconUrl,
+    int? sortOrder,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+  }) {
     return LessonModel(
       id: id ?? this.id,
       title: title ?? this.title,
       unitId: unitId ?? this.unitId,
       questionsCount: questionsCount ?? this.questionsCount,
+      iconUrl: iconUrl ?? this.iconUrl,
+      sortOrder: sortOrder ?? this.sortOrder,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 }

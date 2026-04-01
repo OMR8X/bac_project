@@ -17,9 +17,11 @@ QuestionModel _$QuestionModelFromJson(Map<String, dynamic> json) =>
       type: $enumDecodeNullable(_$QuestionTypeEnumMap, json['type']),
       unitId: (json['unit_id'] as num?)?.toInt(),
       lessonId: (json['lesson_id'] as num).toInt(),
-      imageUrl: json['image_url'] as String?,
+      questionImageUrl: json['question_image_url'] as String?,
       categoryId: (json['category_id'] as num?)?.toInt(),
-      explain: json['explain'] as String?,
+      hintContent: json['hint_content'] as String?,
+      hintImageUrl: json['hint_image_url'] as String?,
+      sortOrder: (json['sort_order'] as num?)?.toInt(),
       questionAnswers:
           json['question_answers'] == null
               ? const []
@@ -40,10 +42,12 @@ Map<String, dynamic> _$QuestionModelToJson(QuestionModel instance) =>
       'content': instance.content,
       'unit_id': instance.unitId,
       'lesson_id': instance.lessonId,
-      'image_url': instance.imageUrl,
+      'question_image_url': instance.questionImageUrl,
       'type': _$QuestionTypeEnumMap[instance.type],
       'category_id': instance.categoryId,
-      'explain': instance.explain,
+      'hint_content': instance.hintContent,
+      'hint_image_url': instance.hintImageUrl,
+      'sort_order': instance.sortOrder,
       'options': QuestionModel._optionsToJson(instance.options),
       'question_answers': QuestionModel._questionAnswersToJson(
         instance.questionAnswers,

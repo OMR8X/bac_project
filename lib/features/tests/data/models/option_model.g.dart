@@ -12,6 +12,7 @@ OptionModel _$OptionModelFromJson(Map<String, dynamic> json) => OptionModel(
   content: json['content'] as String,
   isCorrect: json['is_correct'] as bool?,
   sortOrder: (json['sort_order'] as num?)?.toInt(),
+  imageUrl: json['image_url'] as String?,
 );
 
 Map<String, dynamic> _$OptionModelToJson(OptionModel instance) =>
@@ -21,4 +22,5 @@ Map<String, dynamic> _$OptionModelToJson(OptionModel instance) =>
       'content': instance.content,
       'is_correct': instance.isCorrect,
       'sort_order': instance.sortOrder,
+      'image_url': instance.imageUrl,
     };

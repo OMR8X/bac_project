@@ -12,7 +12,7 @@ import 'package:equatable/equatable.dart';
 
 class AppNotification extends Equatable {
   final int id;
-  final int topicId;
+  final int? topicId;
   final String? topicTitle;
   final String title;
   final String body;
@@ -22,8 +22,6 @@ class AppNotification extends Equatable {
   final DateTime createdAt;
   final DateTime? expiresAt;
   final DateTime? readAt;
-  final DateTime? dismissedAt;
-  final bool actionPerformed;
 
   // Computed property for backward compatibility
   bool get seen => readAt != null;
@@ -73,8 +71,6 @@ class AppNotification extends Equatable {
       createdAt: createdAt,
       expiresAt: null,
       readAt: null,
-      dismissedAt: null,
-      actionPerformed: false,
     );
   }
 
@@ -91,8 +87,6 @@ class AppNotification extends Equatable {
       createdAt: DateTime.parse('2024-01-01T10:00:00Z'),
       expiresAt: null,
       readAt: null,
-      dismissedAt: null,
-      actionPerformed: false,
     );
   }
 
@@ -109,8 +103,6 @@ class AppNotification extends Equatable {
       createdAt: DateTime.parse('2024-01-01T10:00:00Z'),
       expiresAt: null,
       readAt: DateTime.now(),
-      dismissedAt: null,
-      actionPerformed: false,
     );
   }
 
@@ -126,8 +118,6 @@ class AppNotification extends Equatable {
     DateTime? createdAt,
     DateTime? expiresAt,
     DateTime? readAt,
-    DateTime? dismissedAt,
-    bool? actionPerformed,
   }) {
     return AppNotification(
       id: id ?? this.id,
@@ -141,14 +131,12 @@ class AppNotification extends Equatable {
       createdAt: createdAt ?? this.createdAt,
       expiresAt: expiresAt ?? this.expiresAt,
       readAt: readAt ?? this.readAt,
-      dismissedAt: dismissedAt ?? this.dismissedAt,
-      actionPerformed: actionPerformed ?? this.actionPerformed,
     );
   }
 
   const AppNotification({
     required this.id,
-    required this.topicId,
+    this.topicId,
     this.topicTitle,
     required this.title,
     required this.body,
@@ -158,8 +146,6 @@ class AppNotification extends Equatable {
     required this.createdAt,
     this.expiresAt,
     this.readAt,
-    this.dismissedAt,
-    this.actionPerformed = false,
   });
 
   @override
@@ -175,7 +161,5 @@ class AppNotification extends Equatable {
     createdAt,
     expiresAt,
     readAt,
-    dismissedAt,
-    actionPerformed,
   ];
 }

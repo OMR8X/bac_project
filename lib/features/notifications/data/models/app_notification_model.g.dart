@@ -10,7 +10,7 @@ AppNotificationModel _$AppNotificationModelFromJson(
   Map<String, dynamic> json,
 ) => AppNotificationModel(
   id: (json['id'] as num).toInt(),
-  topicId: (json['topic_id'] as num).toInt(),
+  topicId: (json['topic_id'] as num?)?.toInt(),
   topicTitle: json['topic_title'] as String?,
   title: json['title'] as String,
   body: json['body'] as String,

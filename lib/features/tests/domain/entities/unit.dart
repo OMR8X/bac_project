@@ -7,6 +7,7 @@ class Unit extends Equatable {
   final String subtitle;
   final int? lessonsCount;
   final String? iconUrl;
+  final int? sortOrder;
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
@@ -16,6 +17,7 @@ class Unit extends Equatable {
     required this.subtitle,
     this.lessonsCount,
     this.iconUrl,
+    this.sortOrder,
     this.createdAt,
     this.updatedAt,
   });
@@ -26,6 +28,7 @@ class Unit extends Equatable {
     String? subtitle,
     int? lessonsCount,
     String? iconUrl,
+    int? sortOrder,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
@@ -35,6 +38,7 @@ class Unit extends Equatable {
       subtitle: subtitle ?? this.subtitle,
       lessonsCount: lessonsCount ?? this.lessonsCount,
       iconUrl: iconUrl ?? this.iconUrl,
+      sortOrder: sortOrder ?? this.sortOrder,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
     );
@@ -47,6 +51,7 @@ class Unit extends Equatable {
       subtitle: BoneMock.words(3),
       lessonsCount: 5,
       iconUrl: 'book',
+      sortOrder: 0,
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
     );
@@ -59,6 +64,7 @@ class Unit extends Equatable {
     subtitle,
     lessonsCount,
     iconUrl,
+    sortOrder,
     createdAt,
     updatedAt,
   ];

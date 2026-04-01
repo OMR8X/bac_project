@@ -8,7 +8,7 @@ part 'app_notification_model.g.dart';
 class AppNotificationModel extends AppNotification {
   const AppNotificationModel({
     required super.id,
-    required super.topicId,
+    super.topicId,
     super.topicTitle,
     required super.title,
     required super.body,

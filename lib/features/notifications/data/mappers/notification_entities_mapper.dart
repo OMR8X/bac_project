@@ -67,10 +67,8 @@ extension UserNotificationModelMapper on UserNotificationModel {
     id: id,
     userId: userId,
     notificationId: notificationId,
-    deliveredAt: deliveredAt,
+    createdAt: createdAt,
     readAt: readAt,
-    dismissedAt: dismissedAt,
-    actionPerformed: actionPerformed,
   );
 }
 
@@ -79,10 +77,8 @@ extension UserNotificationMapper on UserNotification {
     id: id,
     userId: userId,
     notificationId: notificationId,
-    deliveredAt: deliveredAt,
+    createdAt: createdAt,
     readAt: readAt,
-    dismissedAt: dismissedAt,
-    actionPerformed: actionPerformed,
   );
 }
 

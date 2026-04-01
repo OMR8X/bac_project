@@ -12,19 +12,11 @@ UserNotificationModel _$UserNotificationModelFromJson(
   id: (json['id'] as num).toInt(),
   userId: json['user_id'] as String,
   notificationId: (json['notification_id'] as num).toInt(),
-  deliveredAt:
-      json['delivered_at'] == null
-          ? null
-          : DateTime.parse(json['delivered_at'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
   readAt:
       json['read_at'] == null
           ? null
           : DateTime.parse(json['read_at'] as String),
-  dismissedAt:
-      json['dismissed_at'] == null
-          ? null
-          : DateTime.parse(json['dismissed_at'] as String),
-  actionPerformed: json['action_performed'] as bool? ?? false,
 );
 
 Map<String, dynamic> _$UserNotificationModelToJson(
@@ -33,8 +25,6 @@ Map<String, dynamic> _$UserNotificationModelToJson(
   'id': instance.id,
   'user_id': instance.userId,
   'notification_id': instance.notificationId,
-  'delivered_at': instance.deliveredAt?.toIso8601String(),
+  'created_at': instance.createdAt.toIso8601String(),
   'read_at': instance.readAt?.toIso8601String(),
-  'dismissed_at': instance.dismissedAt?.toIso8601String(),
-  'action_performed': instance.actionPerformed,
 };

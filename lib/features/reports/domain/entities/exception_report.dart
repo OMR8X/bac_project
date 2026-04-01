@@ -12,6 +12,7 @@ class ExceptionReport extends Equatable {
   final String? deviceModel;
   final String? userId;
   final DateTime createdAt;
+  final DateTime? updatedAt;
 
   const ExceptionReport({
     required this.id,
@@ -24,6 +25,7 @@ class ExceptionReport extends Equatable {
     this.deviceModel,
     this.userId,
     required this.createdAt,
+    this.updatedAt,
   });
 
   factory ExceptionReport.empty() {
@@ -46,6 +48,7 @@ class ExceptionReport extends Equatable {
     String? deviceModel,
     String? userId,
     DateTime? createdAt,
+    DateTime? updatedAt,
   }) {
     return ExceptionReport(
       id: id ?? this.id,
@@ -58,6 +61,7 @@ class ExceptionReport extends Equatable {
       deviceModel: deviceModel ?? this.deviceModel,
       userId: userId ?? this.userId,
       createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 
@@ -73,5 +77,6 @@ class ExceptionReport extends Equatable {
     deviceModel,
     userId,
     createdAt,
+    updatedAt,
   ];
 }

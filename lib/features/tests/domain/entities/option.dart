@@ -7,6 +7,7 @@ class Option extends Equatable {
   final bool? isCorrect;
   final int? sortOrder;
   final String? typedAnswer;
+  final String? imageUrl;
 
   const Option({
     required this.id,
@@ -15,6 +16,7 @@ class Option extends Equatable {
     required this.isCorrect,
     this.sortOrder,
     this.typedAnswer,
+    this.imageUrl,
   });
 
   Option copyWith({
@@ -24,6 +26,7 @@ class Option extends Equatable {
     bool? isCorrect,
     String? typedAnswer,
     int? sortOrder,
+    String? imageUrl,
   }) {
     return Option(
       id: id ?? this.id,
@@ -32,6 +35,7 @@ class Option extends Equatable {
       isCorrect: isCorrect ?? this.isCorrect,
       sortOrder: sortOrder ?? this.sortOrder,
       typedAnswer: typedAnswer ?? this.typedAnswer,
+      imageUrl: imageUrl ?? this.imageUrl,
     );
   }
 
@@ -43,9 +47,10 @@ class Option extends Equatable {
       isCorrect: false,
       typedAnswer: null,
       sortOrder: null,
+      imageUrl: null,
     );
   }
 
   @override
-  List<Object?> get props => [id, questionId, content, isCorrect, sortOrder, typedAnswer];
+  List<Object?> get props => [id, questionId, content, isCorrect, sortOrder, typedAnswer, imageUrl];
 }

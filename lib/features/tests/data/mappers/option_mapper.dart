@@ -11,6 +11,7 @@ extension OptionModelExtension on OptionModel {
       isCorrect: isCorrect,
       typedAnswer: typedAnswer,
       sortOrder: sortOrder,
+      imageUrl: imageUrl,
     );
   }
 }
@@ -24,6 +25,7 @@ extension OptionEntityExtension on Option {
       isCorrect: isCorrect,
       typedAnswer: typedAnswer,
       sortOrder: sortOrder,
+      imageUrl: imageUrl,
     );
   }
 }

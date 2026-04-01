@@ -19,6 +19,10 @@ ExceptionReportModel _$ExceptionReportModelFromJson(
   deviceModel: json['device_model'] as String?,
   userId: json['user_id'] as String?,
   createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt:
+      json['updated_at'] == null
+          ? null
+          : DateTime.parse(json['updated_at'] as String),
 );
 
 Map<String, dynamic> _$ExceptionReportModelToJson(
@@ -34,4 +38,5 @@ Map<String, dynamic> _$ExceptionReportModelToJson(
   'device_model': instance.deviceModel,
   'user_id': instance.userId,
   'created_at': instance.createdAt.toIso8601String(),
+  'updated_at': instance.updatedAt?.toIso8601String(),
 };

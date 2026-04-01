@@ -11,8 +11,11 @@ class QuestionCategoryModel extends QuestionCategory {
     required super.questionsCount,
     required super.isTypeable,
     required super.isOrderable,
-    required super.isMCQ,
+    @JsonKey(name: 'is_mcq') required super.isMCQ,
     required super.isSingleAnswer,
+    super.sortOrder,
+    super.createdAt,
+    super.updatedAt,
   });
 
   factory QuestionCategoryModel.fromJson(Map<String, dynamic> json) =>

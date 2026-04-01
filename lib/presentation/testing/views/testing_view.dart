@@ -91,7 +91,7 @@ class TestingView extends StatelessWidget {
           const Option(id: 3, questionId: 1, content: '5', isCorrect: false),
           const Option(id: 4, questionId: 1, content: '6', isCorrect: false),
         ],
-        explain: null,
+        hintContent: null,
         categoryId: null,
       ),
       Question(
@@ -104,7 +104,7 @@ class TestingView extends StatelessWidget {
           const Option(id: 7, questionId: 2, content: '7', isCorrect: true),
           const Option(id: 8, questionId: 2, content: '8', isCorrect: false),
         ],
-        explain: null,
+        hintContent: null,
         categoryId: null,
       ),
     ];
