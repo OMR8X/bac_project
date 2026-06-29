@@ -81,16 +81,5 @@ void _reportException({
         trigger: trigger,
       ),
     );
-  } catch (_) {
-    // Silently fail if reporting fails (avoid infinite loops)
-  }
+  } catch (_) {}
 }
-///
-// 1- collect users screens activities
-// 2- collect users status (online/offline)
-// 3- create users table
-// 4- flashcard
-///
-// merge sound and balance receivers lessons!!!!!.
-// 
-///

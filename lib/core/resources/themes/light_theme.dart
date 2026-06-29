@@ -88,6 +88,7 @@ class AppLightTheme {
           textNotes: ColorsResourcesLight.onWarning.darker(0.5),
         ),
       ],
+      
       listTileTheme: ListTileThemeData(
         titleTextStyle: TextStylesResources.cardMediumTitle.copyWith(
           color: ColorsResourcesLight.onSurface,
